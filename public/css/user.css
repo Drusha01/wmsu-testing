@@ -1,0 +1,105 @@
+
+/* NAVBAR CSS */
+.bg-crimson {
+    background-color: #990000;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: white;
+}
+/* NAVBAR CSS */
+
+/* Your custom CSS styles */
+.application-section {
+    padding: 80px 0;
+}
+
+.application-section h2, .application-section h3 {
+    color: #990000;
+}
+
+.application-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.application-section ol, .application-section ul {
+    padding-left: 20px;
+}
+
+.application-section a.btn-primary {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 18px;
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.application-section a.btn-primary:hover {
+    background-color: #a60000;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 767px) {
+    .application-section .row {
+        flex-direction: column-reverse;
+    }
+
+    .application-section .col-lg-6 {
+        margin-bottom: 40px;
+    }
+}
+
+/* Your custom CSS styles */
+.test-application-section {
+    padding: 80px 0;
+}
+
+.test-application-section h2, .test-application-section h3 {
+    color: #990000;
+}
+
+.test-application-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.test-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.test-list li {
+    margin-bottom: 10px;
+}
+
+.test-list a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.test-list a:hover {
+    color: #990000;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 767px) {
+    .test-application-section .row {
+        flex-direction: column-reverse;
+    }
+
+    .test-application-section .col-lg-6 {
+        margin-bottom: 40px;
+    }
+}

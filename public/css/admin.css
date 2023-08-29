@@ -1,0 +1,295 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+  
+
+
+/* Header */
+.admin-header {
+    background-color: #990000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.highlight {
+    color: #fff; /* Change the color as desired */
+    font-weight: bold;
+}
+
+.admin-header h1 {
+    margin-bottom: 10px;
+}
+
+.admin-header nav ul {
+    list-style: none;
+}
+
+.admin-header nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.admin-header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.admin-header nav ul li a:hover {
+    color: #030300;
+}
+
+.logo {
+    display: block;
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+}
+
+/* Header */
+
+/* Content */
+.admin-content {
+    padding: 20px;
+}
+
+.dashboard-widgets {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.widget {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    flex-basis: calc(50% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.widget h3 {
+    margin-bottom: 10px;
+}
+
+.widget ul {
+    list-style: none;
+}
+
+.widget ul li {
+    margin-bottom: 5px;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Content */
+
+
+/* Footer */
+.admin-footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.admin-footer p {
+    margin: 0;
+    
+}
+/* Footer */
+
+
+/* overview */
+.admin-overview {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+    
+}
+
+.overview-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 20px;
+}
+
+.widget {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.widget-heading {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.widget-content {
+    font-size: 16px;
+}
+
+.activity-list {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.highlight {
+    color: #ffc107;
+    font-weight: bold;
+}
+/* overview */
+
+/* MANAGE CONTENT */
+.admin-manage-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.content-sections {
+    display: flex;
+    gap: 20px;
+}
+
+.section {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.content-title {
+    flex: 1;
+    font-size: 18px;
+}
+
+.content-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 10px;
+    
+}
+
+.edit-link,
+.delete-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.edit-link:hover,
+.delete-link:hover {
+    color: #555;
+}
+
+.add-link {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.add-link:hover {
+    color: #0056b3;
+}
+/* MANAGE CONTENT */
+
+
+/* admin.css */
+
+/* Application Review and Approval Process */
+.admin-application-review {
+    padding: 40px;
+    background-color: #f8f9fa;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+}
+
+.step-content h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.step-content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Admin Footer */
+.admin-footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
