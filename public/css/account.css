@@ -1,108 +1,127 @@
 body {
-    font-family: "Karla", sans-serif;
-    background-color: #d0d0ce;
-    min-height: 100vh; }
-  
-  .brand-wrapper {
-    margin-bottom: 19px; }
-    .brand-wrapper .logo {
-      height: 100px; }
-  
-  .login-card {
-    border: 0;
-    border-radius: 27.5px;
-    box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
-    overflow: hidden; }
-    .login-card-img {
-      border-radius: 0;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover; 
-        }
-    .login-card .card-body {
-      padding: 85px 60px 60px; }
-      @media (max-width: 422px) {
-        .login-card .card-body {
-          padding: 35px 24px; } }
-    .login-card-description {
-      font-size: 25px;
-      color: #000;
-      font-weight: normal;
-      margin-bottom: 23px; }
-    .login-card form {
-      max-width: 326px; }
-    .login-card .form-control {
-      border: 1px solid #d5dae2;
-      padding: 15px 25px;
-      margin-bottom: 20px;
-      min-height: 45px;
-      font-size: 13px;
-      line-height: 15;
-      font-weight: normal; }
-      .login-card .form-control::-webkit-input-placeholder {
-        color: #919aa3; }
-      .login-card .form-control::-moz-placeholder {
-        color: #919aa3; }
-      .login-card .form-control:-ms-input-placeholder {
-        color: #919aa3; }
-      .login-card .form-control::-ms-input-placeholder {
-        color: #919aa3; }
-      .login-card .form-control::placeholder {
-        color: #919aa3; }
-    .login-card .login-btn {
-      padding: 13px 20px 12px;
-      background-color: #a20202;;
-      border-radius: 4px;
-      font-size: 17px;
-      font-weight: bold;
-      line-height: 20px;
-      color: #fff;
-      margin-bottom: 24px; }
-      .login-card .login-btn:hover {
-        border: 1px solid #000;
-        background-color: transparent;
-        color: #000; }
-    .login-card .forgot-password-link {
-      font-size: 14px;
-      color: #919aa3;
-      margin-bottom: 12px; }
-    .login-card-footer-text {
-      font-size: 16px;
-      color: #0d2366;
-      margin-bottom: 60px; }
-      @media (max-width: 767px) {
-        .login-card-footer-text {
-          margin-bottom: 24px; } }
-    .login-card-footer-nav a {
-      font-size: 14px;
+  font-family: "Karla", sans-serif;
+  background-color: #d0d0ce;
+  min-height: 100vh; }
+.container{
+  max-width: 850px; /* Adjust the width as needed */
+      margin: auto;
+      padding: 15px;
+}
+.brand-wrapper {
+  margin-bottom: 19px; }
+  .brand-wrapper .logo {
+    height: 100px; }
+
+.login-card {
+  border: 0;
+  border-radius: 27.5px;
+  box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+  overflow: hidden; }
+  .login-card-img {
+    border-radius: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover; 
+      }
+  .login-card .card-body {
+    padding: 35px 47px 37px 90px; }
+    @media (max-width: 422px) {
+      .login-card .card-body {
+        padding: 35px 24px; } }
+  .login-card-description {
+    font-size: 25px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 23px; }
+  .login-card form {
+    max-width: 326px; }
+  .login-card .form-control {
+    border: 1px solid #d5dae2;
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    min-height: 45px;
+    font-size: 13px;
+    line-height: 15;
+    font-weight: normal; }
+    .login-card .form-control::-webkit-input-placeholder {
       color: #919aa3; }
-    
-  .text-center{
-    color: red;
-  }
-  .top-bar {
-    background-color: #a20202; /* Top bar color */
-    color: white;
-    padding: 10px 0;
-    padding-left: 10px;
-    font-size: 20px;
+    .login-card .form-control::-moz-placeholder {
+      color: #919aa3; }
+    .login-card .form-control:-ms-input-placeholder {
+      color: #919aa3; }
+    .login-card .form-control::-ms-input-placeholder {
+      color: #919aa3; }
+    .login-card .form-control::placeholder {
+      color: #919aa3; }
+  .login-card .login-btn {
+    padding: 13px 20px 12px;
+    background-color: #a20202;;
+    border-radius: 4px;
+    font-size: 17px;
     font-weight: bold;
-  }
-  .top-bar-text{
-    padding-top: 10px;
-    padding-left: 10px;
-  }
-  .button-color {
-    background-color: #a20202; /* Button color same as top bar */
-    border-color: #a20202; /* Button border color same as top bar */
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    color: white;
-    font-size: 18px;
-  }
-  .signup-form {
-    height: 850px; /* Adjust the height value as needed */
-  }
+    line-height: 20px;
+    color: #fff;
+    margin-bottom: 24px; }
+    .login-card .login-btn:hover {
+      border: 1px solid #000;
+      background-color: transparent;
+      color: #000; }
+  .login-card .forgot-password-link {
+    font-size: 14px;
+    color: #919aa3;
+    margin-bottom: 12px; }
+  .login-card-footer-text {
+    font-size: 16px;
+    color: #0d2366;
+    margin-bottom: 60px; }
+    @media (max-width: 767px) {
+      .login-card-footer-text {
+        margin-bottom: 24px; } }
+  .login-card-footer-nav a {
+    font-size: 14px;
+    color: #919aa3; }
+  
+.text-center{
+  color: red;
+}
+.top-bar {
+  background-color: #a20202; /* Top bar color */
+  color: white;
+  padding: 10px 0;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.top-bar-text{
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.button-color {
+  background-color: #a20202; /* Button color same as top bar */
+  border-color: #a20202; /* Button border color same as top bar */
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 18px;
+width: 10px;
+}
+.signup-form {
+  height: 850px; /* Adjust the height value as needed */
+}
+.card-header {
+  background-color: #a20202;
+  color: #fff;
+}
+.signup-body{
+  background-color: #d3d1d1;
+}
+.text-signup{
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-left: 19px;
+  color: #a20202;
+}

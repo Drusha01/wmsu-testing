@@ -58,6 +58,10 @@ Route::get('/create-using-email', function () {
     return view('account.create-using-email');
 })->name('create-using-email');
 
+Route::get('/admin-login', function () {
+    return view('account.admin-login');
+})->name('admin-login');
+
 
 
 Route::get('admin-dashboard', function () {

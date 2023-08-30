@@ -1,62 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Account Registration using Email Verification</title>
-  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/account.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-    <div class="container">
-      <div class="card login-card">
-        <div class="row no-gutters">
-          <div class="col-md-5">
-            <img src="{{ asset('images/slider/wm.jpg') }}" alt="registration" class="login-card-img">
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <div class="brand-wrapper">
-                <img src="{{ asset('images/logo/logo.png') }}" alt="logo" class="logo">
-              </div>
-              <p class="login-card-description">Register an Account</p>
-              <form method="POST" action="{{ route('register') }}">
-              @csrf
-                <div class="form-group">
-                  <label for="name" class="sr-only">Name</label>
-                  <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+    <body class="signup-body">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <span class="text-signup">SignUp Form</span>
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                <h4 class="alert-heading">Reminders</h4>
+                                <ol class="mb-0">
+                                    <li>Sign Up with a valid and existing personal email address where we can send your activation link.</li>
+                                    <li>Make sure that you can access your inbox, and that the email address is correct and can receive email.</li>
+                                    <li>Enter your correct information to avoid delays in the processing of your application.</li>
+                                    <li>Double-check your school name.</li>
+                                    <li>You are only allowed to sign up once using the same email address you provided.</li>
+                                    <li>Make sure to activate your account sent to your Email address.</li>
+                                </ol>
+                            </div>
+                            <form>
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-4 mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="middleName" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" id="middleName" name="middleName">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="email" class="sr-only">Email</label>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="suffix" class="form-label">Suffix</label>
+                        <input type="text" class="form-control" id="suffix" name="suffix">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="password" class="sr-only">Password</label>
-                  <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="col-md-6 ">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="password_confirmation" class="sr-only">Confirm Password</label>
-                  <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" required>
-                </div>
-                <button type="submit" class="btn btn-block login-btn mb-4 button-color">Register</button>
-              </form>
-              <p class="login-card-footer-text">Register Using <a href="{{ route('create-using-email') }}" class="text-reset"> Email Address</a></p>
-              <p class="login-card-footer-text">Already have an account? <a href="{{ route('login') }}" class="text-reset">Login here</a></p>
-              <nav class="login-card-footer-nav">
-                <a href="#!">Terms of use.</a>
-                <a href="#!">Privacy policy</a>
-              </nav>
-              <!-- Add the back to homepage button -->
-              <a href="{{ route('home') }}" class="btn btn-block btn-outline-primary mt-3">Back to Homepage</a>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div class="row mb-2">
+                    <div class="col-md-10 ">
+                        <label class="form-label"></label>
+                    </div>
+                    <div class="row mb-2"> 
+    <div class="col-md-4 mb-3">
+        <label for="birthDate" class="form-label">Birthday</label>
+        <input type="date" class="form-control" id="birthDate" name="birthDate" required>
     </div>
-  </main>
+    <div class="col-md-8 mb-3">
+        <label for="seniorHighschool" class="form-label">Senior Highschool</label>
+        <input type="text" class="form-control" id="seniorHighschool" name="seniorHighschool" required>
+    </div>
+</div>
+                <button type="submit" class=" button-color">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>

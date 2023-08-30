@@ -12,7 +12,7 @@ class AuthController extends Controller
 }
 public function showadminLogin()
 {
-    return view('admin-account.admin-login');
+    return view('account.admin-login');
 }
 public function showRegistration()
 {
