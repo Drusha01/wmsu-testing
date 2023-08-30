@@ -125,3 +125,47 @@ width: 10px;
   padding-left: 19px;
   color: #a20202;
 }
+
+/* Add these styles to your existing CSS or in a separate <style> tag */
+.form-group {
+  margin-bottom: 20px;
+}
+
+#verificationCode {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#verificationCode:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.button-color {
+  background-color: #E57373;
+  color: white;
+}
+
+.btn-block:hover {
+  background-color: #d14d4d;
+}
+
+.button-color:hover {
+  background-color: #b23b3b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #verificationCode {
+    margin-bottom: 10px;
+  }
+}
+
+

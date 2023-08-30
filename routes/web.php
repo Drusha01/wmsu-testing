@@ -58,9 +58,15 @@ Route::get('/create-using-email', function () {
     return view('account.create-using-email');
 })->name('create-using-email');
 
+Route::get('/verification-code', function () {
+    return view('account.verification-code');
+})->name('verification-code');
+
 Route::get('/admin-login', function () {
     return view('account.admin-login');
 })->name('admin-login');
+
+
 
 
 

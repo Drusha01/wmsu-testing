@@ -24,4 +24,10 @@ public function showEmailVerification()
     return view('account.create-using-email');
 }
 
+public function showVerification()
+{
+    return view('account.verification-code');
+}
+
+
 }

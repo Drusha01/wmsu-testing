@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/account.css') }}">
 </head>
 <body>
+
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
       <div class="card login-card">
@@ -45,5 +46,6 @@
       </div>
     </div>
   </main>
+  
 </body>
 </html>
