@@ -293,3 +293,74 @@ body {
     padding: 10px;
     margin-top: 20px;
 }
+
+.section {
+    margin: 20px 0;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    position: relative;
+    text-align: center;
+}
+
+.carousel img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles for carousel management buttons */
+.carousel-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-carousel-item,
+.edit-carousel-item,
+.delete-carousel-item {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-carousel-item:hover,
+.edit-carousel-item:hover,
+.delete-carousel-item:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for carousel items */
+.carousel-items {
+    margin-top: 10px;
+}
+
+.carousel-text {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.edit-carousel-item,
+.delete-carousel-item {
+    margin-left: 5px;
+}

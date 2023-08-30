@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manage Content - WMSU TEC Admin Panel</title>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>
     
@@ -27,6 +27,32 @@
     </header>
     <!--DASHBOARD header-->
     
+<!-- Carousel Section -->
+<div class="section">
+    <h3 class="section-heading">Homepage Carousel</h3>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-item">
+                <img src="images/slider/wm.jpg" alt="Carousel Image 1">
+            </div>
+            <!-- ... (other carousel items) ... -->
+        </div>
+    </div>
+    <div class="carousel-actions">
+        <button class="add-carousel-item">Add New Item</button>
+        <!-- Add edit and delete buttons for each carousel item -->
+        <div class="carousel-items">
+            <div class="carousel-item">
+                <span class="carousel-text">Slide 1 Text</span>
+                <button class="edit-carousel-item">Edit</button>
+                <button class="delete-carousel-item">Delete</button>
+            </div>
+            <!-- Repeat the above structure for each carousel item -->
+        </div>
+    </div>
+</div>
+<!-- ... (other sections) ... -->
+
     <!--MANAGE CONTENT-->
     <section class="admin-manage-content">
         <h2 class="section-heading">Manage Content</h2>
@@ -84,5 +110,7 @@
     <footer class="admin-footer">
         <p>&copy; 2023 WMSU TEC Admin Panel</p>
     </footer>
+
+    
 </body>
 </html>
