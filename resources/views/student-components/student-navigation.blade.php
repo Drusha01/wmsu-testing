@@ -17,7 +17,7 @@
                     <a class="nav-link" href="{{ route('student.application') }}">Application</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('student.registration') }}">Registration</a>
+                    <a class="nav-link" href="{{ route('student.registration') }}">Status</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('student.results') }}">Results</a>

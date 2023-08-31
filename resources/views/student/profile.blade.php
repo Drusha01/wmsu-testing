@@ -16,12 +16,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h2>Welcome to Your Profile</h2>
-                <p>Here's your information:</p>
+                <h2>Profile</h2>
+
                 <!-- Display applicant's ID number and other info here -->
                 <p><strong>Applicant ID:</strong> [Applicant ID Number]</p>
                 <p><strong>Name:</strong> [Applicant Name]</p>
                 <p><strong>Email:</strong> [Applicant Email]</p>
+                <p><strong>Gender:</strong> [Applicant Gender]</p>
                 <!-- Add other information as needed -->
             </div>
     </div>

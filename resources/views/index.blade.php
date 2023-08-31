@@ -104,7 +104,19 @@
             </div>
         </div>
         <!-- Add more announcement items as needed -->
+        <div class="col-lg-6">
+                <h3>Step-by-Step Guide to Apply</h3>
+                <ol>
+                    <li>Create an account on our website.</li>
+                    <li>Choose the test you want to take.</li>
+                    <li>Fill out the online application form with your personal information and test preferences.</li>
+                    <li>Upload the required documents.</li>
+                    <li>Submit your application.</li>
+                </ol>
+                <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
+            </div>
     </section>
+
 
     <!-- Feature Info Section -->
     <section class="features mt-5 mb-5">
