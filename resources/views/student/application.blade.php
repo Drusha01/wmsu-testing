@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Application</title>
-    <link rel="stylesheet" href="{{ asset('css/User.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
@@ -17,21 +17,23 @@
 <section class="test-application-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Choose Your Test</h2>
-                <p>Select the test you would like to take from the options below:</p>
-                <!-- List of available tests -->
-                <ul class="test-list">
-                <a class="test-list1" href="{{ Route('test-application.Cet') }}">CET Application</a>
-                        <a class="list1-item" href="{{ url('test-application.Nat') }}">NAT Application</a>
-                        <a class="list2-item" href="{{ url('test-application.Eat') }}">EAT Application</a>
-                        <a class="list3-item" href="{{ url('test-application.Gsat') }}">GSAT Application</a>
-                        <a class="list4-item" href="{{ url('test-application.Lsat') }}">LSAT Application</a>
-                        <a class="list5-item" href="{{ url('test-application.Ksat') }}">KSAT Application</a>
-                        <a class="list6-item" href="{{ url('test-application.Hrmat') }}">HRMAT Application</a>
-                        <a class="list7-item" href="{{ url('test-application.Jrat') }}">JRAT Application</a>
-                </ul>
-            </div>
+        <div class="col-lg-6">
+    <h2>Choose Your Test</h2>
+    <p>Select the test you would like to take from the options below:</p>
+    <!-- List of available tests -->
+    <ul class="test-list">
+        <li><a href="{{ route('test-application.Cet') }}">CET Application</a></li>
+        <li><a href="{{ route('test-application.Nat') }}">NAT Application</a></li>
+        <li><a href="{{ route('test-application.Eat') }}">EAT Application</a></li>
+        <li><a href="{{ route('test-application.Gsat') }}">GSAT Application</a></li>
+        <li><a href="{{ route('test-application.Lsat') }}">LSAT Application</a></li>
+        <li><a href="{{ url('test-application.Ksat') }}">KSAT Application</a></li>
+        <li><a href="{{ url('test-application.Hrmat') }}">HRMAT Application</a></li>
+        <li><a href="{{ url('test-application.Jrat') }}">JRAT Application</a></li>
+    </ul>
+</div>
+
+            
             <div class="col-lg-6">
                 <h3>Step-by-Step Guide to Apply</h3>
                 <ol>
@@ -54,23 +56,10 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Online Application Form</h3>
-                <!-- Add your online application form fields here -->
-            </div>
+
+
         </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <a href="#" class="btn btn-primary">Submit Application</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Test Information</h3>
-                <p>Details about the test, its duration, subjects covered, and any other relevant information.</p>
-            </div>
-        </div>
+
     </div>
 </section>
 

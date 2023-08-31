@@ -15,7 +15,7 @@
 
 /* Your custom CSS styles */
 .application-section {
-    padding: 80px 0;
+    padding: 90px 0;
 }
 
 .application-section h2, .application-section h3 {
@@ -60,37 +60,34 @@
 }
 
 /* Your custom CSS styles */
-.test-application-section {
-    padding: 80px 0;
-}
-
-.test-application-section h2, .test-application-section h3 {
-    color: #990000;
-}
-
-.test-application-section p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
+.col-lg-6 {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
 
 .test-list {
-    list-style-type: none;
-    padding-left: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .test-list li {
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
-.test-list a {
-    color: #000000;
+.test-list li a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
     text-decoration: none;
-    transition: color 0.3s;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.test-list a:hover {
-    color: #990000;
+.test-list li a:hover {
+    background-color: #2980b9;
 }
 
 /* Media query for responsiveness */

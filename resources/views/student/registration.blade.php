@@ -13,9 +13,9 @@
 @include('student-components.student-navigation')
 
 <main class="main-content">
-    <h2>Registration</h2>
-    <p>Fill out the application form for the upcoming exam:</p>
-</main>
+        <h2>Application Status</h2>
+        <p>Your application status will be displayed here.</p>
+    </main>
 
 
 
