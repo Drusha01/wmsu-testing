@@ -29,5 +29,9 @@ public function showVerification()
     return view('account.verification-code');
 }
 
+public function showforgotpassowrd()
+{
+    return view('account.forgot-password');
+}
 
 }

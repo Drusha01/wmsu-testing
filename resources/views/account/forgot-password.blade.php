@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Account verification using Email</title>
+  <title>Recover Account using Email</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -24,14 +24,14 @@
               <div class="brand-wrapper">
                 <img src="{{ asset('images/logo/logo.png') }}" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Verify your Email</p>
+              <p class="login-card-description">Forgot Password</p>
               <form action="{{ url('send-verification-code') }}" method="post">
                 @csrf
                 <div class="form-group">
                   <label for="email" class="sr-only">Email</label>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Enter Code" required>
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Enter Recovery Email" required>
                 </div>
-                <button type="submit" class="btn btn-block login-btn mb-4 button-color">Enter Verification Code</button>
+                <button type="submit" class="btn btn-block login-btn mb-4 button-color">Recover account</button>
                 <a href="{{ route('login') }}" class="forgot-password-link">Back to Login</a>
               </form>
               <nav class="login-card-footer-nav">
