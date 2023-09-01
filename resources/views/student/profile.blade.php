@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="{{ asset('css/User.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -12,21 +12,24 @@
 
 @include('student-components.student-navigation')
 
-<section class="profile-section">
+<section class="student-profile-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Profile</h2>
+        <h2 class="section-title">Student Profile</h2>
+        <div class="profile-details">
+            <div class="profile-image">
+            <img src="{{ asset('images/courses/IT.png') }}" alt="Student Avatar">
 
-                <!-- Display applicant's ID number and other info here -->
-                <p><strong>Applicant ID:</strong> [Applicant ID Number]</p>
-                <p><strong>Name:</strong> [Applicant Name]</p>
-                <p><strong>Email:</strong> [Applicant Email]</p>
-                <p><strong>Gender:</strong> [Applicant Gender]</p>
-                <!-- Add other information as needed -->
             </div>
+            <div class="profile-info">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Student ID:</strong> 123456789</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+                <p><strong>Status:</strong> Registered Applicant</p>
+            </div>
+        </div>
     </div>
 </section>
+
 
 <!-- content -->
 <section class="application-section">
