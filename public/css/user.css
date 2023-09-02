@@ -136,74 +136,123 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Application Status Section */
 .application-status-section {
-    background-color: #f9f9f9;
-    padding: 30px 0;
+    padding: 40px 0;
     text-align: center;
 }
 
 .section-title {
-    font-size: 28px;
-    color: #333;
+    font-size: 32px;
+    color: #990000; /* Main color set to #990000 */
     margin-bottom: 20px;
 }
 
-.status-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.status-card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.status-icon {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.status-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.status-description {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-.status-date {
-    font-size: 14px;
-    color: #999;
-}
-.view-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
+.status-table th {
+    background-color: #990000; /* Main color set to #990000 */
     color: #fff;
-    text-decoration: none;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.status-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.status-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.status-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.status-table i {
+    color: #990000; /* Main color set to #990000 */
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.view-button {
+    background-color: #990000; /* Main color set to #990000 */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
     border-radius: 5px;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .view-button:hover {
-    background-color: #0056b3;
+    background-color: #7a0000; /* Darker shade on hover */
 }
+
+/* Exam History Section */
+.section-title{
+    margin-top: 30px;
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.history-table th {
+    background-color: #990000; /* Main color set to #990000 */
+    color: #fff;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.history-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.history-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.history-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Download Permit Button */
+.view-button.accepted {
+    background-color: #4CAF50; /* Green color for accepted status */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.view-button.accepted i {
+    margin-left: 5px;
+}
+
+.view-button.accepted:hover {
+    background-color: #0206fd; /* Darker shade of green on hover */
+}
+
+/* Style the icon */
+.view-button.accepted i.fas {
+    font-size: 20px;
+    vertical-align: middle; /* Center the icon vertically */
+}
+
+
+
+
 
 /* Results Section */
 .results-section {
