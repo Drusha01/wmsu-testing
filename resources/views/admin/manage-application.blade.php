@@ -4,30 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin dashboard - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>
-    <!--DASHBOARD header-->
-    <header class="admin-header">
-        <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU TEC Logo" class="logo">
-        <nav>
-            <ul>
+    
+    <div class="container">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <aside class="admin-sidebar">
+            <div class="logo-company">
+                <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU TEC Logo" class="logo">
                 <h1 class="company-name">WMSU <span>Testing and Evaluation Center</span></h1>
-                <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
-                <li><a href="#">User Management</a></li>
-                <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
-                <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
-                <li><a href="#">Announcement</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="{{ route('login') }}">Sign Out</a></li>
-            </ul>
-        </nav>
-    </header>
-    <!--DASHBOARD header-->
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
+                    <li><a href="#">User Management</a></li>
+                    <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
+                    <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
+                    <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
+        </aside>
 
-<!-- Application Review and Approval Process Section -->
-<section class="admin-application-review">
+        <section class="admin-content">
+            <h2 class="section-heading">Manage Applicants</h2>
+            
+            <div class="overview-widgets">
+            <section class="admin-application-review">
     <h2 class="section-heading">Application Review and Approval Process</h2>
     <div class="process-steps">
         <div class="step">
@@ -67,11 +74,9 @@
         </div>
     </div>
 </section>
-<!-- End of Application Review and Approval Process Section -->
+            </div>
+        </section>
+    </div>
 
-
-    <footer class="admin-footer">
-        <p>&copy; {{ date('Y') }} WMSU TEC Admin Panel</p>
-    </footer>
 </body>
 </html>
