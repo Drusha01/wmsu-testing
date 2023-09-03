@@ -53,6 +53,10 @@ Route::get('/register', function () {
     return view('account.register');
 })->name('register');
 
+Route::get('/forgot-password', function () {
+    return view('account.forgot-password');
+})->name('forgot-password');
+
 // Email Verification
 Route::get('/create-using-email', function () {
     return view('account.create-using-email');
@@ -94,6 +98,10 @@ Route::get('manage-application', function () {
 Route::get('admin-announcement', function () {
     return view('admin.admin-announcement');
 })->name('admin-announcement');
+
+Route::get('user-management', function () {
+    return view('admin.user-management');
+})->name('user-management');
 
 
 

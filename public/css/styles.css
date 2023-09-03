@@ -95,39 +95,82 @@ header .nav-item .nav-link {
 header css
 *************/
 
-/* Styling for announcements section */
+/* Latest News and Announcements Section */
 #news-section {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
+    background-color: #f9f9f9;
+    padding: 30px 0;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-#news-section h2 {
-    font-size: 24px;
-    color: #003366;
-    margin-bottom: 15px;
+.announcements {
+    grid-column: span 2;
+    padding-right: 20px;
+    text-align: center;
+}
+
+.step-by-step {
+    background-color: #fff;
+    border: 2px solid #990000; /* Rounded border */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+}
+
+.section-title {
+    font-size: 24px; /* Smaller font size for the section title */
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .announcement {
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 0;
-    display: flex;
-    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #990000; /* Rounded border */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Smaller padding */
+    margin: 3px ;
+    text-align: left;
 }
 
 .announcement h3 {
-    font-size: 18px;
+    font-size: 20px; /* Smaller font size for announcement titles */
     color: #333;
-    margin: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .announcement p {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
+    font-size: 16px; /* Smaller font size for announcement descriptions */
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.step-by-step h3 {
+    font-size: 24px; /* Larger font size for step titles */
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.step-by-step ol {
+    list-style: decimal;
+    padding-left: 20px;
+    font-size: 16px; /* Smaller font size for step numbers */
+    color: #333;
+}
+
+.step-by-step li {
+    margin-bottom: 10px;
+    line-height: 1.4; /* Improved line spacing for better readability */
+}
+
+.step-by-step p {
+    font-size: 16px; /* Smaller font size for step descriptions */
+    color: #777;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 
@@ -251,14 +294,14 @@ Feature Section
 
 .icon {
     font-size: 36px;
-    color: crimson;
+    color: #990000;
     /* Updated color to crimson red */
     margin-bottom: 20px;
 }
 
 h3 {
     font-size: 24px;
-    color: crimson;
+    color: #990000;
     /* Updated color to crimson red */
     margin-bottom: 15px;
 }
@@ -272,7 +315,7 @@ p {
 /* Feature Link Styling */
 .feature-link {
     display: inline-block;
-    background-color: crimson;
+    background-color: #990000;
     /* Updated color to crimson red */
     color: white;
     padding: 10px 20px;
@@ -282,7 +325,7 @@ p {
 }
 
 .feature-link:hover {
-    background-color: #9c0000;
+    background-color: #990000;
     /* Slightly darker shade of crimson red on hover */
 }
 
@@ -313,7 +356,7 @@ about us css
     font-size: 30px;
     font-weight: 600;
     line-height: 1.3;
-    color: crimson;
+    color: #990000;
     /* Updated color to crimson red */
 }
 
@@ -335,9 +378,9 @@ about us css
     margin: 10px 10px;
     color: white;
     /* Text color changed to white for better contrast */
-    background-color: crimson;
+    background-color: #990000;
     /* Background color changed to crimson red */
-    border: 2px solid crimson;
+    border: 2px solid #990000;
     /* Border color changed to crimson red */
     border-radius: 50px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -346,9 +389,9 @@ about us css
 .buttons .button3:hover {
     background-color: white;
     /* Background color changed to white on hover */
-    color: crimson;
+    color: #990000;
     /* Text color changed to crimson red on hover */
-    border-color: crimson;
+    border-color: #990000;
     /* Border color changed to crimson red on hover */
 }
 
@@ -361,7 +404,7 @@ why choose us section
 *************/
 /* Why Choose Us Section Styling */
 .why-choose-us {
-    background-color: crimson;
+    background-color: #990000;
     padding: 80px 0;
     /* Adjust padding as needed */
 }
@@ -562,7 +605,7 @@ textarea.form-control {
     font-weight: 600;
     margin-bottom: 40px;
     /* Add more spacing between heading and content */
-    color: crimson;
+    color: #990000;
     /* Set heading color to crimson red */
 }
 
@@ -632,7 +675,7 @@ textarea.form-control {
     font-weight: 600;
     margin-bottom: 20px;
     /* Add more spacing between heading and content */
-    color: crimson;
+    color: #990000;
     /* Set heading color to crimson red */
 }
 
@@ -653,7 +696,7 @@ textarea.form-control {
 
 .cta-item i {
     font-size: 36px;
-    color: crimson;
+    color: #990000;
     /* Set icon color to crimson red */
     margin-bottom: 20px;
 }
@@ -677,7 +720,7 @@ textarea.form-control {
     text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 50px;
-    background-color: crimson;
+    background-color: #990000;
     /* Set button background color to crimson red */
     border: none;
     transition: background-color 0.3s ease;
@@ -685,7 +728,7 @@ textarea.form-control {
 }
 
 .btn-primary:hover {
-    background-color: #a60000;
+    background-color: #990000;
     /* Darker shade of crimson red on hover */
 }
 
@@ -721,7 +764,7 @@ textarea.form-control {
 }
 
 .social-icons a:hover {
-    color: crimson;
+    color: #990000;
 }
 
 .footer-links {
