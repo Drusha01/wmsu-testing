@@ -99,5 +99,9 @@ Route::get('admin-announcement', function () {
     return view('admin.admin-announcement');
 })->name('admin-announcement');
 
+Route::get('user-management', function () {
+    return view('admin.user-management');
+})->name('user-management');
+
 
 

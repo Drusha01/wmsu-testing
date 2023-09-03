@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin dashboard - WMSU TEC</title>
+    <title>Admin content - WMSU TEC</title>
     <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>

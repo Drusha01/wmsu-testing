@@ -249,47 +249,63 @@ nav a:hover {
 /* admin.css */
 
 /* Application Review and Approval Process */
-.admin-application-review {
-    padding: 40px;
-    background-color: #f8f9fa;
-}
-
-.process-steps {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.step {
-    flex: 1;
-    text-align: center;
+.admin-content {
+    background-color: #f0f0f0;
     padding: 20px;
+}
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #990000;
+}
+
+.application-table {
+    width: 100%;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
-.step-number {
-    background-color: #007bff;
+.application-table th,
+.application-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.application-table th {
+    background-color: #990000;
     color: #fff;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 50%;
-    margin: 0 auto 10px auto;
 }
 
-.step-content h3 {
-    margin-top: 0;
-    font-size: 18px;
+.application-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
 }
 
-.step-content p {
-    font-size: 16px;
-    line-height: 1.5;
+.application-table tbody tr:hover {
+    background-color: #e0e0e0;
 }
+
+.accept-button,
+.decline-button,
+.view-button {
+    padding: 5px 10px;
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.accept-button:hover,
+.decline-button:hover,
+.view-button:hover {
+    background-color: #770000;
+}
+
 
 /* Admin Footer */
 .admin-footer {
@@ -369,3 +385,148 @@ nav a:hover {
 .delete-carousel-item {
     margin-left: 5px;
 }
+
+/* Styles for user management */
+.admin-content {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #990000; /* Set the text color to your main color */
+}
+
+.user-button {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.user-button:hover {
+    background-color: #770000; /* Darker shade for hover effect */
+}
+
+.user-table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.user-table th,
+.user-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-table th {
+    background-color: #990000;
+    color: #fff;
+}
+
+.user-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.user-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.user-form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.user-form h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.user-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form label {
+    margin-bottom: 10px;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.user-form button[type="submit"],
+.user-form button[type="button"] {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-form button[type="submit"]:hover,
+.user-form button[type="button"]:hover {
+    background-color: #770000;
+}
+/* Styles for user management */
+
+/* Styles for Appointment */
+.admin-content {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #990000; /* Set the text color to your main color */
+}
+
+.appointment-table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.appointment-table th,
+.appointment-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.appointment-table th {
+    background-color: #990000;
+    color: #fff;
+}
+
+.appointment-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.appointment-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin dashboard - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
+    <title>Admin applicant - WMSU TEC</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
     
@@ -30,53 +30,42 @@
             <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
         </aside>
 
+ 
         <section class="admin-content">
-            <h2 class="section-heading">Manage Applicants</h2>
-            
-            <div class="overview-widgets">
-            <section class="admin-application-review">
-    <h2 class="section-heading">Application Review and Approval Process</h2>
-    <div class="process-steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h3>Step 1: Application Review</h3>
-                <p>Review the submitted applications for completeness and accuracy.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h3>Step 2: Document Verification</h3>
-                <p>Verify the authenticity of uploaded documents and required information.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h3>Step 3: Evaluation</h3>
-                <p>Evaluate the applicant's qualifications based on predefined criteria.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-                <h3>Step 4: Interview</h3>
-                <p>Conduct interviews if necessary to assess the applicant's suitability.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">5</div>
-            <div class="step-content">
-                <h3>Step 5: Approval Decision</h3>
-                <p>Make the final decision to approve or reject the application.</p>
-            </div>
-        </div>
-    </div>
-</section>
-            </div>
+            <h2 class="section-heading">Application Review and Approval Process</h2>
+
+            <!-- Application Review Table -->
+            <table class="application-table">
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Type of Exam</th>
+                        <th>Exam Name</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Application Form</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Mathematics</td>
+                        <td>Mathematics Exam</td>
+                        <td>2023-09-15</td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="accept-button">Accept</button>
+                            <button class="decline-button">Decline</button>
+                        </td>
+                        <td>
+                            <button class="view-button">View</button>
+                        </td>
+                    </tr>
+                    <!-- Add more application rows here -->
+                </tbody>
+            </table>
         </section>
     </div>
-
 </body>
 </html>

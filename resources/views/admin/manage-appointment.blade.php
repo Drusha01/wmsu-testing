@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin dashboard - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
+    <title>Admin appointments - WMSU TEC</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
     
@@ -31,35 +31,79 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Manage Appointments</h2>
-            
-            <div class="overview-widgets">
-                <!-- Your content widgets here -->
-                <main class="admin-main">
-        <section class="appointments">
-            <h2>Appointments</h2>
-            <div class="appointment-item">
-                <div class="appointment-header">
-                    <div class="appointment-status">Pending</div>
-                    <div class="appointment-actions">
-                        <button class="btn-approve">Approve</button>
-                        <button class="btn-reject">Reject</button>
-                    </div>
-                </div>
-                <div class="appointment-details">
-                    <p><strong>Name:</strong> John Doe</p>
-                    <p><strong>Email:</strong> john.doe@example.com</p>
-                    <p><strong>Phone:</strong> 123-456-7890</p>
-                    <p><strong>Appointment Date:</strong> 2023-09-01</p>
-                    <p><strong>Message:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <!-- Add more appointment items as needed -->
-        </section>
-    </main>
-            </div>
-        </section>
-    </div>
+            <h2 class="section-heading">Appointment Management</h2>
 
+            <!-- Appointment Pending -->
+            <h3>Appointment Pending</h3>
+            <table class="appointment-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Purpose</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Client Showed</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>10:00 AM</td>
+                        <td>2023-09-15</td>
+                        <td>Consultation</td>
+                        <td>Admin</td>
+                        <td>Appointment Pending</td>
+                        <td>No</td>
+                        <td>
+                            <button>Accept</button>
+                            <button>Decline</button>
+                        </td>
+                    </tr>
+                    <!-- Add more appointment rows here -->
+                </tbody>
+            </table>
+
+            <!-- Appointment Accepted -->
+            <h3>Appointment Accepted</h3>
+            <table class="appointment-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Purpose</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Client Showed</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>02:30 PM</td>
+                        <td>2023-09-16</td>
+                        <td>Assessment</td>
+                        <td>User</td>
+                        <td>Appointment Accepted</td>
+                        <td>Yes</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Add more appointment rows here -->
+                </tbody>
+            </table>
+        </section>
+
+    </div>
 </body>
 </html>
