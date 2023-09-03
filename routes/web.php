@@ -37,11 +37,11 @@ Route::prefix('student')->group(function () {
 
 // test routes application
 Route::prefix('test-application')->group(function () {
-    Route::get('/Cet', [TestApplicationController::class, 'Cet'])->name('test-application.Cet');
-    Route::get('/Nat', [TestApplicationController::class, 'Nat'])->name('test-application.Nat');
-    Route::get('/Gsat', [TestApplicationController::class, 'Gsat'])->name('test-application.Gsat');
-    Route::get('/Eat', [TestApplicationController::class, 'Eat'])->name('test-application.Eat');
-    Route::get('/Lsat', [TestApplicationController::class, 'Lsat'])->name('test-application.Lsat');
+    Route::get('/cet', [TestApplicationController::class, 'cet'])->name('test-application.Cet');
+    Route::get('/aat', [TestApplicationController::class, 'nat'])->name('test-application.Nat');
+    Route::get('/gsat', [TestApplicationController::class, 'gsat'])->name('test-application.Gsat');
+    Route::get('/eat', [TestApplicationController::class, 'eat'])->name('test-application.Eat');
+    Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('test-application.Lsat');
 });
 
 Route::get('/login', function () {
@@ -73,7 +73,7 @@ Route::get('/admin-login', function () {
 
 
 
-
+// admin section
 Route::get('admin-dashboard', function () {
     return view('admin.admin-dashboard');
 })->name('admin-dashboard');
