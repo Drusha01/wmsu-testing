@@ -30,79 +30,84 @@
             <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
         </aside>
 
-        <section class="admin-content">
-            <h2 class="section-heading">Appointment Management</h2>
+    <section class="admin-content">
+    <h2 class="section-heading">Appointment Management</h2>
 
-            <!-- Appointment Pending -->
-            <h3>Appointment Pending</h3>
-            <table class="appointment-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Time</th>
-                        <th>Date</th>
-                        <th>Purpose</th>
-                        <th>Assigned To</th>
-                        <th>Status</th>
-                        <th>Client Showed</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>10:00 AM</td>
-                        <td>2023-09-15</td>
-                        <td>Consultation</td>
-                        <td>Admin</td>
-                        <td>Appointment Pending</td>
-                        <td>No</td>
-                        <td>
-                            <button>Accept</button>
-                            <button>Decline</button>
-                        </td>
-                    </tr>
-                    <!-- Add more appointment rows here -->
-                </tbody>
-            </table>
+    <!-- Appointment Pending -->
+    <h3>Appointment Pending</h3>
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th>Full Name</th> <!-- New column for Full Name -->
+                <th>Email Address</th> <!-- New column for Email Address -->
+                <th>Phone Number</th> <!-- New column for Phone Number -->
+                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
+                <th>Purpose</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Client Showed</th>
+                <th>Message</th> <!-- New column for Message -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>123456789</td>
+                <td>2023-09-20</td>
+                <td>Consultation</td>
+                <td>Admin</td>
+                <td>Appointment Pending</td>
+                <td>No</td>
+                <td>This is a message from the client.</td>
+                <td>
+                    <button>Accept</button>
+                    <button>Decline</button>
+                </td>
+            </tr>
+            <!-- Add more appointment rows here -->
+        </tbody>
+    </table>
 
-            <!-- Appointment Accepted -->
-            <h3>Appointment Accepted</h3>
-            <table class="appointment-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Time</th>
-                        <th>Date</th>
-                        <th>Purpose</th>
-                        <th>Assigned To</th>
-                        <th>Status</th>
-                        <th>Client Showed</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>02:30 PM</td>
-                        <td>2023-09-16</td>
-                        <td>Assessment</td>
-                        <td>User</td>
-                        <td>Appointment Accepted</td>
-                        <td>Yes</td>
-                        <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Add more appointment rows here -->
-                </tbody>
-            </table>
-        </section>
+    <!-- Appointment Accepted -->
+    <h3>Appointment Accepted</h3>
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th>Full Name</th> <!-- New column for Full Name -->
+                <th>Email Address</th> <!-- New column for Email Address -->
+                <th>Phone Number</th> <!-- New column for Phone Number -->
+                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
+                <th>Purpose</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Client Showed</th>
+                <th>Message</th> <!-- New column for Message -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jane Smith</td>
+                <td>janesmith@example.com</td>
+                <td>987654321</td>
+                <td>2023-09-21</td>
+                <td>Assessment</td>
+                <td>User</td>
+                <td>Appointment Accepted</td>
+                <td>Yes</td>
+                <td>Client has confirmed the appointment.</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <!-- Add more appointment rows here -->
+        </tbody>
+    </table>
+    </section>
+
 
     </div>
 </body>

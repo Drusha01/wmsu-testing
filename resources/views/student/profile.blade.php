@@ -32,35 +32,27 @@
 
 
 <!-- content -->
-<section class="application-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Thank You for Registering!</h2>
-                <p>Thank you for registering to WMSU Testing and Evaluation Center. We're excited to have you as part of our application process. Below, you'll find important information about the application process and key dates to remember.</p>
-                <h3>Application Process</h3>
-                <p>Our application process is simple and straightforward. Follow these steps to get started:</p>
-                <ol>
-                    <li>Create an account on our website.</li>
-                    <li>Log in to your account and complete the application form.</li>
-                    <li>Upload any required documents and information.</li>
-                    <li>Submit your application.</li>
-                </ol>
-                <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
-                <h3>Important Dates</h3>
-                <p>Make sure to mark these dates in your calendar:</p>
-                <ul>
-                    <li>Application Deadline: [Insert Date]</li>
-                    <li>Admission Test: [Insert Date]</li>
-                    <li>Interviews: [Insert Date]</li>
-                </ul>
-            </div>
-            <div class="col-lg-6 text-center">
-                <a href="{{ route('student.application') }}" class="btn btn-primary">Start Application</a>
+<section class="feedback-and-surveys-section">
+        <div class="container">
+            <h2 class="section-title">Feedback and Surveys</h2>
+            <div class="feedback-form">
+                <p>We value your feedback. Please take a moment to complete the survey below:</p>
+                <form>
+                    <!-- Add your survey questions and input fields here -->
+                    <div class="form-group">
+                        <label for="question1">Question 1:</label>
+                        <input type="text" id="question1" name="question1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="question2">Question 2:</label>
+                        <textarea id="question2" name="question2" rows="4" class="form-control"></textarea>
+                    </div>
+                    <!-- Add more survey questions and input fields as needed -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 

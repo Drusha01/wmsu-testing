@@ -14,55 +14,114 @@
 /* NAVBAR CSS */
 
 /* Your custom CSS styles */
+
 /* Student Profile Section */
 .student-profile-section {
-    background-color: #f4f4f4;
-    padding: 30px 0;
-    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .section-title {
-    font-size: 28px;
+    font-size: 24px;
     color: #333;
-    margin-bottom: 20px;
 }
 
 .profile-details {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: 20px 0;
-    text-align: left;
+    margin-top: 20px;
 }
 
 .profile-image img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin-right: 20px;
-    border: 3px solid #007bff;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    margin-left: 20px;
 }
 
 .profile-info p {
     font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.feedback-and-surveys-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 24px;
     color: #333;
+}
+
+.feedback-form p {
+    font-size: 16px;
+    color: #555;
     margin-bottom: 10px;
 }
 
-.profile-info strong {
-    font-weight: bold;
+.feedback-form form {
+    width: 100%;
+    max-width: 600px;
 }
 
-/* Add a smooth hover effect to the profile image */
-.profile-image img:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+.form-group {
+    margin-bottom: 20px;
 }
 
+label {
+    font-size: 18px;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add more styles as needed */
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .profile-details {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-image img {
+        margin-bottom: 10px;
+    }
+}
 
 /* Container for the entire section */
 .test-application-section {
@@ -332,4 +391,56 @@
 .exam-description {
     font-size: 16px;
     color: #333;
+}
+
+/* payment section css */
+.payment-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.payment-details p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.payment-details form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: #333;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

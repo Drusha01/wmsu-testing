@@ -33,6 +33,7 @@ Route::prefix('student')->group(function () {
     Route::get('/registration', [StudentController::class, 'registration'])->name('student.registration');
     Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
     Route::get('/results', [StudentController::class, 'results'])->name('student.results');
+    Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
 });
 
 // test routes application
