@@ -39,7 +39,7 @@ Route::prefix('student')->group(function () {
 // test routes application
 Route::prefix('test-application')->group(function () {
     Route::get('/cet', [TestApplicationController::class, 'cet'])->name('test-application.Cet');
-    Route::get('/aat', [TestApplicationController::class, 'nat'])->name('test-application.Nat');
+    Route::get('/Nat', [TestApplicationController::class, 'Nat'])->name('test-application.Nat');
     Route::get('/gsat', [TestApplicationController::class, 'gsat'])->name('test-application.Gsat');
     Route::get('/eat', [TestApplicationController::class, 'eat'])->name('test-application.Eat');
     Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('test-application.Lsat');

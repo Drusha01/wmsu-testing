@@ -1,4 +1,4 @@
-/* Add these styles to your admin.css file */
+
 
 /* Global container for layout */
 .container {
@@ -104,22 +104,15 @@ nav a:hover {
     }
 }
 
+
+
 /* DASHBOARD CONTENT */
 .admin-content {
-    margin-left: 290px; /* Adjust the margin for content to avoid overlapping */
+    margin-left: 280px; /* Adjust the margin for content to avoid overlapping */
     flex: 1;
     padding: 15px;
     overflow: auto; /* Enable scrolling for content if necessary */
 }
-
-
-
-
-/* Content */
-
-
-
-
 /* overview */
 .admin-overview {
     background-color: #f9f9f9;
@@ -243,78 +236,7 @@ nav a:hover {
 .add-link:hover {
     color: #0056b3;
 }
-/* MANAGE CONTENT */
-
-
-/* admin.css */
-
-/* Application Review and Approval Process */
-.admin-content {
-    background-color: #f0f0f0;
-    padding: 20px;
-}
-
-.section-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #990000;
-}
-
-.application-table {
-    width: 100%;
-    background-color: #fff;
-    border-collapse: collapse;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-.application-table th,
-.application-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-}
-
-.application-table th {
-    background-color: #990000;
-    color: #fff;
-}
-
-.application-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-.application-table tbody tr:hover {
-    background-color: #e0e0e0;
-}
-
-.accept-button,
-.decline-button,
-.view-button {
-    padding: 5px 10px;
-    background-color: #990000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.accept-button:hover,
-.decline-button:hover,
-.view-button:hover {
-    background-color: #770000;
-}
-
-
-/* Admin Footer */
-.admin-footer {
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-}
-
+/* Styles for carousel management buttons */
 .section {
     margin: 20px 0;
 }
@@ -385,6 +307,56 @@ nav a:hover {
 .delete-carousel-item {
     margin-left: 5px;
 }
+
+/* MANAGE CONTENT */
+
+
+
+
+/* Application Review and Approval Process */
+.admin-content {
+    background-color: #f0f0f0;
+    padding: 40px;
+}
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #990000;
+}
+
+.application-table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 1-px;
+}
+
+.application-table th,
+.application-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.application-table th {
+    background-color: #990000;
+    color: #fff;
+}
+
+.application-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.application-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Application Review and Approval Process */
+
+
+
 
 /* Styles for user management */
 .admin-content {
@@ -490,6 +462,8 @@ nav a:hover {
 }
 /* Styles for user management */
 
+
+
 /* Styles for Appointment */
 .admin-content {
     background-color: #f0f0f0;
@@ -530,3 +504,4 @@ nav a:hover {
     background-color: #e0e0e0;
 }
 
+/* Styles for Appointment */
