@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/test-application.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Test-application.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Entrance Exam Application Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
         <div class="container4">
             <div class="form-container">
                 <form class="needs-validation" novalidate>
-                    <fieldset class="mb-3">
+                    <fieldset class="mb-2">
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="first-name" class="form-label">First Name</label>
@@ -43,37 +43,35 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="mb-3">
-                        <div class="mb-2">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="high-school-name" class="form-label">High School Name</label>
                             <input type="text" class="form-control" id="high-school-name" name="high_school_name" placeholder="High School Name" required>
                         </div>
-                        <div class="mb-2">
+                        <div class="col-md-6 mb-3">
                             <label for="high-school-address" class="form-label">High School Address</label>
                             <input type="text" class="form-control" id="high-school-address" name="high_school_address" placeholder="High School Address" required>
                         </div>
-                    </fieldset>
+                    </div>
                     <fieldset class="mb-3">
                         <legend class="form-legend">Required Documents</legend>
                         <div class="row">
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="enrollment-certification" class="form-label">Enrollment Certification</label>
                                 <input type="file" class="form-control" id="enrollment-certification" name="enrollment_certification" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="graduation-certification" class="form-label">Graduation Certification</label>
                                 <input type="file" class="form-control" id="graduation-certification" name="graduation_certification" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-2">
-                                <label for="payment-receipt" class="form-label" style="color: red;">Payment Receipt<br> To complete your examination registration, please make the payment for the examination permit at the University cashier's office.<br> After Payment Upload the payment receipt below: </label>
-                                <input type="file" class="form-control" id="payment-receipt" name="payment_receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
-                            </div>
-                        </div>
                     </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <label for="payment-receipt" class="form-label" style="color: red;">Payment Receipt<br> To Complete your examination registration, please make the payment for the examination permit at the University cashier's office.<br> After Payment Upload the payment Receipt below: </label>
+                            <input type="file" class="form-control" id="payment-receipt" name="payment_receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
+                        </div>
+                    </div>
                     <button type="submit" class="submit-button">Submit Application</button>
                 </form>
             </div>
