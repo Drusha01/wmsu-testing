@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>WMSU TEC - homepage</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/Styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k9GA2FGjvWM+j7HQCKfqt5zFj" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -82,6 +83,31 @@
     </div>
     </section>
     <!-- Carousel Section -->
+
+<!-- Chat Container -->
+<div id="chat-container">
+    <!-- Greeting message with an icon -->
+    <div id="greeting-message">
+        <i class="fas fa-comment"></i>
+        <p>Hello! I am your chat support.</p>
+        <p>How can I assist you today?</p>
+    </div>
+
+    <!-- Chat messages will be displayed here -->
+    <div id="chat-messages"></div>
+    
+    <!-- Input field for typing messages -->
+    <input type="text" id="message-input" placeholder="Type your message">
+    
+    <!-- Button to send messages with an icon -->
+    <button id="send-button">
+        <i class="fas fa-paper-plane"></i> Send
+    </button>
+</div>
+
+
+
+
 
     <section id="news-section" class="grid-container">
     <div class="announcements">

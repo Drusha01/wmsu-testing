@@ -8,7 +8,7 @@
 </head>
 <body>
     
-<div class="container">
+    <div class="container">
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <aside class="admin-sidebar">
             <div class="logo-company">
@@ -23,7 +23,7 @@
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
-                    <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
+                    <li><a href="{{ url('admin-chatsupport') }}">Chat Support</a></li>
                     <li><a href="#">Settings</a></li>
                 </ul>
             </nav>
@@ -32,12 +32,31 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Dashboard Overview</h2>
+            <h2 class="section-heading">Chat Support</h2>
             
-            <div class="overview-widgets">
-                <!-- Your content widgets here -->
+            <!-- Chat Container -->
+            <div id="admin-chat-container">
+                <!-- Greeting message with an icon -->
+                <div id="greeting-message">
+                    <i class="fas fa-comment"></i>
+                    <p>Hello! I am your chat support.</p>
+                    <p>How can I assist you today?</p>
+                </div>
+
+                <!-- Chat messages will be displayed here -->
+                <div id="chat-messages"></div>
+                
+                <!-- Input field for typing messages -->
+                <input type="text" id="message-input" placeholder="Type your message">
+                
+                <!-- Button to send messages with an icon -->
+                <button id="send-button">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
             </div>
+            <!-- End of Chat Container -->
         </section>
+        <!-- End of Chat Support Section -->
     </div>
 
 </body>

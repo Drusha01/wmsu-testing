@@ -79,6 +79,11 @@ Route::get('admin-dashboard', function () {
     return view('admin.admin-dashboard');
 })->name('admin-dashboard');
 
+Route::get('admin-chatsupport', function () {
+    return view('admin.admin-chatsupport');
+})->name('admin-chatsupport');
+
+
 Route::get('manage-content', function () {
     return view('admin.manage-content');
 })->name('manage-content');
@@ -103,6 +108,4 @@ Route::get('admin-announcement', function () {
 Route::get('user-management', function () {
     return view('admin.user-management');
 })->name('user-management');
-
-
 

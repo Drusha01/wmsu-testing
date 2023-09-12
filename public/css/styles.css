@@ -838,3 +838,66 @@ textarea.form-control {
     }
 }
 /* service.css */
+/* Chat Container */
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #990000; /* Updated main color to #990000 */
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #fff;
+    transition: transform 0.3s ease;
+    z-index: 999;
+    overflow: hidden; /* Ensure rounded corners are visible */
+}
+
+/* Greeting Message */
+#greeting-message {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Chat Messages Container */
+#chat-messages {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #fff; /* White border */
+}
+
+/* Message Input Field */
+#message-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #fff; /* White border */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    color: #fff;
+    border-radius: 0; /* Remove input border radius */
+}
+
+/* Send Button with icon */
+#send-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #990000; /* Text color matches main color */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Styling for icons */
+.fa-comment,
+.fa-paper-plane {
+    margin-right: 5px;
+}
+
+/* Hover effect for the Send button */
+#send-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
+}
