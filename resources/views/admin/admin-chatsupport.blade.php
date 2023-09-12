@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin dashboard - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
     
@@ -32,32 +32,43 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Chat Support</h2>
-            
-            <!-- Chat Container -->
-            <div id="admin-chat-container">
-                <!-- Greeting message with an icon -->
-                <div id="greeting-message">
-                    <i class="fas fa-comment"></i>
-                    <p>Hello! I am your chat support.</p>
-                    <p>How can I assist you today?</p>
+    <h2 class="section-heading">Chat Support</h2>
+    <div class="chat-container">
+        <div class="chat-table">
+            <div class="chat-column recent-message">
+                <h3>Recent Messages</h3>
+                <div class="message" >
+                    <div class="message-sender">User 1:</div>
+                    <div class="message-content">Hello, I need assistance with...</div>
                 </div>
-
-                <!-- Chat messages will be displayed here -->
-                <div id="chat-messages"></div>
-                
-                <!-- Input field for typing messages -->
-                <input type="text" id="message-input" placeholder="Type your message">
-                
-                <!-- Button to send messages with an icon -->
-                <button id="send-button">
-                    <i class="fas fa-paper-plane"></i> Send
-                </button>
+                <div class="message">
+                    <div class="message-sender">User 2:</div>
+                    <div class="message-content">Can you help me with...</div>
+                </div>
+                <!-- Add more recent messages as needed -->
             </div>
-            <!-- End of Chat Container -->
-        </section>
-        <!-- End of Chat Support Section -->
+            <div class="vertical-line"></div>
+            <div class="chat-column active-conversation">
+                <div class="active-conversation-header">
+                    <h3>Active Conversation</h3>
+                    <button class="end-conversation-button">End Conversation</button>
+                </div>
+                <div class="active-message" >
+                    <div class="message-sender">User 1:</div>
+                    <div class="message-content">Hello, I need assistance with...</div>
+                </div>
+                <!-- Add more active conversation messages as needed -->
+                <div class="reply-container">
+                    <textarea class="reply-textarea" placeholder="Type your reply"></textarea>
+                    <button class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
+
+
 
 </body>
 </html>

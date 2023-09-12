@@ -506,3 +506,94 @@ nav a:hover {
 
 /* Styles for Appointment */
 
+/* Chat Support styles */
+.chat-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-table {
+    display: flex;
+    align-items: flex-start; /* Adjust alignment as needed */
+}
+
+.chat-column {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    overflow-y: auto;
+}
+
+.chat-column h3 {
+    margin-top: 0;
+    font-size: 20px; /* Increased font size for headings */
+    color: #333; /* Adjust text color as needed */
+}
+
+.chat-column .message {
+    margin-bottom: 15px; /* Increased spacing between messages */
+}
+
+.chat-column .message-sender {
+    font-weight: bold; /* Make sender names bold */
+    margin-bottom: 5px;
+}
+
+.chat-column .message-content {
+    background-color: #f0f0f0; /* Background color for messages */
+    padding: 10px;
+    border-radius: 10px; /* Rounded message bubbles */
+}
+
+.active-conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.end-conversation-button {
+    background-color: #d9534f; /* Red button for ending conversation */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.end-conversation-button:hover {
+    background-color: #c9302c; /* Darker shade on hover */
+}
+
+.reply-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.reply-textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.send-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
