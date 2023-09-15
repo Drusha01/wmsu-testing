@@ -13,55 +13,146 @@
 }
 /* NAVBAR CSS */
 
-/* Your custom CSS styles */
-/* Student Profile Section */
-.student-profile-section {
-    background-color: #f4f4f4;
-    padding: 30px 0;
-    text-align: center;
+/* studenr profile CSS */
+body {
+    font-family: Arial, sans-serif;
 }
 
 .section-title {
     font-size: 28px;
-    color: #333;
+    color: #990000;
     margin-bottom: 20px;
+}
+
+/* Student Profile Section */
+.student-profile-section {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .profile-details {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: 20px 0;
-    text-align: left;
+    margin-top: 20px;
 }
 
 .profile-image img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin-right: 20px;
-    border: 3px solid #007bff;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    margin-left: 20px;
 }
 
 .profile-info p {
     font-size: 18px;
-    color: #333;
+    color: #555;
     margin-bottom: 10px;
 }
 
-.profile-info strong {
-    font-weight: bold;
+/* Academic Information Section */
+.academic-information-section {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
-/* Add a smooth hover effect to the profile image */
-.profile-image img:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+/* Educational Background */
+.educational-background h3,
+.applied-programs h3,
+.test-scores h3,
+.test-history h2,
+.test-certificates h3 {
+    color: #990000;
+    font-size: 24px;
+    margin-top: 20px;
 }
+
+.educational-background ul,
+.applied-programs ul,
+.list-of-tests ul,
+.test-certificates ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.educational-background li,
+.applied-programs li,
+.list-of-tests li,
+.test-certificates li {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Test Scores Table */
+.test-scores table {
+    width: 100%;
+}
+
+.test-scores th,
+.test-scores td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Feedback and Surveys Section */
+.feedback-and-surveys-section {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.feedback-form p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #990000;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #800000;
+}
+/* studenr profile CSS */
 
 
 /* Container for the entire section */
@@ -77,6 +168,7 @@
     align-items: center;
     text-align: center;
 }
+
 
 /* Styling for the test section */
 .test-section {
@@ -116,6 +208,7 @@
 .test-list-item:hover {
     color: rgb(54, 89, 126);
 }
+/* Styling for the test section */
 
 /* Styling for the guide section */
 .guide-section {
@@ -194,36 +287,9 @@
 .view-button:hover {
     background-color: #7a0000; /* Darker shade on hover */
 }
+/* Application Status Section */
 
-/* Exam History Section */
-.section-title{
-    margin-top: 30px;
-}
-.history-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
-.history-table th {
-    background-color: #990000; /* Main color set to #990000 */
-    color: #fff;
-    padding: 10px 20px;
-    text-align: left;
-}
-
-.history-table td {
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.history-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.history-table tbody tr:hover {
-    background-color: #f0f0f0;
-}
 
 /* Download Permit Button */
 .view-button.accepted {
@@ -249,8 +315,7 @@
     font-size: 20px;
     vertical-align: middle; /* Center the icon vertically */
 }
-
-
+/* Download Permit Button */
 
 
 
@@ -287,6 +352,8 @@
 .result-pdf-link:hover {
     text-decoration: underline;
 }
+/* Results Section */
+
 
 /* Schedule Section */
 .schedule-section {
@@ -333,3 +400,57 @@
     font-size: 16px;
     color: #333;
 }
+/* Schedule Section */
+
+/* payment section css */
+.payment-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.payment-details p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.payment-details form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: #333;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* payment section css */

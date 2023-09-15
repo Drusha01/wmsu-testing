@@ -30,4 +30,9 @@ class StudentController extends Controller
     {
         return view('student.results');
     }
+
+    public function payment()
+    {
+        return view('student.payment');
+    }
 }

@@ -25,6 +25,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('student.schedule') }}">Schedule</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('student.payment') }}">Payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('student.appointment') }}">Appointment</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

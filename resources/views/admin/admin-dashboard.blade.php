@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div class="container">
+<div class="container">
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <aside class="admin-sidebar">
             <div class="logo-company">
@@ -23,6 +23,7 @@
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
+                    <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
                     <li><a href="#">Settings</a></li>
                 </ul>
             </nav>

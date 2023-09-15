@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>WMSU TEC - homepage</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k9GA2FGjvWM+j7HQCKfqt5zFj" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -82,6 +84,9 @@
     </div>
     </section>
     <!-- Carousel Section -->
+
+    @include('components.chatbox');
+
 
     <section id="news-section" class="grid-container">
     <div class="announcements">

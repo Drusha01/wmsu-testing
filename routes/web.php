@@ -33,12 +33,13 @@ Route::prefix('student')->group(function () {
     Route::get('/registration', [StudentController::class, 'registration'])->name('student.registration');
     Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
     Route::get('/results', [StudentController::class, 'results'])->name('student.results');
+    Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
 });
 
 // test routes application
 Route::prefix('test-application')->group(function () {
     Route::get('/cet', [TestApplicationController::class, 'cet'])->name('test-application.Cet');
-    Route::get('/aat', [TestApplicationController::class, 'nat'])->name('test-application.Nat');
+    Route::get('/Nat', [TestApplicationController::class, 'Nat'])->name('test-application.Nat');
     Route::get('/gsat', [TestApplicationController::class, 'gsat'])->name('test-application.Gsat');
     Route::get('/eat', [TestApplicationController::class, 'eat'])->name('test-application.Eat');
     Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('test-application.Lsat');
@@ -78,6 +79,11 @@ Route::get('admin-dashboard', function () {
     return view('admin.admin-dashboard');
 })->name('admin-dashboard');
 
+Route::get('admin-chatsupport', function () {
+    return view('admin.admin-chatsupport');
+})->name('admin-chatsupport');
+
+
 Route::get('manage-content', function () {
     return view('admin.manage-content');
 })->name('manage-content');
@@ -102,6 +108,4 @@ Route::get('admin-announcement', function () {
 Route::get('user-management', function () {
     return view('admin.user-management');
 })->name('user-management');
-
-
 
