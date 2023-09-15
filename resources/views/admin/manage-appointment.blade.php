@@ -3,55 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel - WMSU TEC</title>
+    <title>Admin appointments - WMSU TEC</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
-
-<header class="admin-header">
-        <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU TEC Logo" class="logo">
-        <nav>
-            <ul>
+    
+<div class="container">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <aside class="admin-sidebar">
+            <div class="logo-company">
+                <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU TEC Logo" class="logo">
                 <h1 class="company-name">WMSU <span>Testing and Evaluation Center</span></h1>
-                <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
-                <li><a href="#">User Management</a></li>
-                <li><a href="#">Appointment</a></li>
-                <li><a href="#">Applicant</a></li>
-                <li><a href="#">Announcement</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="{{ route('login') }}">Sign Out</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    
-<main class="admin-main">
-        <section class="appointments">
-            <h2>Appointments</h2>
-            <div class="appointment-item">
-                <div class="appointment-header">
-                    <div class="appointment-status">Pending</div>
-                    <div class="appointment-actions">
-                        <button class="btn-approve">Approve</button>
-                        <button class="btn-reject">Reject</button>
-                    </div>
-                </div>
-                <div class="appointment-details">
-                    <p><strong>Name:</strong> John Doe</p>
-                    <p><strong>Email:</strong> john.doe@example.com</p>
-                    <p><strong>Phone:</strong> 123-456-7890</p>
-                    <p><strong>Appointment Date:</strong> 2023-09-01</p>
-                    <p><strong>Message:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
             </div>
-            <!-- Add more appointment items as needed -->
-        </section>
-    </main>
+            <nav>
+                <ul>
+                    <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
+                    <li><a href="{{ route('user-management') }}">User Management</a></li>
+                    <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
+                    <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
+                    <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
+                    <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
+        </aside>
 
-    
-    <footer class="admin-footer">
-        <p>&copy; {{ date('Y') }} WMSU TEC Admin Panel</p>
-    </footer>
+    <section class="admin-content">
+    <h2 class="section-heading">Appointment Management</h2>
+
+    <!-- Appointment Pending -->
+    <h3>Appointment Pending</h3>
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th>Full Name</th> <!-- New column for Full Name -->
+                <th>Email Address</th> <!-- New column for Email Address -->
+                <th>Phone Number</th> <!-- New column for Phone Number -->
+                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
+                <th>Purpose</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Client Showed</th>
+                <th>Message</th> <!-- New column for Message -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>123456789</td>
+                <td>2023-09-20</td>
+                <td>Consultation</td>
+                <td>Admin</td>
+                <td>Appointment Pending</td>
+                <td>No</td>
+                <td>This is a message from the client.</td>
+                <td>
+                    <button>Accept</button>
+                    <button>Decline</button>
+                </td>
+            </tr>
+            <!-- Add more appointment rows here -->
+        </tbody>
+    </table>
+
+    <!-- Appointment Accepted -->
+    <h3>Appointment Accepted</h3>
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th>Full Name</th> <!-- New column for Full Name -->
+                <th>Email Address</th> <!-- New column for Email Address -->
+                <th>Phone Number</th> <!-- New column for Phone Number -->
+                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
+                <th>Purpose</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Client Showed</th>
+                <th>Message</th> <!-- New column for Message -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jane Smith</td>
+                <td>janesmith@example.com</td>
+                <td>987654321</td>
+                <td>2023-09-21</td>
+                <td>Assessment</td>
+                <td>User</td>
+                <td>Appointment Accepted</td>
+                <td>Yes</td>
+                <td>Client has confirmed the appointment.</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <!-- Add more appointment rows here -->
+        </tbody>
+    </table>
+    </section>
+
+
+    </div>
 </body>
 </html>

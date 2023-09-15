@@ -12,54 +12,125 @@
 
 @include('student-components.student-navigation')
 
-<section class="profile-section">
+<section class="student-profile-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Profile</h2>
-
-                <!-- Display applicant's ID number and other info here -->
-                <p><strong>Applicant ID:</strong> [Applicant ID Number]</p>
-                <p><strong>Name:</strong> [Applicant Name]</p>
-                <p><strong>Email:</strong> [Applicant Email]</p>
-                <p><strong>Gender:</strong> [Applicant Gender]</p>
-                <!-- Add other information as needed -->
+        <h2 class="section-title">Student Profile</h2>
+        <div class="profile-details">
+            <div class="profile-image">
+                <img src="{{ asset('images/courses/IT.png') }}" alt="Student Avatar">
             </div>
-    </div>
-</section>
-
-<!-- content -->
-<section class="application-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Thank You for Registering!</h2>
-                <p>Thank you for registering to WMSU Testing and Evaluation Center. We're excited to have you as part of our application process. Below, you'll find important information about the application process and key dates to remember.</p>
-                <h3>Application Process</h3>
-                <p>Our application process is simple and straightforward. Follow these steps to get started:</p>
-                <ol>
-                    <li>Create an account on our website.</li>
-                    <li>Log in to your account and complete the application form.</li>
-                    <li>Upload any required documents and information.</li>
-                    <li>Submit your application.</li>
-                </ol>
-                <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
-                <h3>Important Dates</h3>
-                <p>Make sure to mark these dates in your calendar:</p>
-                <ul>
-                    <li>Application Deadline: [Insert Date]</li>
-                    <li>Admission Test: [Insert Date]</li>
-                    <li>Interviews: [Insert Date]</li>
-                </ul>
-            </div>
-            <div class="col-lg-6 text-center">
-                <a href="{{ route('student.application') }}" class="btn btn-primary">Start Application</a>
+            <div class="profile-info">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Student ID:</strong> 123456789</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+                <p><strong>Status:</strong> Registered Applicant</p>
             </div>
         </div>
     </div>
 </section>
 
+<section class="academic-information-section">
+    <div class="container">
+        <h2 class="section-title">Academic Information</h2>
+        <!-- Educational Background -->
+        <div class="educational-background">
+            <h3>Educational Background</h3>
+            <ul>
+                <li>
+                    <strong>School Name:</strong> ABC High School
+                    <br>
+                    <strong>Grades:</strong> A+
+                    <br>
+                    <strong>Graduation Date:</strong> May 2020
+                </li>
+                <!-- Add more educational background items as needed -->
+            </ul>
+        </div>
 
+        <!-- Applied Programs -->
+        <div class="applied-programs">
+            <h3>Applied Programs</h3>
+            <ul>
+                <li>Program 1</li>
+                <li>Program 2</li>
+                <!-- Add more applied programs as needed -->
+            </ul>
+        </div>
+
+        <!-- Test Scores -->
+        <div class="test-scores">
+            <h3>Test Scores</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Test 1</td>
+                        <td>95%</td>
+                    </tr>
+                    <tr>
+                        <td>Test 2</td>
+                        <td>88%</td>
+                    </tr>
+                    <!-- Add more test scores as needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Test History -->
+        <div class="test-history">
+            <h2 class="section-title">Test History</h2>
+            <!-- List of Tests -->
+            <ul class="list-of-tests">
+                <li>
+                    <strong>Test Name:</strong> Test 1
+                    <br>
+                    <strong>Date:</strong> January 1, 2022
+                    <br>
+                    <strong>Result:</strong> Passed
+                </li>
+                <!-- Add more test history items as needed -->
+            </ul>
+
+            <!-- Test Certificates -->
+            <div class="test-certificates">
+                <h3>Test Certificates</h3>
+                <ul>
+                    <li><a href="#">Download Certificate 1</a></li>
+                    <li><a href="#">Download Certificate 2</a></li>
+                    <!-- Add more certificate download links as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<section class="feedback-and-surveys-section">
+    <div class="container">
+        <h2 class="section-title">Feedback and Surveys</h2>
+        <div class="feedback-form">
+            <p>We value your feedback. Please take a moment to complete the survey below:</p>
+            <form>
+                <!-- Add your survey questions and input fields here -->
+                <div class="form-group">
+                    <label for="question1">Question 1:</label>
+                    <input type="text" id="question1" name="question1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="question2">Question 2:</label>
+                    <textarea id="question2" name="question2" rows="4" class="form-control"></textarea>
+                </div>
+                <!-- Add more survey questions and input fields as needed -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 <!-- Include Bootstrap JS (optional) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

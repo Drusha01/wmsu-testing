@@ -34,13 +34,13 @@
                     <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Test Application</a>
                 <div class="dropdown-menu" aria-labelledby="admissionDropdown">
                         <a class="dropdown-item" href="{{ Route('test-application.Cet') }}">CET Application</a>
-                        <a class="dropdown-item" href="{{ Url('test-application.Nat') }}">NAT Application</a>
+                        <a class="dropdown-item" href="{{ Route('test-application.Nat') }}">NAT Application</a>
                         <a class="dropdown-item" href="{{ Route('test-application.Eat') }}">EAT Application</a>
                         <a class="dropdown-item" href="{{ Route('test-application.Gsat') }}">GSAT Application</a>
-                        <a class="dropdown-item" href="{{ Route('test-application.Lsat') }}">LSAT Application</a>
-                        <a class="dropdown-item" href="{{ url('test-application.Ksat') }}">KSAT Application</a>
-                        <a class="dropdown-item" href="{{ url('test-application.Hrmat') }}">HRMAT Application</a>
-                        <a class="dropdown-item" href="{{ url('test-application.Jrat') }}">JRAT Application</a>
+                        <a class="dropdown-item" href="{{ Route('test-application.Lsat') }}">LSAT Application</a> 
+                      <!--  <a class="dropdown-item" href="{{ url('test-application.Ksat') }}">KSAT Application</a> --> 
+                      <!--  <a class="dropdown-item" href="{{ url('test-application.Hrmat') }}">HRMAT Application</a> --> 
+                      <!--  <a class="dropdown-item" href="{{ url('test-application.Jrat') }}">JRAT Application</a> --> 
                 </div>
                     </li>
                     <li class="nav-item">

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>WMSU TEC - homepage</title>
-    <link href="{{ asset('css/Styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k9GA2FGjvWM+j7HQCKfqt5zFj" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -83,8 +85,12 @@
     </section>
     <!-- Carousel Section -->
 
-    <section id="news-section">
-        <h2>Latest News and Announcements</h2>
+    @include('components.chatbox');
+
+
+    <section id="news-section" class="grid-container">
+    <div class="announcements">
+        <h2 class="section-title">Latest News and Announcements</h2>
         <div class="announcement">
             <div>
                 <h3>Important Exam Dates</h3>
@@ -104,18 +110,20 @@
             </div>
         </div>
         <!-- Add more announcement items as needed -->
-        <div class="col-lg-6">
-                <h3>Step-by-Step Guide to Apply</h3>
-                <ol>
-                    <li>Create an account on our website.</li>
-                    <li>Choose the test you want to take.</li>
-                    <li>Fill out the online application form with your personal information and test preferences.</li>
-                    <li>Upload the required documents.</li>
-                    <li>Submit your application.</li>
-                </ol>
-                <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
-            </div>
+    </div>
+    <div class="step-by-step">
+        <h3>Step-by-Step Guide to Apply</h3>
+        <ol>
+            <li>Create an account on our website.</li>
+            <li>Choose the test you want to take.</li>
+            <li>Fill out the online application form with your personal information and test preferences.</li>
+            <li>Upload the required documents.</li>
+            <li>Submit your application.</li>
+        </ol>
+        <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
+    </div>
     </section>
+
 
 
     <!-- Feature Info Section -->
