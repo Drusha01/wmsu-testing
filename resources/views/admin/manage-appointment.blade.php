@@ -18,7 +18,7 @@
             <nav>
                 <ul>
                     <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
+                    <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
                     <li><a href="{{ route('user-management') }}">User Management</a></li>
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
@@ -48,7 +48,6 @@
                 <tr>
                     <th>Full Name</th>
                     <th>Email Address</th>
-                    <th>Phone Number</th>
                     <th>Preferred Appointment Date</th>
                     <th>Purpose</th>
                     <th>Assigned To</th>
@@ -62,7 +61,6 @@
                 <tr>
             <td>John Doe</td>
             <td>johndoe@example.com</td>
-            <td>123456789</td>
             <td>2023-09-20</td>
             <td>Consultation</td>
             <td>Admin</td>
@@ -77,7 +75,6 @@
                 <tr>
         <td>Jane Smith</td>
         <td>janesmith@example.com</td>
-        <td>987654321</td>
         <td>2023-09-22</td>
         <td>Assessment</td>
         <td>User</td>
@@ -92,7 +89,6 @@
     <tr>
         <td>Alice Johnson</td>
         <td>alice@example.com</td>
-        <td>555555555</td>
         <td>2023-09-25</td>
         <td>Consultation</td>
         <td>Admin</td>
@@ -116,7 +112,6 @@
                 <tr>
                     <th>Full Name</th>
                     <th>Email Address</th>
-                    <th>Phone Number</th>
                     <th>Preferred Appointment Date</th>
                     <th>Purpose</th>
                     <th>Assigned To</th>
@@ -130,7 +125,6 @@
                 <tr>
         <td>Mary Johnson</td>
         <td>mary@example.com</td>
-        <td>111111111</td>
         <td>2023-09-21</td>
         <td>Assessment</td>
         <td>Admin</td>
@@ -145,7 +139,6 @@
     <tr>
         <td>Michael Brown</td>
         <td>michael@example.com</td>
-        <td>222222222</td>
         <td>2023-09-23</td>
         <td>Consultation</td>
         <td>User</td>
@@ -160,7 +153,6 @@
     <tr>
         <td>David Lee</td>
         <td>david@example.com</td>
-        <td>333333333</td>
         <td>2023-09-24</td>
         <td>Assessment</td>
         <td>Admin</td>

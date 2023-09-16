@@ -18,7 +18,7 @@
             <nav>
                 <ul>
                     <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
+                    <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
                     <li><a href="{{ route('user-management') }}">User Management</a></li>
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
