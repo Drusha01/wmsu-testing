@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin appointments - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>
     
@@ -31,85 +31,177 @@
             <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
         </aside>
 
-    <section class="admin-content">
-    <h2 class="section-heading">Appointment Management</h2>
+        <section class="admin-content">
+        <h2 class="section-heading">Appointment Management</h2>
 
-    <!-- Appointment Pending -->
-    <h3>Appointment Pending</h3>
-    <table class="appointment-table">
-        <thead>
-            <tr>
-                <th>Full Name</th> <!-- New column for Full Name -->
-                <th>Email Address</th> <!-- New column for Email Address -->
-                <th>Phone Number</th> <!-- New column for Phone Number -->
-                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
-                <th>Purpose</th>
-                <th>Assigned To</th>
-                <th>Status</th>
-                <th>Client Showed</th>
-                <th>Message</th> <!-- New column for Message -->
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>123456789</td>
-                <td>2023-09-20</td>
-                <td>Consultation</td>
-                <td>Admin</td>
-                <td>Appointment Pending</td>
-                <td>No</td>
-                <td>This is a message from the client.</td>
-                <td>
-                    <button>Accept</button>
-                    <button>Decline</button>
-                </td>
-            </tr>
-            <!-- Add more appointment rows here -->
-        </tbody>
-    </table>
+        <!-- Tab Buttons -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'pending')" id="defaultOpen">Appointment Pending</button>
+            <button class="tablinks" onclick="openTab(event, 'accepted')">Appointment Accepted</button>
+        </div>
 
-    <!-- Appointment Accepted -->
-    <h3>Appointment Accepted</h3>
-    <table class="appointment-table">
-        <thead>
-            <tr>
-                <th>Full Name</th> <!-- New column for Full Name -->
-                <th>Email Address</th> <!-- New column for Email Address -->
-                <th>Phone Number</th> <!-- New column for Phone Number -->
-                <th>Preferred Appointment Date</th> <!-- New column for Preferred Appointment Date -->
-                <th>Purpose</th>
-                <th>Assigned To</th>
-                <th>Status</th>
-                <th>Client Showed</th>
-                <th>Message</th> <!-- New column for Message -->
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Jane Smith</td>
-                <td>janesmith@example.com</td>
-                <td>987654321</td>
-                <td>2023-09-21</td>
-                <td>Assessment</td>
-                <td>User</td>
-                <td>Appointment Accepted</td>
-                <td>Yes</td>
-                <td>Client has confirmed the appointment.</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+        <!-- Tab Content - Appointment Pending -->
+        <div id="pending" class="tabcontent">
+            <h3>Appointment Pending</h3>
+            <table class="appointment-table">
+                <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Preferred Appointment Date</th>
+                    <th>Purpose</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Client Showed</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                 </tr>
+                </thead>
+                <tbody>
+                <tr>
+            <td>John Doe</td>
+            <td>johndoe@example.com</td>
+            <td>123456789</td>
+            <td>2023-09-20</td>
+            <td>Consultation</td>
+            <td>Admin</td>
+            <td>Appointment Pending</td>
+            <td>No</td>
+            <td>This is a message from the client.</td>
+            <td>
+                <button>Accept</button>
+                <button>Decline</button>
                 </td>
-            </tr>
-            <!-- Add more appointment rows here -->
-        </tbody>
-    </table>
+                </tr>
+                <tr>
+        <td>Jane Smith</td>
+        <td>janesmith@example.com</td>
+        <td>987654321</td>
+        <td>2023-09-22</td>
+        <td>Assessment</td>
+        <td>User</td>
+        <td>Appointment Pending</td>
+        <td>No</td>
+        <td>Client has not confirmed yet.</td>
+        <td>
+            <button>Accept</button>
+            <button>Decline</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Alice Johnson</td>
+        <td>alice@example.com</td>
+        <td>555555555</td>
+        <td>2023-09-25</td>
+        <td>Consultation</td>
+        <td>Admin</td>
+        <td>Appointment Pending</td>
+        <td>No</td>
+        <td>About my application</td>
+        <td>
+            <button>Accept</button>
+            <button>Decline</button>
+        </td>
+    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab Content - Appointment Accepted -->
+        <div id="accepted" class="tabcontent">
+            <h3>Appointment Accepted</h3>
+            <table class="appointment-table">
+                <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Preferred Appointment Date</th>
+                    <th>Purpose</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Client Showed</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+        <td>Mary Johnson</td>
+        <td>mary@example.com</td>
+        <td>111111111</td>
+        <td>2023-09-21</td>
+        <td>Assessment</td>
+        <td>Admin</td>
+        <td>Appointment Accepted</td>
+        <td>Yes</td>
+        <td>Client confirmed the appointment.</td>
+        <td>
+            <button>Edit</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Michael Brown</td>
+        <td>michael@example.com</td>
+        <td>222222222</td>
+        <td>2023-09-23</td>
+        <td>Consultation</td>
+        <td>User</td>
+        <td>Appointment Accepted</td>
+        <td>Yes</td>
+        <td>Client has confirmed the appointment.</td>
+        <td>
+            <button>Edit</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>David Lee</td>
+        <td>david@example.com</td>
+        <td>333333333</td>
+        <td>2023-09-24</td>
+        <td>Assessment</td>
+        <td>Admin</td>
+        <td>Appointment Accepted</td>
+        <td>Yes</td>
+        <td>Client confirmed the appointment.</td>
+        <td>
+            <button>Edit</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
+</div>
 
+<!-- JavaScript for tab functionality -->
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
 
-    </div>
+        // Hide all tab content
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Deactivate all tab buttons
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the selected tab content and mark the button as active
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Open the default tab (e.g., "Appointment Pending")
+    document.getElementById("defaultOpen").click();
+</script>
 </body>
 </html>

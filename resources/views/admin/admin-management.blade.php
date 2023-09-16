@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin announcement - WMSU TEC</title>
+    <title>Admin dashboard - WMSU TEC</title>
     <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>
@@ -18,6 +18,7 @@
             <nav>
                 <ul>
                     <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
                     <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
                     <li><a href="{{ route('user-management') }}">User Management</a></li>
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
@@ -32,14 +33,20 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Announcement</h2>
-            
+            <h2 class="section-heading">Admin Management</h2>
             <div class="overview-widgets">
                 <!-- Your content widgets here -->
+                <div class="widget">
+                    <h3>User Management</h3>
+                    <!-- Add user management UI elements here -->
+                </div>
+                <div class="widget">
+                    <h3>Role Management</h3>
+                    <!-- Add role management UI elements here -->
+                </div>
             </div>
         </section>
 
-
-</div>
+    </div>
 </body>
 </html>
