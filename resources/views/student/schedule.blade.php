@@ -12,7 +12,11 @@
 
 @include('student-components.student-navigation')
 
-<section class="schedule-section">
+@include('student-components.student-navtabs')
+
+        <!-- Schedule Tab Content -->
+        <div role="tabpanel" class="tab-pane" id="schedule">
+        <section class="schedule-section">
     <div class="container">
         <h2 class="section-title">Schedule of Examinations</h2>
         <ul class="exam-list">
@@ -35,6 +39,8 @@
         </ul>
     </div>
 </section>
+        </div>
+
 
 
 <!-- Include Bootstrap JS (optional) -->

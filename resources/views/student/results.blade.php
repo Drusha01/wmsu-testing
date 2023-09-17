@@ -12,7 +12,11 @@
 
 @include('student-components.student-navigation')
 
-<section class="results-section">
+@include('student-components.student-navtabs')
+
+        <!-- Results Tab Content -->
+        <div role="tabpanel" class="tab-pane" id="results">
+        <section class="results-section">
     <div class="container">
         <h2 class="section-title">Exam Results</h2>
         <ul class="result-links">
@@ -29,6 +33,10 @@
         </ul>
     </div>
 </section>
+        </div>
+
+
+
 
 
 <!-- Include Bootstrap JS (optional) -->

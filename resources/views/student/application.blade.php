@@ -13,7 +13,14 @@
 
 @include('student-components.student-navigation')
 
-<section class="test-application-section">
+@include('student-components.student-navtabs')
+
+
+
+
+<!-- Application Tab Content -->
+        <div role="tabpanel" class="tab-pane" id="application">
+        <section class="test-application-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -61,6 +68,7 @@
         </div>
     </div>
 </section>
+        </div>
 
 
 

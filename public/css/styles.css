@@ -98,7 +98,7 @@ header css
 /* Latest News and Announcements Section */
 #news-section {
     background-color: #f9f9f9;
-    padding: 30px 0;
+    padding: 20px ;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -132,7 +132,7 @@ header css
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 10px; /* Smaller padding */
-    margin: 3px ;
+    margin: 5px ;
     text-align: left;
 }
 
@@ -340,7 +340,7 @@ about us css
 *************/
 .about {
     position: none;
-    padding: 100px;
+    padding: 50px;
 }
 
 .about span {
@@ -405,19 +405,21 @@ why choose us section
 /* Why Choose Us Section Styling */
 .why-choose-us {
     background-color: #990000;
-    padding: 80px 0;
+    padding: 40px 0;
     /* Adjust padding as needed */
+    color: white; /* Set text color to white */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-
 .why-choose-us h2 {
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 40px;
-    /* Add more spacing between heading and content */
-    color: rgb(7, 7, 7);
-    /* Set heading color to crimson red */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow for better visibility */
 }
-
 .choose-item {
     text-align: center;
     background-color: floralwhite;
@@ -666,8 +668,7 @@ textarea.form-control {
 /* Call to Action (CTA) Section Styling */
 .cta {
     background-color: #f9f9f9;
-    padding: 80px 0;
-    /* Adjust padding as needed */
+    padding: 30px;
 }
 
 .cta h2 {
