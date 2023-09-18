@@ -5,6 +5,15 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\TestApplicationController;
+
+// authenticated middleware
+use App\Http\Middleware\Authenticated;
+
+
+// registration / login
+use App\Http\Livewire\Authentication\Login;
+use App\Http\Livewire\Authentication\Register;
+use App\Http\Livewire\Authentication\RegisterEmail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +37,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 // Student routes application
 Route::prefix('student')->group(function () {
-    Route::get('/profile', [StudentController::class, 'profile'])->name('student.profile');
+    Route::get('/profile', [StudentController::class, 'profile'])->middleware(Authenticated::class)->name('student.profile');
     Route::get('/application', [StudentController::class, 'application'])->name('student.application');
     Route::get('/registration', [StudentController::class, 'registration'])->name('student.registration');
     Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
@@ -45,23 +54,19 @@ Route::prefix('test-application')->group(function () {
     Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('test-application.Lsat');
 });
 
-Route::get('/login', function () {
-    return view('account.login');
-})->name('login');
+Route::get('/login', Login::class)->middleware(Authenticated::class)->name('login');
 
 // Registration
-Route::get('/register', function () {
-    return view('account.register');
-})->name('register');
+Route::get('/register', Register::class)->middleware(Authenticated::class)->name('register');
+// Route::get('/register-email',RegisterEmail::class)->middleware(Authenticated::class)->name('register-email');
+
 
 Route::get('/forgot-password', function () {
     return view('account.forgot-password');
 })->name('forgot-password');
 
 // Email Verification
-Route::get('/create-using-email', function () {
-    return view('account.create-using-email');
-})->name('create-using-email');
+
 
 Route::get('/verification-code', function () {
     return view('account.verification-code');
