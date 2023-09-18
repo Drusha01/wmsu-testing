@@ -20,7 +20,7 @@ class Authenticated
         $data = $request->session()->all();
         // check if signed in
         if(!isset($data['user_id'])  ){
-            if($request->is('login') | $request->is('register') | $request->is('register-via-email')){
+            if($request->is('login') | $request->is('register') | $request->is('register-email')){
                 return $next($request);
             }
             return redirect('/login');

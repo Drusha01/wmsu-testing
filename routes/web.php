@@ -58,7 +58,7 @@ Route::get('/login', Login::class)->middleware(Authenticated::class)->name('logi
 
 // Registration
 Route::get('/register', Register::class)->middleware(Authenticated::class)->name('register');
-// Route::get('/register-email',RegisterEmail::class)->middleware(Authenticated::class)->name('register-email');
+Route::get('/register-email',RegisterEmail::class)->middleware(Authenticated::class)->name('register-email');
 
 
 Route::get('/forgot-password', function () {
