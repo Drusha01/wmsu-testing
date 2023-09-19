@@ -87,10 +87,9 @@ Route::get('admin-chatsupport', function () {
     return view('admin.admin-chatsupport');
 })->name('admin-chatsupport');
 
-
-Route::get('manage-content', function () {
-    return view('admin.manage-content');
-})->name('manage-content');
+Route::get('admin-setting', function () {
+    return view('admin.admin-setting');
+})->name('admin-setting');
 
 Route::get('user-management', function () {
     return view('admin.user-management');

@@ -1,4 +1,3 @@
-
 /* NAVBAR CSS */
 .bg-crimson {
     background-color: #990000;
@@ -12,6 +11,8 @@
     color: white;
 }
 /* NAVBAR CSS */
+
+/* studenr profile CSS */
 
 /* studenr profile CSS */
 
@@ -42,111 +43,18 @@
     background-color: #990000; /* Active tab background color */
     color: wheat;
 }
-/* Style for the navigation tabs */
+
+
 /* Hover effect for tab links */
 .nav.nav-tabs li a:hover {
     background-color: #990000; /* Hover background color */
     text-decoration: none; /* Remove underline on hover */
     color: #fff; /* Hover text color */
 }
-
-/* Style for Div 1: Applicant Profile Picture, Name, and Status */
-.profile-section {
-    text-align: center;
-    padding: 20px;
-}
-
-.profile-section img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--main-color);
-}
-
-.profile-section h3 {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 24px;
-    color: #333; /* Text Color */
-    margin-top: 10px;
-}
-
-.profile-section p {
-    font-size: 16px;
-    color: #666; /* Text Color */
-}
-
-/* Style for Div 2: Applicant Details */
-.details-section {
-    background-color: #f5f5f5; /* Background Color */
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.details-section h4 {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 24px;
-    color: #333; /* Text Color */
-}
-
-.details-section p {
-    font-size: 16px;
-    color: #555; /* Text Color */
-    margin-top: 5px;
-}
-
-#modifyButton {
-    background-color: var(--main-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#modifyButton:hover {
-    background-color: #660000; /* Darker Shade */
-}
-
-/* Style for Div 3: Applicant's Applied Examinations */
-.examinations-section {
-    margin-top: 20px;
-    border-top: 2px solid var(--main-color); /* Top Border Line */
-    padding-top: 20px;
-}
-
-.examinations-section h4 {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 24px;
-    color: #333; /* Text Color */
-    margin-bottom: 10px;
-}
-
-.examination {
-    background-color: #f5f5f5; /* Background Color */
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.examination h5 {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 20px;
-    color: #333; /* Text Color */
-}
-
-.examination p {
-    font-size: 16px;
-    color: #555; /* Text Color */
-    margin-top: 5px;
-}
-
-/* studenr profile CSS */
+/* Style for the navigation tabs */
 
 
-/* Container for the entire section */
+/* Container application for the entire section */
 .test-application-section {
     background-color: #f9f9f9;
     padding: 30px;
@@ -201,6 +109,7 @@
 }
 /* Styling for the test section */
 
+
 /* Styling for the guide section */
 .guide-section {
     background-color: #ffffff;
@@ -219,6 +128,9 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* Container for the entire section *
+
+
 
 
 /* Application Status Section */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin dashboard - WMSU TEC</title>
+    <title>Admin Setting - WMSU TEC</title>
     <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 </head>
 <body>
@@ -31,14 +31,14 @@
             <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
         </aside>
 
-        <section class="admin-content">
-            <h2 class="section-heading">Dashboard Overview</h2>
-            
-            <div class="overview-widgets">
-                <!-- Your content widgets here -->
-            </div>
-        </section>
-    </div>
+            <section class="admin-setting">
+                <h2 class="section-heading">Setting</h2>
+                
+                <div class="overview-widgets">
+                    <h1>hellow</h1>
+                </div>
+            </section>
+        </div>
 
 </body>
 </html>
