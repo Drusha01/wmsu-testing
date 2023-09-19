@@ -15,6 +15,10 @@
                 <form wire:submit.prevent="send_verification_code()" >
                     @csrf
                     <div class="form-group">
+                    <div>@if(isset($error))
+                            {{$error}}
+                        @endif
+                    </div>
                     <label for="email" class="sr-only">Email</label>
                     
                     <input type="email"  wire:model="email" class="form-control" placeholder="Email address" required>
