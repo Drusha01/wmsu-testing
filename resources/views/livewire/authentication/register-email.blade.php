@@ -12,20 +12,40 @@
                     <img src="{{ asset('images/logo/logo.png') }}" alt="logo" class="logo">
                 </div>
                 <p class="login-card-description">Register an Account Using your Email</p>
-                <form wire:submit.prevent="send_verification_code()" >
-                    @csrf
-                    <div class="form-group">
-                    <div>@if(isset($error))
-                            {{$error}}
-                        @endif
-                    </div>
-                    <label for="email" class="sr-only">Email</label>
+                
+                    @if($email_send)
+                        <form wire:submit.prevent="send_verification_code()" >
+                        @csrf
+                        <div class="form-group">
+                            <div>@if(isset($error))
+                                    {{$error}}
+                                @endif
+                            </div>
+                            <label for="email" class="sr-only">Email</label>
+                            
+                            <input type="email"  wire:model="email" class="form-control" placeholder="Email address" required>
+                        </div>
+                        <button type="submit"   class="btn btn-block login-btn mb-4 button-color">Send Verification Code</button>
+                        <a href="{{ route('login') }}" class="forgot-password-link">Back to Login</a>
+                       </form>
+                    @else
+                        <form wire:submit.prevent="verify_code()" >
+                            @csrf
+                            <div class="form-group">
+                                <div>@if(isset($error))
+                                        {{$error}}
+                                    @endif
+                                </div>
+                                
+                                <label for="email" class="sr-only">Email</label>
+                                
+                                <input type="number"  wire:model="code" class="form-control" placeholder="Enter code" required>
+                            </div>
+                            <button type="submit"   class="btn btn-block login-btn mb-4 button-color">Verify Code</button>
+                            <a href="{{ route('login') }}" class="forgot-password-link">Back to Login</a>
+                       </form>
+                    @endif
                     
-                    <input type="email"  wire:model="email" class="form-control" placeholder="Email address" required>
-                    </div>
-                    <button type="submit"   class="btn btn-block login-btn mb-4 button-color">Send Verification Code</button>
-                    <a href="{{ route('login') }}" class="forgot-password-link">Back to Login</a>
-                </form>
                 <nav class="login-card-footer-nav">
                     <a href="#!">Terms of use.</a>
                     <a href="#!">Privacy policy</a>

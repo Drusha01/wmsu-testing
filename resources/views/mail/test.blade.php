@@ -1,0 +1,1 @@
+activation code : {{$code}}
