@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application</title>
-    <link rel="stylesheet" href="{{ asset('css/User.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 
 @include('student-components.student-navigation')
 
-<section class="application-status-section">
+@include('student-components.student-navtabs')
+
+        <!-- Status Tab Content -->
+        <div role="tabpanel" class="tab-pane" id="status">
+        <section class="application-status-section">
     <div class="container">
         <h2 class="section-title">Application Status</h2>
         <table class="status-table">
@@ -94,7 +98,7 @@
         </table>
     </div>
 </section>
-
+        </div>
 
 
 <!-- Include Bootstrap JS  -->

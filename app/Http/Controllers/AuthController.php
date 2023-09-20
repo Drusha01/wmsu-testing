@@ -33,5 +33,10 @@ public function showforgotpassowrd()
 {
     return view('account.forgot-password');
 }
+public function verificationEmil()
+{
+    return view('account.verification-email');
+}
+
 
 }

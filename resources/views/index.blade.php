@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>WMSU TEC - homepage</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/Styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+k9GA2FGjvWM+j7HQCKfqt5zFj" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -87,7 +89,7 @@
 
     @include('components.chatbox');
 
-
+        <!--  announcement items  -->
     <section id="news-section" class="grid-container">
     <div class="announcements">
         <h2 class="section-title">Latest News and Announcements</h2>
@@ -95,12 +97,6 @@
             <div>
                 <h3>Important Exam Dates</h3>
                 <p>Stay informed about the upcoming exam dates for various programs.</p>
-            </div>
-        </div>
-        <div class="announcement">
-            <div>
-                <h3>New Testing Procedures</h3>
-                <p>We have updated our testing procedures to ensure a smooth experience for all candidates.</p>
             </div>
         </div>
         <div class="announcement">
@@ -123,13 +119,15 @@
         <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
     </div>
     </section>
-
-
+    <!--  announcement items  -->
 
     <!-- Feature Info Section -->
     <section class="features mt-5 mb-5">
         <div class="container">
             <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-4">Our Feature</h2>
+            </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="main-feature-box">
                         <div class="icon">
@@ -226,6 +224,9 @@
     <section class="why-choose-us mt-5 mb-5">
         <div class="container">
             <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-4">Why Choose Us</h2>
+            </div>
                 <div class="col-md-4">
                     <div class="choose-item border">
                     <img src="{{ asset('images/logo/logo.png') }}" width="60px" alt="#">
@@ -260,7 +261,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials Section 
     <section class="testimonials mt-5 mb-5">
         <div class="container">
             <div class="row">
@@ -333,7 +334,7 @@
                 </div>
             </div>
     </section>
-    <!-- Testimonials Section -->
+    Testimonials Section -->
 
     <!-- Call to Action Section -->
     <section class="cta mt-5 mb-5">

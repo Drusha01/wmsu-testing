@@ -32,13 +32,20 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Dashboard Overview</h2>
-            
+            <h2 class="section-heading">Admin Management</h2>
             <div class="overview-widgets">
                 <!-- Your content widgets here -->
+                <div class="widget">
+                    <h3>User Management</h3>
+                    <!-- Add user management UI elements here -->
+                </div>
+                <div class="widget">
+                    <h3>Role Management</h3>
+                    <!-- Add role management UI elements here -->
+                </div>
             </div>
         </section>
-    </div>
 
+    </div>
 </body>
 </html>

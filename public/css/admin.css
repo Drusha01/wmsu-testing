@@ -1,5 +1,3 @@
-
-
 /* Global container for layout */
 .container {
     display: flex;
@@ -330,7 +328,7 @@ nav a:hover {
     background-color: #fff;
     border-collapse: collapse;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 1-px;
+    border-radius: 8px;
 }
 
 .application-table th,
@@ -352,7 +350,52 @@ nav a:hover {
 .application-table tbody tr:hover {
     background-color: #e0e0e0;
 }
+.examfilter-container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
 
+.filter-label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-select {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.accept-btn, .decline-btn {
+    padding: 10px 20px;
+    background-color: #009900; /* Green color for Accept */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.decline-btn {
+    background-color: #FF0000; /* Red color for Decline */
+    margin-left: 10px;
+}
+
+.accept-btn:hover, .decline-btn:hover {
+    background-color: #006600; /* Darker green on hover for Accept */
+}
+
+@media (max-width: 768px) {
+    .examfilter-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-select {
+        margin-top: 10px;
+    }
+}
 /* Application Review and Approval Process */
 
 
@@ -465,43 +508,119 @@ nav a:hover {
 
 
 /* Styles for Appointment */
+/* Styles for the appointment management section */
 .admin-content {
-    background-color: #f0f0f0;
     padding: 20px;
 }
 
-.section-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #990000; /* Set the text color to your main color */
+/* Tab Buttons */
+.tab {
+    overflow: hidden;
+    background-color: #f2f2f2;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Tab Content - Appointment Pending and Accepted */
+.tabcontent {
+    display: none;
+    padding: 20px;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
 }
 
 .appointment-table {
     width: 100%;
-    background-color: #fff;
     border-collapse: collapse;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
 }
 
-.appointment-table th,
-.appointment-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-}
-
-.appointment-table th {
+.appointment-table thead {
     background-color: #990000;
-    color: #fff;
+    color: white;
 }
 
-.appointment-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
+.appointment-table th, .appointment-table td {
+    padding: 12px;
+    text-align: left;
 }
 
-.appointment-table tbody tr:hover {
-    background-color: #e0e0e0;
+.appointment-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Buttons */
+.appointment-table button {
+    background-color: #990000;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.appointment-table button:hover {
+    background-color: #770000;
+}
+
+/* Section heading */
+.appointment-table .section-heading {
+    font-size: 24px;
+    color: #990000;
+    margin-bottom: 20px;
+}
+
+/* Links */
+.appointment-table a {
+    color: #990000;
+    text-decoration: none;
+}
+
+.appointment-table a:hover {
+    text-decoration: underline;
+}
+
+/* Additional Styles for the Accept and Decline buttons */
+.appointment-table .accept-button {
+    background-color: #014301; /* Green */
+}
+
+.appointment-table .decline-button {
+    background-color: #990000; /* Red */
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 10px;
+    }
+
+    .tab button {
+        padding: 10px 12px;
+    }
+
+    .appointment-table th, .appointment-table td {
+        padding: 8px;
+    }
 }
 
 /* Styles for Appointment */
@@ -597,3 +716,123 @@ nav a:hover {
 .send-button:hover {
     background-color: #0056b3;
 }
+/* Chat Support styles */
+
+/* Styles for the announcement table */
+.announcement-table {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.announcement-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.announcement-table thead {
+    background-color: #990000;
+    color: white;
+}
+
+.announcement-table th {
+    padding: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.announcement-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    
+}
+
+.announcement-table tbody td {
+    padding: 12px;
+}
+
+/* Buttons */
+.announcement-table button {
+    background-color: #990000;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.announcement-table button:hover {
+    background-color: #770000;
+}
+
+/* Section heading */
+.announcement-table .section-heading {
+    font-size: 24px;
+    color: #990000;
+    margin-bottom: 20px;
+}
+
+/* Links */
+.announcement-table a {
+    color: #990000;
+    text-decoration: none;
+}
+
+.announcement-table a:hover {
+    text-decoration: underline;
+}
+
+.announcement-filter {
+    margin-bottom: 10px; 
+    display: flex;
+    align-items: center;
+}
+
+#announcement-search {
+
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+label[for="status-filter"] {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#status-filter {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.add-announcement-button button {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 560px;
+}
+
+.add-announcement-button button:hover {
+    background-color: #770000;
+}
+
+@media (max-width: 768px) {
+    .announcement-filter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #announcement-search {
+        margin-bottom: 10px;
+    }
+}
+
+/* Styles for the announcement table */
+
+/* Styles for the admin-setting section */

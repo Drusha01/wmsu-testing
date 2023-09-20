@@ -76,6 +76,9 @@ Route::get('/admin-login', function () {
     return view('account.admin-login');
 })->name('admin-login');
 
+Route::get('verification-email', function () {
+    return view('account.verification-email');
+})->name('verification-email');
 
 
 
@@ -84,14 +87,17 @@ Route::get('admin-dashboard', function () {
     return view('admin.admin-dashboard');
 })->name('admin-dashboard');
 
+Route::get('admin-management', function () {
+    return view('admin.admin-management');
+})->name('admin-management');
+
 Route::get('admin-chatsupport', function () {
     return view('admin.admin-chatsupport');
 })->name('admin-chatsupport');
 
-
-Route::get('manage-content', function () {
-    return view('admin.manage-content');
-})->name('manage-content');
+Route::get('setting', function () {
+    return view('admin.setting');
+})->name('setting');
 
 Route::get('user-management', function () {
     return view('admin.user-management');

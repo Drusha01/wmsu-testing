@@ -16,15 +16,15 @@
                 <h1 class="company-name">WMSU <span>Testing and Evaluation Center</span></h1>
             </div>
             <nav>
-                <ul>
+            <ul>
                     <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('manage-content') }}">Manage Content</a></li>
+                    <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
                     <li><a href="{{ route('user-management') }}">User Management</a></li>
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
-                    <li><a href="{{ url('admin-chatsupport') }}">Chat Support</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
+                    <li><a href="{{ route('setting')}}">Settings</a></li>
                 </ul>
             </nav>
             <label for="menu-toggle" class="menu-icon">&#9776;</label>

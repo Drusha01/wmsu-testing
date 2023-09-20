@@ -7,132 +7,68 @@
     <link rel="stylesheet" href="{{ asset('css/User.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 
 @include('student-components.student-navigation')
-
-<section class="student-profile-section">
-    <div class="container">
-        <h2 class="section-title">Student Profile</h2>
-        <div class="profile-details">
-            <div class="profile-image">
-                <img src="{{ asset('images/courses/IT.png') }}" alt="Student Avatar">
+@include('student-components.student-navtabs')
+<!-- content-->
+<section class="profile-section">
+        <div class="container">
+            <h2 class="profile-">Applicant information</h2>
+<div class="Applicant-container">
+    <div class="Applicant-info">
+        <div class="profile-box">
+            <div class="profile-image-container">
+                <input type="file" id="profileImageInput" style="display: none;">
+                <label for="profileImageInput" class="profile-image-label">
+                    <div class="profile-image">
+                        <i class="fas fa-user fa-5x"></i>
+                    </div>
+                </label>
             </div>
-            <div class="profile-info">
-                <p><strong>Name:</strong> John Doe</p>
-                <p><strong>Student ID:</strong> 123456789</p>
-                <p><strong>Email:</strong> johndoe@example.com</p>
-                <p><strong>Status:</strong> Registered Applicant</p>
-            </div>
+            <h3 class="mt-3">Applicant Name</h3>
+            <p class="text-muted">Status: Registered</p>
+            <button id="modifyButton" class="btn btn-primary">Modify Information</button>
         </div>
     </div>
-</section>
-
-<section class="academic-information-section">
-    <div class="container">
-        <h2 class="section-title">Academic Information</h2>
-        <!-- Educational Background -->
-        <div class="educational-background">
-            <h3>Educational Background</h3>
-            <ul>
-                <li>
-                    <strong>School Name:</strong> ABC High School
-                    <br>
-                    <strong>Grades:</strong> A+
-                    <br>
-                    <strong>Graduation Date:</strong> May 2020
-                </li>
-                <!-- Add more educational background items as needed -->
+    <div class="applicant-details">
+        <div class="details-box">
+            <h4>Applicant Details</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Full Name:</strong> John Doe</li>
+                <li class="list-group-item"><strong>Gender:</strong> Male</li>
+                <li class="list-group-item"><strong>Home Address:</strong> 123 Main St, City</li>
+                <li class="list-group-item"><strong>Email (if verified):</strong> john.doe@example.com</li>
+                <li class="list-group-item"><strong>Account Created:</strong> January 1, 2023</li>
+                <li class="list-group-item"><strong>Birthdate:</strong> January 15, 2000</li>
+                <li class="list-group-item"><strong>Senior High School:</strong> Sample High School</li>
+                <li class="list-group-item"><strong>Strand:</strong> STEM</li>
+                <li class="list-group-item"><strong>Awards (if any):</strong> Dean's List, Science Fair Champion</li>
             </ul>
         </div>
+    </div>
+</div>
 
-        <!-- Applied Programs -->
-        <div class="applied-programs">
-            <h3>Applied Programs</h3>
-            <ul>
-                <li>Program 1</li>
-                <li>Program 2</li>
-                <!-- Add more applied programs as needed -->
-            </ul>
-        </div>
-
-        <!-- Test Scores -->
-        <div class="test-scores">
-            <h3>Test Scores</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Test Name</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Test 1</td>
-                        <td>95%</td>
-                    </tr>
-                    <tr>
-                        <td>Test 2</td>
-                        <td>88%</td>
-                    </tr>
-                    <!-- Add more test scores as needed -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Test History -->
-        <div class="test-history">
-            <h2 class="section-title">Test History</h2>
-            <!-- List of Tests -->
-            <ul class="list-of-tests">
-                <li>
-                    <strong>Test Name:</strong> Test 1
-                    <br>
-                    <strong>Date:</strong> January 1, 2022
-                    <br>
-                    <strong>Result:</strong> Passed
-                </li>
-                <!-- Add more test history items as needed -->
-            </ul>
-
-            <!-- Test Certificates -->
-            <div class="test-certificates">
-                <h3>Test Certificates</h3>
-                <ul>
-                    <li><a href="#">Download Certificate 1</a></li>
-                    <li><a href="#">Download Certificate 2</a></li>
-                    <!-- Add more certificate download links as needed -->
+<div class="requiremement">
+                <h4>Requirements Upload</h4>
+                <p>Upload the following documents:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">1. High School Transcript</li>
+                    <li class="list-group-item">2. Birth Certificate</li>
+                    <li class="list-group-item">3. Photo ID</li>
+                    <!-- Add more document requirements as needed -->
                 </ul>
+                <button id="uploadRequirementsButton" class="btn btn-primary">Upload Requirements</button>
             </div>
         </div>
     </div>
+</div>
+<!-- content-->
 </section>
 
-<!-- Content -->
-<section class="feedback-and-surveys-section">
-    <div class="container">
-        <h2 class="section-title">Feedback and Surveys</h2>
-        <div class="feedback-form">
-            <p>We value your feedback. Please take a moment to complete the survey below:</p>
-            <form>
-                <!-- Add your survey questions and input fields here -->
-                <div class="form-group">
-                    <label for="question1">Question 1:</label>
-                    <input type="text" id="question1" name="question1" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="question2">Question 2:</label>
-                    <textarea id="question2" name="question2" rows="4" class="form-control"></textarea>
-                </div>
-                <!-- Add more survey questions and input fields as needed -->
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Include Bootstrap JS (optional) -->
+<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
