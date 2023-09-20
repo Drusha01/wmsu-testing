@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin dashboard - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
+    <title>Admin Setting - WMSU TEC</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
     
@@ -24,7 +24,7 @@
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
                     <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
-                    <li><a href="{{ route('setting')}}">Settings</a></li>
+                    <li><a href="{{ route('setting') }}">Settings</a></li>
                 </ul>
             </nav>
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
@@ -32,10 +32,38 @@
         </aside>
 
         <section class="admin-content">
-            <h2 class="section-heading">Dashboard Overview</h2>
+            <h2 class="section-heading">Setting</h2>
             
             <div class="overview-widgets">
-                <!-- Your content widgets here -->
+            <h3>Website Management</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Website 1</td>
+                            <td>www.website1.com</td>
+                            <td>Active</td>
+                            <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Website 2</td>
+                            <td>www.website2.com</td>
+                            <td>Inactive</td>
+                            <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
             </div>
         </section>
     </div>

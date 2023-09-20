@@ -24,7 +24,7 @@
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
                     <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
-                    <li><a href="{{ route('admin-setting')}}">Settings</a></li>
+                    <li><a href="{{ route('setting')}}">Settings</a></li>
                 </ul>
             </nav>
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
