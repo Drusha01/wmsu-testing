@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserSex extends Migration
+class CreateUserHighSchool extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserSex extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE TABLE user_sex(
-            user_sex_id INT PRIMARY KEY AUTO_INCREMENT,
-            user_sex_details VARCHAR(100) UNIQUE,
+        DB::statement('CREATE TABLE user_high_schools(
+            user_user_high_school_id INT PRIMARY KEY AUTO_INCREMENT,
+            user_high_school_details VARCHAR(100) UNIQUE,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
@@ -28,6 +28,6 @@ class CreateUserSex extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_sex');
+        Schema::dropIfExists('user_high_school');
     }
 }

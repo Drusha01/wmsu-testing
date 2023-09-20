@@ -16,6 +16,12 @@ class userSex extends Seeder
     {
         DB::statement('INSERT INTO user_sex VALUES(
             NULL,
+            "",
+            NOW(),
+            NOW()
+        );');
+        DB::statement('INSERT INTO user_sex VALUES(
+            NULL,
             "Male",
             NOW(),
             NOW()

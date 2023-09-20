@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         
         $this->call([
-            // userRoles::class,
-            // userGenders::class,
-            // userSex::class,
-            // userStatus::class
+            userRoles::class,
+            userGenders::class,
+            userSex::class,
+            userStatus::class,
+            userHighschool::class
         ]);
         
     }

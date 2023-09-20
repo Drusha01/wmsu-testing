@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             user_id INT PRIMARY KEY AUTO_INCREMENT,
             user_status_id INT NOT NULL,
             user_sex_id INT ,
+            user_high_school_id INT , 
             user_gender_id INT , 
             user_role_id INT NOT NULL,
             user_name VARCHAR(255) ,
@@ -30,13 +31,14 @@ class CreateUsersTable extends Migration
             user_firstname VARCHAR(255) NOT NULL,
             user_middlename VARCHAR(255),
             user_lastname  VARCHAR(255) NOT NULL,
+            user_suffix VARCHAR(100),
             user_address VARCHAR(255),
             user_birthdate DATE,
             user_profile_picture VARCHAR(100) DEFAULT "default.png",
 
 
-            created_at DATETIME ,
-            updated_at DATETIME ,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (user_status_id) REFERENCES user_status(user_status_id),
             FOREIGN KEY (user_role_id) REFERENCES user_roles(user_role_id)
         );');
@@ -50,7 +52,7 @@ class CreateUsersTable extends Migration
         DB::statement('CREATE INDEX idx_full_name ON users(user_firstname(10),user_lastname(10),user_middlename(10));');
         DB::statement('CREATE INDEX idx_user_gender ON users(user_gender_id);');
         DB::statement('CREATE INDEX idx_user_sex ON users(user_sex_id);');
-
+        DB::statement('CREATE INDEX idx_user_highschool ON users(user_high_school_id);');
     }
 
     /**
