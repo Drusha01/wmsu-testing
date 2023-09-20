@@ -374,7 +374,7 @@ class RegisterEmail extends Component
                 ->first();
 
 
-                $request->session()->put('user_name', $this->username);
+                $request->session()->put('user_id', $user_details->user_id);
                 $request->session()->put('user_name', $this->username);
                 $request->session()->put('user_name', $this->username);
                 $request->session()->put('user_name', $this->username);
