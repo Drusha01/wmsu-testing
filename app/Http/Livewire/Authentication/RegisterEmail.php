@@ -15,9 +15,11 @@ class RegisterEmail extends Component
     public $email_send;
     public $validated_code;
     public $code;
+    public $sign_up;
 
     public function mount(){
         $this->email_send = true;
+        $this->sign_up = false;
     }
 
     protected $rules = [
@@ -85,11 +87,11 @@ class RegisterEmail extends Component
                 ->get()
                 ->toArray();
             if(count($activation_details)>0 && $activation_details['0']->user_activation_code == $this->code){
-                if($activation_details['0']->user_activation_count<4){
+                if($activation_details['0']->user_activation_count<=4){
                     // // check how long
                     if(1){
                         // registration proceeds
-                        dd('mice');
+                        $this->sign_up = false;
                     }else{
                         $this->dispatchBrowserEvent('swal:redirect',[
                             'position'          									=> 'center',
