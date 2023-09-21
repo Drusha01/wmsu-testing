@@ -14,7 +14,7 @@ class CreateUserHighSchool extends Migration
     public function up()
     {
         DB::statement('CREATE TABLE user_high_schools(
-            user_user_high_school_id INT PRIMARY KEY AUTO_INCREMENT,
+            user_high_school_id INT PRIMARY KEY AUTO_INCREMENT,
             user_high_school_details VARCHAR(100) UNIQUE,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

@@ -92,7 +92,7 @@
                         <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
                         <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('home') }}">Sign Out</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
                     </div>
                 </li>
             </ul>

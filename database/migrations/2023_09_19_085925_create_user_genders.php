@@ -14,8 +14,8 @@ class CreateUserGenders extends Migration
     public function up()
     {
         DB::statement('CREATE TABLE user_genders(
-            user_genders_id INT PRIMARY KEY AUTO_INCREMENT,
-            user_genders_details VARCHAR(100) UNIQUE,
+            user_gender_id INT PRIMARY KEY AUTO_INCREMENT,
+            user_gender_details VARCHAR(100) UNIQUE,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');

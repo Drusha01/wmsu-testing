@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class Authenticated
+class Logout
 {
     /**
      * Handle an incoming request.
@@ -17,11 +16,7 @@ class Authenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        $data = $request->session()->all();
-        // check if signed in
-        if(!isset($data['user_id'])  ){
-            return redirect('/login');
-        }
-        return $next($request);
+        $request->session()->invalidate();
+        return redirect('/login');
     }
 }

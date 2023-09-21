@@ -17,7 +17,11 @@ class AccountisValid
     public function handle(Request $request, Closure $next)
     {
         $data = $request->session()->all();
-        
+        if(isset($data['user_status_details']) && $data['user_status_details'] == 'inactive'){
+            return redirect('/inactive');
+        }else if(isset($data['user_status_details']) && $data['user_status_details'] == 'deleted'){
+            return redirect('/deleted');
+        }
         return $next($request);
     }
 }
