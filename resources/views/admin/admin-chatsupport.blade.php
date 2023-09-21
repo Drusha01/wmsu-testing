@@ -20,8 +20,11 @@
                     <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
                     <li><a href="{{ route('user-management') }}">User Management</a></li>
+                    <li><a href="{{ route('exam-management') }}">Exam Management</a></li>
+                    <li><a href="{{ route('room-management') }}">Room Management</a></li>
                     <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
                     <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
+                    <li><a href="{{ route('room-assignment') }}">Room Assignment</a></li>
                     <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
                     <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
                     <li><a href="{{ route('setting')}}">Settings</a></li>

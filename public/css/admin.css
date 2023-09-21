@@ -836,3 +836,246 @@ label[for="status-filter"] {
 /* Styles for the announcement table */
 
 /* Styles for the admin-setting section */
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #990000;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.close-button:hover {
+    color: #990000;
+}
+
+/* Form Styles within the Modal */
+#add-exam-form {
+    margin-top: 20px;
+}
+
+#add-exam-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#add-exam-form input[type="text"],
+#add-exam-form input[type="date"],
+#add-exam-form input[type="url"],
+#add-exam-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-exam-form button[type="submit"] {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: auto;
+}
+
+#add-exam-form button[type="submit"]:hover {
+    background-color: #770000;
+}
+
+/* Styles for the exam management table */
+.exam-management-table {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.exam-management-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.exam-management-table thead {
+    background-color: #990000;
+    color: white;
+}
+
+.exam-management-table th {
+    padding: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.exam-management-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.exam-management-table tbody td {
+    padding: 12px;
+}
+
+/* Buttons */
+.exam-management-table button {
+    background-color: #990000;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.exam-management-table button:hover {
+    background-color: #770000;
+}
+
+/* Section heading */
+.exam-management-table .section-heading {
+    font-size: 24px;
+    color: #990000;
+    margin-bottom: 20px;
+}
+
+/* Links */
+.exam-management-table a {
+    color: #990000;
+    text-decoration: none;
+}
+
+.exam-management-table a:hover {
+    text-decoration: underline;
+}
+
+.exam-management-filter {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#exam-search {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label[for="exam-status-filter"] {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#exam-status-filter {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-exam-button button {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 660px;
+}
+
+.add-exam-button button:hover {
+    background-color: #770000;
+}
+
+@media (max-width: 768px) {
+    .exam-management-filter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #exam-search {
+        margin-bottom: 10px;
+    }
+}
+/* Links */
+
+.section-heading {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.modify-section {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modify-section label {
+    font-weight: bold;
+}
+
+.modify-section input[type="text"],
+.modify-section input[type="url"],
+.modify-section input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.modify-section textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.modify-section button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.modify-section button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+

@@ -89,7 +89,7 @@
 
     @include('components.chatbox');
 
-        <!--  announcement items  -->
+        <!--  announcement items  
     <section id="news-section" class="grid-container">
     <div class="announcements">
         <h2 class="section-title">Latest News and Announcements</h2>
@@ -105,7 +105,7 @@
                 <p>Register online for the upcoming testing sessions and save time at the center.</p>
             </div>
         </div>
-        <!-- Add more announcement items as needed -->
+ 
     </div>
     <div class="step-by-step">
         <h3>Step-by-Step Guide to Apply</h3>
@@ -119,7 +119,7 @@
         <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
     </div>
     </section>
-    <!--  announcement items  -->
+     announcement items  -->
 
     <!-- Feature Info Section -->
     <section class="features mt-5 mb-5">

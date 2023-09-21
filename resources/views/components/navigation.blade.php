@@ -32,17 +32,10 @@
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Test Application</a>
-                <div class="dropdown-menu" aria-labelledby="admissionDropdown">
-                        <a class="dropdown-item" href="{{ Route('test-application.Cet') }}">CET Application</a>
-                        <a class="dropdown-item" href="{{ Route('test-application.Nat') }}">NAT Application</a>
-                        <a class="dropdown-item" href="{{ Route('test-application.Eat') }}">EAT Application</a>
-                        <a class="dropdown-item" href="{{ Route('test-application.Gsat') }}">GSAT Application</a>
-                        <a class="dropdown-item" href="{{ Route('test-application.Lsat') }}">LSAT Application</a> 
-                      <!--  <a class="dropdown-item" href="{{ url('test-application.Ksat') }}">KSAT Application</a> --> 
-                      <!--  <a class="dropdown-item" href="{{ url('test-application.Hrmat') }}">HRMAT Application</a> --> 
-                      <!--  <a class="dropdown-item" href="{{ url('test-application.Jrat') }}">JRAT Application</a> --> 
-                </div>
-                    </li>
+                    <div class="dropdown-menu" aria-labelledby="admissionDropdown" id="examDropdown">
+                        <!-- Dropdown items will be added here dynamically -->
+                    </div>
+                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
                     </li>
@@ -55,4 +48,42 @@
     </nav>
     </header>
     <!-- Navigation homepage -->
+
+
+    <!-- Dropdown items will be added here dynamically -->
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Test Application</a>
+    <div class="dropdown-menu" aria-labelledby="admissionDropdown" id="examDropdown">
+        <!-- Dropdown items will be added here dynamically -->
+    </div>
+</li>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Sample data for exams (you can replace this with your actual data)
+        const exams = [
+            { name: "CET", route: "{{ Route('test-application.Cet') }}" },
+            { name: "NAT", route: "{{ Route('test-application.Nat') }}" },
+            { name: "EAT", route: "{{ Route('test-application.Eat') }}" },
+            { name: "GSAT", route: "{{ Route('test-application.Gsat') }}" },
+            { name: "LSAT", route: "{{ Route('test-application.Lsat') }}" },
+            // Add more exams as needed
+        ];
+
+        // Get the dropdown menu element
+        const examDropdown = document.getElementById("examDropdown");
+
+        // Create and add dropdown items based on the exams
+        exams.forEach((exam) => {
+            const dropdownItem = document.createElement("a");
+            dropdownItem.className = "dropdown-item";
+            dropdownItem.href = exam.route;
+            dropdownItem.textContent = `${exam.name} Application`;
+
+            // Append the item to the dropdown menu
+            examDropdown.appendChild(dropdownItem);
+        });
+    });
+</script>
+
     

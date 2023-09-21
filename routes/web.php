@@ -97,6 +97,18 @@ Route::get('admin-dashboard', function () {
     return view('admin.admin-dashboard');
 })->name('admin-dashboard');
 
+Route::get('exam-management', function () {
+    return view('admin.exam-management');
+})->name('exam-management');
+
+Route::get('room-management', function () {
+    return view('admin.room-management');
+})->name('room-management');
+
+Route::get('room-assignment', function () {
+    return view('admin.room-assignment');
+})->name('room-assignment');
+
 Route::get('admin-management', function () {
     return view('admin.admin-management');
 })->name('admin-management');
