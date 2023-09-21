@@ -13,10 +13,16 @@ class CreateUserForgotPassword extends Migration
      */
     public function up()
     {
-        Schema::create('user_forgot_password', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        DB::statement('CREATE TABLE user_forgot_passwords(
+            user_forgot_password_id INT PRIMARY KEY AUTO_INCREMENT,
+            user_forgot_password_email VARCHAR(100) NOT NULL,
+            user_forgot_password_hash VARCHAR(100) NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        );');
+
+        DB::statement('CREATE INDEX idx_user_forgot_password_email ON user_forgot_passwords(user_forgot_password_email(10));');
+        DB::statement('CREATE INDEX idx_user_forgot_password_hash ON user_forgot_passwords(user_forgot_password_hash(10));');
     }
 
     /**

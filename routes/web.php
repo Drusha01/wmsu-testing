@@ -18,6 +18,7 @@ use App\Http\Livewire\Authentication\Signout;
 use App\Http\Livewire\Authentication\Login;
 use App\Http\Livewire\Authentication\Register;
 use App\Http\Livewire\Authentication\RegisterEmail;
+use App\Http\Livewire\Authentication\ForgotPassword;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,7 @@ Route::get('/login', Login::class)->middleware(Unauthenticated::class)->name('lo
 Route::get('/register', Register::class)->middleware(Unauthenticated::class)->name('register');
 Route::get('/register-email',RegisterEmail::class)->middleware(Unauthenticated::class)->name('register-email');
 Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
+Route::get('/forgot-password', ForgotPassword::class)->middleware(Unauthenticated::class)->name('forgot-password');
 
 
 // start editing here
@@ -71,9 +73,7 @@ Route::prefix('test-application')->group(function () {
 
 
 
-Route::get('/forgot-password', function () {
-    return view('account.forgot-password');
-})->name('forgot-password');
+
 
 // Email Verification
 
