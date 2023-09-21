@@ -13,12 +13,15 @@ use App\Http\Middleware\Unauthenticated;
 use App\Http\Middleware\AccountisValid;
 
 
+
 // authentication
 use App\Http\Livewire\Authentication\Signout;
 use App\Http\Livewire\Authentication\Login;
 use App\Http\Livewire\Authentication\Register;
 use App\Http\Livewire\Authentication\RegisterEmail;
 use App\Http\Livewire\Authentication\ForgotPassword;
+use App\Http\Livewire\Authentication\AccountRecovery;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +40,7 @@ Route::get('/register', Register::class)->middleware(Unauthenticated::class)->na
 Route::get('/register-email',RegisterEmail::class)->middleware(Unauthenticated::class)->name('register-email');
 Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
 Route::get('/forgot-password', ForgotPassword::class)->middleware(Unauthenticated::class)->name('forgot-password');
+Route::get('/account/recovery/{hash}', AccountRecovery::class)->middleware(Unauthenticated::class)->name('account-recovery');
 
 
 // start editing here

@@ -16,7 +16,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="email" class="sr-only">Email</label>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Enter Recovery Email" required>
+                  <input type="email"  wire:model="email" class="form-control" placeholder="Enter Recovery Email" required>
                 </div>
                 <button type="submit" class="btn btn-block login-btn mb-4 button-color">Recover account</button>
                 <a href="{{ route('login') }}" class="forgot-password-link">Back to Login</a>
