@@ -13,7 +13,105 @@
 /* NAVBAR CSS */
 
 /* studenr profile CSS */
+.profile-section {
+    padding: 30px;
+}
 
+.profile- {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.Applicant-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Applicant-info {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile-image-label {
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.profile-image i {
+    font-size: 5em;
+    color: #555;
+}
+
+h3 {
+    margin: 10px 0;
+}
+
+.text-muted {
+    color: #777;
+}
+
+#modifyButton {
+    margin-top: 10px;
+}
+
+.applicant-details {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.details-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.details-box h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    border: none;
+    padding: 5px 0;
+}
+
+.list-group-item strong {
+    font-weight: bold;
+}
+
+.requirement {
+    margin-top: 30px;
+}
+
+.requirement h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.requirement p {
+    margin-bottom: 10px;
+}
+
+#uploadRequirementsButton {
+    margin-top: 10px;
+}
 /* studenr profile CSS */
 
 /* Style for the navigation tabs */
