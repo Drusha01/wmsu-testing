@@ -16,9 +16,9 @@ class StudentController extends Controller
         return view('student.application');
     }
 
-    public function registration()
+    public function status()
     {
-        return view('student.registration');
+        return view('student.status');
     }
 
     public function schedule()

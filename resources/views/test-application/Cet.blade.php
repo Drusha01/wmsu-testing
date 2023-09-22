@@ -66,12 +66,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <div class="row">
-                        <div class="col-md-12 mb-2">
-                            <label for="payment-receipt" class="form-label" style="color: red;">Payment Receipt<br> To Complete your examination registration, please make the payment for the examination permit at the University cashier's office.<br> After Payment Upload the payment Receipt below: </label>
-                            <input type="file" class="form-control" id="payment-receipt" name="payment_receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
-                        </div>
-                    </div>
+                   
                     <button type="submit" class="submit-button">Submit Application</button>
                 </form>
             </div>

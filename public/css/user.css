@@ -13,6 +13,153 @@
 /* NAVBAR CSS */
 
 /* studenr profile CSS */
+.profile-section {
+    padding: 30px;
+}
+
+.profile- {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.Applicant-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Applicant-info {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile-image-label {
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.profile-image i {
+    font-size: 5em;
+    color: #555;
+}
+
+h3 {
+    margin: 10px 0;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.applicant-details {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.details-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.details-box h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    border: none;
+    padding: 5px 0;
+}
+
+.list-group-item strong {
+    font-weight: bold;
+}
+
+.requirement {
+    margin-top: 30px;
+}
+
+.requirement h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.requirement p {
+    margin-bottom: 10px;
+}
+
+#uploadRequirementsButton {
+    margin-top: 10px;
+}
+.view-button {
+    margin-left: 10px;
+}
+
+/* Style for modal pop-ups */
+.modal-content {
+    padding: 20px;
+}
+
+.modal-header {
+    border: none;
+}
+
+.modal-footer {
+    justify-content: flex-end;
+    border: none;
+}
+
+.modal-title {
+    font-size: 20px;
+}
+
+/* Style for the backdrop of the modal */
+.modal-backdrop {
+    opacity: 0.5 !important;
+}
+
+/* Style for modal close button */
+.close {
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+/* Style for modal content (e.g., document preview) */
+.modal-document {
+    max-height: 60vh;
+    overflow: auto;
+}
+
+/* Style for a specific modal (e.g., Transcript) */
+#transcriptModal .modal-title {
+    color: #007bff;
+}
+
+#birthCertificateModal .modal-title {
+    color: #28a745;
+}
+
+#photoIDModal .modal-title {
+    color: #ffc107;
+}
 
 /* studenr profile CSS */
 
@@ -54,171 +201,135 @@
 /* Style for the navigation tabs */
 
 
-/* Container application for the entire section */
+/* Styling for Application Tab Content */
 .test-application-section {
-    background-color: #f9f9f9;
-    padding: 30px;
+    padding: 30px 0;
 }
 
-/* Each column inside the row */
-.col-lg-6 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-
-/* Styling for the test section */
-.test-section {
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
 .test-section h2 {
     font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-.test-section p {
-    font-size: 16px;
-    color: #777;
-}
 .test-list {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
-    margin-top: 20px;
 }
 
 .test-list-item {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
     font-size: 18px;
     margin-bottom: 10px;
-    display: block;
+    text-decoration: none;
+    color: #333; /* Link color */
     transition: color 0.3s ease;
 }
 
 .test-list-item:hover {
-    color: rgb(54, 89, 126);
+    color: #007bff; /* Hover color */
 }
-/* Styling for the test section */
 
-
-/* Styling for the guide section */
-.guide-section {
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.guide-section h3 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Styling for the documents section */
-.documents-section {
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-/* Container for the entire section *
-
-
-
-
-/* Application Status Section */
-.application-status-section {
-    padding: 40px 0;
-    text-align: center;
+.step-list {
+    list-style: decimal;
+    padding-left: 20px;
+    font-size: 18px;
 }
 
-.section-title {
-    font-size: 32px;
-    color: #990000; /* Main color set to #990000 */
+.step-list li {
+    margin-bottom: 10px;
+}
+
+.documents-section h3 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
+.document-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.document-list li {
+    margin-bottom: 10px;
+}
+
+/* application tab */
+
+
+/* Status Table Styles */
 .status-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.status-table th {
-    background-color: #990000; /* Main color set to #990000 */
-    color: #fff;
-    padding: 10px 20px;
+.status-table th,
+.status-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: left;
 }
 
-.status-table td {
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
+.status-table th {
+    background-color: #f2f2f2;
 }
 
-.status-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+.status-accepted {
+    color: green;
+    font-weight: bold;
 }
 
-.status-table tbody tr:hover {
-    background-color: #f0f0f0;
+.status-review {
+    color: orange;
+    font-weight: bold;
 }
 
-.status-table i {
-    color: #990000; /* Main color set to #990000 */
-    margin-right: 10px;
-    font-size: 20px;
+.status-processing {
+    color: blue;
+    font-weight: bold;
+}
+
+.status-denied {
+    color: red;
+    font-weight: bold;
 }
 
 .view-button {
-    background-color: #990000; /* Main color set to #990000 */
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    color: #007BFF;
+    font-weight: bold;
 }
 
-.view-button:hover {
-    background-color: #7a0000; /* Darker shade on hover */
-}
-/* Application Status Section */
-
-
-
-/* Download Permit Button */
 .view-button.accepted {
-    background-color: #4CAF50; /* Green color for accepted status */
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    color: green;
 }
 
-.view-button.accepted i {
-    margin-left: 5px;
+/* Exam History Table Styles */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.view-button.accepted:hover {
-    background-color: #0206fd; /* Darker shade of green on hover */
+.history-table th,
+.history-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
 }
 
-/* Style the icon */
-.view-button.accepted i.fas {
-    font-size: 20px;
-    vertical-align: middle; /* Center the icon vertically */
+.history-table th {
+    background-color: #f2f2f2;
 }
-/* Download Permit Button */
+
+
+
+
 
 
 

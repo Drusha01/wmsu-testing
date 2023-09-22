@@ -75,7 +75,12 @@
         <input type="text" class="form-control" id="seniorHighschool" name="seniorHighschool" required>
     </div>
 </div>
-                <button type="submit" class=" button-color">Sign Up</button>
+
+<div class="d-flex justify-content-start"> 
+                                    <button type="button" class="btn-register">Signup</button>
+                                </div>
+
+
             </form>
         </div>
     </div>

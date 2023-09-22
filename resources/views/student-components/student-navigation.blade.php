@@ -88,7 +88,7 @@
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
                         <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
-                        <a class="dropdown-item" href="{{ route('student.registration') }}">Status</a>
+                        <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
                         <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
                         <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
                         <div class="dropdown-divider"></div>

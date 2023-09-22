@@ -39,7 +39,7 @@
                 <a href="#!">Privacy policy</a>
               </nav>
               <!-- Add the back to homepage button -->
-              <a href="{{ route('home') }}" class="btn btn-block btn-outline-primary mt-3">Back to Homepage</a>
+              <a href="{{ route('home') }}" class="custom-button btn btn-block login-btn mb-4 button-color mt-3">Back to Homepage</a>
             </div>
           </div>
         </div>

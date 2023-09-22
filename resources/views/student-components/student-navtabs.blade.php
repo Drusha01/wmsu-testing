@@ -7,7 +7,7 @@
             <a href="{{ route('student.application') }}" role="tab">Application</a>
         </li>
         <li role="presentation">
-            <a href="{{ route('student.registration') }}" role="tab">Status</a>
+            <a href="{{ route('student.status') }}" role="tab">Status</a>
         </li>
         <li role="presentation">
             <a href="{{ route('student.results') }}" role="tab">Results</a>

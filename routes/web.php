@@ -59,7 +59,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::prefix('student')->group(function () {
     Route::get('/profile', [StudentController::class, 'profile'])->middleware([Authenticated::class,AccountisValid::class])->name('student.profile');
     Route::get('/application', [StudentController::class, 'application'])->name('student.application');
-    Route::get('/registration', [StudentController::class, 'registration'])->name('student.registration');
+    Route::get('/status', [StudentController::class, 'status'])->name('student.status');
     Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
     Route::get('/results', [StudentController::class, 'results'])->name('student.results');
     Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
