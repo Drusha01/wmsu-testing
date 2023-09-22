@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Setting - WMSU TEC</title>
-    <link rel="stylesheet" href="{{ asset('css/ADMIN.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
-</head>
-<body>
-    
-<div class="container">
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <aside class="admin-sidebar">
-            <div class="logo-company">
-                <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU TEC Logo" class="logo">
-                <h1 class="company-name">WMSU <span>Testing and Evaluation Center</span></h1>
-            </div>
-            <nav>
-            <ul>
-                    <li><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('admin-management') }}">Admin Management</a></li>
-                    <li><a href="{{ route('user-management') }}">User Management</a></li>
-                    <li><a href="{{ route('exam-management') }}">Exam Management</a></li>
-                    <li><a href="{{ route('room-management') }}">Room Management</a></li>
-                    <li><a href="{{ route('manage-appointment') }}">Manage Appointment</a></li>
-                    <li><a href="{{ route('manage-application') }}">Manage Applicant</a></li>
-                    <li><a href="{{ route('room-assignment') }}">Room Assignment</a></li>
-                    <li><a href="{{ route('admin-announcement') }}">Announcement</a></li>
-                    <li><a href="{{ url('admin-chatsupport') }}">chat support</a></li>
-                    <li><a href="{{ route('setting')}}">Settings</a></li>
-                </ul>
-            </nav>
-            <label for="menu-toggle" class="menu-icon">&#9776;</label>
-            <li class="sign-out"><a href="{{ route('login') }}">Sign Out</a></li>
-        </aside>
 
-        <section class="admin-content">
+<head>
+    <title>Admin dashboard - WMSU TEC</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/boxicons/2.0.7/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <!--  Main CSS File -->
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <!--   js File -->
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+</head>
+
+<body class="admin-dashboard">
+
+    <!-- ======= Header ======= -->
+    @include('admin-components.admin-header');
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    @include('admin-components.admin-sidebar');
+    <!-- End Sidebar -->
+
+    <!-- ======= Main Content ======= -->
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Setting</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Setting</li>
+                </ol>
+            </nav>
+        </div><!-- End Right side columns -->
+        <!-- Insert Section -->
+    <section class="admin-content">
     <h2 class="section-heading">Setting</h2>
    <!-- Modifying Website Buttons Section -->
    <div class="modify-section">
@@ -216,56 +222,12 @@
 
         <button id="updateFooterSection">Update Footer Section</button>
     </div>
+    </section>
+        ><!-- End Inserted Section -->
 
+    </main><!-- End #main -->
 
-</section>
-
-
-
-
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const addExamButton = document.querySelector(".add-exam-button button");
-        const addExamModal = document.getElementById("add-exam-modal");
-        const closeAddExamModal = document.getElementById("close-add-exam-modal");
-
-        // Show the Add New Exam modal when the button is clicked
-        addExamButton.addEventListener("click", function () {
-            addExamModal.style.display = "block";
-        });
-
-        // Close the Add New Exam modal when the close button is clicked
-        closeAddExamModal.addEventListener("click", function () {
-            addExamModal.style.display = "none";
-        });
-    });
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the dropdown menu element
-        const testApplicationDropdown = document.querySelector(".nav-item.dropdown .dropdown-menu");
-
-        // Get all the exam rows in the table
-        const examRows = document.querySelectorAll(".exam-management-table tbody tr");
-
-        // Loop through each exam row and add a dropdown item for it
-        examRows.forEach((examRow) => {
-            const examName = examRow.querySelector("td:first-child").textContent;
-            const examRoute = examRow.querySelector("td:last-child a").getAttribute("href");
-
-            const dropdownItem = document.createElement("a");
-            dropdownItem.className = "dropdown-item";
-            dropdownItem.href = examRoute;
-            dropdownItem.textContent = `${examName} Application`;
-
-            // Append the dropdown item to the dropdown menu
-            testApplicationDropdown.appendChild(dropdownItem);
-        });
-    });
-</script>
-
-
-   
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 </body>
+
 </html>
