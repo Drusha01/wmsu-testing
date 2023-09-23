@@ -69,10 +69,10 @@
         <p>Dear {{$email}},</p>
 
         <p>This is the link to recover your account.</p>
-        <a href="<?php if($_SERVER['SERVER_PORT'] == 80){echo 'http://'.$_SERVER['SERVER_NAME'].'/'.'account/recovery/'.$hash;}else{echo 'https://'.$_SERVER['SERVER_NAME'].'/'.'account/recovery/'.$hash;}?>">
+        <a href="<?php if($_SERVER['SERVER_PORT'] == 80){echo 'http://'.$_SERVER['SERVER_NAME'].'/'.'account/recovery/'.$hash;}else{echo 'https://'.$_SERVER['SERVER_NAME'].'/'.'account/recovery/'.$hash;}?>   ">
             <?php if($_SERVER['SERVER_PORT'] == 80){echo 'http://'.$_SERVER['SERVER_NAME'].'/'.'account/recovery/'.$hash;}else{echo 'https://'.$_SERVER['SERVER_NAME'].'account/recovery/'.$hash;}?>
         </a> 
-        <p>If you did not request this verification code, please ignore this email.</p>
+        <p>If you did not request this account recovery, please ignore this email.</p>
         <div class="footer">
             <p>Best Regards,</p>
             <p>WMSU Testing and Evaluation Center</p>
