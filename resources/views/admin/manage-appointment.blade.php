@@ -13,24 +13,24 @@
     <link href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/boxicons/2.0.7/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <!--  Main CSS File -->
+    <!-- Main CSS File -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <!--   js File -->
+    <!-- js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/appointment.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="admin-dashboard">
 
-    <!-- ======= Header ======= -->
+    <!-- Header -->
     @include('admin-components.admin-header');
-    <!-- End Header -->
 
-    <!-- ======= Sidebar ======= -->
+    <!-- Sidebar -->
     @include('admin-components.admin-sidebar');
-    <!-- End Sidebar -->
 
-    <!-- ======= Main Content ======= -->
+    <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Manage Appointment</h1>
@@ -40,154 +40,96 @@
                     <li class="breadcrumb-item active">Manage Appointment</li>
                 </ol>
             </nav>
-        </div><!-- End Right side columns -->
-        <!-- Insert Section -->
-        <section class="admin-content">
-    <h2 class="section-heading">Appointment Management</h2>
+        </div>
 
-    <!-- Tab Buttons -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'pending')" id="defaultOpen">Appointment Pending</button>
-        <button class="tablinks" onclick="openTab(event, 'accepted')">Appointment Accepted</button>
-    </div>
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs" id="adminTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#appointment-pending-tab">Appointment Pending</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#appointment-accepted-tab">Appointment Accepted</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#appointment-completed-tab">Appointment Completed</a>
+            </li>
+        </ul>
 
-    <!-- Tab Content - Appointment Pending -->
-    <div id="pending" class="tabcontent">
-        <h3>Appointment Pending</h3>
-        <table class="appointment-table">
-            <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Email Address</th>
-                <th>Preferred Appointment Date</th>
-                <th>Purpose</th>
-                <th>Assigned To</th>
-                <th>Status</th>
-                <th>Client Showed</th>
-                <th>Message</th>
-                <th>Action</th>
-             </tr>
-            </thead>
-            <tbody>
-            <tr>
-        <td>John Doe</td>
-        <td>johndoe@example.com</td>
-        <td>2023-09-20</td>
-        <td>Consultation</td>
-        <td>Admin</td>
-        <td>Appointment Pending</td>
-        <td>No</td>
-        <td>This is a message from the client.</td>
-        <td>
-            <button>Accept</button>
-            <button>Decline</button>
-            </td>
-            </tr>
-            <tr>
-    <td>Jane Smith</td>
-    <td>janesmith@example.com</td>
-    <td>2023-09-22</td>
-    <td>Assessment</td>
-    <td>User</td>
-    <td>Appointment Pending</td>
-    <td>No</td>
-    <td>Client has not confirmed yet.</td>
-    <td>
-        <button>Accept</button>
-        <button>Decline</button>
-    </td>
-</tr>
-<tr>
-    <td>Alice Johnson</td>
-    <td>alice@example.com</td>
-    <td>2023-09-25</td>
-    <td>Consultation</td>
-    <td>Admin</td>
-    <td>Appointment Pending</td>
-    <td>No</td>
-    <td>About my application</td>
-    <td>
-        <button>Accept</button>
-        <button>Decline</button>
-    </td>
-</tr>
-            </tbody>
-        </table>
-    </div>
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Appointment Pending Tab -->
+            <div class="tab-pane fade show active" id="appointment-pending-tab">
 
-    <!-- Tab Content - Appointment Accepted -->
-    <div id="accepted" class="tabcontent">
-        <h3>Appointment Accepted</h3>
-        <table class="appointment-table">
-            <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Email Address</th>
-                <th>Preferred Appointment Date</th>
-                <th>Purpose</th>
-                <th>Assigned To</th>
-                <th>Status</th>
-                <th>Client Showed</th>
-                <th>Message</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-    <td>Mary Johnson</td>
-    <td>mary@example.com</td>
-    <td>2023-09-21</td>
-    <td>Assessment</td>
-    <td>Admin</td>
-    <td>Appointment Accepted</td>
-    <td>Yes</td>
-    <td>Client confirmed the appointment.</td>
-    <td>
-        <button>Edit</button>
-        <button>Delete</button>
-    </td>
-</tr>
-<tr>
-    <td>Michael Brown</td>
-    <td>michael@example.com</td>
-    <td>2023-09-23</td>
-    <td>Consultation</td>
-    <td>User</td>
-    <td>Appointment Accepted</td>
-    <td>Yes</td>
-    <td>Client has confirmed the appointment.</td>
-    <td>
-        <button>Edit</button>
-        <button>Delete</button>
-    </td>
-</tr>
-<tr>
-    <td>David Lee</td>
-    <td>david@example.com</td>
-    <td>2023-09-24</td>
-    <td>Assessment</td>
-    <td>Admin</td>
-    <td>Appointment Accepted</td>
-    <td>Yes</td>
-    <td>Client confirmed the appointment.</td>
-    <td>
-        <button>Edit</button>
-        <button>Delete</button>
-    </td>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-</div>
+                <table class="appointment-table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Date</th>
+                            <th>Purpose</th>
+                            <th>Assigned To</th>
+                            <th>Status</th>
+                            <th>Client Showed</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table content for appointment pending -->
+                    </tbody>
+                </table>
+            </div>
 
-<!-- JavaScript for tab functionality -->
-        <!-- End Inserted Section -->
+            <!-- Appointment Accepted Tab -->
+            <div class="tab-pane fade" id="appointment-accepted-tab">
 
-    </main><!-- End #main -->
+                <table class="appointment-table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Date</th>
+                            <th>Purpose</th>
+                            <th>Assigned To</th>
+                            <th>Status</th>
+                            <th>Client Showed</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table content for appointment accepted -->
+                    </tbody>
+                </table>
+            </div>
 
+            <!-- Appointment Completed Tab -->
+            <div class="tab-pane fade" id="appointment-completed-tab">
+
+                <table class="appointment-table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Date</th>
+                            <th>Purpose</th>
+                            <th>Assigned To</th>
+                            <th>Status</th>
+                            <th>Client Showed</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table content for appointment completed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
 </body>
 
 </html>

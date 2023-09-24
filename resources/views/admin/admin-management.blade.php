@@ -17,6 +17,8 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <!--   js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="admin-dashboard">
@@ -41,20 +43,27 @@
             </nav>
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
-        <section class="admin-content">
-            <h2 class="section-heading">Admin Management</h2>
-            <div class="overview-widgets">
-                <!-- Your content widgets here -->
-                <div class="widget">
-                    <h3>User Management</h3>
-                    <!-- Add user management UI elements here -->
-                </div>
-                <div class="widget">
-                    <h3>Role Management</h3>
-                    <!-- Add role management UI elements here -->
-                </div>
-            </div>
-        </section><!-- End Inserted Section -->
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs" id="adminTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#user-management-tab">User Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#role-management-tab">Role Management</a>
+            </li>
+        </ul>
+         <!-- Tab Content -->
+        <div class="tab-content">
+        <!-- User Management tab -->
+        <div class="tab-pane fade" id="exam-management-tab">
+
+        <!-- Room Management Tab -->
+        <div class="tab-pane fade" id="role-management-tab">
+
+ 
+
+        <!-- End Inserted Section -->
 
     </main><!-- End #main -->
 

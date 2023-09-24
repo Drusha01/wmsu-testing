@@ -42,7 +42,6 @@
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
     <section class="admin-content">
-    <h2 class="section-heading">Chat Support</h2>
     <div class="chat-container">
         <div class="chat-table">
             <div class="chat-column recent-message">

@@ -42,7 +42,6 @@
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
         <section class="admin-content">
-    <h2 class="section-heading">User Management</h2>
     <button onclick="addUser()" class="user-button">Add New User</button>
 
     <!-- User List -->

@@ -41,20 +41,7 @@
             </nav>
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
-        <section class="admin-content">
-            <h2 class="section-heading">Admin Management</h2>
-            <div class="overview-widgets">
-                <!-- Your content widgets here -->
-                <div class="widget">
-                    <h3>User Management</h3>
-                    <!-- Add user management UI elements here -->
-                </div>
-                <div class="widget">
-                    <h3>Role Management</h3>
-                    <!-- Add role management UI elements here -->
-                </div>
-            </div>
-        </section><!-- End Inserted Section -->
+        <!-- End Inserted Section -->
 
     </main><!-- End #main -->
 

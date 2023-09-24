@@ -45,9 +45,7 @@
         </div><!-- End Right side columns -->
 
         <!-- Insert Section -->
-        <section class="admin-content">
-            <h2 class="section-heading">Announcement</h2>
-            
+        <section class="admin-content">            
                 <!-- Filter Bar -->
             <div class="announcement-filter">
             <label for="status-filter">Search:</label><input type="text" id="announcement-search" placeholder="Search...">

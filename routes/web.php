@@ -127,3 +127,7 @@ Route::get('user-management', function () {
     return view('admin.user-management');
 })->name('user-management');
 
+// test section
+Route::get('process-cet-registration', function () {
+    return view('test-registration.process-cet-registration');
+})->name('process-cet-registration');

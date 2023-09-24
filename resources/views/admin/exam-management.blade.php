@@ -18,6 +18,8 @@
     <!--   js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/addexam.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="admin-dashboard">
@@ -30,153 +32,186 @@
     @include('admin-components.admin-sidebar');
     <!-- End Sidebar -->
 
-    <!-- ======= Main Content ======= -->
+    <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Exam management</h1>
+            <h1>Admin Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Exam Management</li>
+                    <li class="breadcrumb-item active">Manage Examination</li>
                 </ol>
             </nav>
-        </div><!-- End Right side columns -->
-        <!-- Insert Section -->
-        <section class="admin-content">
-    <h2 class="section-heading">Exam Management</h2>
-              <!-- Exam Management Table -->
-<div class="exam-management-filter">
-    <label for="exam-search">Search:</label>
-    <input type="text" id="exam-search" placeholder="Search...">
-    <label for="exam-status-filter">Status:</label>
-    <select id="exam-status-filter">
-        <option value="all">All</option>
-        <option value="active">Active</option>
-        <option value="disabled">Disabled</option>
-    </select>
+        </div>
 
-    <div class="add-exam-button">
-        <button id="addExamButton">Add Exam</button>
-        
-        <!-- Add New Exam Modal -->
-        <div id="add-exam-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button" id="close-add-exam-modal">&times;</span>
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs" id="adminTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#exam-management-tab">Exam Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#room-management-tab">Room Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#room-assignment-tab">Room Assignment</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+    <div class="tab-content">
+    <!-- Exam Management Tab -->
+    <div class="tab-pane fade" id="exam-management-tab">
+        <!-- Add Exam Button -->
+        <button class="btn btn-primary add-exam-button" data-toggle="modal" data-target="#add-exam-modal">Add Exam</button>
+
+        <!-- List of Exams (Table) -->
+    <table class="table table-bordered" id="exam-table">
+    <thead>
+        <tr>
+            <th>Exam Name</th>
+            <th>Description</th>
+            <th>Registration Period</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Example exam row -->
+        <tr>
+            <td>Exam 1</td>
+            <td>Description for Exam 1</td>
+            <td>2023-10-01 to 2023-10-15</td>
+            <td>
+                <a href="#" class="btn btn">Edit</a>
+                <a href="#" class="btn btn">Delete</a>
+            </td>
+        </tr>
+        <!-- Add more exam rows as needed -->
+    </tbody>
+    </table>
+    </div>
+<!-- Add Exam Modal with Start Date and End Date Fields -->
+<div class="modal fade" id="add-exam-modal" tabindex="-1" role="dialog" aria-labelledby="add-exam-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add-exam-modal-label">Add an Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add Exam Form with Start Date and End Date Fields -->
                 <form id="add-exam-form">
-                <label for="exam-name">Exam Name:</label>
-                <input type="text" id="exam-name" name="exam-name" required>
+                    <div class="form-group">
+                        <label for="exam-name">Exam Name:</label>
+                        <input type="text" class="form-control" id="exam-name" name="exam-name" required>
+                    </div>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" rows="3" required></textarea>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
 
-                <label for="start-date">Start Date:</label>
-                <input type="date" id="start-date" name="start-date" required>
+                    <div class="form-group">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" class="form-control" id="start-date" name="start-date" required>
+                    </div>
 
-                <label for="end-date">End Date:</label>
-                <input type="date" id="end-date" name="end-date" required>
+                    <div class="form-group">
+                        <label for="end-date">End Date:</label>
+                        <input type="date" class="form-control" id="end-date" name="end-date" required>
+                    </div>
 
-                <label for="registration-link">Registration Link:</label>
-                <input type="url" id="registration-link" name="registration-link" required>
-
-                <label for="eligibility">Eligibility:</label>
-                <textarea id="eligibility" name="eligibility" rows="3" required></textarea>
-
-                <button type="submit">Add Exam</button>
+                    <button type="submit" class="btn btn-primary">Add Exam</button>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- You can add additional buttons or actions here if needed -->
             </div>
         </div>
     </div>
 </div>
 
-<!-- Exam Management Table -->
-<div class="exam-management-table">
-<table>
-    <thead>
-        <tr>
-            <th>Exam Name</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Registration Link</th>
-            <th>Status (Active/Disabled)</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Example exam rows -->
-        <tr>
-            <td>CET</td>
-            <td>Description for CET</td>
-            <td>2023-10-01</td>
-            <td>2023-10-15</td>
-            <td><a href="https://example.com/cet-registration">Register</a></td>
-            <td>Active</td>
-            <td>
-                <button>Edit</button>
-                <button>Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>NAT</td>
-            <td>Description for NAT</td>
-            <td>2023-11-01</td>
-            <td>2023-11-15</td>
-            <td><a href="https://example.com/nat-registration">Register</a></td>
-            <td>Disabled</td>
-            <td>
-                <button>Edit</button>
-                <button>Delete</button>
-            </td>
-        </tr>
-        <!-- Add more exam rows as needed -->
-    </tbody>
-</table>
-</div>
+            <!-- Room Management Tab -->
+            <div class="tab-pane fade" id="room-management-tab">
+
+                <!-- Add Room Form -->
+                <div class="add-room-form">
+                    <h3>Add a Room</h3>
+                    <form id="add-room-form">
+                        <label for="room-name">Room Name:</label>
+                        <input type="text" id="room-name" name="room-name" required>
+
+                        <label for="room-capacity">Room Capacity:</label>
+                        <input type="number" id="room-capacity" name="room-capacity" required>
+
+                        <button type="submit">Add Room</button>
+                    </form>
+                </div>
+
+                <!-- List of Available Rooms -->
+                <div class="available-rooms">
+                    <h3>Available Rooms</h3>
+                    <!-- Display a list of available rooms here -->
+                    <ul>
+                        <li>Room 101 (Capacity: 30)</li>
+                        <li>Room 102 (Capacity: 25)</li>
+                        <li>Room 103 (Capacity: 35)</li>
+                        <!-- Add more room items as needed -->
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Room Assignment Tab -->
+            <div class="tab-pane fade" id="room-assignment-tab">
+                <h2 class="custom-section-heading">Room Assignment for Examination</h2>
+
+                <!-- Room Assignment Form -->
+                <div class="room-assignment-form">
+                    <h3>Assign Rooms for Examination</h3>
+                    <form id="room-assignment-form">
+                        <label for="exam-select">Select Exam:</label>
+                        <select id="exam-select" name="exam-select">
+                            <option value="exam-1">Exam 1</option>
+                            <option value="exam-2">Exam 2</option>
+                            <!-- Add more exams as needed -->
+                        </select>
+
+                        <label for="room-select">Select Room:</label>
+                        <select id="room-select" name="room-select">
+                            <option value="room-101">Room 101 (Capacity: 30)</option>
+                            <option value="room-102">Room 102 (Capacity: 25)</option>
+                            <option value="room-103">Room 103 (Capacity: 35)</option>
+                            <!-- Add more rooms as needed -->
+                        </select>
+
+                        <button type="submit">Assign Room</button>
+                    </form>
+                </div>
+
+                <!-- List of Room Assignments -->
+                <div class="room-assignments">
+                    <h3>Room Assignments</h3>
+                    <!-- Display a list of room assignments here -->
+                    <ul>
+                        <li>Exam 1 is assigned to Room 101 (Capacity: 30)</li>
+                        <li>Exam 2 is assigned to Room 102 (Capacity: 25)</li>
+                        <!-- Add more room assignments as needed -->
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </section>
-        <!-- End Inserted Section -->
-
-    </main><!-- End #main -->
+    <!-- End Inserted Section -->
+</main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Add the following JavaScript code at the end of your HTML file, before the closing </body> tag -->
-<script>
-  // Get references to the add exam button and the modal
-  const addExamButton = document.getElementById("addExamButton");
-  const addExamModal = document.getElementById("add-exam-modal");
+   
 
-  // Get a reference to the close button inside the modal
-  const closeButton = document.getElementById("close-add-exam-modal");
-
-  // Function to open the modal
-  function openAddExamModal() {
-    addExamModal.style.display = "block";
-  }
-
-  // Function to close the modal
-  function closeAddExamModal() {
-    addExamModal.style.display = "none";
-  }
-
-  // Event listener for the "Add Exam" button
-  addExamButton.addEventListener("click", openAddExamModal);
-
-  // Event listener for the close button inside the modal
-  closeButton.addEventListener("click", closeAddExamModal);
-
-  // Event listener to close the modal when the user clicks outside of it
-  window.addEventListener("click", function (event) {
-    if (event.target == addExamModal) {
-      closeAddExamModal();
-    }
-  });
-
-  // Event listener to prevent the modal from closing when clicking inside it
-  addExamModal.addEventListener("click", function (event) {
-    event.stopPropagation();
-  });
-</script>
 
 </body>
 
