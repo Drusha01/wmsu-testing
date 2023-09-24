@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class Authenticated
+class AccountisStudent
 {
     /**
      * Handle an incoming request.
@@ -18,8 +17,8 @@ class Authenticated
     public function handle(Request $request, Closure $next)
     {
         $data = $request->session()->all();
-        if(!isset($data['user_id'])  ){
-            return redirect('/login');
+        if(isset($data['user_role_details']) && $data['user_role_details'] == 'admin'){
+            return redirect('/student/profile');
         }
         return $next($request);
     }

@@ -16,6 +16,10 @@ class AccountisAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        $data = $request->session()->all();
+        if(isset($data['user_role_details']) && $data['user_role_details'] == 'admin'){
+            return redirect('/admin/dashboard');
+        }
         return $next($request);
     }
 }

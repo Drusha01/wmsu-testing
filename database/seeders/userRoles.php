@@ -16,7 +16,7 @@ class userRoles extends Seeder
     {
         DB::statement('INSERT INTO user_roles VALUES(
             NULL,
-            "",
+            "student",
             NOW(),
             NOW()
         );');
@@ -28,10 +28,18 @@ class userRoles extends Seeder
         );');
         DB::statement('INSERT INTO user_roles VALUES(
             NULL,
-            "student",
+            "superadmin",
             NOW(),
             NOW()
         );');
+        DB::statement('INSERT INTO user_roles VALUES(
+            NULL,
+            "",
+            NOW(),
+            NOW()
+        );');
+        
+        
         
         
     }
