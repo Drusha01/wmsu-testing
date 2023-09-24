@@ -10,10 +10,15 @@ use Mail;
 
 class ForgotPassword extends Component
 {
+    public $title;
+    public $active;
+
     public $email;
     public $email_send;
 
     public function mount(){
+        $this->title = 'Account Recovery';
+        $this->active = 'Account Recovery';
         $email_send = true;  
     }
 
@@ -22,7 +27,7 @@ class ForgotPassword extends Component
     ];
     public function render()
     {
-        return view('livewire.authentication.forgot-password');
+        return view('livewire.authentication.forgot-password')->layout('layouts.guest',['title'=>$this->title]);
     }
     public function recover_account(Request $request){
         $data = $request->session()->all();

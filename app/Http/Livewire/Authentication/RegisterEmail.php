@@ -10,6 +10,9 @@ use Mail;
 
 class RegisterEmail extends Component
 {
+    public $title;
+    public $active;
+
     public $error;
     public $email_send;
     public $validated_code;
@@ -31,6 +34,8 @@ class RegisterEmail extends Component
     public $high_school;
 
     public function mount(){
+        $this->title = 'Register';
+        $this->active = 'Register';
         $this->email_send = true;
         $this->sign_up = false;
 
@@ -44,7 +49,7 @@ class RegisterEmail extends Component
 
     public function render()
     {
-        return view('livewire.authentication.register-email');
+        return view('livewire.authentication.register-email')->layout('layouts.guest',['title'=>$this->title]);
     }
 
     public function send_verification_code(Request $request){
@@ -102,76 +107,75 @@ class RegisterEmail extends Component
         if(!isset($data['user_id'])){ 
             $this->validate();
             $activation_details = DB::table('user_activations')
-                ->select('user_activation_id', 'user_activation_email', 'user_activation_code','user_activation_count','created_at', 'updated_at')
+                ->select('user_activation_id', 'user_activation_email', 'user_activation_code','user_activation_count','created_at', 'updated_at',DB::raw('NOW() as time_now'))
                 ->where('user_activation_email',$this->email)
-                ->get()
-                ->toArray();
-            if(count($activation_details)>0 && $activation_details['0']->user_activation_code == $this->code){
-                if($activation_details['0']->user_activation_count<=4){
-                    // // check how long
-                    if(1){
-                        // registration proceeds
-                        // save into session
-                        $request->session()->put('user_email', $this->email);
-                        $request->session()->put('sign_up', true);
-                        $this->sign_up = true;
+                ->first();
+            // // check how long
+        
+            if(1){
+                if($activation_details && $activation_details->user_activation_code == $this->code){
+                    if($activation_details->user_activation_count<=4){
+                            // save into session
+                            $request->session()->put('user_email', $this->email);
+                            $request->session()->put('sign_up', true);
+                            $this->sign_up = true;
                     }else{
                         $this->dispatchBrowserEvent('swal:redirect',[
                             'position'          									=> 'center',
                             'icon'              									=> 'warning',
-                            'title'             									=> 'Code expires!',
+                            'title'             									=> 'Too many tries, code expires!',
                             'showConfirmButton' 									=> 'true',
                             'timer'             									=> '1000',
                             'link'              									=> '#'
                         ]);
                         $deleted = DB::table('user_activations')
-                            ->where('user_activation_email', '=', $this->email)
-                            ->delete();
+                        ->where('user_activation_email', '=', $this->email)
+                        ->delete();
                         $this->email_send =true;
                     }
+                    
                 }else{
-                    $this->dispatchBrowserEvent('swal:redirect',[
-                        'position'          									=> 'center',
-                        'icon'              									=> 'warning',
-                        'title'             									=> 'Too many tries, code expires!',
-                        'showConfirmButton' 									=> 'true',
-                        'timer'             									=> '1000',
-                        'link'              									=> '#'
-                    ]);
-                    $deleted = DB::table('user_activations')
-                    ->where('user_activation_email', '=', $this->email)
-                    ->delete();
-                    $this->email_send =true;
-                }
-                
+                    if($activation_details && $activation_details->user_activation_count<4){
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Invalid code, you have '.(5-$activation_details->user_activation_count-1).' tries!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1000',
+                            'link'              									=> '#'
+                        ]);
+                        $updated = DB::table('user_activations')
+                        ->where('user_activation_id', $activation_details->user_activation_id)
+                        ->update(['user_activation_count' =>  $activation_details->user_activation_count+1]);
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Too many tries, code expires!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1000',
+                            'link'              									=> '#'
+                        ]);
+                        $deleted = DB::table('user_activations')
+                        ->where('user_activation_email', '=', $this->email)
+                        ->delete();
+                        $this->email_send =true;
+                    }
+                } 
             }else{
-                if($activation_details['0']->user_activation_count<4){
-                    $this->dispatchBrowserEvent('swal:redirect',[
-                        'position'          									=> 'center',
-                        'icon'              									=> 'warning',
-                        'title'             									=> 'Invalid code, you have '.(5-$activation_details['0']->user_activation_count-1).' tries!',
-                        'showConfirmButton' 									=> 'true',
-                        'timer'             									=> '1000',
-                        'link'              									=> '#'
-                    ]);
-                    $updated = DB::table('user_activations')
-                    ->where('user_activation_id', $activation_details['0']->user_activation_id)
-                    ->update(['user_activation_count' =>  $activation_details['0']->user_activation_count+1]);
-                }else{
-                    $this->dispatchBrowserEvent('swal:redirect',[
-                        'position'          									=> 'center',
-                        'icon'              									=> 'warning',
-                        'title'             									=> 'Too many tries, code expires!',
-                        'showConfirmButton' 									=> 'true',
-                        'timer'             									=> '1000',
-                        'link'              									=> '#'
-                    ]);
-                    $deleted = DB::table('user_activations')
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Code expires!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                $deleted = DB::table('user_activations')
                     ->where('user_activation_email', '=', $this->email)
                     ->delete();
-                    $this->email_send =true;
-                }
-            }          
+                $this->email_send =true;
+            }         
         }
     }
     public function verify_username(Request $request){

@@ -1,4 +1,5 @@
 <div>
+  @if($valid)
     <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
       <div class="card login-card">
@@ -38,4 +39,7 @@
       </div>
     </div>
   </main>
+  @else
+    invalid link
+  @endif
 </div>

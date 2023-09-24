@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class AccountRecovery extends Component
 {
+    public $title;
+    public $active;
+
     public $hash;
     public $valid;
     public $recover_button;
@@ -16,6 +19,8 @@ class AccountRecovery extends Component
     public $confirm_password;
 
     public function mount(Request $request,$hash){
+        $this->title = 'Account Recovery';
+        $this->active = 'Account Recovery';
         $data = $request->session()->all();
         $this->$hash = $hash;
         $this->recover_button = 'Change Password';
@@ -40,16 +45,15 @@ class AccountRecovery extends Component
                 $deleted = DB::table('user_forgot_passwords')
                     ->where('user_forgot_password_email', '=', $data['user_email'])
                     ->delete();
-                    dd('invalid');
             }
         }else{
-            dd('invalid');
+            $this->valid = false;
         }
         
     }
     public function render()
     {
-        return view('livewire.authentication.account-recovery');
+        return view('livewire.authentication.account-recovery')->layout('layouts.guest',['title'=>$this->title]);
     }
 
     public function verify_password(Request $request){
