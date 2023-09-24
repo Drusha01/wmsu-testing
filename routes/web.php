@@ -12,6 +12,7 @@ use App\Http\Middleware\Authenticated;
 use App\Http\Middleware\Unauthenticated;
 use App\Http\Middleware\AccountisValid;
 use App\Http\Middleware\AccountisAdmin;
+use App\Http\Middleware\AccountisStudent;
 
 
 
@@ -36,11 +37,13 @@ use App\Http\Livewire\Authentication\AccountRecovery;
 
 
 // authentication
-Route::middleware([Unauthenticated::class])->group(function () {
+Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
+
+Route::middleware([Unauthenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/register-email',RegisterEmail::class)->name('register-email');
-    Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
+   
     Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
     Route::get('/account/recovery/{hash}', AccountRecovery::class)->name('account-recovery');
 });

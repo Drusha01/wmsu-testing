@@ -17,7 +17,7 @@ class AccountisStudent
     public function handle(Request $request, Closure $next)
     {
         $data = $request->session()->all();
-        if(isset($data['user_role_details']) && $data['user_role_details'] == 'admin'){
+        if(isset($data['user_role_details']) && $data['user_role_details'] == 'student'){
             return redirect('/student/profile');
         }
         return $next($request);
