@@ -83,7 +83,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User Name <!-- Replace with the user's name or icon -->
+                        <img src="{{asset('images/contents/profile_picture/thumbnail/default.png')}}" width="50" alt="">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
@@ -92,7 +92,7 @@
                         <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
                         <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('home') }}">Sign Out</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
                     </div>
                 </li>
             </ul>

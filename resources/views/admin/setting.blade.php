@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admin dashboard - WMSU TEC</title>
+    <title>Admin setting - WMSU TEC</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="description">
@@ -42,7 +42,6 @@
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
     <section class="admin-content">
-    <h2 class="section-heading">Setting</h2>
    <!-- Modifying Website Buttons Section -->
    <div class="modify-section">
         <h2 class="section-heading">Modify Website</h2>

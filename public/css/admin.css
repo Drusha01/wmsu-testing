@@ -1483,11 +1483,6 @@ label[for="status-filter"] {
 /* admin management css */
 
 /* admin manage applicant css */
-.admin-content {
-    background-color: #f0f0f0;
-    padding: 40px;
-}
-
 .section-heading {
     font-size: 24px;
     margin-bottom: 20px;
@@ -1500,6 +1495,7 @@ label[for="status-filter"] {
     border-collapse: collapse;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin-top: 20px;
 }
 
 .application-table th,
@@ -1525,6 +1521,7 @@ label[for="status-filter"] {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 
 .filter-label {
@@ -1540,8 +1537,8 @@ label[for="status-filter"] {
 }
 
 .accept-btn, .decline-btn {
-    padding: 10px 20px;
-    background-color: #009900; /* Green color for Accept */
+    padding: 8px 20px;
+    background-color: #004000; /* Green color for Accept */
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -1549,12 +1546,12 @@ label[for="status-filter"] {
 }
 
 .decline-btn {
-    background-color: #FF0000; /* Red color for Decline */
+    background-color: #650000; /* Red color for Decline */
     margin-left: 10px;
 }
 
 .accept-btn:hover, .decline-btn:hover {
-    background-color: #006600; /* Darker green on hover for Accept */
+    background-color: #898f89; /* Darker green on hover for Accept */
 }
 
 @media (max-width: 768px) {
@@ -1570,48 +1567,12 @@ label[for="status-filter"] {
 /* admin management applicant css */
 
 /* admin appointment management css */
-.admin-content {
-    padding: 20px;
-}
-
-/* Tab Buttons */
-.tab {
-    overflow: hidden;
-    background-color: #f2f2f2;
-}
-
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 14px;
-    transition: 0.3s;
-}
-
-.tab button:hover {
-    background-color: #ddd;
-}
-
-.tab button.active {
-    background-color: #ccc;
-}
-
-/* Tab Content - Appointment Pending and Accepted */
-.tabcontent {
-    display: none;
-    padding: 20px;
-}
 
 /* Table Styles */
-.table-container {
-    overflow-x: auto;
-}
-
 .appointment-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .appointment-table thead {
@@ -1627,62 +1588,9 @@ label[for="status-filter"] {
 .appointment-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+/* Table Styles */
 
-/* Buttons */
-.appointment-table button {
-    background-color: #990000;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-}
 
-.appointment-table button:hover {
-    background-color: #770000;
-}
-
-/* Section heading */
-.appointment-table .section-heading {
-    font-size: 24px;
-    color: #990000;
-    margin-bottom: 20px;
-}
-
-/* Links */
-.appointment-table a {
-    color: #990000;
-    text-decoration: none;
-}
-
-.appointment-table a:hover {
-    text-decoration: underline;
-}
-
-/* Additional Styles for the Accept and Decline buttons */
-.appointment-table .accept-button {
-    background-color: #014301; /* Green */
-}
-
-.appointment-table .decline-button {
-    background-color: #990000; /* Red */
-}
-
-/* Media Query for smaller screens */
-@media (max-width: 768px) {
-    .admin-content {
-        padding: 10px;
-    }
-
-    .tab button {
-        padding: 10px 12px;
-    }
-
-    .appointment-table th, .appointment-table td {
-        padding: 8px;
-    }
-}
 /* admin appointment management css */
 
 /* setting css */
@@ -1737,107 +1645,173 @@ label[for="status-filter"] {
 
 
 /* Styles for the exam management  */
-.exam-management-table {
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 20px;
-}
-.exam-management-table table {
-    width: 100%;
-    border-collapse: collapse;
+/* Table styles for the exam list */
+#exam-table {
+  width: 100%;
 }
 
-.exam-management-table thead {
-    background-color: #990000;
-    color: white;
+#exam-table th,
+#exam-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
 }
 
-.exam-management-table th {
-    padding: 14px;
-    font-weight: bold;
-    text-align: left;
+#exam-table th {
+  background-color: #990000;
+  color: #fff;
 }
 
-.exam-management-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+#exam-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
 }
 
-.exam-management-table tbody td {
-    padding: 12px;
+#exam-table tbody tr:hover {
+  background-color: #e0e0e0;
 }
-.exam-management-table button {
-    background-color: #990000;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-}
-
-.exam-management-table button:hover {
-    background-color: #770000;
-}
-.exam-management-table a {
-    color: #990000;
-    text-decoration: none;
+/* Room Management Tab specific styles */
+#room-management-tab {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-.exam-management-table a:hover {
-    text-decoration: underline;
+.add-room-form {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
 }
 
-.exam-management-filter {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
+.add-room-form h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333; /* Text color for headings */
 }
 
-#exam-search {
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.add-room-form label {
+  margin-bottom: 10px;
 }
 
-label[for="exam-status-filter"] {
-    margin-right: 10px;
-    font-weight: bold;
+.add-room-form input[type="text"],
+.add-room-form input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-#exam-status-filter {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.add-room-form button[type="submit"] {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.add-exam-button button {
-    background-color: #990000;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 520px;
+.add-room-form button[type="submit"]:hover {
+  background-color: #770000; /* Darker shade for hover effect */
 }
 
-.add-exam-button button:hover {
-    background-color: #770000;
+.available-rooms {
+  margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-    .exam-management-filter {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #exam-search {
-        margin-bottom: 10px;
-    }
+.available-rooms h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333; /* Text color for headings */
 }
+
+.available-rooms ul {
+  list-style: none;
+  padding: 0;
+}
+
+.available-rooms ul li {
+  margin-bottom: 10px;
+}
+
+/* Room Assignment Tab specific styles */
+#room-assignment-tab {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.custom-section-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Text color for headings */
+}
+
+.room-assignment-form {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.room-assignment-form h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333; /* Text color for headings */
+}
+
+.room-assignment-form label {
+  margin-bottom: 10px;
+}
+
+.room-assignment-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.room-assignment-form button[type="submit"] {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.room-assignment-form button[type="submit"]:hover {
+  background-color: #770000; /* Darker shade for hover effect */
+}
+
+.room-assignments {
+  margin-top: 20px;
+}
+
+.room-assignments h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333; /* Text color for headings */
+}
+
+.room-assignments ul {
+  list-style: none;
+  padding: 0;
+}
+
+.room-assignments ul li {
+  margin-bottom: 10px;
+}
+
+
+
 /* Modal add exam Styles */
 /* Modal add exam Styles */
 
@@ -1946,3 +1920,4 @@ label[for="exam-status-filter"] {
     background-color: #770000;
 }
 /* Styles for user management */
+

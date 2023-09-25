@@ -13,11 +13,12 @@ class CreateUserRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_role_detail');
-            $table->timestamps();
-        });
+        DB::statement('CREATE TABLE user_roles(
+            user_role_id INT PRIMARY KEY AUTO_INCREMENT,
+            user_role_details VARCHAR(100) UNIQUE,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP ,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        );');
     }
 
     /**
