@@ -9,13 +9,19 @@ use Illuminate\Support\Facades\DB;
 
 class Login extends Component
 {
-    public $title = 'Login';
+    public $title;
+    public $active;
     public $username;
     public $password;
 
+    public function mount(){
+        $this->title = 'Login';
+        $this->active = 'Login';
+    }
+
     public function render()
     {
-        return view('livewire.authentication.login');
+        return view('livewire.authentication.login',['title'=>$this->title])->layout('layouts.guest',['title'=>$this->title]);
     }
 
     public function login(Request $request){
