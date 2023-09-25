@@ -10,6 +10,20 @@ class TestApplicationController extends Controller
     {
         return view('test-application.Cet');
     }
+    public function Cetshiftee()
+    {
+        return view('test-application.Cet-shiftee');
+    }
+    public function Cettransferee()
+    {
+        return view('test-application.Cet-transferee');
+    }
+    
+    public function Cetgraduate()
+    {
+        return view('test-application.Cet-graduate');
+    }
+
 
     public function Nat()
     {
