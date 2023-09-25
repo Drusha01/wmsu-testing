@@ -65,7 +65,7 @@
                             <input type="text" class="form-control" id="newUsername" placeholder="Enter new username">
                         </div>
                         <div class="form-group">
-                            <label for="newProfileImage">Upload New Profile Image:</label>
+                            <label class="fas fa-camera" for="newProfileImage">Change photo:</label>
                             <input type="file" class="form-control" id="newProfileImage">
                         </div>
                         <!-- Add more fields to modify user details as needed -->
@@ -84,6 +84,10 @@
                                 <label for="newPassword">New Password:</label>
                                 <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
                             </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password:</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="Confirm new password">
+                            </div>
                             <!-- ... -->
                         </form>
                     </div>
@@ -96,7 +100,7 @@
         </div>
     </div>
 </div>
-
+                <!-- Applicant details -->
     <div class="applicant-details">
         <div class="details-box">
             <h4>Applicant Details</h4>
@@ -128,80 +132,84 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Form to modify details -->
                 <form>
-                    <!-- Full Name -->
-                    <div class="form-group row">
-                        <label for="newFullName" class="col-sm-3 col-form-label">Full Name:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newFullName" placeholder="Enter new full name">
+                    <fieldset>
+                        <legend>Applicant Information</legend>
+                        <!-- Full Name -->
+                        <div class="form-group row">
+                            <label for="newFullName" class="col-sm-3 col-form-label">Full Name*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newFullName" placeholder="Enter new full name" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Gender -->
-                    <div class="form-group row">
-                        <label for="newGender" class="col-sm-3 col-form-label">Gender:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newGender" placeholder="Enter new gender">
+                        <!-- Gender -->
+                        <div class="form-group row">
+                            <label for="newGender" class="col-sm-3 col-form-label">Gender*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newGender" placeholder="Enter new gender" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Age -->
-                    <div class="form-group row">
-                        <label for="newAge" class="col-sm-3 col-form-label">Age:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newAge" placeholder="Enter new age">
+                        <!-- Age -->
+                        <div class="form-group row">
+                            <label for="newAge" class="col-sm-3 col-form-label">Age*:</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="newAge" placeholder="Enter new age" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Home Address -->
-                    <div class="form-group row">
-                        <label for="newHomeAddress" class="col-sm-3 col-form-label">Home Address:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newHomeAddress" placeholder="Enter new home address">
+                        <!-- Home Address -->
+                        <div class="form-group row">
+                            <label for="newHomeAddress" class="col-sm-3 col-form-label">Home Address:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newHomeAddress" placeholder="Enter new home address">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Email -->
-                    <div class="form-group row">
-                        <label for="newEmail" class="col-sm-3 col-form-label">Email:</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" id="newEmail" placeholder="Enter new email">
+                        <!-- Email -->
+                        <div class="form-group row">
+                            <label for="newEmail" class="col-sm-3 col-form-label">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="newEmail" placeholder="Enter new email">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Birthdate -->
-                    <div class="form-group row">
-                        <label for="newBirthdate" class="col-sm-3 col-form-label">Birthdate:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newBirthdate" placeholder="Enter new birthdate">
+                        <!-- Birthdate -->
+                        <div class="form-group row">
+                            <label for="newBirthdate" class="col-sm-3 col-form-label">Birthdate*:</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="newBirthdate" placeholder="Enter new birthdate" required>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Senior High School -->
-                    <div class="form-group row">
-                        <label for="newSeniorHighSchool" class="col-sm-3 col-form-label">Senior High School:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newSeniorHighSchool" placeholder="Enter new senior high school">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Educational Details</legend>
+                        <!-- Senior High School -->
+                        <div class="form-group row">
+                            <label for="newSeniorHighSchool" class="col-sm-3 col-form-label">Senior High School:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newSeniorHighSchool" placeholder="Enter Name of school">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Strand -->
-                    <div class="form-group row">
-                        <label for="newStrand" class="col-sm-3 col-form-label">Strand:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newStrand" placeholder="Enter new strand">
+                        <!-- Strand -->
+                        <div class="form-group row">
+                            <label for="newStrand" class="col-sm-3 col-form-label">Strand:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newStrand" placeholder="Enter shs strand">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Awards (if any) -->
-                    <div class="form-group row">
-                        <label for="newAwards" class="col-sm-3 col-form-label">Awards (if any):</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="newAwards" placeholder="Enter new awards">
+                        <!-- Awards (if any) -->
+                        <div class="form-group row">
+                            <label for="newAwards" class="col-sm-3 col-form-label">Awards (if any):</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newAwards" placeholder="Enter awards received">
+                            </div>
                         </div>
-                    </div>
-
+                    </fieldset>
                 </form>
             </div>
             <div class="modal-footer">
@@ -212,10 +220,7 @@
     </div>
 </div>
 
-
-
-
-                
+           
 <div class="requirement">
     <h4>Requirements Upload</h4>
     <p>Upload the following documents:</p>
@@ -242,6 +247,7 @@
     </ul>
     <button id="addRequirementButton" class="btn btn-success">Add New Requirement</button>
 </div>
+
 
 <!-- content-->
 </section>

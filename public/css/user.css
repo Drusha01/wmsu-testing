@@ -1,6 +1,8 @@
 /* NAVBAR CSS */
 .bg-crimson {
     background-color: #990000;
+    position: fixed;
+    
 }
 
 .navbar-nav .nav-link {
@@ -160,13 +162,35 @@ h3 {
 #photoIDModal .modal-title {
     color: #ffc107;
 }
-
+       /* Mobile styles */
+       @media (max-width: 767px) {
+        .profile-section {
+            padding: 20px; /* Reduce padding for smaller screens */
+        }
+        .Applicant-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            font-size: 3em;
+        }
+        .applicant-details {
+            text-align: center;
+            padding-left: 0;
+        }
+        .requirement h4 {
+            font-size: 20px; /* Reduce font size for readability on small screens */
+        }
+        /* Add more mobile-specific styles here */
+    }
 /* studenr profile CSS */
 
 /* Style for the navigation tabs */
 .nav.nav-tabs {
     background-color: transparent; /* Tab background color */
-    padding: 20px;
+    padding: 12px;
 }
 
 .nav.nav-tabs li {
@@ -182,7 +206,7 @@ h3 {
     font-weight: 500; /* Tab text font-weight */
     transition: background-color 0.3s ease; /* Smooth hover transition */
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Style for active tab link */
@@ -194,12 +218,10 @@ h3 {
 
 /* Hover effect for tab links */
 .nav.nav-tabs li a:hover {
-    background-color: #990000; /* Hover background color */
     text-decoration: none; /* Remove underline on hover */
-    color: #fff; /* Hover text color */
+    color: #990000; /* Hover text color */
 }
 /* Style for the navigation tabs */
-
 
 /* Styling for Application Tab Content */
 .test-application-section {
@@ -262,6 +284,13 @@ h3 {
 
 
 /* Status Table Styles */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+.pagination button {
+    margin: 5px;
+}
 .status-table {
     width: 100%;
     border-collapse: collapse;
