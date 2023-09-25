@@ -39,6 +39,9 @@ Route::prefix('student')->group(function () {
 // test routes application
 Route::prefix('test-application')->group(function () {
     Route::get('/cet', [TestApplicationController::class, 'cet'])->name('test-application.Cet');
+    Route::get('/Cetgraduate', [TestApplicationController::class, 'Cetgraduate'])->name('test-application.Cetgraduate');
+    Route::get('/Cetshiftee', [TestApplicationController::class, 'Cetshiftee'])->name('test-application.Cetshiftee');
+    Route::get('/Cettransferee', [TestApplicationController::class, 'Cettransferee'])->name('test-application.Cettransferee');
     Route::get('/Nat', [TestApplicationController::class, 'Nat'])->name('test-application.Nat');
     Route::get('/gsat', [TestApplicationController::class, 'gsat'])->name('test-application.Gsat');
     Route::get('/eat', [TestApplicationController::class, 'eat'])->name('test-application.Eat');
