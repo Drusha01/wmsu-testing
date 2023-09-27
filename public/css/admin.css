@@ -1225,121 +1225,97 @@
 
 
 /* Styles for the announcement table */
-.announcement-table {
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 20px;
+.main {
+  padding: 20px; /* Add padding to the main content */
+  background-color: #f7f7f7; /* Set a background color */
 }
 
-.announcement-table table {
-    width: 100%;
-    border-collapse: collapse;
+.pagetitle {
+  margin-bottom: 20px; /* Add margin to create space between the page title and content */
 }
 
-.announcement-table thead {
-    background-color: #990000;
-    color: white;
+.admin-content {
+  background-color: #ffffff; /* Set a background color for the content area */
+  padding: 20px; /* Add padding to the content area */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle elevation effect */
 }
 
-.announcement-table th {
-    padding: 14px;
-    font-weight: bold;
-    text-align: left;
-}
-
-.announcement-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-    
-}
-
-.announcement-table tbody td {
-    padding: 12px;
-}
-
-/* Buttons */
-.announcement-table button {
-    background-color: #990000;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-}
-
-.announcement-table button:hover {
-    background-color: #770000;
-}
-
-/* Section heading */
-.announcement-table .section-heading {
-    font-size: 24px;
-    color: #990000;
-    margin-bottom: 20px;
-}
-
-/* Links */
-.announcement-table a {
-    color: #990000;
-    text-decoration: none;
-}
-
-.announcement-table a:hover {
-    text-decoration: underline;
-}
-
+/* Style the filter bar and add-announcement button */
 .announcement-filter {
-    margin-bottom: 10px; 
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 #announcement-search {
-
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-label[for="status-filter"] {
-    margin-right: 5px;
-    font-weight: bold;
+  padding: 5px;
+  width: 200px;
 }
 
 #status-filter {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.add-announcement-button button {
-    background-color: #990000;
-    color: #fff;
-    border: none;
-    padding: 1px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 510px;
+  padding: 5px;
+  width: 150px;
 }
 
+.add-announcement-button button {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
 
 .add-announcement-button button:hover {
-    background-color: #770000;
+  background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-    .announcement-filter {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #announcement-search {
-        margin-bottom: 10px;
-    }
+/* Style the announcement table */
+.announcement-table {
+  overflow-x: auto; /* Add horizontal scroll for table overflow */
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #990000;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style the Add Announcement Modal */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+.close:hover {
+  color: #333;
+}
 /* Styles for the announcement table */
 
 /* Chat Support styles */
@@ -1669,136 +1645,119 @@ label[for="status-filter"] {
 #exam-table tbody tr:hover {
   background-color: #e0e0e0;
 }
-/* Room Management Tab specific styles */
-#room-management-tab {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+/* Room Management Tab Table Styles */
+.available-rooms table {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 20px;
 }
 
+.available-rooms th,
+.available-rooms td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.available-rooms th {
+  background-color: #f2f2f2;
+}
+
+.available-rooms tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.available-rooms tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Add Room Form Styles */
 .add-room-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   margin-top: 20px;
-}
-
-.add-room-form h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333; /* Text color for headings */
 }
 
 .add-room-form label {
-  margin-bottom: 10px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .add-room-form input[type="text"],
-.add-room-form input[type="number"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.add-room-form input[type="number"],
+.add-room-form textarea {
+  width: 100%;
+  padding: 8px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .add-room-form button[type="submit"] {
-  background-color: #990000;
+  background-color: #007bff;
   color: #fff;
+  padding: 10px 20px;
   border: none;
-  padding: 10px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .add-room-form button[type="submit"]:hover {
-  background-color: #770000; /* Darker shade for hover effect */
+  background-color: #0056b3;
 }
 
-.available-rooms {
-  margin-top: 20px;
-}
-
-.available-rooms h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333; /* Text color for headings */
-}
-
-.available-rooms ul {
-  list-style: none;
-  padding: 0;
-}
-
-.available-rooms ul li {
-  margin-bottom: 10px;
-}
-
-/* Room Assignment Tab specific styles */
-#room-assignment-tab {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.custom-section-heading {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333; /* Text color for headings */
-}
-
+/* Room Assignment Form Styles */
 .room-assignment-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
   padding: 20px;
-  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .room-assignment-form h3 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #333; /* Text color for headings */
+}
+
+.room-assignment-form .form-group {
+  margin-bottom: 15px;
 }
 
 .room-assignment-form label {
-  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .room-assignment-form select {
-  padding: 10px;
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 .room-assignment-form button[type="submit"] {
-  background-color: #990000;
+  background-color: #007bff;
   color: #fff;
+  padding: 10px 20px;
   border: none;
-  padding: 10px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
 }
 
 .room-assignment-form button[type="submit"]:hover {
-  background-color: #770000; /* Darker shade for hover effect */
+  background-color: #0056b3;
 }
 
+/* Room Assignments List Styles */
 .room-assignments {
-  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .room-assignments h3 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #333; /* Text color for headings */
 }
 
 .room-assignments ul {
@@ -1808,6 +1767,7 @@ label[for="status-filter"] {
 
 .room-assignments ul li {
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
 

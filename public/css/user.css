@@ -14,7 +14,7 @@
 }
 /* NAVBAR CSS */
 
-/* studenr profile CSS */
+/* student profile CSS */
 .profile-section {
     padding: 30px;
 }
@@ -94,26 +94,6 @@ h3 {
     font-weight: bold;
 }
 
-.requirement {
-    margin-top: 30px;
-}
-
-.requirement h4 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.requirement p {
-    margin-bottom: 10px;
-}
-
-#uploadRequirementsButton {
-    margin-top: 10px;
-}
-.view-button {
-    margin-left: 10px;
-}
-
 /* Style for modal pop-ups */
 .modal-content {
     padding: 20px;
@@ -144,47 +124,9 @@ h3 {
     opacity: 1;
 }
 
-/* Style for modal content (e.g., document preview) */
-.modal-document {
-    max-height: 60vh;
-    overflow: auto;
-}
 
-/* Style for a specific modal (e.g., Transcript) */
-#transcriptModal .modal-title {
-    color: #007bff;
-}
 
-#birthCertificateModal .modal-title {
-    color: #28a745;
-}
 
-#photoIDModal .modal-title {
-    color: #ffc107;
-}
-       /* Mobile styles */
-       @media (max-width: 767px) {
-        .profile-section {
-            padding: 20px; /* Reduce padding for smaller screens */
-        }
-        .Applicant-container {
-            flex-direction: column;
-            align-items: center;
-        }
-        .profile-image {
-            width: 100px;
-            height: 100px;
-            font-size: 3em;
-        }
-        .applicant-details {
-            text-align: center;
-            padding-left: 0;
-        }
-        .requirement h4 {
-            font-size: 20px; /* Reduce font size for readability on small screens */
-        }
-        /* Add more mobile-specific styles here */
-    }
 /* studenr profile CSS */
 
 /* Style for the navigation tabs */
@@ -218,36 +160,87 @@ h3 {
 
 /* Hover effect for tab links */
 .nav.nav-tabs li a:hover {
-    text-decoration: none; /* Remove underline on hover */
-    color: #990000; /* Hover text color */
+    text-decoration: none; 
+    color: #990000; 
 }
 /* Style for the navigation tabs */
 
 /* Styling for Application Tab Content */
-.test-application-section {
-    padding: 30px 0;
+/* Style for the custom dropdown */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.test-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.custom-dropdown .test-list-item {
+    cursor: pointer;
 }
 
+.custom-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.custom-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.custom-dropdown .dropdown-content li {
+    padding: 10px;
+    text-align: left;
+}
+
+.custom-dropdown .dropdown-content li a {
+    color: #000; /* Adjust text color as needed */
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown .dropdown-content li a:hover {
+    background-color: #f1f1f1; /* Adjust hover background color as needed */
+}
+
+/* Style for the test list container */
+.test-section{
+    margin-top: 20px;
+}
 .test-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
+/* Style for each test item */
 .test-list-item {
-    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
     margin-bottom: 10px;
-    text-decoration: none;
-    color: #333; /* Link color */
-    transition: color 0.3s ease;
+    background-color: #f9f9f9;
+    width: 300px;
 }
 
+/* Style for the test name */
+.test-name {
+    font-size: 18px;
+}
+
+/* Style for the "Apply" button */
+.apply-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Hover effect for test items */
 .test-list-item:hover {
-    color: #007bff; /* Hover color */
+    background-color: #e0e0e0;
 }
 
 .guide-section h3 {
@@ -265,21 +258,39 @@ h3 {
     margin-bottom: 10px;
 }
 
-.documents-section h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+/* Style for the guide section container */
+    .guide-section {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 105px;
+    }
 
-.document-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    font-size: 18px;
-}
+    /* Style for the guide section title */
+    .guide-section h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
 
-.document-list li {
-    margin-bottom: 10px;
-}
+    /* Style for the step list */
+    .step-list {
+        list-style-type: decimal;
+        padding-left: 20px;
+        margin-top: 0;
+    }
 
+    /* Style for each step item */
+    .step-list li {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    /* Style for the guide section paragraph */
+    .guide-section p {
+        font-size: 16px;
+        margin-top: 20px;
+    }
 /* application tab */
 
 

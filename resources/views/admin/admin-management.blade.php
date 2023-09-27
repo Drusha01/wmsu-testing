@@ -46,8 +46,11 @@
 
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
+        <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#admin-management-tab">Admin Management</a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#user-management-tab">User Management</a>
+                <a class="nav-link" data-toggle="tab" href="#user-management-tab">User Management</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#role-management-tab">Role Management</a>
@@ -55,6 +58,9 @@
         </ul>
          <!-- Tab Content -->
         <div class="tab-content">
+        <!-- Admin Management tab -->
+        <div class="tab-pane fade" id="admin-management-tab">
+
         <!-- User Management tab -->
         <div class="tab-pane fade" id="exam-management-tab">
 

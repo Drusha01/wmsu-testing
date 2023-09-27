@@ -69,6 +69,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
         Route::get('/results', [StudentController::class, 'results'])->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
+        Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
     });
 });
 
@@ -126,3 +127,4 @@ Route::get('process-cet-registration', function () {
 Route::get('exam-template', function () {
     return view('exam-template.exam-permit');
 })->name('exam-template');
+
