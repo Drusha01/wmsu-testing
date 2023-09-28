@@ -27,6 +27,12 @@
                 <span>Exam Management</span>
             </a>
         </li><!-- End Manage Examination Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('result-management') }}">
+                <i class="bi bi-person"></i>
+                <span>Result Management</span>
+            </a>
+        </li><!-- End Manage Examination Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('admin-announcement') }}">
