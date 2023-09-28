@@ -40,38 +40,54 @@
                             <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']),"F d, Y ")}}</li>
                             <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create($user_details['created_at']),"F d, Y ")}}</li>
                         </ul>
-                        <button id="modifyButtonDetails" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
+                        <br>
+                        <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
                     </div>
                 </div>
             </div>
+            <br>
             <!-- Family Background -->
-            <div class="family-background">
-                <h4>Family Background</h4>
-                <ul class="list-group" id="familyBackgroundList">
-                    <li class="list-group-item"><strong>Father's Name:</strong> John Doe Sr.</li>
-                    <li class="list-group-item"><strong>Mother's Name:</strong> Jane Doe</li>
-                    <li class="list-group-item"><strong>Number of Siblings:</strong> 2</li>
-                    <li class="list-group-item"><strong>Family Address:</strong> 456 Oak St, City</li>
-                </ul>
-                <button id="modifyButtonFamilyBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalFamilyBackground">Modify</button>
+            <div class="details-box">
+                <div class="family-background">
+                    <h4>Family Background</h4>
+                    <ul class="list-group" id="familyBackgroundList">
+                        <li class="list-group-item"><strong>Father's first name: </strong> </li>
+                        <li class="list-group-item"><strong>Father's middle name: </strong> </li>
+                        <li class="list-group-item"><strong>Father's last name: </strong> </li>
+                        <li class="list-group-item"><strong>Father's suffix name: </strong> </li>
+
+                        <li class="list-group-item"><strong>Mother's first name: </strong> John Doe Sr.</li>
+                        <li class="list-group-item"><strong>Mother's middle name: </strong> Jane Doe</li>
+                        <li class="list-group-item"><strong>Father's last name: </strong> </li>
+
+                        <li class="list-group-item"><strong>Number of Siblings: </strong> 2</li>
+                        <li class="list-group-item"><strong>Family Home Address:</strong> 456 Oak St, City</li>
+                    </ul>
+                    <br>
+                    <button id="modifyButtonFamilyBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalFamilyBackground">Modify</button>
+                </div>
             </div>
+            <br>
             <!-- Requirements Section -->
-            <div class="requirements">
-                <h4>Requirements Upload</h4>
-                <ul class="list-group" id="requirementsList">
-                    <!-- Existing requirements go here -->
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> High School Transcript
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> Birth Certificate
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> Photo ID
-                    </li>
-                </ul>
-                <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
+            <div class="details-box">
+                <div class="requirements">
+                    <h4>Requirements Upload</h4>
+                    <ul class="list-group" id="requirementsList">
+                        <!-- Existing requirements go here -->
+                        <li class="list-group-item">
+                            <strong>Requirement Name:</strong> High School Transcript
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Requirement Name:</strong> Birth Certificate
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Requirement Name:</strong> Photo ID
+                        </li>
+                    </ul>
+                    <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
+                </div>
             </div>
+            <br>
 
             
             

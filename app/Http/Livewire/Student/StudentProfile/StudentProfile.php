@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Student\StudentProfile;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithFileUploads;
 
 class StudentProfile extends Component
 {
@@ -21,6 +22,24 @@ class StudentProfile extends Component
     public $password_error;
 
     public $firstname;
+    public $middlename;
+    public $lastname;
+    public $suffix;
+    public $gender;
+    public $sex;
+    public $phone;
+    public $address;
+    public $birthdate;
+
+    public $f_firstname;
+    public $f_middlename;
+    public $f_lastname;
+    public $f_suffix;
+    public $m_firstname;
+    public $m_middlename;
+    public $m_lastname;
+    public $number_of_siblings;
+    public $fb_address;
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
@@ -39,6 +58,20 @@ class StudentProfile extends Component
         $this->birthdate = $this->user_details['user_birthdate'];
 
         // family
+        if($gender_details = DB::table('family_background as fb')
+        ->where('family_background_user_id', $this->user_details['user_id'])
+        ->first()
+        ->get()){
+            $this->f_firstname;
+            $this->f_middlename;
+            $this->f_lastname;
+            $this->f_suffix;
+            $this->m_firstname;
+            $this->m_middlename;
+            $this->m_lastname;
+            $this->number_of_siblings;
+            $this->fb_address;
+        }
         // educational backgroun
         // requirements
     }
@@ -305,6 +338,7 @@ class StudentProfile extends Component
             $this->password_error = 'Password doesn\'t match';
         }   
     }
+
     public function new_password(Request $request){
         $user_details = $request->session()->all();
         if(!isset($user_details['user_id'])){
@@ -355,6 +389,7 @@ class StudentProfile extends Component
         }
         $this->password_error=null;
     }
+
     public function confirm_password(Request $request){
         $user_details = $request->session()->all();
         if(!isset($user_details['user_id'])){
@@ -412,3 +447,4 @@ class StudentProfile extends Component
         }
     }
 }
+
