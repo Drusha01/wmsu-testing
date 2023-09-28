@@ -81,10 +81,6 @@
                                     <label for="birthDate" class="form-label">Birthday</label>
                                     <input type="date" class="form-control" wire:model="birthdate"  wire:change="verify_birthdate()"required>
                                 </div>
-                                <div class="col-md-12 mb-1">
-                                        <label for="seniorHighschool" class="form-label">Senior Highschool</label>
-                                        <input type="text"   class="form-control" wire:model="high_school" required>
-                                </div>
                                 <button type="submit" class="btn-block button-color ">{{$sign_up_button}}</button>
                             </div>
                         </form>

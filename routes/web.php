@@ -24,6 +24,9 @@ use App\Http\Livewire\Authentication\RegisterEmail;
 use App\Http\Livewire\Authentication\ForgotPassword;
 use App\Http\Livewire\Authentication\AccountRecovery;
 
+// student
+use App\Http\Livewire\Student\StudentProfile\StudentProfile;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,22 +51,10 @@ Route::middleware([Unauthenticated::class,AccountisValid::class])->group(functio
     Route::get('/account/recovery/{hash}', AccountRecovery::class)->name('account-recovery');
 });
 
-// start editing here
-
-
-// page routes for each page
-Route::get('/', [PageController::class, 'index'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/appointment', [PageController::class, 'appointment'])->name('appointment');
-Route::get('/services', [PageController::class, 'services'])->name('services');
-Route::get('/faq', [PageController::class, 'faq'])->name('faq');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-
-
 // Student routes application
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::class])->group(function () {
     Route::prefix('student')->group(function () {
-        Route::get('/profile', [StudentController::class, 'profile'])->name('student.profile');
+        Route::get('/profile', StudentProfile::class)->name('student.profile');
         Route::get('/application', [StudentController::class, 'application'])->name('student.application');
         Route::get('/status', [StudentController::class, 'status'])->name('student.status');
         Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
@@ -85,6 +76,13 @@ Route::prefix('test-application')->group(function () {
     Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('test-application.Lsat');
 });
 
+// page routes for each page
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/appointment', [PageController::class, 'appointment'])->name('appointment');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 
 

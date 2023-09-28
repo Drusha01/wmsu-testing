@@ -31,7 +31,6 @@ class RegisterEmail extends Component
     public $password;
     public $confirm_password;
     public $birthdate;
-    public $high_school;
 
     public function mount(){
         $this->title = 'Register';
@@ -279,7 +278,22 @@ class RegisterEmail extends Component
             $this->lastname =(trim($this->lastname));
             $this->middlename =(trim($this->middlename));
             $this->suffix =(trim($this->suffix));
-            $this->high_school =(trim($this->high_school));
+
+            if (preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{5,31}$/', $this->username)
+                && !DB::table('users')
+                ->where('user_name', $this->username)
+                ->where('user_name_verified', 1)
+                ->first()){
+                // save into session
+                $request->session()->put('user_name', $this->username);
+                $this->style = 'green';
+                $this->sign_up_button = 'Sign up';
+            }else{
+                $this->style = 'red';
+                $this->sign_up_button ='Invalid Username';
+                return;
+            }     
+            
             if(strlen($this->firstname) < 1 && strlen($this->firstname) > 255){
                 return false;
             }
@@ -337,24 +351,12 @@ class RegisterEmail extends Component
             if(!$date_diff>$min_date){
                 return false;
             }
-            if($high_school_details = DB::table('user_high_schools')
-            ->where('user_high_school_details', $this->high_school)
-            ->first()){
-            }else{
-                DB::table('user_high_schools')->insert([
-                    'user_high_school_details' => $this->high_school,
-                ]);
-                $high_school_details = DB::table('user_high_schools')
-            ->where('user_high_school_details', $this->high_school)
-            ->first();
-            }
             // hash password
             $this->password = password_hash($this->password, PASSWORD_ARGON2I);
             // insert data
             if(DB::table('users')->insert([
                 'user_status_id' => 1,
                 'user_sex_id' => 1,
-                'user_high_school_id' => $high_school_details->user_high_school_id,
                 'user_gender_id' => 1,
                 'user_role_id' => 1,
                 'user_name' => $data['user_name'],
@@ -369,13 +371,13 @@ class RegisterEmail extends Component
                 'user_lastname' => $this->lastname,
                 'user_suffix' => $this->suffix,
                 'user_address' => NULL,
+                'user_birthdate' => $this->birthdate,
                
             ])){
                 // get data 
                 $user_details = DB::table('users as u')
                     ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
                     ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
-                    ->join('user_high_schools as uhs', 'u.user_high_school_id', '=', 'uhs.user_high_school_id')
                     ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
                     ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
                     ->where('u.user_email', $this->email)
@@ -390,8 +392,6 @@ class RegisterEmail extends Component
                 $request->session()->put('user_status_details', $user_details->user_status_details); 
                 $request->session()->put('user_sex_id', $user_details->user_sex_id);
                 $request->session()->put('user_sex_details', $user_details->user_sex_details);
-                $request->session()->put('user_high_school_id', $user_details->user_high_school_id);
-                $request->session()->put('user_high_school_details', $user_details->user_high_school_details);
                 $request->session()->put('user_gender_id', $user_details->user_gender_id);
                 $request->session()->put('user_gender_details', $user_details->user_gender_details);
                 $request->session()->put('user_role_id', $user_details->user_role_id);

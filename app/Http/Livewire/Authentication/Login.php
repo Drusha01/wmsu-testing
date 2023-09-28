@@ -11,6 +11,7 @@ class Login extends Component
 {
     public $title;
     public $active;
+    
     public $username;
     public $password;
 
@@ -21,7 +22,10 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.authentication.login',['title'=>$this->title])->layout('layouts.guest',['title'=>$this->title]);
+        return view('livewire.authentication.login',[
+            ])
+        ->layout('layouts.guest',[
+            'title'=>$this->title]);
     }
 
     public function login(Request $request){
@@ -30,7 +34,6 @@ class Login extends Component
            $user_details =DB::table('users as u')
                 ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
                 ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
-                ->join('user_high_schools as uhs', 'u.user_high_school_id', '=', 'uhs.user_high_school_id')
                 ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
                 ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
                 ->where(['u.user_email'=> $this->username,'u.user_email_verified'=> 1])
@@ -49,8 +52,6 @@ class Login extends Component
                 $request->session()->put('user_status_details', $user_details->user_status_details); 
                 $request->session()->put('user_sex_id', $user_details->user_sex_id);
                 $request->session()->put('user_sex_details', $user_details->user_sex_details);
-                $request->session()->put('user_high_school_id', $user_details->user_high_school_id);
-                $request->session()->put('user_high_school_details', $user_details->user_high_school_details);
                 $request->session()->put('user_gender_id', $user_details->user_gender_id);
                 $request->session()->put('user_gender_details', $user_details->user_gender_details);
                 $request->session()->put('user_role_id', $user_details->user_role_id);
