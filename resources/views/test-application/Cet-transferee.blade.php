@@ -13,7 +13,8 @@
         <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo">
         <div class="header-eat-text">
             <span>Western Mindanao State University</span>
-            <h2 class="mb-2">College Transferee</h2>
+            <h2 class="mb-2">College Entrance Exam Application Form</h2>
+            <span class="mb-2 custom-class">College Transferee</span>
         </div>
     </div>
     <form method="POST" action="{{ url('submit.application') }}" enctype="multipart/form-data">
