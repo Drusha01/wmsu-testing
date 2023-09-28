@@ -117,6 +117,8 @@ Route::prefix('admin')->group(function () {
     Route::get('application-management', function () {return view('admin.manage-application');})->name('manage-application');
     Route::get('announcement-management', function () {return view('admin.admin-announcement');})->name('admin-announcement');
     Route::get('user-management', function () {return view('admin.user-management');})->name('user-management');
+    Route::get('result-management', function () {return view('admin.result-management');})->name('result-management');
+    
 });
 
 // test section
