@@ -16,7 +16,11 @@
                             </label>
                         </div>
                         <h3 class="mt-3">{{$user_details['user_name']}}</h3>
-                        <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal">Modify</button>
+                        <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal">Select Image</button>
+                        <br>
+                        <br>
+                        <button id="modifyButtonpassword" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
+                        
                     </div>
                 </div>  
                 <!-- Applicant details -->
@@ -29,10 +33,10 @@
                             <li class="list-group-item"><strong>Last name: </strong> {{$user_details['user_lastname']}}</li>
                             <li class="list-group-item"><strong>Suffix: </strong> {{$user_details['user_suffix']}}</li>
                             <li class="list-group-item"><strong>Gender: </strong> {{$user_details['user_gender_details']}}</li>
-                            <li class="list-group-item"><strong>Age: </strong> 18</li>
+                            <li class="list-group-item"><strong>Age: </strong> {{floor((time() - strtotime($user_details['user_birthdate'])) / 31556926);}}</li>
                             <li class="list-group-item"><strong>Home Address: </strong> {{$user_details['user_address']}}</li>
                             <li class="list-group-item"><strong>Phone number: </strong> {{$user_details['user_phone']}}</li>
-                            <li class="list-group-item"><strong>Email: </strong> {{$user_details['user_email']}}</li>
+                            <li class="list-group-item"><strong>Email: </strong> {{$user_details['user_email']}} @if($user_details['user_email_verified']==1)<a href="profile/change-email">change</a>@else<a href="profile/change-email">verify</a>@endif</li>
                             <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']),"F d, Y ")}}</li>
                             <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create($user_details['created_at']),"F d, Y ")}}</li>
                         </ul>
@@ -76,7 +80,6 @@
             <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        
                         <div class="modal-header">
                             <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -84,7 +87,124 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            
+                            <fieldset>
+                                <legend>Profile Information</legend>
+                                <!-- Full Name -->
+                                <form wire:submit.prevent="save_profile_info()">
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="firstname" class="form-control" placeholder="Enter firstname" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="middlename" class="form-control" placeholder="Enter middlename" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="lastname" class="form-control" placeholder="Enter lastname" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="suffix" class="form-control" placeholder="Enter suffix" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="gender" class="form-control" placeholder="Enter gender" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="address" class="form-control" placeholder="Enter address" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="name"  wire:model="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- Modify Applicant Details Modal -->
+             <div class="modal fade" id="modifyModalpassword" tabindex="-1" role="dialog" aria-labelledby="modifyModalpassword" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Change password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset>
+                                <!-- Full Name -->
+                                <form wire:submit.prevent="change_password()">
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="password"  wire:model="current_password"  class="form-control" placeholder="Current Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="password"  wire:model="new_password" wire:keyup.debounce.500ms="new_password()" class="form-control" placeholder="New Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="password"  wire:model="confirm_password" wire:keyup.debounce.500ms="confirm_password"class="form-control" placeholder="Confirm Password" required>
+                                        </div>
+                                    </div>
+                                    <div>
+                                    @if(isset($password_error)) <span class="error" style="color:red;">{{ $password_error }}</span> @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <fieldset>
                                 <legend>Profile Information</legend>
                                 <!-- Full Name -->

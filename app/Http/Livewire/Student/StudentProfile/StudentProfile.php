@@ -18,11 +18,13 @@ class StudentProfile extends Component
     public $current_password;
     public $new_password;
     public $confirm_password;
+    public $password_error;
 
     public $firstname;
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
+
         $this->title = 'profile';
         $this->photo = 'poto';
 
@@ -53,7 +55,7 @@ class StudentProfile extends Component
         if(!isset($user_details['user_id'])){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
-                'icon'              									=> 'success',
+                'icon'              									=> 'warning',
                 'title'             									=> 'Unauthenticated!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
@@ -63,7 +65,7 @@ class StudentProfile extends Component
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
-                'icon'              									=> 'success',
+                'icon'              									=> 'warning',
                 'title'             									=> 'Account deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
@@ -73,7 +75,7 @@ class StudentProfile extends Component
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
-                'icon'              									=> 'success',
+                'icon'              									=> 'warning',
                 'title'             									=> 'Account inactive!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
@@ -181,7 +183,232 @@ class StudentProfile extends Component
     public function save_pictures(){
         dd($this->photo);
     }
-    public function change_password(){
-        dd('password');
+    public function change_password(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'inactive'
+            ]);
+        }
+        if(strlen($this->new_password) < 8 ) {
+            $this->password_error = 'new password must be >= 8';
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->new_password)) {
+            $this->password_error = 'new password must have number';
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->new_password)) {
+            $this->password_error = 'new password must have upper case';
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->new_password)) {
+            $this->password_error = 'new password must have lower case';
+            return false;
+        }
+        $this->password_error=null;
+        if(strlen($this->confirm_password) < 8 ) {
+            $this->password_error = 'Confirm password must be >= 8';
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have number';
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have upper case';
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have lower case';
+            return false;
+        }
+        // good password
+        if($this->new_password == $this->confirm_password){
+            $user_details =DB::table('users as u')
+            ->where(['u.user_id'=> $user_details['user_id']])
+            ->first();
+            if( $user_details && password_verify($this->current_password,$user_details->user_password)){
+                if($this->current_password != $this->new_password){
+                    $hash_password = password_hash($this->new_password, PASSWORD_ARGON2I);
+                    if(DB::table('users as u')
+                    ->where(['u.user_id'=> $user_details->user_id])
+                    ->update(['u.user_password'=> $hash_password])){
+                        $this->current_password = null;
+                        $this->new_password = null;
+                        $this->confirm_password = null;
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'success',
+                            'title'             									=> 'Successfully changed password!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '2000',
+                            'link'              									=> '#'
+                        ]);
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Error saving password!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '2000',
+                            'link'              									=> '#'
+                        ]);
+                    }
+                    
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'New password must not be same as your old password!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '2000',
+                        'link'              									=> '#'
+                    ]);
+                }
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Incorrect current password!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '2000',
+                    'link'              									=> '#'
+                ]);
+            }
+        }else{
+            $this->password_error = 'Password doesn\'t match';
+        }   
+    }
+    public function new_password(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'inactive'
+            ]);
+        }
+        if(strlen($this->new_password) < 8 ) {
+            $this->password_error = 'new password must be >= 8';
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->new_password)) {
+            $this->password_error = 'new password must have number';
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->new_password)) {
+            $this->password_error = 'new password must have upper case';
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->new_password)) {
+            $this->password_error = 'new password must have lower case';
+            return false;
+        }
+        $this->password_error=null;
+    }
+    public function confirm_password(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> 'inactive'
+            ]);
+        }
+        if(strlen($this->confirm_password) < 8 ) {
+            $this->password_error = 'Confirm password must be >= 8';
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have number';
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have upper case';
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->confirm_password)) {
+            $this->password_error = 'Confirm password must have lower case';
+            return false;
+        }
+        // good password
+        if($this->new_password == $this->confirm_password){
+            $this->password_error = null;
+            
+        }else{
+            $this->password_error = 'Password doesn\'t match';
+        }
     }
 }
