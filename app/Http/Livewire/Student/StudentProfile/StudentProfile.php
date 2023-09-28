@@ -60,8 +60,7 @@ class StudentProfile extends Component
         // family
         if($gender_details = DB::table('family_background as fb')
         ->where('family_background_user_id', $this->user_details['user_id'])
-        ->first()
-        ->get()){
+        ->first()){
             $this->f_firstname;
             $this->f_middlename;
             $this->f_lastname;
