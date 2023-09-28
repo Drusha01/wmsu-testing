@@ -50,19 +50,53 @@
             <div class="details-box">
                 <div class="family-background">
                     <h4>Family Background</h4>
-                    <ul class="list-group" id="familyBackgroundList">
-                        <li class="list-group-item"><strong>Father's first name: </strong> </li>
-                        <li class="list-group-item"><strong>Father's middle name: </strong> </li>
-                        <li class="list-group-item"><strong>Father's last name: </strong> </li>
-                        <li class="list-group-item"><strong>Father's suffix name: </strong> </li>
-
-                        <li class="list-group-item"><strong>Mother's first name: </strong> John Doe Sr.</li>
-                        <li class="list-group-item"><strong>Mother's middle name: </strong> Jane Doe</li>
-                        <li class="list-group-item"><strong>Father's last name: </strong> </li>
-
-                        <li class="list-group-item"><strong>Number of Siblings: </strong> 2</li>
-                        <li class="list-group-item"><strong>Family Home Address:</strong> 456 Oak St, City</li>
-                    </ul>
+                    
+                        <div class="row justify-content-center">
+                            <div class="details-box col-lg-6 mb-4">
+                                <h5>Father's Information</h5>
+                                <ul class="list-group" id="familyBackgroundList">
+                                    <li class="list-group-item"><strong>Father's first name: </strong> {{$f_firstname}}</li>
+                                    <li class="list-group-item"><strong>Father's middle name: </strong> {{$f_middlename}} </li>
+                                    <li class="list-group-item"><strong>Father's last name: </strong> {{$f_lastname}}</li>
+                                    <li class="list-group-item"><strong>Father's suffix name: </strong> {{$f_suffix}}</li>
+                                </ul>
+                            </div>
+                            <div class="details-box col-lg-6 mb-4">
+                                <h5>Mother's Information</h5>
+                                <ul class="list-group" id="familyBackgroundList">
+                                    <li class="list-group-item"><strong>Mother's first name: </strong> {{$m_firstname}}</li>
+                                    <li class="list-group-item"><strong>Mother's middle name: </strong> {{$m_middlename}}</li>
+                                    <li class="list-group-item"><strong>Father's last name: </strong> {{$m_lastname}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="details-box col-lg-12 mb-4">
+                                <h5>Guardian's Information</h5>
+                                <ul class="list-group" id="familyBackgroundList">
+                                    <li class="list-group-item"><strong>Guardian's first name: </strong> {{$g_firstname}}</li>
+                                    <li class="list-group-item"><strong>Guardian's middle name: </strong> {{$g_middlename}} </li>
+                                    <li class="list-group-item"><strong>Guardian's last name: </strong> {{$g_lastname}}</li>
+                                    <li class="list-group-item"><strong>Guardian's suffix name: </strong> {{$g_suffix}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="details-box col-lg-12 mb-4">
+                                <h5>Siblings</h5>
+                                <ul class="list-group" id="familyBackgroundList">
+                                    <li class="list-group-item"><strong>Number of Siblings: </strong> {{$number_of_siblings}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="details-box col-lg-12 mb-4">
+                                <h5>Family Home Address</h5>
+                                <ul class="list-group" id="familyBackgroundList">
+                                    <li class="list-group-item"><strong>Family Home Address:</strong> {{$fb_address}}</li>
+                                </ul>
+                            </div>
+                        </div>
                     <br>
                     <button id="modifyButtonFamilyBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalFamilyBackground">Modify</button>
                 </div>
@@ -104,7 +138,6 @@
                         </div>
                         <div class="modal-body">
                             <fieldset>
-                                <legend>Profile Information</legend>
                                 <!-- Full Name -->
                                 <form wire:submit.prevent="save_profile_info()">
                                     <div class="form-group row">
@@ -211,66 +244,119 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog" role="document">
+            <div class="modal fade bd-example-modal-lg" id="modifyModalFamilyBackground" tabindex="-1" role="dialog" aria-labelledby="modifyModalFamilyBackground" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Family Background Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <fieldset>
-                                <legend>Profile Information</legend>
                                 <!-- Full Name -->
-                                <form wire:submit.prevent="save_profile_info()">
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="firstname" class="form-control" placeholder="Enter firstname" required>
+                                <form wire:submit.prevent="save_family_background()">
+                                    <div class="row">
+                                        <div class="details-box col-lg-6 mb-4">
+                                            <h5>Father's Information</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="details-box col-lg-6 mb-4">
+                                            <h5>Mother's Information</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="middlename" class="form-control" placeholder="Enter middlename" >
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Guardian's Information (if applicable)</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="lastname" class="form-control" placeholder="Enter lastname" required>
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Siblings</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">No. of siblings<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="number" min="0" wire:model="number_of_siblings" class="form-control" placeholder="Number of siblings" >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="suffix" class="form-control" placeholder="Enter suffix" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="gender" class="form-control" placeholder="Enter gender" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="address" class="form-control" placeholder="Enter address" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="name"  wire:model="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Home Address</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Family Home Address<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="fb_address" class="form-control" placeholder="Enter Home Address" >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

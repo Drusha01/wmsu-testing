@@ -38,6 +38,10 @@ class StudentProfile extends Component
     public $m_firstname;
     public $m_middlename;
     public $m_lastname;
+    public $g_firstname;
+    public $g_middlename;
+    public $g_lastname;
+    public $g_suffix;
     public $number_of_siblings;
     public $fb_address;
 
@@ -58,18 +62,22 @@ class StudentProfile extends Component
         $this->birthdate = $this->user_details['user_birthdate'];
 
         // family
-        if($gender_details = DB::table('family_background as fb')
+        if($family_details = DB::table('family_background as fb')
         ->where('family_background_user_id', $this->user_details['user_id'])
         ->first()){
-            $this->f_firstname;
-            $this->f_middlename;
-            $this->f_lastname;
-            $this->f_suffix;
-            $this->m_firstname;
-            $this->m_middlename;
-            $this->m_lastname;
-            $this->number_of_siblings;
-            $this->fb_address;
+            $this->m_firstname = $family_details->family_background_m_firstname;
+            $this->m_middlename = $family_details->family_background_m_middlename ;
+            $this->m_lastname = $family_details->family_background_m_lastname;
+            $this->f_firstname = $family_details->family_background_f_firstname ;
+            $this->f_middlename = $family_details->family_background_f_middlename;
+            $this->f_lastname = $family_details->family_background_f_lastname ;
+            $this->f_suffix = $family_details->family_background_f_suffix ;
+            $this->g_firstname = $family_details->family_background_g_firstname ;
+            $this->g_middlename = $family_details->family_background_g_middlename ;
+            $this->g_lastname = $family_details->family_background_g_lastname ;
+            $this->g_suffix = $family_details->family_background_g_suffix ;
+            $this->number_of_siblings = $family_details->family_background_number_of_siblings ;
+            $this->fb_address = $family_details->family_background_address ;
         }
         // educational backgroun
         // requirements
@@ -91,7 +99,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Unauthenticated!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'login'
+                'link'              									=> '/login'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
@@ -101,7 +109,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'deleted'
+                'link'              									=> '/deleted'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
@@ -111,7 +119,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account inactive!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'inactive'
+                'link'              									=> '/inactive'
             ]);
         }
        
@@ -160,7 +168,7 @@ class StudentProfile extends Component
             'u.user_address'=>$this->address,  
             'u.user_phone'=>$this->phone,  
             'u.user_birthdate'=>$this->birthdate,   
-            ]);
+        ]);
 
         $user_details =DB::table('users as u')
         ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
@@ -224,7 +232,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Unauthenticated!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'login'
+                'link'              									=> '/login'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
@@ -234,7 +242,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'deleted'
+                'link'              									=> '/deleted'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
@@ -244,7 +252,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account inactive!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'inactive'
+                'link'              									=> '/inactive'
             ]);
         }
         if(strlen($this->new_password) < 8 ) {
@@ -347,7 +355,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Unauthenticated!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'login'
+                'link'              									=> '/login'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
@@ -357,7 +365,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'deleted'
+                'link'              									=> '/deleted'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
@@ -367,7 +375,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account inactive!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'inactive'
+                'link'              									=> '/inactive'
             ]);
         }
         if(strlen($this->new_password) < 8 ) {
@@ -398,7 +406,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Unauthenticated!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'login'
+                'link'              									=> '/login'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
@@ -408,7 +416,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'deleted'
+                'link'              									=> '/deleted'
             ]);
         }
         if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
@@ -418,7 +426,7 @@ class StudentProfile extends Component
                 'title'             									=> 'Account inactive!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
-                'link'              									=> 'inactive'
+                'link'              									=> '/inactive'
             ]);
         }
         if(strlen($this->confirm_password) < 8 ) {
@@ -443,6 +451,115 @@ class StudentProfile extends Component
             
         }else{
             $this->password_error = 'Password doesn\'t match';
+        }
+    }
+
+    public function save_family_background(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/inactive'
+            ]);
+        }
+        if($family_details = DB::table('family_background as fb')
+        ->where('family_background_user_id', $this->user_details['user_id'])
+        ->first()){
+            // validation
+            if(DB::table('family_background as fb')
+                ->where(['fb.family_background_id'=> $family_details->family_background_id,
+                ])
+                ->update(['family_background_m_firstname' =>$this->m_firstname ,
+                'family_background_m_middlename' => $this->m_middlename ,
+                'family_background_m_lastname' => $this->m_lastname,
+                'family_background_f_firstname' =>  $this->f_firstname,
+                'family_background_f_middlename' => $this->f_middlename,
+                'family_background_f_lastname' =>  $this->f_lastname,
+                'family_background_f_suffix' => $this->f_suffix,
+                'family_background_g_firstname' => $this->g_firstname,
+                'family_background_g_middlename' => $this->g_middlename,
+                'family_background_g_lastname' => $this->g_lastname,
+                'family_background_g_suffix' => $this->g_suffix,
+                'family_background_number_of_siblings' => $this->number_of_siblings,
+                'family_background_address' => $this->fb_address,  
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Family details saved!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Error saving Family details!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }
+        }else{
+            if(DB::table('family_background')->insert([
+                'family_background_user_id'=> $this->user_details['user_id'],
+                'family_background_m_firstname' =>$this->m_firstname ,
+                'family_background_m_middlename' => $this->m_middlename ,
+                'family_background_m_lastname' => $this->m_lastname,
+                'family_background_f_firstname' =>  $this->f_firstname,
+                'family_background_f_middlename' => $this->f_middlename,
+                'family_background_f_lastname' =>  $this->f_lastname,
+                'family_background_f_suffix' => $this->f_suffix,
+                'family_background_g_firstname' => $this->g_firstname,
+                'family_background_g_middlename' => $this->g_middlename,
+                'family_background_g_lastname' => $this->g_lastname,
+                'family_background_g_suffix' => $this->g_suffix,
+                'family_background_number_of_siblings' => $this->number_of_siblings,
+                'family_background_address' => $this->fb_address,
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Family details saved!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Error saving Family details!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }
         }
     }
 }
