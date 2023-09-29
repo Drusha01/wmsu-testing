@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             userGenders::class,
             userSex::class,
             userStatus::class,
-            userHighschool::class
+            attachmentTypes::class,
+            schoolTypes::class,
         ]);
         
     }

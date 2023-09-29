@@ -40,7 +40,7 @@
                             <li class="list-group-item"><strong>Phone number: </strong> {{$user_details['user_phone']}}</li>
                             <li class="list-group-item"><strong>Email: </strong> {{$user_details['user_email']}} @if($user_details['user_email_verified']==1)<a href="profile/change-email">change</a>@else<a href="profile/change-email">verify</a>@endif</li>
                             <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']),"F d, Y ")}}</li>
-                            <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create($user_details['created_at']),"F d, Y ")}}</li>
+                            <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create(substr($user_details['created_at'],0,10)),"F d, Y ")}}</li>
                         </ul>
                         <br>
                         <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
