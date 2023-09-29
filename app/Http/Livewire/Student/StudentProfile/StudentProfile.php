@@ -6,14 +6,17 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class StudentProfile extends Component
 {
+    use WithFileUploads;
     public $title;
     public $user_details;
 
     // photo 
     public $photo;
+    public $formal_id;
 
     // password
     public $current_password;
@@ -49,7 +52,6 @@ class StudentProfile extends Component
         $this->user_details = $request->session()->all();
 
         $this->title = 'profile';
-        $this->photo = 'poto';
 
         $this->firstname = $this->user_details['user_firstname'];
         $this->middlename = $this->user_details['user_middlename'];
@@ -220,8 +222,293 @@ class StudentProfile extends Component
         
     }
 
-    public function save_pictures(){
-        dd($this->photo);
+    public function update_profile_and_id(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/inactive'
+            ]);
+        }
+
+        if($this->photo&& file_exists(storage_path().'/app/livewire-tmp/'.$this->photo->getfilename())){
+            $file_extension =$this->photo->getClientOriginalExtension();
+            $tmp_name = 'livewire-tmp/'.$this->photo->getfilename();
+            $size = Storage::size($tmp_name);
+            $mime = Storage::mimeType($tmp_name);
+            $max_image_size = 5 * 1024*1024; // 5 mb
+            $file_extensions = array('image/jpeg','image/png','image/jpg');
+            
+            if($size<= $max_image_size){
+                $valid_extension = false;
+                foreach ($file_extensions as $value) {
+                    if($value == $mime){
+                        $valid_extension = true;
+                        break;
+                    }
+                }
+                if($valid_extension){
+                    $storage_file_path = storage_path().'/app/public/images/';
+                    
+                    // move
+                    $new_file_name = md5($tmp_name);
+                    while(DB::table('users')
+                    ->where(['user_profile_picture'=> $new_file_name.'.'.$file_extension])
+                    ->first()){
+                        $new_file_name = md5($tmp_name.rand(1,10000000));
+                    }
+                    
+                    if(!is_dir($storage_file_path)){
+                        mkdir($storage_file_path);
+                    }
+                    if(!is_dir($storage_file_path.'original/')){
+                        mkdir($storage_file_path.'original/');
+                    }
+                    if(!is_dir($storage_file_path.'resize/')){
+                        mkdir($storage_file_path.'resize/');
+                    }
+                    if(!is_dir($storage_file_path.'thumbnail/')){
+                        mkdir($storage_file_path.'thumbnail/');
+                    }
+                    $profilepic_dir = $storage_file_path.'original/';
+                    switch($file_extension){
+                        case 'png':
+                            $img = imagecreatefrompng(storage_path().'/'.'app/'.$tmp_name);
+                            // convert jpeg
+                            imagejpeg($img,$profilepic_dir.$new_file_name.'.jpg',100);
+                        break;
+                        case 'bmp':
+                            $img = imagecreatefrompng(storage_path().'/'.'app/'.$tmp_name);
+                            // convert jpeg
+                            imagejpeg($img,$profilepic_dir.$new_file_name.'.jpg',100);
+                            break;
+                        case 'jpg':
+                            copy(storage_path().'/'.'app/'.$tmp_name, $storage_file_path.'original/'.$new_file_name.'.jpg');
+                        break;
+                    }
+                    
+                    $profile_resize_dir = $storage_file_path.'resize/';
+                    $profile_thumbnail_dir = $storage_file_path.'thumbnail/';
+                    // profile display
+
+                    $sourceFilename  =$profilepic_dir;
+                    $destination = $profile_resize_dir;
+                    $filename = $new_file_name.'.jpg';
+                    $newFilename =$new_file_name.'.jpg';
+                    $quality = 80;
+                    $newwidth = 500;
+                    $newheight =500;
+                    list($width, $height) = getimagesize($sourceFilename.$filename);
+                    if($width/$height > 1){
+                        $x = ($width - $height) / 2;
+                        $y = 0;
+                        $width= $width - ($x*2);
+                        $height;
+                    }else{
+                        $y = ($height - $width) / 2;
+                        $x = 0;
+                        $width;
+                        $height = $height - ($y*2);
+                    }
+                
+                    // creating jpeg 
+                    $img = imagecreatefromjpeg($sourceFilename.$filename);
+                    $img =imagecrop($img, ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]);
+                    $thumb = imagecreatetruecolor($newwidth, $newheight);
+                    if(imagecopyresized($thumb, $img, 0, 0, 0, 0,$newwidth, $newheight, $width, $height)){
+                        if(imagejpeg($thumb,$destination.$filename,$quality)){
+                        }else{
+                            return false;
+                        }
+                    }else {
+                        return false;
+                    }
+
+                    $sourceFilename  = $profilepic_dir;
+                    $destination = $profile_thumbnail_dir;
+                    $filename = $new_file_name.'.jpg';
+                    $newFilename =$new_file_name.'.jpg';
+                    $quality = 80;
+                    $newwidth = 150;
+                    $newheight =150;
+                    list($width, $height) = getimagesize($sourceFilename.$filename);
+                    if($width/$height > 1){
+                        $x = ($width - $height) / 2;
+                        $y = 0;
+                        $width= $width - ($x*2);
+                        $height;
+                    }else{
+                        $y = ($height - $width) / 2;
+                        $x = 0;
+                        $width;
+                        $height = $height - ($y*2);
+                    }
+                
+                    // creating jpeg 
+                    $img = imagecreatefromjpeg($sourceFilename.$filename);
+                    $img =imagecrop($img, ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]);
+                    $thumb = imagecreatetruecolor($newwidth, $newheight);
+                    if(imagecopyresized($thumb, $img, 0, 0, 0, 0,$newwidth, $newheight, $width, $height)){
+                        if(imagejpeg($thumb,$destination.$filename,$quality)){
+                        }else{
+                            return false;
+                        }
+                    }else {
+                        return false;
+                    }
+                    
+                  
+
+                       
+                    if($user_details['user_profile_picture'] != 'default.png'){
+                        if(file_exists($profilepic_dir.$user_details['user_profile_picture'])){
+                            unlink($profilepic_dir.$user_details['user_profile_picture']);
+                        }
+                        if(file_exists($profile_resize_dir.$user_details['user_profile_picture'])){
+                            unlink($profile_resize_dir.$user_details['user_profile_picture']);
+                        }
+                        if(file_exists($profile_thumbnail_dir.$user_details['user_profile_picture'])){
+                            unlink($profile_thumbnail_dir.$user_details['user_profile_picture']);
+                        }
+                    }
+                        
+                        // delete old photo
+                        DB::table('users as u')
+                        ->where(['u.user_id'=> $user_details['user_id']])
+                        ->update(['u.user_profile_picture'=> $new_file_name.'.jpg']);
+
+                        $request->session()->put('user_profile_picture', $new_file_name.'.jpg');
+                        $this->photo = null;
+
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'success',
+                            'title'             									=> 'Images updated!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '/student/profile'
+                        ]);
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Invalid image type!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                }
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Image is too large!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }
+        }
+
+        if($this->formal_id && file_exists(storage_path().'/app/livewire-tmp/'.$this->formal_id->getfilename())){
+            $file_extension =$this->formal_id->getClientOriginalExtension();
+            $tmp_name = 'livewire-tmp/'.$this->formal_id->getfilename();
+            $size = Storage::size($tmp_name);
+            $mime = Storage::mimeType($tmp_name);
+            $max_image_size = 5 * 1024*1024; // 5 mb
+            $file_extensions = array('image/jpeg','image/png','image/jpg');
+            
+            if($size<= $max_image_size){
+                $valid_extension = false;
+                foreach ($file_extensions as $value) {
+                    if($value == $mime){
+                        $valid_extension = true;
+                        break;
+                    }
+                }
+                if($valid_extension){
+                    $storage_file_path = storage_path().'/app/public/formal_id/';
+                    
+                    // move
+                    $new_file_name = md5($tmp_name).'.'.$file_extension;
+                    while(DB::table('users')
+                    ->where(['user_formal_id'=> $new_file_name])
+                    ->first()){
+                        $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                    }
+                    if(Storage::move($tmp_name, 'public/formal_id/'.$new_file_name)){
+                        if($user_details['user_formal_id'] != 'default.png'){
+                            if(file_exists($storage_file_path.$user_details['user_formal_id'])){
+                                unlink($storage_file_path.$user_details['user_formal_id']);
+                            }
+                            
+                        }
+                        // delete old photo
+                        DB::table('users as u')
+                        ->where(['u.user_id'=> $user_details['user_id']])
+                        ->update(['u.user_formal_id'=> $new_file_name]);
+
+                        $request->session()->put('user_formal_id', $new_file_name);
+                        // resize thumb nail
+                        // resize 500x500 px
+                        $this->formal_id = null;
+
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'success',
+                            'title'             									=> 'Images updated!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '/student/profile'
+                        ]);
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Invalid image type!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                }
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Image is too large!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }           
+        }
+    
+        
     }
     public function change_password(Request $request){
         $user_details = $request->session()->all();
@@ -518,8 +805,8 @@ class StudentProfile extends Component
             }else{
                 $this->dispatchBrowserEvent('swal:redirect',[
                     'position'          									=> 'center',
-                    'icon'              									=> 'warning',
-                    'title'             									=> 'Error saving Family details!',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Family details saved!',
                     'showConfirmButton' 									=> 'true',
                     'timer'             									=> '1500',
                     'link'              									=> '#'
