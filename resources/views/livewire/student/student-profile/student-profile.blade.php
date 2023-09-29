@@ -16,7 +16,7 @@
                             </label>
                         </div>
                         <h3 class="mt-3">{{$user_details['user_name']}}</h3>
-                        <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal">Select Image</button>
+                        <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile </button>
                         <br>
                         <br>
                         <button id="modifyButtonpassword" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
@@ -50,7 +50,6 @@
             <div class="details-box">
                 <div class="family-background">
                     <h4>Family Background</h4>
-                    
                         <div class="row justify-content-center">
                             <div class="details-box col-lg-6 mb-4">
                                 <h5>Father's Information</h5>
@@ -99,6 +98,44 @@
                         </div>
                     <br>
                     <button id="modifyButtonFamilyBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalFamilyBackground">Modify</button>
+                </div>
+            </div>
+            <br>
+            <!-- Educational Background -->
+            <div class="details-box">
+                <div class="family-background">
+                    <h4>Educational Background</h4>
+                    <div class="row justify-content-center">
+                        <div class="details-box col-lg-12 mb-4">
+                            <h5>Senior High School's Details</h5>
+                            <ul class="list-group" id="SeniorHighSchoolList">
+                                <li class="list-group-item"><strong>Senior High School Name: </strong> {{$g_firstname}}</li>
+                                <li class="list-group-item"><strong>Senior High School Address: </strong> {{$g_middlename}} </li>
+                                <li class="list-group-item"><strong>Senior High School Form 137/138/TOR: </strong> {{$g_lastname}}</li>
+                                <li class="list-group-item"><strong>Senior High School Graduate ?: </strong> {{$g_suffix}}</li>
+                                <li class="list-group-item"><strong>Senior High School Expected graduation date: </strong> {{$g_suffix}}</li>
+                                <li class="list-group-item"><strong>Senior High School Diploma: </strong> {{$g_suffix}}</li>
+                                <li class="list-group-item"><strong>Senior High School Attachments: </strong> {{$g_suffix}}</li>
+                            </ul>
+                        </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="details-box col-lg-12 mb-4">
+                                <h5>High School's Details</h5>
+                                <ul class="list-group" id="HighSchoolList">
+                                    <li class="list-group-item"><strong>High School Name: </strong> {{$g_firstname}}</li>
+                                    <li class="list-group-item"><strong>High School Address: </strong> {{$g_middlename}} </li>
+                                    <li class="list-group-item"><strong>High School Form 137/138/TOR: </strong> {{$g_lastname}}</li>
+                                    <li class="list-group-item"><strong>High School Graduate ?: </strong> {{$g_suffix}}</li>
+                                    <li class="list-group-item"><strong>High School Expected graduation date: </strong> {{$g_suffix}}</li>
+                                    <li class="list-group-item"><strong>High School Diploma: </strong> {{$g_suffix}}</li>
+                                    <li class="list-group-item"><strong>High School Achievements: </strong> {{$g_suffix}}</li>
+                                </ul>
+                            </div>
+                        </div>  
+                    <br>
+                    <button id="modifyButtonEducationalDetails" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalEducationalDetails">Modify</button>
+                    </div> 
                 </div>
             </div>
             <br>
@@ -198,7 +235,47 @@
                     </div>
                 </div>
             </div>
-             <!-- Modify Applicant Details Modal -->
+            <!-- Modify Profile and ID Modal -->
+            <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalPhoto" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Change Profile and ID</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset>
+                                <!-- Full Name -->
+                                <form wire:submit.prevent="update_profile_and_id()">
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Profile photo<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="file"  wire:model="photo"  class="form-control" placeholder="Current Password" >
+                                        </div>
+                                        <div wire:loading wire:target="photo">Uploading...</div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label">Formal ID<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                        <input type="file"  wire:model="formal_id"  class="form-control" placeholder="New Password" >
+                                        </div>
+                                    </div>
+                                    <div>
+                                    @if(isset($profile_photo_error)) <span class="error" style="color:red;">{{ $profile_photo_error }}</span> @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- Modify Password Modal -->
              <div class="modal fade" id="modifyModalpassword" tabindex="-1" role="dialog" aria-labelledby="modifyModalpassword" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -243,7 +320,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Modify Family Background Modal -->
             <div class="modal fade bd-example-modal-lg" id="modifyModalFamilyBackground" tabindex="-1" role="dialog" aria-labelledby="modifyModalFamilyBackground" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -288,6 +365,151 @@
                                     
                                         <div class="details-box col-lg-6 mb-4">
                                             <h5>Mother's Information</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="m_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Guardian's Information (if applicable)</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Siblings</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">No. of siblings<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="number" min="0" wire:model="number_of_siblings" class="form-control" placeholder="Number of siblings" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Home Address</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Family Home Address<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="fb_address" class="form-control" placeholder="Enter Home Address" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- Modify Educational Details Modal -->
+            <div class="modal fade bd-example-modal-lg" id="modifyModalEducationalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalEducationalDetails" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Educational Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset>
+                                <!-- Full Name -->
+                                <form wire:submit.prevent="save_educational_details()">
+                                    <div class="row">
+                                        <div class="details-box col-lg-12 mb-4">
+                                            <h5>Senior High School Information</h5>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Name<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_firstname" class="form-control" placeholder="Enter firstname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Address<span style="color:red;"></span>:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_middlename" class="form-control" placeholder="Enter middlename" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Form 137/138/TOR<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_lastname" class="form-control" placeholder="Enter Lastname" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Graduate ?<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Expected graduation date<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Diploma<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Senior High School Attachment/s<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="details-box col-lg-6 mb-4">
+                                            <h5>High School Information</h5>
                                             <div class="form-group row">
                                                 <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
                                                 <div class="col-sm-8">

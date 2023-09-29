@@ -50,6 +50,7 @@ class CreateUsersTable extends Migration
         DB::statement('CREATE INDEX idx_full_name ON users(user_firstname(10),user_lastname(10),user_middlename(10));');
         DB::statement('CREATE INDEX idx_user_gender ON users(user_gender_id);');
         DB::statement('CREATE INDEX idx_user_sex ON users(user_sex_id);');
+        DB::statement('CREATE INDEX idx_user_photo ON users(user_profile_picture(10));');
     }
 
     /**
