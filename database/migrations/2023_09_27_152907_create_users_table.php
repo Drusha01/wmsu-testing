@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             user_address VARCHAR(255),
             user_birthdate DATE,
             user_profile_picture VARCHAR(100) DEFAULT "default.png",
+            user_formal_id VARCHAR(100) DEFAULT "default.png",
 
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -51,6 +52,7 @@ class CreateUsersTable extends Migration
         DB::statement('CREATE INDEX idx_user_gender ON users(user_gender_id);');
         DB::statement('CREATE INDEX idx_user_sex ON users(user_sex_id);');
         DB::statement('CREATE INDEX idx_user_photo ON users(user_profile_picture(10));');
+        DB::statement('CREATE INDEX idx_user_photo_id ON users(user_formal_id(10));');
     }
 
     /**
