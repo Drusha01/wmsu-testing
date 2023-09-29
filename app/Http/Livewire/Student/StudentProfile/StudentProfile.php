@@ -274,7 +274,7 @@ class StudentProfile extends Component
                     }
                 }
                 if($valid_extesion){
-                    $storage_file_path = storage_path().'/app/images/';
+                    $storage_file_path = storage_path().'/app/public/images/';
                     
                     // move
                     $new_file_name = md5($tmp_name);
@@ -284,7 +284,9 @@ class StudentProfile extends Component
                         $new_file_name = md5($tmp_name.rand(1,10000000));
                     }
                     
-
+                    if(!is_dir($storage_file_path)){
+                        mkdir($storage_file_path);
+                    }
                     if(!is_dir($storage_file_path.'original/')){
                         mkdir($storage_file_path.'original/');
                     }
@@ -412,8 +414,6 @@ class StudentProfile extends Component
                             'timer'             									=> '1500',
                             'link'              									=> '/student/profile'
                         ]);
-                    // }
-                    
                 }else{
                     $this->dispatchBrowserEvent('swal:redirect',[
                         'position'          									=> 'center',
@@ -436,6 +436,7 @@ class StudentProfile extends Component
             }
         }
 
+
         if($this->validate([
             'formal_id' => 'image', 
             ])){
@@ -455,7 +456,7 @@ class StudentProfile extends Component
                     }
                 }
                 if($valid_extesion){
-                    $storage_file_path = storage_path().'/app/images/';
+                    $storage_file_path = storage_path().'/app/public/images/';
                     
                     // move
                     $new_file_name = md5($tmp_name).'.'.$file_extension;
