@@ -20,11 +20,24 @@
                 <span>Applicant Management</span>
             </a>
         </li><!-- End Manage Applicant Nav -->
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('room-management') }}">
+                <i class="bi bi-layout-split"></i>
+                <span>Room Management</span>
+            </a>
+        </li><!-- End Room Management Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('exam-management') }}">
                 <i class="bi bi-person"></i>
                 <span>Exam Management</span>
+            </a>
+        </li><!-- End Manage Examination Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('exam-administrator') }}">
+                <i class="bi bi-person"></i>
+                <span>Exam-Administrator</span>
             </a>
         </li><!-- End Manage Examination Nav -->
         <li class="nav-item">

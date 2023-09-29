@@ -1543,12 +1543,22 @@ tr:nth-child(even) {
     margin-right: 10px;
     font-weight: bold;
 }
-
+.filter-label1 {
+  margin-right: 10px;
+  font-weight: bold;
+}
+.filter-select1 {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70px;
+}
 .filter-select {
     padding: 5px;
     margin-right: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .accept-btn, .decline-btn {
@@ -1579,6 +1589,7 @@ tr:nth-child(even) {
         margin-top: 10px;
     }
 }
+
 /* admin management applicant css */
 
 /* admin appointment management css */

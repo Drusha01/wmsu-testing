@@ -85,7 +85,40 @@ header .nav-item .nav-link {
 .navbar-nav .dropdown:hover .nav-link {
     color: #007bff;
 }
+/* Media query for tablets and small screens */
+@media (max-width: 768px) {
+    header .nav-link {
+        font-size: 14px; 
+        margin-left: 10px; 
+    }
+    .navbar-brand img {
+        max-width: 80px;
+        height: auto;
+    }
+}
 
+/* Media query for very small screens*/
+@media (max-width: 257px) {
+    header .nav-link {
+        font-size: 12px; 
+        margin-left: 5px; 
+    }
+}
+
+/* Media query for screens up to 471px */
+@media (max-width: 471px) {
+    .navbar-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; 
+    }
+
+    .navbar-brand img {
+        max-width: 20px; 
+        height: auto;
+    }
+}
 /*************
 header css
 *************/
@@ -97,7 +130,6 @@ hero section
 *************/
 .hero {
     width: 100%;
-
 }
 
 .hero .carousel-item img {
@@ -128,6 +160,7 @@ hero section
     left: 0;
     right: 0;
     position: absolute;
+    margin-top: 40px;
 }
 
 .hero .carousel-content-container {
@@ -161,7 +194,6 @@ hero section
     border: 1px solid var(--light);
     border-radius: 50px;
 }
-
 
 @media (max-width: 768px) {
     .hero .carousel-content-container h2 {

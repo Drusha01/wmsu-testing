@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/boxicons/2.0.7/boxicons/css/boxicons.min.css" rel="stylesheet">
     <!--  Main CSS File -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ADMIN.css') }}" rel="stylesheet">
     <!--   js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -53,6 +53,7 @@
                 <a class="nav-link" data-toggle="tab" href="#accepted-applicant-tab">Accepted Applicant</a>
             </li>
         </ul>
+
          <!-- Tab Content -->
         <div class="tab-content">
         <!-- Reviewing applicant tab -->
@@ -137,9 +138,22 @@
         </table>
         </div>
 
-            <!-- Accepted Applicant Tab -->
-            <div class="tab-pane fade" id="accepted-applicant-tab">
-                <!-- Application Review Table for accepted applicants -->
+
+
+
+<!-- Accepted Applicant Tab -->
+<div class="tab-pane fade" id="accepted-applicant-tab">
+    <div class="examfilter-container">
+        <label class="filter-label1" for="accepted-exam-filter">Filter accepted applicant by Exam:</label>
+        <select class="filter-select1" id="accepted-exam-filter">
+            <option value="">All</option>
+            <option value="CET">CET</option>
+            <option value="NAT">NAT</option>
+            <option value="NAT">EAT</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+                
                 <table class="application-table">
                 <thead>
                     <tr>
