@@ -8,10 +8,10 @@
                 <div class="Applicant-info">
                     <div class="profile-box">
                         <div class="profile-image-container">
-                            <input type="file" id="profileImageInput" style="display: none;">
                             <label for="profileImageInput" class="profile-image-label">
                                 <div class="profile-image">
-                                    <i class="fas fa-user fa-5x"></i>
+                                @if($user_details['user_profile_picture']== 'default.png') <i class="fas fa-user fa-5x"></i>@else <img style="border-radius:50%;"src="{{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}}" alt=""> @endif
+                                    
                                 </div>
                             </label>
                         </div>
@@ -252,14 +252,14 @@
                                     <div class="form-group row">
                                         <label for="newFullName" class="col-sm-4 col-form-label">Profile photo<span style="color:red;"></span> :</label>
                                         <div class="col-sm-8">
-                                        <input type="file"  wire:model="photo"  class="form-control" placeholder="Current Password" >
+                                        <input type="file"  accept="image/png, image/jpeg" wire:model="photo"  class="form-control" placeholder="Current Password" >
                                         </div>
                                         <div wire:loading wire:target="photo">Uploading...</div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="newFullName" class="col-sm-4 col-form-label">Formal ID<span style="color:red;"></span> :</label>
                                         <div class="col-sm-8">
-                                        <input type="file"  wire:model="formal_id"  class="form-control" placeholder="New Password" >
+                                        <input type="file"  accept="image/png, image/jpeg" wire:model="formal_id"  class="form-control" placeholder="New Password" >
                                         </div>
                                     </div>
                                     <div>

@@ -255,9 +255,7 @@ class StudentProfile extends Component
             ]);
         }
 
-        if($this->validate([
-            'photo' => 'image', 
-            ])){
+        if($this->photo&& file_exists(storage_path().'/app/livewire-tmp/'.$this->photo->getfilename())){
             $file_extension =$this->photo->getClientOriginalExtension();
             $tmp_name = 'livewire-tmp/'.$this->photo->getfilename();
             $size = Storage::size($tmp_name);
@@ -266,14 +264,14 @@ class StudentProfile extends Component
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
-                $valid_extesion = false;
+                $valid_extension = false;
                 foreach ($file_extensions as $value) {
                     if($value == $mime){
-                        $valid_extesion = true;
+                        $valid_extension = true;
                         break;
                     }
                 }
-                if($valid_extesion){
+                if($valid_extension){
                     $storage_file_path = storage_path().'/app/public/images/';
                     
                     // move
@@ -436,10 +434,7 @@ class StudentProfile extends Component
             }
         }
 
-
-        if($this->validate([
-            'formal_id' => 'image', 
-            ])){
+        if($this->formal_id && file_exists(storage_path().'/app/livewire-tmp/'.$this->formal_id->getfilename())){
             $file_extension =$this->formal_id->getClientOriginalExtension();
             $tmp_name = 'livewire-tmp/'.$this->formal_id->getfilename();
             $size = Storage::size($tmp_name);
@@ -448,15 +443,15 @@ class StudentProfile extends Component
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
-                $valid_extesion = false;
+                $valid_extension = false;
                 foreach ($file_extensions as $value) {
                     if($value == $mime){
-                        $valid_extesion = true;
+                        $valid_extension = true;
                         break;
                     }
                 }
-                if($valid_extesion){
-                    $storage_file_path = storage_path().'/app/public/images/';
+                if($valid_extension){
+                    $storage_file_path = storage_path().'/app/public/formal_id/';
                     
                     // move
                     $new_file_name = md5($tmp_name).'.'.$file_extension;
@@ -465,9 +460,12 @@ class StudentProfile extends Component
                     ->first()){
                         $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
                     }
-                    if(Storage::move($tmp_name, 'images/formal/'.$new_file_name)){
+                    if(Storage::move($tmp_name, 'public/formal_id/'.$new_file_name)){
                         if($user_details['user_formal_id'] != 'default.png'){
-                            unlink($storage_file_path.'original/'.$user_details['user_formal_id']);
+                            if(file_exists($storage_file_path.$user_details['user_formal_id'])){
+                                unlink($storage_file_path.$user_details['user_formal_id']);
+                            }
+                            
                         }
                         // delete old photo
                         DB::table('users as u')
