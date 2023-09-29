@@ -3,16 +3,18 @@
     <!-- content-->
     <section class="profile-section">
         <div class="container">
-            <h2 class="profile-heading">Applicant Information</h2>
+            <h2 class="profile-heading">Profile</h2>
             <div class="Applicant-container">
                 <div class="Applicant-info">
                     <div class="profile-box">
                         <div class="profile-image-container">
                             <label for="profileImageInput" class="profile-image-label">
-                                <div class="profile-image">
-                                @if($user_details['user_profile_picture']== 'default.png') <i class="fas fa-user fa-5x"></i>@else <img style="border-radius:50%;"src="{{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}}" alt=""> @endif
-                                    
-                                </div>
+                                <a target="blank"href="@if($user_details['user_profile_picture']== 'default.png')  @else {{asset('storage/images/original/'.$user_details['user_profile_picture'])}}@endif">
+                                    <div class="profile-image">
+                                    @if($user_details['user_profile_picture']== 'default.png') <i class="fas fa-user fa-5x"></i>@else <img style="border-radius:50%;" width="150" height="150" src="{{asset('storage/images/resize/'.$user_details['user_profile_picture'])}}" alt=""> @endif
+                                        
+                                    </div>
+                                </a>
                             </label>
                         </div>
                         <h3 class="mt-3">{{$user_details['user_name']}}</h3>
