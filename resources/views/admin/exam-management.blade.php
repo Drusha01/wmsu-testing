@@ -47,51 +47,84 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#exam-management-tab">Exam Management</a>
+                <a class="nav-link active" data-toggle="tab" href="#proctors-management-tab">Exam Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " data-toggle="tab" href="#assigned-proctors-tab">Assigned Proctors</a>
             </li>
         </ul>
 
         <!-- Tab Content -->
         <div class="tab-content">
-            <!-- Exam Management Tab -->
-            <div class="tab-pane show active" id="exam-management-tab">
-                <!-- exam management table -->
-                <!-- exam management table -->
-                <table class="table table-bordered" id="exam-table">
-                    <thead>
-                        <tr>
-                            <th>Applicant Name</th>
-                            <th>Exam Name</th>
-                            <th>Exam Date</th>
-                            <th>Exam Time</th>
-                            <th>Venue</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example applicant row -->
-                        <tr>
-                            <td>John Doe</td>
-                            <td>CET 1</td>
-                            <td>2023-09-20</td>
-                            <td>07:00 AM</td>
-                            <td>CLA 12</td>
-                            <td>Approved</td>
-                            <td>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-success">View</a>
-                            </td>
-                        </tr>
-                        <!-- Add more applicant rows as needed -->
-                    </tbody>
-                </table>
 
-            </div>
-        </div>
+        <!-- Exam Management Tab -->
+<div class="tab-pane show active" id="proctors-management-tab">
+    <!-- Exam Management Table -->
+    <table class="application-table" id="exam-management-table">
+        <thead>
+            <tr>
+                <th>Venue</th>
+                <th>Room</th>
+                <th>School Year</th>
+                <th>Capacity</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>WMSU MAIN</td>
+                <td>CLA 102</td>
+                <td>2023-2024</td>
+                <td>FULL</td>
+                <td>First Floor CLA Building</td>
+                <td>
+                    <button class="btn btn-danger" id="assignProctorButton" style="background-color: #990000; border-color: #990000;">Assign Proctor</button>
+                </td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</div>
+
+        <!-- Assigned proctors Tab -->
+        <div class="tab-pane show" id="assigned-proctors-tab">
+<!-- List of Assigned Proctors Table -->
+<table class="application-table" id="assigned-proctors-tab">
+    <thead>
+        <tr>
+            <th>Proctor Name</th>
+            <th>Venue</th>
+            <th>Room</th>
+            <th>School Year</th>
+            <th>Capacity</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John Smith</td>
+            <td>WMSU MAIN</td>
+            <td>CLA 102</td>
+            <td>2023-2024</td>
+            <td>FULL</td>
+            <td>First Floor CLA Building</td>
+            <td>
+            <button type="button" class="accept-button btn btn-primary btn-sm" data-toggle="modal" data-target="#">Edit</button>
+            <button type="button" class="decline-button btn btn-danger btn-sm" data-toggle="modal" data-target="#">Delete</button>
+            </td>
+        </tr>
+        <!-- Add more rows for other assigned proctors as needed -->
+    </tbody>
+</table>
+
+</div>
+
+  
     </main><!-- End #main -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 </body>
 
