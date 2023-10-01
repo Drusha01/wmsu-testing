@@ -219,7 +219,7 @@ label {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px; /* Adjusted padding */
   margin-top: 20px;
-  max-width: 700px; /* Adjusted max-width */
+  max-width: 850px; /* Adjusted max-width */
   margin-left: auto;
   margin-right: auto;
 }
@@ -458,3 +458,66 @@ font-size: 15px;
   .custom-class {
    font-size: 17px;
   }
+  .family-background{
+    display: inline-block;
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
+  .father-information{
+    border: 2px solid gray;
+    width: 380px;
+    display: inline-block;
+  }
+  .mother-information{
+    display: inline-block;
+width: 380px;
+border: 2px solid gray;
+  }
+  .mother{
+    margin-left: 10px;
+  }
+  .father{
+    margin-left: 10px;
+  }
+  .guardian{
+    margin-top: 10px;
+    width: 789px;
+    border: 2px solid gray;
+  }
+.school-information{
+  border: 2px solid gray;
+  height: 100px;
+  width: 800px;
+
+}
+.school-information1{
+  border: 2px solid gray;
+  height: 180px;
+  width: 800px;
+
+}
+.school-information2{
+  border: 2px solid gray;
+  height: 250px;
+  width: 800px;
+
+}
+.school-information3{
+  border: 2px solid gray;
+  height: 440px;
+  width: 800px;
+
+}
+.school-information4{
+  border: 2px solid gray;
+  height: 250px;
+  width: 800px;
+
+}
+  .guardian-grad, .guardian-shift, .guardian-trans, .guardian-eat, .guardian-gsat, .guardian-lsat, .guardian-nat{
+    margin-top: 10px;
+    width: 765px;
+    border: 2px solid gray;
+  }
+  
+  

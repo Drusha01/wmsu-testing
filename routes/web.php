@@ -69,6 +69,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
         Route::get('/results', [StudentController::class, 'results'])->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
+        Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
     });
 });
 
@@ -87,11 +88,7 @@ Route::prefix('test-application')->group(function () {
 
 
 
-
-
 // Email Verification
-
-
 Route::get('/verification-code', function () {
     return view('account.verification-code');
 })->name('verification-code');
@@ -122,9 +119,24 @@ Route::prefix('admin')->group(function () {
     Route::get('application-management', function () {return view('admin.manage-application');})->name('manage-application');
     Route::get('announcement-management', function () {return view('admin.admin-announcement');})->name('admin-announcement');
     Route::get('user-management', function () {return view('admin.user-management');})->name('user-management');
+    Route::get('result-management', function () {return view('admin.result-management');})->name('result-management');
+    
 });
 
 // test section
 Route::get('process-cet-registration', function () {
     return view('test-registration.process-cet-registration');
 })->name('process-cet-registration');
+
+<<<<<<< HEAD
+
+//permit
+Route::get('permit', function () {
+    return view('permit.testing-permit');
+})->name('permit');
+=======
+Route::get('exam-template', function () {
+    return view('exam-template.exam-permit');
+})->name('exam-template');
+>>>>>>> 37ddf39aae139aa4e22e9fe04851bdd006f35dd7
+

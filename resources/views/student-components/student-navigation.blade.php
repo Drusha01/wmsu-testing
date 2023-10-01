@@ -38,48 +38,56 @@
                     </div>
                 </li>
                 <!-- Add "Contact Us" navigation link here -->
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
+                </li>
             </ul>
 
-            <!-- Contact Us Modal -->
-            <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Contact form -->
-                            <form id="contact-form" method="post" action="contact-form-handler.php">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+            <!-- Notification Dropdown -->
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+                        <h6 class="dropdown-header">Notifications</h6>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="notification-icon">
+                                    <i class="fas fa-info-circle"></i>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="notification-text">
+                                    <p>New notification 1</p>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="notification-icon">
+                                    <i class="fas fa-info-circle"></i>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" form="contact-form" class="btn btn-primary">Submit</button>
-                        </div>
+                                <div class="notification-text">
+                                    <p>New notification 2</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="notification-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="notification-text">
+                                    <p>New notification 3</p>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Add more notification items dynamically here -->
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
 
-
+            <!-- Profile Dropdown -->
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/boxicons/2.0.7/boxicons/css/boxicons.min.css" rel="stylesheet">
     <!--  Main CSS File -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ADMIN.css') }}" rel="stylesheet">
     <!--   js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/addexam.js') }}"></script>
@@ -62,148 +62,139 @@
     <!-- Exam Management Tab -->
     <div class="tab-pane fade" id="exam-management-tab">
         <!-- Add Exam Button -->
-        <button class="btn btn-primary add-exam-button" data-toggle="modal" data-target="#add-exam-modal">Add Exam</button>
 
-        <!-- List of Exams (Table) -->
+     <!-- exam management table -->
     <table class="table table-bordered" id="exam-table">
     <thead>
         <tr>
+            <th>Applicant Name</th>
+            <th>Type of Exam</th>
             <th>Exam Name</th>
-            <th>Description</th>
-            <th>Registration Period</th>
+            <th>Date Applied</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <!-- Example exam row -->
+        <!-- Example applicant row -->
         <tr>
-            <td>Exam 1</td>
-            <td>Description for Exam 1</td>
-            <td>2023-10-01 to 2023-10-15</td>
+            <td>John Doe</td>
+            <td>CET</td>
+            <td>CET 1</td>
+            <td>2023-09-20</td>
+            <td>Approved</td>
             <td>
-                <a href="#" class="btn btn">Edit</a>
-                <a href="#" class="btn btn">Delete</a>
+                <a href="#" class="btn btn">View Room</a>
             </td>
         </tr>
-        <!-- Add more exam rows as needed -->
+        <!-- Add more applicant rows as needed -->
     </tbody>
     </table>
     </div>
-<!-- Add Exam Modal with Start Date and End Date Fields -->
-<div class="modal fade" id="add-exam-modal" tabindex="-1" role="dialog" aria-labelledby="add-exam-modal-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add-exam-modal-label">Add an Exam</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Add Exam Form with Start Date and End Date Fields -->
-                <form id="add-exam-form">
-                    <div class="form-group">
-                        <label for="exam-name">Exam Name:</label>
-                        <input type="text" class="form-control" id="exam-name" name="exam-name" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" class="form-control" id="start-date" name="start-date" required>
-                    </div>
+<!-- Room Management Tab -->
+<div class="tab-pane fade" id="room-management-tab">
+    <!-- Add Room Form -->
+    <div class="add-room-form">
+        <h3>Add a Room</h3>
+        <form id="add-room-form">
+            <label for="college-name">College Name:</label>
+            <input type="text" id="college-name" name="college-name" required>
 
-                    <div class="form-group">
-                        <label for="end-date">End Date:</label>
-                        <input type="date" class="form-control" id="end-date" name="end-date" required>
-                    </div>
+            <label for="room-name">Room Name/Number (Unique):</label>
+            <input type="text" id="room-name" name="room-name" required>
 
-                    <button type="submit" class="btn btn-primary">Add Exam</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- You can add additional buttons or actions here if needed -->
-            </div>
-        </div>
+            <label for="room-capacity">Capacity:</label>
+            <input type="number" id="room-capacity" name="room-capacity" required>
+
+            <label for="room-description">Room Description:</label>
+            <textarea id="room-description" name="room-description" rows="4" required></textarea>
+
+            <button type="submit">Add Room</button>
+        </form>
+    </div>
+
+    <!-- List of Available Rooms -->
+    <div class="available-rooms">
+        <h3>Available Rooms</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>College Name</th>
+                    <th>Room Name/Number (Unique)</th>
+                    <th>Capacity</th>
+                    <th>Room Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>College A</td>
+                    <td>Room 101</td>
+                    <td>30</td>
+                    <td>Small lecture room</td>
+                </tr>
+                <tr>
+                    <td>College B</td>
+                    <td>Room 102</td>
+                    <td>25</td>
+                    <td>Medium-sized lecture room</td>
+                </tr>
+                <tr>
+                    <td>College C</td>
+                    <td>Room 103</td>
+                    <td>35</td>
+                    <td>Large lecture room</td>
+                </tr>
+                <!-- Add more room entries as needed -->
+            </tbody>
+        </table>
     </div>
 </div>
 
-            <!-- Room Management Tab -->
-            <div class="tab-pane fade" id="room-management-tab">
-
-                <!-- Add Room Form -->
-                <div class="add-room-form">
-                    <h3>Add a Room</h3>
-                    <form id="add-room-form">
-                        <label for="room-name">Room Name:</label>
-                        <input type="text" id="room-name" name="room-name" required>
-
-                        <label for="room-capacity">Room Capacity:</label>
-                        <input type="number" id="room-capacity" name="room-capacity" required>
-
-                        <button type="submit">Add Room</button>
-                    </form>
-                </div>
-
-                <!-- List of Available Rooms -->
-                <div class="available-rooms">
-                    <h3>Available Rooms</h3>
-                    <!-- Display a list of available rooms here -->
-                    <ul>
-                        <li>Room 101 (Capacity: 30)</li>
-                        <li>Room 102 (Capacity: 25)</li>
-                        <li>Room 103 (Capacity: 35)</li>
-                        <!-- Add more room items as needed -->
-                    </ul>
-                </div>
+<!-- Room Assignment Tab -->
+<div class="tab-pane fade" id="room-assignment-tab">
+    <!-- Room Assignment Form -->
+    <div class="room-assignment-form">
+        <h3>Assign Rooms for Examination</h3>
+        <form id="room-assignment-form">
+            <!-- Exam Name -->
+            <div class="form-group">
+                <label for="exam-select">Select Exam:</label>
+                <select id="exam-select" name="exam-select">
+                    <option value="exam-1">Exam 1</option>
+                    <option value="exam-2">Exam 2</option>
+                    <!-- Add more exams as needed -->
+                </select>
             </div>
 
-
-            <!-- Room Assignment Tab -->
-            <div class="tab-pane fade" id="room-assignment-tab">
-                <h2 class="custom-section-heading">Room Assignment for Examination</h2>
-
-                <!-- Room Assignment Form -->
-                <div class="room-assignment-form">
-                    <h3>Assign Rooms for Examination</h3>
-                    <form id="room-assignment-form">
-                        <label for="exam-select">Select Exam:</label>
-                        <select id="exam-select" name="exam-select">
-                            <option value="exam-1">Exam 1</option>
-                            <option value="exam-2">Exam 2</option>
-                            <!-- Add more exams as needed -->
-                        </select>
-
-                        <label for="room-select">Select Room:</label>
-                        <select id="room-select" name="room-select">
-                            <option value="room-101">Room 101 (Capacity: 30)</option>
-                            <option value="room-102">Room 102 (Capacity: 25)</option>
-                            <option value="room-103">Room 103 (Capacity: 35)</option>
-                            <!-- Add more rooms as needed -->
-                        </select>
-
-                        <button type="submit">Assign Room</button>
-                    </form>
-                </div>
-
-                <!-- List of Room Assignments -->
-                <div class="room-assignments">
-                    <h3>Room Assignments</h3>
-                    <!-- Display a list of room assignments here -->
-                    <ul>
-                        <li>Exam 1 is assigned to Room 101 (Capacity: 30)</li>
-                        <li>Exam 2 is assigned to Room 102 (Capacity: 25)</li>
-                        <!-- Add more room assignments as needed -->
-                    </ul>
-                </div>
+            <!-- Room Name -->
+            <div class="form-group">
+                <label for="room-select">Select Room:</label>
+                <select id="room-select" name="room-select">
+                    <option value="room-101">Room 101 (Capacity: 30)</option>
+                    <option value="room-102">Room 102 (Capacity: 25)</option>
+                    <option value="room-103">Room 103 (Capacity: 35)</option>
+                    <!-- Add more rooms as needed -->
+                </select>
             </div>
 
-        </div>
+            <button type="submit">Assign Room</button>
+        </form>
+    </div>
+
+    <!-- List of Room Assignments -->
+    <div class="room-assignments">
+        <h3>Room Assignments</h3>
+        <!-- Display a list of room assignments here -->
+        <ul>
+            <li>Exam 1 is assigned to Room 101 (Capacity: 30)</li>
+            <li>Exam 2 is assigned to Room 102 (Capacity: 25)</li>
+            <!-- Add more room assignments as needed -->
+        </ul>
+    </div>
+</div>
+
     </section>
     <!-- End Inserted Section -->
 </main><!-- End #main -->

@@ -61,11 +61,11 @@
                         <!-- Form to modify username and profile image -->
                         <form>
                         <div class="form-group">
-                            <label class="fas" for="newProfileImage">Change profile picture:</label>
-                            <input type="file" class="form-control" id="newProfileImage">
+                            <label for="newUsername">New Username:</label>
+                            <input type="text" class="form-control" id="newUsername" placeholder="Enter new username">
                         </div>
                         <div class="form-group">
-                            <label class="fas" for="newProfileImage">Formal Photo(2x2):</label>
+                            <label class="fas fa-camera" for="newProfileImage">Change photo:</label>
                             <input type="file" class="form-control" id="newProfileImage">
                         </div>
                         <!-- Add more fields to modify user details as needed -->
@@ -100,7 +100,7 @@
         </div>
     </div>
 </div>
-<!-- Applicant details -->
+                <!-- Applicant details -->
     <div class="applicant-details">
         <div class="details-box">
             <h4>Applicant Details</h4>
@@ -109,9 +109,11 @@
                 <li class="list-group-item"><strong>Gender:</strong> Male</li>
                 <li class="list-group-item"><strong>Age:</strong> 18</li>
                 <li class="list-group-item"><strong>Home Address:</strong> 123 Main St, City</li>
-                <li class="list-group-item"><strong>Phone number:</strong> 09956207083</li>
                 <li class="list-group-item"><strong>Email:</strong> john.doe@example.com</li>
                 <li class="list-group-item"><strong>Birthdate:</strong> January 15, 2000</li>
+                <li class="list-group-item"><strong>Senior High School:</strong> Sample High School</li>
+                <li class="list-group-item"><strong>Strand:</strong> STEM</li>
+                <li class="list-group-item"><strong>Awards (if any):</strong> Dean's List, Science Fair Champion</li>
                 <li class="list-group-item"><strong>Account Created:</strong> January 1, 2023</li>
             </ul>
             <button id="modifyButtonDetails" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
@@ -157,14 +159,6 @@
                             </div>
                         </div>
 
-                        <!-- Phone Number -->
-                        <div class="form-group row">
-                            <label for="newPhoneNumber" class="col-sm-3 col-form-label">Phone Number:</label>
-                            <div class="col-sm-9">
-                                <input type="tel" class="form-control" id="newPhoneNumber" placeholder="Enter phone number" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);">
-                            </div>
-                        </div>
-
                         <!-- Home Address -->
                         <div class="form-group row">
                             <label for="newHomeAddress" class="col-sm-3 col-form-label">Home Address:</label>
@@ -189,6 +183,33 @@
                             </div>
                         </div>
                     </fieldset>
+                    
+                    <fieldset>
+                        <legend>Educational Details</legend>
+                        <!-- Senior High School -->
+                        <div class="form-group row">
+                            <label for="newSeniorHighSchool" class="col-sm-3 col-form-label">Senior High School:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newSeniorHighSchool" placeholder="Enter Name of school">
+                            </div>
+                        </div>
+
+                        <!-- Strand -->
+                        <div class="form-group row">
+                            <label for="newStrand" class="col-sm-3 col-form-label">Strand:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newStrand" placeholder="Enter shs strand">
+                            </div>
+                        </div>
+
+                        <!-- Awards (if any) -->
+                        <div class="form-group row">
+                            <label for="newAwards" class="col-sm-3 col-form-label">Awards (if any):</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="newAwards" placeholder="Enter awards received">
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
             <div class="modal-footer">
@@ -198,9 +219,6 @@
         </div>
     </div>
 </div>
-
-
-
 <!-- Family Background -->
 <div class="family-background">
     <h4>Family Background</h4>
@@ -268,124 +286,36 @@
     </div>
 </div>
 
-            <!-- Educational Background Section -->
-            <div class="educational-background">
-                <h4>Educational Background</h4>
-                <ul class="list-group" id="educationalBackgroundList">
-                    <!-- Existing educational background details go here -->
-                    <li class="list-group-item">
-                        <strong>Senior High School:</strong> Sample High School
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Strand:</strong> STEM
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Awards (if any):</strong> Dean's List, Science Fair Champion
-                    </li>
-                </ul>
-                <button id="modifyButtonEducationalBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalEducationalBackground">Modify</button>
-            </div>
 
-            <!-- Modify Educational Background Modal -->
-            <div class="modal fade" id="modifyModalEducationalBackground" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelEducationalBackground" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelEducationalBackground">Modify Educational Background</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <fieldset>
-                                    <legend>Educational Background Information</legend>
-                                    <!-- High School -->
-                                    <div class="form-group row">
-                                        <label for="newHighSchool" class="col-sm-3 col-form-label">Senior High School*:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="newHighSchool" placeholder="Enter high school name" required>
-                                        </div>
-                                    </div>
+           
+<div class="requirement">
+    <h4>Requirements Upload</h4>
+    <p>Upload the following documents:</p>
+    <ul class="list-group" id="requirementsList">
+        <!-- Existing requirements go here -->
+        <li class="list-group-item">
+            1. High School Transcript
+            <button class="btn btn-info btn-sm float-right view-button" data-toggle="modal" data-target="#transcriptModal">View</button>
+            <input type="file" style="display: none;">
+            <button class="btn btn-primary btn-sm float-right upload-button">Upload</button>
+        </li>
+        <li class="list-group-item">
+            2. Birth Certificate
+            <button class="btn btn-info btn-sm float-right view-button" data-toggle="modal" data-target="#birthCertificateModal">View</button>
+            <input type="file" style="display: none;">
+            <button class="btn btn-primary btn-sm float-right upload-button">Upload</button>
+        </li>
+        <li class="list-group-item">
+            3. Photo ID
+            <button class="btn btn-info btn-sm float-right view-button" data-toggle="modal" data-target="#photoIDModal">View</button>
+            <input type="file" style="display: none;">
+            <button class="btn btn-primary btn-sm float-right upload-button">Upload</button>
+        </li>
+    </ul>
+    <button id="addRequirementButton" class="btn btn-success">Add New Requirement</button>
+</div>
 
-                                    <!-- Strand -->
-                                    <div class="form-group row">
-                                        <label for="newStrand" class="col-sm-3 col-form-label">Strand*:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="newStrand" placeholder="Enter  strand" required>
-                                        </div>
-                                    </div>
 
-                                    <!-- Awards (if any) -->
-                                    <div class="form-group row">
-                                        <label for="newAwards" class="col-sm-3 col-form-label">Awards (if any):</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="newAwards" placeholder="Enter  awards received">
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save Changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Requirements Section -->
-            <div class="requirements">
-                <h4>Requirements Upload</h4>
-                <ul class="list-group" id="requirementsList">
-                    <!-- Existing requirements go here -->
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> High School Transcript
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> Birth Certificate
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Requirement Name:</strong> Photo ID
-                    </li>
-                </ul>
-                <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
-            </div>
-
-            <!-- Modify Requirements Modal -->
-            <div class="modal fade" id="modifyModalRequirements" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelRequirements" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelRequirements">Modify Requirements</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <fieldset>
-                                    <legend>Edit Requirements</legend>
-                                    <!-- Requirement Name -->
-                                    <div class="form-group row">
-                                        <label for="newRequirementName" class="col-sm-3 col-form-label">Requirement Name*:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="newRequirementName" placeholder="Enter new requirement name" required>
-                                        </div>
-                                    </div>
-                                    <!-- Add more fields for requirement details as needed -->
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-          
 <!-- content-->
 </section>
 

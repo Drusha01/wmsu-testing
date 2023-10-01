@@ -1,7 +1,4 @@
 
-
-
-
 :root {
     --primary: #dc143c;
     --light: #fff;
@@ -14,7 +11,6 @@ custom css
 * {
     margin: 0;
     padding: 0;
-
 }
 
 body {
@@ -42,9 +38,9 @@ header {
 }
 
 header .nav-item .nav-link {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--light);
-    font-weight: 600;
+    font-weight: 500;
     margin-left: 20px;
 }
 

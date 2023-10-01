@@ -141,47 +141,40 @@
             <div class="tab-pane fade" id="accepted-applicant-tab">
                 <!-- Application Review Table for accepted applicants -->
                 <table class="application-table">
-                    <thead>
-                        <tr>
-                            <th>Applicant Name</th>
-                            <th>Type of Exam</th>
-                            <th>Exam Name</th>
-                            <th>Date Applied</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                            <th>Application Form</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Accepted Applicant 1</td>
-                            <td>CET</td>
-                            <td>CET Exam</td>
-                            <td>2023-09-10</td>
-                            <td>Accepted</td>
-                            <td>
-                                <button class="view-button">View</button>
-                            </td>
-                            <td>
-                                <a href="path_to_application_form.pdf" target="_blank">Download</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Accepted Applicant 2</td>
-                            <td>NAT</td>
-                            <td>Nursing Aptitude Test</td>
-                            <td>2023-09-11</td>
-                            <td>Accepted</td>
-                            <td>
-                                <button class="view-button">View</button>
-                            </td>
-                            <td>
-                                <a href="path_to_application_form.pdf" target="_blank">Download</a>
-                            </td>
-                        </tr>
-                        <!-- Add more accepted applicant rows here -->
-                    </tbody>
-                </table>
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Type of Exam</th>
+                        <th>Exam Name</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Accepted Applicant 1</td>
+                        <td>CET</td>
+                        <td>CET Exam</td>
+                        <td>2023-09-10</td>
+                        <td>Accepted</td>
+                        <td>
+                            <button class="view-button">View</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Accepted Applicant 2</td>
+                        <td>NAT</td>
+                        <td>Nursing Aptitude Test</td>
+                        <td>2023-09-11</td>
+                        <td>Accepted</td>
+                        <td>
+                            <button class="view-button">View</button>
+                        </td>
+                    </tr>
+                    <!-- Add more accepted applicant rows here -->
+                </tbody>
+            </table>
                 </div>
 
 

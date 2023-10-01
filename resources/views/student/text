@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Additional CSS Styles */
+        .student-profile {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .applicant-form {
+            display: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .applicant-form h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+@include('student-components.student-navigation')
+@include('student-components.student-navtabs')
+<!-- Content -->
+
+<!-- Student Profile Content -->
+<section class="student-profile">
+    <h1>Welcome, [Student Name]</h1>
+    <p>Your Student Profile Information:</p>
+    <!-- Display student profile information here -->
+
+    <label for="applicantType">Select Applicant Type:</label>
+    <select id="applicantType" onchange="displayApplicantForm()">
+        <option value="shs_graduating">SHS Graduating</option>
+        <option value="shs_graduate">SHS Graduate</option>
+        <option value="shiftee">Shiftee</option>
+        <option value="transferee">Transferee</option>
+        <option value="college_graduate">College Graduate</option>
+    </select>
+
+    <!-- Application Forms -->
+    <div id="shs_graduating_form" class="applicant-form">
+        <h2>SHS Graduating Application Form</h2>
+        <!-- Include fields specific to SHS Graduating applicants -->
+        <!-- Example fields: Name, School, Contact, etc. -->
+    </div>
+
+    <div id="shs_graduate_form" class="applicant-form">
+        <h2>SHS Graduate Application Form</h2>
+        <!-- Include fields specific to SHS Graduate applicants -->
+    </div>
+
+    <div id="shiftee_form" class="applicant-form">
+        <h2>Shiftee Application Form</h2>
+        <!-- Include fields specific to Shiftee applicants -->
+    </div>
+
+    <div id="transferee_form" class="applicant-form">
+        <h2>Transferee Application Form</h2>
+        <!-- Include fields specific to Transferee applicants -->
+    </div>
+
+    <div id="college_graduate_form" class="applicant-form">
+        <h2>College Graduate Application Form</h2>
+        <!-- Include fields specific to College Graduate applicants -->
+    </div>
+</section>
+<!-- End Student Profile Content -->
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function displayApplicantForm() {
+        // Get the selected applicant type from the dropdown
+        const selectedType = document.getElementById("applicantType").value;
+
+        // Hide all application forms
+        const forms = document.querySelectorAll(".applicant-form");
+        forms.forEach(form => {
+            form.style.display = "none";
+        });
+
+        // Display the selected applicant's form
+        const selectedForm = document.getElementById(`${selectedType}_form`);
+        if (selectedForm) {
+            selectedForm.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
