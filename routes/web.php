@@ -128,15 +128,3 @@ Route::get('process-cet-registration', function () {
     return view('test-registration.process-cet-registration');
 })->name('process-cet-registration');
 
-<<<<<<< HEAD
-
-//permit
-Route::get('permit', function () {
-    return view('permit.testing-permit');
-})->name('permit');
-=======
-Route::get('exam-template', function () {
-    return view('exam-template.exam-permit');
-})->name('exam-template');
->>>>>>> 37ddf39aae139aa4e22e9fe04851bdd006f35dd7
-
