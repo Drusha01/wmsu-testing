@@ -48,6 +48,17 @@ class StudentProfile extends Component
     public $number_of_siblings;
     public $fb_address;
 
+    public $ueb_id;
+    // public $ueb_shs_school_type_id;
+    // public $ueb_shs_school_details;
+    public $ueb_shs_address;
+    public $ueb_shs_form_137;
+    public $ueb_shs_is_graduate;
+    public $ueb_shs_graduation_date;
+    public $ueb_shs_diploma ;
+    public $ueb_attachement_counts=1;
+    public $ueb_attachement_count_max = 10;
+
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
 
@@ -81,7 +92,23 @@ class StudentProfile extends Component
             $this->number_of_siblings = $family_details->family_background_number_of_siblings ;
             $this->fb_address = $family_details->family_background_address ;
         }
-        // educational backgroun
+        // educational backgrounds
+        if($educational_details = DB::table('user_educational_background as ueb')
+            ->where('ueb.ueb_user_id', $this->user_details['user_id'])
+            ->first()){
+
+            $this->ueb_id = $educational_details->ueb_id;
+            $this->ueb_shs_school_name = $educational_details->ueb_shs_school_name;
+            $this->ueb_shs_address = $educational_details->ueb_shs_address ;
+            $this->ueb_shs_form_137 = $educational_details->ueb_shs_form_137;
+            $this->ueb_shs_is_graduate = $educational_details->ueb_shs_is_graduate ;
+            $this->ueb_shs_graduation_date = $educational_details->ueb_shs_graduation_date;
+
+            $this->ueb_shs_diploma = $educational_details->ueb_shs_diploma ;
+
+            // attachments
+            dd('nice');
+        }
         // requirements
     }
     public function render()
@@ -260,7 +287,7 @@ class StudentProfile extends Component
             $tmp_name = 'livewire-tmp/'.$this->photo->getfilename();
             $size = Storage::size($tmp_name);
             $mime = Storage::mimeType($tmp_name);
-            $max_image_size = 5 * 1024*1024; // 5 mb
+            $max_image_size = 10 * 1024*1024; // 5 mb
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
@@ -439,7 +466,7 @@ class StudentProfile extends Component
             $tmp_name = 'livewire-tmp/'.$this->formal_id->getfilename();
             $size = Storage::size($tmp_name);
             $mime = Storage::mimeType($tmp_name);
-            $max_image_size = 5 * 1024*1024; // 5 mb
+            $max_image_size = 10 * 1024*1024; // 5 mb
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
@@ -849,5 +876,61 @@ class StudentProfile extends Component
             }
         }
     }
+
+    public function save_educational_details(Request $request){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Unauthenticated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/login'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/deleted'
+            ]);
+        }
+        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Account inactive!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/inactive'
+            ]);
+        }
+
+        dd('save details');
+    }
+    // public function add_attachements($index,Request $request){
+    //     $user_details = $request->session()->all();
+    //     $this->ueb_attachement_counts++;
+    //     array_push($this->ueb_attachements, ['',rand()]);
+    // }
+    // public function delete_attachements($index){
+        
+    //     $ueb_attachements = [];
+        
+    //     for ($i=0; $i <$this->ueb_attachement_counts ; $i++) { 
+    //         if($i != $index){
+    //             array_push($ueb_attachements, $this->ueb_attachements[$i]);
+    //         }
+    //     }
+     
+    //     $this->ueb_attachement_counts--;
+    //     $this->ueb_attachements = $ueb_attachements; 
+    //     // dd($ueb_attachements);
+    // }
 }
+
 

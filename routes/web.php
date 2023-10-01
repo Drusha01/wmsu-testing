@@ -102,6 +102,9 @@ Route::get('verification-email', function () {
 
 
 
+Route::get('php_info', function () {
+    return phpinfo();
+})->name('php_info');
 
 // admin section
 Route::prefix('admin')->group(function () {
