@@ -111,13 +111,16 @@
                         <div class="details-box col-lg-12 mb-4">
                             <h5>SHS's Details</h5>
                             <ul class="list-group" id="SeniorHighSchoolList">
-                                <li class="list-group-item"><strong>SHS Name: </strong> {{$g_firstname}}</li>
-                                <li class="list-group-item"><strong>SHS Address: </strong> {{$g_middlename}} </li>
-                                <li class="list-group-item"><strong>SHS Form 137/138/TOR: </strong> {{$g_lastname}}</li>
-                                <li class="list-group-item"><strong>SHS Graduate ?: </strong> {{$g_suffix}}</li>
-                                <li class="list-group-item"><strong>SHS Expected graduation date: </strong> {{$g_suffix}}</li>
-                                <li class="list-group-item"><strong>SHS Diploma: </strong> {{$g_suffix}}</li>
-                                <li class="list-group-item"><strong>SHS Attachments: </strong> {{$g_suffix}}</li>
+                                <li class="list-group-item"><strong>SHS Name: </strong> {{$ueb_shs_school_name}}</li>
+                                <li class="list-group-item"><strong>SHS Address: </strong> {{$ueb_shs_address}} </li>
+                                <li class="list-group-item"><strong>SHS Form 137/138/TOR: </strong> @if($ueb_shs_form_137_link) <a target="blank"href="{{asset('storage/ueb_shs_form_137/'.$ueb_shs_form_137_link)}}"><button type="button" class="btn btn-success" >View</button></a> @else No attachment @endif</li>
+                                <li class="list-group-item"><strong>SHS Graduate ?: </strong> @if($ueb_shs_is_graduate)  Yes @else No @endif</li>
+                                @if($ueb_shs_is_graduate)
+                                    <li class="list-group-item"><strong>SHS Diploma: </strong> @if($ueb_shs_diploma_link) <a target="blank"href="{{asset('storage/ueb_shs_diploma   /'.$ueb_shs_diploma_link)}}"><button type="button" class="btn btn-success" >View</button></a> @else No attachment @endif</li>
+                                @else
+                                <li class="list-group-item"><strong>SHS Expected graduation date: </strong> @if($ueb_shs_graduation_date){{date_format(date_create($ueb_shs_graduation_date),"F d, Y ")}}@endif</li>
+                                @endif
+
                             </ul>
                         </div>
                     </div>
@@ -241,14 +244,14 @@
                                     <div class="form-group row">
                                         <label for="newFullName" class="col-sm-4 col-form-label">Profile photo<span style="color:red;"></span> :</label>
                                         <div class="col-sm-8">
-                                        <input type="file"  accept="image/png, image/jpeg" wire:model="photo"  class="form-control" placeholder="Current Password" >
+                                        <input type="file"  accept="image/png, image/jpeg" wire:model="photo"  class="form-control" placeholder="Current Password" id="{{$photo_id}}">
                                         </div>
                                         <div wire:loading wire:target="photo">Uploading...</div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="newFullName" class="col-sm-4 col-form-label">Formal ID<span style="color:red;"></span> :</label>
                                         <div class="col-sm-8">
-                                        <input type="file"  accept="image/png, image/jpeg" wire:model="formal_id"  class="form-control" placeholder="New Password" >
+                                        <input type="file"  accept="image/png, image/jpeg" wire:model="formal_id"  class="form-control" placeholder="New Password" id="{{$formal_id_id}}">
                                         </div>
                                     </div>
                                     <div>
@@ -456,7 +459,7 @@
                                             <div class="form-group row">
                                                 <label for="newFullName" class="col-sm-3 col-form-label">SHS Name<span style="color:red;"></span> :</label>
                                                 <div class="col-sm-9">
-                                                    <input type="name"  wire:model="ueb_shs_school_details" class="form-control" placeholder="Enter Name" >
+                                                    <input type="name"  wire:model="ueb_shs_school_name" class="form-control" placeholder="Enter Name" >
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -468,28 +471,32 @@
                                             <div class="form-group row">
                                                 <label for="newFullName" class="col-sm-3 col-form-label">SHS Graduate ?<span style="color:red;"></span> :</label>
                                                 <div class="col-sm-5">
-                                                    <input type="checkbox" wire:model="ueb_shs_is_graduate" {{$ueb_shs_is_graduate}}> <label for="newFullName" class="col-sm-1 col-form-label">Yes<span style="color:red;"></span></label>
+                                                    <input type="checkbox" wire:model="ueb_shs_is_graduate" > <label for="newFullName" class="col-sm-1 col-form-label">Yes<span style="color:red;"></span></label>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="newFullName" class="col-sm-3 col-form-label">SHS graduation date<span style="color:red;"></span> :</label>
-                                                <div class="col-sm-9">
-                                                    <input type="date"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                            @if($ueb_shs_is_graduate)
+                                               
+                                                <div class="form-group row">
+                                                    <label for="newFullName" class="col-sm-3 col-form-label">SHS Diploma<span style="color:red;"></span> :</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="file"  wire:model="ueb_shs_diploma" class="form-control" placeholder="Enter Suffix" id="{{$diploma_id}}" >
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="button" class="btn btn-success" wire:click="">View</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="newFullName" class="col-sm-3 col-form-label">SHS Diploma<span style="color:red;"></span> :</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file"  wire:model="ueb_shs_graduation_date" class="form-control" placeholder="Enter Suffix" >
+                                            @else
+                                                <div class="form-group row">
+                                                    <label for="newFullName" class="col-sm-3 col-form-label">SHS graduation date<span style="color:red;"></span> :</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="date"  wire:model="ueb_shs_graduation_date" class="form-control" placeholder="Enter Suffix" >
+                                                    </div>
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <button type="button" class="btn btn-success" wire:click="">View</button>
-                                                </div>
-                                            </div>
+                                            @endif
                                             <div class="form-group row">
                                                 <label for="newFullName" class="col-sm-3 col-form-label">SHS Form 137/138/TOR<span style="color:red;"></span> :</label>
                                                 <div class="col-sm-7">
-                                                    <input type="file"  wire:model="ueb_shs_form_137" class="form-control" placeholder="Enter Form" >
+                                                    <input type="file"  wire:model="ueb_shs_form_137" class="form-control" placeholder="Enter Form" id="{{$ueb_shs_form_137_id}}">
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" class="btn btn-success" wire:click="">View</button>

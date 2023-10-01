@@ -18,6 +18,9 @@ class StudentProfile extends Component
     public $photo;
     public $formal_id;
 
+    public $photo_id;
+    public $formal_id_id;
+
     // password
     public $current_password;
     public $new_password;
@@ -49,20 +52,28 @@ class StudentProfile extends Component
     public $fb_address;
 
     public $ueb_id;
-    // public $ueb_shs_school_type_id;
-    // public $ueb_shs_school_details;
+    public $ueb_shs_school_name;
     public $ueb_shs_address;
     public $ueb_shs_form_137;
-    public $ueb_shs_is_graduate;
+    public $ueb_shs_is_graduate = false;
     public $ueb_shs_graduation_date;
     public $ueb_shs_diploma ;
     public $ueb_attachement_counts=1;
     public $ueb_attachement_count_max = 10;
 
+    public $diploma_id;
+    public $ueb_shs_form_137_id;
+    public $ueb_shs_form_137_link;
+    public $ueb_shs_diploma_link;
+   
+
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
 
         $this->title = 'profile';
+
+        $this->photo_id = rand(0,1000000);
+        $this->formal_id_id = rand(0,1000000);
 
         $this->firstname = $this->user_details['user_firstname'];
         $this->middlename = $this->user_details['user_middlename'];
@@ -73,6 +84,9 @@ class StudentProfile extends Component
         $this->phone = $this->user_details['user_phone'];
         $this->address = $this->user_details['user_address'];
         $this->birthdate = $this->user_details['user_birthdate'];
+
+        $this->diploma_id = rand(0,1000000);
+        $this->ueb_shs_form_137_id = rand(0,1000000);
 
         // family
         if($family_details = DB::table('family_background as fb')
@@ -100,15 +114,16 @@ class StudentProfile extends Component
             $this->ueb_id = $educational_details->ueb_id;
             $this->ueb_shs_school_name = $educational_details->ueb_shs_school_name;
             $this->ueb_shs_address = $educational_details->ueb_shs_address ;
-            $this->ueb_shs_form_137 = $educational_details->ueb_shs_form_137;
+            $this->ueb_shs_form_137_link = $educational_details->ueb_shs_form_137;
             $this->ueb_shs_is_graduate = $educational_details->ueb_shs_is_graduate ;
             $this->ueb_shs_graduation_date = $educational_details->ueb_shs_graduation_date;
 
-            $this->ueb_shs_diploma = $educational_details->ueb_shs_diploma ;
+            $this->ueb_shs_diploma_link = $educational_details->ueb_shs_diploma ;
 
             // attachments
-            dd('nice');
+            // dd($educational_details);
         }
+        $ueb_shs_graduation_date=null;
         // requirements
     }
     public function render()
@@ -429,6 +444,7 @@ class StudentProfile extends Component
                         ->update(['u.user_profile_picture'=> $new_file_name.'.jpg']);
 
                         $request->session()->put('user_profile_picture', $new_file_name.'.jpg');
+                        $this->user_details = $request->session()->all();
                         $this->photo = null;
 
                         $this->dispatchBrowserEvent('swal:redirect',[
@@ -437,7 +453,7 @@ class StudentProfile extends Component
                             'title'             									=> 'Images updated!',
                             'showConfirmButton' 									=> 'true',
                             'timer'             									=> '1500',
-                            'link'              									=> '/student/profile'
+                            'link'              									=> '#'
                         ]);
                 }else{
                     $this->dispatchBrowserEvent('swal:redirect',[
@@ -459,6 +475,7 @@ class StudentProfile extends Component
                     'link'              									=> '#'
                 ]);
             }
+            $this->photo_id = rand(0,1000000);
         }
 
         if($this->formal_id && file_exists(storage_path().'/app/livewire-tmp/'.$this->formal_id->getfilename())){
@@ -500,6 +517,7 @@ class StudentProfile extends Component
                         ->update(['u.user_formal_id'=> $new_file_name]);
 
                         $request->session()->put('user_formal_id', $new_file_name);
+                        $this->user_details = $request->session()->all();
                         // resize thumb nail
                         // resize 500x500 px
                         $this->formal_id = null;
@@ -510,7 +528,7 @@ class StudentProfile extends Component
                             'title'             									=> 'Images updated!',
                             'showConfirmButton' 									=> 'true',
                             'timer'             									=> '1500',
-                            'link'              									=> '/student/profile'
+                            'link'              									=> '#'
                         ]);
                     }
                 }else{
@@ -532,7 +550,8 @@ class StudentProfile extends Component
                     'timer'             									=> '1500',
                     'link'              									=> '#'
                 ]);
-            }           
+            }  
+            $this->formal_id_id = rand(0,1000000);         
         }
     
         
@@ -879,6 +898,11 @@ class StudentProfile extends Component
 
     public function save_educational_details(Request $request){
         $user_details = $request->session()->all();
+        $ueb_details = DB::table('user_educational_background')
+        ->where(['ueb_user_id'=> $user_details['user_id']])
+        ->first();
+        $ueb_shs_form_137 = $this->ueb_shs_form_137_link;
+        $ueb_shs_diploma = $this->ueb_shs_diploma_link;
         if(!isset($user_details['user_id'])){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
@@ -909,8 +933,191 @@ class StudentProfile extends Component
                 'link'              									=> '/inactive'
             ]);
         }
+        if(strlen($this->ueb_shs_school_name) < 1 && strlen($this->ueb_shs_school_name) > 255){
+            return false;
+        }
+        if(strlen($this->ueb_shs_address) < 1 && strlen($this->ueb_shs_address) > 255){
+            return false;
+        }
 
-        dd('save details');
+
+        if($this->ueb_shs_is_graduate){
+            if($this->ueb_shs_diploma && file_exists(storage_path().'/app/livewire-tmp/'.$this->ueb_shs_diploma->getfilename())){
+                $file_extension =$this->ueb_shs_diploma->getClientOriginalExtension();
+                $tmp_name = 'livewire-tmp/'.$this->ueb_shs_diploma->getfilename();
+                $size = Storage::size($tmp_name);
+                $mime = Storage::mimeType($tmp_name);
+                $max_image_size = 10 * 1024*1024; // 5 mb
+                $file_extensions = array('image/jpeg','image/png','image/jpg');
+                
+                if($size<= $max_image_size){
+                    $valid_extension = false;
+                    foreach ($file_extensions as $value) {
+                        if($value == $mime){
+                            $valid_extension = true;
+                            break;
+                        }
+                    }
+                    if($valid_extension){
+                        $storage_file_path = storage_path().'/app/public/ueb_shs_diploma/';
+                        
+                        // move
+                        $new_file_name = md5($tmp_name).'.'.$file_extension;
+                        while(DB::table('user_educational_background')
+                        ->where(['ueb_shs_diploma'=> $new_file_name])
+                        ->first()){
+                            $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                        }
+                        if(Storage::move($tmp_name, 'public/ueb_shs_diploma/'.$new_file_name)){
+                            if( $ueb_shs_diploma && file_exists($storage_file_path.$ueb_shs_diploma)){
+                                unlink($storage_file_path.$ueb_shs_diploma);
+                            }
+                            $this->ueb_shs_diploma = null;
+                        }
+                        $ueb_shs_diploma = $new_file_name;
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Invalid image type!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Image is too large!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                }   
+                $this->diploma_id = rand(0,1000000);        
+            }
+        }
+        if($this->ueb_shs_form_137 && file_exists(storage_path().'/app/livewire-tmp/'.$this->ueb_shs_form_137->getfilename())){
+            $file_extension =$this->ueb_shs_form_137->getClientOriginalExtension();
+            $tmp_name = 'livewire-tmp/'.$this->ueb_shs_form_137->getfilename();
+            $size = Storage::size($tmp_name);
+            $mime = Storage::mimeType($tmp_name);
+            $max_image_size = 10 * 1024*1024; // 5 mb
+            $file_extensions = array('image/jpeg','image/png','image/jpg');
+            
+            if($size<= $max_image_size){
+                $valid_extension = false;
+                foreach ($file_extensions as $value) {
+                    if($value == $mime){
+                        $valid_extension = true;
+                        break;
+                    }
+                }
+                if($valid_extension){
+                    $storage_file_path = storage_path().'/app/public/ueb_shs_form_137/';
+                    
+                    // move
+                    $new_file_name = md5($tmp_name).'.'.$file_extension;
+                    while(DB::table('user_educational_background')
+                    ->where(['ueb_shs_form_137'=> $new_file_name])
+                    ->first()){
+                        $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                    }
+                   
+                    if(Storage::move($tmp_name, 'public/ueb_shs_form_137/'.$new_file_name)){
+                        if($ueb_details && file_exists($storage_file_path.$ueb_details->ueb_shs_form_137)){
+                            unlink($storage_file_path.$ueb_details->ueb_shs_form_137);
+                        }
+                        $this->ueb_shs_form_137 = null;
+                    }
+                    $ueb_shs_form_137 = $new_file_name;
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Invalid image type!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                }
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Image is too large!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            } 
+            $this->ueb_shs_form_137_id = rand(0,1000000);           
+        }
+     
+
+        if($ueb_details){
+                DB::table('user_educational_background')
+            ->where(['ueb_user_id'=> $user_details['user_id']])
+            ->update(['ueb_shs_school_name'=>$this->ueb_shs_school_name,
+            'ueb_shs_address'=>$this->ueb_shs_address,
+            'ueb_shs_form_137'=>$ueb_shs_form_137 ,
+            'ueb_shs_is_graduate'=>$this->ueb_shs_is_graduate,
+            'ueb_shs_graduation_date'=>$this->ueb_shs_graduation_date,
+
+            'ueb_shs_diploma'=>$ueb_shs_diploma,
+
+            ]);
+        }else{
+            DB::table('user_educational_background')->insert([
+                'ueb_user_id'=>$user_details['user_id'],
+                'ueb_shs_school_name'=>$this->ueb_shs_school_name,
+                'ueb_shs_address'=>$this->ueb_shs_address,
+                'ueb_shs_form_137'=>$ueb_shs_form_137 ,
+                'ueb_shs_is_graduate'=>$this->ueb_shs_is_graduate,
+                'ueb_shs_graduation_date'=>$this->ueb_shs_graduation_date,
+
+                'ueb_shs_diploma'=>$ueb_shs_diploma,
+            ]);
+
+               
+
+                // attachments
+            
+            
+        }
+        if($educational_details = DB::table('user_educational_background as ueb')
+            ->where('ueb.ueb_user_id', $this->user_details['user_id'])
+            ->first()){
+
+            $this->ueb_id = $educational_details->ueb_id;
+            $this->ueb_shs_school_name = $educational_details->ueb_shs_school_name;
+            $this->ueb_shs_address = $educational_details->ueb_shs_address ;
+            $this->ueb_shs_form_137_link = $educational_details->ueb_shs_form_137;
+            $this->ueb_shs_is_graduate = $educational_details->ueb_shs_is_graduate ;
+            $this->ueb_shs_graduation_date = $educational_details->ueb_shs_graduation_date;
+
+            $this->ueb_shs_diploma_link = $educational_details->ueb_shs_diploma ;
+        }
+        $this->dispatchBrowserEvent('swal:redirect',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Educational Details Updated!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1500',
+            'link'              									=> '#'
+        ]);
+        
+
+
+        // dd($this->ueb_shs_form_137);
+    //     public $ueb_id;
+    // public $ueb_shs_school_name;
+    // public $ueb_shs_address;
+    // public $ueb_shs_is_graduate;
+    // public $ueb_shs_graduation_date;
+    // public $ueb_shs_form_137;
+    // public $ueb_shs_diploma ;
     }
     // public function add_attachements($index,Request $request){
     //     $user_details = $request->session()->all();
