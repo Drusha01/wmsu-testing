@@ -118,6 +118,8 @@ Route::prefix('admin')->group(function () {
     Route::get('announcement-management', function () {return view('admin.admin-announcement');})->name('admin-announcement');
     Route::get('user-management', function () {return view('admin.user-management');})->name('user-management');
     Route::get('result-management', function () {return view('admin.result-management');})->name('result-management');
+    Route::get('room-management', function () {return view('admin.room-management');})->name('room-management');
+    Route::get('exam-administrator', function () {return view('admin.exam-administrator');})->name('exam-administrator');
     
 });
 

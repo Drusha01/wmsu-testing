@@ -35,11 +35,11 @@
     <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Admin Dashboard</h1>
+            <h1>Exam management</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Manage Examination</li>
+                    <li class="breadcrumb-item active">Exam management</li>
                 </ol>
             </nav>
         </div>
@@ -47,162 +47,84 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#exam-management-tab">Exam Management</a>
+                <a class="nav-link active" data-toggle="tab" href="#proctors-management-tab">Exam Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#room-management-tab">Room Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#room-assignment-tab">Room Assignment</a>
+                <a class="nav-link " data-toggle="tab" href="#assigned-proctors-tab">Assigned Proctors</a>
             </li>
         </ul>
 
         <!-- Tab Content -->
-    <div class="tab-content">
-    <!-- Exam Management Tab -->
-    <div class="tab-pane fade" id="exam-management-tab">
-        <!-- Add Exam Button -->
+        <div class="tab-content">
 
-     <!-- exam management table -->
-    <table class="table table-bordered" id="exam-table">
+        <!-- Exam Management Tab -->
+<div class="tab-pane show active" id="proctors-management-tab">
+    <!-- Exam Management Table -->
+    <table class="application-table" id="exam-management-table">
+        <thead>
+            <tr>
+                <th>Venue</th>
+                <th>Room</th>
+                <th>School Year</th>
+                <th>Capacity</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>WMSU MAIN</td>
+                <td>CLA 102</td>
+                <td>2023-2024</td>
+                <td>FULL</td>
+                <td>First Floor CLA Building</td>
+                <td>
+                    <button class="btn btn-danger" id="assignProctorButton" style="background-color: #990000; border-color: #990000;">Assign Proctor</button>
+                </td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</div>
+
+        <!-- Assigned proctors Tab -->
+        <div class="tab-pane show" id="assigned-proctors-tab">
+<!-- List of Assigned Proctors Table -->
+<table class="application-table" id="assigned-proctors-tab">
     <thead>
         <tr>
-            <th>Applicant Name</th>
-            <th>Type of Exam</th>
-            <th>Exam Name</th>
-            <th>Date Applied</th>
-            <th>Status</th>
+            <th>Proctor Name</th>
+            <th>Venue</th>
+            <th>Room</th>
+            <th>School Year</th>
+            <th>Capacity</th>
+            <th>Description</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <!-- Example applicant row -->
         <tr>
-            <td>John Doe</td>
-            <td>CET</td>
-            <td>CET 1</td>
-            <td>2023-09-20</td>
-            <td>Approved</td>
+            <td>John Smith</td>
+            <td>WMSU MAIN</td>
+            <td>CLA 102</td>
+            <td>2023-2024</td>
+            <td>FULL</td>
+            <td>First Floor CLA Building</td>
             <td>
-                <a href="#" class="btn btn">View Room</a>
+            <button type="button" class="accept-button btn btn-primary btn-sm" data-toggle="modal" data-target="#">Edit</button>
+            <button type="button" class="decline-button btn btn-danger btn-sm" data-toggle="modal" data-target="#">Delete</button>
             </td>
         </tr>
-        <!-- Add more applicant rows as needed -->
+        <!-- Add more rows for other assigned proctors as needed -->
     </tbody>
-    </table>
-    </div>
+</table>
 
-
-<!-- Room Management Tab -->
-<div class="tab-pane fade" id="room-management-tab">
-    <!-- Add Room Form -->
-    <div class="add-room-form">
-        <h3>Add a Room</h3>
-        <form id="add-room-form">
-            <label for="college-name">College Name:</label>
-            <input type="text" id="college-name" name="college-name" required>
-
-            <label for="room-name">Room Name/Number (Unique):</label>
-            <input type="text" id="room-name" name="room-name" required>
-
-            <label for="room-capacity">Capacity:</label>
-            <input type="number" id="room-capacity" name="room-capacity" required>
-
-            <label for="room-description">Room Description:</label>
-            <textarea id="room-description" name="room-description" rows="4" required></textarea>
-
-            <button type="submit">Add Room</button>
-        </form>
-    </div>
-
-    <!-- List of Available Rooms -->
-    <div class="available-rooms">
-        <h3>Available Rooms</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>College Name</th>
-                    <th>Room Name/Number (Unique)</th>
-                    <th>Capacity</th>
-                    <th>Room Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>College A</td>
-                    <td>Room 101</td>
-                    <td>30</td>
-                    <td>Small lecture room</td>
-                </tr>
-                <tr>
-                    <td>College B</td>
-                    <td>Room 102</td>
-                    <td>25</td>
-                    <td>Medium-sized lecture room</td>
-                </tr>
-                <tr>
-                    <td>College C</td>
-                    <td>Room 103</td>
-                    <td>35</td>
-                    <td>Large lecture room</td>
-                </tr>
-                <!-- Add more room entries as needed -->
-            </tbody>
-        </table>
-    </div>
 </div>
 
-<!-- Room Assignment Tab -->
-<div class="tab-pane fade" id="room-assignment-tab">
-    <!-- Room Assignment Form -->
-    <div class="room-assignment-form">
-        <h3>Assign Rooms for Examination</h3>
-        <form id="room-assignment-form">
-            <!-- Exam Name -->
-            <div class="form-group">
-                <label for="exam-select">Select Exam:</label>
-                <select id="exam-select" name="exam-select">
-                    <option value="exam-1">Exam 1</option>
-                    <option value="exam-2">Exam 2</option>
-                    <!-- Add more exams as needed -->
-                </select>
-            </div>
+  
+    </main><!-- End #main -->
 
-            <!-- Room Name -->
-            <div class="form-group">
-                <label for="room-select">Select Room:</label>
-                <select id="room-select" name="room-select">
-                    <option value="room-101">Room 101 (Capacity: 30)</option>
-                    <option value="room-102">Room 102 (Capacity: 25)</option>
-                    <option value="room-103">Room 103 (Capacity: 35)</option>
-                    <!-- Add more rooms as needed -->
-                </select>
-            </div>
-
-            <button type="submit">Assign Room</button>
-        </form>
-    </div>
-
-    <!-- List of Room Assignments -->
-    <div class="room-assignments">
-        <h3>Room Assignments</h3>
-        <!-- Display a list of room assignments here -->
-        <ul>
-            <li>Exam 1 is assigned to Room 101 (Capacity: 30)</li>
-            <li>Exam 2 is assigned to Room 102 (Capacity: 25)</li>
-            <!-- Add more room assignments as needed -->
-        </ul>
-    </div>
-</div>
-
-    </section>
-    <!-- End Inserted Section -->
-</main><!-- End #main -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-   
-
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 </body>
 
