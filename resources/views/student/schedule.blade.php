@@ -16,9 +16,9 @@
 @include('student-components.student-navtabs')
 
         <!-- Schedule Tab Content -->
-        <div role="tabpanel" class="tab-pane" id="schedule">
-        <section class="schedule-section">
-    <div class="container">
+<div role="tabpanel" class="tab-pane" id="schedule">
+    <section class="schedule-section">
+        <div class="container">
         <h2 class="section-title">Schedule of Examinations</h2>
         <ul class="exam-list">
             <li class="exam-item">
@@ -38,9 +38,9 @@
             </li>
             <!-- Add more exam items as needed -->
         </ul>
-    </div>
-</section>
         </div>
+    </section>
+</div>
 
 
 

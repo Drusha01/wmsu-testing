@@ -6,6 +6,8 @@ STEPS FOR RUNNING ENVIRONMENT
 4. create db 
 5. php artisan migrate      or      php artisan migrate:fresh
 6. php artisan db:seed 
-7. php artisan optimize 
-8. check if it is all running smoothly
-9. done
+7. php artisan storage:link
+8. php artisan optimize 
+9. check if it is all running smoothly
+
+10. done

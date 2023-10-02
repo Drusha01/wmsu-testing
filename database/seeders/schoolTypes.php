@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class userHighschool extends Seeder
+class schoolTypes extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,30 +14,29 @@ class userHighschool extends Seeder
      */
     public function run()
     {
-        DB::statement('INSERT INTO user_high_schools VALUES(
+        DB::statement('INSERT INTO school_types VALUES(
             NULL,
-            " ",
+            "Pilar College ,Inc",
             NOW(),
             NOW()
         );');
-        DB::statement('INSERT INTO user_high_schools VALUES(
+        DB::statement('INSERT INTO school_types VALUES(
             NULL,
             "Western Mindanao State University",
             NOW(),
             NOW()
         );');
-        DB::statement('INSERT INTO user_high_schools VALUES(
+        DB::statement('INSERT INTO school_types VALUES(
             NULL,
-            "Pilar College, Inc.",
+            "Southern City College",
             NOW(),
             NOW()
         );');
-        DB::statement('INSERT INTO user_high_schools VALUES(
+        DB::statement('INSERT INTO school_types VALUES(
             NULL,
-            "Southern City Colleges",
+            "Polytechnic University of the Philippines",
             NOW(),
             NOW()
         );');
-
     }
 }

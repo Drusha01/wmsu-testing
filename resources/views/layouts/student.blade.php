@@ -11,11 +11,14 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/favicon/favicon.ico') }}" type="image/x-icon"></head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
 @livewireStyles
 </head>
 <body>
     @livewire('components.header.header-navigation')
-    @include('student-components.student-navtabs')
+    @livewire('components.navigation.navigation-tabs')
+
     {{ $slot }}
 
 

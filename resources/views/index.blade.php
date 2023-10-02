@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>WMSU TEC - homepage</title>
-    <link href="{{ asset('css/STYLES.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
@@ -20,70 +20,70 @@
 
     <!-- Carousel Section -->
     <section class="hero" id="hero">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <!-- First Carousel Item -->
-            <div class="carousel-item active">
-                <div class="carousel-background">
-                <img src="{{ asset('images/slider/campus.jpg') }}" alt="">
-                    <div class="carousel-container">
-                        <div class="carousel-content-container">
-                            <h2>Welcome to Western Mindanao State University</h2>
-                            <p>Testing And Evaluation Center</p>
-                            <div class="buttons">
-                                <a href="#" class="button1">Our Services</a>
-                                <a href="#" class="button1">Contact Us</a>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- First Carousel Item -->
+                <div class="carousel-item active">
+                    <div class="carousel-background">
+                    <img src="{{ asset('images/slider/campus.jpg') }}" alt="">
+                        <div class="carousel-container">
+                            <div class="carousel-content-container">
+                                <h2>Welcome to Western Mindanao State University</h2>
+                                <p>Testing And Evaluation Center</p>
+                                <div class="buttons">
+                                    <a href="#" class="button1">Our Services</a>
+                                    <a href="#" class="button1">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second Carousel Item -->
+                <div class="carousel-item">
+                    <div class="carousel-background">
+                    <img src="{{ asset('images/slider/wm.jpg') }}" alt="">
+                        <div class="carousel-container">
+                            <div class="carousel-content-container">
+                                <h2>Application for CET is now Open</h2>
+                                <p>Register and Submit your Application by clicking the apply now</p>
+                                <div class="buttons">
+                                    <a href="#" class="button1">More details</a>
+                                    <a href="#" class="button1">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Carousel Item -->
+                <div class="carousel-item">
+                    <div class="carousel-background">
+                        <img src="./images/slider/wm.jpg" alt="">
+                        <div class="carousel-container">
+                            <div class="carousel-content-container">
+                                <h2>Important Announcement</h2>
+                                <p>CET Application is Now Open</p>
+                                <p>December 23, 2023 to January 07, 2023</p>
+                                <div class="buttons">
+                                    <a href="#" class="button1">Apply</a>
+                                    <a href="#" class="button1">Contact Us</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Second Carousel Item -->
-            <div class="carousel-item">
-                <div class="carousel-background">
-                <img src="{{ asset('images/slider/wm.jpg') }}" alt="">
-                    <div class="carousel-container">
-                        <div class="carousel-content-container">
-                            <h2>Application for CET is now Open</h2>
-                            <p>Register and Submit your Application by clicking the apply now</p>
-                            <div class="buttons">
-                                <a href="#" class="button1">More details</a>
-                                <a href="#" class="button1">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Third Carousel Item -->
-            <div class="carousel-item">
-                <div class="carousel-background">
-                    <img src="./images/slider/wm.jpg" alt="">
-                    <div class="carousel-container">
-                        <div class="carousel-content-container">
-                            <h2>Important Announcement</h2>
-                            <p>CET Application is Now Open</p>
-                            <p>December 23, 2023 to January 07, 2023</p>
-                            <div class="buttons">
-                                <a href="#" class="button1">Apply</a>
-                                <a href="#" class="button1">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
     </section>
     <!-- Carousel Section -->
 
