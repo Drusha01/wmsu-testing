@@ -113,14 +113,13 @@
                             <ul class="list-group" id="SeniorHighSchoolList">
                                 <li class="list-group-item"><strong>SHS Name: </strong> {{$ueb_shs_school_name}}</li>
                                 <li class="list-group-item"><strong>SHS Address: </strong> {{$ueb_shs_address}} </li>
-                                <li class="list-group-item"><strong>SHS Form 137/138/TOR: </strong> @if($ueb_shs_form_137_link) <a target="blank"href="{{asset('storage/ueb_shs_form_137/'.$ueb_shs_form_137_link)}}"><button type="button" class="btn btn-success" >View</button></a> @else No attachment @endif</li>
                                 <li class="list-group-item"><strong>SHS Graduate ?: </strong> @if($ueb_shs_is_graduate)  Yes @else No @endif</li>
                                 @if($ueb_shs_is_graduate)
                                     <li class="list-group-item"><strong>SHS Diploma: </strong> @if($ueb_shs_diploma_link) <a target="blank"href="{{asset('storage/ueb_shs_diploma   /'.$ueb_shs_diploma_link)}}"><button type="button" class="btn btn-success" >View</button></a> @else No attachment @endif</li>
                                 @else
                                 <li class="list-group-item"><strong>SHS Expected graduation date: </strong> @if($ueb_shs_graduation_date){{date_format(date_create($ueb_shs_graduation_date),"F d, Y ")}}@endif</li>
                                 @endif
-
+                                <li class="list-group-item"><strong>SHS Form 137/138/TOR: </strong> @if($ueb_shs_form_137_link) <a target="blank"href="{{asset('storage/ueb_shs_form_137/'.$ueb_shs_form_137_link)}}"><button type="button" class="btn btn-success" >View</button></a> @else No attachment @endif</li>
                             </ul>
                         </div>
                     </div>
