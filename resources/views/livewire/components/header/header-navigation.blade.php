@@ -26,18 +26,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('appointment') }}">Appointment</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="testApplicationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Test Application
                         </a>
                         <div class="dropdown-menu" aria-labelledby="testApplicationDropdown">
-                            <a class="dropdown-item" href="{{ Route('test-application.Cet') }}">CET</a>
-                            <a class="dropdown-item" href="{{ Route('test-application.Nat') }}">NAT</a>
-                            <a class="dropdown-item" href="{{ Route('test-application.Eat') }}">EAT</a>
-                            <a class="dropdown-item" href="{{ Route('test-application.Gsat') }}">GSAT</a>
-                            <a class="dropdown-item" href="{{ Route('test-application.Lsat') }}">LSAT</a>
+                            <a class="dropdown-item" href="{{ Route('application.cet') }}">CET</a>
+                            <a class="dropdown-item" href="{{ Route('application.nat') }}">NAT</a>
+                            <a class="dropdown-item" href="{{ Route('application.eat') }}">EAT</a>
+                            <a class="dropdown-item" href="{{ Route('application.gsat') }}">GSAT</a>
+                            <a class="dropdown-item" href="{{ Route('application.lsat') }}">LSAT</a>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- Add "Contact Us" navigation link here -->
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>

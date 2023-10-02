@@ -22,7 +22,7 @@ class Services extends Component
         return view('livewire.page.services.services',[
             'user_details' => $this->user_details
             ])
-            ->layout('layouts.guest',[
+            ->layout('layouts.guest-homepage',[
                 'title'=>$this->title]);
     }
 }

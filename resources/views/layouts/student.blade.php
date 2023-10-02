@@ -17,7 +17,8 @@
 </head>
 <body>
     @livewire('components.header.header-navigation')
-    @include('student-components.student-navtabs')
+    @livewire('components.navigation.navigation-tabs')
+
     {{ $slot }}
 
 

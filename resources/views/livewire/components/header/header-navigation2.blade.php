@@ -31,13 +31,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Test Application</a>
-                        <div class="dropdown-menu" aria-labelledby="admissionDropdown" id="examDropdown">
-                            <!-- Dropdown items will be added here dynamically -->
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
                     </li>
@@ -127,11 +120,11 @@
     document.addEventListener("DOMContentLoaded", function () {
   
         const exams = [
-            { name: "CET", route: "{{ Route('test-application.Cet') }}" },
-            { name: "NAT", route: "{{ Route('test-application.Nat') }}" },
-            { name: "EAT", route: "{{ Route('test-application.Eat') }}" },
-            { name: "GSAT", route: "{{ Route('test-application.Gsat') }}" },
-            { name: "LSAT", route: "{{ Route('test-application.Lsat') }}" },
+            { name: "CET", route: "{{ Route('application.cet') }}" },
+            { name: "NAT", route: "{{ Route('application.nat') }}" },
+            { name: "EAT", route: "{{ Route('application.eat') }}" },
+            { name: "GSAT", route: "{{ Route('application.gsat') }}" },
+            { name: "LSAT", route: "{{ Route('application.lsat') }}" },
             // Add more exams as needed
         ];
 

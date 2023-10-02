@@ -48,6 +48,7 @@ class StudentProfile extends Component
     public $g_middlename;
     public $g_lastname;
     public $g_suffix;
+    public $g_relationship;
     public $number_of_siblings;
     public $fb_address;
 
@@ -103,6 +104,7 @@ class StudentProfile extends Component
             $this->g_middlename = $family_details->family_background_g_middlename ;
             $this->g_lastname = $family_details->family_background_g_lastname ;
             $this->g_suffix = $family_details->family_background_g_suffix ;
+            $this->g_relationship = $family_details->family_background_g_relationship;
             $this->number_of_siblings = $family_details->family_background_number_of_siblings ;
             $this->fb_address = $family_details->family_background_address ;
         }
@@ -837,6 +839,8 @@ class StudentProfile extends Component
                 'family_background_g_middlename' => $this->g_middlename,
                 'family_background_g_lastname' => $this->g_lastname,
                 'family_background_g_suffix' => $this->g_suffix,
+                'family_background_g_relationship' => $this->g_relationship,
+                
                 'family_background_number_of_siblings' => $this->number_of_siblings,
                 'family_background_address' => $this->fb_address,  
             ])){
@@ -872,6 +876,7 @@ class StudentProfile extends Component
                 'family_background_g_middlename' => $this->g_middlename,
                 'family_background_g_lastname' => $this->g_lastname,
                 'family_background_g_suffix' => $this->g_suffix,
+                'family_background_g_relationship' => $this->g_relationship,
                 'family_background_number_of_siblings' => $this->number_of_siblings,
                 'family_background_address' => $this->fb_address,
             ])){

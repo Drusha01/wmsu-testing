@@ -79,6 +79,7 @@
                                     <li class="list-group-item"><strong>Guardian's middle name: </strong> {{$g_middlename}} </li>
                                     <li class="list-group-item"><strong>Guardian's last name: </strong> {{$g_lastname}}</li>
                                     <li class="list-group-item"><strong>Guardian's suffix name: </strong> {{$g_suffix}}</li>
+                                    <li class="list-group-item"><strong>Guardian's Relationship: </strong> {{$g_relationship}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -403,6 +404,13 @@
                                                     <input type="name"  wire:model="g_suffix" class="form-control" placeholder="Enter Suffix" >
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="newFullName" class="col-sm-4 col-form-label">Relation<span style="color:red;"></span> :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="name"  wire:model="g_relationship" class="form-control" placeholder="Enter Relationship" >
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">

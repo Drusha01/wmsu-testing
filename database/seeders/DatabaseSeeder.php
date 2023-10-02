@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             userStatus::class,
             attachmentTypes::class,
             schoolTypes::class,
+            moduleList::class,
         ]);
         
     }

@@ -67,6 +67,12 @@
                 <span>Chat Support</span>
             </a>
         </li><!-- End Chat Support Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('admin-chatsupport') }}">
+                <i class="bi bi-file-earmark"></i>
+                <span>FAQ Management</span>
+            </a>
+        </li><!-- End FAQ  Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('setting') }}">

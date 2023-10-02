@@ -12,9 +12,9 @@
                             <li class="custom-dropdown" id="cetDropdownContainer">
                                 <span class="test-list-item">CET Form Applications<span class="dropdown-indicator">&#9662;</span></span>
                                 <ul class="dropdown-content" id="cetDropdown">
-                                    <li><a href="{{ Route('test-application.Cet') }}">CET SHS Graduating form</a></li>
-                                    <li><a href="{{ Route('test-application.Cet') }}">CET SHS graduate form</a></li>
-                                    <li><a href="{{ Route('test-application.Cet') }}">CET Shiftee/Transferee</a></li>
+                                    <li><a href="{{ Route('application.cet') }}">CET SHS Graduating form</a></li>
+                                    <li><a href="{{ Route('application.cetgraduate') }}">CET SHS Graduate form</a></li>
+                                    <li><a href="{{ Route('application.cetshiftee') }}">CET Shiftee/Transferee</a></li>
                                 </ul>
                             </li>
                             <li>

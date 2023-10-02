@@ -15,7 +15,7 @@ class CreateUserEducationalBackground extends Migration
     {
         DB::statement('CREATE TABLE user_educational_background(
             ueb_id INT PRIMARY KEY AUTO_INCREMENT,
-            ueb_user_id INT NOT NULL,
+            ueb_user_id INT NOT NULL UNIQUE,
             ueb_shs_school_name VARCHAR(100) ,
             ueb_shs_address VARCHAR(100) ,
             ueb_shs_form_137 VARCHAR(100) ,
