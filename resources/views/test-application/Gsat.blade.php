@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="address" class="form-label">Address</label>
-                    <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    <input class="form-control" id="address" name="address" rows="3" required></input>
                 </div>
             </div>
             <div class="mb-3">
@@ -76,6 +76,90 @@
                     <input type="file" class="form-control" id="payment-receipt" name="payment_receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
                 </div>
             </div>
+            <div class="family-background">
+                <div class="father-information">
+                <div class="father col-md-8 mb-3">
+                <legend class="form-legend">Father's Information</legend>
+                            <label for="high-school-name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="First Name" required>
+                        </div>
+                
+                <div class="father col-md-8 mb-3">
+               
+                            <label for="high-school-name" class="form-label">Middle Name </label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="Middle Name" required>
+                        </div>
+                
+                <div class="father col-md-8 mb-3">
+                
+                            <label for="high-school-name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="Last Name" required>
+                        </div>
+                        <div class="father col-md-8 mb-3">
+                    <label for="father-last-name" class="form-label">Suffix</label>
+                    <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
+                </div>
+           </div>
+                
+ <div class="mother-information">
+ <div class="mother col-md-8 mb-3">
+                <legend class="form-legend">Mother's Information</legend>
+                         
+                <label for="high-school-name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="First Name" required>
+                        </div>
+                
+                <div class="mother col-md-8 mb-3">
+               
+                            <label for="high-school-name" class="form-label">Middle Name </label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="Middle Name" required>
+                        </div>
+                
+                <div class="mother col-md-8 mb-3">
+                
+                            <label for="high-school-name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="high-school-name"  placeholder="Last Name" required>
+                        </div>
+                        <div class="father col-md-8 mb-3">
+                    <label for="father-last-name" class="form-label">Suffix</label>
+                    <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
+                </div>
+  </div>
+
+  <div class="guardian-gsat">
+  <div class="mother col-md-8 mb-3">
+    <legend class="form-legend">Guardian's Information (If Applicable)</legend>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="first-name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first-name" placeholder="First Name" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="middle-name" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="middle-name" placeholder="Middle Name" required>
+        </div>
+    </div>
+
+
+                
+<div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="first-name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="first-name" placeholder="Last Name" required>
+        </div>
+        <div class="col-md-6 mb-3">
+    <label for="father-suffix" class="form-label">Suffix</label>
+<input type="text" class="form-control" id="father-suffix" aria-label="Father's Suffix" placeholder="Enter Suffix">
+</div>
+        <div class="col-md-6 mb-3">
+            <label for="middle-name" class="form-label">Relationship</label>
+            <input type="text" class="form-control" id="middle-name" placeholder="Relationship" required>
+        </div>
+    </div>
+  </div>
+  </div>
+
+ </div>
             <button type="submit" class="submit-button">Submit Application</button>
         </div>
     </form>

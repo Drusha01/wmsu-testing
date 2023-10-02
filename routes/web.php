@@ -140,7 +140,3 @@ Route::get('process-cet-registration', function () {
     return view('test-registration.process-cet-registration');
 })->name('process-cet-registration');
 
-Route::get('exam-template', function () {
-    return view('exam-template.exam-permit');
-})->name('exam-template');
-
