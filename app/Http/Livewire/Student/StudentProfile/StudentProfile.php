@@ -302,7 +302,7 @@ class StudentProfile extends Component
             $tmp_name = 'livewire-tmp/'.$this->photo->getfilename();
             $size = Storage::size($tmp_name);
             $mime = Storage::mimeType($tmp_name);
-            $max_image_size = 10 * 1024*1024; // 5 mb
+            $max_image_size = 20 * 1024*1024; // 5 mb
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
@@ -483,7 +483,7 @@ class StudentProfile extends Component
             $tmp_name = 'livewire-tmp/'.$this->formal_id->getfilename();
             $size = Storage::size($tmp_name);
             $mime = Storage::mimeType($tmp_name);
-            $max_image_size = 10 * 1024*1024; // 5 mb
+            $max_image_size = 20 * 1024*1024; // 5 mb
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){
@@ -947,7 +947,7 @@ class StudentProfile extends Component
                 $tmp_name = 'livewire-tmp/'.$this->ueb_shs_diploma->getfilename();
                 $size = Storage::size($tmp_name);
                 $mime = Storage::mimeType($tmp_name);
-                $max_image_size = 10 * 1024*1024; // 5 mb
+                $max_image_size = 20 * 1024*1024; // 5 mb
                 $file_extensions = array('image/jpeg','image/png','image/jpg');
                 
                 if($size<= $max_image_size){
@@ -1003,7 +1003,7 @@ class StudentProfile extends Component
             $tmp_name = 'livewire-tmp/'.$this->ueb_shs_form_137->getfilename();
             $size = Storage::size($tmp_name);
             $mime = Storage::mimeType($tmp_name);
-            $max_image_size = 10 * 1024*1024; // 5 mb
+            $max_image_size = 20 * 1024*1024; // 5 mb
             $file_extensions = array('image/jpeg','image/png','image/jpg');
             
             if($size<= $max_image_size){

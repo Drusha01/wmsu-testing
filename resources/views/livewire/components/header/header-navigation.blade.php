@@ -43,68 +43,72 @@
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
                     </li>
                 </ul>
+                @if(!isset($user_details['user_id']))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Sign In</a>
+                        </li>
+                @else 
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+                                <h6 class="dropdown-header">Notifications</h6>
+                                <a class="dropdown-item" href="#">
+                                    <div class="notification-content">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="notification-text">
+                                            <p>New notification 1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <div class="notification-content">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="notification-text">
+                                            <p>New notification 2</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <div class="notification-content">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="notification-text">
+                                            <p>New notification 3</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Add more notification items dynamically here -->
+                            </div>
+                        </li>
+                    </ul>
 
-                <!-- Notification Dropdown -->
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
-                            <h6 class="dropdown-header">Notifications</h6>
-                            <a class="dropdown-item" href="#">
-                                <div class="notification-content">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-info-circle"></i>
-                                    </div>
-                                    <div class="notification-text">
-                                        <p>New notification 1</p>
-                                    </div>
-                                </div>
+                    <!-- Profile Dropdown -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img style="border-radius:50%;"src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" width="50" alt="">
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <div class="notification-content">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-info-circle"></i>
-                                    </div>
-                                    <div class="notification-text">
-                                        <p>New notification 2</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <div class="notification-content">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-info-circle"></i>
-                                    </div>
-                                    <div class="notification-text">
-                                        <p>New notification 3</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- Add more notification items dynamically here -->
-                        </div>
-                    </li>
-                </ul>
-
-                <!-- Profile Dropdown -->
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img style="border-radius:50%;"src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" width="50" alt="">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
-                            <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
-                            <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
-                            <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
-                            <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
-                        </div>
-                    </li>
-                </ul>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
+                                <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
+                                <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
+                                <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
+                                <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
+                            </div>
+                        </li>
+                    </ul>
+                @endif
             </div>
         </div>
     </nav>

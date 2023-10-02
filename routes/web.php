@@ -26,6 +26,14 @@ use App\Http\Livewire\Authentication\AccountRecovery;
 
 // student
 use App\Http\Livewire\Student\StudentProfile\StudentProfile;
+use App\Http\Livewire\Student\StudentApplication\StudentApplication;
+use App\Http\Livewire\Student\StudentStatus\StudentStatus;
+use App\Http\Livewire\Student\StudentResult\StudentResult;
+use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
+
+// page
+use App\Http\Livewire\Page\About\About;
+use App\Http\Livewire\Page\Home\Home;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +54,6 @@ Route::middleware([Unauthenticated::class,AccountisValid::class])->group(functio
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/register-email',RegisterEmail::class)->name('register-email');
-   
     Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
     Route::get('/account/recovery/{hash}', AccountRecovery::class)->name('account-recovery');
 });
@@ -54,11 +61,12 @@ Route::middleware([Unauthenticated::class,AccountisValid::class])->group(functio
 // Student routes application
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::class])->group(function () {
     Route::prefix('student')->group(function () {
+        Route::get('/', StudentProfile::class)->name('student.index');
         Route::get('/profile', StudentProfile::class)->name('student.profile');
-        Route::get('/application', [StudentController::class, 'application'])->name('student.application');
-        Route::get('/status', [StudentController::class, 'status'])->name('student.status');
-        Route::get('/schedule', [StudentController::class, 'schedule'])->name('student.schedule');
-        Route::get('/results', [StudentController::class, 'results'])->name('student.results');
+        Route::get('/application', StudentApplication::class)->name('student.application');
+        Route::get('/status', StudentStatus::class)->name('student.status');
+        Route::get('/schedule', StudentSchedule::class)->name('student.schedule');
+        Route::get('/results', StudentResult::class)->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
     });
@@ -77,13 +85,14 @@ Route::prefix('test-application')->group(function () {
 });
 
 // page routes for each page
-Route::get('/', [PageController::class, 'index'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/appointment', [PageController::class, 'appointment'])->name('appointment');
-Route::get('/services', [PageController::class, 'services'])->name('services');
-Route::get('/faq', [PageController::class, 'faq'])->name('faq');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-
+Route::prefix('/')->group(function () {
+    Route::get('/', Home::class)->name('home');
+    Route::get('/about', About::class)->name('about');
+    Route::get('/appointment', [PageController::class, 'appointment'])->name('appointment');
+    Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+});
 
 
 // Email Verification
