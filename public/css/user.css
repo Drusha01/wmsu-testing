@@ -205,7 +205,8 @@ h3 {
 
 /* Style for the test list container */
 .test-section{
-    margin-top: 20px;
+    margin-top: 10px;
+   
 }
 .test-list {
     list-style: none;
