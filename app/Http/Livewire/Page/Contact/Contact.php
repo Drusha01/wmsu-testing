@@ -15,7 +15,7 @@ class Contact extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->title = 'about';
+        $this->title = 'contact';
     }
     public function render()
     {

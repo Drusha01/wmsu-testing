@@ -15,7 +15,7 @@ class Services extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->title = 'home';
+        $this->title = 'services';
     }
     public function render()
     {
