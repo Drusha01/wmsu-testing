@@ -30,6 +30,8 @@ use App\Http\Livewire\Student\StudentApplication\StudentApplication;
 use App\Http\Livewire\Student\StudentStatus\StudentStatus;
 use App\Http\Livewire\Student\StudentResult\StudentResult;
 use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
+use App\Http\Livewire\Student\StudentDeleted\StudentDeleted;
+use App\Http\Livewire\Student\StudentInactive\StudentInactive;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -89,6 +91,10 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
     });
 });
 
+Route::middleware([Authenticated::class])->group(function () {
+    Route::get('/deleted', StudentDeleted::class)->name('student.deleted');
+    Route::get('/inactive', StudentInactive::class)->name('student.inactive');
+});
 
 
 // admin section
