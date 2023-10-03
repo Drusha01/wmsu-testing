@@ -30,6 +30,7 @@ use App\Http\Livewire\Student\StudentApplication\StudentApplication;
 use App\Http\Livewire\Student\StudentStatus\StudentStatus;
 use App\Http\Livewire\Student\StudentResult\StudentResult;
 use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
+use App\Http\Livewire\Student\StudentRequirements\StudentRequirements;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -74,7 +75,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/results', StudentResult::class)->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
-
+        Route::get('/student-requirements', [StudentRequirements::class, 'showRequirements'])->name('student.requirements');
+    
         // test routes application
         Route::prefix('application')->group(function () {
             Route::get('/cet', [TestApplicationController::class, 'cet'])->name('application.cet');
