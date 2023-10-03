@@ -15,7 +15,7 @@ class Faq extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->title = 'about';
+        $this->title = 'faq';
     }
     public function render()
     {
