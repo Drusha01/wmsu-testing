@@ -12,6 +12,7 @@
 <body>
 
 @include('student-components.student-navigation')
+<!-- NIRMOVE KO YUNG COMPONENT KASI NASISIRA YUNG FORM/IDK WHAT TO-->
 
 @include('student-components.student-navtabs')
 
@@ -22,7 +23,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="test-section">
-                        <h2>Choose Your Test</h2>
+                        <h2>Application Page</h2>
                         <p>Select the test you would like to take from the options below:</p>
                         <ul class="test-list">
                             <li class="custom-dropdown" id="cetDropdownContainer">
@@ -63,7 +64,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div id="testContent" class="test-content">
-                        
+                        <!-- The content for CET SHS Undergraduate Form will be loaded here -->
                     </div>
                 </div>
             </div>
@@ -77,7 +78,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    // JavaScript code to load content when a test link is clicked
     const testLinks = document.querySelectorAll('.test-link');
     const testContent = document.getElementById('testContent');
 
@@ -90,9 +90,15 @@
     });
 
     function loadTestContent(testRoute) {
-        // You can make an AJAX request here to fetch the content of the selected test
-        // For demonstration purposes, we'll simply show a placeholder message
-        testContent.innerHTML = `<h3>Loading ${testRoute} content...</h3>`;
+        // Use AJAX to load the content dynamically and replace the placeholder
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                testContent.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.open('GET', testRoute, true);
+        xhr.send();
     }
 </script>
 
