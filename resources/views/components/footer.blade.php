@@ -58,16 +58,13 @@
                             Services
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">123</a>
+                            <a href="#!" class="text-reset">Examinations</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">456</a>
+                            <a href="#!" class="text-reset">Professional</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">???</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">?????</a>
+                            <a href="#!" class="text-reset">Standardized Testing</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -79,13 +76,10 @@
                             FAQ
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Pricing</a>
+                            <a href="#!" class="text-reset">About Us</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Settings</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Orders</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Help</a>
@@ -102,8 +96,8 @@
                             <i class="fas fa-envelope me-3"></i>
                             iwmsutec@wmsu.edu.ph
                         </p>
-                        <p><i class="fas fa-phone me-3"></i> 02</p>
-                        <p><i class="fas fa-print me-3"></i> 63+ </p>
+                        <p><i class="fas fa-phone me-3"></i> 02 231 2182</p>
+                        <p><i class="fas fa-print me-3"></i> 63+ 9956207083 </p>
                     </div>
                     <!-- Grid column -->
                 </div>

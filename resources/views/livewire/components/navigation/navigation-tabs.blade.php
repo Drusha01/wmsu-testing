@@ -5,6 +5,9 @@
                 <a href="{{ route('student.profile') }}" role="tab">Profile</a>
             </li>
             <li role="presentation">
+                <a href="{{ route('student.requirements') }}" role="tab">Requirements</a>
+            </li>
+            <li role="presentation">
                 <a href="{{ route('student.application') }}" role="tab">Application</a>
             </li>
             <li role="presentation">
@@ -16,9 +19,7 @@
             <li role="presentation">
                 <a href="{{ route('student.schedule') }}" role="tab">Schedule</a>
             </li>
-            <li role="presentation">
-                <a href="{{ route('student.schedule') }}" role="tab">Requirements</a>
-            </li>
+            
         </ul>
 
         <!-- Content for the selected tab -->

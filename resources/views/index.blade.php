@@ -122,11 +122,11 @@
      announcement items  -->
 
     <!-- Feature Info Section -->
-    <section class="features mt-5 mb-5">
+    <section class="features mt-4 mb-4">
         <div class="container">
             <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="mb-4">Our Feature</h2>
+                <h2 class="mb-5">Our Feature</h2>
             </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="main-feature-box">
@@ -149,7 +149,7 @@
                         <h3>Quality Education Services</h3>
                         <p>We are committed to delivering high-quality education services to help you prepare for exams
                             and excel in your academic journey.</p>
-                        <a href="services.php" class="feature-link">Explore Services <i
+                        <a href="services.php" class="feature-link">Explore<i
                                 class="bi bi-arrow-right-circle-fill"></i></a>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                         <h3>Engaging Learning Environment</h3>
                         <p>Join our community of motivated learners and engage in interactive educational experiences to
                             achieve your goals.</p>
-                        <a href="about.php#community" class="feature-link">Discover More <i
+                        <a href="about.php#community" class="feature-link">Discover <i
                                 class="bi bi-arrow-right-circle-fill"></i></a>
                     </div>
                 </div>
@@ -352,7 +352,7 @@
                         <i class="bi bi-bookmark-star"></i>
                         <h3>Learn More</h3>
                         <p>Discover the full range of services we offer and how they can benefit you.</p>
-                        <a href="services.php" class="btn btn-primary">Explore Services</a>
+                        <a href="services.php" class="btn-primary1">Explore Services</a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -360,7 +360,7 @@
                         <i class="bi bi-pencil"></i>
                         <h3>Register Now</h3>
                         <p>Join our community and register for our upcoming testing and evaluation sessions.</p>
-                        <a href="registration.php" class="btn btn-primary">Register</a>
+                        <a href="registration.php" class="btn-primary1">Register</a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -368,7 +368,7 @@
                         <i class="bi bi-envelope"></i>
                         <h3>Contact Us</h3>
                         <p>Have questions or need assistance? Reach out to our team for support.</p>
-                        <a href="contact.php" class="btn btn-primary">Get in Touch</a>
+                        <a href="contact.php" class="btn-primary1">Get in Touch</a>
                     </div>
                 </div>
             </div>

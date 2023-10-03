@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Application</title>
-    <link rel="stylesheet" href="{{ asset('css/USER.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/User.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -28,9 +28,10 @@
                         <li class="custom-dropdown" id="cetDropdownContainer">
                             <span class="test-list-item">CET Form Applications<span class="dropdown-indicator">&#9662;</span></span>
                             <ul class="dropdown-content" id="cetDropdown">
-                                <li><a href="{{ Route('test-application.Cet') }}">CET SHS Graduating form</a></li>
-                                <li><a href="{{ Route('test-application.Cet') }}">CET SHS graduate form</a></li>
-                                <li><a href="{{ Route('test-application.Cet') }}">CET Shiftee/Transferee</a></li>
+                                <li><a href="{{ Route('test-application.Cet') }}">CET SHS Undergraduate Form</a></li>
+                                <li><a href="{{ Route('test-application.Cetgraduate') }}">CET SHS Graduated form</a></li>
+                                <li><a href="{{ Route('test-application.Cetshiftee') }}">CET Shiftee</a></li>
+                                <li><a href="{{ Route('test-application.Cettransferee') }}">CET Transferee</a></li>
                             </ul>
                         </li>
                         <li>
