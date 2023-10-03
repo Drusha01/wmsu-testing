@@ -76,7 +76,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/requirements', StudentRequirements::class)->name('student.requirements');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
-
+        Route::get('/student-requirements', [StudentRequirements::class, 'showRequirements'])->name('student.requirements');
+    
         // test routes application
         Route::prefix('application')->group(function () {
             Route::get('/cet', [TestApplicationController::class, 'cet'])->name('application.cet');
