@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestTypes extends Migration
+class CreateTestStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTestTypes extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE TABLE test_types(
-            test_type_id INT PRIMARY KEY AUTO_INCREMENT,
-            test_type_name VARCHAR(100) NOT NULL,
-            test_type_details VARCHAR(100) UNIQUE,
+        DB::statement('CREATE TABLE test_status(
+            test_status_id INT PRIMARY KEY AUTO_INCREMENT,
+            test_status_details VARCHAR(100) UNIQUE,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
@@ -29,6 +28,6 @@ class CreateTestTypes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_types');
+        Schema::dropIfExists('test_status');
     }
 }

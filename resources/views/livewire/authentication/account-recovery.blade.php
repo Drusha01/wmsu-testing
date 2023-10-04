@@ -40,6 +40,15 @@
     </div>
   </main>
   @else
-    invalid link
+    <div>
+      <div class="container">
+          <div class="header">
+              <h1>WMSU Testing and Evaluation Center</h1>
+              <p>Invalid link</p>
+              <a href="{{ route('login') }}">Login</a>
+          </div>
+      </div>
+  </div>
+
   @endif
 </div>

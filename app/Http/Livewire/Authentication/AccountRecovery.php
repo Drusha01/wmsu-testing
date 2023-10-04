@@ -53,7 +53,17 @@ class AccountRecovery extends Component
     }
     public function render()
     {
-        return view('livewire.authentication.account-recovery')->layout('layouts.guest',['title'=>$this->title]);
+        if($this->valid ){
+            return view('livewire.authentication.account-recovery
+            ')->layout('layouts.guest',[
+                'title'=>$this->title]);
+        }else{
+            return view('livewire.authentication.account-recovery',[
+            ])
+            ->layout('layouts.account-disabled',[
+                'title'=>$this->title]);
+        }
+        
     }
 
     public function verify_password(Request $request){
