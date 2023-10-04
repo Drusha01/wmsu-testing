@@ -24,14 +24,17 @@
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> High School Transcript
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> Birth Certificate
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> Photo ID
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                         </ul>
                         <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
