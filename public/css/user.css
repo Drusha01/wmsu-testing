@@ -12,12 +12,25 @@
 .navbar-nav .nav-item.active .nav-link {
     color: white;
 }
+
+a.nav-link{
+    font-size: 13px;
+}
+.company-name {
+    color: white;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 /* NAVBAR CSS */
 
 /* student profile CSS */
 .profile-section {
     padding: 30px;
 }
+
+
 
 .profile- {
     font-family: 'Abril Fatface', cursive;
@@ -132,7 +145,7 @@ h3 {
 /* Style for the navigation tabs */
 .nav.nav-tabs {
     background-color: transparent; /* Tab background color */
-    padding: 12px;
+    padding: 10px;
 }
 
 .nav.nav-tabs li {
@@ -148,7 +161,7 @@ h3 {
     font-weight: 500; /* Tab text font-weight */
     transition: background-color 0.3s ease; /* Smooth hover transition */
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 /* Style for active tab link */
@@ -161,7 +174,8 @@ h3 {
 /* Hover effect for tab links */
 .nav.nav-tabs li a:hover {
     text-decoration: none; 
-    color: #990000; 
+    background-color: #990000;
+    color: white; 
 }
 /* Style for the navigation tabs */
 

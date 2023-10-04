@@ -106,9 +106,18 @@ class moduleList extends Seeder
         );');
         DB::statement('INSERT INTO modules VALUES(
             NULL,
+            "faq",
+            "FAQ",
+            11,
+            1,
+            NOW(),
+            NOW()
+        );');
+        DB::statement('INSERT INTO modules VALUES(
+            NULL,
             "settings",
             "Settings",
-            11,
+            12,
             1,
             NOW(),
             NOW()

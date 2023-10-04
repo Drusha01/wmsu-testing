@@ -16,7 +16,7 @@ class StudentRequirements extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->title = 'result';
+        $this->title = 'requirements';
     }
 
     public function render()

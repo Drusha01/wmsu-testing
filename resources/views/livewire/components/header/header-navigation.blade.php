@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-crimson">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo/logo.png') }}" alt="WMSU Logo" height="60px">
+                <img src="{{ asset('images/logo/logo.png') }}" width="50px" height="50px"alt="WMSU Logo" height="60px">
                 <span class="company-name">Testing and Evaluation Center</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

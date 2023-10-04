@@ -29,7 +29,7 @@
         </li><!-- End Room Management Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('exam-management') }}">
+            <a class="nav-link collapsed"  style="background-color: #e0e0e0;  color: #990000;" href="{{ route('exam-management') }}">
                 <i class="bi bi-person"></i>
                 <span>Exam Management</span>
             </a>

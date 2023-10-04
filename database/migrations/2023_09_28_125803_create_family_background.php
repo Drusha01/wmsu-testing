@@ -13,7 +13,7 @@ class CreateFamilyBackground extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE TABLE family_background(
+        DB::statement('CREATE TABLE user_family_background(
             family_background_id INT PRIMARY KEY AUTO_INCREMENT,
             family_background_user_id INT NOT NULL UNIQUE, 
             family_background_m_firstname VARCHAR(100) DEFAULT NULL,
@@ -33,9 +33,9 @@ class CreateFamilyBackground extends Migration
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
-        DB::statement('CREATE INDEX idx_m_full_name ON family_background(family_background_m_firstname(10),family_background_m_lastname(10),family_background_m_middlename(10));');
-        DB::statement('CREATE INDEX idx_f_full_name ON family_background(family_background_f_firstname(10),family_background_f_lastname(10),family_background_f_middlename(10));');
-        DB::statement('CREATE INDEX idx_g_full_name ON family_background(family_background_g_firstname(10),family_background_g_lastname(10),family_background_g_middlename(10));');
+        DB::statement('CREATE INDEX idx_m_full_name ON user_family_background(family_background_m_firstname(10),family_background_m_lastname(10),family_background_m_middlename(10));');
+        DB::statement('CREATE INDEX idx_f_full_name ON user_family_background(family_background_f_firstname(10),family_background_f_lastname(10),family_background_f_middlename(10));');
+        DB::statement('CREATE INDEX idx_g_full_name ON user_family_background(family_background_g_firstname(10),family_background_g_lastname(10),family_background_g_middlename(10));');
     }
 
     /**
@@ -45,6 +45,6 @@ class CreateFamilyBackground extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_background');
+        Schema::dropIfExists('user_family_background');
     }
 }

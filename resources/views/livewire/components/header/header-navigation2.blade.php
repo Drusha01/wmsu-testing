@@ -15,7 +15,7 @@
             </button>
             <!-- Navigation links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mr auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
@@ -34,6 +34,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
                     </li>
+</ul>
                     @if(!isset($user_details['user_id']))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Sign In</a>

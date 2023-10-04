@@ -90,7 +90,7 @@ class StudentProfile extends Component
         $this->ueb_shs_form_137_id = rand(0,1000000);
 
         // family
-        if($family_details = DB::table('family_background as fb')
+        if($family_details = DB::table('user_family_background as fb')
         ->where('family_background_user_id', $this->user_details['user_id'])
         ->first()){
             $this->m_firstname = $family_details->family_background_m_firstname;
@@ -821,11 +821,11 @@ class StudentProfile extends Component
                 'link'              									=> '/inactive'
             ]);
         }
-        if($family_details = DB::table('family_background as fb')
+        if($family_details = DB::table('user_family_background as fb')
         ->where('family_background_user_id', $this->user_details['user_id'])
         ->first()){
             // validation
-            if(DB::table('family_background as fb')
+            if(DB::table('user_family_background as fb')
                 ->where(['fb.family_background_id'=> $family_details->family_background_id,
                 ])
                 ->update(['family_background_m_firstname' =>$this->m_firstname ,
@@ -863,7 +863,7 @@ class StudentProfile extends Component
                 ]);
             }
         }else{
-            if(DB::table('family_background')->insert([
+            if(DB::table('user_family_background')->insert([
                 'family_background_user_id'=> $this->user_details['user_id'],
                 'family_background_m_firstname' =>$this->m_firstname ,
                 'family_background_m_middlename' => $this->m_middlename ,
