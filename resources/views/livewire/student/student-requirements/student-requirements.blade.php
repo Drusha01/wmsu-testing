@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirements Page</title>
-
-    <!-- Add Bootstrap CSS link -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Add Bootstrap JS and Popper.js script links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <!-- Content -->
+<div>
+<!-- Content -->
     <div class="container">
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="myTabs">
@@ -39,14 +24,17 @@
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> High School Transcript
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> Birth Certificate
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                             <li class="list-group-item">
                                 <strong>Requirement Name:</strong> Photo ID
                                 <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                         </ul>
                         <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
@@ -66,5 +54,5 @@
 
     <!-- Optional: Add any additional scripts or custom JavaScript code here -->
 
-</body>
-</html>
+
+</div>
