@@ -131,12 +131,13 @@
                 </div>
             </div>
             <br>
-            <!-- Requirements Section -->
+
+            <!-- Requirements Section 
             <div class="details-box">
                 <div class="requirements">
                     <h4>Requirements Upload</h4>
                     <ul class="list-group" id="requirementsList">
-                        <!-- Existing requirements go here -->
+                       Existing requirements go here 
                         <li class="list-group-item">
                             <strong>Requirement Name:</strong> High School Transcript
                         </li>
@@ -151,10 +152,9 @@
                 </div>
             </div>
             <br>
-
+            -->
             
             
-
             <!-- Modify Applicant Details Modal -->
             <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">

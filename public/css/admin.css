@@ -1694,6 +1694,7 @@ tr:nth-child(even) {
 
 #exam-table tbody tr:hover {
   background-color: #e0e0e0;
+  color: #990000;
 }
 /* Room Management Tab Table Styles */
 .available-rooms table {
