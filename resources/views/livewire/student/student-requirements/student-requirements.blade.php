@@ -1,26 +1,4 @@
-<<<<<<< HEAD
-<div>
-    requirements
-    two tabs
-        sdafkdsfskdfh
-</div>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirements Page</title>
 
-    <!-- Add Bootstrap CSS link -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Add Bootstrap JS and Popper.js script links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
     <!-- Content -->
     <div class="container">
         <!-- Tab Navigation -->
@@ -73,6 +51,3 @@
 
     <!-- Optional: Add any additional scripts or custom JavaScript code here -->
 
-</body>
-</html>
->>>>>>> parent of 6986179 (fixed student)
