@@ -34,12 +34,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
                     </li>
-</ul>
+                    
                     @if(!isset($user_details['user_id']))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Sign In</a>
                         </li>
                     @else 
+                    </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
