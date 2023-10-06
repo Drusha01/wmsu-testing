@@ -1,6 +1,7 @@
+
 <div>
     <!-- About Us Section -->
-    <section class="about">
+    <section class="about" style="padding:25px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 d-none d-lg-flex">
@@ -8,8 +9,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="about-content">
-                        <span>About Us</span>
-                        <h2>Welcome to WMSU Testing and Evaluation Center</h2>
+                        <span>About </span>
+                        <h2>WMSU Testing and Evaluation Center</h2>
                         <p>WMSU Testing and Evaluation Center is dedicated to providing exceptional testing and
                             evaluation services to students and individuals pursuing their academic and professional
                             aspirations. With a strong commitment to excellence and innovation, we strive to empower our
