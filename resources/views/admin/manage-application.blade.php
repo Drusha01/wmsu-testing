@@ -180,6 +180,7 @@
                 <td>2023-2024</td>
                 <td>2023-09-10</td>
                 <td>
+                <button class="edit-button">Edit</button>
                     <button class="view-button">Venue</button>
                 </td>
             </tr>
@@ -192,6 +193,7 @@
                 <td>2023-2024</td>
                 <td>2023-09-11</td>
                 <td>
+                <button class="edit-button">Edit</button>
                     <button class="view-button">Venue</button>
                 </td>
             </tr>
