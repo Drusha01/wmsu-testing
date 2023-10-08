@@ -36,8 +36,8 @@ class CreateUsersTable extends Migration
             user_profile_picture VARCHAR(100) DEFAULT "default.png",
             user_formal_id VARCHAR(100) DEFAULT "default.png",
 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (user_status_id) REFERENCES user_status(user_status_id),
             FOREIGN KEY (user_role_id) REFERENCES user_roles(user_role_id)
         );');

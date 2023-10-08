@@ -28,8 +28,8 @@ class CreateUserEducationalBackground extends Migration
             ueb_hs_is_graduate BOOL ,
             ueb_hs_graduation_date DATE ,
             ueb_hs_diploma VARCHAR(100) ,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (ueb_user_id) REFERENCES users(user_id)
         );');
         DB::statement('CREATE INDEX idx_ueb_shs_form_137 ON user_educational_background(ueb_shs_form_137(10));');

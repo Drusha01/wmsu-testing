@@ -27,8 +27,8 @@ class CreateUserRequirements extends Migration
             user_requirement_birth_certificate_nso_auth VARCHAR(100), 
             user_requirement_proof_of_early_completion VARCHAR(100),
 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
 
         DB::statement('CREATE INDEX idx_user_requirement_formal_photo ON user_requirements(user_requirement_formal_photo(10));');

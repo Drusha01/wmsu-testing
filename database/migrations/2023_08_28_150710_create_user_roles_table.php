@@ -16,8 +16,8 @@ class CreateUserRolesTable extends Migration
         DB::statement('CREATE TABLE user_roles(
             user_role_id INT PRIMARY KEY AUTO_INCREMENT,
             user_role_details VARCHAR(100) UNIQUE,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP ,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
     }
 

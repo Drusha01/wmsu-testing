@@ -33,7 +33,7 @@
     
     {{ $slot }}
 
-
+    @livewire('components.footer.homepage-footer')
     @livewireScripts
     <script>
          window.addEventListener('swal:message', event => {

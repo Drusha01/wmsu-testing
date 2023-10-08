@@ -20,8 +20,8 @@ class CreateSchoolRooms extends Migration
             school_room_name VARCHAR(100) UNIQUE, 
             school_room_capacity INT NOT NULL,
             school_room_description VARCHAR(255),
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
     }
 

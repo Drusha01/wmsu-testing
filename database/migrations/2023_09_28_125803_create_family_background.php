@@ -30,8 +30,8 @@ class CreateFamilyBackground extends Migration
             family_background_g_relationship VARCHAR(100) DEFAULT NULL,
             family_background_number_of_siblings INT DEFAULT NULL,
             family_background_address VARCHAR(255) DEFAULT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
         DB::statement('CREATE INDEX idx_m_full_name ON user_family_background(family_background_m_firstname(10),family_background_m_lastname(10),family_background_m_middlename(10));');
         DB::statement('CREATE INDEX idx_f_full_name ON user_family_background(family_background_f_firstname(10),family_background_f_lastname(10),family_background_f_middlename(10));');

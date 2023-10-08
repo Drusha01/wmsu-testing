@@ -70,7 +70,7 @@ class StudentProfile extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-
+        $this->user_details['date_created'] = substr($this->user_details['date_created'],0,10); 
         $this->title = 'profile';
 
         $this->photo_id = rand(0,1000000);
@@ -251,8 +251,8 @@ class StudentProfile extends Component
 
         $request->session()->put('user_birthdate', $user_details->user_birthdate);
         $request->session()->put('user_profile_picture', $user_details->user_profile_picture);
-        $request->session()->put('created_at', $user_details->created_at);
-        $request->session()->put('updated_at', $user_details->updated_at);
+        $request->session()->put('date_created', $user_details->date_created);
+        $request->session()->put('date_updated', $user_details->date_updated);
         $this->user_details = $request->session()->all();
 
         $this->dispatchBrowserEvent('swal:redirect',[

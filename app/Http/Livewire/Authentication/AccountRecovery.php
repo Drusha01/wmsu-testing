@@ -25,14 +25,14 @@ class AccountRecovery extends Component
         $this->$hash = $hash;
         $this->recover_button = 'Change Password';
         if(isset($data['user_email']) && $user_forgot_password_details = DB::table('user_forgot_passwords')
-            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','created_at','updated_at',DB::raw('NOW() as time_now'))
+            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','date_created','date_updated',DB::raw('NOW() as time_now'))
             ->where('user_forgot_password_hash', $this->$hash)
             ->where('user_forgot_password_email', $data['user_email'])
             ->first()
             ){
             // check how long is the 
 
-            $time_created = strtotime($user_forgot_password_details->created_at);
+            $time_created = strtotime($user_forgot_password_details->date_created);
             $time_now = strtotime($user_forgot_password_details->time_now);
             $diff = ($time_now - $time_created)/60;
             $max_time_in_minutes = 15;
@@ -69,11 +69,11 @@ class AccountRecovery extends Component
     public function verify_password(Request $request){
         $data = $request->session()->all();
         if(!isset($data['user_id']) && $user_forgot_password_details = DB::table('user_forgot_passwords')
-            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','created_at','updated_at',DB::raw('NOW() as time_now'))
+            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','date_created','date_updated',DB::raw('NOW() as time_now'))
             ->where('user_forgot_password_hash', $data['user_hash'])
             ->where('user_forgot_password_email', $data['user_email'])
             ->first()){
-            $time_created = strtotime($user_forgot_password_details->created_at);
+            $time_created = strtotime($user_forgot_password_details->date_created);
             $time_now = strtotime($user_forgot_password_details->time_now);
             $diff = ($time_now - $time_created)/60;
             $max_time_in_minutes = 15;
@@ -127,11 +127,11 @@ class AccountRecovery extends Component
     public function verify_confirm_password(Request $request){
         $data = $request->session()->all();
         if(!isset($data['user_id']) && $user_forgot_password_details = DB::table('user_forgot_passwords')
-            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','created_at','updated_at',DB::raw('NOW() as time_now'))
+            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','date_created','date_updated',DB::raw('NOW() as time_now'))
             ->where('user_forgot_password_hash', $data['user_hash'])
             ->where('user_forgot_password_email', $data['user_email'])
             ->first()){
-            $time_created = strtotime($user_forgot_password_details->created_at);
+            $time_created = strtotime($user_forgot_password_details->date_created);
             $time_now = strtotime($user_forgot_password_details->time_now);
             $diff = ($time_now - $time_created)/60;
             $max_time_in_minutes = 15;
@@ -188,12 +188,12 @@ class AccountRecovery extends Component
     public function change_password(Request $request){
         $data = $request->session()->all();
         if(!isset($data['user_id']) && $user_forgot_password_details = DB::table('user_forgot_passwords')
-            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','created_at','updated_at',DB::raw('NOW() as time_now'))
+            ->select('user_forgot_password_id','user_forgot_password_hash', 'user_forgot_password_email','date_created','date_updated',DB::raw('NOW() as time_now'))
             ->where('user_forgot_password_hash', $data['user_hash'])
             ->where('user_forgot_password_email', $data['user_email'])
             ->first()
             ){
-            $time_created = strtotime($user_forgot_password_details->created_at);
+            $time_created = strtotime($user_forgot_password_details->date_created);
             $time_now = strtotime($user_forgot_password_details->time_now);
             $diff = ($time_now - $time_created)/60;
             $max_time_in_minutes = 15;
@@ -218,13 +218,13 @@ class AccountRecovery extends Component
                     return false;
                 }
                 $user_details =DB::table('users as u')
-                    ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
-                    ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
-                    ->join('user_high_schools as uhs', 'u.user_high_school_id', '=', 'uhs.user_high_school_id')
-                    ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
-                    ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
-                    ->where(['u.user_email'=> $data['user_email'],'u.user_email_verified'=> 1])
-                    ->first();
+                ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+                ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
+                ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
+                ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
+                ->where(['u.user_email'=> $data['user_email'],'u.user_email_verified'=> 1])
+                ->first();
+               
                 if(password_verify($this->password,$user_details->user_password)){
                     $this->dispatchBrowserEvent('swal:redirect',[
                         'position'          									=> 'center',

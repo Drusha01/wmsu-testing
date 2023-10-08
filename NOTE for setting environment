@@ -9,5 +9,5 @@ STEPS FOR RUNNING ENVIRONMENT
 7. php artisan storage:link
 8. php artisan optimize 
 9. check if it is all running smoothly
-
+php artisan storage:link
 10. done

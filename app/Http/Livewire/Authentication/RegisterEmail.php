@@ -413,8 +413,8 @@ class RegisterEmail extends Component
 
                 $request->session()->put('user_birthdate', $user_details->user_birthdate);
                 $request->session()->put('user_profile_picture', $user_details->user_profile_picture);
-                $request->session()->put('created_at', $user_details->created_at);
-                $request->session()->put('updated_at', $user_details->updated_at);
+                $request->session()->put('date_created', $user_details->date_created);
+                $request->session()->put('date_updated', $user_details->date_updated);
                 
                 //append it to session
                 $this->dispatchBrowserEvent('swal:redirect',[

@@ -17,8 +17,8 @@ class CreateUserForgotPassword extends Migration
             user_forgot_password_id INT PRIMARY KEY AUTO_INCREMENT,
             user_forgot_password_email VARCHAR(100) NOT NULL,
             user_forgot_password_hash VARCHAR(100) NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
 
         DB::statement('CREATE INDEX idx_user_forgot_password_email ON user_forgot_passwords(user_forgot_password_email(10));');

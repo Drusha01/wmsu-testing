@@ -18,8 +18,8 @@ class CreateUserActivation extends Migration
             user_activation_email VARCHAR(100) NOT NULL,
             user_activation_code INT NOT NULL,
             user_activation_count INT DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
 
         DB::statement('CREATE INDEX idx_user_activation_code ON user_activations(user_activation_code);');

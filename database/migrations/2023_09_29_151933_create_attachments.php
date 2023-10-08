@@ -21,8 +21,8 @@ class CreateAttachments extends Migration
             attachment_name VARCHAR(100) DEFAULT NULL,
             attachment_description VARCHAR(255) DEFAULT NULL,
 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (attachment_user_id) REFERENCES users(user_id),
             FOREIGN KEY (attachment_type_id) REFERENCES attachment_types(attachment_type_id)
         );');
