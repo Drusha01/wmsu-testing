@@ -76,7 +76,7 @@
             </li><!-- End FAQ  Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('setting') }}" style="{{request()->is('admin/settings*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
+                <a class="nav-link collapsed" href="{{ route('setting') }}" style="{{request()->is('admin/setting*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
                     <i class="bi bi-file-earmark"></i>
                     <span>Settings</span>
                 </a>
