@@ -1,39 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Admin room management - WMSU TEC</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/boxicons/2.0.7/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <!-- Main CSS File -->
-    <link href="{{ asset('css/ADMIN.css') }}" rel="stylesheet">
-    <!-- JS Files -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script src="{{ asset('js/addexam.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-</head>
-
-<body class="admin-dashboard">
-
-    <!-- ======= Header ======= -->
-    @include('admin-components.admin-header');
-    <!-- End Header -->
-
-    <!-- ======= Sidebar ======= -->
-    @include('admin-components.admin-sidebar');
-    <!-- End Sidebar -->
-
-    <!-- Main Content -->
-    <main id="main" class="main">
+<div>
+       <!-- Main Content -->
+       <main id="main" class="main">
         <div class="pagetitle">
             <h1>Room Management</h1>
             <nav>
@@ -499,73 +466,70 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const venueSelect = document.getElementById("venueSelect");
-        const roomSelectGroup = document.getElementById("roomSelectGroup");
-        const roomSelect = document.getElementById("roomSelect");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const venueSelect = document.getElementById("venueSelect");
+            const roomSelectGroup = document.getElementById("roomSelectGroup");
+            const roomSelect = document.getElementById("roomSelect");
 
-        // Define room options based on venues
-        const rooms = {
-            "WMSU MAIN": ["CLA 12", "CLA 01", "LAW 121"],
-            "WMSU ESU": ["ESU Room 1", "ESU Room 2", "ESU Room 3"],
-        };
+            // Define room options based on venues
+            const rooms = {
+                "WMSU MAIN": ["CLA 12", "CLA 01", "LAW 121"],
+                "WMSU ESU": ["ESU Room 1", "ESU Room 2", "ESU Room 3"],
+            };
 
-        venueSelect.addEventListener("change", function () {
-            const selectedVenue = venueSelect.value;
-            if (selectedVenue in rooms) {
-                // Populate the room dropdown based on the selected venue
-                roomSelectGroup.style.display = "block";
-                roomSelect.innerHTML = '<option value="">Select Room</option>';
-                rooms[selectedVenue].forEach(function (room) {
-                    const option = document.createElement("option");
-                    option.value = room;
-                    option.textContent = room;
-                    roomSelect.appendChild(option);
-                });
-            } else {
-                // Hide the room dropdown if no venue is selected
-                roomSelectGroup.style.display = "none";
-            }
+            venueSelect.addEventListener("change", function () {
+                const selectedVenue = venueSelect.value;
+                if (selectedVenue in rooms) {
+                    // Populate the room dropdown based on the selected venue
+                    roomSelectGroup.style.display = "block";
+                    roomSelect.innerHTML = '<option value="">Select Room</option>';
+                    rooms[selectedVenue].forEach(function (room) {
+                        const option = document.createElement("option");
+                        option.value = room;
+                        option.textContent = room;
+                        roomSelect.appendChild(option);
+                    });
+                } else {
+                    // Hide the room dropdown if no venue is selected
+                    roomSelectGroup.style.display = "none";
+                }
+            });
+
+            // Handle the "Assign" button click
+            const assignButton = document.getElementById("assignButton");
+            assignButton.addEventListener("click", function () {
+                const selectedVenue = venueSelect.value;
+                const selectedRoom = roomSelect.value;
+                // Perform assignment logic here based on the selected venue and room
+                // You can send this information to the server or perform any other necessary actions.
+                console.log("Selected Venue: " + selectedVenue);
+                console.log("Selected Room: " + selectedRoom);
+                // Close the modal
+                $('#assignModal').modal('hide');
+            });
         });
+    </script>
 
-        // Handle the "Assign" button click
-        const assignButton = document.getElementById("assignButton");
-        assignButton.addEventListener("click", function () {
-            const selectedVenue = venueSelect.value;
-            const selectedRoom = roomSelect.value;
-            // Perform assignment logic here based on the selected venue and room
-            // You can send this information to the server or perform any other necessary actions.
-            console.log("Selected Venue: " + selectedVenue);
-            console.log("Selected Room: " + selectedRoom);
-            // Close the modal
-            $('#assignModal').modal('hide');
+    <script>
+        // JavaScript to trigger the re-assign modal when the "Re-assign" button is clicked
+        document.addEventListener("DOMContentLoaded", function () {
+            const reassignModalButton = document.getElementById("reassignModalButton");
+            const reassignModal = document.getElementById("reassignModal");
+
+            reassignModalButton.addEventListener("click", function () {
+                // Manually open the re-assign modal
+                $(reassignModal).modal("show");
+            });
+
+            // Handle the "Re-assign" button click inside the re-assign modal
+            const reassignConfirmButton = document.getElementById("reassignConfirmButton");
+            reassignConfirmButton.addEventListener("click", function () {
+                // Perform re-assignment logic here
+                // You can send this information to the server or perform any other necessary actions.
+                // Close the re-assign modal
+                $('#reassignModal').modal('hide');
+            });
         });
-    });
-</script>
-
-<script>
-    // JavaScript to trigger the re-assign modal when the "Re-assign" button is clicked
-    document.addEventListener("DOMContentLoaded", function () {
-        const reassignModalButton = document.getElementById("reassignModalButton");
-        const reassignModal = document.getElementById("reassignModal");
-
-        reassignModalButton.addEventListener("click", function () {
-            // Manually open the re-assign modal
-            $(reassignModal).modal("show");
-        });
-
-        // Handle the "Re-assign" button click inside the re-assign modal
-        const reassignConfirmButton = document.getElementById("reassignConfirmButton");
-        reassignConfirmButton.addEventListener("click", function () {
-            // Perform re-assignment logic here
-            // You can send this information to the server or perform any other necessary actions.
-            // Close the re-assign modal
-            $('#reassignModal').modal('hide');
-        });
-    });
-</script>
-
-
-</body>
-</html>
+    </script>
+</div>

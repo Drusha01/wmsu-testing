@@ -1,22 +1,22 @@
 <div>
     <div class="container-fluid">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/profile*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.profile') }}" role="tab">Profile</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/requirements*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.requirements') }}" role="tab">Requirements</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/application*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.application') }}" role="tab">Application</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/status*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.status') }}" role="tab">Status</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/results*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.results') }}" role="tab">Results</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="{{request()->is('student/schedule*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.schedule') }}" role="tab">Schedule</a>
             </li>
             

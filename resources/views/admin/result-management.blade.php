@@ -52,20 +52,22 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#individualresult-management-tab">Individual result Management</a>
             </li>
-
+        </ul>
         <!-- Tab Content -->
-    <div class="tab-content">
-    <!-- Result Management Tab -->
-    <div class="tab-pane fade" id="result-management-tab">
+        <div class="tab-content">
+            <!-- Result Management Tab -->
+            <div class="tab-pane fade" id="result-management-tab">
+            </div>
 
 
+            <!-- individual result Management Tab -->
+            <div class="tab-pane fade" id="individualresult-management-tab">
+            </div>
 
-    <!-- individual result Management Tab -->
-    <div class="tab-pane fade" id="individualresult-management-tab">
-
-
-    </section>
-    <!-- End Inserted Section -->
+            <section>
+            </section>
+            <!-- End Inserted Section -->
+        </div>
     </main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

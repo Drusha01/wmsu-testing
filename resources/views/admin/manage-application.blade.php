@@ -56,154 +56,148 @@
 
             <!-- Tab Content -->
             <div class="tab-content">
+                <!-- pending applicant tab -->
+                <div class="tab-pane show active" id="review-applicant-tab">
+                    <div class="examfilter-container">
+                        <label class="filter-label" for="exam-filter">Filter by Type of Exam:</label>
+                        <select class="filter-select" id="exam-filter">
+                            <option value="">All</option>
+                            <option value="College Entrance Exam">Cet</option>
+                            <option value="Nursing aptitude test">Nat</option>
+                            <option value="Engineering Aptitude test">Eat</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                        <button class="accept-btn">Accept </button>
+                        <button class="decline-btn">Decline </button>
+                    </div>
+                    <!-- Application Review Table -->
+                    <table class="application-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    &#10003;   <!-- check icon -->
+                                </th>
+                                <th>#</th>
+                                <th>Applicant Name</th>
+                                <th>Type of Exam</th>
+
+                                <th>School Year</th>
+                                <th>Date Applied</th>
+                                <th>Status</th>
+                                <th>Application Form</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td> 
+                                <td>1</td>
+                                <td>John Doe</td>
+                                <td>CET</td>
+                        
+                                <td>2023-2024</td>
+                                <td>2023-09-15</td>
+                                <td>Pending</td>
+                                <td>
+                                    <button class="view-button">View</button>
+                                </td>
+                            </tr>
                 
-            <!-- pending applicant tab -->
-            <div class="tab-pane show active" id="review-applicant-tab">
-                <div class="examfilter-container">
-                    <label class="filter-label" for="exam-filter">Filter by Type of Exam:</label>
-                    <select class="filter-select" id="exam-filter">
-                        <option value="">All</option>
-                        <option value="College Entrance Exam">Cet</option>
-                        <option value="Nursing aptitude test">Nat</option>
-                        <option value="Engineering Aptitude test">Eat</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                    <button class="accept-btn">Accept </button>
-                    <button class="decline-btn">Decline </button>
+                            <tr>
+                                <td><input type="checkbox"></td> <!-- Checkmark input -->
+                                <td>2</td>
+                                <td>John Doe</td>
+                                <td>CET</td>
+                        
+                                <td>2023-2024</td>
+                                <td>2023-09-15</td>
+                                <td>Pending</td>
+                                <td>
+                                    <button class="view-button">View</button>
+                                </td>
+                            </tr>
+                
+                            <tr>
+                                <td><input type="checkbox"></td> <!-- Checkmark input -->
+                                <td>3</td>
+                                <td>John Doe</td>
+                                <td>CET</td>
+                        
+                                <td>2023-2024</td>
+                                <td>2023-09-15</td>
+                                <td>Pending</td>
+
+                                <td>
+                                    <button class="view-button">View</button>
+                                </td>
+                            </tr>
+                            <!-- Add more application rows here -->
+                            
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Application Review Table -->
-                <table class="application-table">
-                <thead>
-                    <tr>
-                        <th>
-                            &#10003;   <!-- check icon -->
-                        </th>
-                        <th>#</th>
-                        <th>Applicant Name</th>
-                        <th>Type of Exam</th>
 
-                        <th>School Year</th>
-                        <th>Date Applied</th>
-                        <th>Status</th>
-                        <th>Application Form</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td> 
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>CET</td>
-                
-                        <td>2023-2024</td>
-                        <td>2023-09-15</td>
-                        <td>Pending</td>
-                        <td>
-                            <button class="view-button">View</button>
-                        </td>
-                    </tr>
-        
-                    <tr>
-                        <td><input type="checkbox"></td> <!-- Checkmark input -->
-                        <td>2</td>
-                        <td>John Doe</td>
-                        <td>CET</td>
-                   
-                        <td>2023-2024</td>
-                        <td>2023-09-15</td>
-                        <td>Pending</td>
-                        <td>
-                            <button class="view-button">View</button>
-                        </td>
-                    </tr>
-        
-                    <tr>
-                        <td><input type="checkbox"></td> <!-- Checkmark input -->
-                        <td>3</td>
-                        <td>John Doe</td>
-                        <td>CET</td>
-                   
-                        <td>2023-2024</td>
-                        <td>2023-09-15</td>
-                        <td>Pending</td>
+                <!-- Accepted Applicant Tab -->
+                <div class="tab-pane show" id="accepted-applicant-tab">
+                    <div class="examfilter-container">
+                        <label class="filter-label1" for="accepted-exam-filter">Filter accepted applicant by Exam:</label>
 
-                        <td>
-                            <button class="view-button">View</button>
-                        </td>
-                    </tr>
-                    <!-- Add more application rows here -->
-                    
-                </tbody>
-            </table>
+                        <select class="filter-select1" id="accepted-exam-filter">
+                            <option value="">All</option>
+                            <option value="CET">CET</option>
+                            <option value="NAT">NAT</option>
+                            <option value="EAT">EAT</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                        <button class="decline-btn">Decline </button>
+                    </div>
+                                    
+                    <table class="application-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    &#10003;   <!-- check icon -->
+                                </th>
+                                <th>#</th>
+                                <th>Applicant Name</th>
+                                <th>Exam Type</th>
+
+                                <th>School Year</th>
+                                <th>Date Applied</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td> <!-- Checkmark input -->
+                                <td>2</td>
+                                <td>Accepted Applicant 1</td>
+                                <td>CET</td>
+
+                                <td>2023-2024</td>
+                                <td>2023-09-10</td>
+                                <td>
+                                    <button class="view-button">Venue</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td> <!-- Checkmark input -->
+                                <td>2</td>
+                                <td>Accepted Applicant 2</td>
+                                <td>NAT</td>
+
+                                <td>2023-2024</td>
+                                <td>2023-09-11</td>
+                                <td>
+                                    <button class="view-button">Venue</button>
+                                </td>
+                            </tr>
+                            <!-- Add more accepted applicant rows here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-
-
-
-<!-- Accepted Applicant Tab -->
-<div class="tab-pane show" id="accepted-applicant-tab">
-    <div class="examfilter-container">
-        <label class="filter-label1" for="accepted-exam-filter">Filter accepted applicant by Exam:</label>
-
-        <select class="filter-select1" id="accepted-exam-filter">
-            <option value="">All</option>
-            <option value="CET">CET</option>
-            <option value="NAT">NAT</option>
-            <option value="EAT">EAT</option>
-            <!-- Add more options as needed -->
-        </select>
-        <button class="decline-btn">Decline </button>
-    </div>
-                    
-    <table class="application-table">
-        <thead>
-            <tr>
-                <th>
-                    &#10003;   <!-- check icon -->
-                </th>
-                <th>#</th>
-                <th>Applicant Name</th>
-                <th>Exam Type</th>
-
-                <th>School Year</th>
-                <th>Date Applied</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></td> <!-- Checkmark input -->
-                <td>2</td>
-                <td>Accepted Applicant 1</td>
-                <td>CET</td>
-
-                <td>2023-2024</td>
-                <td>2023-09-10</td>
-                <td>
-                    <button class="view-button">Venue</button>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td> <!-- Checkmark input -->
-                <td>2</td>
-                <td>Accepted Applicant 2</td>
-                <td>NAT</td>
-
-                <td>2023-2024</td>
-                <td>2023-09-11</td>
-                <td>
-                    <button class="view-button">Venue</button>
-                </td>
-            </tr>
-            <!-- Add more accepted applicant rows here -->
-        </tbody>
-    </table>
-</div>
-
-
-
-            <!-- End #main -->
-
+        </main>
+        <!-- End #main -->
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     </body>
 
