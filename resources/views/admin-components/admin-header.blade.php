@@ -25,6 +25,7 @@
                         <i class="bi bi-bell"></i>
                         <span class="badge bg-primary badge-number">4</span>
                     </a><!-- End Notification Icon -->
+                    
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
                             You have 4 new notifications
@@ -97,13 +98,17 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="{{ asset('images/logo/logo.png') }}" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block">Matt Luna</span>
+                        <div class="dropdown">
+
+                        </div>
                     </a><!-- End Profile Iamge Icon -->
 
                 </li><!-- End Profile Nav -->
 
             </ul>
         </nav><!-- End Icons Navigation -->
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </header>
 
     

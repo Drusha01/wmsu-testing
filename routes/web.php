@@ -33,6 +33,12 @@ use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
 use App\Http\Livewire\Student\StudentDeleted\StudentDeleted;
 use App\Http\Livewire\Student\StudentInactive\StudentInactive;
 use App\Http\Livewire\Student\StudentRequirements\StudentRequirements;
+Use App\Http\Livewire\Student\StudentApplication\Cet\Studentcet;
+use App\Http\Livewire\Student\StudentApplication\Cet\StudentcetGrad;
+use App\Http\Livewire\Student\StudentApplication\Cet\Studentshiftee;
+Use App\Http\Livewire\Student\StudentApplication\Cet\Studenteat;
+Use App\Http\Livewire\Student\StudentApplication\Cet\Studentnat;
+
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -78,6 +84,14 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/requirements',StudentRequirements::class)->name('student.requirements');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
+        
+        
+        Route::get('/application/cet/undergrad', Studentcet::class)->name('student.cet.undergrad');
+        Route::get('/application/cet/studentgrad', StudentcetGrad::class)->name('student.cet.Grad');
+        Route::get('/application/cet/studentshiftee', Studentshiftee::class)->name('student.cet.shiftee');
+        Route::get('/application/cet/studenteat', Studenteat::class)->name('student.cet.eat');
+        Route::get('/application/cet/studentnat', Studentnat::class)->name('student.cet.nat');
+
 
         // test routes application
         Route::prefix('application')->group(function () {
