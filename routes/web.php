@@ -39,6 +39,23 @@ use App\Http\Livewire\Student\StudentApplication\Cet\Studentshiftee;
 Use App\Http\Livewire\Student\StudentApplication\Cet\Studenteat;
 Use App\Http\Livewire\Student\StudentApplication\Cet\Studentnat;
 
+use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
+
+// admin
+use App\Http\Livewire\Admin\AdminManagement;
+use App\Http\Livewire\Admin\Announcement;
+use App\Http\Livewire\Admin\ApplicationManagement;
+use App\Http\Livewire\Admin\AppointmentManagement;
+use App\Http\Livewire\Admin\ChatSupport;
+use App\Http\Livewire\Admin\Dashboard;
+use App\Http\Livewire\Admin\ExamAdministrator;
+use App\Http\Livewire\Admin\ExamManagement;
+use App\Http\Livewire\Admin\AdminFaq;
+use App\Http\Livewire\Admin\ResultManagement;
+use App\Http\Livewire\Admin\RoomManagement;
+use App\Http\Livewire\Admin\Settings;
+use App\Http\Livewire\Admin\UserManagement;
+
 
 // page
 use App\Http\Livewire\Page\About\About;
