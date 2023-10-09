@@ -83,7 +83,7 @@
             </li><!-- End Settings Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('logout') }}" style="{{request()->is('admin/exam-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
+                <a class="nav-link collapsed" href="{{ url('logout') }}" >
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Log out</span>
                 </a>
