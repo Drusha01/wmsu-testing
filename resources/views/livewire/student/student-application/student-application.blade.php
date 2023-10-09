@@ -13,21 +13,21 @@
                             <li class="custom-dropdown" id="cetDropdownContainer">
                                 <span class="test-list-item">CET Form Applications<span class="dropdown-indicator">&#9662;</span></span>
                                 <ul class="dropdown-content" id="cetDropdown">
-                                    <li><a href="{{ Route('application.cet') }}">CET SHS Graduating form</a></li>
-                                    <li><a href="{{ Route('application.cetgraduate') }}">CET SHS Graduate form</a></li>
-                                    <li><a href="{{ Route('application.cetshiftee') }}">CET Shiftee/Transferee</a></li>
+                                    <li><a href="{{ Route('student.cet.undergrad') }}">CET SHS Graduating form</a></li>
+                                    <li><a href="{{ Route('student.cet.Grad') }}">CET SHS Graduate form</a></li>
+                                    <li><a href="{{ Route('student.cet.shiftee') }}">CET Shiftee/Transferee</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a class="test-list-item" href="{{ url('test-application.Nat') }}">
+                                <a class="test-list-item" href="{{ Route('student.cet.nat') }}">
                                     NAT Application
-                                    <button class="btn btn-primary apply-button">Unavailabe</button>
+                                    <button class="btn btn-primary apply-button">Available</button>
                                 </a>
                             </li>
                             <li>
-                                <a class="test-list-item" href="{{ url('test-application.Eat') }}">
+                                <a class="test-list-item" href="{{ Route('student.cet.eat') }}">
                                     EAT Application
-                                    <button class="btn btn-primary apply-button">Unavailabe</button>
+                                    <button class="btn btn-primary apply-button">Available</button>
                                 </a>
                             </li>
                             <li>
