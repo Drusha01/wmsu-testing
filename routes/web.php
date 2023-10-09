@@ -100,6 +100,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/results', StudentResult::class)->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/requirements',StudentRequirements::class)->name('student.requirements');
+        Route::get('/notifications',StudentNotifications::class)->name('student.notifications');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
         
         

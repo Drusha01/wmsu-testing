@@ -20,7 +20,7 @@
                 <a href="{{ route('student.schedule') }}" role="tab">Schedule</a>
             </li>
             <li role="presentation" class="{{request()->is('student/notifications*') ? 'active' : 'presentation'}}">
-                <a href="{{ route('student.notificatitions') }}" role="tab">Notifications</a>
+                <a href="{{ route('student.notifications') }}" role="tab">Notifications</a>
             </li>
             
         </ul>

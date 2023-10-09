@@ -106,7 +106,7 @@ class RegisterEmail extends Component
         if(!isset($data['user_id'])){ 
             $this->validate();
             $activation_details = DB::table('user_activations')
-                ->select('user_activation_id', 'user_activation_email', 'user_activation_code','user_activation_count','created_at', 'updated_at',DB::raw('NOW() as time_now'))
+                ->select('user_activation_id', 'user_activation_email', 'user_activation_code','user_activation_count','date_created', 'date_updated',DB::raw('NOW() as time_now'))
                 ->where('user_activation_email',$this->email)
                 ->first();
             // // check how long
@@ -316,6 +316,7 @@ class RegisterEmail extends Component
             ->first()){
                 return false;
             }
+            
             // validate username
             if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{5,31}$/', $this->username)
                     && DB::table('users')
@@ -342,6 +343,7 @@ class RegisterEmail extends Component
                 return false;
             }
             if($this->password != $this->confirm_password){
+                $this->sign_up_button = 'Password doesn\'t match';
                 return false;
             }
             $min_age = 15;
@@ -349,6 +351,7 @@ class RegisterEmail extends Component
             $diff= date_diff(date_create($this->birthdate),date_create(date('Y-m-d', time())));
             $date_diff =  intval($diff->format("%R%a"));
             if(!$date_diff>$min_date){
+                $this->sign_up_button = 'You must be at least '.$min_age.' y/o';
                 return false;
             }
             // hash password
