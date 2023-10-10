@@ -22,7 +22,8 @@
     <!--   js File -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+        
     @livewireStyles
 </head>
     @livewire('components.header.header-admin')
@@ -146,5 +147,7 @@
             });
         });
     </script>
+  
 </body>
+
 </html>

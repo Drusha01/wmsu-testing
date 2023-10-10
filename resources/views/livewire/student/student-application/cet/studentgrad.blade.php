@@ -107,7 +107,7 @@
                     </div>
                     <fieldset class="mb-2">
                     <legend>Document Uploads</legend>
-                    <div class="school-information">
+                    <div class="school-information-grad">
                     <div class="row px-4 mt-2">
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -130,17 +130,17 @@
                     <div class="row">
         <div class="col-md-6">            
                 <legend class="father form-legend">Father's Information</legend>
-            <div class="father-information">
-              <div class="row">
-    <div class="father col-md-8 mb-3 mt-2">
-        <label for="father-first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="father-first-name" placeholder="First Name" required>
-    </div>
-    <div class="father col-md-8 mb-3">
-        <label for="father-middle-name" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="father-middle-name" placeholder="Middle Name" required>
-    </div>
-</div>
+                     <div class="father-information">
+                         <div class="row">
+                            <div class="father col-md-8 mb-3 mt-2">
+                                 <label for="father-first-name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control-fr" id="father-first-name" placeholder="First Name" required>
+                         </div>
+                                <div class="father col-md-8 mb-3">
+                                    <label for="father-middle-name" class="form-label">Middle Name</label>
+                                    <input type="text" class="form-control-fr" id="father-middle-name" placeholder="Middle Name" required>
+                                </div>
+                            </div>
 
                 <div class="father col-md-8 mb-3">
                     <label for="father-last-name" class="form-label">Last Name</label>
@@ -152,6 +152,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="col-md-6"> <legend class="mother form-legend">Mother's Information</legend>
             <div class="mother-information">
                 <div class="mother col-md-8 mb-3 mt-2">

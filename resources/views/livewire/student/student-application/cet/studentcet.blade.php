@@ -63,7 +63,7 @@
                                     <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo">
                                     <div class="header-eat-text">
                                         <span>Western Mindanao State University test</span>
-                                        <h2 class="mb-2">College Entrance Exam Application Form</h2>
+                                        <h2 class=" mb-2">College Entrance Exam Application Form</h2>
                                         <span class="mb-2 custom-class">Senior highschool Undergraduate</span>
                                     </div>
                                 </div>
@@ -131,11 +131,11 @@
                                                             <div class="row">
                                                                 <div class="father col-md-8 mb-3 mt-2">
                                                                     <label for="father-first-name" class="form-label">First Name</label>
-                                                                    <input type="text" class="form-control" id="father-first-name" placeholder="First Name" required>
+                                                                    <input type="text" class="form-control-fr" id="father-first-name" placeholder="First Name" required>
                                                                 </div>
                                                                 <div class="father col-md-8 mb-3">
                                                                     <label for="father-middle-name" class="form-label">Middle Name</label>
-                                                                    <input type="text" class="form-control" id="father-middle-name" placeholder="Middle Name" required>
+                                                                    <input type="text" class="form-control-fr" id="father-middle-name" placeholder="Middle Name" required>
                                                                 </div>
                                                             </div>
                                                             <div class="father col-md-8 mb-3">

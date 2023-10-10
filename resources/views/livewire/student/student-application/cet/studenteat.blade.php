@@ -71,15 +71,15 @@
         <div class="form-row mt-2">
             <div class="form-group1 col">
                 <label for="first-name" class="form-label">First Name:</label>
-                <input type="text" id="first-name" name="first_name" class="form-control" required>
+                <input type="text" id="first-name" name="first_name" class="form-control-eat" required>
             </div>
             <div class="form-group1 col">
                 <label for="middle-name" class="form-label">Middle Name:</label>
-                <input type="text" id="middle-name" name="middle_name" class="form-control">
+                <input type="text" id="middle-name" name="middle_name" class="form-control-eat">
             </div>
             <div class="form-group1 col">
                 <label for="last-name" class="form-label">Last Name:</label>
-                <input type="text" id="last-name" name="last_name" class="form-control" required>
+                <input type="text" id="last-name" name="last_name" class="form-control-eat" required>
             </div>
         </div>
 
@@ -119,11 +119,11 @@
               <div class="row">
     <div class="father col-md-8 mb-3 mt-2">
         <label for="father-first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="father-first-name" placeholder="First Name" required>
+        <input type="text" class="form-control-fr" id="father-first-name" placeholder="First Name" required>
     </div>
     <div class="father col-md-8 mb-3">
         <label for="father-middle-name" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="father-middle-name" placeholder="Middle Name" required>
+        <input type="text" class="form-control-fr" id="father-middle-name" placeholder="Middle Name" required>
     </div>
 </div>
 
