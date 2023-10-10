@@ -134,23 +134,25 @@ Route::middleware([Authenticated::class])->group(function () {
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('dashboard', function () {return view('admin.admin-dashboard');})->name('admin-dashboard');
-        Route::get('exam-management', function () {return view('admin.exam-management');})->name('exam-management');
-        Route::get('room-management', function () {return view('admin.room-management');})->name('room-management');
-        Route::get('room-assignment', function () {return view('admin.room-assignment');})->name('room-assignment');
-        Route::get('admin-management', function () {return view('admin.admin-management');})->name('admin-management');
-        Route::get('chatsupport', function () {return view('admin.admin-chatsupport');})->name('admin-chatsupport');
-        Route::get('setting', function () {return view('admin.setting');})->name('setting');
-        Route::get('user-management', function () {return view('admin.user-management');})->name('user-management');
-        Route::get('appointment-management', function () {return view('admin.manage-appointment');})->name('manage-appointment');
-        Route::get('application-management', function () {return view('admin.manage-application');})->name('manage-application');
-        Route::get('announcement-management', function () {return view('admin.admin-announcement');})->name('admin-announcement');
-        Route::get('user-management', function () {return view('admin.user-management');})->name('user-management');
-        Route::get('result-management', function () {return view('admin.result-management');})->name('result-management');
-        Route::get('room-management', function () {return view('admin.room-management');})->name('room-management');
-        Route::get('exam-administrator', function () {return view('admin.exam-administrator');})->name('exam-administrator');
+        Route::get('dashboard', Dashboard::class)->name('admin-dashboard');
+        Route::get('exam-management', ExamManagement::class)->name('exam-management');
+        Route::get('admin-management', AdminManagement::class)->name('admin-management');
+        Route::get('chatsupport', ChatSupport::class)->name('admin-chatsupport');
+        Route::get('setting', Settings::class)->name('setting');
+        Route::get('appointment-management', AppointmentManagement::class)->name('manage-appointment');
+        Route::get('application-management', ApplicationManagement::class)->name('manage-application');
+        Route::get('announcement-management', Announcement::class)->name('admin-announcement');
+        Route::get('user-management', UserManagement::class)->name('user-management');
+        Route::get('result-management', ResultManagement::class)->name('result-management');
+        Route::get('room-management', RoomManagement::class)->name('room-management');
+        Route::get('faq-management', AdminFaq::class)->name('faq-management');
+        Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
     });
 });
+
+
+
+
 
 
 

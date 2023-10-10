@@ -59,12 +59,12 @@
          <!-- Tab Content -->
         <div class="tab-content">
         <!-- Admin Management tab -->
-        <div class="tab-pane fade" id="admin-management-tab">
+        <div class="tab-pane fade show active" id="admin-management-tab">
             <div class="container-fluid">
 
 
                 <!-- Add Admin Button (Opens Add Modal) -->
-                <button class="btn btn-success" data-toggle="modal" data-target="#adminAddModal">Add Admin</button>      
+                <button class="btn btn-success mt-2 mb-2" data-toggle="modal" data-target="#adminAddModal">Add Admin</button>      
                 <!-- Admin Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -203,7 +203,7 @@
         <div class="tab-pane fade" id="user-management-tab">
             <div class="container-fluid">  
                 <!-- Add user Button (Opens Add user Modal) -->
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddUserModal">Add User</button>            
+                <button class="btn btn-success mt-2 mb-2" data-toggle="modal" data-target="#AddUserModal">Add User</button>            
                 <!-- User Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -350,7 +350,7 @@
                 
                 <!-- Role Table -->
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered mt-2">
                         <thead>
                             <tr>
                                 <th>Username</th>
