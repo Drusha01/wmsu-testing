@@ -73,7 +73,7 @@
                 
                             <td>Not assigned</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +86,7 @@
                 
                             <td>Not assigned</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
                         <!-- Add more accepted applicant rows here -->
@@ -179,7 +179,7 @@
                             <td>2023-09-10</td>
                             <td>WMSU MAIN-CLA 12</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
                         <tr>
@@ -191,7 +191,7 @@
                             <td>2023-09-11</td>
                             <td>WMSU MAIN-LAW 121</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
                         <!-- Add more accepted applicant rows here -->

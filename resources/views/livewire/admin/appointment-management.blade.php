@@ -28,7 +28,18 @@
         <div class="tab-content">
             <!-- Appointment Pending Tab -->
             <div class="tab-pane fade show active" id="appointment-pending-tab">
-
+            <div class="examfilter-container">
+                    <label class="filter-label" for="exam-filter">Filter by Date:</label>
+                    <select class="filter-select" id="exam-filter">
+                        <option value="">All</option>
+                        <option value="College Entrance Exam">Today</option>
+                        <option value="Nursing aptitude test">Yesterday</option>
+                        <option value="Engineering Aptitude test">TBD</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <button class="accept-btn">Accept </button>
+                    <button class="decline-btn">Delete </button>
+                </div>
                 <table class="appointment-table">
                     <thead>
                         <tr>
@@ -51,7 +62,18 @@
 
             <!-- Appointment Accepted Tab -->
             <div class="tab-pane fade" id="appointment-accepted-tab">
-
+            <div class="examfilter-container">
+                    <label class="filter-label" for="exam-filter">Filter by Type of Exam:</label>
+                    <select class="filter-select" id="exam-filter">
+                        <option value="">All</option>
+                        <option value="College Entrance Exam">Cet</option>
+                        <option value="Nursing aptitude test">Nat</option>
+                        <option value="Engineering Aptitude test">Eat</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <button class="accept-btn">Done</button>
+                    <button class="decline-btn">Delete</button>
+                </div>
                 <table class="appointment-table">
                     <thead>
                         <tr>
@@ -74,7 +96,17 @@
 
             <!-- Appointment Completed Tab -->
             <div class="tab-pane fade" id="appointment-completed-tab">
-
+            <div class="examfilter-container">
+                    <label class="filter-label" for="exam-filter">Filter by Type of Exam:</label>
+                    <select class="filter-select" id="exam-filter">
+                        <option value="">All</option>
+                        <option value="College Entrance Exam">Cet</option>
+                        <option value="Nursing aptitude test">Nat</option>
+                        <option value="Engineering Aptitude test">Eat</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <button class="decline-btn">Delete </button>
+                </div>
                 <table class="appointment-table">
                     <thead>
                         <tr>

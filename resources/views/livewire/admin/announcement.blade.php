@@ -47,8 +47,8 @@
                             <td>2023-09-25</td>
                             <td>Active</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button class="btn btn-primary">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                         <tr>
@@ -58,8 +58,8 @@
                             <td>2023-09-27</td>
                             <td>Disabled</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button class="btn btn-primary">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                         <!-- Add more rows as needed -->
