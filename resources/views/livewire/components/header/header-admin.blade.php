@@ -24,7 +24,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">1</span>
+                        <span class="badge bg-danger rounded-pill badge-number">1</span>
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
@@ -72,8 +72,9 @@
                     <!-- Add the dropdown menu here -->
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Notifications</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ Route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
             </ul>

@@ -66,7 +66,7 @@
                             <td>2023-09-15</td>
                             <td>Pending</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
             
@@ -80,7 +80,7 @@
                             <td>2023-09-15</td>
                             <td>Pending</td>
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
             
@@ -95,7 +95,7 @@
                             <td>Pending</td>
 
                             <td>
-                                <button class="view-button">View</button>
+                                <button class="btn btn-primary">View</button>
                             </td>
                         </tr>
                         <!-- Add more application rows here -->
@@ -144,7 +144,8 @@
                             <td>2023-2024</td>
                             <td>2023-09-10</td>
                             <td>
-                                <button class="view-button">Venue</button>
+                                <button class="btn btn-success">Edit</button>
+                                <button class="btn btn-primary">Venue</button>
                             </td>
                         </tr>
                         <tr>
@@ -156,7 +157,8 @@
                             <td>2023-2024</td>
                             <td>2023-09-11</td>
                             <td>
-                                <button class="view-button">Venue</button>
+                                <button class="btn btn-success">Edit</button>
+                                <button class="btn btn-primary">Venue</button>
                             </td>
                         </tr>
                         <!-- Add more accepted applicant rows here -->

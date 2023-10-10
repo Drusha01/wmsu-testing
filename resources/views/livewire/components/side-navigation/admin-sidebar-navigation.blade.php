@@ -81,13 +81,6 @@
                     <span>Settings</span>
                 </a>
             </li><!-- End Settings Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('logout') }}" >
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Log out</span>
-                </a>
-            </li><!-- End Log Out Nav -->
         </ul>
     </aside>
 </div>
