@@ -37,7 +37,7 @@
                                 <button class="btn btn-success mr-2 btn-sm float-right">View</button>
                             </li>
                         </ul>
-                        <button id="modifyButtonRequirements" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
+                        <button id="modifyButtonRequirements" class="btn btn-primary mt-2" data-toggle="modal" data-target="#modifyModalRequirements">Add Requirement</button>
                     </div>
                 </div>
             </div>

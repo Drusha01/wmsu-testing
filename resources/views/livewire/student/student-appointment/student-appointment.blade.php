@@ -1,34 +1,81 @@
-<div>
-    <div>
-        <!-- Appointment Section -->
-        <section class="appointment">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="appointment-form">
-                            <h2>Schedule an Appointment</h2>
-                            <p>If you would like to visit us in person for your transactions, please use the form below to schedule an appointment.</p>
-                            <form action="{{ url('submit_appointment') }}" method="POST">
-                                @csrf <!-- CSRF Token -->
-                                <div class="mb-3">
-                                    <label for="appointmentDate" class="form-label">Preferred Appointment Date</label>
-                                    <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="purpose" class="form-label">Purpose of Appointment</label>
-                                    <input type="text" class="form-control" id="purpose" name="purpose" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message (Optional)</label>
-                                    <textarea class="form-control" id="message" name="message" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Schedule Appointment</button>
-                            </form>
-                        </div>
+ <div> 
+  <!-- Content -->
+   <div class="container">
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs" id="myTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#schedule-appointment">Schedule Appointment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#view-appointments">View Appointments</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Tab 1: Schedule Appointment -->
+            <div class="tab-pane fade show active" id="schedule-appointment">
+                <div class="details-box">
+                    <div class="appointment-form">
+                        <h4>Schedule Appointment</h4>
+                        <!-- Appointment form goes here -->
+                        <form>
+                            <div class="form-group">
+                                <label for="appointment-date">Preferred Appointment Date:</label>
+                                <input type="date" class="form-control" id="appointment-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="appointment-time">Appointment Time:</label>
+                                <input type="time" class="form-control" id="appointment-time">
+                            </div>
+                            <div class="form-group">
+                                <label for="appointment-purpose">Purpose:</label>
+                                <input type="text" class="form-control" id="appointment-purpose">
+                            </div>
+                            <div class="form-group">
+                                <label for="appointment-message">Message (optional):</label>
+                                <input type="text" class="form-control" id="appointment-message">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Schedule</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- Tab 2: View Appointments -->
+            <div class="tab-pane fade" id="view-appointments">
+                <!-- Content for viewing appointments goes here -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>  
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Purpose</th>
+                            <th scope="col">Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Appointments will be displayed here -->
+                        <tr>
+                            <td>1</td>
+                            <td>2023-10-15</td>
+                            <td>10:00 AM</td>
+                            <td>Admission Inquiry</td>
+                            <td>Approved</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2023-10-20</td>
+                            <td>2:30 PM</td>
+                            <td>Scholarship Application</td>
+                            <td>Approved</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <!-- Appointment Section -->
+
 </div>

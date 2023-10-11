@@ -58,7 +58,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
+                            <a href="{{ Route('notification') }}">Show all notifications</a>
                         </li>
 
                     </ul><!-- End Notification Dropdown Items -->
@@ -71,8 +71,8 @@
                     </a>
                     <!-- Add the dropdown menu here -->
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Notifications</a></li>
+                        <li><a class="dropdown-item" href="{{ Route('profile')}}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ Route('notification') }}">Notifications</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="{{ Route('logout') }}">Logout</a></li>
                     </ul>
