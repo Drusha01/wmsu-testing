@@ -51,42 +51,21 @@ body {
     flex-direction: row;
     margin-bottom: 5px;
   }
-  .father-information{
-    border: 2px solid gray;
-    width: 380px;
-    display: inline-block;
-  }
-  .mother-information{
-    display: inline-block;
-width: 380px;
-border: 2px solid gray;
-  }
-  .mother{
-    margin-left: 10px;
-  }
-  .father{
-    margin-left: 10px;
-  }
+
+
+
   .guardian{
-    margin-top: 10px;
+
     width: 789px;
-    border: 2px solid gray;
+   
   }
-.school-information{
-  border: 2px solid gray;
-  height: 120px;
-  width: 750px;
-}
+
 .school-information-grad{
   border: 2px solid gray;
   height: 120px;
   width: 750px;
 }
-.required-documents{
-    border: 2px solid gray;
-    height: 120px;
-    width: 700px;
-}
+
 .header-eat {
     background-color: #a20202;
     color: white;
@@ -164,23 +143,7 @@ input[type="file"] {
   border-radius: 5px;
   font-size: 16px;
 }
-.form-control-fr{
-  display: block;
-  width: 95%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0.25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+
 .form-control-eat{
   display: block;
   width: 95%;
@@ -240,19 +203,18 @@ input[type="file"] {
 
 }
 
+
 /* Mobile Styles */
 @media (max-width: 767px) {
   .logo-form {
     max-width: 80px; /* Adjust the size for smaller screens */
-    margin-top: 10px;
-    padding-left: 5px;
   }
   
   .header-form-text {
     font-size: 12px; /* Adjust font size for smaller screens */
   }
 
-  .form-control-fr,
+ 
   .form-control-eat,
   input[type="file"] {
     width: calc(100% - 20px); /* Adjust input fields width with padding for better spacing */
@@ -260,11 +222,17 @@ input[type="file"] {
     margin-left: 10px;
   }
 
+
   .father-information,
   .mother-information,
-  .guardian,
-  .guide-section,
-  .nat-container {
+
+  .guide-section
+ {
+    width: calc(75% - 20px);
+    margin-left: 10px;
+    padding-right: 10px;
+  }
+  .nat-container{
     width: calc(100% - 20px);
     margin-left: 10px;
     padding-right: 10px;
@@ -275,31 +243,26 @@ input[type="file"] {
   .header-eat{
     height: 330px;
   }
-  .school-information{
-    height: 200px;
-    width: 300px;
-  }
+  
   .required-documents{
     height: 200px;
     width: 300px;
   }
-  .submit-button{
-    margin-left: 60px;
-  }
-  .form-legend{
-    margin-left: 10px;
-  }
-
+ 
+  
+.guardian-grad{
+ margin-top: 30px;
 }
 
-/* Tablet Styles */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .logo-form {
-    max-width: 100px; /* Adjust the size for tablets */
-    margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 1024px){
+  .guide-section{
+    
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    padding-right: 10px;
   }
-
-  .header-form-text {
-    font-size: 14px; /* Adjust font size for tablets */
+   .test-section{
+    margin-left: -13px;
   }
 }

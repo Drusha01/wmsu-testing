@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 guide">
                         <div class="guide-section">
                             <h3>Step-by-Step Guide to Apply</h3>
                             <ol class="step-list">
