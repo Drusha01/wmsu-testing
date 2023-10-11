@@ -33,12 +33,12 @@ use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
 use App\Http\Livewire\Student\StudentDeleted\StudentDeleted;
 use App\Http\Livewire\Student\StudentInactive\StudentInactive;
 use App\Http\Livewire\Student\StudentRequirements\StudentRequirements;
-Use App\Http\Livewire\Student\StudentApplication\Cet\Studentcet;
+use App\Http\Livewire\Student\StudentApplication\Cet\Studentcet;
 use App\Http\Livewire\Student\StudentApplication\Cet\StudentcetGrad;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentshiftee;
-Use App\Http\Livewire\Student\StudentApplication\Cet\Studenteat;
-Use App\Http\Livewire\Student\StudentApplication\Cet\Studentnat;
-
+use App\Http\Livewire\Student\StudentApplication\Cet\Studenteat;
+use App\Http\Livewire\Student\StudentApplication\Cet\Studentnat;
+use App\Http\Livewire\Student\StudentAppointment\StudentAppointment;
 use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
 
 // admin
@@ -55,6 +55,8 @@ use App\Http\Livewire\Admin\ResultManagement;
 use App\Http\Livewire\Admin\RoomManagement;
 use App\Http\Livewire\Admin\Settings;
 use App\Http\Livewire\Admin\UserManagement;
+use App\Http\Livewire\Admin\profile;
+use App\Http\Livewire\Admin\notification;
 
 
 // page
@@ -100,7 +102,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/results', StudentResult::class)->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/requirements',StudentRequirements::class)->name('student.requirements');
-        Route::get('/notifications',StudentNotifications::class)->name('student.notifications');
+        Route::get('/notifications',StudentNotifications::class)->name('student.notifications'); 
+        Route::get('/appointment',StudentAppointment::class)->name('student.appointment');
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
         
         
@@ -147,6 +150,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('room-management', RoomManagement::class)->name('room-management');
         Route::get('faq-management', AdminFaq::class)->name('faq-management');
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
+        Route::get('profile', profile::class)->name('profile');
+        Route::get('notification', notification::class)->name('notification');
     });
 });
 

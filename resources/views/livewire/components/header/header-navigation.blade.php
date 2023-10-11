@@ -23,9 +23,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('appointment') }}">Appointment</a>
-                    </li>
+
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="testApplicationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Test Application
@@ -102,6 +100,7 @@
                                 <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
                                 <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
                                 <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
+                                <a class="dropdown-item" href="{{ route('student.appointment') }}">Apppointments</a>
                                 <a class="dropdown-item" href="{{ route('student.notifications') }}">Notifications</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>

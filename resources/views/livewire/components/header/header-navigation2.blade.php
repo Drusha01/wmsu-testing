@@ -26,9 +26,6 @@
                         <a class="nav-link" href="{{ route('services') }}">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('appointment') }}">Appointment</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
@@ -96,6 +93,7 @@
                                     <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
                                     <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
                                     <a class="dropdown-item" href="{{ route('student.schedule') }}">Schedule</a>
+                                    <a class="dropdown-item" href="{{ route('student.appointment') }}">Apppointments</a>
                                     <a class="dropdown-item" href="{{ route('student.notifications') }}">Notifications</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>

@@ -12,12 +12,6 @@
             <!-- First-level Tabs -->
             <ul class="nav nav-tabs" id="firstLevelTabs">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#modify-profile-tab">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#modify-profile-tab">Notifications</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link " data-toggle="tab" href="#modify-content-tab">MODIFY CONTENT</a>
             </li>
             <li class="nav-item">

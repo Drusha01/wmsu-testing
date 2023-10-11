@@ -1,15 +1,16 @@
 <div>
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Notifications</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Notifications</li>
                 </ol>
             </nav>
         </div><!-- End Right side columns -->
         <!-- Insert Section -->
+            <h1>NOTIFICATIONS</h1>
         <!-- End Inserted Section -->
 
     </main><!-- End #main -->
