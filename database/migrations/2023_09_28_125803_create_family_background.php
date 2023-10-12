@@ -19,6 +19,7 @@ class CreateFamilyBackground extends Migration
             family_background_m_firstname VARCHAR(100) DEFAULT NULL,
             family_background_m_middlename VARCHAR(100) DEFAULT NULL,
             family_background_m_lastname VARCHAR(100) DEFAULT NULL,
+            family_background_m_suffix VARCHAR(100) DEFAULT NULL,
             family_background_f_firstname VARCHAR(100) DEFAULT NULL,
             family_background_f_middlename VARCHAR(100) DEFAULT NULL,
             family_background_f_lastname VARCHAR(100) DEFAULT NULL,

@@ -15,6 +15,21 @@ class StudentStatus extends Component
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'status';
+
+        if($status = DB::table('test_applications')
+            ->where('t_a_test_type_id', '=', 
+                ((array) DB::table('test_types')
+                    ->where('test_type_details', '=', 'College Entrance Test')
+                    ->select('test_type_id as t_a_test_type_id')
+                    ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->first()
+            ){
+                // dd($status);
+            
+        }
     }
     public function render()
     {

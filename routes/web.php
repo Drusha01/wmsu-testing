@@ -107,15 +107,18 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
         
         
-        Route::get('/application/cet/undergrad', Studentcet::class)->name('student.cet.undergrad');
-        Route::get('/application/cet/studentgrad', StudentcetGrad::class)->name('student.cet.Grad');
-        Route::get('/application/cet/studentshiftee', Studentshiftee::class)->name('student.cet.shiftee');
-        Route::get('/application/cet/studenteat', Studenteat::class)->name('student.cet.eat');
-        Route::get('/application/cet/studentnat', Studentnat::class)->name('student.cet.nat');
+        
 
 
         // test routes application
         Route::prefix('application')->group(function () {
+            Route::get('/cet/undergrad', Studentcet::class)->name('student.cet.undergrad');
+            Route::get('/cet/studentgrad', StudentcetGrad::class)->name('student.cet.Grad');
+            Route::get('/cet/studentshiftee', Studentshiftee::class)->name('student.cet.shiftee');
+            Route::get('/cet/studenteat', Studenteat::class)->name('student.cet.eat');
+            Route::get('/cet/studentnat', Studentnat::class)->name('student.cet.nat');
+
+
             Route::get('/cet', [TestApplicationController::class, 'cet'])->name('application.cet');
             Route::get('/cetgraduate', [TestApplicationController::class, 'Cetgraduate'])->name('application.cetgraduate');
             Route::get('/cetshiftee', [TestApplicationController::class, 'Cetshiftee'])->name('application.cetshiftee');
