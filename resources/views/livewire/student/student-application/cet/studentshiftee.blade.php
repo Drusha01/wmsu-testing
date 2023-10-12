@@ -69,7 +69,7 @@
     </div>
     <form method="POST" action="{{ url('submit.application') }}" enctype="multipart/form-data">
         @csrf
-                            <div class="container4">
+        <div class="container4">
             <div class="form-container">
                 <form class="needs-validation" novalidate>
                     <fieldset class="mb-2">
@@ -94,118 +94,116 @@
                             </div>
                         </div>
                     </fieldset>
-                    <div class="school-information1 mb-2 px-2">
+                    <div class=" mb-2 px-2">
                     <fieldset class="mb-2">
-                    <legend>Document Uploads</legend>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="senior-card-original">Transcript of Records (TOR):</label>
-                                <input type="file" class="form-control" id="tor" name="payment-receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
+                            <legend>Document Uploads</legend>
+                            <div class="row border border-secondary">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label for="senior-card-original">Transcript of Records (TOR)</label>
+                                        <input type="file" class="form-control" id="tor" name="payment-receipt" accept=".pdf,.jpg,.png,.jpeg" required>
+                                    </div>
+                                </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group ">
+                                                    <label for="barangay-clearance">Endorsement letter from WMSU Dean</label>
+                                                    <input type="file" class="form-control" id="tor" name="payment-receipt" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for="enrollment-certification" class="form-label">WMSU-CET Application form</label>
+                                                <i class="fa fa-info-circle info-icon" title='Correctly accomplished WMSU-CET Application Form'style="padding: 11px 0 0 5px;"></i>
+                                                <input type="file" class="form-control" id="enrollment-certification" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for="graduation-certification" class="form-label">Two Identical 2x2 Photos with Name Tag</label>
+                                                <input type="file" class="form-control" id="graduation-certification" name="graduation_certification" accept=".pdf,.jpg,.png,.jpeg" required>
+                                            </div>
+                                
                             </div>
-                           
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="barangay-clearance">Endorsement letter from WMSU Dean:</label>
-                                <input type="file" class="form-control" id="tor" name="payment-receipt" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                                <label for="enrollment-certification" class="form-label">WMSU-CET Application form</label>
-                                <input type="file" class="form-control" id="enrollment-certification" name="enrollment_certification" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="graduation-certification" class="form-label">Two Identical 2x2 Photos with Name Tag:</label>
-                                <input type="file" class="form-control" id="graduation-certification" name="graduation_certification" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </fieldset>
-                <div class="row">
-        <div class="col-md-6">            
-                <legend class="father form-legend">Father's Information</legend>
-            <div class="father-information">
-
-              <div class="row">
-    <div class="father col-md-8 mb-3 mt-2">
-        <label for="father-first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="father-first-name" placeholder="First Name" required>
-    </div>
-    <div class="father col-md-8 mb-3">
-        <label for="father-middle-name" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="father-middle-name" placeholder="Middle Name" required>
-    </div>
-</div>
-
-                <div class="father col-md-8 mb-3">
-                    <label for="father-last-name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="father-last-name" placeholder="Last Name" required>
-                </div>
-                <div class="father col-md-8 mb-3">
-                    <label for="father-last-name" class="form-label">Suffix</label>
-                    <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6"> <legend class="mother form-legend">Mother's Information</legend>
-            <div class="mother-information">
-               
-                <div class="mother col-md-8 mb-3 mt-2">
-                    <label for="mother-first-name" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="mother-first-name" placeholder="First Name" required>
-                </div>
-                <div class="mother col-md-8 mb-3">
-                    <label for="mother-middle-name" class="form-label">Middle Name </label>
-                    <input type="text" class="form-control" id="mother-middle-name" placeholder="Middle Name" required>
-                </div>
-                <div class="mother col-md-8 mb-3">
-                    <label for="mother-last-name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="mother-last-name" placeholder="Last Name" required>
-                </div>
-                <div class="father col-md-8 mb-3">
-                    <label for="father-last-name" class="form-label">Suffix</label>
-                    <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-  <legend class="form-legend">Guardian's Information (If Applicable)</legend>
-  <div class="guardian">
-  <div class="mother col-md-8 mb-3 mt-2">
-  
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="first-name" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="first-name" placeholder="First Name" required>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="middle-name" class="form-label">Middle Name</label>
-            <input type="text" class="form-control" id="middle-name" placeholder="Middle Name" required>
-        </div>
-    </div>
+                       
+                    </fieldset>
+                                <div class="row">
+                                    <div class="col-md-6">            
+                                        <legend class="father form-legend">Father's Information</legend>
+                                        <div class="border border-secondary">
+                                        <div class="row px-3">
+                                            <div class="mother col-md-8 mb-3 mt-2">
+                                                <label for="mother-first-name" class="form-label">First Name</label>
+                                                <input type="text" class="form-control" id="mother-first-name" placeholder="First Name" required>
+                                            </div>
+                                            <div class="mother col-md-8 mb-3">
+                                                <label for="mother-middle-name" class="form-label">Middle Name </label>
+                                                <input type="text" class="form-control" id="mother-middle-name" placeholder="Middle Name" required>
+                                            </div>
+                                            <div class="father col-md-8 mb-3">
+                                                <label for="father-last-name" class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" id="father-last-name" placeholder="Last Name" required>
+                                            </div>
+                                            <div class="father col-md-8 mb-3">
+                                                <label for="father-last-name" class="form-label">Suffix</label>
+                                                <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <legend class="mother form-legend">Mother's Information</legend>
+                                    <div class="border border-secondary">
+                                    
+                                        <div class="mother col-md-8 mb-3 mt-2">
+                                            <label for="mother-first-name" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="mother-first-name" placeholder="First Name" required>
+                                        </div>
+                                        <div class="mother col-md-8 mb-3">
+                                            <label for="mother-middle-name" class="form-label">Middle Name </label>
+                                            <input type="text" class="form-control" id="mother-middle-name" placeholder="Middle Name" required>
+                                        </div>
+                                        <div class="mother col-md-8 mb-3">
+                                            <label for="mother-last-name" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="mother-last-name" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="father col-md-8 mb-3">
+                                            <label for="father-last-name" class="form-label">Suffix</label>
+                                            <input type="text" class="form-control" id="father-last-name" placeholder="Suffix" required>
+                                        </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                                    <legend class="form-legend">Guardian's Information (If Applicable)</legend>
+                                                        <div class="border border-secondary">
+                                                                <div class="mother col-md-8 mb-3 mt-2">
+                                                                
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="first-name" class="form-label">First Name</label>
+                                                                            <input type="text" class="form-control" id="first-name" placeholder="First Name" required>
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <label for="middle-name" class="form-label">Middle Name</label>
+                                                                            <input type="text" class="form-control" id="middle-name" placeholder="Middle Name" required>
+                                                                        </div>
+                                                                    </div>
+                                                    
 
 
                 
-    <div class="row">
-    <div class="col-md-6 mb-3">
-        <label for="last-name" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="last-name" placeholder="Last Name" required>
-    </div>
-    <div class="col-md-6 mb-3">
-    <label for="father-suffix" class="form-label">Suffix</label>
-<input type="text" class="form-control" id="father-suffix" aria-label="Father's Suffix" placeholder="Enter Suffix">
-</div>
-
-        <div class="col-md-6 mb-3">
-            <label for="middle-name" class="form-label">Relationship</label>
-            <input type="text" class="form-control" id="middle-name" placeholder="Relationship" required>
-        </div>
-    </div>
-  </div>
-  </div>
+                                        <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="last-name" class="form-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="last-name" placeholder="Last Name" required>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="father-suffix" class="form-label">Suffix</label>
+                                                    <input type="text" class="form-control" id="father-suffix" aria-label="Father's Suffix" placeholder="Enter Suffix">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="middle-name" class="form-label">Relationship</label>
+                                                    <input type="text" class="form-control" id="middle-name" placeholder="Relationship" required>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    </div>
 
 
 
