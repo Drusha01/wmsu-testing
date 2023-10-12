@@ -130,14 +130,14 @@ class Studentcet extends Component
     }
 
     public function submit_application(Request $request){
-        $user_details = $request->session()->all();
-        if(!isset($user_details['user_id'])){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
             return redirect('/login');
         }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
             return redirect('/deleted');
         }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
             return redirect('/inactive');
         }
 
@@ -160,7 +160,7 @@ class Studentcet extends Component
         
 
         if(DB::table('users as u')
-        ->where(['u.user_id'=> $user_details['user_id']])
+        ->where(['u.user_id'=> $this->user_details['user_id']])
         ->update(['u.user_firstname' => $this->firstname,
             'u.user_middlename'=>$this->middlename, 
             'u.user_lastname'=>$this->lastname, 
