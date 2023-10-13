@@ -18,7 +18,6 @@ class HeaderNavigation2 extends Component
         ->where('user_id','=', $this->user_details['user_id'])
         ->get()
         ->toArray();
-        // dd($this->user_status[0]->user_status_details);
     }
     public function render()
     {
