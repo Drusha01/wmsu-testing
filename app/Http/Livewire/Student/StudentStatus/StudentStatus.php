@@ -20,13 +20,31 @@ class StudentStatus extends Component
     public $view_details;
     public $cancel_details;
 
+    public function booted(Request $request){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
+            return redirect('/login');
+        }else{
+            $user_status = DB::table('users as u')
+            ->select('u.user_status_id','us.user_status_details')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+        }
 
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
+            return redirect('/deleted');
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
+            return redirect('/inactive');
+        }
+    }
 
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'status';
-
         $this->application_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
@@ -64,17 +82,7 @@ class StudentStatus extends Component
                 'title'=>$this->title]);
     }
 
-    public function cancel_application(Request $request,$t_a_id){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
+    public function cancel_application($t_a_id){
         $this->application_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
@@ -124,18 +132,7 @@ class StudentStatus extends Component
             $this->t_a_id = $t_a_id;
             
     }
-    public function confirm_cancel(Request $request,$t_a_id){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-        
+    public function confirm_cancel($t_a_id){     
         $this->t_a_id =$t_a_id;
         
         if( DB::table('test_applications as ta')
@@ -195,19 +192,7 @@ class StudentStatus extends Component
         ]);
     }
 
-    public function view_application(Request $request,$t_a_id){
-        
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-        
+    public function view_application($t_a_id){ 
         $this->t_a_id =$t_a_id;
 
         $this->application_details = DB::table('test_applications as ta')

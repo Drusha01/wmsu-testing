@@ -56,10 +56,28 @@ class Studentshiftee extends Component
     public $t_a_endorsement_letter_from_wmsu_dean ;
     public $t_a_endorsement_letter_from_wmsu_dean_name ;
 
+    public function booted(Request $request){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
+            return redirect('/login');
+        }else{
+            $user_status = DB::table('users as u')
+            ->select('u.user_status_id','us.user_status_details')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+        }
 
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
+            return redirect('/deleted');
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
+            return redirect('/inactive');
+        }
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-
         
         // check if we already applied (then go to that application)
         if(DB::table('test_applications')
@@ -131,17 +149,7 @@ class Studentshiftee extends Component
                 'title'=>$this->title]);
     }
 
-    public function submit_application(Request $request){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
+    public function submit_application(){
 
         // check application
         if(strlen($this->firstname) < 1 && strlen($this->firstname) > 255){

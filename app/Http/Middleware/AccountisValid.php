@@ -29,7 +29,10 @@ class AccountisValid
             return redirect('/deleted');
         }
         if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
-            return redirect('/inactive');
+            if(!request()->is('inactive*')){
+                return redirect('/inactive');
+            }
+            
         }
         return $next($request);
     }

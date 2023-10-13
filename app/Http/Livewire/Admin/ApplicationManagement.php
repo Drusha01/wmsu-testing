@@ -26,7 +26,7 @@ class ApplicationManagement extends Component
     public $column_order = 'date_created';
     public $order_by = 'desc';
 
-    public function boot(Request $request){
+    public function booted(Request $request){
         $this->user_details = $request->session()->all();
         if(!isset($this->user_details['user_id'])){
             return redirect('/login');
@@ -37,6 +37,7 @@ class ApplicationManagement extends Component
             ->where('user_id','=', $this->user_details['user_id'])
             ->first();
         }
+
         if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
             return redirect('/deleted');
         }

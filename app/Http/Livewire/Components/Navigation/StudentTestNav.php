@@ -10,6 +10,27 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentTestNav extends Component
 {
+    public $user_details;
+    public function booted(Request $request){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
+            return redirect('/login');
+        }else{
+            $user_status = DB::table('users as u')
+            ->select('u.user_status_id','us.user_status_details')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
+            return redirect('/deleted');
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
+            return redirect('/inactive');
+        }
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'amin-management';
@@ -18,19 +39,7 @@ class StudentTestNav extends Component
     {
         return view('livewire.components.navigation.student-test-nav');
     }
-    public function undergrad(Request $request){
-
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-
+    public function undergrad(){
         if(DB::table('test_applications')
             ->where('t_a_test_type_id', '=', 
                 ((array) DB::table('test_types')
@@ -52,21 +61,9 @@ class StudentTestNav extends Component
             ]);
         }else{
             return redirect()->route('student.cet.undergrad');
-
         }
     }
-    public function grad(Request $request){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-
+    public function grad(){
         if(DB::table('test_applications')
             ->where('t_a_test_type_id', '=', 
                 ((array) DB::table('test_types')
@@ -90,18 +87,7 @@ class StudentTestNav extends Component
             return redirect()->route('student.cet.Grad');
         }
     }
-    public function shiftee_tranferee(Request $request){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-
+    public function shiftee_tranferee(){
         if(DB::table('test_applications')
             ->where('t_a_test_type_id', '=', 
                 ((array) DB::table('test_types')
