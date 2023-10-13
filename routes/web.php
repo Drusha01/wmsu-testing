@@ -67,6 +67,7 @@ use App\Http\Livewire\Page\Services\Services;
 use App\Http\Livewire\Page\Appointment\Appointment;
 use App\Http\Livewire\Page\Faq\Faq;
 use App\Http\Livewire\Page\Contact\Contact;
+use App\Http\Livewire\Page\Programs\Programs;
 
 
 /*
@@ -176,6 +177,9 @@ Route::prefix('/')->group(function () {
     Route::get('/services', Services::class)->name('services');
     Route::get('/faq', Faq::class)->name('faq');
     Route::get('/contact', Contact::class)->name('contact');
+
+    Route::get('/programs', Programs::class)->name('programs');
+
 });
 
 
