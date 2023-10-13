@@ -85,7 +85,7 @@ use App\Http\Livewire\Page\Programs\Programs;
 // authentication
 Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
 
-Route::middleware([Unauthenticated::class,AccountisValid::class])->group(function () {
+Route::middleware([Unauthenticated::class])->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/register-email',RegisterEmail::class)->name('register-email');

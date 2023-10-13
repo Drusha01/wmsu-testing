@@ -36,17 +36,12 @@ class ApplicationManagement extends Component
             ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
             ->where('user_id','=', $this->user_details['user_id'])
             ->first();
-            
-            // get roles
         }
-       
-        
         if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
             return redirect('/deleted');
         }
-        dd($user_status);
-        
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
             return redirect('/inactive');
         }
     }

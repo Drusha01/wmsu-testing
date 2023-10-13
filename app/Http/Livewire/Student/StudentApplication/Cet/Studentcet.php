@@ -158,15 +158,16 @@ class Studentcet extends Component
             return false;
         }
         
-
-        if(DB::table('users as u')
+        
+        // bug
+        DB::table('users as u')
         ->where(['u.user_id'=> $this->user_details['user_id']])
         ->update(['u.user_firstname' => $this->firstname,
             'u.user_middlename'=>$this->middlename, 
             'u.user_lastname'=>$this->lastname, 
             'u.user_suffix'=>$this->suffix, 
-            'u.user_phone'=>$this->phone,
-        ]));
+           
+        ]);
 
         //documents
 

@@ -83,7 +83,7 @@
                                                                     <input type="file" class="form-control" wire:model="t_a_formal_photo" id="{{$t_a_formal_photo_id}}" name="graduation_certification" accept=".pdf,.jpg,.png,.jpeg" >
                                                                 </div>
                                                                 <div class="col-md-12 mb-2 ">
-                                                                    <label for="enrollment-certification" class="form-label">School Principal Certification 
+                                                                    <label for="enrollment-certification" class="form-label">School Principal Certification  <span style="color:red;">*</span>
                                                                         <i class="fa fa-info-circle info-icon" title='Certification from the school principal / registar that you are currently enrolled as Grade 12 Stundent'style="padding: 11px 0 0 5px;"></i>
                                                                     </label>
                                                                     <input type="file" class="form-control"  wire:model="t_a_school_principal_certification" id="{{$t_a_school_principal_certification_id}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
