@@ -56,6 +56,7 @@ use App\Http\Livewire\Admin\RoomManagement;
 use App\Http\Livewire\Admin\Settings;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Admin\profile;
+use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\notification;
 
 
@@ -104,6 +105,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/requirements',StudentRequirements::class)->name('student.requirements');
         Route::get('/notifications',StudentNotifications::class)->name('student.notifications'); 
         Route::get('/appointment',StudentAppointment::class)->name('student.appointment');
+        Route::get('/chat',StudentChat::class)->name('student.chat');
+        
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
         
         
@@ -140,6 +143,7 @@ Route::middleware([Authenticated::class])->group(function () {
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
+        Route::get('/', Dashboard::class)->name('admin-home');
         Route::get('dashboard', Dashboard::class)->name('admin-dashboard');
         Route::get('exam-management', ExamManagement::class)->name('exam-management');
         Route::get('admin-management', AdminManagement::class)->name('admin-management');

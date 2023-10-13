@@ -1,4 +1,3 @@
-
 <div class="col-lg-6">
     <div class="test-section">
         <h2>Choose Your Test</h2>

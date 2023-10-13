@@ -16,13 +16,6 @@ class testTypes extends Seeder
     {
         DB::statement('INSERT INTO test_types VALUES(
             NULL,
-            "",
-            "",
-            NOW(),
-            NOW()
-        );');
-        DB::statement('INSERT INTO test_types VALUES(
-            NULL,
             "CET",
             "College Entrance Test",
             NOW(),

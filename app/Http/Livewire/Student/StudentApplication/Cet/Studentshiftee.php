@@ -132,14 +132,14 @@ class Studentshiftee extends Component
     }
 
     public function submit_application(Request $request){
-        $user_details = $request->session()->all();
-        if(!isset($user_details['user_id'])){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
             return redirect('/login');
         }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
+        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
             return redirect('/deleted');
         }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
+        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
             return redirect('/inactive');
         }
 
@@ -162,7 +162,7 @@ class Studentshiftee extends Component
         
 
         if(DB::table('users as u')
-        ->where(['u.user_id'=> $user_details['user_id']])
+        ->where(['u.user_id'=> $this->user_details['user_id']])
         ->update(['u.user_firstname' => $this->firstname,
             'u.user_middlename'=>$this->middlename, 
             'u.user_lastname'=>$this->lastname, 
@@ -435,6 +435,7 @@ class Studentshiftee extends Component
                 ->select('school_year_id as t_a_school_year_id')
                 ->first())['t_a_school_year_id'],
             't_a_applicant_user_id'=>$this->user_details['user_id'],
+            't_a_user_details'=>json_encode($this->user_details),
             't_a_test_status_id'=>((array) DB::table('test_status')
                 ->where('test_status_details', '=', 'Pending')
                 ->select('test_status_id as t_a_test_status_id')
