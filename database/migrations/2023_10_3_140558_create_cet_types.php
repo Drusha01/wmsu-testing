@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttachmentTypes extends Migration
+class CreateCetTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAttachmentTypes extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE TABLE attachment_types(
-            attachment_type_id INT PRIMARY KEY AUTO_INCREMENT,
-            attachment_type_details VARCHAR(100) UNIQUE,
+        DB::statement('CREATE TABLE cet_types(
+            cet_type_id INT PRIMARY KEY AUTO_INCREMENT,
+            cet_type_name VARCHAR(100) NOT NULL,
+            cet_type_details VARCHAR(100) UNIQUE,
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
@@ -28,6 +29,6 @@ class CreateAttachmentTypes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attachment_types');
+        Schema::dropIfExists('cet_types');
     }
 }

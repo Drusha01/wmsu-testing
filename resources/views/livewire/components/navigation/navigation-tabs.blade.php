@@ -22,6 +22,9 @@
             <li role="presentation" class="{{request()->is('student/appointment*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.appointment') }}" role="tab">Appointments</a>
             </li>
+            <li role="presentation" class="{{request()->is('student/chat*') ? 'active' : 'presentation'}}">
+                <a href="{{ route('student.chat') }}" role="tab">Chat</a>
+            </li>
             <li role="presentation" class="{{request()->is('student/notifications*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.notifications') }}" role="tab">Notifications</a>
             </li>

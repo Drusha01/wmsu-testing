@@ -15,8 +15,8 @@ class CreateTestTypes extends Migration
     {
         DB::statement('CREATE TABLE test_types(
             test_type_id INT PRIMARY KEY AUTO_INCREMENT,
-            test_type_name VARCHAR(100) NOT NULL,
-            test_type_details VARCHAR(100) UNIQUE,
+            test_type_name VARCHAR(100) NOT NULL UNIQUE,
+            test_type_details VARCHAR(100) ,
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');

@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             userGenders::class,
             userSex::class,
             userStatus::class,
-            attachmentTypes::class,
             schoolTypes::class,
             usersDefault::class,
             moduleList::class,
             testTypes::class,
             schoolYears::class,
             testStatus::class,
+            cet_type_lists::class,
         ]);
         
     }
