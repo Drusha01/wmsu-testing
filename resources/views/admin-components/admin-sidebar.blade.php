@@ -49,7 +49,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('admin-announcement') }}">
-                <i class="bi bi-dash-circle"></i>
+              <i class="bi bi-megaphone"></i>
                 <span>Announcement Management</span>
             </a>
         </li><!-- End Announcement Nav -->

@@ -14,8 +14,8 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- Tab 1: Schedule Appointment -->
-            <div class="tab-pane fade show active" id="schedule-appointment">
-                <div class="details-box">
+            <div class="tab-pane fade show active d-flex justify-content-center mt-2" id="schedule-appointment">
+                <div class="details-box w-50 ">
                     <div class="appointment-form">
                         <h4>Schedule Appointment</h4>
                         <!-- Appointment form goes here -->

@@ -26,6 +26,9 @@
                         <a class="nav-link" href="{{ route('services') }}">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('programs') }}">Programs</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
