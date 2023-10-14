@@ -16,13 +16,6 @@ class cet_type_lists extends Seeder
     {
         DB::statement('INSERT INTO cet_types VALUES(
             NULL,
-            "",
-            "",
-            NOW(),
-            NOW()
-        );');
-        DB::statement('INSERT INTO cet_types VALUES(
-            NULL,
             "shs_under_grad",
             "shs_under_grad",
             NOW(),

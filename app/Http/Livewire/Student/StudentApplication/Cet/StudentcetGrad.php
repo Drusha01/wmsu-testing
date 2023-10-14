@@ -389,6 +389,10 @@ class StudentcetGrad extends Component
                 ->where('test_status_details', '=', 'Pending')
                 ->select('test_status_id as t_a_test_status_id')
                 ->first())['t_a_test_status_id'],
+            't_a_cet_type_id'=>((array) DB::table('cet_types')
+                ->where('cet_type_name', '=', 'shs_grad')
+                ->select('cet_type_id as t_a_cet_type_id')
+                ->first())['t_a_cet_type_id'],
             't_a_hash' => $t_a_hash,
             't_a_school_school_name'=> $this->ueb_shs_school_name ,
             't_a_school_address' => $this->ueb_shs_address,
