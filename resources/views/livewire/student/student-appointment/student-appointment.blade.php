@@ -1,6 +1,6 @@
- <div> 
-  <!-- Content -->
-   <div class="container">
+<div>
+    <!-- Content -->
+    <div class="container">
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
@@ -14,8 +14,8 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- Tab 1: Schedule Appointment -->
-            <div class="tab-pane fade show active d-flex justify-content-center mt-2" id="schedule-appointment">
-                <div class="details-box w-50 ">
+            <div class="tab-pane fade show active" id="schedule-appointment">
+                <div class="details-box w-50 mx-auto">
                     <div class="appointment-form">
                         <h4>Schedule Appointment</h4>
                         <!-- Appointment form goes here -->
@@ -44,16 +44,14 @@
 
             <!-- Tab 2: View Appointments -->
             <div class="tab-pane fade" id="view-appointments">
-                <!-- Content for viewing appointments goes here -->
                 <table class="table table-striped">
                     <thead>
-                        <tr>  
+                        <tr>
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
                             <th scope="col">Time</th>
                             <th scope="col">Purpose</th>
                             <th scope="col">Status</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -77,5 +75,4 @@
             </div>
         </div>
     </div>
-
 </div>
