@@ -191,11 +191,11 @@
                                                                                     <input type="text" class="form-control" id="last-name"  wire:model="suffix" name="last_name" placeholder="Suffix" >
                                                                                 </div>
                                                                             
-                                                                                <div class="col-lg-6 col-sm-12 mb-2">
+                                                                                <div class="col-lg-6 col-md-12 mb-2">
                                                                                     <label for="email" class="form-label">Email <span style="color:red;">*</span></label>
                                                                                     <input type="email" class="form-control" id="email"  wire:model="email" name="email" placeholder="Email" required disabled>
                                                                                 </div>
-                                                                                <div class="col-lg-6 col-sm-12 mb-2">
+                                                                                <div class="col-lg-6 col-md-12 mb-2">
                                                                                     <label for="contact-number" class="form-label">Contact Number <span style="color:red;">*</span></label>
                                                                                     <input type="text"  wire:model="phone" class="form-control" required placeholder="Contact Number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                                                                     
@@ -204,16 +204,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </fieldset>
-                                                                <fieldset class="mb-2">
+                                                                <fieldset class="my-3">
                                                                     <legend class="form-legend">Senior School information</legend>
-                                                                    <div class="border border-secondary ">
-                                                                        <div class=" row py-2 col-lg-12">
-                                                                            <div class="col-lg-6 mb-3">
+                                                                    <div class="border border-secondary mb-3">
+                                                                        <div class=" row px-3 py-2 col-lg-12">
+                                                                            <div class="col-lg-6 col-md-12 mb-2">
                                                                                 <label for="high-school-name" class="form-label">Senior School Name <span style="color:red;">*</span></label>
                                                                                 
                                                                                 <input type="text" class="form-control" id="high-school-name" wire:model="ueb_shs_school_name" name="high_school_name" placeholder="High School Name" required>
                                                                             </div>
-                                                                            <div class="col-lg-6  mb-3">
+                                                                            <div class="col-lg-6 col-md-12 mb-2">
                                                                                 <label for="high-school-address" class="form-label">Senior School Address <span style="color:red;">*</span></label>
                                                                                 <input type="text" class="form-control" id="high-school-address" wire:model="ueb_shs_address" name="high_school_address" placeholder="High School Address" required>
                                                                             </div>
@@ -225,16 +225,16 @@
                                                                     <legend class="form-legend">Required Documents</legend>
                                                                     <div class="border border-secondary">
                                                                         <div class="row px-4 py-2">
-                                                                            <div class="col-lg-6 m-2">
+                                                                            <div class="col-lg-6 mb-3">
                                                                                 <label for="graduation-certification" class="form-label">Formal Photo with name tag <span style="color:red;">*</span></label>
                                                                                 <i class="fa fa-info-circle info-icon" title='e.g. 2x2 with name tag'style="padding: 11px 0 0 5px;"></i>
-                                                                                <input type="file" class="custom-file-input" wire:model="t_a_formal_photo" id="{{$t_a_formal_photo_id}}" name="graduation_certification" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                <input type="file" class="form-control-file" wire:model="t_a_formal_photo" id="{{$t_a_formal_photo_id}}" name="graduation_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                                                             </div>
-                                                                            <div class="col-lg-6 my-2 ">
+                                                                            <div class="col-lg-6 mb-3">
                                                                                 <label for="enrollment-certification" class="form-label">School Principal Certification 
                                                                                     <i class="fa fa-info-circle info-icon" title='Certification from the school principal / registar that you are currently enrolled as Grade 12 Stundent'style="padding: 11px 0 0 5px;"></i>
                                                                                 </label>
-                                                                                <input type="file" class="custom-file-input"  wire:model="t_a_school_principal_certification" id="{{$t_a_school_principal_certification_id}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                <input type="file" class="form-control-file"  wire:model="t_a_school_principal_certification" id="{{$t_a_school_principal_certification_id}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -263,18 +263,18 @@
                                                                     <legend class="form-legend">Required Documents</legend>
                                                                     <div class="border border-secondary">
                                                                         <div class="row px-4 py-2">
-                                                                            <div class="col-md-12 mb-2">
+                                                                            <div class="col-lg-6 col-md-12 mb-2">
                                                                                 <label for="graduation-certification" class="form-label">Formal Photo with name tag <span style="color:red;">*</span></label>
                                                                                 <i class="fa fa-info-circle info-icon" title='e.g. 2x2 with name tag'style="padding: 11px 0 0 5px;"></i>
                                                                                 <input type="file" class="form-control-file" id="{{$t_a_formal_photo_id}}" wire:model="t_a_formal_photo" name="graduation_certification" accept=".pdf,.jpg,.png,.jpeg" required  >
                                                                             </div>
-                                                                            <div class="col-md-6 mb-2 ">
+                                                                            <div class="col-lg-6 col-md-12 mb-2 ">
                                                                                 <label for="senior-card-original">Transcript of Records ( TOR ) <span style="color:red;">*</span></label>
                                                                                 <i class="fa fa-info-circle info-icon" title='Transcript of records from registrar'style="padding: 11px 0 0 5px;"></i>
                                                                                 <input type="file" class="form-control-file" id="{{$t_a_transcript_of_records_id}}" wire:model="t_a_transcript_of_records" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                                                             </div>
-                                                                            <div class="col-md-6 mb-2 ">
-                                                                                <label for="barangay-clearance">Endorsement letter from WMSU Dean <span style="color:red;">*</span></label>
+                                                                            <div class="col-lg-12 col-md-12 mb-2 ">
+                                                                                <label for="barangay-clearance">WMSU Dean endorsement letter <span style="color:red;">*</span></label>
                                                                                 <i class="fa fa-info-circle info-icon" title='Transcript of records from registrar'style="padding: 11px 0 0 5px;"></i>
                                                                                 <input type="file" class="form-control-file" id="{{$t_a_endorsement_letter_from_wmsu_dean_id}}"  wire:model="t_a_endorsement_letter_from_wmsu_dean"  name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                                                             </div>
@@ -283,73 +283,75 @@
                                                                 </fieldset>
                                                                 @endif
                                                                 <div class="row">
-                                                                    <div class="col-md-6">            
+                                                                    <div class="col-lg-6">            
                                                                         <legend class="father form-legend">Father's Information</legend>
                                                                         <div class="border border-secondary">
-                                                                        <div class="row px-3">
-                                                                            <div class="mother col-md-8 mb-3 mt-2">
-                                                                                <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control-file" wire:model="f_firstname" id="mother-first-name"  placeholder="First Name" required >
+                                                                            <div class="row px-3">
+                                                                                <div class="mother col-lg-12 mb-3 mt-2">
+                                                                                    <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
+                                                                                    <input type="text" class="form-control" wire:model="f_firstname" id="mother-first-name"  placeholder="First Name" required >
+                                                                                </div>
+                                                                                <div class="mother col-lg-12 mb-3">
+                                                                                    <label for="mother-middle-name" class="form-label">Middle Name </label>
+                                                                                    <input type="text" class="form-control" wire:model="f_middlename" id="mother-middle-name" placeholder="Middle Name" >
+                                                                                </div>
+                                                                                <div class="father col-lg-12 mb-3">
+                                                                                    <label for="father-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
+                                                                                    <input type="text" class="form-control" wire:model="f_lastname" id="father-last-name" placeholder="Last Name" required>
+                                                                                </div>
+                                                                                <div class="father col-lg-12 mb-3">
+                                                                                    <label for="father-last-name" class="form-label">Suffix</label>
+                                                                                    <input type="text" class="form-control" wire:model="f_suffix" id="father-last-name" placeholder="Suffix" >
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="mother col-md-8 mb-3">
-                                                                                <label for="mother-middle-name" class="form-label">Middle Name </label>
-                                                                                <input type="text" class="form-control-file" wire:model="f_middlename" id="mother-middle-name" placeholder="Middle Name" >
-                                                                            </div>
-                                                                            <div class="father col-md-8 mb-3">
-                                                                                <label for="father-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control-file" wire:model="f_lastname" id="father-last-name" placeholder="Last Name" required>
-                                                                            </div>
-                                                                            <div class="father col-md-8 mb-3">
-                                                                                <label for="father-last-name" class="form-label">Suffix</label>
-                                                                                <input type="text" class="form-control-file" wire:model="f_suffix" id="father-last-name" placeholder="Suffix" >
-                                                                            </div>
-                                                                        </div>
+                                                                            
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-lg-6">
                                                                     <legend class="mother form-legend">Mother's Information</legend>
                                                                     <div class="border border-secondary">
-                                                                        <div class="mother col-md-8 mb-3 mt-2">
+                                                                        <div class="mother col-lg-12 mb-3 mt-2">
                                                                             <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
                                                                             <input type="text" class="form-control" wire:model="m_firstname" id="mother-first-name" placeholder="First Name" required>
                                                                         </div>
-                                                                        <div class="mother col-md-8 mb-3">
+                                                                        <div class="mother col-lg-12 mb-3">
                                                                             <label for="mother-middle-name" class="form-label">Middle Name </label>
                                                                             <input type="text" class="form-control" wire:model="m_middlename" id="mother-middle-name" placeholder="Middle Name" >
                                                                         </div>
-                                                                        <div class="mother col-md-8 mb-3">
+                                                                        <div class="mother col-lg-12 mb-3">
                                                                             <label for="mother-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
                                                                             <input type="text" class="form-control" wire:model="m_lastname" id="mother-last-name" placeholder="Last Name" required>
                                                                         </div>
-                                                                        <div class="father col-md-8 mb-3">
+                                                                        <div class="father col-lg-12 mb-3">
                                                                             <label for="father-last-name" class="form-label">Suffix</label>
                                                                             <input type="text" class="form-control" wire:model="m_suffix" id="father-last-name" placeholder="Suffix" >
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                
                                                                 <div class="col-md-12">
                                                                     <legend class="form-legend">Guardian's Information <i class="fa fa-info-circle info-icon" title='If applicable'style="padding: 11px 0 0 5px;"></i></legend>
                                                                     <div class="border border-secondary mb-3">
                                                                         <div class="row px-3">
-                                                                            <div class="col-md-6 mb-3">
+                                                                            <div class="col-lg-6 col-md-12  mb-3">
                                                                                 <label for="first-name" class="form-label">First Name <span style="color:red;"></span></label>
                                                                                 <input type="text" class="form-control" wire:model="g_firstname" id="first-name" placeholder="First Name" >
                                                                             </div>
-                                                                            <div class="col-md-6 mb-3">
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
                                                                                 <label for="middle-name" class="form-label">Middle Name</label>
                                                                                 <input type="text" class="form-control" wire:model="g_middlename" id="middle-name" placeholder="Middle Name" >
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row px-3">
-                                                                            <div class="col-md-6 mb-3">
+                                                                        <div class="row md-12 px-3">
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
                                                                                 <label for="last-name" class="form-label">Last Name <span style="color:red;"></span></label>
                                                                                 <input type="text" class="form-control" wire:model="g_lastname" id="last-name" placeholder="Last Name" >
                                                                             </div>
-                                                                            <div class="col-md-6 mb-3">
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
                                                                                 <label for="father-suffix" class="form-label">Suffix</label>
                                                                                 <input type="text" class="form-control" wire:model="g_suffix" id="father-suffix" aria-label="Father's Suffix" placeholder="Enter Suffix">
                                                                             </div>
-                                                                            <div class="col-md-12 mb-3 ">
+                                                                            <div class="col-lg-12 col-md-12 mb-3 ">
                                                                                 <label for="middle-name" class="form-label">Relationship <span style="color:red;"></span></label>
                                                                                 <input type="text" class="form-control" wire:model="g_relationship" id="middle-name" placeholder="Relationship" >
                                                                             </div>
@@ -357,7 +359,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @if($edit)
-                                                                <div class="text-center">
+                                                                <div class="col-md-12 text-center mb-3">
                                                                     <button type="submit" class="btn btn-danger" style="background:#990000;" >Submit Application</button>
                                                                 </div>
                                                                 @endif
