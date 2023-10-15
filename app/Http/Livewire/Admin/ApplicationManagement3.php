@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
-class ApplicationManagement extends Component
+class ApplicationManagement3 extends Component
 {
     // use WithPagination;
     public $user_detais;
