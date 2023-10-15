@@ -115,15 +115,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        @forelse ($pending_applicant_data['data'] as $item => $value)
+                        @forelse ($pending_applicant_data as $item => $value)
                         <tr>
+                            
                             @if($pending_applicant_filter['Select all'])
-                            <td><input type="checkbox" 
-                                
-                                wire:model="selected.{{$loop->index}}.{{$value->t_a_id}}"
-                                >
-                            </td>
+                                <td><input type="checkbox" 
+                                   
+                                    wire:model="selected.{{$loop->index}}.{{$value->t_a_id}}"
+                                    >
+                                </td>
                             @endif
                             @if($pending_applicant_filter['#'])
                                 <td>{{ ($per_page*($page_number-1))+$loop->index+1 }}</td>
@@ -147,39 +147,92 @@
                                     @endif
                                 </td>
                             @endif
-                                                      
+                        </tr>
                         @empty
-                            <td class="text-center font-weight-bold" colspan="42">
+                        <td class="text-center font-weight-bold" colspan="42">
                                 NO RECORDS 
                             </td>
                         @endforelse
-                        </tr>
+                        <!-- Add more application rows here -->
+                        
                     </tbody>
                 </table>
 
-
                 <div class="d-flex justify-content-center mt-2" >
-                <a href="{{ $pending_applicant_data['prev_page_url']}}">
-                        <button class="btn border border-black m-1" 
-                        @if( $pending_applicant_data['prev_page_url']) 
+                    @if($prev_page_count>=($per_page))
+                    <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)"
+                        @if($cursor === $item_first)  
+                        @endif>
+                        Previous
+                    </button>
+                    @else
+                    <button class="btn border border-black m-1" 
+                        @if($cursor === $item_first) 
+                        disabled 
+                        @endif>
+                        Previous
+                    </button>
+                    @endif
+                    @if($prev_page_count || $next_page_count )
+                        @if($prev_page_count>(($per_page*3)-2))
+                        <button class="btn border border-black m-1" @if($cursor === $item_last) style="color:white;background:#930707;"@endif>
+                            first
+                        </button>
+                        <button class="btn border border-black m-1" disabled>
+                            ...
+                        </button>
+                        @endif
+                        @if($prev_page_count>=(($per_page*2)))
+                        <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[(($per_page*2)-1)]->t_a_id}},-2)">
+                            {{$page_number-2}}
+                        </button>
+                        @else
+                        @endif
+                        @if($prev_page_count>=($per_page))
+                        <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)">
+                            {{$page_number-1}}
+                        </button>
+                        @endif
+                        <button class="btn border border-black m-1" @if($cursor === $item_current) style="color:white;background:#930707;"@endif>
+                            {{$page_number}}
+                        </button>
+                        @if($next_page_count>$per_page)
+                        <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)">
+                            {{$page_number+1}}
+                        </button>
+                        @endif
+                        @if($next_page_count>($per_page*2))
+                        <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[($per_page*2)-1]->t_a_id}},2)">
+                            {{$page_number+2}}
+                        </button>
+                        @endif
+                        @if($next_page_count>($per_page*3))
+                        <button class="btn border border-black m-1" disabled>
+                            ...
+                        </button>
+                        <button class="btn border border-black m-1" wire:click="last_page({{$item_last}})" @if($cursor === $item_last) style="color:white;background:#930707;"@endif>
+                            end
+                        </button>
+                        @endif
+                    @endif
+                    @if($next_page_count>$per_page)
+                    <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)"  
+                        @if($cursor === $item_last || $next_page_count<$per_page ) 
                             disabled 
                         @endif>
-                            Next
-                        </button>
-                    </a>
-                    <a href="{{ $pending_applicant_data['next_page_url']}}">
-                        <button class="btn border border-black m-1" 
-                        @if( $pending_applicant_data['next_page_url']) 
+                        Next
+                    </button>
+                    @else
+                    <button class="btn border border-black m-1"  
+                        @if($next_page_count<=$per_page ) 
                             disabled 
                         @endif>
-                            Next
-                        </button>
-                    </a>
-                </div>
-
+                        Next
+                    </button>
+                    @endif
                        
                    
-            
+                </div>
             </div>
 
             <!-- Accepted Applicant Tab -->
