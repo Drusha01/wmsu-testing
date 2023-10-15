@@ -88,7 +88,7 @@ class ApplicationManagement extends Component
                 $this->pending_applicant_data = DB::table('test_applications as ta')
                 ->select(
                     // '*',
-                    't_a_id',
+                    'ta.t_a_id',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -99,7 +99,7 @@ class ApplicationManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
-                ->where('t_a_id','>',$this->cursor)
+                ->where('ta.t_a_id','>',$this->cursor)
                 ->orderBy('ta.'.$this->column_order, 'asc')
                 ->limit($this->per_page)
                 ->get()
@@ -118,10 +118,10 @@ class ApplicationManagement extends Component
                 $this->next_pages = DB::table('test_applications as ta')
                 ->select(
                     // '*',
-                    't_a_id'
+                    'ta.t_a_id'
                     )
                 ->where('t_a_isactive','=',1)
-                ->where('t_a_id','>',$this->cursor)
+                ->where('ta.t_a_id','>',$this->cursor)
                 ->orderBy('ta.'.$this->column_order, 'asc')
                 ->limit($this->per_page*3+1)
                 ->get()
@@ -132,10 +132,10 @@ class ApplicationManagement extends Component
                 $this->prev_pages = DB::table('test_applications as ta')
                 ->select(
                     // '*',
-                    't_a_id'
+                    'ta.t_a_id'
                     )
                 ->where('t_a_isactive','=',1)
-                ->where('t_a_id','<',$this->cursor)
+                ->where('ta.t_a_id','<',$this->cursor)
                 ->orderBy('ta.'.$this->column_order, 'asc')
                 ->limit($this->per_page*3+1)
                 ->get()
@@ -147,7 +147,7 @@ class ApplicationManagement extends Component
                 $this->item_last = DB::table('test_applications as ta')
                 ->select(
                     // '*',
-                    't_a_id'
+                    'ta.t_a_id'
                     )
                 ->where('t_a_isactive','=',1)
                 ->orderBy('ta.'.$this->column_order, $this->order_by)
@@ -673,10 +673,10 @@ class ApplicationManagement extends Component
         $this->prev_pages = DB::table('test_applications as ta')
             ->select(
                 // '*',
-                't_a_id'
+                'ta.t_a_id'
                 )
             ->where('t_a_isactive','=',1)
-            ->where('t_a_id','<',$this->cursor)
+            ->where('ta.t_a_id','<',$this->cursor)
             ->orderBy('ta.'.$this->column_order, 'desc')
             ->limit($this->per_page*3+1)
             ->get()
@@ -690,7 +690,7 @@ class ApplicationManagement extends Component
         $this->pending_applicant_data = DB::table('test_applications as ta')
             ->select(
                 // '*',
-                't_a_id',
+                'ta.t_a_id',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
