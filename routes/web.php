@@ -55,7 +55,7 @@ use App\Http\Livewire\Admin\ResultManagement;
 use App\Http\Livewire\Admin\RoomManagement;
 use App\Http\Livewire\Admin\Settings;
 use App\Http\Livewire\Admin\UserManagement;
-use App\Http\Livewire\Admin\profile;
+use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\notification;
 
