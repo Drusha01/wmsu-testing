@@ -17,6 +17,7 @@ class ApplicationManagement extends Component
     public $pending_applicant_filter;
 
     public $selected_all;
+    public $selected = [];
     public $per_page = 10;
 
     public $pending_applicant_data;
@@ -25,6 +26,7 @@ class ApplicationManagement extends Component
     public $pending_test_type_id = 0;
     public $column_order = 'date_created';
     public $order_by = 'desc';
+    public $access_role ;
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -46,6 +48,47 @@ class ApplicationManagement extends Component
             return redirect('/inactive');
         }
     }
+    public function hydrate(){
+        
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if(1){
+            
+       
+
+            $this->exam_types = DB::table('test_types')
+                ->select('test_type_id','test_type_name')
+                ->get()
+                ->toArray();
+
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    't_a_id',
+                    DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                    'test_type_name',
+                    DB::raw('DATE(ta.date_created) as date_applied')
+                    )
+                ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+                ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+                ->where('t_a_isactive','=',1)
+                // ->where()
+                ->orderBy('ta.'.$this->column_order, $this->order_by)
+                ->limit($this->per_page)
+                ->get()
+                ->toArray();
+            // dd($this->pending_applicant_data);
+        }else{
+            $this->redirect('/admin/dashboard');
+        }
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'application-management';
@@ -62,23 +105,41 @@ class ApplicationManagement extends Component
             ];
             $this->selected_all = false;
 
+            $this->access_role = [
+                'C' => true,
+                'R' => true,
+                'U' => true,
+                'D' => true
+            ];
+       
+
             $this->exam_types = DB::table('test_types')
                 ->select('test_type_id','test_type_name')
                 ->get()
                 ->toArray();
 
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    't_a_id',
+                    DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                    'test_type_name',
+                    DB::raw('DATE(ta.date_created) as date_applied')
+                    )
+                ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+                ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 // ->where()
-                ->orderBy($this->column_order, $this->order_by)
+                ->orderBy('ta.'.$this->column_order, $this->order_by)
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
-
-        
-            
             // dd($this->pending_applicant_data);
+
+            
         }else{
             $this->redirect('/admin/dashboard');
         }
@@ -86,10 +147,7 @@ class ApplicationManagement extends Component
     }
 
     public function render(){
-        $this->exam_types = DB::table('test_types')
-            ->select('test_type_id','test_type_name')
-            ->get()
-            ->toArray();
+        
 
         return view('livewire.admin.application-management',[
             'user_details' => $this->user_details
@@ -101,15 +159,22 @@ class ApplicationManagement extends Component
     public function pending_applicant_filterView(Request $request){
         $this->user_details = $request->session()->all();
         if(1){
-            $this->exam_types = DB::table('test_types')
-            ->select('test_type_id','test_type_name')
-            ->get()
-            ->toArray();
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    't_a_id',
+                    DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                    'test_type_name',
+                    DB::raw('DATE(ta.date_created) as date_applied')
+                    )
+                ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+                ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 // ->where()
-                ->orderBy($this->column_order, $this->order_by)
+                ->orderBy('ta.'.$this->column_order, $this->order_by)
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
@@ -127,78 +192,52 @@ class ApplicationManagement extends Component
          ]);
     }
 
-    public function pending_applicant_select_all(Request $request){
-        $this->user_details = $request->session()->all();
-        if(1){
-            
-            $this->exam_types = DB::table('test_types')
-            ->select('test_type_id','test_type_name')
-            ->get()
-            ->toArray();
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
-                ->where('t_a_isactive','=',1)
-                // ->where()
-                ->orderBy($this->column_order, $this->order_by)
-                ->limit($this->per_page)
-                ->get()
-                ->toArray();
-
-        }else{
-            $this->redirect('/admin/dashboard');
-        }
+    public function pending_applicant_select_all(){
+        
         $this->selected_all = !$this->selected_all ;
-        if( $this->selected_all){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'success',
-                'title'             									=> 'all selected!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '#'
-             ]);
-        }
+   
     }
-    public function pending_application_exam_type_filter(Request $request){
-        $this->user_details = $request->session()->all();
-        if(1){
-            
-            $this->exam_types = DB::table('test_types')
-            ->select('test_type_id','test_type_name')
-            ->get()
-            ->toArray();
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
-                ->where('t_a_isactive','=',1)
-                // ->where()
-                ->orderBy($this->column_order, $this->order_by)
-                ->limit($this->per_page)
-                ->get()
-                ->toArray();
-
-        }else{
-            $this->redirect('/admin/dashboard');
-        }
-
+    public function pending_application_exam_type_filter(){
+        
         if($this->pending_test_type_id == 0){
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
-                ->where('t_a_isactive','=',1)
-                ->orderBy($this->column_order, $this->order_by)
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                    'test_type_name',
+                    DB::raw('DATE(ta.date_created) as date_applied')
+                    )
+                ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+                ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+                ->where('ta.t_a_isactive','=',1)
+                ->orderBy('ta.'.$this->column_order, $this->order_by)
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
         }else{
-            $this->pending_applicant_data = DB::table('test_applications')
-                ->select('*')
-                ->where('t_a_isactive','=',1)
-                ->where(['t_a_test_type_id'=> $this->pending_test_type_id])
-                ->orderBy($this->column_order, $this->order_by)
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                    'test_type_name',
+                    DB::raw('DATE(ta.date_created) as date_applied')
+                    )
+                ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+                ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+                ->where('ta.t_a_isactive','=',1)
+                ->where(['ta.t_a_test_type_id'=> $this->pending_test_type_id])
+                ->orderBy('ta.'.$this->column_order, $this->order_by)
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
         }
-        dd( $this->pending_applicant_data );
+        // dd( $this->pending_applicant_data );
 
     }   
 

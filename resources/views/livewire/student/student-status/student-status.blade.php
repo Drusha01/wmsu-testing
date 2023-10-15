@@ -9,6 +9,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Test code</th>
                             <th>Exam Type</th>
                             <th class=" text-center align-middle">Description</th>
                             <th class="text-center align-middle">Date</th>
@@ -21,6 +22,7 @@
                         @forelse ($application_details as $item => $value)
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
+                            <td>{{ $value->applied_date.'-'.$value->t_a_id }}</td>
                             <td>{{ $value->test_type_name }}</td>
                             <td>{{ $value->test_type_details }}</td>
                             <td>{{date_format(date_create( $value->applied_date),"F d, Y ")}} </td>

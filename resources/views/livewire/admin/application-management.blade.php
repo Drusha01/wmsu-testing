@@ -104,48 +104,41 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
-                            <td><input type="checkbox"></td> 
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>CET</td>
-                    
-                            <td>2023-2024</td>
-                            <td>2023-09-15</td>
-                            <td>Pending</td>
-                            <td>
-                                <button class="btn btn-primary">View</button>
-                            </td>
-                        </tr>
-            
+                        @forelse ($pending_applicant_data as $item => $value)
                         <tr>
-                            <td><input type="checkbox"></td> <!-- Checkmark input -->
-                            <td>2</td>
-                            <td>John Doe</td>
-                            <td>CET</td>
-                    
-                            <td>2023-2024</td>
-                            <td>2023-09-15</td>
-                            <td>Pending</td>
-                            <td>
-                                <button class="btn btn-primary">View</button>
-                            </td>
+                            
+                            @if($pending_applicant_filter['Select all'])
+                                <td><input type="checkbox" 
+                                    @if($selected_all) 
+                                        checked 
+                                    @endif>
+                                </td>
+                            @endif
+                            @if($pending_applicant_filter['#'])
+                                <td>{{ $loop->index+1 }}</td>
+                            @endif
+                            @if($pending_applicant_filter['Applicant name'])
+                                <td>{{ $value->user_fullname }}</td>
+                            @endif
+                            @if($pending_applicant_filter['Exam type'])
+                                <td>{{ $value->test_type_name }}</td>
+                            @endif
+                            @if($pending_applicant_filter['Date applied'])
+                                <td>{{ $value->date_applied }}</td>
+                            @endif
+                            @if($pending_applicant_filter['Actions'] )
+                                <td>
+                                    @if($access_role['R']==1)
+                                    <button class="btn btn-primary">View</button>
+                                    @endif
+                                </td>
+                            @endif
                         </tr>
-            
-                        <tr>
-                            <td><input type="checkbox"></td> <!-- Checkmark input -->
-                            <td>3</td>
-                            <td>John Doe</td>
-                            <td>CET</td>
-                    
-                            <td>2023-2024</td>
-                            <td>2023-09-15</td>
-                            <td>Pending</td>
-
-                            <td>
-                                <button class="btn btn-primary">View</button>
+                        @empty
+                        <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
                             </td>
-                        </tr>
+                        @endforelse
                         <!-- Add more application rows here -->
                         
                     </tbody>
