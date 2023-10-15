@@ -649,7 +649,7 @@ class ApplicationManagement extends Component
         $pages = DB::table('test_applications as ta')
         ->select(
             // '*',
-            DB::raw('count(ta.t_a_id) as t_a_id_count')
+            DB::raw('COUNT(ta.t_a_id) as t_a_id_count')
             )
         ->where('t_a_isactive','=',1)
         ->orderBy('ta.'.$this->column_order, 'desc')
