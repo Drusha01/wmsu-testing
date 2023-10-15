@@ -147,31 +147,36 @@
                                     @endif
                                 </td>
                             @endif
-                                                      
+                            </tr>                   
                         @empty
                             <td class="text-center font-weight-bold" colspan="42">
                                 NO RECORDS 
                             </td>
+
                         @endforelse
-                        </tr>
+                        
                     </tbody>
                 </table>
 
 
                 <div class="d-flex justify-content-center mt-2" >
-                <a href="{{ $pending_applicant_data['prev_page_url']}}">
-                        <button class="btn border border-black m-1" 
-                        @if( $pending_applicant_data['prev_page_url']) 
+                <a href="
+                @if( $pending_applicant_data['prev_page_url']) 
                             disabled 
-                        @endif>
-                            Next
+                        @else
+                        {{ $pending_applicant_data['prev_page_url']}}
+                        @endif>">
+                        <button class="btn border border-black m-1" >
+                        
+                            Prev
                         </button>
                     </a>
-                    <a href="{{ $pending_applicant_data['next_page_url']}}">
-                        <button class="btn border border-black m-1" 
-                        @if( $pending_applicant_data['next_page_url']) 
-                            disabled 
-                        @endif>
+                    <a href="@if( $pending_applicant_data['next_page_url']) 
+                            # 
+                        @endif
+                        {{ $pending_applicant_data['next_page_url']}}">
+                        <button class="btn border border-black m-1" >
+                        
                             Next
                         </button>
                     </a>
