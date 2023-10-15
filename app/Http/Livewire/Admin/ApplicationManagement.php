@@ -651,7 +651,7 @@ class ApplicationManagement extends Component
             // '*',
             DB::raw('COUNT(ta.t_a_id) as t_a_id_count')
             )
-        ->where('t_a_isactive','=',1)
+        ->where('ta.t_a_isactive','=',1)
         ->orderBy('ta.'.$this->column_order, 'desc')
         ->first();
 
