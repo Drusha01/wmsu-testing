@@ -161,7 +161,7 @@
                 @if($prev_page_count || $next_page_count )
                 <div class="d-flex justify-content-center mt-2" >
                     @if($prev_page_count==0)
-                    <button class="btn border border-black m-1" 
+                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-prev-' }}"
                         @if($prev_page_count==0)
                         disabled 
                         @endif>
@@ -173,7 +173,6 @@
                         Previous
                     </button>
                     @endif
-                    
                         @if($prev_page_count>=(($per_page*3)))
                         <button class="btn border border-black m-1" wire:key="item-{{ 'page-first' }}" wire:click="first_page()" >
                             first
@@ -209,7 +208,7 @@
                         <button class="btn border border-black m-1" wire:key="item-{{ 'page-last-' }}"disabled>
                             ...
                         </button>
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-last' }}" wire:click="last_page({{$item_last}})">
+                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-last' }}" wire:click="last_page()">
                             end
                         </button>
                         @endif
@@ -221,7 +220,7 @@
                         Next
                     </button>
                     @else
-                    <button class="btn border border-black m-1"  
+                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-next-' }}" 
                         @if($next_page_count<=$per_page ) 
                             disabled 
                         @endif>
