@@ -40,7 +40,7 @@
                         <!-- Add more options as needed -->
                     </select>
                     <label class="filter-label align-self-center" for="exam-filter">Show:</label>
-                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="refesh_page()">
+                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="pending_application_exam_type_filter()">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -158,28 +158,17 @@
                     </tbody>
                 </table>
 
-
                 <div class="d-flex justify-content-center mt-2" >
-                <a href="
-                @if( $pending_applicant_data['prev_page_url']) 
-                            disabled 
-                        @else
-                        {{ $pending_applicant_data['prev_page_url']}}
-                        @endif>">
-                        <button class="btn border border-black m-1" >
-                        
-                            Prev
+                  @foreach( $pending_applicant_data['links']  as $item => $value)
+                    <a href="{{$value['url']}}">
+                        <button>
+                        {{$value['label']}}
                         </button>
                     </a>
-                    <a href="@if( $pending_applicant_data['next_page_url']) 
-                            # 
-                        @endif
-                        {{ $pending_applicant_data['next_page_url']}}">
-                        <button class="btn border border-black m-1" >
-                        
-                            Next
-                        </button>
-                    </a>
+                  @endforeach
+                </div>
+                <div class="d-flex justify-content-center mt-2" >
+                  
                 </div>
 
                        
