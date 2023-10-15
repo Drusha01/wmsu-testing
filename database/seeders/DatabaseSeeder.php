@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             testStatus::class,
             cet_type_lists::class,
             fb_defaults::class,
-            test_samples::class,
+            // test_samples::class,
         ]);
         
     }
