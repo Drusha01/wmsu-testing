@@ -160,7 +160,7 @@
 
                 <div class="d-flex justify-content-center" >
                     @if($prev_page_count>($per_page-2))
-                    <button class="btn border border-black m-1"  wire:click="prev_page({{$prev_pages[($per_page)-2]->t_a_id}},-1)"
+                    <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)"
                         @if($cursor === $item_first)  
                         @endif>
                         Previous
@@ -178,14 +178,14 @@
                         first
                     </button>
                     @endif
-                    @if($prev_page_count>(($per_page*2)))
-                    <button class="btn border border-black m-1" >
+                    @if($prev_page_count>=(($per_page*2)))
+                    <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[($per_page)]->t_a_id}},-2)">
                         {{$page_number-2}}
                     </button>
                     @else
                     @endif
                     @if($prev_page_count>=($per_page))
-                    <button class="btn border border-black m-1">
+                    <button class="btn border border-black m-1" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)">
                         {{$page_number-1}}
                     </button>
                     @endif

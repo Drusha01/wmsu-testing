@@ -20,7 +20,7 @@ class ApplicationManagement extends Component
     public $selected = [];
 
     // pagination
-    public $per_page = 10;
+    public $per_page = 5;
     public $items;
     public $item_first = 0 ;
     public $item_current ;
@@ -516,16 +516,7 @@ class ApplicationManagement extends Component
             ->get()
             ->toArray();
             $this->prev_page_count = count($this->prev_pages);
-      
-
-            // dd($this->prev_page_count);
-            // dd($this->prev_pages);
-            
-            // dd($this->next_page_count);
-            
-
             $this->item_current = $this->cursor ;
-        
 
             $this->item_last = DB::table('test_applications as ta')
             ->select(
@@ -535,7 +526,9 @@ class ApplicationManagement extends Component
             ->where('t_a_isactive','=',1)
             ->orderBy('ta.'.$this->column_order, $this->order_by)
             ->first()->t_a_id;
+ 
 
+            
             $this->pending_applicant_data = DB::table('test_applications as ta')
             ->select(
                 // '*',
@@ -555,9 +548,64 @@ class ApplicationManagement extends Component
             ->limit($this->per_page)
             ->get()
             ->toArray();
-
             
         }
+    }
+
+    public function prev_page($cursor,$offset){
+        $this->cursor = $cursor;
+        $this->page_number = $this->page_number + $offset;
+
+        $this->next_pages = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id'
+                )
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','>=',$this->cursor)
+            ->orderBy('ta.'.$this->column_order, 'asc')
+            ->limit($this->per_page*3+1)
+            ->get()
+            ->toArray();
+            $this->next_page_count = count($this->next_pages);
+
+            $this->prev_pages = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id'
+                )
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','<',$this->cursor)
+            ->orderBy('ta.'.$this->column_order, 'desc')
+            ->limit($this->per_page*3+1)
+            ->get()
+            ->toArray();
+            $this->prev_page_count = count($this->prev_pages);
+            $this->item_current = $this->cursor ;
+            // dd($this->prev_pages);
+
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','>=',$this->cursor)
+            ->orderBy('ta.'.$this->column_order, 'asc')
+            ->limit($this->per_page)
+            ->get()
+            ->toArray();
+
+            // dd($this->pending_applicant_data);
+
     }
 
    
