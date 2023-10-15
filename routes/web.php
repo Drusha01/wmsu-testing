@@ -151,7 +151,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('chatsupport', ChatSupport::class)->name('admin-chatsupport');
         Route::get('setting', Settings::class)->name('setting');
         Route::get('appointment-management', AppointmentManagement::class)->name('manage-appointment');
-        Route::get('application-management', ApplicationManagement::class)->name('manage-application');
+        Route::get('application-management', StudentApplication::class)->name('manage-application');
         Route::get('announcement-management', Announcement::class)->name('admin-announcement');
         Route::get('user-management', UserManagement::class)->name('user-management');
         Route::get('result-management', ResultManagement::class)->name('result-management');
