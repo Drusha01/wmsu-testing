@@ -57,7 +57,7 @@ use App\Http\Livewire\Admin\Settings;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
-use App\Http\Livewire\Admin\notification;
+use App\Http\Livewire\Admin\Notification;
 
 
 // page
@@ -159,7 +159,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('faq-management', AdminFaq::class)->name('faq-management');
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');
-        Route::get('notification', notification::class)->name('notification');
+        Route::get('notification', Notification::class)->name('notification');
     });
 });
 
