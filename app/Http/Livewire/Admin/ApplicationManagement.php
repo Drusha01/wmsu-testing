@@ -653,9 +653,9 @@ class ApplicationManagement extends Component
             )
         ->where('t_a_isactive','=',1)
         ->orderBy('ta.'.$this->column_order, 'desc')
-        ->first()->t_a_id_count;
+        ->first();
 
-        
+        $pages = $pages->t_a_id_count;
         
         $pages = $pages/$this->per_page;
         $this->cursor = intval($pages*$this->per_page);
