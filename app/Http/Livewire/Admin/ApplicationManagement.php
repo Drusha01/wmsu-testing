@@ -652,10 +652,8 @@ class ApplicationManagement extends Component
             DB::raw('COUNT(ta.t_a_id) as t_a_id_count')
             )
         ->where('ta.t_a_isactive','=',1)
-        ->orderBy('ta.'.$this->column_order, 'desc')
-        ->first();
-
-        $pages = $pages->t_a_id_count;
+        ->get()
+        ->toArray()[0]->t_a_id_count;
         
         $pages = $pages/$this->per_page;
         $this->cursor = intval($pages*$this->per_page);
