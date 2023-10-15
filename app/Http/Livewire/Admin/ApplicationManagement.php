@@ -18,7 +18,11 @@ class ApplicationManagement extends Component
 
     public $selected_all;
     public $selected = [];
+
     public $per_page = 10;
+    public $items;
+    public $item_first;
+    public $item_last;
 
     public $pending_applicant_data;
     public $exam_types;
@@ -27,6 +31,8 @@ class ApplicationManagement extends Component
     public $column_order = 'date_created';
     public $order_by = 'desc';
     public $access_role ;
+
+
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -49,7 +55,7 @@ class ApplicationManagement extends Component
         }
     }
     public function hydrate(){
-        
+
         $this->access_role = [
             'C' => true,
             'R' => true,
@@ -98,6 +104,7 @@ class ApplicationManagement extends Component
             $this->pending_applicant_filter = [
                 'Select all' => true,
                 '#' => true,
+                'Code' => true,
                 'Applicant name'=> true,
                 'Exam type'=> true,
                 'Date applied'	=> true,								
@@ -137,7 +144,24 @@ class ApplicationManagement extends Component
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
+                foreach ($this->pending_applicant_data as $key => $value) {
+                    array_push($this->selected,[$value->t_a_id=>false]);
+                }
             // dd($this->pending_applicant_data);
+            // dd($this->selected);
+
+            // $this->items = DB::table('test_applications as ta')
+            //     ->select(
+                   
+            //         DB::raw('COUNT(ta.t_a_id) as count')
+            //         )
+            //     ->where('t_a_isactive','=',1)
+            //     // ->where()
+            //     ->orderBy('ta.'.$this->column_order, $this->order_by)
+            //     ->get()
+            //     ->toArray();
+            //     dd($this->items );
+
 
             
         }else{
@@ -189,20 +213,35 @@ class ApplicationManagement extends Component
             'showConfirmButton' 									=> 'true',
             'timer'             									=> '1000',
             'link'              									=> '#'
-         ]);
+        ]);
+
     }
 
     public function pending_applicant_select_all(){
         
         $this->selected_all = !$this->selected_all ;
-   
+        if($this->selected_all){
+            $this->selected=[];
+            foreach ($this->pending_applicant_data as $key => $value) {
+                array_push($this->selected,[$value->t_a_id=>true]);
+            }
+        }else{
+            $this->selected=[];
+            foreach ($this->pending_applicant_data as $key => $value) {
+                array_push($this->selected,[$value->t_a_id=>false]);
+            }
+        }
+ 
     }
+
+   
     public function pending_application_exam_type_filter(){
         
         if($this->pending_test_type_id == 0){
             $this->pending_applicant_data = DB::table('test_applications as ta')
                 ->select(
                     // '*',
+                    't_a_id',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -221,6 +260,7 @@ class ApplicationManagement extends Component
             $this->pending_applicant_data = DB::table('test_applications as ta')
                 ->select(
                     // '*',
+                    't_a_id',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -236,13 +276,13 @@ class ApplicationManagement extends Component
                 ->limit($this->per_page)
                 ->get()
                 ->toArray();
+                
         }
         // dd( $this->pending_applicant_data );
 
     }   
 
-    public function accepted(Request $request){
-        $this->user_details = $request->session()->all();
+    public function accepted(){
 
         $this->dispatchBrowserEvent('swal:redirect',[
             'position'          									=> 'center',
@@ -253,11 +293,15 @@ class ApplicationManagement extends Component
             'link'              									=> '#'
          ]);
          
+         if($this->selected_all){
+            dd($this->selected);
+        }else{
+            dd($this->selected);
+        }
         
         
     }
-    public function declined(Request $request){
-        $this->user_details = $request->session()->all();
+    public function declined(){
         $this->dispatchBrowserEvent('swal:redirect',[
             'position'          									=> 'center',
             'icon'              									=> 'success',

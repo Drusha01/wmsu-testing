@@ -109,13 +109,16 @@
                             
                             @if($pending_applicant_filter['Select all'])
                                 <td><input type="checkbox" 
-                                    @if($selected_all) 
-                                        checked 
-                                    @endif>
+                                   
+                                    wire:model="selected.{{$loop->index}}.{{$value->t_a_id}}"
+                                    >
                                 </td>
                             @endif
                             @if($pending_applicant_filter['#'])
                                 <td>{{ $loop->index+1 }}</td>
+                            @endif
+                            @if($pending_applicant_filter['Code'])
+                                <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
                             @endif
                             @if($pending_applicant_filter['Applicant name'])
                                 <td>{{ $value->user_fullname }}</td>
