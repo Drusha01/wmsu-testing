@@ -25,10 +25,10 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- pending applicant tab -->
-            <div class="tab-pane show active" id="review-applicant-tab">
-                <div class="examfilter-container">
-                    <label class="filter-label" for="exam-filter">Filter by Type of Exam:</label>
-                    <select class="filter-select" id="exam-filter" wire:model="pending_test_type_id" wire:change="pending_application_exam_type_filter()">
+            <div class="tab-pane show active px-1" id="review-applicant-tab">
+                <div class="d-flex mt-2">
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
+                    <select class="filter-select " id="exam-filter" wire:model="pending_test_type_id" wire:change="pending_application_exam_type_filter()">
                         <option value="0"  >All</option>
                         @forelse ($exam_types as $item => $value)
                             <option value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
@@ -39,6 +39,15 @@
                         
                         <!-- Add more options as needed -->
                     </select>
+                    <label class="filter-label align-self-center" for="exam-filter">Show:</label>
+                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="refesh_page()">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                    </select>
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
@@ -47,7 +56,7 @@
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
                             @endif
-                            <input class="form-control" type="text" id="search" placeholder="Search..." /> 
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
@@ -82,8 +91,10 @@
                             </div>
                         </div>
                     </div>
-                    <button class="accept-btn" wire:click="accepted()" >Accept </button>
-                    <button class="decline-btn" wire:click="declined()">Decline </button>
+                    <div class="ml-10">
+                        <button class="accept-btn" wire:click="accepted()" >Accept </button>
+                        <button class="decline-btn" wire:click="declined()">Decline </button>
+                    </div>
                 </div>
                 <!-- Application Review Table -->
                 <table class="application-table">
@@ -146,6 +157,77 @@
                         
                     </tbody>
                 </table>
+
+                <div class="d-flex justify-content-center" >
+                    @if($prev_page_count>($per_page-2))
+                    <button class="btn border border-black m-1"  wire:click="prev_page({{$prev_pages[($per_page)-2]->t_a_id}},-1)"
+                        @if($cursor === $item_first)  
+                        @endif>
+                        Previous
+                    </button>
+                    @else
+                    <button class="btn border border-black m-1" 
+                        @if($cursor === $item_first) 
+                        disabled 
+                        @endif>
+                        Previous
+                    </button>
+                    @endif
+                    @if($prev_page_count>(($per_page*3)-2))
+                    <button class="btn border border-black m-1" @if($cursor === $item_last) style="color:white;background:#930707;"@endif>
+                        first
+                    </button>
+                    @endif
+                    @if($prev_page_count>(($per_page*2)))
+                    <button class="btn border border-black m-1" >
+                        {{$page_number-2}}
+                    </button>
+                    @else
+                    @endif
+                    @if($prev_page_count>=($per_page))
+                    <button class="btn border border-black m-1">
+                        {{$page_number-1}}
+                    </button>
+                    @endif
+                    <button class="btn border border-black m-1" @if($cursor === $item_current) style="color:white;background:#930707;"@endif>
+                        {{$page_number}}
+                    </button>
+                    @if($next_page_count>$per_page)
+                    <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)">
+                        {{$page_number+1}}
+                    </button>
+                    @endif
+                    @if($next_page_count>($per_page*2))
+                    <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[($per_page*2)-1]->t_a_id}},2)">
+                        {{$page_number+2}}
+                    </button>
+                    @endif
+                    @if($next_page_count>($per_page*3))
+                    <button class="btn border border-black m-1" disabled>
+                        ...
+                    </button>
+                    <button class="btn border border-black m-1" wire:click="last_page({{$item_last}})" @if($cursor === $item_last) style="color:white;background:#930707;"@endif>
+                        end
+                    </button>
+                    @endif
+                    @if($next_page_count>$per_page)
+                    <button class="btn border border-black m-1" wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)"  
+                        @if($cursor === $item_last || $next_page_count<$per_page ) 
+                            disabled 
+                        @endif>
+                        Next
+                    </button>
+                    @else
+                    <button class="btn border border-black m-1"  
+                        @if($cursor === $item_last || $next_page_count<=$per_page ) 
+                            disabled 
+                        @endif>
+                        Next
+                    </button>
+                    @endif
+                       
+                   
+                </div>
             </div>
 
             <!-- Accepted Applicant Tab -->
