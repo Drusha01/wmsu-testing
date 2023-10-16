@@ -15,17 +15,17 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link show active " data-toggle="tab" href="#review-applicant-tab">Pending Applicant</a>
+                <a class="nav-link  @if($active == 'pending') show active @endif " data-toggle="tab" href="#review-applicant-tab"  wire:click="active_page('pending')">Pending Applicant</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#accepted-applicant-tab">Accepted Applicant</a>
+                <a class="nav-link @if($active == 'pending')  @else show active @endif" data-toggle="tab" href="#accepted-applicant-tab"  wire:click="active_page('accepted')">Accepted Applicant</a>
             </li>
         </ul>
 
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- pending applicant tab -->
-            <div class="tab-pane show active px-1" id="review-applicant-tab">
+            <div class="tab-pane @if($active == 'pending') show active @endif px-1" id="review-applicant-tab">
                 <div class="d-flex mt-2">
                     <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
                     <select class="filter-select " id="exam-filter" wire:model="pending_test_type_id" wire:change="pending_application_exam_type_filter()">
@@ -39,7 +39,7 @@
                         
                         <!-- Add more options as needed -->
                     </select>
-                    <label class="filter-label align-self-center" for="exam-filter">Show:</label>
+                    <!-- <label class="filter-label align-self-center" for="exam-filter">Show:</label>
                     <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="pending_application_exam_type_filter()">
                         <option value="10">10</option>
                         <option value="25">25</option>
@@ -47,7 +47,7 @@
                         <option value="100">100</option>
                         <option value="2">2</option>
                         <option value="5">5</option>
-                    </select>
+                    </select> -->
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
@@ -92,8 +92,8 @@
                         </div>
                     </div>
                     <div class="ml-10">
-                        <button class="accept-btn" wire:click="accepted()" >Accept </button>
-                        <button class="decline-btn" wire:click="declined()">Decline </button>
+                        <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button>
+                        <button class="btn btn-danger mx-1" wire:click="declined()">Decline </button>
                     </div>
                 </div>
                 <!-- Application Review Table -->
@@ -102,7 +102,7 @@
                         <tr>
                         @foreach ($pending_applicant_filter as $item => $value)
                             @if ($loop->first && $value)
-                                <th><input wire:click="pending_applicant_select_all()" type="checkbox"></th> 
+                                <th><input wire:model="pending_selected_all" wire:change="pending_applicant_select_all()" type="checkbox"></th> 
                             @elseif($loop->last && $value )
                                 <th>
                                     <!--  for loop for access role-->
@@ -121,7 +121,7 @@
                             @if($pending_applicant_filter['Select all'])
                                 <td><input type="checkbox" 
                                    
-                                    wire:model="selected.{{$loop->index}}.{{$value->t_a_id}}"
+                                    wire:model="pending_selected.{{$loop->index}}.{{$value->t_a_id}}"
                                     >
                                 </td>
                             @endif
@@ -135,7 +135,7 @@
                                 <td>{{ $value->user_fullname }}</td>
                             @endif
                             @if($pending_applicant_filter['Exam type'])
-                                <td>{{ $value->test_type_name }}</td>
+                                <td class="text-align center">{{ $value->test_type_name }}</td>
                             @endif
                             @if($pending_applicant_filter['Date applied'])
                                 <td>{{ $value->date_applied }}</td>
@@ -158,136 +158,134 @@
                     </tbody>
                 </table>
 
-                @if($prev_page_count || $next_page_count )
-                <div class="d-flex justify-content-center mt-2" >
-                    @if($prev_page_count==0)
-                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-prev-' }}"
-                        @if($prev_page_count==0)
-                        disabled 
-                        @endif>
-                        Previous
-                    </button>
-                    
-                    @else
-                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-prev' }}" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)">
-                        Previous
-                    </button>
-                    @endif
-                        @if($prev_page_count>=(($per_page*3)))
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-first' }}" wire:click="first_page()" >
-                            first
-                        </button>
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-first-' }}" disabled>
-                            ...
-                        </button>
-                        @endif
-                        @if($prev_page_count>=(($per_page*2)))
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-2' }}" wire:click="prev_page({{$prev_pages[(($per_page*2)-1)]->t_a_id}},-2)">
-                            {{$page_number-2}}
-                        </button>
-                        @endif
-                        @if($prev_page_count>=($per_page))
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-1' }}" wire:click="prev_page({{$prev_pages[$per_page-1]->t_a_id}},-1)">
-                            {{$page_number-1}}
-                        </button>
-                        @endif
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-0' }}" @if($cursor === $item_current) style="color:white;background:#930707;"@endif>
-                            {{$page_number}}
-                        </button>
-                        @if($next_page_count>$per_page)
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page 1' }}"wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)">
-                            {{$page_number+1}}
-                        </button>
-                        @endif
-                        @if($next_page_count>($per_page*2))
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page 2' }}" wire:click="next_page({{$next_pages[($per_page*2)-1]->t_a_id}},2)">
-                            {{$page_number+2}}
-                        </button>
-                        @endif
-                        @if($next_page_count>($per_page*3))
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-last-' }}"disabled>
-                            ...
-                        </button>
-                        <button class="btn border border-black m-1" wire:key="item-{{ 'page-last' }}" wire:click="last_page()">
-                            end
-                        </button>
-                        @endif
-                    @if($next_page_count>$per_page)
-                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-next' }}"wire:click="next_page({{$next_pages[$per_page-1]->t_a_id}},1)"  
-                        @if($next_page_count<$per_page ) 
-                            disabled 
-                        @endif>
-                        Next
-                    </button>
-                    @else
-                    <button class="btn border border-black m-1" wire:key="item-{{ 'page-next-' }}" 
-                        @if($next_page_count<=$per_page ) 
-                            disabled 
-                        @endif>
-                        Next
-                    </button>
-                    @endif
-                </div>
-                @endif
+               
             </div>
 
             <!-- Accepted Applicant Tab -->
-            <div class="tab-pane show" id="accepted-applicant-tab">
-                <div class="examfilter-container">
-                    <label class="filter-label1" for="accepted-exam-filter">Filter accepted applicant by Exam:</label>
-
-                    <select class="filter-select1" id="accepted-exam-filter">
-                        <option value="">All</option>
-                        <option value="CET">CET</option>
-                        <option value="NAT">NAT</option>
-                        <option value="EAT">EAT</option>
+            <div class="tab-pane @if($active == 'accepted') show active @endif" id="accepted-applicant-tab">
+            <div class="d-flex mt-2">
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
+                    <select class="filter-select " id="exam-filter" wire:model="accepted_test_type_id" wire:change="accepted_application_exam_type_filter()">
+                        <option value="0"  >All</option>
+                        @foreach ($exam_types as $item => $value)
+                            <option value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
+                        @endforeach
                         <!-- Add more options as needed -->
                     </select>
-                    <button class="decline-btn">Decline </button>
+                    <!-- <label class="filter-label align-self-center" for="exam-filter">Show:</label>
+                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="pending_application_exam_type_filter()">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                    </select> -->
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#accepted-application-management-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                    
+
+                    <div class="modal fade" id="accepted-application-management-filter" tabindex="-1" role="dialog" aria-labelledby="accepted-application-management-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($accepted_applicant_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="filtering-{{$loop->iteration}}"
+                                            wire:model.defer="accepted_applicant_filter.{{$item}}">
+                                        <label class="form-check-label" for="filtering-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="accepted_applicant_filterView()" data-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-10">
+                        <button class="btn btn-danger mx-1" wire:click="declined()">Decline </button>
+                        <button class="btn btn-warning mx-1" wire:click="accepted_return()">Return </button>
+                    </div>
                 </div>
                                 
                 <table class="application-table">
                     <thead>
                         <tr>
-                            <th>
-                                &#10003;   <!-- check icon -->
-                            </th>
-                            <th>#</th>
-                            <th>Applicant Name</th>
-                            <th>Exam Type</th>
-
-                            <th>School Year</th>
-                            <th>Date Applied</th>
-                            <th>Action</th>
+                        @foreach ($accepted_applicant_filter as $item => $value)
+                            @if ($loop->first && $value)
+                                <th><input wire:model="accepted_selected_all" wire:change="accepted_applicant_select_all()" type="checkbox"></th> 
+                            @elseif($loop->last && $value )
+                                <th>
+                                    <!--  for loop for access role-->
+                                    Action
+                                </th>
+                            @elseif($value)
+                                <th>{{$item}}</th>
+                            @endif
+                        @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td> <!-- Checkmark input -->
-                            <td>2</td>
-                            <td>Accepted Applicant 1</td>
-                            <td>CET</td>
-
-                            <td>2023-2024</td>
-                            <td>2023-09-10</td>
-                            <td>
-                                <button class="btn btn-success">Edit</button>
-                                <button class="btn btn-primary">Venue</button>
-                            </td>
+                    @forelse ($accepted_applicant_data as $item => $value)
+                        <tr wire:key="item-{{ $value->t_a_id }}">
+                            
+                            @if($accepted_applicant_filter['Select all'])
+                                <td><input type="checkbox" 
+                                   
+                                    wire:model="accepted_selected.{{$loop->index}}.{{$value->t_a_id}}"
+                                    >
+                                </td>
+                            @endif
+                            @if($accepted_applicant_filter['#'])
+                                <td>{{ ($per_page*($page_number-1))+$loop->index+1 }}</td>
+                            @endif
+                            @if($accepted_applicant_filter['Code'])
+                                <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
+                            @endif
+                            @if($accepted_applicant_filter['Applicant name'])
+                                <td>{{ $value->user_fullname }}</td>
+                            @endif
+                            @if($accepted_applicant_filter['Exam type'])
+                                <td>{{ $value->test_type_name }}</td>
+                            @endif
+                            @if($accepted_applicant_filter['Date applied'])
+                                <td>{{ $value->date_applied }}</td>
+                            @endif
+                            @if($accepted_applicant_filter['Actions'] )
+                                <td>
+                                    @if($access_role['R']==1)
+                                    <button class="btn btn-primary">View</button>
+                                    @endif
+                                </td>
+                            @endif
                         </tr>
-                        <tr>
-                            <td><input type="checkbox"></td> <!-- Checkmark input -->
-                            <td>2</td>
-                            <td>Accepted Applicant 2</td>
-                            <td>NAT</td>
-
-                            <td>2023-2024</td>
-                            <td>2023-09-11</td>
-                            <td>
-                                <button class="btn btn-success">Edit</button>
-                                <button class="btn btn-primary">Venue</button>
+                        @empty
+                        <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
                             </td>
-                        </tr>
+                        @endforelse
                         <!-- Add more accepted applicant rows here -->
                     </tbody>
                 </table>

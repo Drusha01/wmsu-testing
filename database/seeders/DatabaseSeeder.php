@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             cet_type_lists::class,
             fb_defaults::class,
             test_samples::class,
+            Rooms_sample::class,
         ]);
         
     }

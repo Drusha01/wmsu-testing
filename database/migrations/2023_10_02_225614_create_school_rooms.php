@@ -16,8 +16,9 @@ class CreateSchoolRooms extends Migration
         DB::statement('CREATE TABLE school_rooms(
             school_room_id INT PRIMARY KEY AUTO_INCREMENT,
             school_room_college_name VARCHAR(100) NOT NULL,
+            chool_room_college_abr VARCHAR(100) NOT NULL,
             school_room_venue  VARCHAR(100) NOT NULL,
-            school_room_name VARCHAR(100) UNIQUE, 
+            school_room_name VARCHAR(100) , 
             school_room_capacity INT NOT NULL,
             school_room_description VARCHAR(255),
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
