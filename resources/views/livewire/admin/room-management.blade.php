@@ -311,7 +311,7 @@
                             <tr>
                                 @foreach ($assigned_applicant_filter as $item => $value)
                                     @if ($loop->first && $value)
-                                        <th><input wire:model="unassigned_selected_all" wire:change="assigned_applicant_select_all()" type="checkbox" wire:key="assigned-filter-unassigned-selected"></th> 
+                                        <th><input wire:model="assigned_selected_all" wire:change="assigned_applicant_select_all()" type="checkbox" wire:key="assigned-filter-unassigned-selected"></th> 
                                     @elseif($loop->last && $value )
                                     <th class="text-center"wire:key="assigned-filter-action">Action</th>
                                     @elseif($value && $item != 'Action')
@@ -366,11 +366,13 @@
                                         @endif
                                     </td>
                                 @endif
+                                
                             </tr>
                         @empty
                                 <td class="text-center font-weight-bold" colspan="42">
                                     NO RECORDS 
                                 </td>
+                            
                         @endforelse
                             <!-- Add more accepted applicant rows here -->
                         </tbody>
