@@ -34,7 +34,7 @@
                 <div class="room-assignments">
                     <div class="d-flex mt-2">
                         <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
-                        <select class="filter-select " id="exam-filter" wire:model="unassigned_test_type_id" wire:change="unassigned_applicant_exam_type_filter()">
+                        <select class="filter-select " wire:model.defer="unassigned_test_type_id" wire:change="unassigned_applicant_exam_type_filter()">
                             <option value="0"  >All</option>
                             @foreach ($exam_types as $item => $value)
                                 <option wire:key="unassigned-{{$value->test_type_id}}" value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
@@ -238,7 +238,7 @@
                 <div class="room-assignments">
                     <div class="d-flex mt-2">
                         <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
-                        <select class="filter-select " id="exam-filter" wire:model="assigned_test_type_id" wire:change="assigned_applicant_exam_type_filter()">
+                        <select class="filter-select " wire:model.defer="assigned_test_type_id" wire:change="assigned_applicant_exam_type_filter()">
                             <option value="0"  >All</option>
                             @foreach ($exam_types as $item => $value)
                                 <option wire:key="assigned-{{$value->test_type_id}}"value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
