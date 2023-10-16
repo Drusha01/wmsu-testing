@@ -138,7 +138,7 @@
                                 <td class="text-align center">{{ $value->test_type_name }}</td>
                             @endif
                             @if($pending_applicant_filter['Date applied'])
-                                <td>{{ $value->date_applied }}</td>
+                                <td class="text-align center">{{date_format(date_create($value->date_applied),"F d, Y ")}}</td>
                             @endif
                             @if($pending_applicant_filter['Actions'] )
                                 <td>
@@ -252,7 +252,7 @@
                         <tr wire:key="item-{{ $value->t_a_id }}">
                             
                             @if($accepted_applicant_filter['Select all'])
-                                <td><input type="checkbox" 
+                                <td wire:key="item-{{ $value->t_a_id }}-{{$value->t_a_id}}"><input type="checkbox" 
                                    
                                     wire:model="accepted_selected.{{$loop->index}}.{{$value->t_a_id}}"
                                     >
@@ -271,7 +271,7 @@
                                 <td>{{ $value->test_type_name }}</td>
                             @endif
                             @if($accepted_applicant_filter['Date applied'])
-                                <td>{{ $value->date_applied }}</td>
+                                <td class="text-align center">{{date_format(date_create($value->date_applied),"F d, Y ")}}</td>
                             @endif
                             @if($accepted_applicant_filter['Actions'] )
                                 <td>

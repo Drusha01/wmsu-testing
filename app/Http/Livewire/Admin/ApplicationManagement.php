@@ -611,7 +611,7 @@ class ApplicationManagement extends Component
                                 ->where('test_status_details', '=', 'Accepted')
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
-                ]);
+                    ]);
                 }
             }
             $this->dispatchBrowserEvent('swal:redirect',[
