@@ -40,6 +40,8 @@ use App\Http\Livewire\Student\StudentApplication\Cet\Studenteat;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentnat;
 use App\Http\Livewire\Student\StudentAppointment\StudentAppointment;
 use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
+use App\Http\Livewire\ApplicationForm;
+use App\Http\Livewire\ApplicationBack;
 
 // admin
 use App\Http\Livewire\Admin\AdminManagement;
@@ -110,8 +112,9 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         
         Route::get('/form-application-process', [StudentController::class, 'formApplicationProcess'])->name('student.form-application-process');
         
-        
-        
+        Route::get('/application-form',ApplicationForm::class)->name('application-form');
+        Route::get('/application-back',ApplicationBack::class)->name('application-back');
+       
 
 
         // test routes application
@@ -131,6 +134,12 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
             Route::get('/gsat', [TestApplicationController::class, 'gsat'])->name('application.gsat');
             Route::get('/eat', [TestApplicationController::class, 'eat'])->name('application.eat');
             Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('application.lsat');
+
+        
+            Route::get('/application-form',ApplicationForm::class)->name('application.form');
+            Route::get('/application-back',ApplicationBack::class)->name('application.back');
+    
+
         });
     });
 });

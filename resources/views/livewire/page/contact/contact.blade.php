@@ -1,5 +1,6 @@
 <div>
      <!-- Contact section -->
+     
      <section class="contact">
         <div class="container-contact px-2 py-2">
             <div class="row">
@@ -35,4 +36,3 @@
         </div>
     </section>
     <!-- Contact section -->
-</div>

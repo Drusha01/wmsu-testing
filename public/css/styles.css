@@ -485,6 +485,16 @@ why choose us section
 .contact {
     padding: 130px ;
 }
+.contact-us{
+    border: 1px solid gray;
+}
+.center {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh; /* This sets the container to be 100% of the viewport height, adjust as needed */
+ border: 1px solid gray;
+}
 .container-contact{
     background-color: gray;
     width: 700px;

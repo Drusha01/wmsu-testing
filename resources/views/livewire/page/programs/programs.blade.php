@@ -2,7 +2,7 @@
             <div class="container " >
                 <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="mb-4">WMSU Colleges</h2>
+                    <h2 class="mb-4 text-danger">Western Mindanao State University Colleges</h2>
                 </div>
                     <div class="col-lg-3 col-md-6 col-sm-6" >
                         <div class="main-feature-box " style="height:400px;" >
@@ -44,7 +44,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/eng.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Engineering</h3>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/forest.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Forestry And Environmental Studies</h3>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/eco.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Home Economics</h3>
@@ -73,7 +73,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/law.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Law</h3>
@@ -82,7 +82,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/cla.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Liberal Arts</h3>
@@ -91,7 +91,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/nursing.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Nursing </h3>
@@ -100,7 +100,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/cpads.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Public Administration and Development Studies </h3>
@@ -109,7 +109,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/sports.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Sports Science and Physical Education </h3>
@@ -118,7 +118,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"style="height:400px;">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2"style="height:400px;">
                         <div class="main-feature-box">
                         <img src="{{ asset('images/logo/math.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Science and Mathematics </h3>
@@ -127,7 +127,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"style="height:400px;">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2"style="height:400px;">
                         <div class="main-feature-box">
                         <img src="{{ asset('images/logo/social.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Social Work and Communnity Development </h3>
@@ -136,7 +136,7 @@
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"style="height:400px;">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2"style="height:400px;">
                         <div class="main-feature-box">
                         <img src="{{ asset('images/logo/educ.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Teacher Education </h3>
@@ -145,7 +145,7 @@
                                 <i class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-2">
                         <div class="main-feature-box"style="height:400px;">
                         <img src="{{ asset('images/logo/cs.png') }}" width="50px" alt="wmsu logo">
                             <h3>College Of Computing Studies </h3>
