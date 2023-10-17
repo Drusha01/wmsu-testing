@@ -1,4 +1,4 @@
-<div class="container border border-danger mt-5 mb-5">
+<div class="container border border-dark mt-5 mb-5 px-3 py-3">
     <div class="text-danger font-weight-bold"> Course to take up:(Choose from the list of WMSU Campuses and Undergraduate degree programs/courses offered by WMSU posted in your school's bulletin board.)</div>
             <div class="container border border-4 w-80">
                     <div class="row">
