@@ -610,7 +610,8 @@ class ApplicationManagement extends Component
                             't_a_test_status_id' =>((array) DB::table('test_status')
                                 ->where('test_status_details', '=', 'Accepted')
                             ->select('test_status_id as t_a_test_status_id')
-                            ->first())['t_a_test_status_id']
+                            ->first())['t_a_test_status_id'],
+                            't_a_accepted_by'=> $this->user_details['user_id']
                     ]);
                 }
             }
@@ -718,6 +719,7 @@ class ApplicationManagement extends Component
                             't_a_isactive'=>1,
                             'ts.test_status_details'=>'Accepted'])
                     ->update([
+                            't_a_returned_by'=> $this->user_details['user_id'],
                             't_a_test_status_id' =>((array) DB::table('test_status')
                                 ->where('test_status_details', '=', 'Pending')
                             ->select('test_status_id as t_a_test_status_id')

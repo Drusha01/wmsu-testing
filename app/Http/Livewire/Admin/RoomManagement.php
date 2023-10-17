@@ -745,6 +745,7 @@ class RoomManagement extends Component
                             't_a_isactive'=>1,
                             'ts.test_status_details'=>'Accepted'])
                     ->update([
+                            't_a_assigned_by'=> $this->user_details['user_id'],
                             't_a_school_room_id' =>$this->unassigned_school_room_id,
                             't_a_test_status_id' =>((array) DB::table('test_status')
                                 ->where('test_status_details', '=', 'Processing')
