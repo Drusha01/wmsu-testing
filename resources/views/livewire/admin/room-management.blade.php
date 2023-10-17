@@ -166,7 +166,6 @@
             </div>
 
             <!-- Assign Modal -->
-            @if($unassigned_valid)
             <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -227,7 +226,6 @@
                     </div>
                 </div>
             </div>
-            @endif
 
             <!-- Assigned Tab -->
             <div class="tab-pane  @if($active == 'assigned_room') show active @endif " id="room-assignment1-tab">

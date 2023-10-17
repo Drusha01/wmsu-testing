@@ -707,7 +707,7 @@ class RoomManagement extends Component
         }
 
         if(!$this->unassigned_valid){
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
@@ -756,7 +756,7 @@ class RoomManagement extends Component
                 }
             }
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
