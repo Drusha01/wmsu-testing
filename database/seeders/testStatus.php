@@ -62,6 +62,12 @@ class testStatus extends Seeder
             NOW(),
             NOW()
         );');
+        DB::statement('INSERT INTO test_status VALUES(
+            NULL,
+            "Returned",
+            NOW(),
+            NOW()
+        );');
         
     }
 }

@@ -21,12 +21,81 @@ class StudentStatus extends Component
     public $cancel_details;
 
 
+    public $firstname;
+    public $middlename;
+    public $lastname;
+    public $suffix;
+    public $gender;
+    public $sex;
+    public $phone;
+    public $address;
+    public $birthdate;
+
+    public $email;
+
+    public $f_firstname;
+    public $f_middlename;
+    public $f_lastname;
+    public $f_suffix;
+    public $m_firstname;
+    public $m_middlename;
+    public $m_lastname;
+    public $m_suffix;
+    public $g_firstname;
+    public $g_middlename;
+    public $g_lastname;
+    public $g_suffix;
+    public $g_relationship;
+    public $number_of_siblings;
+    public $fb_address;
+
+    public $ueb_id;
+    public $ueb_shs_school_name;
+    public $ueb_shs_address;
+
+    public $t_a_formal_photo ;
+    public $t_a_formal_photo_id;
+    public $t_a_formal_photo_name;
+    public $t_a_school_principal_certification_id;
+    public $t_a_school_principal_certification;
+    public $t_a_school_principal_certification_name;
+    public $t_a_original_senior_high_school_card_id;
+    public $t_a_original_senior_high_school_card;
+    public $t_a_original_senior_high_school_card_name;
+    public $t_a_transcript_of_records_id;
+    public $t_a_transcript_of_records;
+    public $t_a_transcript_of_records_name;
+    public $t_a_endorsement_letter_from_wmsu_dean_id;
+    public $t_a_endorsement_letter_from_wmsu_dean ;
+    public $t_a_endorsement_letter_from_wmsu_dean_name ;
+
+    public $edit = false;
+
+    public function boot(Request $request){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
+            return redirect('/login');
+        }else{
+            $user_status = DB::table('users as u')
+            ->select('u.user_status_id','us.user_status_details')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
+            return redirect('/deleted');
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
+            return redirect('/inactive');
+        }
+    }
 
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'status';
-
         $this->application_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
@@ -64,17 +133,7 @@ class StudentStatus extends Component
                 'title'=>$this->title]);
     }
 
-    public function cancel_application(Request $request,$t_a_id){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
+    public function cancel_application($t_a_id){
         $this->application_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
@@ -124,18 +183,7 @@ class StudentStatus extends Component
             $this->t_a_id = $t_a_id;
             
     }
-    public function confirm_cancel(Request $request,$t_a_id){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-        
+    public function confirm_cancel($t_a_id){     
         $this->t_a_id =$t_a_id;
         
         if( DB::table('test_applications as ta')
@@ -195,21 +243,8 @@ class StudentStatus extends Component
         ]);
     }
 
-    public function view_application(Request $request,$t_a_id){
-        
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
-        
-        $this->t_a_id =$t_a_id;
-
+    public function view_application($t_a_id){ 
+        $this->edit = false;
         $this->application_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
@@ -237,11 +272,34 @@ class StudentStatus extends Component
             'test_status_cancelled' => 'Cancelled'  
         ]);
 
-            $this->view_details = DB::table('test_applications as ta')
+        $this->t_a_id = $t_a_id;
+        $this->view_details = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
             ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
             ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->where('test_type_details', '=', 'College Entrance Test')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$this->t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+    }
+    public function edit_application(){
+        $this->application_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_test_type_id', '=', 
@@ -252,15 +310,96 @@ class StudentStatus extends Component
             
             ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
             ->where('t_a_isactive','=',1)
-            ->where('t_a_id','=',5)
-            ->limit(1)
             ->get()
             ->toArray();
 
-            // dd($this->view_details);
+        $this->application_history = DB::select('SELECT *,DATE(ta.date_created) as applied_date FROM test_applications as ta 
+            LEFT JOIN test_types as tt on tt.test_type_id = ta.t_a_test_type_id
+            LEFT JOIN test_status as ts on ts.test_status_id = ta.t_a_test_status_id 
+            LEFT JOIN school_years as sy on sy.school_year_id = ta.t_a_school_year_id 
+            WHERE t_a_applicant_user_id = :user_id and (t_a_isactive = :t_a_isactive  or test_status_details = :test_status_complete or test_status_details = :test_status_cancelled ) 
+        ',['user_id'=>$this->user_details['user_id'],
+            't_a_isactive'=>0,
+            'test_status_complete' => 'Complete',
+            'test_status_cancelled' => 'Cancelled'  
+        ]);
 
-        
-
-
+        $this->view_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->where('test_type_details', '=', 'College Entrance Test')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$this->t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+        $this->edit = true;
     }
+
+    public function cancel_edit_application(){
+        $this->application_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_test_type_id', '=', 
+                ((array) DB::table('test_types')
+                    ->where('test_type_details', '=', 'College Entrance Test')
+                    ->select('test_type_id as t_a_test_type_id')
+                    ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->get()
+            ->toArray();
+
+        $this->application_history = DB::select('SELECT *,DATE(ta.date_created) as applied_date FROM test_applications as ta 
+            LEFT JOIN test_types as tt on tt.test_type_id = ta.t_a_test_type_id
+            LEFT JOIN test_status as ts on ts.test_status_id = ta.t_a_test_status_id 
+            LEFT JOIN school_years as sy on sy.school_year_id = ta.t_a_school_year_id 
+            WHERE t_a_applicant_user_id = :user_id and (t_a_isactive = :t_a_isactive  or test_status_details = :test_status_complete or test_status_details = :test_status_cancelled ) 
+        ',['user_id'=>$this->user_details['user_id'],
+            't_a_isactive'=>0,
+            'test_status_complete' => 'Complete',
+            'test_status_cancelled' => 'Cancelled'  
+        ]);
+
+        $this->view_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->where('test_type_details', '=', 'College Entrance Test')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$this->t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+        $this->edit = false;
+    }
+    
 }

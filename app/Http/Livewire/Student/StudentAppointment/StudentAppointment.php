@@ -12,6 +12,7 @@ class StudentAppointment extends Component
 {
     public $user_detais;
     public $title;
+    
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'application';

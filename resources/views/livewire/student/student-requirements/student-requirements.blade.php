@@ -2,14 +2,14 @@
 <!-- Content -->
 <div class="container">
     <!-- Tab Navigation -->
-    <!-- <ul class="nav nav-tabs" id="myTabs">
+    <ul class="nav nav-tabs" id="myTabs">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#requirements-upload">Requirements Upload</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#requirements-information">Requirements Information</a>
         </li>
-    </ul> -->
+    </ul>
 
         <!-- Tab Content -->
         <div class="tab-content">

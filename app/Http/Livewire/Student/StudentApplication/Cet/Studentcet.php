@@ -53,7 +53,26 @@ class Studentcet extends Component
     public $t_a_school_principal_certification;
     public $t_a_school_principal_certification_name;
 
+    public function booted(Request $request){
+        $this->user_details = $request->session()->all();
+        if(!isset($this->user_details['user_id'])){
+            return redirect('/login');
+        }else{
+            $user_status = DB::table('users as u')
+            ->select('u.user_status_id','us.user_status_details')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+        }
 
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'deleted' ){
+            return redirect('/deleted');
+        }
+
+        if(isset($user_status->user_status_details) && $user_status->user_status_details == 'inactive' ){
+            return redirect('/inactive');
+        }
+    }
 
 
     public function mount(Request $request){
@@ -129,17 +148,8 @@ class Studentcet extends Component
                 'title'=>$this->title]);
     }
 
-    public function submit_application(Request $request){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
-            return redirect('/login');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'deleted' ){
-            return redirect('/deleted');
-        }
-        if(isset($this->user_details['user_status_details']) && $this->user_details['user_status_details'] == 'inactive' ){
-            return redirect('/inactive');
-        }
+    public function submit_application(){
+        
 
         // check application
         if(strlen($this->firstname) < 1 && strlen($this->firstname) > 255){
@@ -158,15 +168,16 @@ class Studentcet extends Component
             return false;
         }
         
-
-        if(DB::table('users as u')
+        
+        // bug
+        DB::table('users as u')
         ->where(['u.user_id'=> $this->user_details['user_id']])
         ->update(['u.user_firstname' => $this->firstname,
             'u.user_middlename'=>$this->middlename, 
             'u.user_lastname'=>$this->lastname, 
             'u.user_suffix'=>$this->suffix, 
-            'u.user_phone'=>$this->phone,
-        ]));
+           
+        ]);
 
         //documents
 
@@ -380,6 +391,11 @@ class Studentcet extends Component
                 ->where('test_status_details', '=', 'Pending')
                 ->select('test_status_id as t_a_test_status_id')
                 ->first())['t_a_test_status_id'],
+            't_a_cet_type_id'=>((array) DB::table('cet_types')
+                ->where('cet_type_name', '=', 'shs_under_grad')
+                ->select('cet_type_id as t_a_cet_type_id')
+                ->first())['t_a_cet_type_id'],
+                
             't_a_hash' => $t_a_hash,
             't_a_school_school_name'=> $this->ueb_shs_school_name ,
             't_a_school_address' => $this->ueb_shs_address,

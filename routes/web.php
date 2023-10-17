@@ -57,9 +57,9 @@ use App\Http\Livewire\Admin\ResultManagement;
 use App\Http\Livewire\Admin\RoomManagement;
 use App\Http\Livewire\Admin\Settings;
 use App\Http\Livewire\Admin\UserManagement;
-use App\Http\Livewire\Admin\profile;
+use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
-use App\Http\Livewire\Admin\notification;
+use App\Http\Livewire\Admin\Notification;
 
 
 // page
@@ -87,7 +87,7 @@ use App\Http\Livewire\Page\Programs\Programs;
 // authentication
 Route::get('/logout', Signout::class)->middleware(Logout::class)->name('logout');
 
-Route::middleware([Unauthenticated::class,AccountisValid::class])->group(function () {
+Route::middleware([Unauthenticated::class])->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/register-email',RegisterEmail::class)->name('register-email');
@@ -153,7 +153,7 @@ Route::middleware([Authenticated::class])->group(function () {
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', Dashboard::class)->name('admin-home');
+        Route::get('/', function(){return redirect('/admin/dashboard');})->name('admin-home');
         Route::get('dashboard', Dashboard::class)->name('admin-dashboard');
         Route::get('exam-management', ExamManagement::class)->name('exam-management');
         Route::get('admin-management', AdminManagement::class)->name('admin-management');
@@ -168,7 +168,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('faq-management', AdminFaq::class)->name('faq-management');
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');
-        Route::get('notification', notification::class)->name('notification');
+        Route::get('notification', Notification::class)->name('notification');
     });
 });
 
