@@ -257,6 +257,7 @@ class RoomManagement extends Component
                 )
                 ->get()
                 ->toArray();
+                // dd($this->school_rooms);
                 
                 
             if($this->unassigned_test_type_id == 0){

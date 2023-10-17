@@ -211,7 +211,7 @@
                                 <select class="form-control"  wire:model.defer="unassigned_school_room_id">
                                  
                                     @forelse ($school_rooms as $item => $value)
-                                    <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name}}</option>
+                                    <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
                                     @empty
                                         <option value="">NO RECORDS</option>
                                     @endforelse
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
-                    <table class="application-table">
+                    <table class="application-table ">
                         <thead>
                             <tr>
                                 @foreach ($assigned_applicant_filter as $item => $value)
