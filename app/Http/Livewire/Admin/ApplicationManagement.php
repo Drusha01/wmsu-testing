@@ -58,6 +58,8 @@ class ApplicationManagement extends Component
     public $order_by = 'asc';
     public $access_role ;
 
+    public $return_valid;
+
 
 
     public function booted(Request $request){
@@ -693,11 +695,33 @@ class ApplicationManagement extends Component
  
     }
 
-    public function accepted_return(){
-        $valid = false;
+    public function accepted_return_check(){
+        $this->return_valid = false;
         foreach ($this->accepted_applicant_data  as $key => $value) {
             if($this->accepted_selected[$key][$value->t_a_id]){
-                $valid = true;
+                $this->return_valid = true;
+                break;
+            }
+        }
+
+        if(!$this->return_valid){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }
+    }
+
+    public function accepted_return(){
+        $this->return_valid = false;
+        foreach ($this->accepted_applicant_data  as $key => $value) {
+            if($this->accepted_selected[$key][$value->t_a_id]){
+                $this->return_valid = true;
+                break;
             }
         }
 
@@ -709,7 +733,7 @@ class ApplicationManagement extends Component
             'D' => true
         ];
 
-        if($valid &&  $this->access_role['U'] ){
+        if($this->return_valid &&  $this->access_role['U'] ){
             foreach ($this->accepted_applicant_data  as $key => $value) {
                 if($this->accepted_selected[$key][$value->t_a_id]){
                     // update here
@@ -727,7 +751,7 @@ class ApplicationManagement extends Component
                 ]);
                 }
             }
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
                 'title'             									=> 'Applicants seleted is now back to pending!',

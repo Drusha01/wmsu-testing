@@ -226,8 +226,31 @@
                     </div>
                     <div class="ml-10">
                         <button class="btn btn-danger mx-1" wire:click="declined()">Decline </button>
-                        <button class="btn btn-warning mx-1" wire:click="accepted_return()">Return </button>
+                        <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#application-return">Return </button>
                     </div>
+
+                    @if($return_valid)
+                    <div class="modal fade" id="application-return" tabindex="-1" role="dialog" aria-labelledby="application-returnLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Application Return</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    Are you sure you want to return?
+
+                                    indicate reason ... <input type="text">
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button class="btn btn-warning mx-1" wire:click="accepted_return()">Return </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
                                 
                 <table class="application-table">
@@ -294,4 +317,24 @@
     </main>
     <!-- End #main -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script>
+        window.addEventListener('swal:remove_backdrop', event => {
+            Swal.fire({
+                    position: event.detail.position,
+                    icon: event.detail.icon,
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    showConfirmButton: false,
+                    timer: event.detail.timer,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                    })
+                
+                .then(function() {
+                    $('div.modal-backdrop').remove();
+                    window.location.href = `${event.detail.link}`
+                });
+        });
+    </script>
 </div>
