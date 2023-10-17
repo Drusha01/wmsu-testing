@@ -74,8 +74,8 @@
                                     <hr>
                                     <div class="modal-body">
                                         @foreach($unassigned_applicant_filter as $item => $value)
-                                        <div class="form-check" wire:key="div-unassigned">
-                                            <input class="form-check-input" type="checkbox" id="filtering-{{$loop->iteration}}"
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="unassigned-filtering-{{$loop->iteration}}"
                                                 wire:model.defer="unassigned_applicant_filter.{{$item}}">
                                             <label class="form-check-label" for="filtering-{{$loop->iteration}}">
                                                 {{$item}}
@@ -101,21 +101,21 @@
                     <!-- Displays a table of room assignment and list of applicants -->
                     <table class="application-table">
                         <thead>
-                            <tr wire:key="unassigned-tr">
+                            <tr >
                             @foreach ($unassigned_applicant_filter as $item => $value)
                                 @if($loop->first && $value)
-                                    <th><input wire:model="unassigned_selected_all" wire:change="unassigned_applicant_select_all()" type="checkbox" wire:key="filter-unassigned-selected"></th> 
+                                    <th><input wire:model="unassigned_selected_all" wire:change="unassigned_applicant_select_all()" type="checkbox" ></th> 
                                 @elseif($loop->last && $value )
-                                <th class="text-center"wire:key="filter-Actions">Action</th>
+                                <th class="text-center">Action</th>
                                 @elseif($value)
-                                    <th wire:key="filter-{{$item}}">{{$item}}</th>
+                                    <th >{{$item}}</th>
                                 @endif
                             @endforeach
                             </tr>
                         </thead>
                         <tbody>
                         @forelse ($unassigned_applicant_data as $item => $value)
-                            <tr wire:key="item-{{ $value->t_a_id }}">
+                            <tr >
                                 
                                 @if($unassigned_applicant_filter['Select all'])
                                     <td><input type="checkbox" 
@@ -139,9 +139,7 @@
                                 @if($unassigned_applicant_filter['Room venue'])
                                     <td class="text-align center">Not assigned</td>
                                 @endif
-                                @if($unassigned_applicant_filter['A.Y.'])
-                                    <td>{{ $value->school_year_details }}</td>
-                                @endif
+                               
                                 @if($unassigned_applicant_filter['Date applied'])
                                     <td class="text-align center">{{date_format(date_create($value->date_applied),"F d, Y ")}}</td>
                                 @endif
@@ -311,18 +309,18 @@
                             <tr>
                                 @foreach ($assigned_applicant_filter as $item => $value)
                                     @if ($loop->first && $value)
-                                        <th><input wire:model="assigned_selected_all" wire:change="assigned_applicant_select_all()" type="checkbox" wire:key="assigned-filter-unassigned-selected"></th> 
+                                        <th><input wire:model="assigned_selected_all" wire:change="assigned_applicant_select_all()" type="checkbox" ></th> 
                                     @elseif($loop->last && $value )
-                                    <th class="text-center"wire:key="assigned-filter-action">Action</th>
+                                    <th class="text-center">Action</th>
                                     @elseif($value && $item != 'Action')
-                                        <th wire:key="assigned-filter-{{$item}}">{{$item}}</th>
+                                        <th >{{$item}}</th>
                                     @endif
                                 @endforeach
                             </tr>
                         </thead>
                         <tbody>
                         @forelse ($assigned_applicant_data as $item => $value)
-                            <tr wire:key="item-{{ $value->t_a_id }}">
+                            <tr >
                                 
                                 @if($assigned_applicant_filter['Select all'])
                                     <td><input type="checkbox" 
@@ -352,9 +350,7 @@
                                 @if($assigned_applicant_filter['Start - End'])
                                     <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
                                 @endif
-                                @if($assigned_applicant_filter['A.Y.'])
-                                    <td>{{ $value->school_year_details }}</td>
-                                @endif
+                              
                                 @if($assigned_applicant_filter['Date applied'])
                                     <td class="text-align center">{{date_format(date_create($value->date_applied),"F d, Y ")}}</td>
                                 @endif
