@@ -225,8 +225,8 @@
                         </div>
                     </div>
                     <div class="ml-10">
-                        <button class="btn btn-danger mx-1" wire:click="declined()">Decline </button>
                         <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#application-return">Return </button>
+                        <button class="btn btn-danger mx-1" wire:click="declined()">Decline </button>
                     </div>
 
                     @if($return_valid)
