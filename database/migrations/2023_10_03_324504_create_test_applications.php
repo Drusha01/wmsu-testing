@@ -40,10 +40,13 @@ class CreateTestApplications extends Migration
             -- etc
 
             --
+            t_a_declined_reason VARCHAR(255) ,
+            t_a_declined_by INT, 
             t_a_accepted_by INT,    
             t_a_assigned_by INT,
             t_a_proctor_assigned_by INT,
             t_a_returned_by INT,
+            t_a_returned_reason VARCHAR(255) ,
             t_a_proctor_user_id INT,
             t_a_school_room_id INT,
 
