@@ -127,10 +127,12 @@
                             <option value="Engineering Aptitude test">Eat</option>
                             <!-- Add more options as needed -->
                         </select>
+                        <button class="btn btn-warning action-btn" data-toggle="modal" data-target="#requestRescheduleModal">Request Reschedule</button>
                     </div>
                     <table class="appointment-table">
                         <thead>
                             <tr>
+                            <th><input type="checkbox" name="select"></th>
                                 <th>Full Name</th>
                                 <th>Email Address</th>
                                 <th>Preferred Date</th>
@@ -141,7 +143,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Admin User</td>
+                            <td><input type="checkbox" name="select"></td>
+                                <td>User</td>
                                 <td>admin@example.com</td>
                                 <td>2023-10-19</td>
                                 <td>Scheduled</td>
@@ -154,6 +157,28 @@
                             <!-- Add more scheduled appointments as needed -->
                         </tbody>
                     </table>
+                </div>
+                <!-- Request Reschedule Modal -->
+                <div class="modal fade" id="requestRescheduleModal" tabindex="-1" role="dialog" aria-labelledby="requestRescheduleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="requestRescheduleModalLabel">Request Reschedule</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Would you like to request a reschedule for this appointment?</p>
+                                <p>Please provide your preferred date and time:</p>
+                                <input type="datetime-local" id="rescheduleDateTime" class="form-control" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#rescheduleRequestSubmittedModal">Submit Request</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Appointment Completed Tab -->
