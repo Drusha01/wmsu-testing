@@ -155,6 +155,25 @@
                 window.close();
             });
         });
+
+        window.addEventListener('swal:remove_backdrop', event => {
+            Swal.fire({
+                    position: event.detail.position,
+                    icon: event.detail.icon,
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    showConfirmButton: false,
+                    timer: event.detail.timer,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                    })
+                
+                .then(function() {
+                    $('div.modal-backdrop').remove();
+                    window.location.href = `${event.detail.link}`
+                });
+        });
     </script>
 </body>
 </html>
