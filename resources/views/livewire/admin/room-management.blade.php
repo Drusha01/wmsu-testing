@@ -503,7 +503,7 @@
                                     <button class="btn btn-success">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
                                     @endif
                                 </td>
                             @endif
@@ -517,6 +517,28 @@
                     </tbody>
                 </table>
             </div>
+
+            @if ($roomToDelete)
+            <div class="modal fade show active" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this room?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" wire:click="confirmDeleteRoom">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
 
             <!-- Add Room Modal -->
             <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalLabel" aria-hidden="true">
@@ -579,7 +601,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Edit Room Modal -->
             <div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
