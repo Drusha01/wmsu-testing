@@ -1073,7 +1073,7 @@ class ApplicationManagement extends Component
 
     public function accepted_return_check(){
         $this->return_valid = false;
-        foreach ($this->declined_applicant_data  as $key => $value) {
+        foreach ($this->accepted_applicant_data  as $key => $value) {
             if($this->accepted_selected[$key][$value->t_a_id]){
                 $this->return_valid = true;
                 break;
