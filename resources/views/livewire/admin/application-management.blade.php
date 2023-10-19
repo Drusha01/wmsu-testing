@@ -95,8 +95,10 @@
                         </div>
                     </div>
                     <div class="ml-10">
+                        <!-- <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button> -->
                         <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button>
-                        <button class="btn btn-danger mx-1" wire:click="declined_check()" data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button>
+                        <!-- <button class="btn btn-danger mx-1" wire:click="declined_check()" data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button> -->
+                        <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button>
                     </div>
                 </div>
                 <!-- Application Review Table -->
@@ -256,11 +258,13 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button>
-                            <button class="btn btn-danger mx-1" wire:click="declined_check_accepted()" data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button>
+                            <!-- <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button> -->
+                            <button class="btn btn-warning mx-1"  data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button>
+                            <!-- <button class="btn btn-danger mx-1" wire:click="declined_check_accepted()" data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button> -->
+                            <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button>
                         </div>
 
-                        @if($return_valid)
+                       
                         <div class="modal fade" id="returnAcceptedapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -284,7 +288,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
+                        
                     </div>
                                     
                     <table class="application-table">
@@ -440,7 +444,8 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-danger mx-1" wire:click="delete_check()" data-toggle="modal" data-target="#DeleteDeclinedapplicantModal">Delete </button>
+                            <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#DeleteDeclinedapplicantModal">Delete </button>
+                            <!-- <button class="btn btn-danger mx-1" wire:click="delete_check()" data-toggle="modal" data-target="#DeleteDeclinedapplicantModal">Delete </button> -->
                         </div>
                     </div>
                                     
