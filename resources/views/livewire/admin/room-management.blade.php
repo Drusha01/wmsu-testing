@@ -528,52 +528,58 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form wire:submit.prevent="add_room()">
                         <div class="modal-body">
-                            <!-- Form for adding a new room -->
-                            <form id="addRoomForm">
-                            <div class="form-group">
-                                <label for="addSchoolYear">School Year:</label>
-                                <select class="form-control" id="addSchoolYear" name="addSchoolYear" required>
-                                    <option value="">Select School Year</option>
-                                    <option value="2023-2024">2023-2024</option>
-                                    <option value="2024-2025">2024-2025</option>
-                                    <option value="2025-2026">2025-2026</option>
-                                    <!-- Add more options for additional years as needed -->
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Room name:</label>
+                                    <input type="text" class="form-control" wire:model.defer="school_room_name" required>
+                                </div>
                                 <div class="form-group">
                                     <label for="addCollegeName">College Name:</label>
-                                    <input type="text" class="form-control" id="addCollegeName" name="addCollegeName" required>
+                                    <input type="text" class="form-control" wire:model.defer="school_room_college_name"required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="addRoomName">Venue:</label>
-                                    <input type="text" class="form-control" id="addRoomName" name="addRoomName" required>
+                                    <label for="addRoomName">College Abbreviation:</label>
+                                    <input type="text" class="form-control" wire:model.defer="school_room_college_abr">
                                 </div>
                                 <div class="form-group">
-                                    <label for="addRoomName">Room name #:</label>
-                                    <input type="text" class="form-control" id="addRoomName" name="addRoomName" required>
+                                    <label for="addRoomName">Test Venue :</label>
+                                    <input type="text" class="form-control" wire:model.defer="school_room_venue" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="addRoomCapacity">Capacity:</label>
-                                    <input type="number" class="form-control" id="addRoomCapacity" name="addRoomCapacity" required>
+                                    <label for="addRoomName">Test Center :</label>
+                                    <input type="text" class="form-control" wire:model.defer="school_room_test_center" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="addRoomCapacity">Slot:</label>
-                                    <input type="number" class="form-control" id="addRoomCapacity" name="addRoomCapacity" required>
+                                    <label for="addRoomCapacity">Room Capacity #:</label>
+                                    <input type="number" min="1" max="500" class="form-control" wire:model.defer="school_room_capacity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="addRoomDescription">Room Description:</label>
-                                    <textarea class="form-control" id="addRoomDescription" name="addRoomDescription" rows="4" required></textarea>
+                                    <label for="addRoomDescription">Test Date:</label>
+                                    <input type="date" class="form-control" wire:model.defer="school_room_test_date" required></input>
                                 </div>
-                            </form>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test start time:</label>
+                                    <input type="time" class="form-control" wire:model.defer="school_room_test_time_start" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test end time:</label>
+                                    <input type="time" class="form-control" wire:model.defer="school_room_test_time_end" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Room description:</label>
+                                    <textarea class="form-control" wire:model.defer="school_room_description" rows="4"></textarea>
+                                </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="saveAddRoom">Add Room</button>
+                            <button type="submit" class="btn btn-primary">Add Room</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
             <!-- Edit Room Modal -->
             <div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

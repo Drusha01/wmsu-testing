@@ -37,6 +37,17 @@ class RoomManagement extends Component
     public $school_room_college_type_id= 0;
     public $school_room_filter;
 
+    //CRUD ROOM
+    public $school_room_college_name;
+    public $school_room_college_abr;
+    public $school_room_venue;
+    public $school_room_name;
+    public $school_room_test_center;
+    public $school_room_test_date;
+    public $school_room_test_time_start;
+    public $school_room_test_time_end;
+    public $school_room_capacity;
+    public $school_room_description;
 
     public $column_order = 't_a_id';
     public $order_by = 'asc';
@@ -835,4 +846,51 @@ class RoomManagement extends Component
     public function active_page($active){
         $this->active = $active;
     }
+
+    //add room
+    //wala pang validation
+    public function add_room(){
+        if(strlen($this->school_room_college_name)<=0){
+            return;
+        }
+        if(strlen($this->school_room_college_abr)<0){
+            return;
+        }
+        if(strlen($this->school_room_venue)<=0){
+            return;
+        }
+        if(strlen($this->school_room_name)<=0){
+            return;
+        }
+        if(strlen($this->school_room_test_center)<=0){
+            return;
+        }
+        if(intval($this->school_room_capacity)<=0 || intval($this->school_room_capacity)>500){
+            return;
+        }
+
+        $this->school_room_test_date;
+        $this->school_room_test_time_start;
+        $this->school_room_test_time_end;
+
+
+        if(strlen($this->school_room_description)<=0){
+            return;
+        }
+        DB::table('school_rooms')->insert([
+            'school_room_college_name' => $this->school_room_college_name,
+            'school_room_college_abr' => $this->school_room_college_abr,
+            'school_room_venue'  => $this->school_room_venue,
+            'school_room_name' => $this->school_room_name,
+            'school_room_test_center' => $this->school_room_test_center,
+            'school_room_test_date' => $this->school_room_test_date,
+            'school_room_test_time_start'  => $this->school_room_test_time_start,
+            'school_room_test_time_end' => $this->school_room_test_time_end,
+            'school_room_capacity' => $this->school_room_capacity,
+            'school_room_description' => $this->school_room_description
+        ]);
+
+    }
+
 }
+
