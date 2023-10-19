@@ -40,10 +40,13 @@ class CreateTestApplications extends Migration
             -- etc
 
             --
+            t_a_declined_reason VARCHAR(255) ,
+            t_a_declined_by INT, 
             t_a_accepted_by INT,    
             t_a_assigned_by INT,
             t_a_proctor_assigned_by INT,
             t_a_returned_by INT,
+            t_a_returned_reason VARCHAR(255) ,
             t_a_proctor_user_id INT,
             t_a_school_room_id INT,
 
@@ -65,8 +68,8 @@ class CreateTestApplications extends Migration
 
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            FOREIGN KEY (t_a_test_type_id) REFERENCES user_status(user_status_id), 
-            FOREIGN KEY (t_a_applicant_user_id) REFERENCES user_status(user_status_id),
+            FOREIGN KEY (t_a_test_type_id) REFERENCES test_types(test_type_id), 
+            FOREIGN KEY (t_a_applicant_user_id) REFERENCES users(user_id),
             FOREIGN KEY (t_a_school_year_id) REFERENCES school_years(school_year_id),
             FOREIGN KEY (t_a_test_status_id) REFERENCES test_status(test_status_id)
             
