@@ -379,9 +379,82 @@
                                 <label for="editDescription">Description</label>
                                 <input type="text" class="form-control" id="editDescription" placeholder="Edit Description">
                             </div>
-                            <div class="form-group">
-                                <label for="editPermission">Permission</label>
-                                <input type="text" class="form-control" id="editPermission" placeholder="Edit Permission">
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th> All</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    <tr>
+                                        <td >Dashboard</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Appointment Management</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td >Applicant Management</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Room Management</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td >Exam Management</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td >Exam Administrator</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td >Result Management</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td >Announcement</td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    </tr>
+                                </table>
                             </div>
                         </form>
                         <!-- End Edit role Form -->
