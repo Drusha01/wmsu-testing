@@ -42,6 +42,7 @@ use App\Http\Livewire\Student\StudentAppointment\StudentAppointment;
 use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
 use App\Http\Livewire\ApplicationForm;
 use App\Http\Livewire\ApplicationBack;
+use  App\Http\Livewire\Page\Programs\Agri;
 
 // admin
 use App\Http\Livewire\Admin\AdminManagement;
@@ -114,6 +115,8 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         
         Route::get('/application-form',ApplicationForm::class)->name('application-form');
         Route::get('/application-back',ApplicationBack::class)->name('application-back');
+
+        
        
 
 
@@ -136,8 +139,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
             Route::get('/lsat', [TestApplicationController::class, 'lsat'])->name('application.lsat');
 
         
-            Route::get('/application-form',ApplicationForm::class)->name('application.form');
-            Route::get('/application-back',ApplicationBack::class)->name('application.back');
+           
     
 
         });
@@ -188,7 +190,7 @@ Route::prefix('/')->group(function () {
     Route::get('/contact', Contact::class)->name('contact');
 
     Route::get('/programs', Programs::class)->name('programs');
-
+    Route::get('/programs/agri',Agri::class)->name('programs.agri');
 });
 
 

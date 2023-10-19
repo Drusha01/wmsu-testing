@@ -4,10 +4,11 @@
      <section class="contact">
         <div class="container-contact px-2 py-2">
             <div class="row">
-                <div class="col-md-6">
+                
+                <div class="col-md-6 border border-dark">
                     <h2>Contact Us</h2>
-                    <p>If you have any questions, inquiries, or feedback, feel free to contact us using the information
-                        below.</p>
+                    <h5>If you have any questions, inquiries, or feedback, feel free to contact us using the information
+                        below.</h5>
                     <ul class="contact-info">
                         <li><i class="bi bi-geo-alt-fill"></i> Address: WMSU Campus, Zamboanga City</li>
                         <li><i class="bi bi-envelope-fill"></i> Email: info@wmsutec.edu</li>
@@ -34,5 +35,6 @@
                 </div>
             </div>
         </div>
+
     </section>
     <!-- Contact section -->
