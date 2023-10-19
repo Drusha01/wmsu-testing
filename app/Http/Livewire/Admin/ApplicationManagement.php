@@ -918,7 +918,7 @@ class ApplicationManagement extends Component
                 'link'              									=> '#'
             ]);
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
@@ -1013,7 +1013,7 @@ class ApplicationManagement extends Component
                 'link'              									=> '#'
             ]);
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
@@ -1137,7 +1137,7 @@ class ApplicationManagement extends Component
                 'link'              									=> '#'
             ]);
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
@@ -1304,7 +1304,7 @@ class ApplicationManagement extends Component
         }
 
         if(!$this->delete_declined_valid){
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',
@@ -1357,7 +1357,7 @@ class ApplicationManagement extends Component
                 'link'              									=> '#'
             ]);
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select applicant!',

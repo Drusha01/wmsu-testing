@@ -166,7 +166,6 @@
                     </tbody>
                 </table>
 
-                @if($declined_pending_valid)
                 <div class="modal fade" id="declinePendingapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -190,7 +189,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
             
 
@@ -354,7 +352,6 @@
                         </tbody>
                     </table>
                 </div>
-                @if($declined_accepted_valid)
                 <div class="modal fade" id="declineAcceptedapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -378,7 +375,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
 
             <div class="tab-pane @if($active == 'declined') show active @else fade @endif" id="declined-applicant-tab">
@@ -517,7 +513,7 @@
                         </tbody>
                     </table>
                 </div>
-                @if($delete_declined_valid)
+
                 <div class="modal fade" id="DeleteDeclinedapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -537,7 +533,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+
             </div>
         </div>
     </main>
