@@ -24,7 +24,7 @@ class RoomManagement extends Component
     public $unassigned_selected_all;
     public $unassigned_selected = [];
     public $unassigned_valid = false;
-    public $unassigned_school_room_id = 0;
+    public $unassigned_school_room_id = 1;
     // assigned room applicant
     public $assigned_applicant_data;
     public $assigned_test_type_id= 0;
@@ -747,7 +747,6 @@ class RoomManagement extends Component
         ];
 
         if($this->unassigned_valid &&  $this->access_role['U'] ){
-            
             foreach ($this->unassigned_applicant_data  as $key => $value) {
                 if($this->unassigned_selected[$key][$value->t_a_id]){
                     // dd($this->unassigned_selected[$key]);
@@ -759,7 +758,7 @@ class RoomManagement extends Component
                             'ts.test_status_details'=>'Accepted'])
                     ->update([
                             't_a_assigned_by'=> $this->user_details['user_id'],
-                            't_a_school_room_id' =>$this->unassigned_school_room_id,
+                            't_a_school_room_id' => $this->unassigned_school_room_id,
                             't_a_test_status_id' =>((array) DB::table('test_status')
                                 ->where('test_status_details', '=', 'Processing')
                             ->select('test_status_id as t_a_test_status_id')

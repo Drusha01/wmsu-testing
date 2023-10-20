@@ -27,6 +27,7 @@ class Rooms_sample extends Seeder
             "12:00-PM",
             30,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
@@ -45,6 +46,7 @@ class Rooms_sample extends Seeder
             "12:00-PM",
             35,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
@@ -63,6 +65,7 @@ class Rooms_sample extends Seeder
             "12:00-PM",
             25,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
