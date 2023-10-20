@@ -37,6 +37,19 @@ class RoomManagement extends Component
     public $school_room_college_type_id= 0;
     public $school_room_filter;
 
+    //CRUD ROOM
+    public $school_room_college_name;
+    public $school_room_college_abr;
+    public $school_room_venue;
+    public $school_room_name;
+    public $school_room_test_center;
+    public $school_room_test_date;
+    public $school_room_test_time_start;
+    public $school_room_test_time_end;
+    public $school_room_capacity;
+    public $school_room_description;
+    public $roomToDelete = 0;
+
 
     public $column_order = 't_a_id';
     public $order_by = 'asc';
@@ -835,4 +848,78 @@ class RoomManagement extends Component
     public function active_page($active){
         $this->active = $active;
     }
+
+    //add room
+    public function add_room() {
+        if (empty($this->school_room_college_name) ||
+            empty($this->school_room_college_abr) ||
+            empty($this->school_room_venue) ||
+            empty($this->school_room_name) ||
+            empty($this->school_room_test_center) ||
+            empty($this->school_room_description) ||
+            !is_numeric($this->school_room_capacity) ||
+            $this->school_room_capacity <= 0 || $this->school_room_capacity > 500 ||
+            empty($this->school_room_test_date) ||
+            empty($this->school_room_test_time_start) ||
+            empty($this->school_room_test_time_end)) {
+         
+            $this->successMessage = "Room not added. Please check the input data.";
+            return;
+        }
+    
+        $date_regex = "/^\d{4}-\d{2}-\d{2}$/";
+        $time_regex = "/^\d{2}:\d{2}$/";
+        
+        if (!preg_match($date_regex, $this->school_room_test_date) ||
+            !preg_match($time_regex, $this->school_room_test_time_start) ||
+            !preg_match($time_regex, $this->school_room_test_time_end)) {
+            $this->successMessage = "Room not added. Invalid date or time format.";
+            return;
+        }
+    
+      
+        DB::table('school_rooms')->insert([
+            'school_room_college_name' => $this->school_room_college_name,
+            'school_room_college_abr' => $this->school_room_college_abr,
+            'school_room_venue'  => $this->school_room_venue,
+            'school_room_name' => $this->school_room_name,
+            'school_room_test_center' => $this->school_room_test_center,
+            'school_room_test_date' => $this->school_room_test_date,
+            'school_room_test_time_start'  => $this->school_room_test_time_start,
+            'school_room_test_time_end' => $this->school_room_test_time_end,
+            'school_room_capacity' => $this->school_room_capacity,
+            'school_room_description' => $this->school_room_description
+        ]);
+    
+        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Successfully added a room!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+    }
+
+//delete
+public function deleteRoom($roomId) {
+ 
+
+    // Perform the room deletion logic
+    DB::table('school_rooms')->where('school_room_id', $roomId)->delete();
+
+    $this->roomToDelete = 0;
+
+    $this->dispatchBrowserEvent('swal:remove_backdrop', [
+        'position' => 'center',
+        'icon' => 'success',
+        'title' => 'Room deleted successfully!',
+        'showConfirmButton' => true,
+        'timer' => 1000,
+        'link' => '#'
+    ]);
 }
+
+    
+}
+
