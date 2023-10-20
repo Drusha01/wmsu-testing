@@ -300,7 +300,8 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-warning mx-1" wire:click="accepted_pending()" >Reassign room </button>
+                            <button class="btn btn-warning mx-1" data-toggle="modal" data-target="#assignModal" wire:click="reassigning_room_check()" >Reassign room </button>
+                            <button class="btn btn-danger mx-1" data-toggle="modal" data-target="#removeassignedRoom"  wire:click="remove_room_check()" >Remove room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -325,7 +326,7 @@
                                 @if($assigned_applicant_filter['Select all'])
                                     <td><input type="checkbox" 
                                     
-                                        wire:model="pending_selected.{{$loop->index}}.{{$value->t_a_id}}"
+                                        wire:model="assigned_selected.{{$loop->index}}.{{$value->t_a_id}}"
                                         >
                                     </td>
                                 @endif
@@ -377,6 +378,68 @@
             </div>
 
             <!-- Re-assign Modal -->
+            @if($assigned_valid)
+            <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="assignModalLabel">Assign Venue and Room</h5>
+                        </div>
+                        <hr>
+                        <div class="modal-body">
+                            <label for="">Selected:</label>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Full name</th>
+                                    <th scope="col">Exam type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($assigned_valid)
+                                        @foreach ($assigned_applicant_data as $item => $value)
+                                            @if($assigned_selected[$item][$value->t_a_id])
+                                    <tr>
+                                        <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
+                                        <td>{{ $value->user_fullname }}</td>
+                                        <td>{{ $value->test_type_name }}</td>
+                                    </tr>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                    <td class="text-center font-weight-bold" colspan="42" style="color:red;">
+                                        NO RECORD SELECTED
+                                    </td>
+                                    @endif
+                                    
+                                </tbody>
+                            </table> 
+                           
+                            <br>
+                            <hr>
+                            <div class="form-group">
+                                <label for="venueSelect">Select Venue:</label>
+                                <select class="form-control"  wire:model.defer="assigned_school_room_id">
+                                 
+                                    @forelse ($school_rooms as $item => $value)
+                                    <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
+                                    @empty
+                                        <option value="">NO RECORDS</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="assignButton" wire:click="reassigning_room()">Assign</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="modal fade" id="reassignModal" tabindex="-1" role="dialog" aria-labelledby="reassignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -414,6 +477,31 @@
                     </div>
                 </div>
             </div>
+            @if($remove_valid)
+            <div class="modal fade" id="removeassignedRoom" tabindex="-1" role="dialog" aria-labelledby="removeassignedRoomLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="removeassignedRoomLabel">Remove assigned room</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="modal-body">
+                            <h6>Are you sure you want to remove the assigned room?</h6>
+                            
+                        </div>
+                        <hr>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="reassignConfirmButton" wire:click="remove_room()">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+            
 
 
             <!-- View Names Modal (Add the modal content as needed) -->

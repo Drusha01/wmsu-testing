@@ -30,7 +30,7 @@
                 <div class="d-flex mt-2">
                         <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
                         
-                        <select class="filter-select " wire:model.defer="unassigned_proctor_school_room_id" wire:change="unassigned_applicant_exam_type_filter()">
+                        <select class="filter-select " wire:model.defer="unassigned_proctor_school_room_id" wire:change="unassigned_proctor_school_room_filter()">
                             <option value="0"  >All</option>
                             @foreach ($school_rooms as $item => $value)
                                 <option wire:key="assigned-{{$value->school_room_id}}"value="{{$value->school_room_id}}" >{{ $value->school_room_id.' - '.$value->school_room_name }}</option>
@@ -101,7 +101,7 @@
                     <tr>
                     @foreach ($unassigned_proctor_filter as $item => $value)
                         @if($loop->first && $value)
-                            <th><input wire:model="unassigned_selected_all" wire:change="unassigned_applicant_select_all()" type="checkbox" ></th> 
+                            <th><input wire:model="unassigned_proctor_selected_all" wire:change="unassigned_proctor_selected_all()" type="checkbox" ></th> 
                         @elseif($loop->last && $value )
                         <th class="text-center">Action</th>
                         @elseif($value)
@@ -117,13 +117,17 @@
                             @if($unassigned_proctor_filter['Select all'])
                                 <td><input type="checkbox" 
                                 
-                                    wire:model="unassigned_selected.{{$loop->index}}.{{$value->school_room_id}}"
+                                    wire:model="unassigned_proctor_selected.{{$loop->index}}.{{$value->school_room_id}}"
                                     >
                                 </td>
                             @endif
                             @if($unassigned_proctor_filter['#'])
                                 <td>{{ $loop->index+1 }}</td>
                             @endif
+                            @if($unassigned_proctor_filter['No. of Examinees'])
+                                <td>{{ $value->school_room_capacity -  $value->school_room_slot  }}</td>
+                            @endif
+                            
                             @if($unassigned_proctor_filter['Capacity'])
                                 <td>{{ $value->school_room_capacity }}</td>
                             @endif

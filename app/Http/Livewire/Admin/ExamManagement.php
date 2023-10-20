@@ -17,10 +17,13 @@ class ExamManagement extends Component
     public $unassigned_proctor_school_room_id = 0;
     public $unassigned_proctor_filter;
     public $unassigned_proctor_selected_all;
+    public $unassigned_proctor_selected = [];
 
     public $assigned_proctor;
     public $assigned_proctor_school_room_id = 0;
     public $assigned_proctor_filter;
+    public $assigned_proctor_selected_all;
+    public $assigned_proctor_selected = [];
     
     
 
@@ -201,6 +204,7 @@ class ExamManagement extends Component
             $this->unassigned_proctor_filter = [
                 'Select all' => true,
                 '#' => true,
+                'No. of Examinees' => true,
                 'Capacity'=> true,
                 'Slots' => true,
                 'Venue'=> true,
@@ -340,6 +344,17 @@ class ExamManagement extends Component
                 ->get()
                 ->toArray();
             }
+
+            $this->unassigned_proctor_selected = [];
+            $this->assigned_proctor_selected = [];
+
+            foreach ($this->unassigned_proctor  as $key => $value) {
+                array_push($this->unassigned_proctor_selected,[$value->school_room_id=>false]);
+            }
+
+            foreach ($this->assigned_proctor  as $key => $value) {
+                array_push($this->assigned_proctor_selected,[$value->school_room_id=>false]);
+            }
             // dd($this->unassigned_proctor);
             
         }
@@ -366,6 +381,149 @@ class ExamManagement extends Component
             'link'              									=> '#'
         ]);
 
+    }
+
+    public function unassigned_proctor_school_room_filter(){
+        if($this->unassigned_proctor_school_room_id == 0){
+            $this->unassigned_proctor = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                DB::raw('count(*) as school_room_number_of_examinees' ),
+                'school_room_id',
+                DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
+                'school_room_capacity',	
+                'school_room_college_name',	
+                'school_room_college_abr',
+                'school_room_venue',
+                'school_room_name',	
+                'school_room_test_center',
+                'school_room_test_date',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_room_description'
+                )
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Processing')
+            ->whereNotNull('t_a_school_room_id')
+            ->whereNull('school_room_proctor_user_id')
+            ->groupBy('t_a_school_room_id')
+            ->get()
+            ->toArray();
+        }else{
+            $this->unassigned_proctor = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                DB::raw('count(*) as school_room_number_of_examinees' ),
+                'school_room_id',
+                DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
+                'school_room_capacity',	
+                'school_room_college_name',	
+                'school_room_college_abr',
+                'school_room_venue',
+                'school_room_name',	
+                'school_room_test_center',
+                'school_room_test_date',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_room_description'
+                )
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Processing')
+            ->whereNotNull('t_a_school_room_id')
+            ->whereNull('school_room_proctor_user_id')
+            ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
+            ->groupBy('t_a_school_room_id')
+            ->get()
+            ->toArray();
+        }
+
+        if($this->assigned_proctor_school_room_id){
+            $this->assigned_proctor = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                DB::raw('count(*) as school_room_number_of_examinees' ),
+                'school_room_id',
+                DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
+                'school_room_capacity',	
+                'school_room_college_name',	
+                'school_room_college_abr',
+                'school_room_venue',
+                'school_room_name',	
+                'school_room_test_center',
+                'school_room_test_date',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_room_description'
+                )
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Processing')
+            ->whereNotNull('t_a_school_room_id')
+            ->whereNotNull('school_room_proctor_user_id')
+            ->groupBy('t_a_school_room_id')
+            ->get()
+            ->toArray();
+        }else{
+            $this->assigned_proctor = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                DB::raw('count(*) as school_room_sschool_room_number_of_examinees' ),
+                'school_room_id',
+                DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
+                'school_room_capacity',	
+                'school_room_college_name',	
+                'school_room_college_abr',
+                'school_room_venue',
+                'school_room_name',	
+                'school_room_test_center',
+                'school_room_test_date',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_room_description'
+                )
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Processing')
+            ->whereNotNull('t_a_school_room_id')
+            ->whereNotNull('school_room_proctor_user_id')
+            ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
+            ->groupBy('t_a_school_room_id')
+            ->get()
+            ->toArray();
+        }
+
+        $this->unassigned_proctor_selected = [];
+        $this->assigned_proctor_selected = [];
+
+        $this->unassigned_proctor_selected_all = false;
+        $this->assigned_proctor_selected_all = false;
+
+        foreach ($this->unassigned_proctor  as $key => $value) {
+            array_push($this->unassigned_proctor_selected,[$value->school_room_id=>false]);
+        }
+
+        foreach ($this->assigned_proctor  as $key => $value) {
+            array_push($this->assigned_proctor_selected,[$value->school_room_id=>false]);
+        }
+
+
+    }
+
+    public function unassigned_proctor_selected_all(){
+        $this->unassigned_proctor_selected = [];
+        if($this->unassigned_proctor_selected_all){
+            foreach ($this->unassigned_proctor  as $key => $value) {
+                array_push($this->unassigned_proctor_selected,[$value->school_room_id=>true]);
+            }
+        }
+        
+        
     }
 
     public function render()
