@@ -29,12 +29,10 @@
             <div class="container-fluid">
                 <!-- Add Admin Button (Opens Add Modal) -->
                 <div class="d-flex my-3">
-                    
-                    
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#assigned-room-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#admin-data-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -45,7 +43,7 @@
                     </div> 
                 
 
-                    <div class="modal fade" id="assigned-room-filter" tabindex="-1" role="dialog" aria-labelledby="unassigned-room-filterLabel" aria-hidden="true">
+                    <div class="modal fade" id="admin-data-filter" tabindex="-1" role="dialog" aria-labelledby="admin-data-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -98,26 +96,45 @@
                         </thead>
                         <tbody>
                             <!-- Add your table rows dynamically using server-side data or JavaScript -->
-                            <tr>
-                                <td>1</td>
-                                <td>Admin 1</td>
-                                <td>admin1@example.com</td>
-                                <td>Administrator</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editAdminModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td>
+                            @forelse ($admin_data as $item => $value)
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Admin 2</td>
-                                <td>admin2@example.com</td>
-                                <td>Administrator</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editAdminModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                                @if($admin_data_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                                @if($admin_data_filter['Username'])
+                                    <td>{{ $value->user_name }}</td>
+                                @endif
+                                @if($admin_data_filter['Full name'])
+                                    <td>{{ $value->user_lastname.', '.$value->user_lastname.' '.$value->user_middlename }}</td>
+                                @endif
+                                @if($admin_data_filter['Email'])
+                                    <td>{{ $value->user_email }}</td>
+                                @endif
+                                @if($admin_data_filter['CP#'])
+                                    <td>{{ $value->user_phone }}</td>
+                                @endif
+                                @if($admin_data_filter['Verified'])
+                                    <td class="text-center"> @if($value->user_email_verified) <i class="bi bi-check"></i> @else <i class="bi bi-x"></i> @endif </td>
+                                @endif
+                                @if($admin_data_filter['Action'])
+                                    <td class="text-center">
+                                    @if($access_role['R']==1)
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
+                                    @endif
+                                    @if($access_role['U']==1)
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
+                                    @endif
+                                    @if($access_role['D']==1)
+                                    <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
+                                    @endif
+                                    </td>
+                                @endif
+                                </tr>
+                            @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                            @endforelse
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -140,7 +157,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="AddAdminFirstName">Username</label>
-                                <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter First Name">
+                                <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter Username">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Email</label>
@@ -159,16 +176,16 @@
                                 <input type="text" class="form-control" id="AddAdminLastName" placeholder="Enter Last Name">
                             </div>
                             <div class="form-group">
-                                <label for="AddAdminEmail">Email</label>
-                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                                <label for="AddAdminEmail">Birthdate</label>
+                                <input type="date" class="form-control" id="AddAdminEmail" placeholder="Enter birthdate">
                             </div>
                             <div class="form-group">
-                                <label for="AddAdminEmail">Email</label>
-                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                                <label for="AddAdminEmail">Password</label>
+                                <input type="password" class="form-control" id="AddAdminEmail" placeholder="Enter password">
                             </div>
                             <div class="form-group">
-                                <label for="AddAdminEmail">Email</label>
-                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                                <label for="AddAdminEmail">Confirm Password</label>
+                                <input type="password" class="form-control" id="AddAdminEmail" placeholder="Confirm password">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminRole">Role</label>
@@ -228,7 +245,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-success">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -238,44 +255,112 @@
         <div class="tab-pane @if($active == 'user_management') show active @endif " id="user-management-tab">
             <div class="container-fluid">  
                 <!-- Add user Button (Opens Add user Modal) -->
-                <button class="btn btn-success mt-2 mb-2" data-toggle="modal" data-target="#AddUserModal">Add User</button>           
+                <div class="d-flex my-3">
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#user-data-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                
+
+                    <div class="modal fade" id="user-data-filter" tabindex="-1" role="dialog" aria-labelledby="user-data-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Assigned Room</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($user_data_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="assigned-filtering-{{$loop->iteration}}"
+                                            wire:model.defer="user_data_filter.{{$item}}">
+                                        <label class="form-check-label" for="assigned-filtering-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="user_data_filterView()" data-dismiss="modal" 
+                                        class="btn btn-success">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        
+                    </div>
+                </div>         
                 <!-- User Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                            @foreach ($user_data_filter as $item => $value)
+                                @if($loop->last && $value )
+                                    <th class="text-center">
+                                        Action
+                                    </th>
+                                @elseif($value)
+                                    <th>{{$item}}</th>
+                                @endif
+                            @endforeach
                             </tr>
                         </thead>
                         <tbody>
                             <!--  table -->
-                            <tr>
-                                <td>1</td>
-                                <td>User 1</td>
-                                <td>user1@example.com</td>
-                                <td>Applicant</td>
-                                <td>Active</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td> 
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>User 2</td>
-                                <td>user2@example.com</td>
-                                <td>Applicant</td>
-                                <td>Inactive</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                            @forelse ($user_data as $item => $value)
+                                <tr>
+                                @if($user_data_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                                @if($user_data_filter['Username'])
+                                    <td>{{ $value->user_name }}</td>
+                                @endif
+                                @if($user_data_filter['Full name'])
+                                    <td>{{ $value->user_lastname.', '.$value->user_lastname.' '.$value->user_middlename }}</td>
+                                @endif
+                                @if($user_data_filter['Email'])
+                                    <td>{{ $value->user_email }}</td>
+                                @endif
+                                @if($user_data_filter['CP#'])
+                                    <td>{{ $value->user_phone }}</td>
+                                @endif
+                                @if($user_data_filter['Verified'])
+                                    <td class="text-center"> @if($value->user_email_verified) <i class="bi bi-check"></i> @else <i class="bi bi-x"></i> @endif </td>
+                                @endif
+                                
+                                @if($user_data_filter['Action'])
+                                    <td class="text-center">
+                                    @if($access_role['R']==1)
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
+                                    @endif
+                                    @if($access_role['U']==1)
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
+                                    @endif
+                                    @if($access_role['D']==1)
+                                    <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
+                                    @endif
+                                    </td>
+                                @endif
+                                </tr>
+                            @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                            @endforelse
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -436,7 +521,7 @@
                         <tbody>
                             <!-- Add your table rows dynamically using server-side data or JavaScript -->
                             @forelse ($roles_data as $item => $value)
-                            <tr wire:key="{{$value->admin_role_name_id}}">
+                            <tr >
                                 @if($roles_data_filter['#'] )
                                 <td >{{$loop->index+1}}</td>
                                 @endif
@@ -524,7 +609,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Role</button>
+                            <button type="submit" class="btn btn-success">Add Role</button>
                         </div>
                     </form>
                 </div>

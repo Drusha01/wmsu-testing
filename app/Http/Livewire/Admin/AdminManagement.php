@@ -15,6 +15,7 @@ class AdminManagement extends Component
 
     public $active= 'admin_management';
     public $admin_data;
+    public $user_data;
 
 
     public $modules;
@@ -69,6 +70,17 @@ class AdminManagement extends Component
             ->get()
             ->toArray();
 
+            $this->user_data = DB::table('users as u')
+            ->select(
+                '*'
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'student')
+            ->get()
+            ->toArray();
+
             $this->modules = DB::table('modules as m')
             ->select('*')
             ->orderBy('module_number')
@@ -93,6 +105,19 @@ class AdminManagement extends Component
             'Full name' => true,
             'Email' => true,
             'CP#' => true,
+            'Active' => false,
+            'Verified' => true,
+            'Action' => true
+        ];
+
+        $this->user_data_filter = [
+            '#' => true,
+            'Username' => true,
+            'Full name' => true,
+            'Email' => true,
+            'CP#' => true,
+            'Active' => false,
+            'Verified' => true,
             'Action' => true
         ];
 
@@ -123,6 +148,17 @@ class AdminManagement extends Component
             ->get()
             ->toArray();
 
+            $this->user_data = DB::table('users as u')
+            ->select(
+                '*'
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'student')
+            ->get()
+            ->toArray();
+
             $this->modules = DB::table('modules as m')
             ->select('*')
             ->orderBy('module_number')
@@ -134,7 +170,6 @@ class AdminManagement extends Component
                 ->toArray();
 
 
-        // dd($this->roles_data);
         }
 
     }
@@ -158,8 +193,32 @@ class AdminManagement extends Component
         ]);
     }
 
+    public function user_data_filterView(){
+        $this->dispatchBrowserEvent('swal:redirect',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Successfully changed filter!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+    }
+
+
     public function active_page($active){
         $this->active = $active;
+    }
+
+    public function view_admin($user_id){
+        dd('view');
+    }
+
+    public function edit_admin($user_id){
+        dd('edit');
+    }
+
+    public function delete_admin($user_id){
+        dd('delete');
     }
 
 
@@ -265,6 +324,8 @@ class AdminManagement extends Component
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
+            $this->access_role_name = null;
+            $this->access_role_description = null;
 
             $this->roles_data = DB::table('admin_role_names as arn')
                 ->get()
@@ -388,7 +449,34 @@ class AdminManagement extends Component
         }
     }
     public function delete_role($admin_role_name_id){
-        dd($admin_role_name_id);
+
+        $this->role_name_details = DB::table('admin_role_names as arn')
+            ->where('admin_role_name_id','=',$admin_role_name_id)
+            ->get()
+            ->toArray();
+        $roles_data = DB::table('admin_roles as ar')
+            ->where('access_role_name_id','=',$admin_role_name_id)
+            ->get()
+            ->toArray();
+        DB::table('admin_role_names')->where('admin_role_name_id', $this->role_name_details[0]->admin_role_name_id)->delete();
+
+        foreach ($roles_data as $key => $value) {
+            DB::table('admin_roles')->where('access_role_id',$value->access_role_id )->delete();
+        }
+
+        $this->roles_data = DB::table('admin_role_names as arn')
+            ->get()
+            ->toArray();
+
+        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+            'position'          									=> 'center',
+            'icon'                                                  => 'success',
+            'title'             									=> 'Successfully deleted role!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+        
     }
 
 
