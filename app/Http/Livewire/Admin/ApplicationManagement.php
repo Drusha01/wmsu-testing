@@ -474,8 +474,6 @@ class ApplicationManagement extends Component
 
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
 
-            $this->active = 'pending';
-
             $this->exam_types = DB::table('test_types')
                 ->select('test_type_id','test_type_name')
                 ->get()
