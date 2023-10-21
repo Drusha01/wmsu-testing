@@ -1286,8 +1286,6 @@ class RoomManagement extends Component
             $this->school_room_test_time_end = substr($this->view_room[0]->school_room_test_time_end,0,5);
             $this->school_room_capacity = $this->view_room[0]->school_room_capacity ;
             $this->school_room_description = $this->view_room[0]->school_room_description;
-
-            $this->dispatchBrowserEvent('openModal','ViewRoomModal');
     }
 
     public function edit_room_details($school_room_id){
@@ -1310,9 +1308,6 @@ class RoomManagement extends Component
             $this->school_room_test_time_end = substr($this->edit_room[0]->school_room_test_time_end,0,5);
             $this->school_room_capacity = $this->edit_room[0]->school_room_capacity ;
             $this->school_room_description = $this->edit_room[0]->school_room_description;
-
-            $this->dispatchBrowserEvent('openModal','EditRoomModal');
-            
     }
 
     public function edit_room($school_room_id){
