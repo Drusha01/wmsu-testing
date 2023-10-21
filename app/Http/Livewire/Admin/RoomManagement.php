@@ -41,6 +41,10 @@ class RoomManagement extends Component
     public $school_room_filter;
 
     //CRUD ROOM
+    public $view_room = false;
+    public $edit_room = false;
+    
+    public $school_room_id;
     public $school_room_college_name;
     public $school_room_college_abr;
     public $school_room_venue;
@@ -1240,6 +1244,128 @@ class RoomManagement extends Component
             'timer' => 1000,
             'link' => '#'
         ]);
+        $this->school_rooms = DB::table('school_rooms as sr')
+        ->select(
+            '*'
+        )
+        ->get()
+        ->toArray();
+    }
+
+    public function view_room_details($school_room_id){
+        $this->view_room = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+                )
+            ->where(['school_room_id'=>$school_room_id])
+            ->get()
+            ->toArray();
+            
+            $this->school_room_id = $this->view_room[0]->school_room_id;
+            $this->school_room_college_name = $this->view_room[0]->school_room_college_name;
+            $this->school_room_college_abr = $this->view_room[0]->school_room_college_abr;
+            $this->school_room_venue = $this->view_room[0]->school_room_venue;
+            $this->school_room_name = $this->view_room[0]->school_room_name;
+            $this->school_room_test_center = $this->view_room[0]->school_room_test_center;
+            $this->school_room_test_date = $this->view_room[0]->school_room_test_date;
+            $this->school_room_test_time_start = substr($this->view_room[0]->school_room_test_time_start,0,5);
+            $this->school_room_test_time_end = substr($this->view_room[0]->school_room_test_time_end,0,5);
+            $this->school_room_capacity = $this->view_room[0]->school_room_capacity ;
+            $this->school_room_description = $this->view_room[0]->school_room_description;
+    }
+
+    public function edit_room_details($school_room_id){
+        $this->edit_room = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+                )
+            ->where(['school_room_id'=>$school_room_id])
+            ->get()
+            ->toArray();
+            
+            $this->school_room_id = $this->edit_room[0]->school_room_id;
+            $this->school_room_college_name = $this->edit_room[0]->school_room_college_name;
+            $this->school_room_college_abr = $this->edit_room[0]->school_room_college_abr;
+            $this->school_room_venue = $this->edit_room[0]->school_room_venue;
+            $this->school_room_name = $this->edit_room[0]->school_room_name;
+            $this->school_room_test_center = $this->edit_room[0]->school_room_test_center;
+            $this->school_room_test_date = $this->edit_room[0]->school_room_test_date;
+            $this->school_room_test_time_start = substr($this->edit_room[0]->school_room_test_time_start,0,5);
+            $this->school_room_test_time_end = substr($this->edit_room[0]->school_room_test_time_end,0,5);
+            $this->school_room_capacity = $this->edit_room[0]->school_room_capacity ;
+            $this->school_room_description = $this->edit_room[0]->school_room_description;
+    }
+
+    public function edit_room($school_room_id){
+        // dd($school_room_id);
+        if (empty($this->school_room_college_name) ||
+            empty($this->school_room_college_abr) ||
+            empty($this->school_room_venue) ||
+            empty($this->school_room_name) ||
+            empty($this->school_room_test_center) ||
+             
+            !is_numeric($this->school_room_capacity) ||
+            $this->school_room_capacity <= 0 || $this->school_room_capacity > 500 ||
+            empty($this->school_room_test_date) ||
+            empty($this->school_room_test_time_start) ||
+            empty($this->school_room_test_time_end)) {
+         
+            $this->successMessage = "Room not added. Please check the input data.";
+            return;
+        }
+    
+        $date_regex = "/^\d{4}-\d{2}-\d{2}$/";
+        $time_regex = "/^\d{2}:\d{2}$/";
+        
+        if (!preg_match($date_regex, $this->school_room_test_date) ||
+            !preg_match($time_regex, $this->school_room_test_time_start) ||
+            !preg_match($time_regex, $this->school_room_test_time_end)) {
+            $this->successMessage = "Room not added. Invalid date or time format.";
+            return;
+        }
+    
+        
+        if(DB::table('school_rooms')
+        ->where(['school_room_id'=> $school_room_id])
+        ->update([
+            'school_room_college_name' => $this->school_room_college_name,
+            'school_room_college_abr' => $this->school_room_college_abr,
+            'school_room_venue'  => $this->school_room_venue,
+            'school_room_name' => $this->school_room_name,
+            'school_room_test_center' => $this->school_room_test_center,
+            'school_room_test_date' => $this->school_room_test_date,
+            'school_room_test_time_start'  => $this->school_room_test_time_start,
+            'school_room_test_time_end' => $this->school_room_test_time_end,
+            'school_room_capacity' => $this->school_room_capacity,
+            'school_room_description' => $this->school_room_description
+        ])){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully updated a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Error updating a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
+        $this->school_rooms = DB::table('school_rooms as sr')
+        ->select(
+            '*'
+        )
+        ->get()
+        ->toArray();
+
+        $this->edit_room = null;
+        
     }
 
 }

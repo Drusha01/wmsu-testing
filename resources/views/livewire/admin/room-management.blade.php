@@ -585,10 +585,10 @@
                             @if($school_room_filter['Actions'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary">View</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success">Edit</button>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
@@ -634,12 +634,10 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addRoomModalLabel">Add Room</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
                         </div>
                         <form wire:submit.prevent="add_room()">
-                        <div class="modal-body">
+                            <div class="modal-body">
                                 <div class="form-group">
                                     <label for="addRoomCapacity">Room name:</label>
                                     <input type="text" class="form-control" wire:model.defer="school_room_name" required>
@@ -680,65 +678,156 @@
                                     <label for="addRoomDescription">Room description:</label>
                                     <textarea class="form-control" wire:model.defer="school_room_description" rows="4"></textarea>
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add Room</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Add Room</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- Edit Room Modal -->
-            <div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
+
+            <!-- View Room Modal -->
+            @if($view_room)
+            <div class="modal fade" id="ViewRoomModal" tabindex="-1" role="dialog" aria-labelledby="ViewRoomModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editRoomModalLabel">Edit Room Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <h5 class="modal-title" id="ViewRoomModalLabel">View Room Details</h5>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form for editing room details -->
-                            <form id="editRoomForm">
-                            <div class="form-group">
-                                    <label for="editSchoolYear">School Year:</label>
-                                    <input type="number" class="form-control" id="editSchoolYear" name="editSchoolYear" required>
+                            <hr>
+                            <form >
+                            <div class="modal-body">
+                                @forelse ($view_room as $item => $value)
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Room name:</label>
+                                    <input disabled type="text" class="form-control" wire:model.defer="school_room_name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editCollegeName">College Name:</label>
-                                    <input type="text" class="form-control" id="editCollegeName" name="editCollegeName" required>
+                                    <label for="addCollegeName">College Name:</label>
+                                    <input disabled type="text" class="form-control" wire:model.defer="school_room_college_name"required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editCollegeName">Venue:</label>
-                                    <input type="text" class="form-control" id="editCollegeName" name="editCollegeName" required>
+                                    <label for="addRoomName">College Abbreviation:</label>
+                                    <input disabled type="text" class="form-control" wire:model.defer="school_room_college_abr">
                                 </div>
                                 <div class="form-group">
-                                    <label for="editRoomName">Room Name #:</label>
-                                    <input type="text" class="form-control" id="editRoomName" name="editRoomName" required>
+                                    <label for="addRoomName">Test Venue :</label>
+                                    <input disabled type="text" class="form-control" wire:model.defer="school_room_venue" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editRoomCapacity">Capacity:</label>
-                                    <input type="number" class="form-control" id="editRoomCapacity" name="editRoomCapacity" required>
+                                    <label for="addRoomName">Test Center :</label>
+                                    <input disabled type="text" class="form-control" wire:model.defer="school_room_test_center" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editRoomCapacity">Slot:</label>
-                                    <input type="number" class="form-control" id="editRoomCapacity" name="editRoomCapacity" required>
+                                    <label for="addRoomCapacity">Room Capacity #:</label>
+                                    <input disabled type="number" min="1" max="500" class="form-control" wire:model.defer="school_room_capacity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editRoomDescription">Room Description:</label>
-                                    <textarea class="form-control" id="editRoomDescription" name="editRoomDescription" rows="4" required></textarea>
+                                    <label for="addRoomDescription">Test Date:</label>
+                                    <input disabled type="date" class="form-control" wire:model.defer="school_room_test_date" required></input>
                                 </div>
-                            </form>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test start time:</label>
+                                    <input disabled type="time" class="form-control" wire:model.defer="school_room_test_time_start" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test end time:</label>
+                                    <input disabled type="time" class="form-control" wire:model.defer="school_room_test_time_end" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Room description:</label>
+                                    <textarea disabled class="form-control" wire:model.defer="school_room_description" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            @empty 
+                                <div>NO DATA</div>
+                            @endforelse
+                        </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="saveEditRoom">Save Changes</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
+            @endif
+
+            @if($edit_room)
+            <div class="modal fade" id="EditRoomModal" tabindex="-1" role="dialog" aria-labelledby="EditRoomModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="EditRoomModalLabel">View Room Details</h5>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form for editing room details -->
+                            <hr>
+                            @forelse ($edit_room as $item => $value)
+                            <form wire:submit.prevent="edit_room({{$value->school_room_id}})">
+                            <div class="modal-body">
+                                
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Room name:</label>
+                                    <input  type="text" class="form-control" wire:model.defer="school_room_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addCollegeName">College Name:</label>
+                                    <input  type="text" class="form-control" wire:model.defer="school_room_college_name"required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomName">College Abbreviation:</label>
+                                    <input  type="text" class="form-control" wire:model.defer="school_room_college_abr">
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomName">Test Venue :</label>
+                                    <input  type="text" class="form-control" wire:model.defer="school_room_venue" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomName">Test Center :</label>
+                                    <input  type="text" class="form-control" wire:model.defer="school_room_test_center" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Room Capacity #:</label>
+                                    <input  type="number" min="1" max="500" class="form-control" wire:model.defer="school_room_capacity" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test Date:</label>
+                                    <input  type="date" class="form-control" wire:model.defer="school_room_test_date" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test start time:</label>
+                                    <input  type="time" class="form-control" wire:model.defer="school_room_test_time_start" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Test end time:</label>
+                                    <input  type="time" class="form-control" wire:model.defer="school_room_test_time_end" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addRoomDescription">Room description:</label>
+                                    <textarea class="form-control" wire:model.defer="school_room_description" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" >Save</button>
+                            </div>
+                            @empty 
+                                <div>NO DATA</div>
+                            @endforelse
+                        </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            @endif
 
         </div>
     </main><!-- End #main -->
