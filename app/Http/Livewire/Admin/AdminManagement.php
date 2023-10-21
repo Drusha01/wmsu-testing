@@ -246,7 +246,9 @@ class AdminManagement extends Component
             $this->roles_data = DB::table('admin_role_names as arn')
                 ->get()
                 ->toArray();
-                     
+
+            $this->dispatchBrowserEvent('openModal','AddRoleModal');
+            
         }
     }
 
@@ -361,6 +363,8 @@ class AdminManagement extends Component
                     'D'=>$value->access_role_delete
                 ]);
             }
+
+            $this->dispatchBrowserEvent('openModal','ViewRoleModal');
         }
     }
 
@@ -394,6 +398,8 @@ class AdminManagement extends Component
                     'D'=>$value->access_role_delete
                 ]);
             }
+            $this->dispatchBrowserEvent('openModal','EditRoleModal');
+            
         }
     }
 
@@ -437,6 +443,10 @@ class AdminManagement extends Component
                 }
             }
             
+            $this->roles_data = DB::table('admin_role_names as arn')
+                ->get()
+                ->toArray();
+                
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',

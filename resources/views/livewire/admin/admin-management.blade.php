@@ -503,7 +503,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#AddRoleModal" wire:click="new_role()" >Add Role</button>
+                    <button class="btn btn-success   mx-1"  wire:click="new_role()" >Add Role</button>
                 </div>
             </div>
                 
@@ -534,10 +534,10 @@
                                 @if($roles_data_filter['Action'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoleModal" wire:click="view_role({{$value->admin_role_name_id }})">View</button>
+                                    <button class="btn btn-primary"  wire:click="view_role({{$value->admin_role_name_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoleModal" wire:click="edit_role({{$value->admin_role_name_id }})">Edit</button>
+                                    <button class="btn btn-success"  wire:click="edit_role({{$value->admin_role_name_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="delete_role({{ $value->admin_role_name_id }})">Delete</button>
