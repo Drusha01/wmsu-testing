@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" wire:click="assigning_room_check()">Assign room </button>
+                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" >Assign room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -166,7 +166,6 @@
             </div>
 
             <!-- Assign Modal -->
-            @if($unassigned_valid)
             <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -197,7 +196,7 @@
                                         @endforeach
                                     @else
                                     <td class="text-center font-weight-bold" colspan="42" style="color:red;">
-                                        NO RECORD SELECTED
+                                        NO RECORDS SELECTED
                                     </td>
                                     @endif
                                     
@@ -227,7 +226,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+
 
             <!-- Assigned Tab -->
             <div class="tab-pane  @if($active == 'assigned_room') show active @endif " id="room-assignment1-tab">
@@ -409,7 +408,7 @@
                                         @endforeach
                                     @else
                                     <td class="text-center font-weight-bold" colspan="42" style="color:red;">
-                                        NO RECORD SELECTED
+                                        NO RECORDS SELECTED
                                     </td>
                                     @endif
                                     
