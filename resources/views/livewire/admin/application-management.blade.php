@@ -380,7 +380,7 @@
             <div class="tab-pane @if($active == 'declined') show active @else fade @endif" id="declined-applicant-tab">
                 <div class="d-flex mt-2">
                         <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
-                        <select class="filter-select " id="exam-filter" wire:model="accepted_test_type_id" wire:change="accepted_application_exam_type_filter()">
+                        <select class="filter-select " id="exam-filter" wire:model="declined_test_type_id" wire:change="accepted_application_exam_type_filter()">
                             <option value="0"  >All</option>
                             @foreach ($exam_types as $item => $value)
                                 <option value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>

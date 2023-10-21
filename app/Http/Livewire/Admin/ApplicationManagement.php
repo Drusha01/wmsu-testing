@@ -230,7 +230,7 @@ class ApplicationManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Declined')
-                ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+                ->where('t_a_test_type_id','=',$this->declined_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -435,7 +435,7 @@ class ApplicationManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Declined')
-                ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+                ->where('t_a_test_type_id','=',$this->declined_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -607,7 +607,7 @@ class ApplicationManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Declined')
-                ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+                ->where('t_a_test_type_id','=',$this->declined_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -1377,7 +1377,7 @@ class ApplicationManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Accepted')
-            ->where('t_a_test_type_id','=',$this->pending_test_type_id)
+            ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -1420,7 +1420,7 @@ class ApplicationManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Declined')
-            ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+            ->where('t_a_test_type_id','=',$this->declined_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -1597,7 +1597,7 @@ class ApplicationManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Accepted')
-            ->where('t_a_test_type_id','=',$this->pending_test_type_id)
+            ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -1640,7 +1640,7 @@ class ApplicationManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Declined')
-            ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+            ->where('t_a_test_type_id','=',$this->declined_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
