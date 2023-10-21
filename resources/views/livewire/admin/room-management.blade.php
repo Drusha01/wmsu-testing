@@ -85,7 +85,7 @@
                                     </div>
                                     <hr>
                                     <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                        <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
                                         <button wire:click="unassigned_applicant_filterView()" data-dismiss="modal" 
                                             class="btn btn-primary">
                                             Save
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" wire:click="assigning_room_check()">Assign room </button>
+                            <button class="btn btn-success mx-1"  type="button" wire:click="assigning_room_check()">Assign room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -116,7 +116,6 @@
                         <tbody>
                         @forelse ($unassigned_applicant_data as $item => $value)
                             <tr >
-                                
                                 @if($unassigned_applicant_filter['Select all'])
                                     <td><input type="checkbox" 
                                     
@@ -166,7 +165,6 @@
             </div>
 
             <!-- Assign Modal -->
-            @if($unassigned_valid)
             <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -221,13 +219,12 @@
                         </div>
                         <hr>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="assignButton" wire:click="assigning_room()">Assign</button>
+                            <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button>
+                            <button type="button" class="btn btn-primary" wire:click="assigning_room()">Assign</button>
                         </div>
                     </div>
                 </div>
             </div>
-            @endif
 
             <!-- Assigned Tab -->
             <div class="tab-pane  @if($active == 'assigned_room') show active @endif " id="room-assignment1-tab">
@@ -240,9 +237,6 @@
                             <option value="0"  >All</option>
                             @foreach ($exam_types as $item => $value)
                                 <option wire:key="assigned-{{$value->test_type_id}}"value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
-                                                        
-        
-
                             @endforeach
                             
                             <!-- Add more options as needed -->
@@ -300,8 +294,8 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-warning mx-1" data-toggle="modal" data-target="#assignModal" wire:click="reassigning_room_check()" >Reassign room </button>
-                            <button class="btn btn-danger mx-1" data-toggle="modal" data-target="#removeassignedRoom"  wire:click="remove_room_check()" >Remove room </button>
+                            <button class="btn btn-warning mx-1"  wire:click="reassigning_room_check()" >Reassign room </button>
+                            <button class="btn btn-danger mx-1"  wire:click="remove_room_check()" >Remove room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -378,12 +372,11 @@
             </div>
 
             <!-- Re-assign Modal -->
-            @if($assigned_valid)
-            <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
+            <div class="modal fade" id="reassignModal" tabindex="-1" role="dialog" aria-labelledby="reassignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="assignModalLabel">Assign Venue and Room</h5>
+                            <h5 class="modal-title" id="reassignModalLabel">Assign Venue and Room</h5>
                         </div>
                         <hr>
                         <div class="modal-body">
@@ -439,45 +432,8 @@
                     </div>
                 </div>
             </div>
-            @endif
-            <div class="modal fade" id="reassignModal" tabindex="-1" role="dialog" aria-labelledby="reassignModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="reassignModalLabel">Re-assign Venue and Room</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Re-assignment form fields -->
-                            <form id="reassignForm">
-                                <div class="form-group">
-                                    <label for="reassignVenue">Select Venue:</label>
-                                    <select class="form-control" id="reassignVenue" name="reassignVenue">
-                                        <option value="">Select Venue</option>
-                                        <option value="WMSU MAIN">WMSU MAIN</option>
-                                        <option value="WMSU ESU">WMSU ESU</option>
-                                        <!-- Add more venue options as needed -->
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="reassignRoom">Select Room:</label>
-                                    <select class="form-control" id="reassignRoom" name="reassignRoom">
-                                        <option value="">Select Room</option>
-                                        <!-- Room options will be dynamically populated based on the selected venue -->
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="reassignConfirmButton">Re-assign</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @if($remove_valid)
+
+
             <div class="modal fade" id="removeassignedRoom" tabindex="-1" role="dialog" aria-labelledby="removeassignedRoomLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -490,6 +446,33 @@
                         <hr>
                         <div class="modal-body">
                             <h6>Are you sure you want to remove the assigned room?</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Full name</th>
+                                    <th scope="col">Exam type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($remove_valid)
+                                        @foreach ($assigned_applicant_data as $item => $value)
+                                            @if($assigned_selected[$item][$value->t_a_id])
+                                    <tr>
+                                        <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
+                                        <td>{{ $value->user_fullname }}</td>
+                                        <td>{{ $value->test_type_name }}</td>
+                                    </tr>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                    <td class="text-center font-weight-bold" colspan="42" style="color:red;">
+                                        NO RECORD SELECTED
+                                    </td>
+                                    @endif
+                                    
+                                </tbody>
+                            </table> 
                             
                         </div>
                         <hr>
@@ -500,7 +483,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             
 
 
@@ -833,71 +815,4 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const venueSelect = document.getElementById("venueSelect");
-            const roomSelectGroup = document.getElementById("roomSelectGroup");
-            const roomSelect = document.getElementById("roomSelect");
-
-            // Define room options based on venues
-            const rooms = {
-                "WMSU MAIN": ["CLA 12", "CLA 01", "LAW 121"],
-                "WMSU ESU": ["ESU Room 1", "ESU Room 2", "ESU Room 3"],
-            };
-
-            venueSelect.addEventListener("change", function () {
-                const selectedVenue = venueSelect.value;
-                if (selectedVenue in rooms) {
-                    // Populate the room dropdown based on the selected venue
-                    roomSelectGroup.style.display = "block";
-                    roomSelect.innerHTML = '<option value="">Select Room</option>';
-                    rooms[selectedVenue].forEach(function (room) {
-                        const option = document.createElement("option");
-                        option.value = room;
-                        option.textContent = room;
-                        roomSelect.appendChild(option);
-                    });
-                } else {
-                    // Hide the room dropdown if no venue is selected
-                    roomSelectGroup.style.display = "none";
-                }
-            });
-
-            // Handle the "Assign" button click
-            const assignButton = document.getElementById("assignButton");
-            assignButton.addEventListener("click", function () {
-                const selectedVenue = venueSelect.value;
-                const selectedRoom = roomSelect.value;
-                // Perform assignment logic here based on the selected venue and room
-                // You can send this information to the server or perform any other necessary actions.
-                console.log("Selected Venue: " + selectedVenue);
-                console.log("Selected Room: " + selectedRoom);
-                // Close the modal
-                $('#assignModal').modal('hide');
-            });
-        });
-    </script>
-
-    <script>
-        // JavaScript to trigger the re-assign modal when the "Re-assign" button is clicked
-        document.addEventListener("DOMContentLoaded", function () {
-            const reassignModalButton = document.getElementById("reassignModalButton");
-            const reassignModal = document.getElementById("reassignModal");
-
-            reassignModalButton.addEventListener("click", function () {
-                // Manually open the re-assign modal
-                $(reassignModal).modal("show");
-            });
-
-            // Handle the "Re-assign" button click inside the re-assign modal
-            const reassignConfirmButton = document.getElementById("reassignConfirmButton");
-            reassignConfirmButton.addEventListener("click", function () {
-                // Perform re-assignment logic here
-                // You can send this information to the server or perform any other necessary actions.
-                // Close the re-assign modal
-                $('#reassignModal').modal('hide');
-            });
-        });
-
-    </script>
 </div>

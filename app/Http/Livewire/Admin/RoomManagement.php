@@ -737,6 +737,8 @@ class RoomManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
              ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','assignModal');
         }
     }
 
@@ -867,6 +869,8 @@ class RoomManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
              ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','reassignModal');
         }
     }
     public function remove_room_check(){
@@ -886,6 +890,8 @@ class RoomManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
              ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','removeassignedRoom');
         }
     }
 
