@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" wirel:click="assigning_room_check()" >Assign room </button>
+                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" wire:click="assigning_room_check()">Assign room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -166,6 +166,7 @@
             </div>
 
             <!-- Assign Modal -->
+            @if($unassigned_valid)
             <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -184,20 +185,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($unassigned_applicant_data as $item => $value)
-                                        @if($unassigned_selected[$item][$value->t_a_id])
+                                    @if($unassigned_valid)
+                                        @foreach ($unassigned_applicant_data as $item => $value)
+                                            @if($unassigned_selected[$item][$value->t_a_id])
                                     <tr>
                                         <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
                                         <td>{{ $value->user_fullname }}</td>
                                         <td>{{ $value->test_type_name }}</td>
                                     </tr>
-                                        @endif
-                                    @empty
-                                        <td class="text-center font-weight-bold" colspan="42" style="color:red;">
-                                            NO RECORDS SELECTED
-                                        </td>
-                                    @endforelse
-                
+                                            @endif
+                                        @endforeach
+                                    @else
+                                    <td class="text-center font-weight-bold" colspan="42" style="color:red;">
+                                        NO RECORDS SELECTED
+                                    </td>
+                                    @endif
                                     
                                 </tbody>
                             </table> 
@@ -225,7 +227,7 @@
                     </div>
                 </div>
             </div>
-
+            @endif
 
             <!-- Assigned Tab -->
             <div class="tab-pane  @if($active == 'assigned_room') show active @endif " id="room-assignment1-tab">
@@ -407,7 +409,7 @@
                                         @endforeach
                                     @else
                                     <td class="text-center font-weight-bold" colspan="42" style="color:red;">
-                                        NO RECORDS SELECTED
+                                        NO RECORD SELECTED
                                     </td>
                                     @endif
                                     
