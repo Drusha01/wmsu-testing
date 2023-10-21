@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" >Assign room </button>
+                            <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignModal" wirel:click="assigning_room_check()" >Assign room </button>
                         </div>
                     </div>
                     <!-- Displays a table of room assignment and list of applicants -->
@@ -184,21 +184,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($unassigned_valid)
-                                        @foreach ($unassigned_applicant_data as $item => $value)
-                                            @if($unassigned_selected[$item][$value->t_a_id])
+                                    @forelse ($unassigned_applicant_data as $item => $value)
+                                        @if($unassigned_selected[$item][$value->t_a_id])
                                     <tr>
                                         <td>{{$value->t_a_id.'-'.$value->date_applied }}</td>
                                         <td>{{ $value->user_fullname }}</td>
                                         <td>{{ $value->test_type_name }}</td>
                                     </tr>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                    <td class="text-center font-weight-bold" colspan="42" style="color:red;">
-                                        NO RECORDS SELECTED
-                                    </td>
-                                    @endif
+                                        @endif
+                                    @empty
+                                        <td class="text-center font-weight-bold" colspan="42" style="color:red;">
+                                            NO RECORDS SELECTED
+                                        </td>
+                                    @endforelse
+                
                                     
                                 </tbody>
                             </table> 
