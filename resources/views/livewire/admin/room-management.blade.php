@@ -544,7 +544,6 @@
                     <thead>
                         <tr>
                         @foreach ($school_room_filter as $item => $value)
-                           
                             @if($loop->last && $value )
                                 <th class="text-center">
                                     Action

@@ -13,34 +13,87 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#admin-management-tab">Admin Management</a>
+                <a class="nav-link @if($active == 'admin_management') show active @endif " wire:key="admin_management"  wire:click="active_page('admin_management')" data-toggle="tab" href="#admin-management-tab">Admin Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#user-management-tab">User Management</a>
+                <a class="nav-link @if($active == 'user_management') show active @endif " wire:key="user_management"  wire:click="active_page('user_management')" data-toggle="tab" href="#user-management-tab">User Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#role-management-tab">Role Management</a>
+                <a class="nav-link @if($active == 'role_management') show active @endif " wire:key="role_management"  wire:click="active_page('role_management')" data-toggle="tab" href="#role-management-tab">Role Management</a>
             </li>
         </ul>
          <!-- Tab Content -->
         <div class="tab-content">
         <!-- Admin Management tab -->
-        <div class="tab-pane fade show active" id="admin-management-tab">
+        <div class="tab-pane fade @if($active == 'admin_management') show active @endif " id="admin-management-tab">
             <div class="container-fluid">
-
-
                 <!-- Add Admin Button (Opens Add Modal) -->
-                <button class="btn btn-success mt-2 mb-2" data-toggle="modal" data-target="#adminAddModal">Add Admin</button> 
+                <div class="d-flex my-3">
+                    
+                    
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#assigned-room-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                
+
+                    <div class="modal fade" id="assigned-room-filter" tabindex="-1" role="dialog" aria-labelledby="unassigned-room-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Assigned Room</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($admin_data_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="assigned-filtering-{{$loop->iteration}}"
+                                            wire:model.defer="admin_data_filter.{{$item}}">
+                                        <label class="form-check-label" for="assigned-filtering-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="admin_data_filterView()" data-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#adminAddModal" wire:click="" >Add Admin</button>
+                    </div>
+                </div>
+                
+                
                 <!-- Admin Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                            @foreach ($admin_data_filter as $item => $value)
+                                @if($loop->last && $value )
+                                    <th class="text-center">
+                                        Action
+                                    </th>
+                                @elseif($value)
+                                    <th>{{$item}}</th>
+                                @endif
+                            @endforeach
                             </tr>
                         </thead>
                         <tbody>
@@ -86,6 +139,14 @@
                         <!-- Add Admin form -->
                         <form>
                             <div class="form-group">
+                                <label for="AddAdminFirstName">Username</label>
+                                <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter First Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddAdminEmail">Email</label>
+                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
                                 <label for="AddAdminFirstName">First Name</label>
                                 <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter First Name">
                             </div>
@@ -96,6 +157,14 @@
                             <div class="form-group">
                                 <label for="AddAdminLastName">Last Name</label>
                                 <input type="text" class="form-control" id="AddAdminLastName" placeholder="Enter Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddAdminEmail">Email</label>
+                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddAdminEmail">Email</label>
+                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Email</label>
@@ -166,7 +235,7 @@
         </div>
         <!-- End Edit Admin Modal -->
         <!-- User Management tab -->
-        <div class="tab-pane fade" id="user-management-tab">
+        <div class="tab-pane @if($active == 'user_management') show active @endif " id="user-management-tab">
             <div class="container-fluid">  
                 <!-- Add user Button (Opens Add user Modal) -->
                 <button class="btn btn-success mt-2 mb-2" data-toggle="modal" data-target="#AddUserModal">Add User</button>           
@@ -308,46 +377,94 @@
         </div>
         <!-- End Edit User Modal -->
         <!-- Role Management tab -->
-        <div class="tab-pane fade" id="role-management-tab">
+        <div class="tab-pane @if($active == 'role_management') show active @endif " id="role-management-tab">
             <div class="container-fluid">
             <!--
             <p>This section enables you to manage user roles and permissions.</p>
             <p>You can define different roles, assign permissions to each role, and allocate roles to users.</p> -->
+            <div class="d-flex my-3">
+                    
+                    
+                
+            
+
+                <div class="modal fade" id="assigned-room-filter" tabindex="-1" role="dialog" aria-labelledby="unassigned-room-filterLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Assigned Room</h5>
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                @foreach($admin_data_filter as $item => $value)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="assigned-filtering-{{$loop->iteration}}"
+                                        wire:model.defer="admin_data_filter.{{$item}}">
+                                    <label class="form-check-label" for="assigned-filtering-{{$loop->iteration}}">
+                                        {{$item}}
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
+                            <hr>
+                            <div class="modal-footer">
+                                <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                <button wire:click="admin_data_filterView()" data-dismiss="modal" 
+                                    class="btn btn-primary">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#AddRoleModal" wire:click="new_role()" >Add Role</button>
+                </div>
+            </div>
                 
                 <!-- Role Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered mt-2">
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>#</th>
                                 <th>Role Name</th>
                                 <th>Description</th>
-                                <th>Permissions</th>
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Add your table rows dynamically using server-side data or JavaScript -->
-                            <tr>
-                                <td>1</td>
-                                <td>Administrator</td>
-                                <td>Full access</td>
-                                <td>Edit, Delete, Create</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editRoleModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td> 
+                            @forelse ($roles_data as $item => $value)
+                            <tr wire:key="{{$value->admin_role_name_id}}">
+                                @if($roles_data_filter['#'] )
+                                <td >{{$loop->index+1}}</td>
+                                @endif
+                                @if($roles_data_filter['Role Name'] )
+                                <td >{{$value->admin_role_name_name}}</td>
+                                @endif
+                                @if($roles_data_filter['Description'] )
+                                <td >{{$value->admin_role_name_details}}</td>
+                                @endif
+                                @if($roles_data_filter['Action'] )
+                                <td class="text-center">
+                                    @if($access_role['R']==1)
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoleModal" wire:click="view_role({{$value->admin_role_name_id }})">View</button>
+                                    @endif
+                                    @if($access_role['U']==1)
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoleModal" wire:click="edit_role({{$value->admin_role_name_id }})">Edit</button>
+                                    @endif
+                                    @if($access_role['D']==1)
+                                    <button class="btn btn-danger" wire:click="delete_role({{ $value->admin_role_name_id }})">Delete</button>
+                                    @endif
+                                </td>
+                                @endif
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Editor</td>
-                                <td>Modify content</td>
-                                <td>Edit, Create</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editRoleModal">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td> 
-                            </tr>
+                            @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                            @endforelse
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -355,6 +472,178 @@
                 <!-- End Role Table -->
             </div>
         </div>
+         <!-- Add Role Modal -->
+  
+        <div class="modal fade show" id="AddRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form wire:submit.prevent="add_new_role()">
+                        <div class="modal-body">
+                            <!-- User role Form -->
+                            <div class="form-group">
+                                <label for="editRoleName">Role Name</label>
+                                <input type="text" class="form-control" placeholder="Role name" wire:model.defer="access_role_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description</label>
+                                <input type="text" class="form-control" placeholder="Edit Description" wire:model.defer="access_role_description" >
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="access_roles.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="access_roles.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="access_roles.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="access_roles.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
+                            </div>
+                            <!-- End Edit role Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Role</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="ViewRoleModal" tabindex="-1" role="dialog" aria-labelledby="ViewRoleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ViewRoleModalLabel">View Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form >
+                        <div class="modal-body">
+                            <!-- User role Form -->
+                            <div class="form-group">
+                                <label for="editRoleName">Role Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Role name" wire:model.defer="role_name_details.0.admin_role_name_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description</label>
+                                <input type="text" disabled class="form-control" placeholder="Edit Description" wire:model.defer="role_name_details.0.admin_role_name_details" >
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_access_role.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_access_role.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_access_role.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_access_role.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
+                            </div>
+                            <!-- End Edit role Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="EditRoleModal" tabindex="-1" role="dialog" aria-labelledby="EditRoleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="EditRoleModalLabel">Edit Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form wire:submit.prevent="edit_selected_role()">
+                        <div class="modal-body">
+                            <!-- User role Form -->
+                            <div class="form-group">
+                                <label for="editRoleName">Role Name</label>
+                                <input type="text" class="form-control" placeholder="Role name" wire:model.defer="role_name_details.0.admin_role_name_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description</label>
+                                <input type="text" class="form-control" placeholder="Edit Description" wire:model.defer="role_name_details.0.admin_role_name_details" >
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="edit_access_role.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="edit_access_role.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="edit_access_role.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="edit_access_role.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
+                            </div>
+                            <!-- End Edit role Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!-- Edit role Modal -->
         <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

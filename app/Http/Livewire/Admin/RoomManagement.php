@@ -24,7 +24,7 @@ class RoomManagement extends Component
     public $unassigned_selected_all;
     public $unassigned_selected = [];
     public $unassigned_valid = false;
-    public $unassigned_school_room_id = 1;
+    public $unassigned_school_room_id = 0;
     // assigned room applicant
     public $assigned_applicant_data;
     public $assigned_test_type_id= 0;
@@ -33,7 +33,7 @@ class RoomManagement extends Component
     public $assigned_selected = [];
     public $assigned_valid = false;
     public $remove_valid = false;
-    public $assigned_school_room_id = 1;
+    public $assigned_school_room_id = 0;
 
     // school room applicant
     public $school_room_data;
@@ -104,6 +104,8 @@ class RoomManagement extends Component
                 )
                 ->get()
                 ->toArray();
+            $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+            $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 
             if($this->unassigned_test_type_id == 0){
                 $this->unassigned_applicant_data = DB::table('test_applications as ta')
@@ -278,6 +280,9 @@ class RoomManagement extends Component
                 ->get()
                 ->toArray();
                 // dd($this->school_rooms);
+
+            $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+            $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
                 
                 
             if($this->unassigned_test_type_id == 0){
@@ -1223,7 +1228,8 @@ class RoomManagement extends Component
         )
         ->get()
         ->toArray();
-    
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
         
     }
 
@@ -1250,6 +1256,8 @@ class RoomManagement extends Component
         )
         ->get()
         ->toArray();
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
     }
 
     public function view_room_details($school_room_id){
@@ -1363,6 +1371,8 @@ class RoomManagement extends Component
         )
         ->get()
         ->toArray();
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 
         $this->edit_room = null;
         

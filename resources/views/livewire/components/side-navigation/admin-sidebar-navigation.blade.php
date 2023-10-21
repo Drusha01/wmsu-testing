@@ -28,7 +28,7 @@
             
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('room-management') }}" style="{{request()->is('admin/room-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
-                <i class="bi bi-door-open-fill" style="{{request()->is('admin/room-managementroom-management*') ? 'color: #990000;' : ''}}"></i>
+                <i class="bi bi-door-open-fill" style="{{request()->is('admin/room-management*') ? 'color: #990000;' : ''}}"></i>
 
                     <span>Room Management</span>
                 </a>
@@ -64,7 +64,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin-management') }}" style="{{request()->is('admin/admin-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
-                    <i class="bi bi-person" style="{{request()->is('admin/announcement-management*') ? 'color: #990000;' : ''}}"></i>
+                    <i class="bi bi-person" style="{{request()->is('admin/admin-management*') ? 'color: #990000;' : ''}}"></i>
                     <span>Admin Management</span>
                 </a>
             </li><!-- End Admin Management Nav -->
@@ -76,8 +76,8 @@
                 </a>
             </li><!-- End Chat Support Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('faq-management') }}" style="{{request()->is('admin/faq*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
-                <i class="bi bi-question-circle" sstyle="{{request()->is('admin/faq*') ? 'color: #990000;' : ''}}"></i>
+                <a class="nav-link collapsed" href="{{ route('faq-management') }}" style="{{request()->is('admin/faq-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
+                <i class="bi bi-question-circle" sstyle="{{request()->is('admin/faq-management*') ? 'color: #990000;' : ''}}"></i>
                     <span>FAQ Management</span>
                 </a>
             </li><!-- End FAQ  Nav -->

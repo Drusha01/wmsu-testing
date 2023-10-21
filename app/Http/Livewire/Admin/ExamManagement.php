@@ -18,6 +18,7 @@ class ExamManagement extends Component
     public $unassigned_proctor_filter;
     public $unassigned_proctor_selected_all;
     public $unassigned_proctor_selected = [];
+    public $unassigned_valid = false;
 
     public $assigned_proctor;
     public $assigned_proctor_school_room_id = 0;
@@ -359,6 +360,13 @@ class ExamManagement extends Component
             
         }
     }
+    public function render(){
+        return view('livewire.admin.exam-management',[
+            'user_details' => $this->user_details
+            ])
+            ->layout('layouts.admin',[
+                'title'=>$this->title]);
+    }
 
     public function unassigned_proctor_filterView(){
         $this->dispatchBrowserEvent('swal:redirect',[
@@ -526,12 +534,58 @@ class ExamManagement extends Component
         
     }
 
-    public function render()
-    {
-        return view('livewire.admin.exam-management',[
-            'user_details' => $this->user_details
-            ])
-            ->layout('layouts.admin',[
-                'title'=>$this->title]);
+    public function assigning_room_check(){
+        $this->unassigned_valid = false;
+        foreach ($this->unassigned_proctor  as $key => $value) {
+            if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
+                $this->unassigned_valid = true;
+                break;
+            }
+        }
+
+        if(!$this->unassigned_valid){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }
     }
+
+    public function assign_room_proctor(){
+        $this->unassigned_valid = false;
+        foreach ($this->unassigned_proctor  as $key => $value) {
+            if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
+                $this->unassigned_valid = true;
+            }
+        }
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->remove_valid &&  $this->access_role['U'] ){
+            foreach ($this->unassigned_proctor  as $key => $value) {
+                if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
+                    $value;
+                }
+            }
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }
+    }
+    
 }
