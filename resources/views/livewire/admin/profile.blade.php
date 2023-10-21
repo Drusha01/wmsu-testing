@@ -1,4 +1,5 @@
 <div>
+    <x-loading-indicator/>
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Profile</h1>

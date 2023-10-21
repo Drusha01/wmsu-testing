@@ -1,5 +1,6 @@
 <div>
-<main id="main" class="main">
+    <x-loading-indicator/>
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Admin management</h1>
             <nav>
@@ -63,8 +64,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="admin_data_filterView()" data-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="admin_data_filterView()"  data-bs-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -148,7 +149,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="adminAdminModalLabel">Add Admin</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -198,7 +199,7 @@
                         <!-- End Add Admin  -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Add Admin</button>
                     </div>
                 </div>
@@ -210,7 +211,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editAdminModalLabel">Edit Admin</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -244,7 +245,7 @@
                         <!-- End Admin Edit Form -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success">Save Changes</button>
                     </div>
                 </div>
@@ -290,8 +291,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="user_data_filterView()" data-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="user_data_filterView()"  data-bs-dismiss="modal" 
                                         class="btn btn-success">
                                         Save
                                     </button>
@@ -374,7 +375,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="AddUserModalLabel">Add User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -408,7 +409,7 @@
                         <!-- End Add User  -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Add User</button>
                     </div>
                 </div>
@@ -420,7 +421,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -454,7 +455,7 @@
                         <!-- End User Edit Form -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
@@ -493,8 +494,8 @@
                             </div>
                             <hr>
                             <div class="modal-footer">
-                                <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                <button wire:click="admin_data_filterView()" data-dismiss="modal" 
+                                <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                <button wire:click="admin_data_filterView()"  data-bs-dismiss="modal" 
                                     class="btn btn-primary">
                                     Save
                                 </button>
@@ -564,7 +565,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -608,7 +609,7 @@
                             <!-- End Edit role Form -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Add Role</button>
                         </div>
                     </form>
@@ -621,7 +622,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ViewRoleModalLabel">View Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -665,7 +666,7 @@
                             <!-- End Edit role Form -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -677,7 +678,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="EditRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -721,7 +722,7 @@
                             <!-- End Edit role Form -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
@@ -735,7 +736,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -834,7 +835,7 @@
                         <!-- End Edit role Form -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>

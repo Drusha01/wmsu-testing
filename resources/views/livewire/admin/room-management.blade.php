@@ -1,4 +1,5 @@
 <div>
+    <x-loading-indicator/>
     <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
@@ -566,10 +567,10 @@
                             @if($school_room_filter['Actions'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
+                                    <button class="btn btn-primary"  wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
+                                    <button class="btn btn-success"  wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>

@@ -44,7 +44,7 @@ class RoomManagement extends Component
     public $view_room = false;
     public $edit_room = false;
     
-    public $school_room_id;
+    public $school_room_id = 0;
     public $school_room_college_name;
     public $school_room_college_abr;
     public $school_room_venue;
@@ -1229,11 +1229,12 @@ class RoomManagement extends Component
             ]);
         }
         $this->school_rooms = DB::table('school_rooms as sr')
-        ->select(
-            '*'
-        )
-        ->get()
-        ->toArray();
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
         $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
         $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
         
@@ -1274,7 +1275,7 @@ class RoomManagement extends Component
             ->where(['school_room_id'=>$school_room_id])
             ->get()
             ->toArray();
-            
+        $this->edit_room =$this->view_room ;
             $this->school_room_id = $this->view_room[0]->school_room_id;
             $this->school_room_college_name = $this->view_room[0]->school_room_college_name;
             $this->school_room_college_abr = $this->view_room[0]->school_room_college_abr;
@@ -1286,6 +1287,8 @@ class RoomManagement extends Component
             $this->school_room_test_time_end = substr($this->view_room[0]->school_room_test_time_end,0,5);
             $this->school_room_capacity = $this->view_room[0]->school_room_capacity ;
             $this->school_room_description = $this->view_room[0]->school_room_description;
+            $this->dispatchBrowserEvent('openModal','ViewRoomModal');
+        
     }
 
     public function edit_room_details($school_room_id){
@@ -1308,6 +1311,20 @@ class RoomManagement extends Component
             $this->school_room_test_time_end = substr($this->edit_room[0]->school_room_test_time_end,0,5);
             $this->school_room_capacity = $this->edit_room[0]->school_room_capacity ;
             $this->school_room_description = $this->edit_room[0]->school_room_description;
+
+        $this->school_rooms = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+
+        $this->dispatchBrowserEvent('openModal','EditRoomModal');
+
+
     }
 
     public function edit_room($school_room_id){
@@ -1371,12 +1388,14 @@ class RoomManagement extends Component
                 'link'              									=> '#'
             ]);
         }
+
         $this->school_rooms = DB::table('school_rooms as sr')
         ->select(
             '*'
         )
         ->get()
         ->toArray();
+        
         $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
         $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 

@@ -1,4 +1,6 @@
 <div>
+    <x-loading-indicator/>
+
     <!-- ======= Main Content ======= -->
     <main id="main" class="main">
         <div class="pagetitle">

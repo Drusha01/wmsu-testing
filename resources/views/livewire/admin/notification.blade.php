@@ -1,4 +1,5 @@
 <div>
+    <x-loading-indicator/>
     <main id="main" class="main">
         <div class="container">
             <ul class="nav nav-tabs" id="notificationTabs">
