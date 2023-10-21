@@ -35,6 +35,13 @@
             </li><!-- End Room Management Nav -->
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('schedule-management') }}" style="{{request()->is('admin/schedule-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
+                <i class="bi bi-calendar" sstyle="{{request()->is('admin/schedule-management*') ? 'color: #990000;' : ''}}"></i>
+                    <span>Schedule Managemnt</span>
+                </a>
+            </li><!-- End FAQ  Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('exam-management') }}"  style="{{request()->is('admin/exam-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
                 <i class="bi bi-file-earmark-text" style="{{request()->is('admin/exam-management*') ? 'color: #990000;' : ''}}"></i>
 
