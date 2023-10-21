@@ -566,10 +566,10 @@
                             @if($school_room_filter['Actions'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
+                                    <button class="btn btn-primary" wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
+                                    <button class="btn btn-success"  wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
@@ -670,7 +670,6 @@
             </div>
 
             <!-- View Room Modal -->
-            @if($view_room)
             <div class="modal fade" id="ViewRoomModal" tabindex="-1" role="dialog" aria-labelledby="ViewRoomModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -683,7 +682,6 @@
                             <hr>
                             <form >
                             <div class="modal-body">
-                                @forelse ($view_room as $item => $value)
                                 <div class="form-group">
                                     <label for="addRoomCapacity">Room name:</label>
                                     <input disabled type="text" class="form-control" wire:model.defer="school_room_name" required>
@@ -728,18 +726,14 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
-                            @empty 
-                                <div>NO DATA</div>
-                            @endforelse
                         </form>
                         </div>
                         
                     </div>
                 </div>
             </div>
-            @endif
 
-            @if($edit_room)
+
             <div class="modal fade" id="EditRoomModal" tabindex="-1" role="dialog" aria-labelledby="EditRoomModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -750,7 +744,6 @@
                         <div class="modal-body">
                             <!-- Form for editing room details -->
                             <hr>
-                            @forelse ($edit_room as $item => $value)
                             <form wire:submit.prevent="edit_room({{$value->school_room_id}})">
                             <div class="modal-body">
                                 
@@ -799,16 +792,13 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success" >Save</button>
                             </div>
-                            @empty 
-                                <div>NO DATA</div>
-                            @endforelse
                         </form>
                         </div>
                         
                     </div>
                 </div>
             </div>
-            @endif
+    
 
         </div>
     </main><!-- End #main -->
