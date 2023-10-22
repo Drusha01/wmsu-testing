@@ -60,6 +60,7 @@ use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\Notification;
+use App\Http\Livewire\Admin\ScheduleManagement;
 
 
 // page
@@ -169,6 +170,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');
         Route::get('notification', Notification::class)->name('notification');
+        Route::get('schedule-management', ScheduleManagement::class)->name('schedule-management');
     });
 });
 

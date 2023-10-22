@@ -101,6 +101,7 @@
                         <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button>
                         <!-- <button class="btn btn-danger mx-1" wire:click="declined_check()" data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button> -->
                         <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button>
+                        <button class="btn btn-primary mx-1"  data-toggle="modal" data-target="#formApplicantModal" >View Form</button>
                     </div>
                 </div>
                 <!-- Application Review Table -->
@@ -168,6 +169,32 @@
                     </tbody>
                 </table>
 
+                <!-- Modal for viewing the form -->
+                <div class="modal fade" id="formApplicantModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Form Content</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Add your form content here -->
+                                    <form>
+                                        <!-- Your form elements go here -->
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <!-- Add any other buttons or actions here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+      <!-- decline confirmation modal -->
                 <div class="modal fade" id="declinePendingapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
