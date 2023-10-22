@@ -35,6 +35,18 @@ class ResultManagement extends Component
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'result-management';
+
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
+
+            
+        }
     }
     public function render()
     {

@@ -23,10 +23,11 @@ class Rooms_sample extends Seeder
 
             "WMSU-MAIN",
             DATE(NOW()),
-            "10:00-AM",
-            "12:00-PM",
+            "10:00",
+            "12:00",
             30,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
@@ -41,10 +42,11 @@ class Rooms_sample extends Seeder
 
             "WMSU-MAIN",
             DATE(NOW()),
-            "10:00-AM",
-            "12:00-PM",
+            "10:00",
+            "12:00",
             35,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
@@ -59,10 +61,11 @@ class Rooms_sample extends Seeder
 
             "WMSU-MAIN",
             DATE(NOW()),
-            "10:00-AM",
-            "12:00-PM",
+            "10:00",
+            "12:00",
             25,
 
+            NULL,
             "Room is located at ground floor at the right of the entrance",
             NOW(),
             NOW()
