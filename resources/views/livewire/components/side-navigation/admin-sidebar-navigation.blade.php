@@ -35,13 +35,6 @@
             </li><!-- End Room Management Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('schedule-management') }}" style="{{request()->is('admin/schedule-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
-                <i class="bi bi-calendar" sstyle="{{request()->is('admin/schedule-management*') ? 'color: #990000;' : ''}}"></i>
-                    <span>Schedule Managemnt</span>
-                </a>
-            </li><!-- End FAQ  Nav -->
-
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('exam-management') }}"  style="{{request()->is('admin/exam-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
                 <i class="bi bi-file-earmark-text" style="{{request()->is('admin/exam-management*') ? 'color: #990000;' : ''}}"></i>
 
@@ -63,6 +56,13 @@
             </li><!-- End Manage Examination Nav -->
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('schedule-management') }}" style="{{request()->is('admin/schedule-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
+                <i class="bi bi-calendar" sstyle="{{request()->is('admin/schedule-management*') ? 'color: #990000;' : ''}}"></i>
+                    <span>Schedule Management</span>
+                </a>
+            </li><!-- End sched  Nav -->
+            
+            <li class="nav-item">
                 <a class="nav-link collapsed"  href="{{ route('admin-announcement') }}" style="{{request()->is('admin/announcement-management*') ? 'background-color: #e0e0e0 ;  color: #990000; color:e0e0e0 ' : ''}}">
                 <i class="bi bi-megaphone"  style="{{request()->is('admin/announcement-management*') ? 'color: #990000;' : ''}}"></i>
                     <span>Announcement Management</span>
@@ -82,12 +82,6 @@
                     <span>Chat Support</span>
                 </a>
             </li><!-- End Chat Support Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('faq-management') }}" style="{{request()->is('admin/faq-management*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
-                <i class="bi bi-question-circle" sstyle="{{request()->is('admin/faq-management*') ? 'color: #990000;' : ''}}"></i>
-                    <span>FAQ Management</span>
-                </a>
-            </li><!-- End FAQ  Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('setting') }}" style="{{request()->is('admin/setting*') ? 'background-color: #e0e0e0;  color: #990000;' : ''}}">
