@@ -1,7 +1,7 @@
 <!-- Main Content -->
 <main id="main" class="main">
     <div class="pagetitle">
-    <h1>Schedule Appointment</h1>
+    <h1>Schedule Management</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" name="select"></th>
-                    <th>Date</th>
+                    <th>Date Start - Date End</th>
                     <th>Event</th>
                     <th>Time</th>
                     <th>Action</th>
@@ -56,9 +56,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addScheduleModalLabel">Add Schedule</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <!-- Form for Adding a Schedule Entry -->
