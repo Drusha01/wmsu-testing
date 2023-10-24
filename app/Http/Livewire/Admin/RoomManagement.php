@@ -31,6 +31,9 @@ class RoomManagement extends Component
     public $assigned_applicant_filter;
     public $assigned_selected_all;
     public $assigned_selected = [];
+    public $assigned_valid = false;
+    public $remove_valid = false;
+    public $assigned_school_room_id = 0;
 
     // school room applicant
     public $school_room_data;
@@ -38,6 +41,10 @@ class RoomManagement extends Component
     public $school_room_filter;
 
     //CRUD ROOM
+    public $view_room = false;
+    public $edit_room = false;
+    
+    public $school_room_id = 0;
     public $school_room_college_name;
     public $school_room_college_abr;
     public $school_room_venue;
@@ -97,6 +104,8 @@ class RoomManagement extends Component
                 )
                 ->get()
                 ->toArray();
+            $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+            $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 
             if($this->unassigned_test_type_id == 0){
                 $this->unassigned_applicant_data = DB::table('test_applications as ta')
@@ -201,7 +210,7 @@ class RoomManagement extends Component
                 ->get()
                 ->toArray();
             }
-
+            
         }
     }
 
@@ -271,6 +280,9 @@ class RoomManagement extends Component
                 ->get()
                 ->toArray();
                 // dd($this->school_rooms);
+
+            $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+            $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
                 
                 
             if($this->unassigned_test_type_id == 0){
@@ -432,10 +444,6 @@ class RoomManagement extends Component
 
     public function unassigned_applicant_exam_type_filter(){
 
-        $this->assigned_selected = [];
-        $this->unassigned_selected = [];
-
-
         if($this->unassigned_test_type_id == 0){
             $this->unassigned_applicant_data = DB::table('test_applications as ta')
             ->select(
@@ -539,6 +547,11 @@ class RoomManagement extends Component
             ->get()
             ->toArray();
         }
+
+        $this->assigned_selected = [];
+        $this->unassigned_selected = [];
+        $this->assigned_selected_all = false;
+        $this->unassigned_selected_all = false;
 
         foreach ($this->unassigned_applicant_data  as $key => $value) {
             array_push($this->unassigned_selected,[$value->t_a_id=>false]);
@@ -680,14 +693,12 @@ class RoomManagement extends Component
     }
 
     public function unassigned_applicant_select_all(){
-        
+        $this->unassigned_selected=[];
         if($this->unassigned_selected_all){
-            $this->unassigned_selected=[];
             foreach ($this->unassigned_applicant_data  as $key => $value) {
                 array_push($this->unassigned_selected,[$value->t_a_id=>true]);
             }
         }else{
-            $this->unassigned_selected=[];
             foreach ($this->unassigned_applicant_data  as $key => $value) {
                 array_push($this->unassigned_selected,[$value->t_a_id=>false]);
             }
@@ -697,18 +708,16 @@ class RoomManagement extends Component
     }
 
     public function assigned_applicant_select_all(){
-        
-        if($this->pending_selected_all){
-            $this->pending_selected=[];
-            foreach ($this->pending_applicant_data  as $key => $value) {
-                array_push($this->pending_selected,[$value->t_a_id=>true]);
+        $this->assigned_selected=[];
+        if($this->assigned_selected_all){
+            foreach ($this->assigned_applicant_data  as $key => $value) {
+                array_push($this->assigned_selected,[$value->t_a_id=>true]);
             }
         }else{
-            $this->pending_selected=[];
-            foreach ($this->pending_applicant_data  as $key => $value) {
-                array_push($this->pending_selected,[$value->t_a_id=>false]);
+            foreach ($this->assigned_applicant_data  as $key => $value) {
+                array_push($this->assigned_selected,[$value->t_a_id=>false]);
             }
-        } 
+        }
     }
 
     public function assigning_room_check(){
@@ -728,6 +737,8 @@ class RoomManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
              ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','assignModal');
         }
     }
 
@@ -747,7 +758,6 @@ class RoomManagement extends Component
         ];
 
         if($this->unassigned_valid &&  $this->access_role['U'] ){
-            
             foreach ($this->unassigned_applicant_data  as $key => $value) {
                 if($this->unassigned_selected[$key][$value->t_a_id]){
                     // dd($this->unassigned_selected[$key]);
@@ -759,7 +769,7 @@ class RoomManagement extends Component
                             'ts.test_status_details'=>'Accepted'])
                     ->update([
                             't_a_assigned_by'=> $this->user_details['user_id'],
-                            't_a_school_room_id' =>$this->unassigned_school_room_id,
+                            't_a_school_room_id' => $this->unassigned_school_room_id,
                             't_a_test_status_id' =>((array) DB::table('test_status')
                                 ->where('test_status_details', '=', 'Processing')
                             ->select('test_status_id as t_a_test_status_id')
@@ -842,21 +852,331 @@ class RoomManagement extends Component
         
     }
 
+    public function reassigning_room_check(){
+        $this->assigned_valid = false;
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            if($this->assigned_selected[$key][$value->t_a_id]){
+                $this->assigned_valid = true;
+            }
+        }
+
+        if(!$this->assigned_valid){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','reassignModal');
+        }
+    }
+    public function remove_room_check(){
+        $this->remove_valid = false;
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            if($this->assigned_selected[$key][$value->t_a_id]){
+                $this->remove_valid = true;
+            }
+        }
+
+        if(!$this->remove_valid){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','removeassignedRoom');
+        }
+    }
+
+    public function remove_room(){
+        $this->remove_valid = false;
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            if($this->assigned_selected[$key][$value->t_a_id]){
+                $this->remove_valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->remove_valid &&  $this->access_role['U'] ){
+            foreach ($this->assigned_applicant_data  as $key => $value) {
+                if($this->assigned_selected[$key][$value->t_a_id]){
+                    // dd($this->unassigned_selected[$key]);
+                    // update here
+                    DB::table('test_applications as ta')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where(['t_a_id'=> $value->t_a_id,
+                            't_a_isactive'=>1,
+                            'ts.test_status_details'=>'Processing'])
+                    ->update([
+                            't_a_assigned_by'=> NULL,
+                            't_a_school_room_id' => NULL,
+                            't_a_test_status_id' =>((array) DB::table('test_status')
+                                ->where('test_status_details', '=', 'Accepted')
+                            ->select('test_status_id as t_a_test_status_id')
+                            ->first())['t_a_test_status_id']
+                    ]);
+                    
+                }
+            }
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }
+
+        if($this->assigned_test_type_id == 0){
+            $this->assigned_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id',
+                'school_room_id',
+                'school_room_name',
+                'school_room_test_center',
+                'school_year_details',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_year_details',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('school_rooms as sh', 'sh.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->whereNotNull('t_a_school_room_id')
+            ->where('ts.test_status_details','=','Processing')
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }else{
+            $this->assigned_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id',
+                'school_room_id',
+                'school_room_name',
+                'school_room_test_center',
+                'school_year_details',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_year_details',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('school_rooms as sh', 'sh.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->whereNotNull('t_a_school_room_id')
+            ->where('ts.test_status_details','=','Processing')
+            ->where('t_a_test_type_id','=',$this->assigned_test_type_id)
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }
+        $this->assigned_selected = [];
+
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            array_push($this->assigned_selected,[$value->t_a_id=>false]);
+        }
+        if($this->remove_valid){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully removed a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            $this->remove_valid = false;
+        }
+    }
+
+    
+
+    public function reassigning_room(){
+        $this->assigned_valid = false;
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            if($this->assigned_selected[$key][$value->t_a_id]){
+                $this->assigned_valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->assigned_valid &&  $this->access_role['U'] ){
+            foreach ($this->assigned_applicant_data  as $key => $value) {
+                if($this->assigned_selected[$key][$value->t_a_id]){
+                    // dd($this->unassigned_selected[$key]);
+                    // update here
+                    DB::table('test_applications as ta')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where(['t_a_id'=> $value->t_a_id,
+                            't_a_isactive'=>1,
+                            'ts.test_status_details'=>'Processing'])
+                    ->update([
+                            't_a_assigned_by'=> $this->user_details['user_id'],
+                            't_a_school_room_id' => $this->assigned_school_room_id,
+                            't_a_test_status_id' =>((array) DB::table('test_status')
+                                ->where('test_status_details', '=', 'Processing')
+                            ->select('test_status_id as t_a_test_status_id')
+                            ->first())['t_a_test_status_id']
+                    ]);
+                    
+                }
+            }
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select applicant!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+        }
+
+        if($this->assigned_test_type_id == 0){
+            $this->assigned_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id',
+                'school_room_id',
+                'school_room_name',
+                'school_room_test_center',
+                'school_year_details',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_year_details',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('school_rooms as sh', 'sh.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->whereNotNull('t_a_school_room_id')
+            ->where('ts.test_status_details','=','Processing')
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }else{
+            $this->assigned_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                't_a_id',
+                'school_room_id',
+                'school_room_name',
+                'school_room_test_center',
+                'school_year_details',
+                'school_room_test_time_start',
+                'school_room_test_time_end',
+                'school_year_details',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('school_rooms as sh', 'sh.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->whereNotNull('t_a_school_room_id')
+            ->where('ts.test_status_details','=','Processing')
+            ->where('t_a_test_type_id','=',$this->assigned_test_type_id)
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }
+        $this->assigned_selected = [];
+
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            array_push($this->assigned_selected,[$value->t_a_id=>false]);
+        }
+        if($this->assigned_valid){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully re-assigned room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            $this->assigned_valid = false;
+        }
+    }
+
+
+
     
 
     // rooms crud
     public function active_page($active){
         $this->active = $active;
+
+        $this->assigned_selected = [];
+        $this->unassigned_selected = [];
+
+        // dd($this->assigned_applicant_data);
+        
+
+        foreach ($this->unassigned_applicant_data  as $key => $value) {
+            array_push($this->unassigned_selected,[$value->t_a_id=>false]);
+        }
+
+        foreach ($this->assigned_applicant_data  as $key => $value) {
+            array_push($this->assigned_selected,[$value->t_a_id=>false]);
+        }
     }
 
     //add room
     public function add_room() {
+
         if (empty($this->school_room_college_name) ||
             empty($this->school_room_college_abr) ||
             empty($this->school_room_venue) ||
             empty($this->school_room_name) ||
             empty($this->school_room_test_center) ||
-            empty($this->school_room_description) ||
+             
             !is_numeric($this->school_room_capacity) ||
             $this->school_room_capacity <= 0 || $this->school_room_capacity > 500 ||
             empty($this->school_room_test_date) ||
@@ -878,7 +1198,7 @@ class RoomManagement extends Component
         }
     
       
-        DB::table('school_rooms')->insert([
+        if(DB::table('school_rooms')->insert([
             'school_room_college_name' => $this->school_room_college_name,
             'school_room_college_abr' => $this->school_room_college_abr,
             'school_room_venue'  => $this->school_room_venue,
@@ -889,37 +1209,199 @@ class RoomManagement extends Component
             'school_room_test_time_end' => $this->school_room_test_time_end,
             'school_room_capacity' => $this->school_room_capacity,
             'school_room_description' => $this->school_room_description
-        ]);
-    
-        $this->dispatchBrowserEvent('swal:remove_backdrop',[
-            'position'          									=> 'center',
-            'icon'              									=> 'success',
-            'title'             									=> 'Successfully added a room!',
-            'showConfirmButton' 									=> 'true',
-            'timer'             									=> '1000',
-            'link'              									=> '#'
-        ]);
+        ])){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully added a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Error adding a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
+        $this->school_rooms = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        
     }
 
 //delete
-public function deleteRoom($roomId) {
- 
-
-    // Perform the room deletion logic
-    DB::table('school_rooms')->where('school_room_id', $roomId)->delete();
-
-    $this->roomToDelete = 0;
-
-    $this->dispatchBrowserEvent('swal:remove_backdrop', [
-        'position' => 'center',
-        'icon' => 'success',
-        'title' => 'Room deleted successfully!',
-        'showConfirmButton' => true,
-        'timer' => 1000,
-        'link' => '#'
-    ]);
-}
-
+    public function deleteRoom($roomId) {
     
+
+        // Perform the room deletion logic
+        DB::table('school_rooms')->where('school_room_id', $roomId)->delete();
+
+        $this->roomToDelete = 0;
+
+        $this->dispatchBrowserEvent('swal:remove_backdrop', [
+            'position' => 'center',
+            'icon' => 'success',
+            'title' => 'Room deleted successfully!',
+            'showConfirmButton' => true,
+            'timer' => 1000,
+            'link' => '#'
+        ]);
+        $this->school_rooms = DB::table('school_rooms as sr')
+        ->select(
+            '*'
+        )
+        ->get()
+        ->toArray();
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+    }
+
+    public function view_room_details($school_room_id){
+        $this->view_room = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+                )
+            ->where(['school_room_id'=>$school_room_id])
+            ->get()
+            ->toArray();
+        $this->edit_room =$this->view_room ;
+            $this->school_room_id = $this->view_room[0]->school_room_id;
+            $this->school_room_college_name = $this->view_room[0]->school_room_college_name;
+            $this->school_room_college_abr = $this->view_room[0]->school_room_college_abr;
+            $this->school_room_venue = $this->view_room[0]->school_room_venue;
+            $this->school_room_name = $this->view_room[0]->school_room_name;
+            $this->school_room_test_center = $this->view_room[0]->school_room_test_center;
+            $this->school_room_test_date = $this->view_room[0]->school_room_test_date;
+            $this->school_room_test_time_start = substr($this->view_room[0]->school_room_test_time_start,0,5);
+            $this->school_room_test_time_end = substr($this->view_room[0]->school_room_test_time_end,0,5);
+            $this->school_room_capacity = $this->view_room[0]->school_room_capacity ;
+            $this->school_room_description = $this->view_room[0]->school_room_description;
+            $this->dispatchBrowserEvent('openModal','ViewRoomModal');
+        
+    }
+
+    public function edit_room_details($school_room_id){
+        $this->edit_room = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+                )
+            ->where(['school_room_id'=>$school_room_id])
+            ->get()
+            ->toArray();
+            
+            $this->school_room_id = $this->edit_room[0]->school_room_id;
+            $this->school_room_college_name = $this->edit_room[0]->school_room_college_name;
+            $this->school_room_college_abr = $this->edit_room[0]->school_room_college_abr;
+            $this->school_room_venue = $this->edit_room[0]->school_room_venue;
+            $this->school_room_name = $this->edit_room[0]->school_room_name;
+            $this->school_room_test_center = $this->edit_room[0]->school_room_test_center;
+            $this->school_room_test_date = $this->edit_room[0]->school_room_test_date;
+            $this->school_room_test_time_start = substr($this->edit_room[0]->school_room_test_time_start,0,5);
+            $this->school_room_test_time_end = substr($this->edit_room[0]->school_room_test_time_end,0,5);
+            $this->school_room_capacity = $this->edit_room[0]->school_room_capacity ;
+            $this->school_room_description = $this->edit_room[0]->school_room_description;
+
+        $this->school_rooms = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+
+        $this->dispatchBrowserEvent('openModal','EditRoomModal');
+
+
+    }
+
+    public function edit_room($school_room_id){
+        // dd($school_room_id);
+        if (empty($this->school_room_college_name) ||
+            empty($this->school_room_college_abr) ||
+            empty($this->school_room_venue) ||
+            empty($this->school_room_name) ||
+            empty($this->school_room_test_center) ||
+             
+            !is_numeric($this->school_room_capacity) ||
+            $this->school_room_capacity <= 0 || $this->school_room_capacity > 500 ||
+            empty($this->school_room_test_date) ||
+            empty($this->school_room_test_time_start) ||
+            empty($this->school_room_test_time_end)) {
+         
+            $this->successMessage = "Room not added. Please check the input data.";
+            return;
+        }
+    
+        $date_regex = "/^\d{4}-\d{2}-\d{2}$/";
+        $time_regex = "/^\d{2}:\d{2}$/";
+        
+        if (!preg_match($date_regex, $this->school_room_test_date) ||
+            !preg_match($time_regex, $this->school_room_test_time_start) ||
+            !preg_match($time_regex, $this->school_room_test_time_end)) {
+            $this->successMessage = "Room not added. Invalid date or time format.";
+            return;
+        }
+    
+        
+        if(DB::table('school_rooms')
+        ->where(['school_room_id'=> $school_room_id])
+        ->update([
+            'school_room_college_name' => $this->school_room_college_name,
+            'school_room_college_abr' => $this->school_room_college_abr,
+            'school_room_venue'  => $this->school_room_venue,
+            'school_room_name' => $this->school_room_name,
+            'school_room_test_center' => $this->school_room_test_center,
+            'school_room_test_date' => $this->school_room_test_date,
+            'school_room_test_time_start'  => $this->school_room_test_time_start,
+            'school_room_test_time_end' => $this->school_room_test_time_end,
+            'school_room_capacity' => $this->school_room_capacity,
+            'school_room_description' => $this->school_room_description
+        ])){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully updated a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Error updating a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
+
+        $this->school_rooms = DB::table('school_rooms as sr')
+        ->select(
+            '*'
+        )
+        ->get()
+        ->toArray();
+        
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+
+        $this->edit_room = null;
+        
+    }
+
 }
 

@@ -18,7 +18,7 @@ class AccountisAdmin
     {
         $data = $request->session()->all();
         if(isset($data['user_role_details']) && $data['user_role_details'] == 'admin'){
-            return redirect('/admin/dashboard');
+            return redirect('/admin/admin-dashboard');
         }
         return $next($request);
     }

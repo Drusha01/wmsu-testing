@@ -61,6 +61,7 @@ use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\Notification;
+use App\Http\Livewire\Admin\ScheduleManagement;
 
 
 // page
@@ -156,14 +157,14 @@ Route::middleware([Authenticated::class])->group(function () {
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', function(){return redirect('/admin/dashboard');})->name('admin-home');
-        Route::get('dashboard', Dashboard::class)->name('admin-dashboard');
+        Route::get('admin-dashboard', Dashboard::class)->name('admin-dashboard');
         Route::get('exam-management', ExamManagement::class)->name('exam-management');
         Route::get('admin-management', AdminManagement::class)->name('admin-management');
-        Route::get('chatsupport', ChatSupport::class)->name('admin-chatsupport');
+        Route::get('chatsupport', ChatSupport::class)->name('chatsupport');
         Route::get('setting', Settings::class)->name('setting');
-        Route::get('appointment-management', AppointmentManagement::class)->name('manage-appointment');
-        Route::get('application-management', ApplicationManagement::class)->name('manage-application');
-        Route::get('announcement-management', Announcement::class)->name('admin-announcement');
+        Route::get('appointment-management', AppointmentManagement::class)->name('appointment-management');
+        Route::get('application-management', ApplicationManagement::class)->name('application-management');
+        Route::get('announcement-management', Announcement::class)->name('announcement-management');
         Route::get('user-management', UserManagement::class)->name('user-management');
         Route::get('result-management', ResultManagement::class)->name('result-management');
         Route::get('room-management', RoomManagement::class)->name('room-management');
@@ -171,6 +172,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');
         Route::get('notification', Notification::class)->name('notification');
+        Route::get('schedule-management', ScheduleManagement::class)->name('schedule-management');
     });
 });
 

@@ -12,6 +12,7 @@ class Profile extends Component
 {
     public $user_detais;
     public $title;
+
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
         if(!isset($this->user_details['user_id'])){
@@ -35,6 +36,16 @@ class Profile extends Component
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'profile';
+
+        $this->firstname = $this->user_details['user_firstname'];
+        $this->middlename = $this->user_details['user_middlename'];
+        $this->lastname = $this->user_details['user_lastname'];
+        $this->suffix = $this->user_details['user_suffix'];
+        $this->gender = $this->user_details['user_gender_details'];
+        $this->sex = $this->user_details['user_sex_details'];
+        $this->phone = $this->user_details['user_phone'];
+        $this->address = $this->user_details['user_address'];
+        $this->birthdate = $this->user_details['user_birthdate'];
     }
     public function render()
     {

@@ -1,4 +1,6 @@
 <div>
+    <x-loading-indicator/>
+
     <!-- ======= Main Content ======= -->
     <main id="main" class="main">
         <div class="pagetitle">
@@ -85,7 +87,7 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button type="button"  class="btn btn-secondary btn-block"  data-dismiss="modal"  id='btn_close1'>Close</button>
                                     <button wire:click="pending_applicant_filterView()" data-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
@@ -99,6 +101,7 @@
                         <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button>
                         <!-- <button class="btn btn-danger mx-1" wire:click="declined_check()" data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button> -->
                         <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button>
+                        <button class="btn btn-primary mx-1"  data-toggle="modal" data-target="#formApplicantModal" >View Form</button>
                     </div>
                 </div>
                 <!-- Application Review Table -->
@@ -166,6 +169,32 @@
                     </tbody>
                 </table>
 
+                <!-- Modal for viewing the form -->
+                <div class="modal fade" id="formApplicantModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Form Content</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Add your form content here -->
+                                    <form>
+                                        <!-- Your form elements go here -->
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <!-- Add any other buttons or actions here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+      <!-- decline confirmation modal -->
                 <div class="modal fade" id="declinePendingapplicantModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -380,7 +409,7 @@
             <div class="tab-pane @if($active == 'declined') show active @else fade @endif" id="declined-applicant-tab">
                 <div class="d-flex mt-2">
                         <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
-                        <select class="filter-select " id="exam-filter" wire:model="accepted_test_type_id" wire:change="accepted_application_exam_type_filter()">
+                        <select class="filter-select " id="exam-filter" wire:model="declined_test_type_id" wire:change="declined_application_exam_type_filter()">
                             <option value="0"  >All</option>
                             @foreach ($exam_types as $item => $value)
                                 <option value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>

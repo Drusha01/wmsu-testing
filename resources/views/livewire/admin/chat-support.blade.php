@@ -1,5 +1,6 @@
 <div>
-<main id="main" class="main">
+    <x-loading-indicator/>
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Chat support</h1>
             <nav>

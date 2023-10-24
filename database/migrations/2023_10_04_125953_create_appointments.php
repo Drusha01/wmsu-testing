@@ -13,10 +13,18 @@ class CreateAppointments extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        DB::statement('CREATE TABLE appointments(
+            appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+            appointment_user_id INT NOT NULL,
+            appointment_preferred_date DATE,
+            appointment_preferred_time TIME,
+            appointment_purpose VARCHAR(255),
+            appointment_message VARCHAR(255),
+            appointment_datetime DATETIME DEFAULT NULL,
+            date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+            date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (appointment_user_id) REFERENCES users(user_id)
+        );');
     }
 
     /**
