@@ -67,7 +67,7 @@
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img style="border-radius:50%;" src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" alt="">
-                        <span class="d-none d-md-block">Matt Luna</span>
+                        <span class="d-none d-md-block">{{$user_details['user_firstname'].' '.$user_details['user_lastname']}}</span>
                     </a>
                     <!-- Add the dropdown menu here -->
                     <ul class="dropdown-menu">

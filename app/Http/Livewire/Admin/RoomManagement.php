@@ -1168,6 +1168,22 @@ class RoomManagement extends Component
         }
     }
 
+    public function add_room_modal(){
+        $this->edit_room = null;
+        $this->school_room_id = null;
+        $this->school_room_college_name = null;
+        $this->school_room_college_abr= null;
+        $this->school_room_venue = null;
+        $this->school_room_name = null;
+        $this->school_room_test_center= null;
+        $this->school_room_test_date = null;
+        $this->school_room_test_time_start = null;
+        $this->school_room_test_time_end = null;
+        $this->school_room_capacity= null;
+        $this->school_room_description= null;
+        $this->dispatchBrowserEvent('openModal','addRoomModal');
+    }
+
     //add room
     public function add_room() {
 
@@ -1241,13 +1257,17 @@ class RoomManagement extends Component
     }
 
 //delete
-    public function deleteRoom($roomId) {
+    public function delete_room_modal($roomId){
+        $this->roomToDelete = $roomId;
+        $this->dispatchBrowserEvent('openModal','confirmDeleteModal');
+    }
+    public function deleteRoom() {
     
 
         // Perform the room deletion logic
-        DB::table('school_rooms')->where('school_room_id', $roomId)->delete();
+        DB::table('school_rooms')->where('school_room_id', $this->roomToDelete)->delete();
 
-        $this->roomToDelete = 0;
+        
 
         $this->dispatchBrowserEvent('swal:remove_backdrop', [
             'position' => 'center',

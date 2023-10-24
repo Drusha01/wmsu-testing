@@ -106,7 +106,7 @@
                                     <td>{{ $value->user_name }}</td>
                                 @endif
                                 @if($admin_data_filter['Full name'])
-                                    <td>{{ $value->user_lastname.', '.$value->user_lastname.' '.$value->user_middlename }}</td>
+                                    <td>{{ $value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename }}</td>
                                 @endif
                                 @if($admin_data_filter['Email'])
                                     <td>{{ $value->user_email }}</td>
@@ -490,7 +490,7 @@
                                     <td>{{ $value->user_name }}</td>
                                 @endif
                                 @if($user_data_filter['Full name'])
-                                    <td>{{ $value->user_lastname.', '.$value->user_lastname.' '.$value->user_middlename }}</td>
+                                    <td>{{ $value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename }}</td>
                                 @endif
                                 @if($user_data_filter['Email'])
                                     <td>{{ $value->user_email }}</td>
@@ -889,117 +889,6 @@
             </div>
         </div>
 
-        <!-- Edit role Modal -->
-        <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- User role Form -->
-                        <form>
-                            <div class="form-group">
-                                <label for="editRoleName">Role Name</label>
-                                <select class="form-control" id="editRoleName">
-                                    <option value="user">Administrator</option>
-                                    <option value="moderator">Staff</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editDescription">Description</label>
-                                <input type="text" class="form-control" id="editDescription" placeholder="Edit Description">
-                            </div>
-                            <br>
-                            <div>
-                                <table>
-                                    <tr>
-                                        <th class="text-align center">Module</th>
-                                        <th> All</th>
-                                        <th class="text-align center">Create</th>
-                                        <th class="text-align center">Read</th>
-                                        <th class="text-align center">Update</th>
-                                        <th class="text-align center">Delete</th>
-                                    </tr>
-                                    <tr>
-                                        <td >Dashboard</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Appointment Management</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td >Applicant Management</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Room Management</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td >Exam Management</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td >Exam Administrator</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td >Result Management</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td >Announcement</td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                        <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </form>
-                        <!-- End Edit role Form -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- End Edit User Modal -->
         <!-- End Inserted Section -->
     </main><!-- End #main -->

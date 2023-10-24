@@ -66,6 +66,9 @@ class ApplicationManagement extends Component
     public $declined_selected = [];
     public $delete_declined_valid;
 
+    public $application_view_details;
+    public $application_user_name;
+
     public $exam_types;
     public $column_order = 't_a_id';
     public $order_by = 'asc';
@@ -246,6 +249,7 @@ class ApplicationManagement extends Component
             foreach ($this->declined_applicant_data  as $key => $value) {
                 array_push($this->declined_selected,[$value->t_a_id=>false]);
             }
+            
         }
 
         
@@ -450,9 +454,8 @@ class ApplicationManagement extends Component
 
             foreach ($this->declined_applicant_data  as $key => $value) {
                 array_push($this->declined_selected,[$value->t_a_id=>false]);
-            }
+            }           
 
-            
         }else{
             $this->redirect('/admin/dashboard');
         }
@@ -623,7 +626,7 @@ class ApplicationManagement extends Component
             foreach ($this->declined_applicant_data  as $key => $value) {
                 array_push($this->declined_selected,[$value->t_a_id=>false]);
             }
-
+            $this->application_view_details = null;
             
         }
     }
@@ -1650,6 +1653,66 @@ class ApplicationManagement extends Component
         }
     }
 
+    public function view_application($t_a_id){
+
+
+        $this->application_view_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+            // dd($this->application_view_details);
+
+
+        
+            $this->dispatchBrowserEvent('openModal','view_application_modal');
+    }
+
+    public function view_accepted_application($t_a_id){
+
+
+        $this->application_view_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+            // dd($this->application_view_details);
+
+
+        
+            $this->dispatchBrowserEvent('openModal','view_accepted_application_modal');
+    }
+    
 
 
 

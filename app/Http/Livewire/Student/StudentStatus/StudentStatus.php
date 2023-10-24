@@ -260,6 +260,7 @@ class StudentStatus extends Component
             ->where('t_a_isactive','=',1)
             ->get()
             ->toArray();
+            
 
         $this->application_history = DB::select('SELECT *,DATE(ta.date_created) as applied_date FROM test_applications as ta 
             LEFT JOIN test_types as tt on tt.test_type_id = ta.t_a_test_type_id
@@ -295,6 +296,7 @@ class StudentStatus extends Component
             ->limit(1)
             ->get()
             ->toArray();
+            // dd($this->view_details);
     }
     public function edit_application(){
         $this->application_details = DB::table('test_applications as ta')
