@@ -67,9 +67,6 @@
         <div class="modal fade" id="AddAnnouncementModal" data-toggle="modal"  role="dialog" aria-labelledby="AddAnnouncementModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document" >
                 <div class="modal-content">
-                    <div type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </div>
                     <div class="modal-body">
                         <form id="announcementForm">
                             <div class="form-group">
