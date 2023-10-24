@@ -44,6 +44,11 @@ class AdminManagement extends Component
     public $admin_password;
     public $admin_confirm_password;
 
+    public $admin_fullname;
+    public $view_admin_roles;
+    public $view_admin_user_id;
+    public $delete_admin_user_id;
+
     public function openModal(){$this->modal_open =true; $this->admin_role_name_id =false;}
 
     public function booted(Request $request){
@@ -165,6 +170,7 @@ class AdminManagement extends Component
             'Full name' => true,
             'Email' => true,
             'CP#' => true,
+            'Status' => true,
             'Active' => false,
             'Verified' => true,
             'Action' => true
@@ -199,7 +205,28 @@ class AdminManagement extends Component
 
             $this->admin_data = DB::table('users as u')
             ->select(
-                '*'
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
                 )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
@@ -210,7 +237,28 @@ class AdminManagement extends Component
 
             $this->user_data = DB::table('users as u')
             ->select(
-                '*'
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
                 )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
@@ -275,16 +323,287 @@ class AdminManagement extends Component
     }
 
     public function view_admin($user_id){
-        dd('view');
+        $this->view_admin_data = DB::table('users as u')
+        ->select(
+            "user_id",
+            "user_sex_id",
+            "user_gender_id",
+            "ur.user_role_id",
+            "user_name",
+            "user_email",
+            "user_phone",
+            "user_name_verified",
+            "user_email_verified",
+            "user_phone_verified",
+            "user_firstname",
+            "user_middlename",
+            "user_lastname",
+            "user_suffix",
+            "user_address",
+            "user_birthdate",
+            "user_profile_picture",
+            "user_formal_id",
+            "u.date_created",
+            "u.date_updated",
+            "user_status_details",
+            "user_role_details"
+            )
+        ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+        ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+        ->where('user_id','=', $this->user_details['user_id'])
+        ->where('user_role_details','=', 'admin')
+        ->get()
+        ->toArray();
+
+        $this->admin_fullname = $this->view_admin_data[0]->user_firstname.' '.$this->view_admin_data[0]->user_middlename.' '.$this->view_admin_data[0]->user_lastname;
+
+        $roles_data = DB::table('access_roles as ar')
+                ->where('access_role_user_id','=',$user_id)
+                ->get()
+                ->toArray();
+                $this->view_admin_roles = [];
+                foreach ($roles_data as $key => $value) {
+                    array_push($this->view_admin_roles,[
+                        'access_role_module_id' =>$value->access_role_module_id,
+                        'C'=>$value->access_role_create,
+                        'R'=>$value->access_role_create,
+                        'U'=>$value->access_role_update,
+                        'D'=>$value->access_role_delete
+                    ]);
+                }
+
+        $this->dispatchBrowserEvent('openModal','ViewAdminModal');
+        
     }
 
     public function edit_admin($user_id){
-        dd('edit');
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            $this->view_admin_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'admin')
+            ->get()
+            ->toArray();
+
+            $this->admin_fullname = $this->view_admin_data[0]->user_firstname.' '.$this->view_admin_data[0]->user_middlename.' '.$this->view_admin_data[0]->user_lastname;
+
+            $this->view_admin_user_id = $this->view_admin_data[0]->user_id;
+            $roles_data = DB::table('access_roles as ar')
+                    ->where('access_role_user_id','=',$user_id)
+                    ->get()
+                    ->toArray();
+                    $this->view_admin_roles = [];
+                    foreach ($roles_data as $key => $value) {
+                        array_push($this->view_admin_roles,[
+                            'access_role_module_id' =>$value->access_role_module_id,
+                            'C'=>$value->access_role_create,
+                            'R'=>$value->access_role_create,
+                            'U'=>$value->access_role_update,
+                            'D'=>$value->access_role_delete
+                        ]);
+                    }
+
+            $this->dispatchBrowserEvent('openModal','EditAdminModal');
+        }
+    }
+
+    public function save_edit_admin($user_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            foreach ($this->view_admin_roles as $key => $value) {
+                DB::table('access_roles')
+                    ->where('access_role_user_id' ,'=',  $user_id)
+                    ->where('access_role_module_id','=',$value['access_role_module_id'])
+                    ->update([
+                        'access_role_create' => $value['C'],
+                        'access_role_read' =>$value['R'],
+                        'access_role_update' => $value['U'],
+                        'access_role_delete' => $value['D'],
+                ]);
+            }
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'                                                  => 'success',
+                'title'             									=> 'Admin role updated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
     }
 
     public function delete_admin($user_id){
-        dd('delete');
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            $this->delete_admin_user_id = $user_id;
+            $this->dispatchBrowserEvent('openModal','DeleteAdminModal');
+        }
     }
+
+    public function delete_admin_now($user_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            DB::table('users')
+                ->where('user_id' ,'=',  $user_id)
+                ->update([
+                    'user_status_id' => DB::table('user_status')
+                    ->select('user_status_id')
+                    ->where('user_status_details','=','deleted')
+                    ->get()
+                    ->toArray()[0]->user_status_id
+            ]);
+
+            $this->admin_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'admin')
+            ->get()
+            ->toArray();
+
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'                                                  => 'success',
+                'title'             									=> 'Admin set to deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+
+    public function activate_admin($user_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            DB::table('users')
+                ->where('user_id' ,'=',  $user_id)
+                ->update([
+                    'user_status_id' => DB::table('user_status')
+                    ->select('user_status_id')
+                    ->where('user_status_details','=','active')
+                    ->get()
+                    ->toArray()[0]->user_status_id
+            ]);
+
+            $this->admin_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'admin')
+            ->get()
+            ->toArray();
+
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'                                                  => 'success',
+                'title'             									=> 'Admin set to active!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+
+    
 
     // add admin
     public function update_admin_role(){
@@ -325,7 +644,6 @@ class AdminManagement extends Component
                 }
             }
 
-            
         }
     }
 
@@ -348,7 +666,7 @@ class AdminManagement extends Component
             $this->sign_up_button ='Invalid Username';
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
-                'title'             									=> 'Invalid username!',
+                'title'             									=> 'Invalid username or username is less than 6 characters!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
@@ -570,7 +888,28 @@ class AdminManagement extends Component
 
         $this->admin_data = DB::table('users as u')
         ->select(
-            '*'
+            "user_id",
+            "user_sex_id",
+            "user_gender_id",
+            "ur.user_role_id",
+            "user_name",
+            "user_email",
+            "user_phone",
+            "user_name_verified",
+            "user_email_verified",
+            "user_phone_verified",
+            "user_firstname",
+            "user_middlename",
+            "user_lastname",
+            "user_suffix",
+            "user_address",
+            "user_birthdate",
+            "user_profile_picture",
+            "user_formal_id",
+            "u.date_created",
+            "u.date_updated",
+            "user_status_details",
+            "user_role_details"
             )
         ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
         ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')

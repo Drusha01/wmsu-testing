@@ -387,8 +387,8 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         ),
         'LivewireUI\\Modal\\' => 
         array (
-            0 => __DIR__ . '/..' . '/wire-elements/modal/src',
-            1 => __DIR__ . '/..' . '/livewire-ui/modal/src',
+            0 => __DIR__ . '/..' . '/livewire-ui/modal/src',
+            1 => __DIR__ . '/..' . '/wire-elements/modal/src',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -740,6 +740,9 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\Rooms_sample' => __DIR__ . '/../..' . '/database/seeders/Rooms_sample.php',
         'Database\\Seeders\\UserRoleSeeder' => __DIR__ . '/../..' . '/database/seeders/UserRoleSeeder.php',
+        'Database\\Seeders\\access_role' => __DIR__ . '/../..' . '/database/seeders/access_role.php',
+        'Database\\Seeders\\admin_role' => __DIR__ . '/../..' . '/database/seeders/admin_role.php',
+        'Database\\Seeders\\admin_role_names' => __DIR__ . '/../..' . '/database/seeders/admin_role_names.php',
         'Database\\Seeders\\attachmentTypes' => __DIR__ . '/../..' . '/database/seeders/attachmentTypes.php',
         'Database\\Seeders\\cet_type_lists' => __DIR__ . '/../..' . '/database/seeders/cet_type_lists.php',
         'Database\\Seeders\\fb_defaults' => __DIR__ . '/../..' . '/database/seeders/fb_defaults.php',
@@ -3210,10 +3213,10 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
-        'LivewireUI\\Modal\\Contracts\\ModalComponent' => __DIR__ . '/..' . '/wire-elements/modal/src/Contracts/ModalComponent.php',
-        'LivewireUI\\Modal\\LivewireModalServiceProvider' => __DIR__ . '/..' . '/wire-elements/modal/src/LivewireModalServiceProvider.php',
-        'LivewireUI\\Modal\\Modal' => __DIR__ . '/..' . '/wire-elements/modal/src/Modal.php',
-        'LivewireUI\\Modal\\ModalComponent' => __DIR__ . '/..' . '/wire-elements/modal/src/ModalComponent.php',
+        'LivewireUI\\Modal\\Contracts\\ModalComponent' => __DIR__ . '/..' . '/livewire-ui/modal/src/Contracts/ModalComponent.php',
+        'LivewireUI\\Modal\\LivewireModalServiceProvider' => __DIR__ . '/..' . '/livewire-ui/modal/src/LivewireModalServiceProvider.php',
+        'LivewireUI\\Modal\\Modal' => __DIR__ . '/..' . '/livewire-ui/modal/src/Modal.php',
+        'LivewireUI\\Modal\\ModalComponent' => __DIR__ . '/..' . '/livewire-ui/modal/src/ModalComponent.php',
         'Livewire\\Castable' => __DIR__ . '/..' . '/livewire/livewire/src/Castable.php',
         'Livewire\\Commands\\ComponentParser' => __DIR__ . '/..' . '/livewire/livewire/src/Commands/ComponentParser.php',
         'Livewire\\Commands\\ComponentParserFromExistingComponent' => __DIR__ . '/..' . '/livewire/livewire/src/Commands/ComponentParserFromExistingComponent.php',

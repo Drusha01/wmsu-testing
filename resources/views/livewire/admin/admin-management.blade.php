@@ -114,6 +114,9 @@
                                 @if($admin_data_filter['CP#'])
                                     <td>{{ $value->user_phone }}</td>
                                 @endif
+                                @if($admin_data_filter['Status'])
+                                    <td class='text-center'>{{ $value->user_status_details }}@if($value->user_status_details == 'deleted') <br> <button class="btn btn-warning" wire:click="activate_admin({{ $value->user_id }})">Activate</button>@endif</td>
+                                @endif
                                 @if($admin_data_filter['Verified'])
                                     <td class="text-center"> @if($value->user_email_verified) <i class="bi bi-check"></i> @else <i class="bi bi-x"></i> @endif </td>
                                 @endif
@@ -235,6 +238,132 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade show" id="ViewAdminModal" tabindex="-1" role="dialog" aria-labelledby="ViewAdminModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ViewAdminModalLabel">View Admin Details</h5>
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form >
+                        <div class="modal-body">
+                            <!-- User role Form -->
+                            <div class="form-group">
+                                <label for="editRoleName">Full Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Role name" wire:model.defer="admin_fullname" required>
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input disabled type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
+                            </div>
+                            <!-- End Edit role Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade show" id="EditAdminModal" tabindex="-1" role="dialog" aria-labelledby="EditAdminModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="EditAdminModal">Edit Admin Details</h5>
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form wire:submit.prevent="save_edit_admin({{$view_admin_user_id}})">
+                        <div class="modal-body">
+                            <!-- User role Form -->
+                            <div class="form-group">
+                                <label for="editRoleName">Full Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Role name" wire:model.defer="admin_fullname" required>
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="view_admin_roles.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
+                            </div>
+                            <!-- End Edit role Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade show" id="DeleteAdminModal" tabindex="-1" role="dialog" aria-labelledby="DeleteAdminModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteAdminModal">Edit Admin Details</h5>
+                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form wire:submit.prevent="delete_admin_now({{$delete_admin_user_id}})">
+                        <div class="modal-body">
+                            <div> Are you sure you want to delete this admin user?</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
         <!-- Edit Admin Modal -->
         <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
