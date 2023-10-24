@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             fb_defaults::class,
             test_samples::class,
             Rooms_sample::class,
+            admin_role_names::class,
+            admin_role::class,
+            access_role::class,
         ]);
         
     }

@@ -77,11 +77,21 @@ class moduleList extends Seeder
             NOW(),
             NOW()
         );');
+        
+        DB::statement('INSERT INTO modules VALUES(
+            NULL,
+            "schedule",
+            "Schedule Management",
+            8,
+            1,
+            NOW(),
+            NOW()
+        );');
         DB::statement('INSERT INTO modules VALUES(
             NULL,
             "announcement",
             "Announcement Management",
-            8,
+            9,
             1,
             NOW(),
             NOW()
@@ -90,7 +100,7 @@ class moduleList extends Seeder
             NULL,
             "admin",
             "Admin Management",
-            9,
+            10,
             1,
             NOW(),
             NOW()
@@ -99,15 +109,6 @@ class moduleList extends Seeder
             NULL,
             "chat",
             "Chat Support",
-            10,
-            1,
-            NOW(),
-            NOW()
-        );');
-        DB::statement('INSERT INTO modules VALUES(
-            NULL,
-            "faq",
-            "FAQ",
             11,
             1,
             NOW(),

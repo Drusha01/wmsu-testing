@@ -26,7 +26,25 @@ class AdminManagement extends Component
     public $role_name_details;
     public $view_access_role;
     public $edit_access_role;
+    
 
+    
+    public $modal_open = false;
+    public $admin_role_name_id = null;
+    public $admin_access_role;
+
+    public $sign_up_button ;
+    public $admin_username;
+    public $admin_email;
+    public $admin_firstname;
+    public $admin_middlename;
+    public $admin_lastname;
+    public $admin_suffix;
+    public $admin_birthdate;
+    public $admin_password;
+    public $admin_confirm_password;
+
+    public function openModal(){$this->modal_open =true; $this->admin_role_name_id =false;}
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -61,7 +79,28 @@ class AdminManagement extends Component
 
             $this->admin_data = DB::table('users as u')
             ->select(
-                '*'
+                    "user_id",
+                    "user_sex_id",
+                    "user_gender_id",
+                    "ur.user_role_id",
+                    "user_name",
+                    "user_email",
+                    "user_phone",
+                    "user_name_verified",
+                    "user_email_verified",
+                    "user_phone_verified",
+                    "user_firstname",
+                    "user_middlename",
+                    "user_lastname",
+                    "user_suffix",
+                    "user_address",
+                    "user_birthdate",
+                    "user_profile_picture",
+                    "user_formal_id",
+                    "u.date_created",
+                    "u.date_updated",
+                    "user_status_details",
+                    "user_role_details"
                 )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
@@ -72,7 +111,28 @@ class AdminManagement extends Component
 
             $this->user_data = DB::table('users as u')
             ->select(
-                '*'
+                    "user_id",
+                    "user_sex_id",
+                    "user_gender_id",
+                    "ur.user_role_id",
+                    "user_name",
+                    "user_email",
+                    "user_phone",
+                    "user_name_verified",
+                    "user_email_verified",
+                    "user_phone_verified",
+                    "user_firstname",
+                    "user_middlename",
+                    "user_lastname",
+                    "user_suffix",
+                    "user_address",
+                    "user_birthdate",
+                    "user_profile_picture",
+                    "user_formal_id",
+                    "u.date_created",
+                    "u.date_updated",
+                    "user_status_details",
+                    "user_role_details"
                 )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
@@ -168,6 +228,10 @@ class AdminManagement extends Component
             $this->roles_data = DB::table('admin_role_names as arn')
                 ->get()
                 ->toArray();
+                // dd($this->roles_data);
+
+                // dd($this->modules);
+            
 
 
         }
@@ -207,6 +271,7 @@ class AdminManagement extends Component
 
     public function active_page($active){
         $this->active = $active;
+        $this->modal_open = false;
     }
 
     public function view_admin($user_id){
@@ -219,6 +284,301 @@ class AdminManagement extends Component
 
     public function delete_admin($user_id){
         dd('delete');
+    }
+
+    // add admin
+    public function update_admin_role(){
+
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];        
+        if($this->access_role['U'] ){
+            if($this->admin_role_name_id >0){
+                $roles_data = DB::table('admin_roles as ar')
+                ->where('access_role_name_id','=',$this->admin_role_name_id)
+                ->get()
+                ->toArray();
+            
+                $this->admin_access_role = [];
+                foreach ($roles_data as $key => $value) {
+                    array_push($this->admin_access_role,[
+                        'access_role_module_id' =>$value->access_role_module_id,
+                        'C'=>$value->access_role_create,
+                        'R'=>$value->access_role_create,
+                        'U'=>$value->access_role_update,
+                        'D'=>$value->access_role_delete
+                    ]);
+                }
+            }else{
+                $this->admin_access_role = [];
+                foreach ($this->modules as $key => $value) {
+                    array_push($this->admin_access_role,[
+                        'access_role_module_id' =>$value->module_nav_name,
+                        'C'=>false,
+                        'R'=>false,
+                        'U'=>false,
+                        'D'=>false
+                    ]);
+                }
+            }
+
+            
+        }
+    }
+
+    public function add_admin(){
+        // validate user cred
+
+       
+
+        // check if username is valid
+        $this->sign_up_button= false;
+        if (preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{5,31}$/', $this->admin_username)
+            && !DB::table('users')
+            ->where('user_name', $this->admin_username)
+            ->where('user_name_verified', 1)
+            ->first()){
+            // save into session
+            $this->style = 'green';
+        }else{
+            $this->style = 'red';
+            $this->sign_up_button ='Invalid Username';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Invalid username!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return;
+        }     
+        
+        if(strlen($this->admin_firstname) < 1 || strlen($this->admin_firstname) > 255){
+            $this->sign_up_button ='Invalid firstname';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Invalid firstname!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        
+        if(strlen($this->admin_lastname) < 1 || strlen($this->admin_lastname) > 255){
+            $this->sign_up_button ='Invalid lastname';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Invalid lastname!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        if(strlen($this->admin_middlename) < 0 || strlen($this->admin_middlename) > 255){
+            $this->sign_up_button ='Invalid middlename';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Invalid middlename!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+
+
+        if(strlen($this->admin_password) < 8 ) {
+            $this->sign_up_button = 'password must be >= 8';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'password must be >= 8!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->admin_password)) {
+            $this->sign_up_button = 'password must have number';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'password must have number!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->admin_password)) {
+            $this->sign_up_button = 'password must have upper case';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'password must have upper case!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->admin_password)) {
+            $this->sign_up_button = 'password must have lower case';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'password must have lower case!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+
+        if(strlen($this->admin_confirm_password) < 8 ) {
+            $this->sign_up_button = 'Confirm password must be >= 8';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Confirm password must be >= 8!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[0-9]+#",$this->admin_confirm_password)) {
+            $this->sign_up_button = 'Confirm password must have number';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Confirm password must have number!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[A-Z]+#",$this->admin_confirm_password)) {
+            $this->sign_up_button = 'Confirm password must have upper case';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Confirm password must have upper case!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        elseif(!preg_match("#[a-z]+#",$this->admin_confirm_password)) {
+            $this->sign_up_button = 'Confirm password must have lower case';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Confirm password must have lower case!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        
+        if($this->admin_password != $this->admin_confirm_password){
+            $this->sign_up_button = 'Password doesn\'t match';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Password doesn\'t match!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+           
+            return false;
+        }
+
+        
+        $min_age = 15;
+        $min_date = $min_age * 366;
+        $diff= date_diff(date_create($this->admin_birthdate),date_create(date('Y-m-d', time())));
+        $date_diff =  intval($diff->format("%R%a"));
+       
+        // if(!$date_diff>$min_date){
+        //     dd($date_diff);
+        //     $this->sign_up_button = 'You must be at least '.$min_age.' y/o';
+        //     $this->dispatchBrowserEvent('swal:redirect',[
+        //         'position'          									=> 'center',
+        //         'title'             									=> 'Admin must be at least '.$min_age.' y/o',
+        //         'showConfirmButton' 									=> 'true',
+        //         'timer'             									=> '1000',
+        //         'link'              									=> '#'
+        //     ]);
+           
+        //     return false;
+        // }
+
+        // hash password
+        $hash_password = password_hash($this->admin_confirm_password, PASSWORD_ARGON2I);
+        // validate access_roles
+
+        DB::table('users')->insert([
+            'user_status_id' => 1,
+            'user_sex_id' => 1,
+            'user_gender_id' => 1,
+            'user_role_id' => 2,
+            'user_name' => $this->admin_username,
+            'user_email' => $this->admin_email,
+            'user_phone' => NULL,
+            'user_password' => $hash_password ,
+            'user_name_verified' => 1,
+            'user_email_verified' => 0,
+            'user_phone_verified' => 0,
+            'user_firstname' => $this->admin_firstname,
+            'user_middlename' => $this->admin_middlename,
+            'user_lastname' => $this->admin_lastname,
+            'user_suffix' => NULL,
+            'user_address' => NULL,
+            'user_birthdate' => $this->admin_birthdate,
+           
+        ]);
+
+        $user_details = DB::table('users as u')
+            ->select('user_id')
+            ->where('u.user_name', $this->admin_username)
+            ->where('u.user_name_verified', 1)
+            ->first();
+           
+        foreach ($this->admin_access_role as $key => $value) {
+            DB::table('access_roles')->insert([
+                'access_role_user_id' =>  $user_details->user_id,
+                'access_role_module_id' =>$value['access_role_module_id'],
+                'access_role_create' => $value['C'],
+                'access_role_read' =>$value['R'],
+                'access_role_update' => $value['U'],
+                'access_role_delete' => $value['D'],
+            ]);
+        }
+
+        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+            'position'          									=> 'center',
+            'icon'                                                  => 'success',
+            'title'             									=> 'Successfully added an admin!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+        $this->modal_open =false; 
+        $this->admin_role_name_id =false;
+
+        $this->admin_data = DB::table('users as u')
+        ->select(
+            '*'
+            )
+        ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+        ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+        // ->where('user_id','!=', $this->user_details['user_id'])
+        ->where('user_role_details','=', 'admin')
+        ->get()
+        ->toArray();
+
     }
 
 

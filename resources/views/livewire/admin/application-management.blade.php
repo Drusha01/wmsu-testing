@@ -87,7 +87,7 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button type="button"  class="btn btn-secondary btn-block"  data-dismiss="modal"  id='btn_close1'>Close</button>
                                     <button wire:click="pending_applicant_filterView()" data-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save

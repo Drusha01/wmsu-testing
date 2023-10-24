@@ -48,7 +48,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Assigned Room</h5>
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Admin Management</h5>
                                 </div>
                                 <hr>
                                 <div class="modal-body">
@@ -64,8 +64,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="admin_data_filterView()"  data-bs-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="admin_data_filterView()"  data-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#adminAddModal" wire:click="" >Add Admin</button>
+                        <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#adminAddModal" wire:click="openModal()" >Add Admin</button>
                     </div>
                 </div>
                 
@@ -144,12 +144,12 @@
             </div>
         </div>
         <!-- Add Admin Modal -->
-        <div class="modal fade" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="adminAddModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal fade @if($modal_open) show @endif" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="adminAddModalLabel" @if($modal_open) aria-modal="true" style="display: block;" @endif>
+            <div class="modal-dialog modal-xl modal-dialog-centered " >
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="adminAdminModalLabel">Add Admin</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -158,49 +158,79 @@
                         <form>
                             <div class="form-group">
                                 <label for="AddAdminFirstName">Username</label>
-                                <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter Username">
+                                <input type="text" class="form-control" wire:model.defer="admin_username" placeholder="Enter Username">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Email</label>
-                                <input type="email" class="form-control" id="AddAdminEmail" placeholder="Enter Email">
+                                <input type="email" class="form-control" wire:model.defer="admin_email"  placeholder="Enter Email">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminFirstName">First Name</label>
-                                <input type="text" class="form-control" id="AddAdminFirstName" placeholder="Enter First Name">
+                                <input type="text" class="form-control" wire:model.defer="admin_firstname"  placeholder="Enter First Name">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminMiddleName">Midlle Name</label>
-                                <input type="text" class="form-control" id="AddAdminMiddleName" placeholder="Enter Middle Name">
+                                <input type="text" class="form-control" wire:model.defer="admin_middlename"  placeholder="Enter Middle Name">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminLastName">Last Name</label>
-                                <input type="text" class="form-control" id="AddAdminLastName" placeholder="Enter Last Name">
+                                <input type="text" class="form-control" wire:model.defer="admin_lastname"  placeholder="Enter Last Name">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Birthdate</label>
-                                <input type="date" class="form-control" id="AddAdminEmail" placeholder="Enter birthdate">
+                                <input type="date" class="form-control" wire:model.defer="admin_birthdate"  placeholder="Enter birthdate">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Password</label>
-                                <input type="password" class="form-control" id="AddAdminEmail" placeholder="Enter password">
+                                <input type="password" class="form-control" wire:model.defer="admin_password"  placeholder="Enter password">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminEmail">Confirm Password</label>
-                                <input type="password" class="form-control" id="AddAdminEmail" placeholder="Confirm password">
+                                <input type="password" class="form-control" wire:model.defer="admin_confirm_password"  placeholder="Confirm password">
                             </div>
                             <div class="form-group">
                                 <label for="AddAdminRole">Role</label>
-                                <select class="form-control" id="AddAdminRole">
-                                    <option value="admin">Administrator</option>
-                                    <option value="moderator">Moderator</option>
+                                <select class="form-control" id="AddAdminRole" wire:model.defer="admin_role_name_id" wire:change="update_admin_role()">
+                                    <option value="0">Select Role</option>
+                                    @forelse ($roles_data as $item => $value)
+                                    <option value="{{$value->admin_role_name_id}}">{{$value->admin_role_name_name}}</option>
+                                    @empty
+                                    @endforelse
                                 </select>
                             </div>
+                            <br>
+                            @if($sign_up_button)<div style="color:red;">{{$sign_up_button}}</div> @endif
+                            <br>
+
+                            <table>
+                                    <tr>
+                                        <th class="text-align center">Module</th>
+                                        <th class="text-align center">Create</th>
+                                        <th class="text-align center">Read</th>
+                                        <th class="text-align center">Update</th>
+                                        <th class="text-align center">Delete</th>
+                                    </tr>
+                                    @forelse ($modules as $item => $value)
+                                    <tr wire:key="{{$value->module_id}}">
+                                        <td >{{$value->module_nav_name}}</td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.C"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.R"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.U"></td>
+                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.D"></td>
+                                    </tr>
+                                    @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                    @endforelse
+                                    
+                                </table>
                         </form>
                         <!-- End Add Admin  -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Admin</button>
+                        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" wire:click=add_admin()>Add Admin</button>
                     </div>
                 </div>
             </div>
@@ -275,7 +305,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for Assigned Room</h5>
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns for User Management</h5>
                                 </div>
                                 <hr>
                                 <div class="modal-body">
@@ -291,8 +321,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="user_data_filterView()"  data-bs-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="user_data_filterView()"  data-dismiss="modal" 
                                         class="btn btn-success">
                                         Save
                                     </button>
