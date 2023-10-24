@@ -19,12 +19,16 @@ class ExamManagement extends Component
     public $unassigned_proctor_selected_all;
     public $unassigned_proctor_selected = [];
     public $unassigned_valid = false;
+    public $unassigned_proctor_user_id=0;
 
     public $assigned_proctor;
     public $assigned_proctor_school_room_id = 0;
     public $assigned_proctor_filter;
     public $assigned_proctor_selected_all;
     public $assigned_proctor_selected = [];
+
+    public $proctors_list;
+    public $proctor_list_filter;
     
     
 
@@ -122,7 +126,7 @@ class ExamManagement extends Component
                 ->toArray();
             }
 
-            if($this->assigned_proctor_school_room_id){
+            if($this->assigned_proctor_school_room_id == 0){
                 $this->assigned_proctor = DB::table('test_applications as ta')
                 ->select(
                     // '*',
@@ -138,10 +142,17 @@ class ExamManagement extends Component
                     'school_room_test_date',
                     'school_room_test_time_start',
                     'school_room_test_time_end',
-                    'school_room_description'
+                    'school_room_description',
+                    'user_id',
+                    'user_name',
+                    'user_address',
+                    'user_firstname',
+                    'user_middlename',
+                    'user_lastname',
                     )
                 ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
@@ -165,10 +176,17 @@ class ExamManagement extends Component
                     'school_room_test_date',
                     'school_room_test_time_start',
                     'school_room_test_time_end',
-                    'school_room_description'
+                    'school_room_description',
+                    'user_id',
+                    'user_name',
+                    'user_address',
+                    'user_firstname',
+                    'user_middlename',
+                    'user_lastname'
                     )
                 ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
@@ -178,8 +196,35 @@ class ExamManagement extends Component
                 ->get()
                 ->toArray();
             }
-            // dd($this->unassigned_proctor);
+           
             
+           
+            $this->proctors_list = DB::table('access_roles as ar')
+            ->select(
+                // '*',
+                'user_id',
+                'user_name',
+                'user_address',
+                'user_firstname',
+                'user_middlename',
+                'user_lastname',
+                'access_role_id',
+                'access_role_create',
+                'access_role_read',
+                'access_role_update',
+                'access_role_delete'
+            )
+            ->join('modules as m','m.module_id','ar.access_role_module_id')
+            ->join('users as u','u.user_id','ar.access_role_user_id')
+            ->join('user_status as us','us.user_status_id','u.user_status_id')
+            ->where('m.module_nav_name','=','Exam Administrator')
+            ->where('us.user_status_details','=','active')
+            ->get()
+            ->toArray();
+
+            $this->unassigned_proctor_user_id = $this->proctors_list[0]->user_id;
+
+
         }
     }
     public function mount(Request $request){
@@ -194,7 +239,7 @@ class ExamManagement extends Component
         ];
 
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
-
+            $this->active = 'unassigned_proctors';
             $this->school_rooms = DB::table('school_rooms as sr')
                 ->select(
                     '*'
@@ -205,22 +250,24 @@ class ExamManagement extends Component
             $this->unassigned_proctor_filter = [
                 'Select all' => true,
                 '#' => true,
-                'No. of Examinees' => true,
+                '# of Examinees' => true,
                 'Capacity'=> true,
                 'Slots' => true,
+                
                 'Venue'=> true,
                 'Test center'=> true,
                 'College' => false,
                 'Room code' => true,
                 'Room name'=> false,
-                'Start - End'=> false,							
+                'Start - End'=> true,	
+                'Proctor' => true,						
                 'Actions'	=> true						
             ];
 
             $this->assigned_proctor_filter = [
                 'Select all' => true,
                 '#' => true,
-                'Proctor' => true,
+                '# of Examinees' => true,
                 'Capacity'=> true,
                 'Slots' => true,
                 'Venue'=> true,
@@ -228,8 +275,16 @@ class ExamManagement extends Component
                 'College' => false,
                 'Room code' => false,
                 'Room name'=> true,
-                'Start - End'=> true,							
+                'Start - End'=> true,	
+                'Proctor' => true,						
                 'Actions'	=> true						
+            ];
+
+            $this->proctor_list_filter = [
+                'Proctor username' =>true,
+                'Proctor fullname' =>true,
+                'Address' =>true,
+                'Action' => true
             ];
             
             if($this->unassigned_proctor_school_room_id == 0){
@@ -289,7 +344,7 @@ class ExamManagement extends Component
                 ->toArray();
             }
 
-            if($this->assigned_proctor_school_room_id){
+            if($this->assigned_proctor_school_room_id == 0){
                 $this->assigned_proctor = DB::table('test_applications as ta')
                 ->select(
                     // '*',
@@ -305,10 +360,17 @@ class ExamManagement extends Component
                     'school_room_test_date',
                     'school_room_test_time_start',
                     'school_room_test_time_end',
-                    'school_room_description'
+                    'school_room_description',
+                    'user_id',
+                    'user_name',
+                    'user_address',
+                    'user_firstname',
+                    'user_middlename',
+                    'user_lastname',
                     )
                 ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
@@ -332,10 +394,17 @@ class ExamManagement extends Component
                     'school_room_test_date',
                     'school_room_test_time_start',
                     'school_room_test_time_end',
-                    'school_room_description'
+                    'school_room_description',
+                    'user_id',
+                    'user_name',
+                    'user_address',
+                    'user_firstname',
+                    'user_middlename',
+                    'user_lastname'
                     )
                 ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
@@ -346,6 +415,8 @@ class ExamManagement extends Component
                 ->toArray();
             }
 
+
+            // dd($this->assigned_proctor );
             $this->unassigned_proctor_selected = [];
             $this->assigned_proctor_selected = [];
 
@@ -356,9 +427,36 @@ class ExamManagement extends Component
             foreach ($this->assigned_proctor  as $key => $value) {
                 array_push($this->assigned_proctor_selected,[$value->school_room_id=>false]);
             }
-            // dd($this->unassigned_proctor);
+            
+            $this->proctors_list = DB::table('access_roles as ar')
+                ->select(
+                    // '*',
+                    'user_id',
+                    'user_name',
+                    'user_address',
+                    'user_firstname',
+                    'user_middlename',
+                    'user_lastname',
+                    'access_role_id',
+                    'access_role_create',
+                    'access_role_read',
+                    'access_role_update',
+                    'access_role_delete'
+                )
+                ->join('modules as m','m.module_id','ar.access_role_module_id')
+                ->join('users as u','u.user_id','ar.access_role_user_id')
+                ->join('user_status as us','us.user_status_id','u.user_status_id')
+                ->where('m.module_nav_name','=','Exam Administrator')
+                ->where('us.user_status_details','=','active')
+                ->get()
+                ->toArray();
+        // dd($this->proctors_list);
             
         }
+    }
+
+    public function active_page($active){
+        $this->active = $active;
     }
     public function render(){
         return view('livewire.admin.exam-management',[
@@ -505,6 +603,7 @@ class ExamManagement extends Component
             ->get()
             ->toArray();
         }
+        
 
         $this->unassigned_proctor_selected = [];
         $this->assigned_proctor_selected = [];
@@ -519,6 +618,8 @@ class ExamManagement extends Component
         foreach ($this->assigned_proctor  as $key => $value) {
             array_push($this->assigned_proctor_selected,[$value->school_room_id=>false]);
         }
+
+        
 
 
     }
@@ -552,6 +653,8 @@ class ExamManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
              ]);
+        }else{
+            $this->dispatchBrowserEvent('openModal','assignProctorModal');
         }
     }
 
@@ -560,6 +663,7 @@ class ExamManagement extends Component
         foreach ($this->unassigned_proctor  as $key => $value) {
             if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
                 $this->unassigned_valid = true;
+                break;
             }
         }
         // accessrole read
@@ -570,12 +674,22 @@ class ExamManagement extends Component
             'D' => true
         ];
 
-        if($this->remove_valid &&  $this->access_role['U'] ){
+        if($this->unassigned_valid &&  $this->access_role['U'] ){
             foreach ($this->unassigned_proctor  as $key => $value) {
                 if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
-                    $value;
+                    DB::table('school_rooms as sr')
+                        ->where('school_room_id','=',$value->school_room_id)
+                        ->update(['school_room_proctor_user_id'=>$this->unassigned_proctor_user_id]);
                 }
             }
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Proctor is assgned to a room!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
         }else{
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',

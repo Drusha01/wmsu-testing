@@ -154,7 +154,7 @@ Route::middleware([Authenticated::class])->group(function () {
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', function(){return redirect('/admin/dashboard');})->name('admin-home');
+        Route::get('/', function(){return redirect('/admin/admin-dashboard');})->name('admin-home');
         Route::get('admin-dashboard', Dashboard::class)->name('admin-dashboard');
         Route::get('exam-management', ExamManagement::class)->name('exam-management');
         Route::get('admin-management', AdminManagement::class)->name('admin-management');

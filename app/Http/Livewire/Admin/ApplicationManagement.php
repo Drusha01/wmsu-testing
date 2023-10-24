@@ -300,7 +300,7 @@ class ApplicationManagement extends Component
                 'Date applied'	=> true,
                 'Status'=> true,	
                 'Reason'=> true,								
-                'Actions'	=> true					
+                'Actions'	=> false					
             ];
 
             $this->exam_types = DB::table('test_types')
