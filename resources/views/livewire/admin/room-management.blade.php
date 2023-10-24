@@ -64,7 +64,6 @@
                             </div>
                         </div> 
                     
-
                         <div class="modal fade" id="unassigned-room-filter" tabindex="-1" role="dialog" aria-labelledby="unassigned-room-filterLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -85,7 +84,8 @@
                                     </div>
                                     <hr>
                                     <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button type="button" class="btn btn-secondary btn-block" id="btn_close1">Close</button>
+
                                         <button wire:click="unassigned_applicant_filterView()" data-dismiss="modal" 
                                             class="btn btn-primary">
                                             Save

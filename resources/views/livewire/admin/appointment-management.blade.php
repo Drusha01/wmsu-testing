@@ -1,4 +1,4 @@
-      <!-- Main Content -->
+   <div>   <!-- Main Content -->
       <main id="main" class="main">
             <div class="pagetitle">
                 <h1>Manage Appointment</h1>
