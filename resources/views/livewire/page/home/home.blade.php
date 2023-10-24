@@ -12,10 +12,7 @@
                                 <div class="carousel-content-container">
                                     <h2>Welcome to Western Mindanao State University</h2>
                                     <p>Testing And Evaluation Center</p>
-                                    <div class="buttons">
-                                        <a href="#" class="button1">Our Services</a>
-                                        <a href="#" class="button1">Contact Us</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -28,10 +25,7 @@
                                 <div class="carousel-content-container">
                                     <h2>Application for CET is now Open</h2>
                                     <p>Register and Submit your Application by clicking the apply now</p>
-                                    <div class="buttons">
-                                        <a href="#" class="button1">More details</a>
-                                        <a href="#" class="button1">Register</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -45,10 +39,7 @@
                                     <h2>Important Announcement</h2>
                                     <p>CET Application is Now Open</p>
                                     <p>December 23, 2023 to January 07, 2023</p>
-                                    <div class="buttons">
-                                        <a href="#" class="button1">Apply</a>
-                                        <a href="#" class="button1">Contact Us</a>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
