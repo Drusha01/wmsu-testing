@@ -1,7 +1,7 @@
 <div class="container border border-dark  mt-5 mb-5">
   <div class="row ">
     <div class="col-sm border border-danger my-4 mx-2 d-flex align-items-center justify-content-center mx-5" style="height:300px;">
-        <span class="text-center text-danger"> <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo"></span>
+        <span class="text-center text-danger"> <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo"></span>
     </div>
 
     <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
@@ -10,7 +10,7 @@
       <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year 2024-2025</p>
     </div>
     <div class="col-sm text-center border border-danger my-4 mx-2 d-flex align-items-center justify-content-center mx-5">
-        <span class="text-center text-danger"> <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo"></span>
+        <span class="text-center text-danger"> 2x2 Picture</span>
     </div>
   </div> 
                                         <legend class="text-danger font-weight-bold">TO THE APPLICANTS:Forms with incomplete entries/requirements will not be processed</legend>
