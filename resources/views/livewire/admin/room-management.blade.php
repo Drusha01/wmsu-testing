@@ -1,5 +1,4 @@
 <div>
-    <x-loading-indicator/>
     <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
@@ -65,7 +64,6 @@
                             </div>
                         </div> 
                     
-
                         <div class="modal fade" id="unassigned-room-filter" tabindex="-1" role="dialog" aria-labelledby="unassigned-room-filterLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -86,8 +84,9 @@
                                     </div>
                                     <hr>
                                     <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
-                                        <button wire:click="unassigned_applicant_filterView()" data-bs-dismiss="modal" 
+                                    <button type="button" class="btn btn-secondary btn-block" id="btn_close1">Close</button>
+
+                                        <button wire:click="unassigned_applicant_filterView()" data-dismiss="modal" 
                                             class="btn btn-primary">
                                             Save
                                         </button>
@@ -220,7 +219,7 @@
                         </div>
                         <hr>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal" >Close</button>
+                            <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button>
                             <button type="button" class="btn btn-primary" wire:click="assigning_room()">Assign</button>
                         </div>
                     </div>
@@ -285,8 +284,8 @@
                                     </div>
                                     <hr>
                                     <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal"  id='btn_close1'>Close</button>
-                                        <button wire:click="unassigned_applicant_filterView()" data-bs-dismiss="modal" 
+                                        <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
+                                        <button wire:click="unassigned_applicant_filterView()" data-dismiss="modal" 
                                             class="btn btn-primary">
                                             Save
                                         </button>
@@ -427,7 +426,7 @@
                         </div>
                         <hr>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="assignButton" wire:click="reassigning_room()">Assign</button>
                         </div>
                     </div>
@@ -440,7 +439,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="removeassignedRoomLabel">Remove assigned room</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -478,7 +477,7 @@
                         </div>
                         <hr>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="reassignConfirmButton" wire:click="remove_room()">Remove</button>
                         </div>
                     </div>
@@ -493,7 +492,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewNamesModalLabel">Assigned Applicants</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -505,7 +504,7 @@
                             </ul>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -519,7 +518,7 @@
                 <!-- Button to trigger the Add Room modal -->
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn" style="background-color: #990000; color: white;" wire:click="add_room_modal()">Add Room</button>
+                    <button type="button" class="btn" style="background-color: #990000; color: white;" data-toggle="modal" data-target="#addRoomModal">Add Room</button>
                 </div>
 
 
@@ -567,13 +566,13 @@
                             @if($school_room_filter['Actions'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary"  wire:click="view_room_details({{$value->school_room_id }})">View</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success"  wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
-                                    <button class="btn btn-danger" wire:click="delete_room_modal({{ $value->school_room_id }})">Delete</button>
+                                    <button class="btn btn-danger" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
                                     @endif
                                 </td>
                             @endif
@@ -594,7 +593,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -602,8 +601,8 @@
                             Are you sure you want to delete this room?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-danger" wire:click="deleteRoom()">Delete</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" wire:click="confirmDeleteRoom">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -616,7 +615,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addRoomModalLabel">Add Room</h5>
-                            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
                         </div>
                         <form wire:submit.prevent="add_room()">
                             <div class="modal-body">
@@ -662,7 +661,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add Room</button>
                             </div>
                         </form>
@@ -677,10 +676,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="ViewRoomModalLabel">View Room Details</h5>
-                            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form for editing room details -->
+                            <hr>
                             <form >
                             <div class="modal-body">
                                 @forelse ($view_room as $item => $value)
@@ -726,7 +726,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                             @empty 
                                 <div>NO DATA</div>
@@ -744,11 +744,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="EditRoomModalLabel">Edit Room Details</h5>
-                            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
+                            <h5 class="modal-title" id="EditRoomModalLabel">View Room Details</h5>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form for editing room details -->
+                            <hr>
                             @forelse ($edit_room as $item => $value)
                             <form wire:submit.prevent="edit_room({{$value->school_room_id}})">
                             <div class="modal-body">
@@ -795,7 +796,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success" >Save</button>
                             </div>
                             @empty 
