@@ -14,13 +14,13 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                <a class="nav-link @if($active == 'admin_management') show active @endif " wire:key="admin_management"  wire:click="active_page('admin_management')" data-toggle="tab" href="#admin-management-tab">Admin Management</a>
+                <a class="nav-link @if($active == 'admin_management') show active @endif " wire:key="admin_management"  wire:click="active_page('admin_management')" data-bs-toggle="tab" href="#admin-management-tab">Admin Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'user_management') show active @endif " wire:key="user_management"  wire:click="active_page('user_management')" data-toggle="tab" href="#user-management-tab">User Management</a>
+                <a class="nav-link @if($active == 'user_management') show active @endif " wire:key="user_management"  wire:click="active_page('user_management')" data-bs-toggle="tab" href="#user-management-tab">User Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'role_management') show active @endif " wire:key="role_management"  wire:click="active_page('role_management')" data-toggle="tab" href="#role-management-tab">Role Management</a>
+                <a class="nav-link @if($active == 'role_management') show active @endif " wire:key="role_management"  wire:click="active_page('role_management')" data-bs-toggle="tab" href="#role-management-tab">Role Management</a>
             </li>
         </ul>
          <!-- Tab Content -->
@@ -33,7 +33,7 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#admin-data-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#admin-data-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -64,8 +64,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="admin_data_filterView()"  data-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="admin_data_filterView()"  data-bs-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -74,13 +74,13 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-toggle="modal" data-target="#adminAddModal" wire:click="openModal()" >Add Admin</button>
+                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#adminAddModal" wire:click="openModal()" >Add Admin</button>
                     </div>
                 </div>
                 
-                
+    
                 <!-- Admin Table -->
-                <div class="table-responsive">
+                <div class="application-table">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -123,10 +123,10 @@
                                 @if($admin_data_filter['Action'])
                                     <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
+                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
@@ -146,15 +146,16 @@
                 <!-- End Admin Table -->
             </div>
         </div>
+        
         <!-- Add Admin Modal -->
         <div class="modal fade @if($modal_open) show @endif" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="adminAddModalLabel" @if($modal_open) aria-modal="true" style="display: block;" @endif>
             <div class="modal-dialog modal-xl modal-dialog-centered " >
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="adminAdminModalLabel">Add Admin</h5>
-                        <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <!-- Add Admin form -->
@@ -205,7 +206,7 @@
                             @if($sign_up_button)<div style="color:red;">{{$sign_up_button}}</div> @endif
                             <br>
 
-                            <table>
+                            <table class="application-table">
                                     <tr>
                                         <th class="text-align center">Module</th>
                                         <th class="text-align center">Create</th>
@@ -232,7 +233,7 @@
                         <!-- End Add Admin  -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" wire:click=add_admin()>Add Admin</button>
                     </div>
                 </div>
@@ -419,7 +420,7 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#user-data-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#user-data-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -450,8 +451,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block" data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="user_data_filterView()"  data-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block" data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="user_data_filterView()"  data-bs-dismiss="modal" 
                                         class="btn btn-success">
                                         Save
                                     </button>
@@ -505,10 +506,10 @@
                                 @if($user_data_filter['Action'])
                                     <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
                                     @endif
                                     @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
+                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
                                     <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>

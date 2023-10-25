@@ -15,10 +15,10 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#result-management-tab">Result Management</a>
+                <a class="nav-link active" data-bs-toggle="tab" href="#result-management-tab">Result Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#individualresult-management-tab">Individual result Management</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#individualresult-management-tab">Individual result Management</a>
             </li>
         </ul>
         <!-- Tab Content -->
@@ -26,7 +26,7 @@
             <!-- Result Management Tab -->
             <div class="tab-pane fade show active" id="result-management-tab">
                 <div class="container-fluid">
-                    <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#uploadResultModal">
+                    <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#uploadResultModal">
                         Upload Result
                     </button>
                     <!-- Modal for Upload Result -->
@@ -35,7 +35,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="uploadResultModalLabel">Upload Result</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -64,7 +64,7 @@
                                     <!-- End Upload Result Form -->
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-success" id="submitResult">Upload</button>
                                 </div>
                             </div>
@@ -107,39 +107,14 @@
 <!-- Individual Result Management Tab -->
 <div class="tab-pane fade" id="individualresult-management-tab">
     <div class="container">
-        <!-- Individual Result Search Form -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <form id="search-individual-result-form">
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="applicant-no">Applicant No.</label>
-                            <input type="text" class="form-control" id="applicant-no" placeholder="Applicant No.">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="applicant-name">Applicant Name</label>
-                            <input type="text" class="form-control" id="applicant-name" placeholder="Applicant Name">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="senior-high-school">Senior High School</label>
-                            <input type="text" class="form-control" id="senior-high-school" placeholder="Senior High School">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="school-year">School Year Took</label>
-                            <input type="text" class="form-control" id="school-year" placeholder="School Year Took">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Search Result</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-             <!-- List of Pending Requests -->
-             <div class="row">
+        <!-- List of Pending Requests -->
+        <div class="row">
             <div class="col-md-12">
                 <h3>Pending Requests</h3>
                 <div id="pending-requests">
+                <div class="form-group">
+                        <button type="submit" class="btn btn-primary mb-2 ">Search Result</button>
+                    </div>
                     <!-- Pending requests list will be displayed here -->
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -163,48 +138,68 @@
                     </table>
                 </div>
             </div>
-                <!-- Display Individual Result -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <h3>Student Result</h3>
-                <div id="individual-result">
-                    <!-- Individual result content will be displayed here -->
-                    <table class="table table-bordered table-striped result-table">
-                        <thead>
-                            <tr>
-                                <th>Exam Name</th>
-                                <th>CET PARTS</th>
-                                <th>English Proficiency</th>
-                                <th>Reading Comprehension</th>
-                                <th>Science Process Skills</th>
-                                <th>Quantitative Skills</th>
-                                <th>Abstract Thinking Skills</th>
-                                <th>OVERALL ABILITY PERCENTILE RANK (OAPR)</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="individual-result-body">
-                            <tr>
-                                <td>CET</td>
-                                <td>85</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                                <td>87</td>
-                                <td>85</td>
-                                <td>90%</td>
-                                <td>
-                                    <button class="btn btn-primary">Send Result</button>
-                                </td>
-                            </tr>
-                            <!--  can add more rows here -->
-                        </tbody>
-                    </table>
+        </div>
+
+    <div class="container">
+    <!-- Display Individual Result -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>Student Result</h3>
+            <div id="individual-result">
+                <!-- Student details -->
+                <div class="mb-3">
+                    <strong>Student Name:</strong> John Doe
                 </div>
+                <div class="mb-3">
+                    <strong>School Year Took:</strong> 2023
+                </div>
+                <div class="mb-3">
+                    <strong>Date Took:</strong> January 15, 2023
+                </div>
+                <div class="mb-3">
+                    <strong>Type of Exam:</strong> CET
+                </div>
+
+                <!-- Individual result content will be displayed here -->
+                <table class="table table-bordered table-striped result-table">
+                    <thead>
+                        <tr>
+                            <th>Exam Name</th>
+                            <th>CET PARTS</th>
+                            <th>English Proficiency</th>
+                            <th>Reading Comprehension</th>
+                            <th>Science Process Skills</th>
+                            <th>Quantitative Skills</th>
+                            <th>Abstract Thinking Skills</th>
+                            <th>OVERALL ABILITY PERCENTILE RANK (OAPR)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="individual-result-body">
+                        <tr>
+                            <td>CET</td>
+                            <td>85</td>
+                            <td>90</td>
+                            <td>88</td>
+                            <td>92</td>
+                            <td>87</td>
+                            <td>85</td>
+                            <td>90%</td>
+                            <td>
+                                <button class="btn btn-primary">Send Result</button>
+                            </td>
+                        </tr>
+                        <!-- Can add more rows here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
             <!-- End Inserted Section -->
         </div>
     </main><!-- End #main -->

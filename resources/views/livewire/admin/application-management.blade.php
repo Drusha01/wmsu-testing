@@ -17,13 +17,13 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link  @if($active == 'pending') show active @endif " data-toggle="tab"  wire:click="active_page('pending')">Pending Applicant</a>
+                <a class="nav-link  @if($active == 'pending') show active @endif " data-bs-toggle="tab"  wire:click="active_page('pending')">Pending Applicant</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'accepted') show active @endif" data-toggle="tab"   wire:click="active_page('accepted')">Accepted Applicant</a>
+                <a class="nav-link @if($active == 'accepted') show active @endif" data-bs-toggle="tab"   wire:click="active_page('accepted')">Accepted Applicant</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'declined') show active  @endif" data-toggle="tab"  wire:click="active_page('declined')">Declined Applicant</a>
+                <a class="nav-link @if($active == 'declined') show active  @endif" data-bs-toggle="tab"  wire:click="active_page('declined')">Declined Applicant</a>
             </li>
         </ul>
 
@@ -38,8 +38,6 @@
                         @foreach ($exam_types as $item => $value)
                             <option value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
                                                       
-     
-
                         @endforeach
                         
                         <!-- Add more options as needed -->
@@ -56,7 +54,7 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#application-management-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn" type="button" data-bs-toggle="modal" data-bs-target="#application-management-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -87,8 +85,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"  data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="pending_applicant_filterView()" data-dismiss="modal" 
+                                    <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button wire:click="pending_applicant_filterView()" data-bs-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -100,9 +98,10 @@
                         <!-- <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button> -->
                         <button class="btn btn-success mx-1" wire:click="accepted_pending()" >Accept </button>
                         <!-- <button class="btn btn-danger mx-1" wire:click="declined_check()" data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button> -->
-                        <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declinePendingapplicantModal" >Decline </button>
+                        <button class="btn btn-danger mx-1"  data-bs-toggle="modal" data-bs-target="#declinePendingapplicantModal" >Decline </button>
                     </div>
                 </div>
+
                 <!-- Application Review Table -->
                 <table class="application-table">
                     <thead>
@@ -490,7 +489,7 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#accepted-application-management-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#accepted-application-management-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -500,7 +499,6 @@
                         </div>
                     </div> 
                         
-
                     <div class="modal fade" id="accepted-application-management-filter" tabindex="-1" role="dialog" aria-labelledby="accepted-application-management-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -521,8 +519,8 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                    <button wire:click="accepted_applicant_filterView()" data-dismiss="modal" 
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                    <button wire:click="accepted_applicant_filterView()" data-bs-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -532,9 +530,9 @@
                     </div>
                     <div class="ml-10">
                         <!-- <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button> -->
-                        <button class="btn btn-warning mx-1"  data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button>
+                        <button class="btn btn-warning mx-1"  data-bs-toggle="modal" data-bs-target="#returnAcceptedapplicantModal">Return </button>
                         <!-- <button class="btn btn-danger mx-1" wire:click="declined_check_accepted()" data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button> -->
-                        <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button>
+                        <button class="btn btn-danger mx-1"  data-bs-toggle="modal" data-bs-target="#declineAcceptedapplicantModal" >Decline </button>
                     </div> 
                 </div>
                                     
@@ -839,7 +837,7 @@
                                         </div>
                                     @endif
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                             Close
                                         </button>                                        
                                     </div>
@@ -866,7 +864,7 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" > Return </button>
                                 </div>
                             </form>
@@ -890,7 +888,7 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" > Decline </button>
                                 </div>
                             </form>
@@ -921,7 +919,7 @@
                         <div class="col-md-3 sort-container">
                             <div class="d-flex">
                                 @if(1)
-                                <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#declined-application-management-filter">
+                                <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#declined-application-management-filter">
                                     <i class="bi bi-funnel-fill me-1"></i>
                                     <div><span class='btn-text'>Columns</span></div>
                                 </button>
@@ -952,8 +950,8 @@
                                     </div>
                                     <hr>
                                     <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                        <button wire:click="declined_applicant_filterView()" data-dismiss="modal" 
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                        <button wire:click="declined_applicant_filterView()" data-bs-dismiss="modal" 
                                             class="btn btn-primary">
                                             Save
                                         </button>
@@ -962,7 +960,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-danger mx-1"  data-toggle="modal" data-target="#DeleteDeclinedapplicantModal">Delete </button>
+                            <button class="btn btn-danger mx-1"  data-bs-toggle="modal" data-bs-target="#DeleteDeclinedapplicantModal">Delete </button>
                             <!-- <button class="btn btn-danger mx-1" wire:click="delete_check()" data-toggle="modal" data-target="#DeleteDeclinedapplicantModal">Delete </button> -->
                         </div>
                     </div>
@@ -1048,17 +1046,17 @@
                                 </div>
                                 <hr>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" > Delete </button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        
+
+    </div>
     </main>
     <!-- End #main -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

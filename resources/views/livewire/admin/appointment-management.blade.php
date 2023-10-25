@@ -13,16 +13,16 @@
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                    <a class="nav-link show active" data-toggle="tab" href="#appointment-pending-tab">Appointment Pending</a>
+                    <a class="nav-link show active" data-bs-toggle="tab" href="#appointment-pending-tab">Appointment Pending</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#appointment-accepted-tab">Appointment Accepted</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-accepted-tab">Appointment Accepted</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#scheduled-appointments-tab">Schedule Appointment</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#scheduled-appointments-tab">Schedule Appointment</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#appointment-completed-tab">Appointment Completed</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-completed-tab">Appointment Completed</a>
                 </li>
             </ul>
 
@@ -127,7 +127,7 @@
                             <option value="Engineering Aptitude test">Eat</option>
                             <!-- Add more options as needed -->
                         </select>
-                        <button class="btn btn-warning action-btn" data-toggle="modal" data-target="#requestRescheduleModal">Request Reschedule</button>
+                        <button class="btn btn-warning action-btn" data-bs-toggle="modal" data-bs-target="#requestRescheduleModal">Request Reschedule</button>
                     </div>
                     <table class="appointment-table">
                         <thead>
@@ -150,8 +150,7 @@
                                 <td>Scheduled</td>
                                 <td>Accepted</td>
                                 <td>
-                                    <button class="btn btn-primary action-btn" data-toggle="modal"
-                                        data-target="#markDoneModal">Mark Done</button>
+                                    <button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#markDoneModal">Mark Done</button>
                                 </td>
                             </tr>
                             <!-- Add more scheduled appointments as needed -->
@@ -164,7 +163,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="requestRescheduleModalLabel">Request Reschedule</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -174,8 +173,8 @@
                                 <input type="datetime-local" id="rescheduleDateTime" class="form-control" required>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#rescheduleRequestSubmittedModal">Submit Request</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-toggle="modal" data-target="#rescheduleRequestSubmittedModal">Submit Request</button>
                             </div>
                         </div>
                     </div>
@@ -231,7 +230,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="markDoneModalLabel">Mark Appointment as Done</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -239,9 +238,8 @@
                             Are you sure you want to mark this appointment as done?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                data-toggle="modal" data-target="#moveToCompletedModal">Yes, Mark Done</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#moveToCompletedModal">Yes, Mark Done</button>
                         </div>
                     </div>
                 </div>
@@ -254,7 +252,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="moveToCompletedModalLabel">Appointment Marked as Done</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -262,7 +260,7 @@
                             The appointment has been marked as done and moved to the "Appointment Completed" tab.
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>

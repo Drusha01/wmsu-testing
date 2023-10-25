@@ -15,13 +15,13 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link @if($active == 'unassigned_proctors') show active @endif " data-toggle="tab"  wire:click="active_page('unassigned_proctors')">Unassigned Proctors</a>
+                <a class="nav-link @if($active == 'unassigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('unassigned_proctors')">Unassigned Proctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'assigned_proctors') show active @endif " data-toggle="tab"  wire:click="active_page('assigned_proctors')">Assigned Proctors</a>
+                <a class="nav-link @if($active == 'assigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('assigned_proctors')">Assigned Proctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'proctor_list') show active @endif " data-toggle="tab"  wire:click="active_page('proctor_list')">Proctors list</a>
+                <a class="nav-link @if($active == 'proctor_list') show active @endif " data-bs-toggle="tab"  wire:click="active_page('proctor_list')">Proctors list</a>
             </li>
         </ul>
 
@@ -56,7 +56,7 @@
                 <div class="col-md-3 sort-container">
                     <div class="d-flex">
                         @if(1)
-                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#unassigned-room-filter">
+                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#unassigned-room-filter">
                             <i class="bi bi-funnel-fill me-1"></i>
                             <div><span class='btn-text'>Columns</span></div>
                         </button>
@@ -87,8 +87,8 @@
                             </div>
                             <hr>
                             <div class="modal-footer">
-                                <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                <button wire:click="unassigned_proctor_filterView()" data-dismiss="modal" 
+                                <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                <button wire:click="unassigned_proctor_filterView()" data-bs-dismiss="modal" 
                                     class="btn btn-primary">
                                     Save
                                 </button>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                    <button class="btn btn-success mx-1"  type="button" wire:click="assigning_room_check()">Assign Proctor </button>
+                    <button class="btn btn-success mx-1" type="button" wire:click="assigning_room_check()">Assign Proctor </button>
                 </div>
             </div>
             <table class="application-table" id="exam-management-table">
@@ -183,7 +183,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="assignProctorModalLabel">Assign room proctor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -226,7 +226,7 @@
                                 </select>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success" wire:click="assign_room_proctor()">Assign Proctor</button>
                                 
                             </div>
@@ -263,7 +263,7 @@
                 <div class="col-md-3 sort-container">
                     <div class="d-flex">
                         @if(1)
-                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#assigned-room-filter">
+                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#assigned-room-filter">
                             <i class="bi bi-funnel-fill me-1"></i>
                             <div><span class='btn-text'>Columns</span></div>
                         </button>
@@ -294,8 +294,8 @@
                             </div>
                             <hr>
                             <div class="modal-footer">
-                                <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                <button wire:click="assigned_proctor_filterView()" data-dismiss="modal" 
+                                <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                <button wire:click="assigned_proctor_filterView()" data-bs-dismiss="modal" 
                                     class="btn btn-primary">
                                     Save
                                 </button>
@@ -304,8 +304,8 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                <button class="btn btn-warning mx-1"  type="button" data-toggle="modal" data-target="#assignProctorModal" wire:click="reassigning_room_check()">Reassign Proctor </button>
-                    <button class="btn btn-danger mx-1"  type="button" data-toggle="modal" data-target="#assignProctorModal" wire:click="remove_room_check()">Remove Proctor </button>
+                <button class="btn btn-warning mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="reassigning_room_check()">Reassign Proctor </button>
+                    <button class="btn btn-danger mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="remove_room_check()">Remove Proctor </button>
                 </div>
             </div>
             <!-- List of Assigned Proctors Table -->
@@ -394,7 +394,7 @@
                 <div class="col-md-3 sort-container">
                     <div class="d-flex">
                         @if(1)
-                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-toggle="modal" data-target="#proctor-list-filter">
+                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#proctor-list-filter">
                             <i class="bi bi-funnel-fill me-1"></i>
                             <div><span class='btn-text'>Columns</span></div>
                         </button>
@@ -425,8 +425,8 @@
                             </div>
                             <hr>
                             <div class="modal-footer">
-                                <button type="button"  class="btn btn-secondary btn-block"data-dismiss="modal"  id='btn_close1'>Close</button>
-                                <button wire:click="assigned_proctor_filterView()" data-dismiss="modal" 
+                                <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal"  id='btn_close1'>Close</button>
+                                <button wire:click="assigned_proctor_filterView()" data-bs-dismiss="modal" 
                                     class="btn btn-primary">
                                     Save
                                 </button>
@@ -435,7 +435,7 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                    <button class="btn btn-success mx-1"  type="button" data-toggle="modal" data-target="#assignProctorModal" wire:click="assigning_room_check()">Assign Proctor </button>
+                    <button class="btn btn-success mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="assigning_room_check()">Assign Proctor </button>
                 </div>
             </div>
             
@@ -485,6 +485,8 @@
                 </tbody>
             </table>
         </div>
+
+    </div>
     </main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

@@ -14,7 +14,7 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link show active" data-toggle="tab" href="#announcement-tab">Announcement</a>
+                <a class="nav-link show active" data-bs-toggle="tab" href="#announcement-tab">Announcement</a>
             </li>
         </ul>
 
@@ -30,7 +30,7 @@
                         <option value="Inactive">Inactive</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <button class="btn btn-primary accept-btn" data-toggle="modal" data-target="#AddAnnouncementModal">Add Announcement</button>
+                    <button class="btn btn-primary accept-btn" data-bs-toggle="modal" data-bs-target="#AddAnnouncementModal">Add Announcement</button>
 
                 </div>
                 <table class="appointment-table">
@@ -64,7 +64,7 @@
         <!-- End Tab Content -->
 
         <!-- Add Announcement Modal -->
-        <div class="modal fade" id="AddAnnouncementModal" data-toggle="modal"  role="dialog" aria-labelledby="AddAnnouncementModalLabel" aria-hidden="true">
+        <div class="modal fade" id="AddAnnouncementModal" data-bs-toggle="modal"  role="dialog" aria-labelledby="AddAnnouncementModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document" >
                 <div class="modal-content">
                     <div class="modal-body">
@@ -91,7 +91,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="saveAnnouncementButton">Save Announcement</button>
                     </div>
                 </div>
