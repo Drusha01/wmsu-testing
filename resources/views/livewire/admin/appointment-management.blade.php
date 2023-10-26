@@ -13,22 +13,19 @@
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                    <a class="nav-link show active" data-bs-toggle="tab" href="#appointment-pending-tab">Appointment Pending</a>
+                    <a class="nav-link show active" data-bs-toggle="tab" href="#appointment-pending-tab">Unassign Appointments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-accepted-tab">Appointment Accepted</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-accepted-tab">Assigned Appointments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#scheduled-appointments-tab">Schedule Appointment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-completed-tab">Appointment Completed</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#appointment-completed-tab">Completed Appointments</a>
                 </li>
             </ul>
 
             <!-- Tab Content -->
             <div class="tab-content">
-                <!-- Appointment Pending Tab -->
+                <!-- Unassigned Appoinment Tab -->
                 <div class="tab-pane fade show active" id="appointment-pending-tab">
                     <div class="examfilter-container">
                         <label class="filter-label" for="exam-filter-pending">Filter by Date:</label>
@@ -72,7 +69,7 @@
                     </table>
                 </div>
 
-                <!-- Appointment Accepted Tab -->
+                <!-- Assigned Appointment  Tab -->
                 <div class="tab-pane fade" id="appointment-accepted-tab">
                     <div class="examfilter-container">
                         <label class="filter-label" for="exam-filter-accepted">Filter by Type of Exam:</label>
@@ -117,16 +114,16 @@
                 </div>
 
                 <!-- Scheduled Appointments Tab -->
-                <div class="tab-pane fade" id="scheduled-appointments-tab">
+                <!-- <div class="tab-pane fade" id="scheduled-appointments-tab">
                     <div class="examfilter-container">
                         <label class="filter-label" for="exam-filter-scheduled">Filter by Type of Exam:</label>
                         <select class="filter-select" id="exam-filter-scheduled">
                             <option value="">All</option>
                             <option value="College Entrance Exam">Cet</option>
                             <option value="Nursing aptitude test">Nat</option>
-                            <option value="Engineering Aptitude test">Eat</option>
+                            <option value="Engineering Aptitude test">Eat</option> -->
                             <!-- Add more options as needed -->
-                        </select>
+                        <!-- </select>
                         <button class="btn btn-warning action-btn" data-bs-toggle="modal" data-bs-target="#requestRescheduleModal">Request Reschedule</button>
                     </div>
                     <table class="appointment-table">
@@ -153,12 +150,12 @@
                                     <button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#markDoneModal">Mark Done</button>
                                 </td>
                             </tr>
-                            <!-- Add more scheduled appointments as needed -->
-                        </tbody>
+                             Add more scheduled appointments as needed -->
+                        <!-- </tbody>
                     </table>
-                </div>
+                </div>  -->
                 <!-- Request Reschedule Modal -->
-                <div class="modal fade" id="requestRescheduleModal" tabindex="-1" role="dialog" aria-labelledby="requestRescheduleModalLabel" aria-hidden="true">
+                <!-- <div class="modal fade" id="requestRescheduleModal" tabindex="-1" role="dialog" aria-labelledby="requestRescheduleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -178,7 +175,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
 
                 <!-- Appointment Completed Tab -->
                 <div class="tab-pane fade" id="appointment-completed-tab">
@@ -224,7 +222,7 @@
             </div>
 
             <!-- Mark Done Modal -->
-            <div class="modal fade" id="markDoneModal" tabindex="-1" role="dialog" aria-labelledby="markDoneModalLabel"
+            <!-- <div class="modal fade" id="markDoneModal" tabindex="-1" role="dialog" aria-labelledby="markDoneModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -243,10 +241,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Move to Completed Modal -->
-            <div class="modal fade" id="moveToCompletedModal" tabindex="-1" role="dialog"
+            <!-- <div class="modal fade" id="moveToCompletedModal" tabindex="-1" role="dialog"
                 aria-labelledby="moveToCompletedModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -264,7 +262,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
         </main>
 
         <!-- Back to Top Button -->

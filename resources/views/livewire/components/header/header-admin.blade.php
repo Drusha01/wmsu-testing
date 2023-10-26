@@ -73,7 +73,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ Route('profile')}}">Profile</a></li>
                         <li><a class="dropdown-item" href="{{ Route('notification') }}">Notifications</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="{{ Route('setting') }}">Settings</a></li>
                         <li><a class="dropdown-item" href="{{ Route('logout') }}">Logout</a></li>
                     </ul>
                 </li>

@@ -56,8 +56,8 @@
                 </table>
                 <!-- Pagination for Application Status Table -->
                 <div class="pagination">
-                    <button class="btn btn-primary">Previous</button>
-                    <button class="btn btn-primary">Next</button>
+                    <button class="btn btn-secondary">Previous</button>
+                    <button class="btn btn-danger">Next</button>
                 </div>
                 <br>
                 <hr>
@@ -88,7 +88,7 @@
                             NO RECORDS 
                             <br>
                             <a  href="{{ route('student.application') }} "> 
-                                <button class="btn btn-primary"> Apply</button>
+                                <button class="btn btn-warning"> Apply</button>
                             </a>
                         </td>
                     @endforelse
@@ -98,8 +98,8 @@
                 </table>
                 <!-- Pagination for Application Status Table -->
                 <div class="pagination">
-                    <button class="btn btn-primary">Previous</button>
-                    <button class="btn btn-primary">Next</button>
+                    <button class="btn btn-secondary">Previous</button>
+                    <button class="btn btn-danger">Next</button>
                 </div>
             </div>
 

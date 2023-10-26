@@ -7,7 +7,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Administrator</li>
+                    <li class="breadcrumb-item active">Exam Administrator</li>
                 </ol>
             </nav>
         </div>
@@ -97,31 +97,62 @@
         </div>
 
 
-        <!-- Instructions Modal -->
-        <div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add your proctor instructions here -->
-                        <p>Welcome, Proctor! Here are your instructions:</p>
-                        <ol>
-                            <li>Scan the QR code to check the applicants' information.</li>
-                            <li>Ensure that all registered applicants are present.</li>
-                            <li>Report any issues or discrepancies to the exam administrators.</li>
-                        </ol>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                    </div>
+<!-- Instructions Modal -->
+<div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
+                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </div>
             </div>
+            <div class="modal-body">
+                <!-- Add your proctor instructions here -->
+                <p>Welcome, Proctor (NAME). Here are your instructions:</p>
+                    <!-- Download Button for Applicant List -->
+                    <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
+                <ol>
+                    <li>Scan the QR code to check the applicants' information.</li>
+                    <li>Ensure that all registered applicants are present.</li>
+                    <li>Report any issues or discrepancies to the exam administrators.</li>
+                </ol>
+
+                <!-- Applicant List and Download Button -->
+                <h1></h1>
+                <p>Applicant List:</p>
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Applicant Name</th>
+                            <th>CET</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Code 1</td>
+                            <td>hanz dumapit</td>
+                            <td>CET</td>
+                        </tr>
+                        <tr>
+                            <td>Code 2</td>
+                            <td>dap dap</td>
+                            <td>CET</td>
+                        </tr>
+                        <!-- Add more rows for additional applicants -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
+    </div>
+</div>
+
+
 
     <div class="tab-pane" id="proctor-list">
         <div class="table-responsive">
