@@ -57,56 +57,57 @@
                                 <tbody>
                                     
                                     <tr>
-                                    <td scope="row">1</td>
-                                    <td>
-                                        <div >
-                                            Welcome to Western Mindanao State University
-                                        </div>
-                                        <br>
-                                        <img src="{{ asset('images/slider/campus.jpg') }}" alt="" style="width:300px; height: 200px; ">
-                                    </td>
-                                    
-                                        <td class="align-middle">
-                                            <p>Testing And Evaluation Center</p>
+                                            <td scope="row">1</td>
+                                            <td>
+                                                <div >
+                                                    Welcome to Western Mindanao State University
+                                                </div>
+                                                <br>
+                                                <img src="{{ asset('images/slider/campus.jpg') }}" alt="" style="width:300px; height: 200px; ">
+                                            </td>
                                             
-                                        </td>
-                                        <td class="align-middle"> 
-                                        <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-outline-dark"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
-                                            <button type="button" class="btn btn-outline-dark"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle"> 
-                                        <button class="button btn btn-primary" > View </button>
-                                        <button class="button btn btn-success" > Edit </button>
-                                        <button class="button btn btn-danger" > Delete </button>
-                                    </td>
+                                                <td class="align-middle">
+                                                    <p>Testing And Evaluation Center</p>
+                                                    
+                                                </td>
+                                                <td class="align-middle"> 
+                                                <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
+                                                    <button type="button" class="btn btn-outline-dark"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                                    <button type="button" class="btn btn-outline-dark"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle"> 
+                                                <button class="button btn btn-primary" > View </button>
+                                                <button class="button btn btn-success" > Edit </button>
+                                                <button class="button btn btn-danger" > Delete </button>
+                                            </td>
                                     </tr>
+
                                     <tr>
-                                    <td scope="row">2</td>
-                                    <td>
-                                        <div >
-                                           Application for Cet is now open
-                                        </div>
-                                        <br>
-                                        <img src="{{ asset('images/slider/wm.jpg') }}" alt="" style="width:300px; height: 200px; ">
-                                    </td>
-                                    
-                                        <td class="align-middle">
-                                            <p>Register And Submit Your Application<br> By Clicking The Apply Now</p>
+                                            <td scope="row">2</td>
+                                            <td>
+                                                <div >
+                                                Application for Cet is now open
+                                                </div>
+                                                <br>
+                                                <img src="{{ asset('images/slider/wm.jpg') }}" alt="" style="width:300px; height: 200px; ">
+                                            </td>
                                             
-                                        </td>
-                                        <td class="align-middle"> 
-                                        <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-outline-dark"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
-                                            <button type="button" class="btn btn-outline-dark"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle"> 
-                                        <button class="button btn btn-primary" > View </button>
-                                        <button class="button btn btn-success" > Edit </button>
-                                        <button class="button btn btn-danger" > Delete </button>
-                                    </td>
+                                                <td class="align-middle">
+                                                    <p>Register And Submit Your Application<br> By Clicking The Apply Now</p>
+                                                    
+                                                </td>
+                                                <td class="align-middle"> 
+                                                <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
+                                                    <button type="button" class="btn btn-outline-dark"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                                    <button type="button" class="btn btn-outline-dark"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle"> 
+                                                <button class="button btn btn-primary" > View </button>
+                                                <button class="button btn btn-success" > Edit </button>
+                                                <button class="button btn btn-danger" > Delete </button>
+                                            </td>
                                     </tr>
                                     <tr>
                                     <td scope="row">3</td>
