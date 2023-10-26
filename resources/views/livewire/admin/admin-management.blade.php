@@ -153,89 +153,90 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="adminAdminModalLabel">Add Admin</h5>
-                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  wire:click="closeModal()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </div>
                     </div>
-                    <div class="modal-body">
-                        <!-- Add Admin form -->
-                        <form>
-                            <div class="form-group">
-                                <label for="AddAdminFirstName">Username</label>
-                                <input type="text" class="form-control" wire:model.defer="admin_username" placeholder="Enter Username">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminEmail">Email</label>
-                                <input type="email" class="form-control" wire:model.defer="admin_email"  placeholder="Enter Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminFirstName">First Name</label>
-                                <input type="text" class="form-control" wire:model.defer="admin_firstname"  placeholder="Enter First Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminMiddleName">Midlle Name</label>
-                                <input type="text" class="form-control" wire:model.defer="admin_middlename"  placeholder="Enter Middle Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminLastName">Last Name</label>
-                                <input type="text" class="form-control" wire:model.defer="admin_lastname"  placeholder="Enter Last Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminEmail">Birthdate</label>
-                                <input type="date" class="form-control" wire:model.defer="admin_birthdate"  placeholder="Enter birthdate">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminEmail">Password</label>
-                                <input type="password" class="form-control" wire:model.defer="admin_password"  placeholder="Enter password">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminEmail">Confirm Password</label>
-                                <input type="password" class="form-control" wire:model.defer="admin_confirm_password"  placeholder="Confirm password">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddAdminRole">Role</label>
-                                <select class="form-control" id="AddAdminRole" wire:model.defer="admin_role_name_id" wire:change="update_admin_role()">
-                                    <option value="0">Select Role</option>
-                                    @forelse ($roles_data as $item => $value)
-                                    <option value="{{$value->admin_role_name_id}}">{{$value->admin_role_name_name}}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                            </div>
-                            <br>
-                            @if($sign_up_button)<div style="color:red;">{{$sign_up_button}}</div> @endif
-                            <br>
+                    <form wire:submit.prevent="add_admin()">
+                        <div class="modal-body">
+                            <!-- Add Admin form -->
+                                <div class="form-group">
+                                    <label for="AddAdminFirstName">Username</label>
+                                    <input type="text" class="form-control" wire:model.defer="admin_username" placeholder="Enter Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminEmail">Email</label>
+                                    <input type="email" class="form-control" wire:model.defer="admin_email"  placeholder="Enter Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminFirstName">First Name</label>
+                                    <input type="text" class="form-control" wire:model.defer="admin_firstname"  placeholder="Enter First Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminMiddleName">Midlle Name</label>
+                                    <input type="text" class="form-control" wire:model.defer="admin_middlename"  placeholder="Enter Middle Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminLastName">Last Name</label>
+                                    <input type="text" class="form-control" wire:model.defer="admin_lastname"  placeholder="Enter Last Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminEmail">Birthdate</label>
+                                    <input type="date" class="form-control" wire:model.defer="admin_birthdate"  placeholder="Enter birthdate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminEmail">Password</label>
+                                    <input type="password" class="form-control" wire:model.defer="admin_password"  placeholder="Enter password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminEmail">Confirm Password</label>
+                                    <input type="password" class="form-control" wire:model.defer="admin_confirm_password"  placeholder="Confirm password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AddAdminRole">Role</label>
+                                    <select class="form-control" id="AddAdminRole" wire:model.defer="admin_role_name_id" required wire:change="update_admin_role()" required>
+                                        <option value="">Select Role</option>
+                                        @forelse ($roles_data as $item => $value)
+                                        <option value="{{$value->admin_role_name_id}}">{{$value->admin_role_name_name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                </div>
+                                <br>
+                                @if($sign_up_button)<div style="color:red;">{{$sign_up_button}}</div> @endif
+                                <br>
 
-                            <table class="application-table">
-                                    <tr>
-                                        <th class="text-align center">Module</th>
-                                        <th class="text-align center">Create</th>
-                                        <th class="text-align center">Read</th>
-                                        <th class="text-align center">Update</th>
-                                        <th class="text-align center">Delete</th>
-                                    </tr>
-                                    @forelse ($modules as $item => $value)
-                                    <tr wire:key="{{$value->module_id}}">
-                                        <td >{{$value->module_nav_name}}</td>
-                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.C"></td>
-                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.R"></td>
-                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.U"></td>
-                                        <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.D"></td>
-                                    </tr>
-                                    @empty
-                                    <td class="text-center font-weight-bold" colspan="42">
-                                        NO RECORDS 
-                                    </td>
-                                    @endforelse
-                                    
-                                </table>
-                        </form>
-                        <!-- End Add Admin  -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" wire:click=add_admin()>Add Admin</button>
-                    </div>
+                                <table class="application-table">
+                                        <tr>
+                                            <th class="text-align center">Module</th>
+                                            <th class="text-align center">Create</th>
+                                            <th class="text-align center">Read</th>
+                                            <th class="text-align center">Update</th>
+                                            <th class="text-align center">Delete</th>
+                                        </tr>
+                                        @forelse ($modules as $item => $value)
+                                        <tr wire:key="{{$value->module_id}}">
+                                            <td >{{$value->module_nav_name}}</td>
+                                            <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.C"></td>
+                                            <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.R"></td>
+                                            <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.U"></td>
+                                            <td class="text-center"><input type="checkbox" wire:model.defer="admin_access_role.{{$loop->index}}.D"></td>
+                                        </tr>
+                                        @empty
+                                        <td class="text-center font-weight-bold" colspan="42">
+                                            NO RECORDS 
+                                        </td>
+                                        @endforelse
+                                        
+                                    </table>
+                            
+                            <!-- End Add Admin  -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  wire:click="closeModal()">Close</button>
+                            <button type="submit" class="btn btn-primary" >Add Admin</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

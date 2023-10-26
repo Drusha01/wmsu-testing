@@ -162,7 +162,7 @@
                             @if($unassigned_proctor_filter['Actions'] )
                                 <td class="text-center">
                                     @if($access_role['R']==1)
-                                    <button class="btn btn-primary">View</button>
+                                    <button class="btn btn-primary" wire:click="view_list_of_examinees({{$value->school_room_id}})">View</button>
                                     @endif
                                 </td>
                             @endif
@@ -178,6 +178,72 @@
                 </tbody>
             </table>
 
+            <div class="modal fade" id="viewExamineesModal" tabindex="-1" role="dialog" aria-labelledby="viewExamineesModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewExamineesModalLabel">Examinees details</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @if($room_details)
+                                <table class="table">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">Test Center</th>
+                                            <td>{{$room_details[0]->school_room_test_center}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room venue</th>
+                                            <td>{{$room_details[0]->school_room_venue}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room code</th>
+                                            <td>{{$room_details[0]->school_room_id.' - '.$room_details[0]->school_room_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room name</th>
+                                            <td>{{$room_details[0]->school_room_name}}</td>
+                                        </tr>
+                                        
+                                        
+                                    </tbody>
+                                </table>                               
+                            @endif
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Fullname</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if($examinees)
+                                    @foreach ($examinees as $key => $value)
+                                    <tr>
+                                        <td>{{$value->user_name}}</td>
+                                        <td>{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename}}</td>
+                                        <td>{{$value->user_address}}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table> 
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="assignProctorModal" tabindex="-1" role="dialog" aria-labelledby="assignProctorModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -187,50 +253,48 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form >
-                            <div class="modal-body">
-                                <table class="table">
-                                    <thead>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Room code</th>
+                                        <th scope="col">Room name</th>
+                                        <th scope="col">Venue</th>
+                                        <th scope="col">Test Center</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if($unassigned_valid)
+                                    @foreach ($unassigned_proctor as $key => $value)
+                                        @if($unassigned_proctor_selected[$key][$value->school_room_id])
                                         <tr>
-                                            <th scope="col">Room code</th>
-                                            <th scope="col">Room name</th>
-                                            <th scope="col">Venue</th>
-                                            <th scope="col">Test Center</th>
+                                            <td>{{$value->school_room_id.' - '.$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_venue}}</td>
+                                            <td>{{$value->school_room_test_center}}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if($unassigned_valid)
-                                        @foreach ($unassigned_proctor as $key => $value)
-                                            @if($unassigned_proctor_selected[$key][$value->school_room_id])
-                                            <tr>
-                                                <td>{{$value->school_room_id.' - '.$value->school_room_name}}</td>
-                                                <td>{{$value->school_room_name}}</td>
-                                                <td>{{$value->school_room_venue}}</td>
-                                                <td>{{$value->school_room_test_center}}</td>
-                                            </tr>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                    @endif
-                                    
-                                        
-                                    </tbody>
-                                </table> 
-                                <!-- Display the list of assigned applicant names here -->
-                                <select class="form-control" wire:model="unassigned_proctor_user_id">
-                                @forelse ($proctors_list as $item => $value)
-                                    <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename.' : '.$value->user_address}}</option>
-                                @empty
-                                    <option value="">NO RECORDS</option>
-                                @endforelse
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" wire:click="assign_room_proctor()">Assign Proctor</button>
+                                        @endif
+                                    @endforeach
+                                @else
+                                @endif
                                 
-                            </div>
-                        </form>
+                                    
+                                </tbody>
+                            </table> 
+                            <!-- Display the list of assigned applicant names here -->
+                            <select class="form-control" wire:model.defer="unassigned_proctor_user_id">
+                            @forelse ($proctors_list as $item => $value)
+                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename.' : '.$value->user_address}}</option>
+                            @empty
+                                <option value="">NO RECORDS</option>
+                            @endforelse
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" wire:click="assign_room_proctor()">Assign Proctor</button>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,7 +305,7 @@
             <div class="d-flex mt-2">
                 <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
                 
-                <select class="filter-select " wire:model.defer="unassigned_proctor_school_room_id" wire:change="unassigned_proctor_school_room_filter()">
+                <select class="filter-select " wire:model.defer="assigned_proctor_school_room_id" wire:change="assigned_proctor_school_room_filter()">
                     <option value="0"  >All</option>
                     @foreach ($school_rooms as $item => $value)
                         <option wire:key="assigned-{{$value->school_room_id}}"value="{{$value->school_room_id}}" >{{ $value->school_room_id.' - '.$value->school_room_name }}</option>
@@ -304,8 +368,8 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                <button class="btn btn-warning mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="reassigning_room_check()">Reassign Proctor </button>
-                    <button class="btn btn-danger mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="remove_room_check()">Remove Proctor </button>
+                <button class="btn btn-warning mx-1"  type="button"  wire:click="reassigning_room_check()">Reassign Proctor </button>
+                    <button class="btn btn-danger mx-1"  type="button" wire:click="remove_room_check()" >Remove Proctor </button>
                 </div>
             </div>
             <!-- List of Assigned Proctors Table -->
@@ -314,7 +378,7 @@
                     <tr>
                         @foreach ($assigned_proctor_filter as $item => $value)
                             @if($loop->first && $value)
-                                <th><input wire:model="unassigned_proctor_selected_all" wire:change="unassigned_proctor_selected_all()" type="checkbox" ></th> 
+                                <th><input wire:model="assigned_proctor_selected_all" wire:change="assigned_proctor_selected_all()" type="checkbox" ></th> 
                             @elseif($loop->last && $value )
                             <th class="text-center">Action</th>
                             @elseif($value)
@@ -330,7 +394,7 @@
                         @if($assigned_proctor_filter['Select all'])
                             <td><input type="checkbox" 
                             
-                                wire:model="unassigned_proctor_selected.{{$loop->index}}.{{$value->school_room_id}}"
+                                wire:model="assigned_proctor_selected.{{$loop->index}}.{{$value->school_room_id}}"
                                 >
                             </td>
                         @endif
@@ -371,7 +435,7 @@
                         @if($assigned_proctor_filter['Actions'] )
                             <td class="text-center">
                                 @if($access_role['R']==1)
-                                <button class="btn btn-primary">View</button>
+                                <button class="btn btn-primary" wire:click="view_list_of_examinees_with_proctor({{$value->school_room_id}})">View</button>
                                 @endif
                             </td>
                         @endif
@@ -386,6 +450,179 @@
                     <!-- Add more rows for other assigned proctors as needed -->
                 </tbody>
             </table>
+
+            <div class="modal fade" id="viewExamineesWithProctorModal" tabindex="-1" role="dialog" aria-labelledby="viewExamineesWithProctorModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewExamineesWithProctorModalLabel">Examinees details</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                           
+                            @if($room_details)
+                                <p class="modal-title" >Proctor:  {{$room_details[0]->user_lastname.', '.$room_details[0]->user_firstname.' '.$room_details[0]->user_middlename}}</p>
+                  
+                                <table class="table">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">Test Center</th>
+                                            <td>{{$room_details[0]->school_room_test_center}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room venue</th>
+                                            <td>{{$room_details[0]->school_room_venue}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room code</th>
+                                            <td>{{$room_details[0]->school_room_id.' - '.$room_details[0]->school_room_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Room name</th>
+                                            <td>{{$room_details[0]->school_room_name}}</td>
+                                        </tr>
+                                        
+                                        
+                                    </tbody>
+                                </table>                               
+                            @endif
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Fullname</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if($examinees)
+                                    @foreach ($examinees as $key => $value)
+                                    <tr>
+                                        <td>{{$value->user_name}}</td>
+                                        <td>{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename}}</td>
+                                        <td>{{$value->user_address}}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table> 
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="removeProctorModal" tabindex="-1" role="dialog" aria-labelledby="removeProctorModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="removeProctorModal">Remove room proctor</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Room code</th>
+                                        <th scope="col">Room name</th>
+                                        <th scope="col">Venue</th>
+                                        <th scope="col">Test Center</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if($assigned_valid)
+                                    @foreach ($assigned_proctor as $key => $value)
+                                        @if($assigned_proctor_selected[$key][$value->school_room_id])
+                                        <tr>
+                                            <td>{{$value->school_room_id.' - '.$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_venue}}</td>
+                                            <td>{{$value->school_room_test_center}}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                @else
+                                @endif
+                                
+                                    
+                                </tbody>
+                            </table> 
+                            <!-- Display the list of assigned applicant names here -->
+                            <h5>Are you sure you want to remove the room proctor?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" wire:click="remove_room_proctor()">Remove</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="reassignProctorModal" tabindex="-1" role="dialog" aria-labelledby="reassignProctorModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reassignProctorModal">Assign room proctor</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Room code</th>
+                                        <th scope="col">Room name</th>
+                                        <th scope="col">Venue</th>
+                                        <th scope="col">Test Center</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if($assigned_valid)
+                                    @foreach ($assigned_proctor as $key => $value)
+                                        @if($assigned_proctor_selected[$key][$value->school_room_id])
+                                        <tr>
+                                            <td>{{$value->school_room_id.' - '.$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_name}}</td>
+                                            <td>{{$value->school_room_venue}}</td>
+                                            <td>{{$value->school_room_test_center}}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                @else
+                                @endif
+                                
+                                    
+                                </tbody>
+                            </table> 
+                            <!-- Display the list of assigned applicant names here -->
+                            <select class="form-control" wire:model.defer="assigned_proctor_user_id">
+                            @forelse ($proctors_list as $item => $value)
+                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename.' : '.$value->user_address}}</option>
+                            @empty
+                                <option value="">NO RECORDS</option>
+                            @endforelse
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" wire:click="reassign_room_proctor()">Assign Proctor</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane show @if($active == 'proctor_list') show active @else fade @endif" >
@@ -435,11 +672,11 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                    <button class="btn btn-success mx-1"  type="button" data-bs-toggle="modal" data-bs-target="#assignProctorModal" wire:click="assigning_room_check()">Assign Proctor </button>
+                   
                 </div>
             </div>
             
-            <table class="application-table" id="assigned-proctors-tab">
+            <table class="application-table" >
                 <thead>
                     <tr>
                         @foreach ($proctor_list_filter as $item => $value)

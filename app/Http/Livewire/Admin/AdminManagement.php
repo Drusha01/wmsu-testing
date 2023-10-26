@@ -50,6 +50,8 @@ class AdminManagement extends Component
     public $delete_admin_user_id;
 
     public function openModal(){$this->modal_open =true; $this->admin_role_name_id =false;}
+    public function closeModal(){$this->modal_open =false; $this->admin_role_name_id =false;}
+
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -350,7 +352,7 @@ class AdminManagement extends Component
             )
         ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
         ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-        ->where('user_id','=', $this->user_details['user_id'])
+        ->where('user_id','=', $user_id)
         ->where('user_role_details','=', 'admin')
         ->get()
         ->toArray();
@@ -411,7 +413,7 @@ class AdminManagement extends Component
                 )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-            ->where('user_id','=', $this->user_details['user_id'])
+            ->where('user_id','=', $user_id)
             ->where('user_role_details','=', 'admin')
             ->get()
             ->toArray();
@@ -446,6 +448,7 @@ class AdminManagement extends Component
             'D' => true
         ];        
         if($this->access_role['U'] ){
+            // dd($this->view_admin_roles);
             foreach ($this->view_admin_roles as $key => $value) {
                 DB::table('access_roles')
                     ->where('access_role_user_id' ,'=',  $user_id)
@@ -646,6 +649,7 @@ class AdminManagement extends Component
 
         }
     }
+    
 
     public function add_admin(){
         // validate user cred
