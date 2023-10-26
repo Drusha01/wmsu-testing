@@ -31,7 +31,7 @@
                             </div>
                             <h3 class="mt-3">Profile username</h3>
                             <p class="text-muted">Status: Registered</p>
-                            <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal">Modify</button>
+                            <button id="modifyButtonProfile" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
                         </div>
                     </div>
                     
@@ -41,18 +41,18 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modifyModalLabel">Account Settings</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <!-- Tab navigation for different settings -->
                             <ul class="nav nav-tabs" id="accountSettingsTabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="modify-tab" data-toggle="tab" href="#modify" role="tab" aria-controls="modify" aria-selected="true">Modify Info</a>
+                                    <a class="nav-link active" id="modify-tab" data-bs-toggle="tab" href="#modify" role="tab" aria-controls="modify" aria-selected="true">Modify Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="changePassword-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                                    <a class="nav-link" id="changePassword-tab" data-bs-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
                                 </li>
                             </ul>
 
@@ -64,10 +64,6 @@
                                     <form>
                                     <div class="form-group">
                                         <label class="fas" for="newProfileImage">Change profile picture:</label>
-                                        <input type="file" class="form-control" id="newProfileImage">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="fas" for="newProfileImage">Formal Photo(2x2):</label>
                                         <input type="file" class="form-control" id="newProfileImage">
                                     </div>
                                     <!-- Add more fields to modify user details as needed -->
@@ -96,7 +92,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save Changes</button>
                         </div>
                     </div>
@@ -119,7 +115,7 @@
                         <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']),"F d, Y ")}}</li>
                         <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create( $user_details['date_created']),"F d, Y ")}}</li>
                     </ul>
-                    <button id="modifyButtonDetails" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
+                    <button id="modifyButtonDetails" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModalDetails">Modify</button>
                 </div>
             </div>
         </div>
@@ -130,9 +126,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modifyModalLabelDetails">Modify Applicant Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -197,7 +193,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>

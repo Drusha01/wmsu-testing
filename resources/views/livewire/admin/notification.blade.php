@@ -4,17 +4,17 @@
         <div class="container">
             <ul class="nav nav-tabs" id="notificationTabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#allNotifications">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#allNotifications">
                         <i class="fas fa-bell"></i> All Notifications
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#unreadNotifications">
+                    <a class="nav-link" data-bs-toggle="tab" href="#unreadNotifications">
                         <i class="fas fa-envelope-open"></i> Unread
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#notificationSettings">
+                    <a class="nav-link" data-bs-toggle="tab" href="#notificationSettings">
                         <i class="fas fa-cog"></i> Notification Settings
                     </a>
                 </li>
@@ -72,7 +72,7 @@
                                 <option value="monthly">Monthly</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary mt-3">
                             <i class="fas fa-save"></i> Save Settings
                         </button>
                     </form>

@@ -18,10 +18,9 @@
                             </label>
                         </div>
                         <h3 class="mt-3">{{$user_details['user_name']}}</h3>
-                        <button id="modifyButtonProfile" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile </button>
+                        <button id="modifyButtonProfile" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile </button>
                         <br>
-                        <br>
-                        <button id="modifyButtonpassword" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
+                        <button id="modifyButtonpassword" class="btn btn-danger" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
                         
                     </div>
                 </div>  
