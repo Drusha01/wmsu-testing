@@ -559,6 +559,9 @@
                                 @if($school_room_filter['Start - End'])
                                     <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
                                 @endif
+                                @if($school_room_filter['Status'])
+                                    <td>@if ($value->school_room_isactive)Active @else Deleted @endif</td>
+                                @endif
                                 @if($school_room_filter['Actions'] )
                                     <td class="text-center">
                                         @if($access_role['R']==1)

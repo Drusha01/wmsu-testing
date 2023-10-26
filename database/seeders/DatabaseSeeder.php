@@ -33,6 +33,9 @@ class DatabaseSeeder extends Seeder
             admin_role_names::class,
             admin_role::class,
             access_role::class,
+            statusesSeeder::class,
+            carousel_seeders::class,
+            servicesSeeder::class,
         ]);
         
     }

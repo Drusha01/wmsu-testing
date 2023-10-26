@@ -114,11 +114,13 @@
                                 @if($admin_data_filter['CP#'])
                                     <td>{{ $value->user_phone }}</td>
                                 @endif
-                                @if($admin_data_filter['Status'])
-                                    <td class='text-center'>{{ $value->user_status_details }}@if($value->user_status_details == 'deleted') <br> <button class="btn btn-warning" wire:click="activate_admin({{ $value->user_id }})">Activate</button>@endif</td>
-                                @endif
                                 @if($admin_data_filter['Verified'])
                                     <td class="text-center"> @if($value->user_email_verified) <i class="bi bi-check"></i> @else <i class="bi bi-x"></i> @endif </td>
+                                @endif
+                                @if($admin_data_filter['Status'])
+                                    <td class='text-center'>
+                                        {{ $value->user_status_details }}
+                                    </td>
                                 @endif
                                 @if($admin_data_filter['Action'])
                                     <td class="text-center">
@@ -129,7 +131,11 @@
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
                                     @endif
                                     @if($access_role['D']==1)
-                                    <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
+                                        @if($value->user_status_details == 'deleted') 
+                                            <button class="btn btn-warning" wire:click="activate_admin({{ $value->user_id }})">Activate</button>
+                                        @else
+                                        <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
+                                        @endif
                                     @endif
                                     </td>
                                 @endif
@@ -348,14 +354,14 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="DeleteAdminModal">Edit Admin Details</h5>
+                        <h5 class="modal-title" id="DeleteAdminModal">Delete user</h5>
                         <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <form wire:submit.prevent="delete_admin_now({{$delete_admin_user_id}})">
                         <div class="modal-body">
-                            <div> Are you sure you want to delete this admin user?</div>
+                            <div> Are you sure you want to delete this user?</div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
@@ -466,7 +472,7 @@
                     </div>
                 </div>         
                 <!-- User Table -->
-                <div class="table-responsive">
+                <div class="application-table">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -503,18 +509,18 @@
                                 @if($user_data_filter['Verified'])
                                     <td class="text-center"> @if($value->user_email_verified) <i class="bi bi-check"></i> @else <i class="bi bi-x"></i> @endif </td>
                                 @endif
-                                
+                                @if($user_data_filter['Status'])
+                                    <td class='text-center'>
+                                        {{ $value->user_status_details }}
+                                    </td>
+                                @endif
                                 @if($user_data_filter['Action'])
                                     <td class="text-center">
-                                    @if($access_role['R']==1)
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_admin({{$value->user_id }})">View</button>
-                                    @endif
-                                    @if($access_role['U']==1)
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_admin({{$value->user_id }})">Edit</button>
-                                    @endif
-                                    @if($access_role['D']==1)
-                                    <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
-                                    @endif
+                                        @if($value->user_status_details == 'deleted') 
+                                            <button class="btn btn-warning" wire:click="activate_admin({{ $value->user_id }})">Activate</button>
+                                        @else
+                                        <button class="btn btn-danger" wire:click="delete_admin({{ $value->user_id }})">Delete</button>
+                                        @endif
                                     </td>
                                 @endif
                                 </tr>

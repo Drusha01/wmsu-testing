@@ -172,9 +172,9 @@ class AdminManagement extends Component
             'Full name' => true,
             'Email' => true,
             'CP#' => true,
-            'Status' => true,
             'Active' => false,
             'Verified' => true,
+            'Status' => true,
             'Action' => true
         ];
 
@@ -186,6 +186,7 @@ class AdminManagement extends Component
             'CP#' => true,
             'Active' => false,
             'Verified' => true,
+            'Status' => true,
             'Action' => true
         ];
 
@@ -598,7 +599,7 @@ class AdminManagement extends Component
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',
-                'title'             									=> 'Admin set to active!',
+                'title'             									=> 'user is set to active!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
