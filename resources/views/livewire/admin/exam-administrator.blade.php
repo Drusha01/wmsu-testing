@@ -103,13 +103,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </div>
             </div>
             <div class="modal-body">
                 <!-- Add your proctor instructions here -->
                 <p>Welcome, Proctor (NAME). Here are your instructions:</p>
+                    <!-- Download Button for Applicant List -->
+                    <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
                 <ol>
                     <li>Scan the QR code to check the applicants' information.</li>
                     <li>Ensure that all registered applicants are present.</li>
@@ -142,9 +144,6 @@
                         <!-- Add more rows for additional applicants -->
                     </tbody>
                 </table>
-
-                <!-- Download Button for Applicant List -->
-                <a href="#" class="btn btn-primary mt-2">Download Applicant List</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
