@@ -171,9 +171,65 @@
                                                 </td>
                                                 
                                             <td class="align-middle mt-4"> 
-                                                <button class="button btn btn-primary mt-4" > View </button>
-                                                <button class="button btn btn-success mt-4" > Edit </button>
-                                                <button class="button btn btn-danger mt-4" > Delete </button>
+                                                    <!-- Button modal edit -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Edit</button>
+                                                                 <!--  modal trigger -->
+                                                                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h6 class="modal-title" id="exampleModalLongTitle">Edit About Us</h6>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change About Us Image</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/slider/campus.jpg') }}" alt="" style="width:420px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                                    
+                                                                                        </div>
+
+                                                                                        
+
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                     </div>
+                                                                                                                                <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
+
+                                                                                    <!-- Modal -->
+                                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body d-flex justify-content-center">
+                                                                                                        <h5> Are you sure you want to delete?</h5>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        <button type="button" class="btn btn-success">Yes</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                     </div>
+                                                                                    </div>
                                             </td>
                                         </tr>
                                     
@@ -208,9 +264,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -228,9 +344,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                 <!-- Button trigger modal -->
+                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -248,9 +424,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                         </table>
@@ -285,9 +521,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger  mt-2" > Delete </button>
+                                                 <!-- Button trigger modal -->
+                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -305,9 +601,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                 <!-- Button trigger modal -->
+                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -325,9 +681,69 @@
                                                 </td>
                                                 
                                             <td class="align-middle"> 
-                                                <button class="button btn btn-primary" > View </button>
-                                                <button class="button btn btn-success" > Edit </button>
-                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                 <!-- Button trigger modal -->
+                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+                                                                                                <label for="photo" class="form-label">Change Why Us Logo</label>
+                                                                                                    <div>
+                                                                                                        <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
+                                                                                                    </div>
+                                                                                                <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Change Header</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Change Paragraph</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                                                   <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    
+                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
                                             </td>
                                         </tr>
                         </table>
@@ -358,9 +774,65 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
+
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -376,9 +848,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success  mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger  mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -394,9 +921,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -412,9 +994,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -430,9 +1067,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -448,9 +1140,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -466,9 +1213,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -484,9 +1286,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -502,9 +1359,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -520,9 +1432,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -538,9 +1505,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -556,9 +1578,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -574,9 +1651,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -592,9 +1724,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -610,9 +1797,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -628,9 +1870,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -646,9 +1943,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -664,9 +2016,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -682,9 +2089,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                                 <!-- Button trigger modal -->
+                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -700,9 +2162,64 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success mt-2" > Edit </button>
-                                                                <button class="button btn btn-danger mt-2" > Delete </button>
+                                                               <!-- Button trigger modal -->
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                   Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="#FAQ" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <div class="col-md-15 mb-5">
+
+                                                                                                    <div class="mt-2">
+                                                                                                         <h5>Edit Question</h5>
+                                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h5>Edit Answer</h5>
+                                                                                                         <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                                                      <!-- Button trigger modal -->
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+
+                                                                                        <!-- Modal -->
+                                                                                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body d-flex justify-content-center">
+                                                                                                                <h5> Are you sure you want to delete?</h5>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-success">Yes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                        </div>
                                                             </td>
                                                 </tr>
                                 </table>
@@ -734,9 +2251,68 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success" > Edit </button>
-                                                                <button class="button btn btn-danger" > Delete </button>
+
+                                                                        <div class="d-flex justify-content-between"></div>
+                                                                                <!-- Button trigger modal -->
+                                                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                                        Edit
+                                                                                            </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="ModalFooter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
+                                                                                                                    <div class="col-md-15 mb-5">
+
+                                                                                                                                <div class="mt-2">
+                                                                                                                                    <h5>Edit Header</h5>
+                                                                                                                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                                                </div>
+                                                                                                                                <div>
+                                                                                                                                    <h5>Edit Contents</h5>
+                                                                                                                                    <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                                                </div>
+                                                                                                                    </div>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                                        <!-- Button trigger modal -->
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+
+                                                                                                            <!-- Modal -->
+                                                                                                            <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
+                                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                                            <div class="modal-content">
+                                                                                                                                <div class="modal-header">
+                                                                                                                                    
+                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer">
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                             </div>
+
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -754,9 +2330,65 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success" > Edit </button>
-                                                                <button class="button btn btn-danger" > Delete </button>
+                                                                     <!-- Button trigger modal -->
+                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                                        Edit
+                                                                                            </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="ModalFooter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
+                                                                                                                    <div class="col-md-15 mb-5">
+
+                                                                                                                                <div class="mt-2">
+                                                                                                                                    <h5>Edit Header</h5>
+                                                                                                                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                                                </div>
+                                                                                                                                <div>
+                                                                                                                                    <h5>Edit Contents</h5>
+                                                                                                                                    <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                                                </div>
+                                                                                                                    </div>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                                        <!-- Button trigger modal -->
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+
+                                                                                                            <!-- Modal -->
+                                                                                                            <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
+                                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                                            <div class="modal-content">
+                                                                                                                                <div class="modal-header">
+                                                                                                                                    
+                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer">
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                             </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -774,9 +2406,65 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success" > Edit </button>
-                                                                <button class="button btn btn-danger" > Delete </button>
+                                                                     <!-- Button trigger modal -->
+                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                                        Edit
+                                                                                            </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="ModalFooter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
+                                                                                                                    <div class="col-md-15 mb-5">
+
+                                                                                                                                <div class="mt-2">
+                                                                                                                                    <h5>Edit Header</h5>
+                                                                                                                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                                                </div>
+                                                                                                                                <div>
+                                                                                                                                    <h5>Edit Contents</h5>
+                                                                                                                                    <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                                                </div>
+                                                                                                                    </div>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                                        <!-- Button trigger modal -->
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+
+                                                                                                            <!-- Modal -->
+                                                                                                            <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
+                                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                                            <div class="modal-content">
+                                                                                                                                <div class="modal-header">
+                                                                                                                                    
+                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer">
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                             </div>
                                                             </td>
                                                 </tr>
                                                 <tr>
@@ -795,9 +2483,65 @@
                                                                
                                                                 
                                                             <td class="align-middle"> 
-                                                                <button class="button btn btn-primary" > View </button>
-                                                                <button class="button btn btn-success" > Edit </button>
-                                                                <button class="button btn btn-danger" > Delete </button>
+                                                                     <!-- Button trigger modal -->
+                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                                        Edit
+                                                                                            </button>
+
+                                                                                            <!-- Modal -->
+                                                                                            <div class="modal fade" id="ModalFooter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
+                                                                                                                    <div class="col-md-15 mb-5">
+
+                                                                                                                                <div class="mt-2">
+                                                                                                                                    <h5>Edit Header</h5>
+                                                                                                                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
+                                                                                                                                </div>
+                                                                                                                                <div>
+                                                                                                                                    <h5>Edit Contents</h5>
+                                                                                                                                    <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
+                                                                                                                                </div>
+                                                                                                                    </div>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                                        <!-- Button trigger modal -->
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+
+                                                                                                            <!-- Modal -->
+                                                                                                            <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
+                                                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                                            <div class="modal-content">
+                                                                                                                                <div class="modal-header">
+                                                                                                                                    
+                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-body d-flex justify-content-center">
+                                                                                                                                    <h5> Are you sure you want to delete?</h5>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer">
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-success">Yes</button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                             </div>
                                                             </td>
                                                 </tr>
 
