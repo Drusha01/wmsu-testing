@@ -47,7 +47,7 @@
                                 NO RECORDS 
                                 <br>
                                 <a  href="{{ route('student.application') }} "> 
-                                    <button class="btn btn-success"> Apply</button>
+                                    <button class="btn btn-warning"> Apply</button>
                                 </a>
                             </td>
                         @endforelse
