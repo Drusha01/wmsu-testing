@@ -446,7 +446,7 @@ class Announcement extends Component
                 $this->dispatchBrowserEvent('swal:redirect',[
                     'position'          									=> 'center',
                     'icon'              									=> 'success',
-                    'title'             									=> 'Successfuly added an announcement!',
+                    'title'             									=> 'Successfuly saved!',
                     'showConfirmButton' 									=> 'true',
                     'timer'             									=> '1500',
                     'link'              									=> '#'
