@@ -16,6 +16,7 @@ class Rooms_sample extends Seeder
     {
         DB::statement('INSERT INTO school_rooms VALUES(
             NULL,
+            1,
             "College of Computing Studies",
             "CCS",
             "WMSU-MAIN Campus B",
@@ -35,6 +36,7 @@ class Rooms_sample extends Seeder
 
         DB::statement('INSERT INTO school_rooms VALUES(
             NULL,
+            1,
             "College of Computing Studies",
             "CCS",
             "WMSU-MAIN Campus B",
@@ -54,6 +56,7 @@ class Rooms_sample extends Seeder
 
         DB::statement('INSERT INTO school_rooms VALUES(
             NULL,
+            1,
             "College of Engineering",
             "COE",
             "WMSU-MAIN Campus A",

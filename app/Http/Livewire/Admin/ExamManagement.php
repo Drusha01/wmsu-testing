@@ -100,6 +100,7 @@ class ExamManagement extends Component
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
                     ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                     ->whereNull('school_room_proctor_user_id')
                     ->groupBy('t_a_school_room_id')
                     ->get()
@@ -127,6 +128,7 @@ class ExamManagement extends Component
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
                     ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                     ->whereNull('school_room_proctor_user_id')
                     ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
                     ->groupBy('t_a_school_room_id')
@@ -165,6 +167,7 @@ class ExamManagement extends Component
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
                     ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
                     ->groupBy('t_a_school_room_id')
                     ->get()
@@ -199,6 +202,7 @@ class ExamManagement extends Component
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
                     ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
                     ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
                     ->groupBy('t_a_school_room_id')
@@ -285,6 +289,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->groupBy('t_a_school_room_id')
                 ->get()
@@ -312,6 +317,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
                 ->groupBy('t_a_school_room_id')
@@ -349,6 +355,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->groupBy('t_a_school_room_id')
                 ->get()
@@ -383,6 +390,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
                 ->groupBy('t_a_school_room_id')
@@ -506,6 +514,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->groupBy('t_a_school_room_id')
                 ->get()
@@ -533,6 +542,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
                 ->groupBy('t_a_school_room_id')
@@ -576,6 +586,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->groupBy('t_a_school_room_id')
                 ->get()
@@ -610,6 +621,7 @@ class ExamManagement extends Component
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Processing')
                 ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
                 ->groupBy('t_a_school_room_id')
@@ -678,6 +690,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -705,6 +718,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -742,6 +756,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -776,6 +791,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -880,6 +896,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -907,6 +924,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -937,6 +955,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -964,6 +983,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -1011,6 +1031,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -1038,6 +1059,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -1068,6 +1090,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->groupBy('t_a_school_room_id')
             ->get()
@@ -1095,6 +1118,7 @@ class ExamManagement extends Component
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Processing')
             ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
             ->groupBy('t_a_school_room_id')
@@ -1371,10 +1395,26 @@ class ExamManagement extends Component
             ->where('ta.t_a_school_room_id','=',$school_room_id)
             ->get()
             ->toArray();
-        $this->room_details = DB::table('school_rooms')
-                ->where('school_room_id','=',$school_room_id)
-                ->get()
-                ->toArray();
+        $this->room_details = DB::table('school_rooms as sr')
+            ->select(
+                'user_id',
+                'user_name',
+                'user_address',
+                'user_firstname',
+                'user_middlename',
+                'user_lastname',
+                'school_room_college_name',
+                'school_room_college_abr',
+                'school_room_venue',
+                'school_room_name',
+                'school_room_test_center',
+                'school_room_description',
+                'school_room_id'
+                )
+            ->join('users as u','u.user_id','sr.school_room_proctor_user_id')
+            ->where('sr.school_room_id','=',$school_room_id)
+            ->get()
+            ->toArray();
 
         $this->dispatchBrowserEvent('openModal','viewExamineesModal');
     }

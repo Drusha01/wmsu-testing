@@ -102,8 +102,10 @@ class RoomManagement extends Component
                 ->select(
                     '*'
                 )
+               ->where('school_room_isactive','=',1)
                 ->get()
                 ->toArray();
+                
             $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
             $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 
@@ -264,7 +266,8 @@ class RoomManagement extends Component
                 'Room name'=> true,
                 'Capacity'=> true,
                 'Start - End'=> true,
-                'Capacity'=> true,								
+                'Capacity'=> true,		
+                'Status'=> true,							
                 'Actions'	=> true					
             ];
 
@@ -277,9 +280,10 @@ class RoomManagement extends Component
                 ->select(
                     '*'
                 )
+               ->where('school_room_isactive','=',1)
                 ->get()
                 ->toArray();
-                // dd($this->school_rooms);
+
 
             $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
             $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
@@ -1155,6 +1159,7 @@ class RoomManagement extends Component
 
         $this->assigned_selected = [];
         $this->unassigned_selected = [];
+        $this->edit_room =[];
 
         // dd($this->assigned_applicant_data);
         
@@ -1261,11 +1266,12 @@ class RoomManagement extends Component
         $this->roomToDelete = $roomId;
         $this->dispatchBrowserEvent('openModal','confirmDeleteModal');
     }
-    public function deleteRoom() {
+    public function deleteRoom($room_id) {
     
-
         // Perform the room deletion logic
-        DB::table('school_rooms')->where('school_room_id', $this->roomToDelete)->delete();
+        DB::table('school_rooms')
+            ->where('school_room_id', $room_id)
+            ->update(['school_room_isactive'=>0]);
 
         
 

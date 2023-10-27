@@ -172,9 +172,9 @@ class AdminManagement extends Component
             'Full name' => true,
             'Email' => true,
             'CP#' => true,
-            'Status' => true,
             'Active' => false,
             'Verified' => true,
+            'Status' => true,
             'Action' => true
         ];
 
@@ -186,6 +186,7 @@ class AdminManagement extends Component
             'CP#' => true,
             'Active' => false,
             'Verified' => true,
+            'Status' => true,
             'Action' => true
         ];
 
@@ -534,16 +535,50 @@ class AdminManagement extends Component
             ->get()
             ->toArray();
 
+            $this->user_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'student')
+            ->get()
+            ->toArray();
+
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',
-                'title'             									=> 'Admin set to deleted!',
+                'title'             									=> 'User is set to deleted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
         }
     }
+
+    
 
     public function activate_admin($user_id){
         $this->access_role = [
@@ -595,10 +630,42 @@ class AdminManagement extends Component
             ->get()
             ->toArray();
 
+            $this->user_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_address",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details"
+                )
+            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
+            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
+            // ->where('user_id','!=', $this->user_details['user_id'])
+            ->where('user_role_details','=', 'student')
+            ->get()
+            ->toArray();
+
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',
-                'title'             									=> 'Admin set to active!',
+                'title'             									=> 'user is set to active!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
