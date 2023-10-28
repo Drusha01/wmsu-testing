@@ -20,22 +20,22 @@
                 <!-- Second-level Tabs -->
                 <ul class="nav nav-tabs" id="secondLevelTabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#carousel-tab">Carousel</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#carousel-tab">Carousel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#about-us-tab">About Us</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#about-us-tab">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#why-us-tab">Why Us</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#why-us-tab">Why Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#cta-tab">CTA</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#cta-tab">CTA</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#faq-tab">FAQ</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#faq-tab">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#footer-tab">Footer</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#footer-tab">Footer</a>
                     </li>
                 </ul>
 
@@ -172,14 +172,14 @@
                                                 
                                             <td class="align-middle mt-4"> 
                                                     <!-- Button modal edit -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Edit</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Edit</button>
                                                                  <!--  modal trigger -->
                                                                      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
                                                                                 <div class="modal-content">
                                                                                         <div class="modal-header">
                                                                                             <h6 class="modal-title" id="exampleModalLongTitle">Edit About Us</h6>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                             <span aria-hidden="true">&times;</span>
                                                                                             </button>
                                                                                         </div>
@@ -201,14 +201,14 @@
                                                                                         
 
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                      </div>
                                                                                                                                 <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Delete </button>
 
                                                                                     <!-- Modal -->
                                                                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -216,7 +216,7 @@
                                                                                                 <div class="modal-content">
                                                                                                     <div class="modal-header">
                                                                                                         
-                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                         <span aria-hidden="true">&times;</span>
                                                                                                         </button>
                                                                                                     </div>
@@ -224,7 +224,7 @@
                                                                                                         <h5> Are you sure you want to delete?</h5>
                                                                                                     </div>
                                                                                                     <div class="modal-footer">
-                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                         <button type="button" class="btn btn-success">Yes</button>
                                                                                                     </div>
                                                                                                 </div>
@@ -265,7 +265,7 @@
                                                 
                                             <td class="align-middle"> 
                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                    Edit
                                                                 </button>
 
@@ -275,7 +275,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -297,7 +297,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -305,7 +305,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#delete">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
@@ -313,7 +313,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -321,7 +321,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -345,7 +345,7 @@
                                                 
                                             <td class="align-middle"> 
                                                  <!-- Button trigger modal -->
-                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                    Edit
                                                                 </button>
 
@@ -355,7 +355,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -377,7 +377,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -385,7 +385,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#delete">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
@@ -393,7 +393,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -401,7 +401,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -425,7 +425,7 @@
                                                 
                                             <td class="align-middle"> 
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                    Edit
                                                                 </button>
 
@@ -435,7 +435,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="exampleModalLabel">Edit Why Us</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -457,7 +457,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -465,7 +465,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#delete">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
@@ -473,7 +473,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -481,7 +481,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -522,7 +522,7 @@
                                                 
                                             <td class="align-middle"> 
                                                  <!-- Button trigger modal -->
-                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                                                                    Edit
                                                                 </button>
 
@@ -532,7 +532,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -554,7 +554,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -562,7 +562,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deletemodal">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
@@ -570,7 +570,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -578,7 +578,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -602,7 +602,7 @@
                                                 
                                             <td class="align-middle"> 
                                                  <!-- Button trigger modal -->
-                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                                                                    Edit
                                                                 </button>
 
@@ -612,7 +612,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -634,7 +634,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -642,7 +642,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deletemodal">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
@@ -650,7 +650,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -658,7 +658,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -682,7 +682,7 @@
                                                 
                                             <td class="align-middle"> 
                                                  <!-- Button trigger modal -->
-                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                                                                    Edit
                                                                 </button>
 
@@ -692,7 +692,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="ModalLabel">Edit CTA </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -714,7 +714,7 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
@@ -722,7 +722,7 @@
                                                                 </div>
                                                 
                                                                                                    <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#deletemodal">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deletemodal">Delete </button>
 
                                                                                             <!-- Modal -->
                                                                                             <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
@@ -730,7 +730,7 @@
                                                                                                             <div class="modal-content">
                                                                                                                 <div class="modal-header">
                                                                                                                     
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                     </button>
                                                                                                                 </div>
@@ -738,7 +738,7 @@
                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                 </div>
                                                                                                                 <div class="modal-footer">
-                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                 </div>
                                                                                                             </div>
@@ -775,7 +775,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -785,7 +785,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -803,14 +803,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -818,7 +818,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -826,7 +826,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -849,7 +849,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -859,7 +859,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -877,14 +877,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -892,7 +892,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -900,7 +900,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -922,7 +922,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -932,7 +932,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -950,14 +950,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -965,7 +965,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -973,7 +973,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -995,7 +995,7 @@
                                                                 
                                                             <td class="align-middle"> 
  <!-- Button trigger modal -->
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1005,7 +1005,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1023,14 +1023,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1038,7 +1038,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1046,7 +1046,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1068,7 +1068,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1078,7 +1078,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1096,14 +1096,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1111,7 +1111,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1119,7 +1119,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1141,7 +1141,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1151,7 +1151,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1169,14 +1169,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1184,7 +1184,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1192,7 +1192,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1214,7 +1214,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1224,7 +1224,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1242,14 +1242,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1257,7 +1257,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1265,7 +1265,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1287,7 +1287,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1297,7 +1297,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1315,14 +1315,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1330,7 +1330,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1338,7 +1338,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1360,7 +1360,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1370,7 +1370,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1388,14 +1388,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1403,7 +1403,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1411,7 +1411,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1433,7 +1433,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1443,7 +1443,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1461,14 +1461,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1476,7 +1476,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1484,7 +1484,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1506,7 +1506,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1516,7 +1516,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1534,14 +1534,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1549,7 +1549,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1557,7 +1557,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1579,7 +1579,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1589,7 +1589,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1607,14 +1607,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1622,7 +1622,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1630,7 +1630,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1652,7 +1652,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1662,7 +1662,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1680,14 +1680,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1695,7 +1695,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1703,7 +1703,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1725,7 +1725,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1735,7 +1735,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1753,14 +1753,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1768,7 +1768,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1776,7 +1776,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1798,7 +1798,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1808,7 +1808,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1826,14 +1826,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1841,7 +1841,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1849,7 +1849,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1871,7 +1871,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1881,7 +1881,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1899,14 +1899,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1914,7 +1914,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1922,7 +1922,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -1944,7 +1944,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -1954,7 +1954,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -1972,14 +1972,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -1987,7 +1987,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -1995,7 +1995,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -2017,7 +2017,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                 <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -2027,7 +2027,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -2045,14 +2045,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -2060,7 +2060,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2068,7 +2068,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -2090,7 +2090,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                  <!-- Button trigger modal -->
-                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -2100,7 +2100,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -2118,14 +2118,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -2133,7 +2133,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2141,7 +2141,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -2163,7 +2163,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                <!-- Button trigger modal -->
-                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQ">
+                                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FAQ">
                                                                    Edit
                                                                 </button>
 
@@ -2173,7 +2173,7 @@
                                                                             <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="FAQ">Edit FAQ </h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
@@ -2191,14 +2191,14 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button" class="btn btn-primary">Save changes</button>
                                                                                     </div>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                                                                       <!-- Button trigger modal -->
-                                                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#faq">Delete </button>
+                                                                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#faq">Delete </button>
 
                                                                                         <!-- Modal -->
                                                                                         <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
@@ -2206,7 +2206,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2214,7 +2214,7 @@
                                                                                                                 <h5> Are you sure you want to delete?</h5>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-success">Yes</button>
                                                                                                             </div>
                                                                                                         </div>
@@ -2254,7 +2254,7 @@
 
                                                                         <div class="d-flex justify-content-between"></div>
                                                                                 <!-- Button trigger modal -->
-                                                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalFooter">
                                                                                         Edit
                                                                                             </button>
 
@@ -2264,7 +2264,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2283,14 +2283,14 @@
                                                                                                                 
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                                                         <!-- Button trigger modal -->
-                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#Footer">Delete </button>
 
                                                                                                             <!-- Modal -->
                                                                                                             <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
@@ -2298,7 +2298,7 @@
                                                                                                                             <div class="modal-content">
                                                                                                                                 <div class="modal-header">
                                                                                                                                     
-                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                                     </button>
                                                                                                                                 </div>
@@ -2306,7 +2306,7 @@
                                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                                 </div>
                                                                                                                                 <div class="modal-footer">
-                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -2331,7 +2331,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                      <!-- Button trigger modal -->
-                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalFooter">
                                                                                         Edit
                                                                                             </button>
 
@@ -2341,7 +2341,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2360,14 +2360,14 @@
                                                                                                                 
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                                                         <!-- Button trigger modal -->
-                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#Footer">Delete </button>
 
                                                                                                             <!-- Modal -->
                                                                                                             <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
@@ -2375,7 +2375,7 @@
                                                                                                                             <div class="modal-content">
                                                                                                                                 <div class="modal-header">
                                                                                                                                     
-                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                                     </button>
                                                                                                                                 </div>
@@ -2383,7 +2383,7 @@
                                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                                 </div>
                                                                                                                                 <div class="modal-footer">
-                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -2407,7 +2407,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                      <!-- Button trigger modal -->
-                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalFooter">
                                                                                         Edit
                                                                                             </button>
 
@@ -2417,7 +2417,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2436,14 +2436,14 @@
                                                                                                                 
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                                                         <!-- Button trigger modal -->
-                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#Footer">Delete </button>
 
                                                                                                             <!-- Modal -->
                                                                                                             <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
@@ -2451,7 +2451,7 @@
                                                                                                                             <div class="modal-content">
                                                                                                                                 <div class="modal-header">
                                                                                                                                     
-                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                                     </button>
                                                                                                                                 </div>
@@ -2459,7 +2459,7 @@
                                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                                 </div>
                                                                                                                                 <div class="modal-footer">
-                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -2484,7 +2484,7 @@
                                                                 
                                                             <td class="align-middle"> 
                                                                      <!-- Button trigger modal -->
-                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalFooter">
+                                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalFooter">
                                                                                         Edit
                                                                                             </button>
 
@@ -2494,7 +2494,7 @@
                                                                                                         <div class="modal-content">
                                                                                                             <div class="modal-header">
                                                                                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Footer</h5>
-                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                                                 </button>
                                                                                                             </div>
@@ -2513,14 +2513,14 @@
                                                                                                                 
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                                                         <!-- Button trigger modal -->
-                                                                                                        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#Footer">Delete </button>
+                                                                                                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#Footer">Delete </button>
 
                                                                                                             <!-- Modal -->
                                                                                                             <div class="modal fade" id="Footer" tabindex="-1" role="dialog" aria-labelledby="Footer" aria-hidden="true">
@@ -2528,7 +2528,7 @@
                                                                                                                             <div class="modal-content">
                                                                                                                                 <div class="modal-header">
                                                                                                                                     
-                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                                                                                     <span aria-hidden="true">&times;</span>
                                                                                                                                     </button>
                                                                                                                                 </div>
@@ -2536,7 +2536,7 @@
                                                                                                                                     <h5> Are you sure you want to delete?</h5>
                                                                                                                                 </div>
                                                                                                                                 <div class="modal-footer">
-                                                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                                                                     <button type="button" class="btn btn-success">Yes</button>
                                                                                                                                 </div>
                                                                                                                             </div>
