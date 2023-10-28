@@ -1,27 +1,25 @@
 
-<div>
-    
-    <div role="tabpanel" class="tab-pane" id="application">
-        <section class="test-application-section">
+    <div role="tabpanel" class="tab-pane mt-2" id="application">
+        <section class="exam-reminders-section">
             <div class="container">
                 <div class="row">
                     @livewire('components.navigation.student-test-nav')
 
-                    <div class="col-lg-6 guide">
-                        <div class="guide-section">
-                            <h3>Step-by-Step Guide to Apply</h3>
-                            <ol class="step-list">
-                                <li>Create an account on our website.</li>
-                                <li>Choose the test you want to take.</li>
-                                <li>Upload the required documents.</li>
-                                <li>Submit your application.</li>
-                            </ol>
-                            <p>Follow these steps to complete the application process. If you have questions, contact our support team.</p>
+                    <div class="col-lg-6 guide mt-1">
+                        <div class="guide-section mt-4">
+                            <h3>Reminders for WMSU Exam Takers</h3>
+                            <p>Here are important reminders for WMSU exam takers:</p>
+                            <ul class="reminder-list">
+                                <li>You can only Take CET once.</li>
+                                <li style="color:red;">Please settle your payment on the Registar cashier as it will be a part of requirements to be uploaded in your form if you already taken CET once.</li>
+                                <li>Select the specific test you wish to take.</li>
+                                <li>Upload all required documents before the exam date.</li>
+                                <li>Submit your application on time.</li>
+                            </ul>
+                            <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
-</div>
