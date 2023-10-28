@@ -8,8 +8,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Exam</th>
-                            <th>Action</th>
+                            <th style="background-color: #990000; color:white;">Exam</th>
+                            <th style="background-color: #990000; color:white;">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -8,13 +8,13 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Test code</th>
-                            <th>Exam Type</th>
-                            <th class=" text-center align-middle">Description</th>
-                            <th class="text-center align-middle">Date</th>
-                            <th class="text-center align-middle">Status</th>
-                            <th class="text-center align-middle">Actions</th>
+                            <th style="background-color: #990000; color:white;">#</th>
+                            <th style="background-color: #990000; color:white;">Test code</th>
+                            <th style="background-color: #990000; color:white;">Exam Type</th>
+                            <th class=" text-center align-middle" style="background-color: #990000; color:white;">Description</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Date</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Status</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,11 +67,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>#</th>
-                            <th class="text-center align-middle">Exam Type</th>
-                            <th class="text-center align-middle">Description</th>
-                            <th class="text-center align-middle">Date</th>
-                            <th class="text-center align-middle">Status</th>
+                        <th style="background-color: #990000; color:white;">#</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Exam Type</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Description</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Date</th>
+                            <th class="text-center align-middle" style="background-color: #990000; color:white;">Status</th>
                         </tr>
                     </thead>
                     <tbody>

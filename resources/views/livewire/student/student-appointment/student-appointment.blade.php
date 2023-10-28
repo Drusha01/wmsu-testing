@@ -44,16 +44,16 @@
             </div>
 
      <!-- Tab 2: View Appointments -->
-     <div class="tab-pane fade" id="view-appointments">
+     <div class="tab-pane fade" id="view-appointments" >
                 <table class="table table-striped">
-                    <thead>
+                    <thead >
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Purpose</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th> <!-- Added Action column for reschedule and cancel -->
+                            <th style="background-color: #990000; color:white; scope="col">#</th>
+                            <th style="background-color: #990000; color:white; scope="col">Date</th>
+                            <th style="background-color: #990000; color:white; scope="col">Time</th>
+                            <th style="background-color: #990000; color:white; scope="col">Purpose</th>
+                            <th style="background-color: #990000; color:white; scope="col">Status</th>
+                            <th style="background-color: #990000; color:white; scope="col">Action</th> <!-- Added Action column for reschedule and cancel -->
                         </tr>
                     </thead>
                     <tbody>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-success">Save Changes</button>
                 </div>
             </div>
         </div>
