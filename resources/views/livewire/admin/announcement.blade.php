@@ -22,10 +22,16 @@
         <div class="tab-content">
             <!-- Announcement Tab -->
             <div class="tab-pane fade show active" id="announcement-tab">
+                
                 <br>
                 <div class="d-flex mt-2">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#addAnnouncementModal">Add Announcement</button>
+                    </div>
                     <div class="col-md-3 sort-container">
+                        
                         <div class="d-flex">
+                            
                             @if(1)
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#announcement-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
@@ -35,6 +41,7 @@
                             
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
+                        
                     </div> 
                     <div class="modal fade" id="announcement-filter" tabindex="-1" role="dialog" aria-labelledby="announcement-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,10 +73,6 @@
                         </div>
                     </div>
                     <br>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#addAnnouncementModal">Add Announcement</button>
-                
-                    </div>
                 </div>
                 <table class="appointment-table">
                     <thead>
