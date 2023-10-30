@@ -26,7 +26,7 @@
                             <a class="nav-link" href="{{ route('services') }}">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('programs') }}">Programs</a>
+                            <a class="nav-link" href="{{ route('programs') }}">Academic Programs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('faq') }}">FAQ</a>

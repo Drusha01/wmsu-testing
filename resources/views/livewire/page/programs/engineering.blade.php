@@ -9,10 +9,8 @@
                                     <div class="about-content mt-2">
                                         <span>About </span>
                                         <h2>College Of Engineering</h2>
-                                        <p>the College of Agriculture envisions to be an active agent of economic and social change that excels and leads in the art, science and practice of developing human resources with integrative knowledge responsive to the well being of agricultural communities. It is hoped to provide a well oriented, skilled and knowledgeable professionals and practitioners with excellent leadership qualities in agricultural systems in education, research and development, extension capability and sustainable agricultural production.</p>
-                                        <p>Our mission is to offer comprehensive and reliable testing solutions that help individuals
-                                            showcase their knowledge and skills, enabling them to make informed decisions about their
-                                            educational and career paths.</p>
+                                        <p>The College of Engineering envisions a future where innovative engineering solutions drive sustainable progress, enriching lives and safeguarding the environment. We aspire to be a global leader in engineering education and research, fostering a diverse community of creative thinkers, problem solvers, and ethical leaders. Our vision is to advance the boundaries of engineering knowledge, shaping the technological landscape, and empowering graduates to address the world's most pressing challenges.</p>
+                                        <p>Our mission at the College of Engineering is to provide a transformative education that equips students with the theoretical foundation, practical skills, and ethical mindset necessary to excel in the field of engineering. We are committed to fostering a culture of curiosity, collaboration, and innovation. Through rigorous academic programs, hands-on projects, and cutting-edge research, we prepare our students to design and implement sustainable solutions to complex engineering problems.</p>
                                     </div>
                                 </div>
                             </div>        

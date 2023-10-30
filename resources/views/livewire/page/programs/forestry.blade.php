@@ -9,7 +9,7 @@
                                     <div class="about-content mt-2">
                                         <span>About </span>
                                         <h2>College Of Forestry And Environmental Studies</h2>
-                                        <p>the College of Agriculture envisions to be an active agent of economic and social change that excels and leads in the art, science and practice of developing human resources with integrative knowledge responsive to the well being of agricultural communities. It is hoped to provide a well oriented, skilled and knowledgeable professionals and practitioners with excellent leadership qualities in agricultural systems in education, research and development, extension capability and sustainable agricultural production.</p>
+                                        <p>The College of Forestry and Environmental Studies envisions a world where forests are cherished, ecosystems are preserved, and sustainable environmental practices are the foundation of global progress. We aim to be a leading institution in forestry and environmental education, research, and conservation, dedicated to nurturing a new generation of environmental stewards. Our vision is to inspire a deep reverence for nature, promote biodiversity, and cultivate innovative approaches to safeguarding the environment for current and future generations.</p>
                                         <p>Our mission is to offer comprehensive and reliable testing solutions that help individuals
                                             showcase their knowledge and skills, enabling them to make informed decisions about their
                                             educational and career paths.</p>
