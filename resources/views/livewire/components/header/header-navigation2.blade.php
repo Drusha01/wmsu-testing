@@ -3,10 +3,12 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #990000;">
             <div class="container">
+            <div class="mx-auto">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="#">
                 </a>
                 <a class="navbar-brand nav-linklogo" href="{{ route('home') }}">Testing and Evaluation Center</a>
+            </div>
                 <!-- Navigation toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -15,7 +17,7 @@
                 </button>
                 <!-- Navigation links -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr auto">
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
