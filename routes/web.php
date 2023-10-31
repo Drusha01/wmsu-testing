@@ -42,24 +42,7 @@ use App\Http\Livewire\Student\StudentAppointment\StudentAppointment;
 use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
 use App\Http\Livewire\ApplicationForm;
 use App\Http\Livewire\ApplicationBack;
-use App\Http\Livewire\Page\Programs\Agri;
-use App\Http\Livewire\Page\Programs\Arch;
-use App\Http\Livewire\Page\Programs\Islamic;
-use App\Http\Livewire\Page\Programs\Crim;
-use App\Http\Livewire\Page\Programs\Engineering;
-use App\Http\Livewire\Page\Programs\Forestry;
-use App\Http\Livewire\Page\Programs\Economics;
-use App\Http\Livewire\Page\Programs\Law;
-use App\Http\Livewire\Page\Programs\Cla;
-use App\Http\Livewire\Page\Programs\Nursing;
-use App\Http\Livewire\Page\Programs\Cpads;
-use App\Http\Livewire\Page\Programs\Pe;
-use App\Http\Livewire\Page\Programs\Math;
-use App\Http\Livewire\Page\Programs\Social;
-use App\Http\Livewire\Page\Programs\Educ;
-use App\Http\Livewire\Page\Programs\Comsci;
-
-
+use  App\Http\Livewire\Page\Programs\Agri;
 
 // admin
 use App\Http\Livewire\Admin\AdminManagement;
@@ -210,21 +193,6 @@ Route::prefix('/')->group(function () {
 
     Route::get('/programs', Programs::class)->name('programs');
     Route::get('/programs/agri',Agri::class)->name('programs.agri');
-    Route::get('/programs/arch',Arch::class)->name('programs.arch'); 
-    Route::get('/programs/islamic',Islamic::class)->name('programs.islamic');
-    Route::get('/programs/crim',Crim::class)->name('programs.crim');
-    Route::get('/programs/engineering',Engineering::class)->name('programs.engineering');
-    Route::get('/programs/forestry',Forestry::class)->name('programs.forestry');
-    Route::get('/programs/economics',Economics::class)->name('programs.economics');
-    Route::get('/programs/law',Law::class)->name('programs.law');
-    Route::get('/programs/cla',Cla::class)->name('programs.cla');
-    Route::get('/programs/nursing',Nursing::class)->name('programs.nursing');
-    Route::get('/programs/cpads',Cpads::class)->name('programs.cpads');
-    Route::get('/programs/pe',Pe::class)->name('programs.pe');
-    Route::get('/programs/math',Math::class)->name('programs.math');
-    Route::get('/programs/social',Social::class)->name('programs.social');
-    Route::get('/programs/educ',Educ::class)->name('programs.educ');
-    Route::get('/programs/comsci',Comsci::class)->name('programs.comsci');
 });
 
 

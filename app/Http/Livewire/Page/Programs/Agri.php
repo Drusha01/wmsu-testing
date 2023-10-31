@@ -15,7 +15,7 @@ class Agri extends Component
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->title = 'agri';
+        $this->title = 'programs';
     }
     public function render()
     {
