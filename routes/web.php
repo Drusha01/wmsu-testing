@@ -62,7 +62,7 @@ use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\Notification;
 use App\Http\Livewire\Admin\ScheduleManagement;
-
+use App\Http\Livewire\Admin\Programs as AdminProgram;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -168,6 +168,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('user-management', UserManagement::class)->name('user-management');
         Route::get('result-management', ResultManagement::class)->name('result-management');
         Route::get('room-management', RoomManagement::class)->name('room-management');
+        Route::get('program-management', AdminProgram::class)->name('program-management');
         Route::get('faq-management', AdminFaq::class)->name('faq-management');
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');
