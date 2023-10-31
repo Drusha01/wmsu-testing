@@ -11,7 +11,7 @@
                             <p>Here are important reminders for WMSU exam takers:</p>
                             <ul class="reminder-list">
                                 <li>You can only Take CET once.</li>
-                                <li style="color:red;">Please settle your payment on the Registar cashier as it will be a part of requirements to be uploaded in your form if you already taken CET once.</li>
+                                <li style="color:red; font-weight:bold;">Please settle your payment on the Registar cashier as it will be a part of requirements to be uploaded in your form if you already taken CET once.</li>
                                 <li>Select the specific test you wish to take.</li>
                                 <li>Upload all required documents before the exam date.</li>
                                 <li>Submit your application on time.</li>
