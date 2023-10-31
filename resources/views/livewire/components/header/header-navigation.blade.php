@@ -1,16 +1,18 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-crimson">
         <div class="container">
+        <div class="mx-auto">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="WMSU Logo">
                 <span class="company-name">Testing and Evaluation Center</span>
             </a>
+        </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
