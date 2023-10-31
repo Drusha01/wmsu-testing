@@ -1,19 +1,18 @@
 <div class="container border border-dark  mt-5 mb-5">
   <div class="row ">
-    <span class="text-center text-danger border border-danger m-4   ">
-        <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo" style="width: 300px; height: 300px; object-fit: cover;" >
-    </span>
-    <div class="col-sm mt-5 my-4 pt-5  text-center  mx-5 ">
+    <div class="col-sm border border-danger my-4 mx-2 d-flex align-items-center justify-content-center mx-5" style="height:300px;">
+        <span class="text-center text-danger"> <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo"></span>
+    </div>
+
+    <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
         
       <p class="text-danger font-weight-bold">Western Mindanao State University <br> TESTING AND EVALUATION CENTER  <br> Zamboanga City</p>
       <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year 2024-2025</p>
     </div>
-    <span class="text-center text-danger border border-danger m-4">
-        <img src="{{ asset('images/slider/campus.jpg') }}" alt="Logo" class="form-logo" style="width: 300px; height: 300px; object-fit: cover;" >
-    </span>
-    
-  </div>
-   <br>
+    <div class="col-sm text-center border border-danger my-4 mx-2 d-flex align-items-center justify-content-center mx-5">
+        <span class="text-center text-danger"> 2x2 Picture</span>
+    </div>
+  </div> 
                                         <legend class="text-danger font-weight-bold">TO THE APPLICANTS:Forms with incomplete entries/requirements will not be processed</legend>
                                                  <div class="container border border-4 w-80">
                                                     <div class="row">
