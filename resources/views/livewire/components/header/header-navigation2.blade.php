@@ -4,10 +4,10 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #990000;">
             <div class="container">
             <div class="mx-auto">
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="WMSU Logo">
-                    <span class="company-name">Testing and Evaluation Center</span>
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="#">
                 </a>
+                <a class="navbar-brand nav-linklogo" href="{{ route('home') }}">Testing and Evaluation Center</a>
             </div>
                 <!-- Navigation toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
