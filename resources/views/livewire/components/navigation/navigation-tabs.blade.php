@@ -16,8 +16,8 @@
             <li role="presentation" class="{{request()->is('student/results*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.results') }}" role="tab">Results</a>
             </li>
-            <li role="presentation" class="{{request()->is('student/schedule*') ? 'active' : 'presentation'}}">
-                <a href="{{ route('student.schedule') }}" role="tab">Announcement</a>
+            <li role="presentation" class="{{request()->is('student/announcement*') ? 'active' : 'presentation'}}">
+                <a href="{{ route('student.announcement') }}" role="tab">Announcement</a>
             </li>
             <li role="presentation" class="{{request()->is('student/appointment*') ? 'active' : 'presentation'}}">
                 <a href="{{ route('student.appointment') }}" role="tab">Appointments</a>
