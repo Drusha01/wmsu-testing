@@ -22,6 +22,7 @@
                 <th>Date Start - Date End</th>
                 <th>Event</th>
                 <th>Time</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td>2023-10-25</td>
                 <td>Entrance Exam</td>
                 <td>10:00 AM</td>
+                <td>Available</td>
                 <td>
                     <button class="btn btn-primary reschedule-btn">Reschedule</button>
                     <button class="btn btn-danger cancel-btn">Cancel</button>
@@ -42,6 +44,7 @@
                 <td>2023-11-05</td>
                 <td>Interview</td>
                 <td>2:30 PM</td>
+                <td>unavailable</td>
                 <td>
                     <button class="btn btn-primary reschedule-btn">Reschedule</button>
                     <button class="btn btn-danger cancel-btn">Cancel</button>
@@ -77,6 +80,11 @@
                                 <label for="scheduleTime">Time:</label>
                                 <input type="time" class="form-control" id="scheduleTime" name="scheduleTime">
                             </div>
+                            <!-- status if available for unavailable -->
+                            <!-- <div class="form-group">
+                                <label for="scheduleTime">Time:</label>
+                                <input type="time" class="form-control" id="scheduleTime" name="scheduleTime">
+                            </div> -->
                         </form>
                         <!-- End Form for Adding a Schedule Entry -->
                     </div>

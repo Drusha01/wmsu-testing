@@ -18,7 +18,7 @@
                 <a class="nav-link active" data-bs-toggle="tab" href="#result-management-tab">Result Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#examinees-management-tab">Examinees Management</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#examinees-management-tab">Examinees Report</a>
             </li>
         </ul>
         <!-- Tab Content -->

@@ -197,8 +197,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Modify Profile and ID Modal -->
-            <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalPhoto" aria-hidden="true" wire:ignore.self>
+                    <!-- Modify Profile and ID Modal -->
+            <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -208,29 +208,29 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <fieldset>
+                            <form wire:submit.prevent="update_profile_and_id()">
                                 <!-- Full Name -->
-                                <form wire:submit.prevent="update_profile_and_id()">
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Profile photo<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="file"  accept="image/png, image/jpeg" wire:model="photo"  class="form-control" placeholder="Current Password" id="{{$photo_id}}">
-                                        </div>
-                                        <div wire:loading wire:target="photo">Uploading...</div>
+                                <div class="form-group row">
+                                    <label for="newFullName" class="col-sm-4 col-form-label mb-5">Profile photo<span style="color:red;"></span> :</label>
+                                    <div class="col-sm-8">
+                                        <input type="file" accept="image/png, image/jpeg" wire:model="photo" class="form-control" id="newFullName" placeholder="Current Password">
                                     </div>
-                                    <div>
-                                    @if(isset($profile_photo_error)) <span class="error" style="color:red;">{{ $profile_photo_error }}</span> @endif
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </fieldset>
+                                </div>
+                                <div>
+                                    @if(isset($profile_photo_error))
+                                        <span class="error" style="color:red;">{{ $profile_photo_error }}</span>
+                                    @endif
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+
              <!-- Modify Password Modal -->
              <div class="modal fade" id="modifyModalpassword" tabindex="-1" role="dialog" aria-labelledby="modifyModalpassword" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">

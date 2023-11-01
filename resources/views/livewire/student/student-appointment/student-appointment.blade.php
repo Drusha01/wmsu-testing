@@ -7,7 +7,7 @@
                 <a class="nav-link active" data-toggle="tab" href="#schedule-appointment">Schedule Appointment</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#view-appointments">View Appointments</a>
+                <a class="nav-link" data-toggle="tab" href="#view-appointments">My Appointments</a>
             </li>
         </ul>
 
@@ -24,10 +24,6 @@
                             <div class="form-group">
                                 <label for="appointment-date">Preferred Appointment Date:</label>
                                 <input type="date" class="form-control" id="appointment-date">
-                            </div>
-                            <div class="form-group">
-                                <label for="appointment-time">Appointment Time:</label>
-                                <input type="time" class="form-control" id="appointment-time">
                             </div>
                             <div class="form-group">
                                 <label for="appointment-purpose">Purpose:</label>
