@@ -35,9 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link @if($active == 'AboutUs') show active @endif " wire:key="AboutUs" wire:click="active_page('AboutUs')" data-bs-toggle="tab" href="#about-us-tab">About Us</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link @if($active == 'CTA') show active @endif " wire:key="CTA" wire:click="active_page('CTA')" data-bs-toggle="tab" href="#cta-tab">CTA</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link @if($active == 'Footer') show active @endif " wire:key="Footer" wire:click="active_page('Footer')" data-bs-toggle="tab" href="#footer-tab">Footer</a>
                 </li>
@@ -409,36 +409,90 @@
                 <table class="application-table">
                     <thead>
                         <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Action</th>
+                            @foreach ($aboutus_filter as $item => $value)
+                                @if($value)
+                                    <th >{{$item}}</th>
+                                @endif
+                            @endforeach
                         </tr>
                     </thead>
-                    <tbody>                          
-                        <tr>
-                            <td>
-                                <img src="{{ asset('images/slider/campus.jpg') }}" alt="" style="width:300px; height: 200px; ">
+                    <tbody>        
+                    @forelse ($aboutus_data as $item => $value)
+                            <tr>
+                                @if($aboutus_filter['Image'])
+                                    <td>
+                                        <img src="{{asset('storage/content/about_us/'.$value->au_image)}}" alt="" style="height: 200px; ">
+                                    </td>
+                                @endif
+                                @if($aboutus_filter['Header'])
+                                    <td class="align-middle">
+                                        <p>{{$value->au_header}}</p>
+                                    </td>
+                                @endif
+                                @if($aboutus_filter['Content'])
+                                    <td class="align-middle">
+                                        <p>{{$value->au_content}}</p>
+                                    </td>
+                                @endif
+                                @if($aboutus_filter['Action'])
+                                    <td class="align-middle"> 
+                                        @if($access_role['R']==0 && 0)
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewCarouselModal" >View</button>
+                                        @endif
+                                        @if($access_role['U']==1)
+                                        <button class="btn btn-success" wire:click="edit_aboutus({{$value->au_id}})" >Edit</button>
+                                        @endif
+                                        @if($access_role['D']==0)
+                                        <button class="btn btn-danger" wire:click="delete_aboutus({{$value->au_id}})">Delete</button>
+                                        @endif
+                                    </td>
+                                @endif                                        
+                            </tr>
+                        @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
                             </td>
-                            
-                            <td class="align-middle">
-                                <p>WMSU Testing and Evaluation Center</p>
-                                
-                            </td>
-                            <td>
-                                <p>WMSU Testing and Evaluation Center is dedicated to providing exceptional testing and evaluation services to students and individuals pursuing their academic and professional aspirations. With a strong commitment to excellence and innovation, we strive to empower our community with the tools they need to succeed.</p>
-                                <p>Our mission is to offer comprehensive and reliable testing solutions that help individuals showcase their knowledge and skills, enabling them to make informed decisions about their educational and career paths.</p>
-                                <p>At WMSU Testing and Evaluation Center, we understand the significance of accurate assessments in shaping the future of our students. Our experienced team of professionals is dedicated to upholding the highest standards of integrity and fairness, ensuring that every test-taker's experience is equitable and meaningful.</p>
-                            </td>
-                            <td class="align-middle mt-4"> 
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Edit</button>
-                                <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Delete </button>
-                            </td>
-                        </tr>
+                        @endforelse                  
                     </tbody>
                 </table> 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="EditAboutusModal" tabindex="-1" role="dialog" aria-labelledby="EditAboutusModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditAboutusModalLabel">Edit About us</h5>
+                            </div>
+                            <hr>
+                            @if($aboutus['au_id'])
+                            <form wire:submit.prevent="save_edit_aboutus({{$aboutus['au_id']}})">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Image:</label><br>
+                                        <input  type="file" class="form-control" wire:model.defer="aboutus.au_image"  >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Header:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="aboutus.au_header" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Content:</label>
+                                        <textarea  type="text" class="form-control" wire:model.defer="aboutus.au_content" required></textarea>
+                                    </div>
+                                  
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -456,38 +510,9 @@
                                 </div>
                             </div>
                     </div>
-                </div>
+                </div> -->
                 <!--  modal trigger -->
-                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                    <h6 class="modal-title" id="exampleModalLongTitle">Edit About Us</h6>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-md-15 mb-5">
-                                        <label for="photo" class="form-label">Change About Us Image</label>
-                                            <div>
-                                                <img src="{{ asset('images/slider/campus.jpg') }}" alt="" style="width:420px; height: 200px; ">
-                                            </div>
-                                        <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
-                                            <div class="mt-2">
-                                                    <h5>Change Paragraph</h5>
-                                                    <textarea class="form-control" id="message" name="message" rows="10" required="" style="height: 80px;"></textarea>
-                                            </div>
-                                    </div>
-                                            
-                                </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
+                
             </div>
 
             <div class="tab-pane fade @if($active == 'Services') show active @endif " >
@@ -765,6 +790,314 @@
                     </tr>
                 </table>
                         
+            </div>
+
+            <div class="tab-pane fade @if($active == 'Footer') show active @endif ">
+                <br>
+                <div class="d-flex mt-2">
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faq-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                    <div class="modal fade" id="faq-filter" tabindex="-1" role="dialog" aria-labelledby="faq-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="faq-filterLabel">Sort&nbsp;Columns for Footer</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($footer_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="footer-filter-{{$loop->iteration}}"
+                                            wire:model.defer="footer_filter.{{$item}}">
+                                        <label class="form-check-label" for="footer-filter-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button wire:click="carouselfilterView()" data-bs-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success   mx-1" wire:click="add_footer()" >Add Footer</button>
+                    </div>
+                </div>
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                            @foreach ($footer_filter as $item => $value)
+                                @if($value)
+                                    <th >{{$item}}</th>
+                                @endif
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($footer_data  as $item => $value)
+                            <tr>
+                                @if($footer_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                                @if($footer_filter['Header'])
+                                    <td class="align-left">    
+                                        <p>{{$value->footer_type_details}}</p>
+                                    </td>
+                                @endif
+                                @if($footer_filter['Content'])
+                                    <td class="align-left">    
+                                        <span>
+                                    <?php 
+                                    $footer_type_id =$value->footer_type_id;
+                                    
+                                    $footers = DB::table('footer')
+                                         ->where('footer_type_id','=',$value->footer_type_id)
+                                         ->orderBy('footer_order')
+                                         ->get()
+                                         ->toArray();
+                                    ?>
+                                        @forelse ($footers as $item => $footer_value)
+                                            <p>{{$footer_value->footer_content}}
+                                                <span> </span>
+                                                @if($access_role['U']==1 )
+                                                    <button class="btn btn-success" wire:click="edit_footer_each({{$footer_value->footer_id}})" >Edit</button>
+                                                @endif 
+                                                @if($access_role['D']==1 )
+                                                    <button class="btn btn-danger" wire:click="delete_footer_each({{$footer_value->footer_id}})" >Delete</button>
+                                                @endif 
+                                            </p> 
+                                        @empty
+                                        @endforelse
+                                        </span>
+                                    </td>
+                                @endif
+                               
+                                @if($footer_filter['Order'])
+                                    <td class="align-middle"> 
+                                        <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_up_faq({{$value->footer_type_order}})"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_down_faq({{$value->footer_type_order}})"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                        </div>
+                                    </td>
+                                @endif
+                                @if($footer_filter['Action'])
+                                    <td class="align-middle"> 
+                                        @if($access_role['R']==1 )
+                                            <button class="btn btn-primary" wire:click="add_footer_in_type({{$value->footer_type_id}})" >Add</button>
+                                        @endif 
+                                        @if($access_role['U']==1)
+                                            <button class="btn btn-success" wire:click="edit_footer_in_type({{$value->footer_type_id}})" >Edit</button>
+                                        @endif
+                                        @if($access_role['D']==1)
+                                            <button class="btn btn-danger" wire:click="delete_footer_in_type({{$value->footer_type_id}})">Delete</button>
+                                        @endif
+                                    </td>
+                                @endif                                        
+                            </tr>
+                        @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                        @endforelse
+                    </tbody>
+                </table>
+
+                <div class="modal fade" id="AddFooterTypeModal" tabindex="-1" role="dialog" aria-labelledby="AddFooterTypeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="AddFooterTypeModalLabel">Add Footer</h5>
+                            </div>
+                            <hr>
+                            <form wire:submit.prevent="save_add_footer()">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Footer:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer.footer_type_details" required></input>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="DeleteFooterTypeModal" tabindex="-1" role="dialog" aria-labelledby="DeleteFooterTypeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteFooterTypeModalLabel">Delete Footer</h5>
+                            </div>
+                            <hr>
+                            @if(isset($footer['footer_type_id']))
+                            <form wire:submit.prevent="delete_footer({{$footer['footer_type_id']}})">
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete ({{$footer['footer_type_details']}})</p>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="EditFooterTypeModal" tabindex="-1" role="dialog" aria-labelledby="EditFooterTypeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditFooterTypeModalLabel">Add Footer</h5>
+                            </div>
+                            <hr>
+                            @if(isset($footer['footer_type_id']))
+                            <form wire:submit.prevent="save_edit_footer_in_type({{$footer['footer_type_id']}})">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Footer:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer.footer_type_details" required></input>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-success">
+                                        Edit
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="modal fade" id="AddFooterModal" tabindex="-1" role="dialog" aria-labelledby="AddFooterModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="AddFooterModalLabel">Add to @if(strlen($footer['footer_type_details'])>0){{$footer['footer_type_details']}}@endif</h5>
+                            </div>
+                            <hr>
+                            @if($footer_each['footer_type_id'])
+                            <form wire:submit.prevent="save_add_footer_in_type({{$footer_each['footer_type_id']}})">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Footer Content:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_content" required></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Icon:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_icon" ></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Link:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_link" ></input>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditFooterModal" tabindex="-1" role="dialog" aria-labelledby="EditFooterModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditFooterModal">Edit to @if(strlen($footer['footer_type_details'])>0){{$footer['footer_type_details']}}@endif</h5>
+                            </div>
+                            <hr>
+                            @if($footer_each['footer_id'])
+                            <form wire:submit.prevent="save_edit_footer_each({{$footer_each['footer_id']}})">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Footer Content:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_content" required></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Icon:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_icon" ></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Link:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="footer_each.footer_link" ></input>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-success">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="DeleteFooterModal" tabindex="-1" role="dialog" aria-labelledby="DeleteFooterModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteFooterModalLabel"></h5>
+                            </div>
+                            <hr>
+                            @if($footer_each['footer_id'])
+                            <form wire:submit.prevent="delete_edit_footer_each({{$footer_each['footer_id']}})">
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete ({{$footer_each['footer_content']}})? </p>
+
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="tab-pane @if($active == 'FAQ') show active @endif">

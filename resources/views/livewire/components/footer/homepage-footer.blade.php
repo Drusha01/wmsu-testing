@@ -30,14 +30,43 @@
         </section>
         <!-- Section: Social media -->
 
-        <!-- Section: Links  -->
+        @if($footer_data)
         <section class="">
             <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
                 <div class="row mt-3">
-                    <!-- Grid column -->
+                    @foreach ($footer_data  as $item => $value)
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                {{$value->footer_type_details}}
+                            </h6>
+                            <?php 
+                            $footer_type_id =$value->footer_type_id;
+                            $footers = DB::table('footer')
+                                ->where('footer_type_id','=',$value->footer_type_id)
+                                ->orderBy('footer_order')
+                                ->get()
+                                ->toArray();
+                            ?>
+                            @forelse ($footers as $item => $footer_value)
+                                <p>
+                                    <a href="{{$footer_value->footer_link}}" class="text-reset"><i class="{{$footer_value->footer_icon}}"></i>{{$footer_value->footer_content}}</a>
+                                </p>
+                            @empty
+                            @endforelse
+                            
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endif
+
+        <!-- Section: Links  -->
+        <!-- <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             <i class=""></i>TEC
                         </h6>
@@ -45,11 +74,7 @@
                             Western Mindanao State University (WMSU) Testing and Evaluation Center
                         </p>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             Services
                         </h6>
@@ -63,11 +88,7 @@
                             <a href="#!" class="text-reset">Standardized Testing</a>
                         </p>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             FAQ
                         </h6>
@@ -81,11 +102,7 @@
                             <a href="#!" class="text-reset">Help</a>
                         </p>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                         <p><i class="fas fa-home me-3"></i> Normal Rd. Baliwasan</p>
                         <p>
@@ -95,11 +112,9 @@
                         <p><i class="fas fa-phone me-3"></i> 02 231 2182</p>
                         <p><i class="fas fa-print me-3"></i> 63+ 9956207083 </p>
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!-- Grid row -->
             </div>
-        </section>
+        </section> -->
         <!-- Section: Links  -->
 
         <!-- Copyright -->

@@ -68,8 +68,30 @@ class Settings extends Component
     ];
 
     // footer
+    public $footer_filter;
+    public $footer_data;
+    public $footers;
+    public $footer = [
+        'footer_type_details'=> NULL,
+        'footer_type_order'=> NULL
+    ];
+    public $footer_each =[
+        'footer_id' => NULL,
+        'footer_type_id' => NULL,
+        'footer_icon' => NULL,
+        'footer_content' => NULL,
+        'footer_link' => NULL
+    ];
 
     // about us
+    public $aboutus_filter;
+    public $aboutus_data;
+    public $aboutus = [
+        'au_id'=> NULL,
+        'au_image'=> NULL,
+        'au_header'=>NULL,
+        'au_content'=>NULL,
+    ];
     
     // cta
 
@@ -141,6 +163,17 @@ class Settings extends Component
             ->orderBy('feature_order')
             ->get()
             ->toArray();
+
+            $this->aboutus_data = DB::table('aboutus')
+                ->get()
+                ->toArray();
+            $this->footer_data = DB::table('footer_types')
+            ->select('*')
+            ->orderBy('footer_type_order')
+            ->get()
+            ->toArray();
+
+            
     }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
@@ -164,8 +197,6 @@ class Settings extends Component
             'Action'=> true,
         ];
 
-        // about us
-
         // why choose us
         $this->wcu_filter = [
             '#'=> true,
@@ -175,8 +206,6 @@ class Settings extends Component
             'Order'=> true,
             'Action'=> true,
         ];  
-
-        // cta
 
         // faq
         $this->faq_filter = [
@@ -198,6 +227,22 @@ class Settings extends Component
         ]; 
 
         // footer
+        $this->footer_filter = [
+            '#'=> true,
+            'Header'=> true,
+            'Content'=> true,
+            'Order'=> false,
+            'Action'=> true,
+        ]; 
+        
+
+        // about us
+        $this->aboutus_filter = [
+            'Image'=> true,
+            'Header'=> true,
+            'Content'=> true,
+            'Action'=> true,
+        ]; 
 
         $this->access_role = [
             'C' => true,
@@ -1619,8 +1664,468 @@ class Settings extends Component
     }
 
     // footer
+    public function add_footer(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            $this->footer = [
+                'footer_type_details'=> NULL,
+                'footer_type_order'=> NULL
+            ];
+            $this->dispatchBrowserEvent('openModal','AddFooterTypeModal');
+        }
+    }
+    public function save_add_footer(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if(strlen($this->footer['footer_type_details'])<=0){
+                return;
+            }
+            $current_order = DB::table('footer_types')
+            ->select(DB::raw('count(*) as current_order'))
+            ->first();
+
+            if(DB::table('footer_types')
+                ->insert([
+                'footer_type_id' => NULL,
+                'footer_type_details' => $this->footer['footer_type_details'], 
+                'footer_type_order' =>($current_order->current_order+1)
+            ])){
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','AddFooterTypeModal');
+            }
+            
+        }
+    }
+    public function add_footer_in_type($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if($footer_type = DB::table('footer_types')
+                ->where('footer_type_id','=',$footer_type_id)
+                ->first()){
+            }
+            $this->footer = [
+                'footer_type_details'=> $footer_type->footer_type_details,
+                'footer_type_order'=> NULL
+            ];
+
+            $this->footer_each =[
+                'footer_id' => NULL,
+                'footer_type_id' => $footer_type->footer_type_id,
+                'footer_icon' => NULL,
+                'footer_content' => NULL,
+                'footer_link' => NULL
+            ];
+            $this->dispatchBrowserEvent('openModal','AddFooterModal');
+        }
+    }
+    public function save_add_footer_in_type($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if(strlen($this->footer_each['footer_content'])<=0){
+                return;
+            }
+            if(intval($this->footer_each['footer_type_id'])<=0){
+                return;
+            }
+            $current_order = DB::table('footer')
+                ->where('footer_type_id','=',$footer_type_id)
+                ->select(DB::raw('count(*) as current_order'))
+                ->first();
+            if(DB::table('footer')
+                ->insert([
+                    'footer_id' => NULL,
+                    'footer_type_id' => $this->footer_each['footer_type_id'],
+                    'footer_icon' => $this->footer_each['footer_icon'],
+                    'footer_content' => $this->footer_each['footer_content'],
+                    'footer_link' => $this->footer_each['footer_link'],
+                    'footer_order' => ($current_order->current_order +1)
+                    ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully added!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                    
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','AddFooterModal');
+            }
+        }
+    }
+    public function edit_footer_in_type($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if($footer = DB::table('footer_types')
+                ->where('footer_type_id','=',$footer_type_id)
+                ->first()){
+                $this->footer = [
+                    'footer_type_id' => $footer_type_id,
+                    'footer_type_details'=> $footer->footer_type_details
+                ];
+                $this->dispatchBrowserEvent('openModal','EditFooterTypeModal');
+            }
+        }
+    }
+    public function save_edit_footer_in_type($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if(strlen($this->footer['footer_type_details'])<=0){
+                return;
+            }
+            if(DB::table('footer_types')
+                ->where('footer_type_id','=',$footer_type_id)
+                ->update(['footer_type_details'=>$this->footer['footer_type_details']])){
+
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                    
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','EditFooterTypeModal');
+            }
+        }
+    }
+    public function delete_footer_in_type($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            if($footer = DB::table('footer_types')
+                ->where('footer_type_id','=',$footer_type_id)
+                ->first()){
+                $this->footer = [
+                    'footer_type_id' => $footer_type_id,
+                    'footer_type_details'=> $footer->footer_type_details
+                ];
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','DeleteFooterTypeModal');
+            }
+        }
+    }
+    public function delete_footer($footer_type_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            $footers = DB::table('footer')
+            ->where('footer_type_id','=',$footer_type_id)
+            ->orderBy('footer_order')
+            ->get()
+            ->toArray();
+            foreach ($footers as $key => $value) {
+                DB::table('footer')
+                    ->where('footer_id','=',$value->footer_id)
+                    ->delete();
+            }
+            DB::table('footer_types')
+            ->where('footer_type_id','=',$footer_type_id)
+            ->delete();
+
+            $this->footer_data = DB::table('footer_types')
+            ->select('*')
+            ->orderBy('footer_type_order')
+            ->get()
+            ->toArray();
+
+            foreach ($this->footer_data  as $key => $value) {
+                DB::table('footer_types')
+                ->where('footer_type_id','=',$value->footer_type_id)
+                ->update(['footer_type_order'=>($key+1)]);
+            }
+            self::update_data();
+            $this->dispatchBrowserEvent('openModal','DeleteFooterTypeModal');
+        }
+    }
+    public function edit_footer_each($footer_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['U'] ){
+            if($footer_each = DB::table('footer')
+                ->where('footer_id','=',$footer_id)
+                ->first()){
+                $this->footer_each =[
+                    'footer_id' => $footer_each->footer_id,
+                    'footer_type_id' => $footer_each->footer_type_id,
+                    'footer_icon' => $footer_each->footer_icon,
+                    'footer_content' => $footer_each->footer_content,
+                    'footer_link' => $footer_each->footer_link
+                ];
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','EditFooterModal');
+            }
+        }
+    }
+    public function save_edit_footer_each($footer_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if(strlen($this->footer_each['footer_content'])<=0){
+                return;
+            }
+            if(intval($this->footer_each['footer_type_id'])<=0){
+                return;
+            }
+            if(DB::table('footer')
+                ->where('footer_id','=',$this->footer_each['footer_id'])
+                ->update([
+                    'footer_icon' => $this->footer_each['footer_icon'],
+                    'footer_content' => $this->footer_each['footer_content'],
+                    'footer_link' => $this->footer_each['footer_link']
+                ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','EditFooterModal');
+            }
+        }
+    }
+    public function delete_footer_each($footer_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            if($footer_each = DB::table('footer')
+                ->where('footer_id','=',$footer_id)
+                ->first()){
+                $this->footer_each =[
+                    'footer_id' => $footer_each->footer_id,
+                    'footer_type_id' => $footer_each->footer_type_id,
+                    'footer_icon' => $footer_each->footer_icon,
+                    'footer_content' => $footer_each->footer_content,
+                    'footer_link' => $footer_each->footer_link
+                ];
+                $this->dispatchBrowserEvent('openModal','DeleteFooterModal');
+            }
+        }
+    }
+    public function delete_edit_footer_each($footer_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            if(DB::table('footer')
+                ->where('footer_id','=',$footer_id)
+                ->delete()){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully deleted!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                $footer_each_data = DB::table('footer')
+                    ->where('footer_type_id','=',$this->footer_each['footer_type_id'])
+                    ->get()
+                    ->toArray();
+                foreach ($footer_each_data as $key => $value) {
+                    DB::table('footer')
+                        ->where('footer_id','=',$value->footer_id)
+                        ->update(['footer_order'=>$key+1]);
+                }
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','DeleteFooterModal');
+            }
+        }
+    }
+
 
     // about us
+    public function edit_aboutus($au_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['U'] ){
+            if($about_us = DB::table('aboutus')
+            ->where('au_id','=',$au_id)
+            ->first()){
+        }
+            $this->aboutus = [
+                'au_id'=> $about_us->au_id,
+                'au_image'=>NULL ,
+                'au_header'=>$about_us->au_header,
+                'au_content'=>$about_us->au_content,
+            ];
+            $this->dispatchBrowserEvent('openModal','EditAboutusModal');
+        }
+    }
+    public function save_edit_aboutus($au_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        $current = DB::table('aboutus')
+            ->where('au_id','=',$au_id)
+            ->first();
+         
+
+        if($this->access_role['U'] ){
+            if($this->aboutus['au_image'] && file_exists(storage_path().'/app/livewire-tmp/'.$this->aboutus['au_image']->getfilename())){
+                $file_extension =$this->aboutus['au_image']->getClientOriginalExtension();
+                $tmp_name = 'livewire-tmp/'.$this->aboutus['au_image']->getfilename();
+                $size = Storage::size($tmp_name);
+                $mime = Storage::mimeType($tmp_name);
+                $max_image_size = 20 * 1024*1024; // 5 mb
+                $file_extensions = array('image/jpeg','image/png','image/jpg');
+                
+                if($size<= $max_image_size){
+                    $valid_extension = false;
+                    foreach ($file_extensions as $value) {
+                        if($value == $mime){
+                            $valid_extension = true;
+                            break;
+                        }
+                    }
+                    if($valid_extension){
+                        
+                        // move
+                        $new_file_name = md5($tmp_name).'.'.$file_extension;
+                        while(DB::table('aboutus')
+                        ->where(['au_image'=> $new_file_name])
+                        ->first()){
+                            $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                        }
+                        if(Storage::move($tmp_name, 'public/content/about_us/'.$new_file_name)){
+
+                            // delete old img
+                            $image_path = storage_path().'/app/public/content/about_us/'.$current->au_image;;
+                            if(file_exists($image_path)){
+                                unlink($image_path);
+                            }
+                            $this->aboutus['au_image'] = $new_file_name;
+                            // resize thumb nail
+                            // resize 500x500 px
+    
+                        }
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Invalid image type!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return 0;
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Image is too large!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                    return 0;
+                }  
+                $this->carousel_image_id = rand(0,1000000);         
+            }else{
+                $this->aboutus['au_image'] = $current->au_image;
+            }
+
+            if(DB::table('aboutus')
+                ->where('au_id','=',$au_id)
+                ->update([
+                    'au_image'=> $this->aboutus['au_image'] ,
+                    'au_header'=> $this->aboutus['au_header'],
+                    'au_content'=> $this->aboutus['au_content'],
+                ])
+                ){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }
+            self::update_data();
+            $this->dispatchBrowserEvent('openModal','EditAboutusModal');
+        }
+    }
         
     // cta
 

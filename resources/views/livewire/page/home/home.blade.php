@@ -99,22 +99,24 @@
             <section class="features mt-5 mb-5">
                 <div class="container">
                     <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="mb-4">Our Feature</h2>
-                    </div>
-                        @foreach($feature_data as $item => $value)
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="main-feature-box" style="height:300px;">
-                                <div class="icon">
-                                    <i class="bi bi-house-door-fill"></i>
-                                </div>
-                                <h3>{{$value->feature_header}}</h3>
-                                <p>{{$value->feature_content}}</p>
-                                <a href="{{$value->feature_link}}" target="blank" class="feature-link">{{$value->feature_button_name}} <i
-                                        class="bi bi-arrow-right-circle-fill"></i></a>
-                            </div>
+                        <div class="col-md-12 text-center">
+                            <h2 class="mb-4">Our Feature</h2>
                         </div>
-                        @endforeach
+                        <div class="row justify-content-center">
+                            @foreach($feature_data as $item => $value)
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="main-feature-box" style="height:300px;">
+                                    <div class="icon">
+                                        <i class="bi bi-house-door-fill"></i>
+                                    </div>
+                                    <h3>{{$value->feature_header}}</h3>
+                                    <p>{{$value->feature_content}}</p>
+                                    <a href="{{$value->feature_link}}" target="blank" class="feature-link">{{$value->feature_button_name}} <i
+                                            class="bi bi-arrow-right-circle-fill"></i></a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </section>
@@ -275,7 +277,7 @@
         Testimonials Section -->
 
         <!-- Call to Action Section -->
-        <section class="cta mt-5 mb-5">
+        <!-- <section class="cta mt-5 mb-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -311,6 +313,6 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </div>
 </div>

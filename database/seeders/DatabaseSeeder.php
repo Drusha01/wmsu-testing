@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             statusesSeeder::class,
             carousel_seeders::class,
             servicesSeeder::class,
+            aboutusSeeder::class,
         ]);
         
     }

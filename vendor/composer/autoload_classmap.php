@@ -214,6 +214,7 @@ return array(
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\Rooms_sample' => $baseDir . '/database/seeders/Rooms_sample.php',
     'Database\\Seeders\\UserRoleSeeder' => $baseDir . '/database/seeders/UserRoleSeeder.php',
+    'Database\\Seeders\\aboutusSeeder' => $baseDir . '/database/seeders/aboutusSeeder.php',
     'Database\\Seeders\\access_role' => $baseDir . '/database/seeders/access_role.php',
     'Database\\Seeders\\admin_role' => $baseDir . '/database/seeders/admin_role.php',
     'Database\\Seeders\\admin_role_names' => $baseDir . '/database/seeders/admin_role_names.php',
