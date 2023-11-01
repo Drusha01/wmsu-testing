@@ -29,7 +29,7 @@
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
+                        <a class="nav-link" href="{{route ('contact' )}}">Contact Us</a>
                     </li>
                 </ul>
                 @if(!isset($user_details['user_id']))
