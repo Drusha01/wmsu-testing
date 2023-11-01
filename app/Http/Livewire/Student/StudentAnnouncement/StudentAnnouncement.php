@@ -39,7 +39,7 @@ class StudentAnnouncement extends Component
     }
     public function render()
     {
-        return view('livewire.student.student-schedule.student-schedule',[
+        return view('livewire.student.student-announcement.student-announcement',[
             'user_details' => $this->user_details
             ])
             ->layout('layouts.student',[
