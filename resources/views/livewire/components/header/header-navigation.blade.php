@@ -29,7 +29,7 @@
                         <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
+                        <a class="nav-link" href="{{route ('contact' )}}">Contact Us</a>
                     </li>
                 </ul>
                 @if(!isset($user_details['user_id']))
@@ -65,13 +65,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route ('student.notifications') }}">
                                     <div class="notification-content">
                                         <div class="notification-icon">
-                                            <i class="fas fa-info-circle"></i>
+                                            <i class="fas fa-bell"></i>
                                         </div>
                                         <div class="notification-text">
-                                            <p>New notification 3</p>
+                                            <p>Show All Notifications</p>
                                         </div>
                                     </div>
                                 </a>

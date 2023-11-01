@@ -2,110 +2,135 @@
    
     <!-- content-->
     <section class="profile-section">
-        <div class="container">
-            <h2 class="profile-heading">Profile</h2>
-            <div class="Applicant-container">
-                <div class="Applicant-info">
-                    <div class="profile-box">
-                        <div class="profile-image-container">
-                            <label for="profileImageInput" class="profile-image-label">
-                                <a target="blank"href="@if($user_details['user_profile_picture']== 'default.png')  @else {{asset('storage/images/original/'.$user_details['user_profile_picture'])}}@endif">
-                                    <div class="profile-image">
-                                    @if($user_details['user_profile_picture']== 'default.png') <i class="fas fa-user fa-5x"></i>@else <img style="border-radius:50%;" width="150" height="150" src="{{asset('storage/images/resize/'.$user_details['user_profile_picture'])}}" alt=""> @endif
-                                        
-                                    </div>
-                                </a>
-                            </label>
-                        </div>
-                        <h3 class="mt-3">{{$user_details['user_name']}}</h3>
-                        <button id="modifyButtonProfile" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile </button>
-                        <br>
-                        <button id="modifyButtonpassword" class="btn btn-danger" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
-                        
-                    </div>
-                </div>  
-                <!-- Applicant details -->
-                <div class="applicant-details">
-                    <div class="details-box">
-                        <h4>Profile Details</h4>
-                        <ul class="list-group" id="applicantDetailsList">
-                            <li class="list-group-item"><strong>First name: </strong>{{$user_details['user_firstname']}}</li>
-                            <li class="list-group-item"><strong>Middle name: </strong> {{$user_details['user_middlename']}}</li>
-                            <li class="list-group-item"><strong>Last name: </strong> {{$user_details['user_lastname']}}</li>
-                            <li class="list-group-item"><strong>Suffix: </strong> {{$user_details['user_suffix']}}</li>
-                            <li class="list-group-item"><strong>Gender: </strong> {{$user_details['user_gender_details']}}</li>
-                            <li class="list-group-item"><strong>Age: </strong> {{floor((time() - strtotime($user_details['user_birthdate'])) / 31556926);}}</li>
-                            <li class="list-group-item"><strong>Home Address: </strong> {{$user_details['user_address']}}</li>
-                            <li class="list-group-item"><strong>Phone number: </strong> {{$user_details['user_phone']}}</li>
-                            <li class="list-group-item"><strong>Email: </strong> {{$user_details['user_email']}} @if($user_details['user_email_verified']==1)<a href="profile/change-email">change</a>@else<a href="profile/change-email">verify</a>@endif</li>
-                            <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']),"F d, Y ")}}</li>
-                            <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create( $user_details['date_created']),"F d, Y ")}}</li>
-                        </ul>
-                        <br>
-                        <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
-                    </div>
+    <div class="container">
+    <div class="Applicant-container">
+        <!-- Profile Section -->
+        <div class="Applicant-info">
+            <div class="profile-box">
+                <h4 style="margin-right:200px;">
+                    Profile
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#profileCollapse" aria-expanded="true" aria-controls="profileCollapse">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </h4>
+                <div id="profileCollapse" class="collapse show">
+                    <label for="profileImageInput" class="profile-image-label">
+                        <a target="blank" href="@if($user_details['user_profile_picture'] == 'default.png') @else {{asset('storage/images/original/'.$user_details['user_profile_picture'])}} @endif">
+                            <div class="profile-image">
+                                @if($user_details['user_profile_picture'] == 'default.png')
+                                <i class="fas fa-user fa-5x"></i>
+                                @else
+                                <img style="border-radius: 50%;" width="150" height="150" src="{{asset('storage/images/resize/'.$user_details['user_profile_picture'])}}" alt="">
+                                @endif
+                            </div>
+                        </a>
+                    </label>
+                    <h3 class="mt-3">{{$user_details['user_name']}}</h3>
+                    <button id="modifyButtonProfile" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile</button>
+                    <br>
+                    <button id="modifyButtonpassword" class="btn btn-danger" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
                 </div>
             </div>
-            <br>
-            <!-- Family Background -->
+        </div>
+
+        <!-- Profile Details Section -->
+        <div class="applicant-details">
             <div class="details-box">
-                <div class="family-background">
-                    <h4>Family Background</h4>
-                        <div class="row justify-content-center">
-                            <div class="details-box col-lg-6 mb-4">
-                                <h5>Father's Information</h5>
-                                <ul class="list-group" id="familyBackgroundList">
-                                    <li class="list-group-item"><strong>Father's first name: </strong> {{$f_firstname}}</li>
-                                    <li class="list-group-item"><strong>Father's middle name: </strong> {{$f_middlename}} </li>
-                                    <li class="list-group-item"><strong>Father's last name: </strong> {{$f_lastname}}</li>
-                                    <li class="list-group-item"><strong>Father's suffix name: </strong> {{$f_suffix}}</li>
-                                </ul>
-                            </div>
-                            <div class="details-box col-lg-6 mb-4">
-                                <h5>Mother's Information</h5>
-                                <ul class="list-group" id="familyBackgroundList">
-                                    <li class="list-group-item"><strong>Mother's first name: </strong> {{$m_firstname}}</li>
-                                    <li class="list-group-item"><strong>Mother's middle name: </strong> {{$m_middlename}}</li>
-                                    <li class="list-group-item"><strong>Mother's last name: </strong> {{$m_lastname}}</li>
-                                    <li class="list-group-item"><strong>Mother's suffix: </strong> {{$m_suffix}}</li>
-                                </ul>
-                            </div>
+
+                <h4>Profile Details
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#detailsCollapse" aria-expanded="true" aria-controls="detailsCollapse">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </h4>
+
+                <div id="detailsCollapse" class="collapse show">
+                    <ul class="list-group" id="applicantDetailsList">
+                        <li class="list-group-item"><strong>First name: </strong>{{$user_details['user_firstname']}}</li>
+                        <li class="list-group-item"><strong>Middle name: </strong> {{$user_details['user_middlename']}}</li>
+                        <li class="list-group-item"><strong>Last name: </strong> {{$user_details['user_lastname']}}</li>
+                        <li class="list-group-item"><strong>Suffix: </strong> {{$user_details['user_suffix']}}</li>
+                        <li class="list-group-item"><strong>Gender: </strong> {{$user_details['user_gender_details']}}</li>
+                        <li class="list-group-item"><strong>Age: </strong> {{floor((time() - strtotime($user_details['user_birthdate'])) / 31556926);}}</li>
+                        <li class="list-group-item"><strong>Home Address: </strong> {{$user_details['user_address']}}</li>
+                        <li class="list-group-item"><strong>Phone number: </strong> {{$user_details['user_phone']}}</li>
+                        <li class="list-group-item"><strong>Email: </strong> {{$user_details['user_email']}} @if($user_details['user_email_verified'] == 1)<a href="profile/change-email">change</a>@else<a href="profile/change-email">verify</a>@endif</li>
+                        <li class="list-group-item"><strong>Birthdate: </strong> {{date_format(date_create($user_details['user_birthdate']), "F d, Y ")}}</li>
+                        <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create( $user_details['date_created']), "F d, Y ")}}</li>
+                    </ul>
+                    <br>
+                    <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Background Section -->
+    <div class="details-box mt-3">
+        <div class="family-background">
+            <h4>Family Background
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#familyBackgroundCollapse" aria-expanded="true" aria-controls="familyBackgroundCollapse">
+                    <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div id="familyBackgroundCollapse" class="collapse show">
+                    <div class="row justify-content-center">
+                        <div class="details-box col-lg-6 mb-4">
+                            <h5>Father's Information</h5>
+                            <ul class="list-group" id="familyBackgroundList">
+                                <li class="list-group-item"><strong>Father's first name: </strong> {{$f_firstname}}</li>
+                                <li class="list-group-item"><strong>Father's middle name: </strong> {{$f_middlename}} </li>
+                                <li class="list-group-item"><strong>Father's last name: </strong> {{$f_lastname}}</li>
+                                <li class="list-group-item"><strong>Father's suffix name: </strong> {{$f_suffix}}</li>
+                            </ul>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="details-box col-lg-12 mb-4">
-                                <h5>Guardian's Information</h5>
-                                <ul class="list-group" id="familyBackgroundList">
-                                    <li class="list-group-item"><strong>Guardian's first name: </strong> {{$g_firstname}}</li>
-                                    <li class="list-group-item"><strong>Guardian's middle name: </strong> {{$g_middlename}} </li>
-                                    <li class="list-group-item"><strong>Guardian's last name: </strong> {{$g_lastname}}</li>
-                                    <li class="list-group-item"><strong>Guardian's suffix name: </strong> {{$g_suffix}}</li>
-                                    <li class="list-group-item"><strong>Guardian's Relationship: </strong> {{$g_relationship}}</li>
-                                </ul>
-                            </div>
+                        <div class="details-box col-lg-6 mb-4">
+                            <h5>Mother's Information</h5>
+                            <ul class="list-group" id="familyBackgroundList">
+                                <li class="list-group-item"><strong>Mother's first name: </strong> {{$m_firstname}}</li>
+                                <li class="list-group-item"><strong>Mother's middle name: </strong> {{$m_middlename}}</li>
+                                <li class="list-group-item"><strong>Mother's last name: </strong> {{$m_lastname}}</li>
+                                <li class="list-group-item"><strong>Mother's suffix: </strong> {{$m_suffix}}</li>
+                            </ul>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="details-box col-lg-12 mb-4">
-                                <h5>Siblings</h5>
-                                <ul class="list-group" id="familyBackgroundList">
-                                    <li class="list-group-item"><strong>Number of Siblings: </strong> {{$number_of_siblings}}</li>
-                                </ul>
-                            </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="details-box col-lg-12 mb-4">
+                            <h5>Guardian's Information</h5>
+                            <ul class="list-group" id="familyBackgroundList">
+                                <li class="list-group-item"><strong>Guardian's first name: </strong> {{$g_firstname}}</li>
+                                <li class="list-group-item"><strong>Guardian's middle name: </strong> {{$g_middlename}} </li>
+                                <li class="list-group-item"><strong>Guardian's last name: </strong> {{$g_lastname}}</li>
+                                <li class="list-group-item"><strong>Guardian's suffix name: </strong> {{$g_suffix}}</li>
+                                <li class="list-group-item"><strong>Guardian's Relationship: </strong> {{$g_relationship}}</li>
+                            </ul>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="details-box col-lg-12 mb-4">
-                                <h5>Family Home Address</h5>
-                                <ul class="list-group" id="familyBackgroundList">
-                                    <li class="list-group-item"><strong>Family Home Address:</strong> {{$fb_address}}</li>
-                                </ul>
-                            </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="details-box col-lg-12 mb-4">
+                            <h5>Siblings</h5>
+                            <ul class="list-group" id="familyBackgroundList">
+                                <li class="list-group-item"><strong>Number of Siblings: </strong> {{$number_of_siblings}}</li>
+                            </ul>
                         </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="details-box col-lg-12 mb-4">
+                            <h5>Family Home Address</h5>
+                            <ul class="list-group" id="familyBackgroundList">
+                                <li class="list-group-item"><strong>Family Home Address:</strong> {{$fb_address}}</li>
+                            </ul>
+                        </div>
+                    </div>
                     <br>
                     <button id="modifyButtonFamilyBackground" class="btn btn-primary" data-toggle="modal" data-target="#modifyModalFamilyBackground">Modify</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
             <br>
             <!-- Educational Background -->
-            <div class="details-box">
+            <!-- <div class="details-box">
                 <div class="family-background">
                     <h4>Educational Background</h4>
                     <div class="row justify-content-center">
@@ -123,7 +148,7 @@
                     </div> 
                 </div>
             </div>
-            <br>
+            <br> -->
         
             <!-- Modify Applicant Details Modal -->
             <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
