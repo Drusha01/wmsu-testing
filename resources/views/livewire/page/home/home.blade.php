@@ -95,66 +95,31 @@
         announcement items  -->
 
         <!-- Feature Info Section -->
-        <section class="features mt-5 mb-5">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="mb-4">Our Feature</h2>
-                </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="main-feature-box">
-                            <div class="icon">
-                                <i class="bi bi-house-door-fill"></i>
-                            </div>
-                            <h3>Expert TEC Employees</h3>
-                            <p>Our team of experienced professionals is dedicated to providing top-notch testing and
-                                evaluation services to help you succeed.</p>
-                            <a href="faq.php" class="feature-link">Learn More <i
-                                    class="bi bi-arrow-right-circle-fill"></i></a>
-                        </div>
+       @if($feature_data)
+            <section class="features mt-5 mb-5">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="mb-4">Our Feature</h2>
                     </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="main-feature-box">
-                            <div class="icon">
-                                <i class="bi bi-align-center"></i>
+                        @foreach($feature_data as $item => $value)
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="main-feature-box" style="height:300px;">
+                                <div class="icon">
+                                    <i class="bi bi-house-door-fill"></i>
+                                </div>
+                                <h3>{{$value->feature_header}}</h3>
+                                <p>{{$value->feature_content}}</p>
+                                <a href="{{$value->feature_link}}" target="blank" class="feature-link">{{$value->feature_button_name}} <i
+                                        class="bi bi-arrow-right-circle-fill"></i></a>
                             </div>
-                            <h3>Quality Education Services</h3>
-                            <p>We are committed to delivering high-quality education services to help you prepare for exams
-                                and excel in your academic journey.</p>
-                            <a href="services.php" class="feature-link">Explore Services <i
-                                    class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="main-feature-box">
-                            <div class="icon">
-                                <i class="bi bi-award-fill"></i>
-                            </div>
-                            <h3>Simple Registration Process</h3>
-                            <p>Our user-friendly registration process ensures a smooth experience, making it convenient for
-                                you to access our services.</p>
-                            <a href="registration.php" class="feature-link">Get Started <i
-                                    class="bi bi-arrow-right-circle-fill"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="main-feature-box">
-                            <div class="icon">
-                                <i class="bi bi-bank2-fill"></i>
-                            </div>
-                            <h3>Engaging Learning Environment</h3>
-                            <p>Join our community of motivated learners and engage in interactive educational experiences to
-                                achieve your goals.</p>
-                            <a href="about.php#community" class="feature-link">Discover More <i
-                                    class="bi bi-arrow-right-circle-fill"></i></a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
+        
         <!-- Feature Info Section -->
 
         <!-- Separation Line -->
