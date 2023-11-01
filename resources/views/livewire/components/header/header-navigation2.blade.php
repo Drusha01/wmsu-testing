@@ -17,14 +17,14 @@
                 </button>
                 <!-- Navigation links -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
+                    <ul class="navbar-nav mx-auto px-2">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About Us</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{ route('services') }}">Services</a>
                         </li>
                         <li class="nav-item">
