@@ -13,9 +13,9 @@ class admin_role_names extends Seeder
      */
     public function run()
     {
-        DB::statement('INSERT INTO `admin_role_names` (`admin_role_name_id`, `admin_role_name_name`, `admin_role_name_details`, `date_created`, `date_updated`) VALUES
-        (1, "Administrator", "Admin", "2023-10-24 09:56:07", "2023-10-24 09:56:07"),
-        (2, "Result Manager", "Who manages results", "2023-10-24 09:56:29", "2023-10-24 09:56:29"),
-        (3, "Proctor", "Exam Proctor", "2023-10-24 09:56:56", "2023-10-24 09:56:56");');
+        DB::statement("INSERT INTO `admin_role_names` (`admin_role_name_id`, `admin_role_name_name`, `admin_role_name_details`, `date_created`, `date_updated`) VALUES
+        (1, 'Administrator', 'Admin', '2023-10-31 23:14:00', '2023-10-31 23:14:00'),
+        (2, 'Proctor', 'Proctor', '2023-10-31 23:14:23', '2023-10-31 23:14:23'),
+        (3, 'Result Admin', 'Result Admin', '2023-10-31 23:14:37', '2023-10-31 23:14:37');");
     }
 }

@@ -22,6 +22,7 @@ class moduleList extends Seeder
             "bi bi-bar-chart-line-fill",
             1,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -32,6 +33,7 @@ class moduleList extends Seeder
             "appointment-management",
             "bi bi-calendar-event",
             2,
+            1,
             1,
             NOW(),
             NOW()
@@ -44,6 +46,7 @@ class moduleList extends Seeder
             "bi bi-briefcase",
             3,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -54,6 +57,7 @@ class moduleList extends Seeder
             "room-management",
             "bi bi-door-open-fill",
             4,
+            1,
             1,
             NOW(),
             NOW()
@@ -66,6 +70,7 @@ class moduleList extends Seeder
             "bi bi-file-earmark-text",
             5,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -77,6 +82,7 @@ class moduleList extends Seeder
             "bi bi-file-text",
             6,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -87,6 +93,7 @@ class moduleList extends Seeder
             "result-management",
             "bi bi-person",
             7,
+            1,
             1,
             NOW(),
             NOW()
@@ -100,6 +107,7 @@ class moduleList extends Seeder
             "bi bi-calendar",
             8,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -110,6 +118,7 @@ class moduleList extends Seeder
             "announcement-management",
             "bi bi-megaphone",
             9,
+            1,
             1,
             NOW(),
             NOW()
@@ -122,16 +131,31 @@ class moduleList extends Seeder
             "bi bi-person",
             10,
             1,
+            1,
             NOW(),
             NOW()
         );');
+       
         DB::statement('INSERT INTO modules VALUES(
+            NULL,
+            "program",
+            "Program Management",
+            "program-management",
+            "bi bi-building",
+            11,
+            1,
+            1,
+            NOW(),
+            NOW()
+        );');
+         DB::statement('INSERT INTO modules VALUES(
             NULL,
             "chat",
             "Chat Support",
             "chatsupport",
             "bi bi-chat-dots",
-            11,
+            12,
+            1,
             1,
             NOW(),
             NOW()
@@ -142,7 +166,8 @@ class moduleList extends Seeder
             "Settings",
             "setting",
             "bi bi-file-earmark",
-            12,
+            13,
+            1,
             1,
             NOW(),
             NOW()

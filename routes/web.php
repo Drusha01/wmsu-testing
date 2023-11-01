@@ -30,6 +30,7 @@ use App\Http\Livewire\Student\StudentApplication\StudentApplication;
 use App\Http\Livewire\Student\StudentStatus\StudentStatus;
 use App\Http\Livewire\Student\StudentResult\StudentResult;
 use App\Http\Livewire\Student\StudentSchedule\StudentSchedule;
+use App\Http\Livewire\Student\StudentAnnouncement\StudentAnnouncement;
 use App\Http\Livewire\Student\StudentDeleted\StudentDeleted;
 use App\Http\Livewire\Student\StudentInactive\StudentInactive;
 use App\Http\Livewire\Student\StudentRequirements\StudentRequirements;
@@ -62,7 +63,7 @@ use App\Http\Livewire\Admin\Profile;
 use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\Notification;
 use App\Http\Livewire\Admin\ScheduleManagement;
-
+use App\Http\Livewire\Admin\Programs as AdminProgram;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -105,6 +106,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/application', StudentApplication::class)->name('student.application');
         Route::get('/status', StudentStatus::class)->name('student.status');
         Route::get('/schedule', StudentSchedule::class)->name('student.schedule');
+        Route::get('/announcement', StudentAnnouncement::class)->name('student.announcement');
         Route::get('/results', StudentResult::class)->name('student.results');
         Route::get('/payment', [StudentController::class, 'payment'])->name('student.payment');
         Route::get('/requirements',StudentRequirements::class)->name('student.requirements');
@@ -168,6 +170,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('user-management', UserManagement::class)->name('user-management');
         Route::get('result-management', ResultManagement::class)->name('result-management');
         Route::get('room-management', RoomManagement::class)->name('room-management');
+        Route::get('program-management', AdminProgram::class)->name('program-management');
         Route::get('faq-management', AdminFaq::class)->name('faq-management');
         Route::get('exam-administrator', ExamAdministrator::class)->name('exam-administrator');
         Route::get('profile', profile::class)->name('profile');

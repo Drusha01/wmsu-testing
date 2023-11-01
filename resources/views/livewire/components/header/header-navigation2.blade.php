@@ -71,17 +71,16 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{route ('student.notifications') }}">
                                             <div class="notification-content">
                                                 <div class="notification-icon">
-                                                    <i class="fas fa-info-circle"></i>
+                                                    <i class="fas fa-bell"></i>
                                                 </div>
                                                 <div class="notification-text">
-                                                    <p>New notification 3</p>
+                                                    <p>Show All Notifications</p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <!-- Add more notification items dynamically here -->
                                     </div>
                                 </li>
                             </ul>
