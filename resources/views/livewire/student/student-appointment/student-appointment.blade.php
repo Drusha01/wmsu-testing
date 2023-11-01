@@ -12,9 +12,9 @@
         </ul>
 
         <!-- Tab Content -->
-        <div class="tab-content">
+        <div class="tab-content mt-2">
             <!-- Tab 1: Schedule Appointment -->
-            <div class="tab-pane fade show active" id="schedule-appointment">
+            <div class="tab-pane fade show active" id="schedule-appointment ">
                 <div class="details-box w-50 mx-auto">
                     <div class="appointment-form">
                         <h4>Schedule Appointment</h4>
@@ -33,7 +33,7 @@
                                 <label for="appointment-message">Message (optional):</label>
                                 <input type="text" class="form-control" id="appointment-message">
                             </div>
-                            <button type="submit" class="btn btn-warning">Schedule</button>
+                            <button type="submit" class="btn btn-primary">Schedule</button>
                         </form>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             <td>Admission Inquiry</td>
                             <td>Approved</td>
                             <td>
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#rescheduleModal1">Reschedule</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#rescheduleModal1">Reschedule</button>
                                 <button class="btn btn-danger">Cancel</button> <!-- You can add the Cancel modal in a similar way -->
                             </td>
                         </tr>

@@ -45,8 +45,8 @@
                         </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-bell"></i>
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell mt-2 " style="font-size: 17px;"></i>
                                         <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">

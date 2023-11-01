@@ -11,25 +11,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link px-4" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                        <a class="nav-link px-4" href="{{ route('about') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('services') }}">Services</a>
+                        <a class="nav-link px-4" href="{{ route('services') }}">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('programs') }}">Programs</a>
+                        <a class="nav-link px-4" href="{{ route('programs') }}">Programs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+                        <a class="nav-link px-4" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
+                        <a class="nav-link px-4" href="#" data-toggle="modal" data-target="#contactModal">Contact Us</a>
                     </li>
                 </ul>
                 @if(!isset($user_details['user_id']))

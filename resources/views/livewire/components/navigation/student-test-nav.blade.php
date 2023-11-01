@@ -14,21 +14,21 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="cetDropdownButton">
                     <li>
-                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="undergrad()">
+                        <a class="dropdown-item d-flex justify-content-between align-items-center " href="#"  wire:click="undergrad()">
                             CET SHS Graduating form
-                            <button type="button" class="btn btn-primary rounded">Available</button>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="grad()">
                             CET SHS Graduate form
-                            <button type="button" class="btn btn-primary rounded">Available</button>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="shiftee_tranferee()">
                             CET Shiftee/Transferee
-                            <button type="button" class="btn btn-primary rounded">Available</button>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                 </ul>
@@ -41,20 +41,20 @@
                 Other Tests
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.nat') }}">NAT Application</a>
-                    <button type="button" class="btn btn-primary mx-5">Available</button>
+                <li class="list-group-item d-flex justify-content-between align-items-center ">
+                    <a href="{{ Route('student.cet.nat') }}" class="text-decoration-none text-body font-weight-bold">NAT Application</a>
+                    <button type="button" class="btn btn-primary ">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.eat') }}">EAT Application</a>
+                    <a href="{{ Route('student.cet.eat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">EAT Application</a>
                     <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Gsat') }}">GSAT Application</a>
+                    <a href="{{ url('test-application.Gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">GSAT Application</a>
                     <button type="button" class="btn btn-primary rounded">Unavailable</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Lsat') }}">LSAT Application</a>
+                    <a href="{{ url('test-application.Lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">LSAT Application</a>
                     <button type="button" class="btn btn-primary rounded">Unavailable</button>
                 </li>
             </ul>

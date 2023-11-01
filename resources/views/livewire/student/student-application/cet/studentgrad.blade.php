@@ -9,13 +9,13 @@
         </head>
         <body>
             <div role="tabpanel" class="tab-pane" id="application">
-                <section class="test-application-section">
+                <section class="test-application-section ml-5">
                     <div class="container">
                         <div class="row">
-                            @livewire('components.navigation.student-test-nav2')
+                            @livewire('components.navigation.student-test-nav')
                             <div class="col-lg-6">
                                 <div class="guide-section">
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                                  
                                     <div class="container4">
                                         <div class="header-eat">
                                             <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo">

@@ -1,5 +1,5 @@
 <div>
-    <div role="tabpanel" class="tab-pane" id="application">
+    <div role="tabpanel" class="tab-pane" id="application ">
         <section class="exam-reminders-section">
             <div class="container">
                 <div class="row">
