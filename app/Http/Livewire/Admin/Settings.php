@@ -167,6 +167,7 @@ class Settings extends Component
             $this->aboutus_data = DB::table('aboutus')
                 ->get()
                 ->toArray();
+
             $this->footer_data = DB::table('footer_types')
             ->select('*')
             ->orderBy('footer_type_order')
@@ -912,6 +913,18 @@ class Settings extends Component
                 'link'              									=> '#'
             ]);
 
+
+            $services_data = DB::table('services as s')
+                ->select('*')
+                ->orderBy('service_order')
+                ->get()
+                ->toArray();
+
+            foreach ($services_data as $key => $value) {
+                DB::table('services as s')
+                    ->where('service_id','=', $value->service_id)
+                    ->update(['service_order'=>($key+1)]);
+            }
             self::update_data(); 
         }
     }
@@ -1243,6 +1256,17 @@ class Settings extends Component
                 'link'              									=> '#'
             ]);
 
+            $wcu_data = DB::table('wcu')
+            ->select('*')
+            ->orderBy('wcu_order')
+            ->get()
+            ->toArray();
+            foreach ($wcu_data as $key => $value) {
+                DB::table('wcu')
+                    ->where('wcu_id','=', $value->wcu_id)
+                    ->update(['wcu_order'=>($key+1)]);
+            }
+
             self::update_data(); 
         }
     }
@@ -1423,6 +1447,16 @@ class Settings extends Component
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
+            $faq_data = DB::table('faq as f')
+            ->select('*')
+            ->orderBy('faq_order')
+            ->get()
+            ->toArray();
+            foreach ($faq_data as $key => $value) {
+                DB::table('faq')
+                    ->where('faq_id','=', $value->faq_id)
+                    ->update(['faq_order'=>($key+1)]);
+            }
             self::update_data(); 
         }
     }
@@ -1616,6 +1650,16 @@ class Settings extends Component
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
+            $feature_data = DB::table('features')
+            ->select('*')
+            ->orderBy('feature_order')
+            ->get()
+            ->toArray();
+            foreach ($feature_data as $key => $value) {
+                DB::table('features')
+                    ->where('feature_id','=', $value->feature_id)
+                    ->update(['feature_order'=>($key+1)]);
+            }
 
             self::update_data(); 
         }
