@@ -17,21 +17,22 @@
                             <td>CET Result</td>
                             <td>
                                 <a href="path-to-cet-result-pdf.pdf" target="_blank" class="btn btn-primary">View</a>
-                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-warning">Download</a>
+                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
+                            
                         </tr>
                         <tr>
                             <td>NAT Result</td>
                             <td>
                                 <a href="path-to-nat-result-pdf.pdf" target="_blank" class="btn btn-primary">View</a>
-                                <a href="path-to-nat-result-pdf.pdf" download class="btn btn-warning">Download</a>
+                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
                         </tr>
                         <tr>
                             <td>Eat Result</td>
                             <td>
                                 <a href="path-to-eat-result-pdf.pdf" target="_blank" class="btn btn-primary">View</a>
-                                <a href="path-to-eat-result-pdf.pdf" download class="btn btn-warning">Download</a>
+                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
                         </tr>
                         <!-- Add more exam result rows as needed -->

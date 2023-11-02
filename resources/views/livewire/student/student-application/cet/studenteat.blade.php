@@ -10,54 +10,13 @@
 <body>
 <div>
     <div role="tabpanel" class="tab-pane" id="application">
-        <section class="test-application-section">
+        <section class="test-application-section ml-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="test-section">
-                           
-                            <p>Select the test you would like to take from the options below:</p>
-                            <ul class="test-list">
-                            <li class="custom-dropdown" id="cetDropdownContainer">
-                                <span class="test-list-item">CET Form Applications<span class="dropdown-indicator">&#9662;</span></span>
-                                <ul class="dropdown-content" id="cetDropdown">
-                                    <li><a href="{{ Route('student.cet.undergrad') }}">CET SHS Graduating form</a></li>
-                                    <li><a href="{{ Route('student.cet.Grad') }}">CET SHS Graduate form</a></li>
-                                    <li><a href="{{ Route('student.cet.shiftee') }}">CET Shiftee/Transferee</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                            <a class="test-list-item" href="{{ Route('student.cet.nat') }}">
-                                    NAT Application
-                                    <button class="btn btn-primary apply-button">Available</button>
-                                </a>
-                            </li>
-                            <li>
-                            <a class="test-list-item" href="{{ Route('student.cet.eat') }}">
-                                    EAT Application
-                                    <button class="btn btn-primary apply-button">Available</button>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="test-list-item" href="{{ url('test-application.Gsat') }}">
-                                    GSAT Application
-                                    <button class="btn btn-primary apply-button">Unavailabe</button>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="test-list-item" href="{{ url('test-application.Lsat') }}">
-                                    LSAT Application
-                                    <button class="btn btn-primary apply-button">Unavailabe</button>
-                                </a>
-                            </li>
-                        </ul>
-
-                        </div>
-                    </div>
-
+                @livewire('components.navigation.student-test-nav')
                     <div class="col-lg-6">
                         <div class="guide-section">
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        
                         <div class="container3">
     <div class="eat-header">
         <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="eat-logo">

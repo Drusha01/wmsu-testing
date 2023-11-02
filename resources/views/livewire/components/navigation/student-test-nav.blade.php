@@ -8,27 +8,27 @@
             <div class="card-header" style="background-color: #990000; color: white; font-weight: bold;">
                 CET Form Applications
             </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="cetDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown px-2 py-2">
+                <button class="btn btn-secondary dropdown-toggle mt-2" type="button" id="cetDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                     Choose a CET Form
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="cetDropdownButton">
                     <li>
-                        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="undergrad()">
+                        <a class="dropdown-item d-flex justify-content-between align-items-center " href="#"  wire:click="undergrad()">
                             CET SHS Graduating form
-                            <span class="badge bg-primary rounded-pill">Available</span>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="grad()">
                             CET SHS Graduate form
-                            <span class="badge bg-primary rounded-pill">Available</span>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" wire:click="shiftee_tranferee()">
                             CET Shiftee/Transferee
-                            <span class="badge bg-primary rounded-pill">Available</span>
+                            <button type="button" class="btn btn-primary  mx-2">Available</button>
                         </a>
                     </li>
                 </ul>
@@ -41,21 +41,21 @@
                 Other Tests
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.nat') }}">NAT Application</a>
-                    <span class="badge bg-primary rounded-pill">Available</span>
+                <li class="list-group-item d-flex justify-content-between align-items-center ">
+                    <a href="{{ Route('student.cet.nat') }}" class="text-decoration-none text-body font-weight-bold">NAT Application</a>
+                    <button type="button" class="btn btn-primary ">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.eat') }}">EAT Application</a>
-                    <span class="badge bg-primary rounded-pill">Available</span>
+                    <a href="{{ Route('student.cet.eat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">EAT Application</a>
+                    <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Gsat') }}">GSAT Application</a>
-                    <span class="badge bg-primary rounded-pill">Unavailable</span>
+                    <a href="{{ url('test-application.Gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">GSAT Application</a>
+                    <button type="button" class="btn btn-primary rounded">Unavailable</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Lsat') }}">LSAT Application</a>
-                    <span class="badge bg-primary rounded-pill">Unavailable</span>
+                    <a href="{{ url('test-application.Lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">LSAT Application</a>
+                    <button type="button" class="btn btn-primary rounded">Unavailable</button>
                 </li>
             </ul>
         </div>

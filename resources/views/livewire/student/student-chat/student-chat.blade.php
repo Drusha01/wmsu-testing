@@ -32,7 +32,7 @@
                         <div class="input-group mt-3">
                             <input type="text" class="form-control" placeholder="Type your message...">
                             <div class="input-group-append">
-                                <button class="btn btn-primary">Send</button>
+                                <button class="btn btn-primary"> Send </button>
                             </div>
                         </div>
                     </div>

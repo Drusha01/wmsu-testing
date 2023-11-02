@@ -4,7 +4,7 @@
     <div role="tabpanel" class="tab-pane" id="status">
         <section class="application-status-section">
             <div class="container">
-                <h2 class="section-title">Application Status</h2>
+                <h2 class="section-title mt-2 font-weight-bold">Application Status</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -47,7 +47,7 @@
                                 NO RECORDS 
                                 <br>
                                 <a  href="{{ route('student.application') }} "> 
-                                    <button class="btn btn-warning"> Apply</button>
+                                <button type="button" class="btn btn-success " style="width: 70px;">Apply</button>
                                 </a>
                             </td>
                         @endforelse
@@ -56,14 +56,14 @@
                 </table>
                 <!-- Pagination for Application Status Table -->
                 <div class="pagination">
-                    <button class="btn btn-secondary">Previous</button>
-                    <button class="btn btn-danger">Next</button>
+                    <button class="btn btn-danger">Previous</button>
+                    <button class="btn btn-primary">Next</button>
                 </div>
                 <br>
                 <hr>
 
 
-                <h2 class="section-title">Exam History</h2>
+                <h2 class="section-title font-weight-bold">Exam History</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -98,8 +98,8 @@
                 </table>
                 <!-- Pagination for Application Status Table -->
                 <div class="pagination">
-                    <button class="btn btn-secondary">Previous</button>
-                    <button class="btn btn-danger">Next</button>
+                    <button class="btn btn-danger">Previous</button>
+                    <button class="btn btn-primary">Next</button>
                 </div>
             </div>
 

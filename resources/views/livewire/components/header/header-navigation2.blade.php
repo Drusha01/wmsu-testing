@@ -17,14 +17,14 @@
                 </button>
                 <!-- Navigation links -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
+                    <ul class="navbar-nav mx-auto px-2">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About Us</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{ route('services') }}">Services</a>
                         </li>
                         <li class="nav-item">
@@ -45,8 +45,8 @@
                         </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-bell"></i>
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell mt-2 " style="font-size: 17px;"></i>
                                         <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
