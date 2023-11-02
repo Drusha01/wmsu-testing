@@ -483,29 +483,46 @@ why choose us section
 
 /* Contact section */
 .contact {
-    padding: 130px ;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 90px;
+
+}
+.cont{
+    border: 1px solid black; 
+    border-radius: 10px;
+    width: 80%;
 }
 .contact-img{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: -10px;
+    border-radius: 10px;
+   opacity: 0.9;
+
+
 }
 .position-relative {
     position: relative;
   }
- 
-  
   .overlay-text {
-    margin-top: 200px;
-    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
     position: absolute;
-    top: 0;
-    left: 5;
-    background-color: rgba(255, 255, 255, 0); 
-    padding: 20px;
-    
-  }
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px; 
+    color: #000000; 
+    text-align: center; 
+}
+
+.overlay-text h6 {
+    margin: 10px 0; 
+}
   
 .contact-us{
     border: 1px solid gray;
