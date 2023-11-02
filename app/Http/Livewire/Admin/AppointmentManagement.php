@@ -13,6 +13,24 @@ class AppointmentManagement extends Component
     public $user_detais;
     public $title;
 
+    public $appointment_data;
+
+    public $unassigned_appointment_data;
+    public $unassigned_appointment_data_filter;
+    public $unassigned_appointment_selected_all;
+    public $unassigned_appointment_selected = [];
+    public $unassigned_appointment_datetime;
+
+    public $assigned_appointment_data;
+    public $assigned_appointment_data_filter;
+    public $assigned_appointment_selected_all;
+    public $assigned_appointment_selected = [];
+    public $assigned_appointment_datetime;
+
+    public $complete_appointment_data;
+    public $complete_appointment_data_filter;
+
+
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
         if(!isset($this->user_details['user_id'])){
@@ -33,9 +51,139 @@ class AppointmentManagement extends Component
             return redirect('/inactive');
         }
     }
+    public function hydrate(){
+        if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
+            self::update_data();
+
+           
+        }
+    }
+    public function update_data(){
+        $this->unassigned_appointment_data = DB::table('appointments as a')
+            ->select(
+            'appointment_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'user_email',
+            'user_phone',
+            'appointment_purpose',
+            'appointment_message',
+            'appointment_preferred_date',
+            'appointment_preferred_time',
+            'appointment_datetime',
+            'status_details',
+            )
+            ->join('users as u','u.user_id','a.appointment_user_id')
+            ->join('status as s','s.status_id','a.appointment_status_id')
+            ->where('appointment_status_id','=',DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id)
+            ->orderBy('a.date_created','desc')
+            ->get()
+            ->toArray();
+        
+            $this->assigned_appointment_data = DB::table('appointments as a')
+            ->select(
+            'appointment_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'user_email',
+            'user_phone',
+            'appointment_purpose',
+            'appointment_message',
+            'appointment_preferred_date',
+            'appointment_preferred_time',
+            'appointment_datetime',
+            'status_details',
+            )
+            ->join('users as u','u.user_id','a.appointment_user_id')
+            ->join('status as s','s.status_id','a.appointment_status_id')
+            ->where('appointment_status_id','=',DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
+            ->orderBy('a.date_created','desc')
+            ->get()
+            ->toArray();
+
+            $this->complete_appointment_data = DB::table('appointments as a')
+            ->select(
+            'appointment_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'user_email',
+            'user_phone',
+            'appointment_purpose',
+            'appointment_message',
+            'appointment_preferred_date',
+            'appointment_preferred_time',
+            'appointment_datetime',
+            'status_details',
+            )
+            ->join('users as u','u.user_id','a.appointment_user_id')
+            ->join('status as s','s.status_id','a.appointment_status_id')
+            ->where('appointment_status_id','=',DB::table('status')->select('status_id')->where('status_details','=','Complete')->first()->status_id)
+            ->orderBy('a.date_created','desc')
+            ->get()
+            ->toArray();
+           
+        // dd($this->complete_appointment_data);
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'appointment-management';
+        $this->active = 'Unassign Appointments';
+
+
+        $this->unassigned_appointment_data_filter = [
+            'Select all'=> true,
+            '#'=> true,
+            'Full name' => true, 
+            'Email Address'=> false,
+            'Phone #'=> true,
+            'Preferred Date'=> true,
+            'Purpose'=> true,
+            'Status'=> true,
+            'Action' => false
+        ];
+
+        $this->assigned_appointment_data_filter = [
+            'Select all'=> true,
+            '#'=> true,
+            'Full name' => true, 
+            'Email Address'=> false,
+            'Phone #'=> true,
+            'Appointment Datetime'=> true,
+            'Purpose'=> true,
+            'Status'=> true,
+            'Action' => true
+        ];
+
+        $this->complete_appointment_data_filter = [
+            '#'=> true,
+            'Full name' => true, 
+            'Email Address'=> false,
+            'Phone #'=> true,
+            'Appointment Datetime'=> true,
+            'Purpose'=> true,
+            'Status'=> true,
+        ];
+
+        
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
+            self::update_data();
+
+
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            
+        }
     }
     public function render()
     {
@@ -45,4 +193,557 @@ class AppointmentManagement extends Component
             ->layout('layouts.admin',[
                 'title'=>$this->title]);
     }
+
+    public function filter_view(){
+        $this->dispatchBrowserEvent('swal:redirect',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Successfully changed filter!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+    }
+    public function active_page($active){
+        $this->active = $active;
+
+        self::update_data();
+
+        $this->unassigned_appointment_selected = [];
+        foreach ($this->unassigned_appointment_data  as $key => $value) {
+            array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+        }
+        $this->assigned_appointment_selected = [];
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+        }
+    }
+
+    public function unassigned_appointment_select_all(){
+        if($this->unassigned_appointment_selected_all){
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>true]);
+            }
+        }else{
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+        }
+    }
+    public function assigned_appointment_select_all(){
+        if($this->assigned_appointment_selected_all){
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>true]);
+            }
+        }else{
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+        }
+    }
+    
+    public function accept_appointment_modal(){
+        $valid = false;
+        foreach ($this->unassigned_appointment_data  as $key => $value) {
+            if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            $this->unassigned_appointment_datetime = null;
+            $this->dispatchBrowserEvent('openModal','acceptAppointment');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function delete_appointment_modal(){
+        $valid = false;
+        foreach ($this->unassigned_appointment_data  as $key => $value) {
+            if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            $this->unassigned_appointment_datetime = null;
+            $this->dispatchBrowserEvent('openModal','deleteAppointment');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function delete_appointment(){
+        $valid = false;
+        foreach ($this->unassigned_appointment_data  as $key => $value) {
+            if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            // validate datetime
+
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                    DB::table('appointments')
+                        ->where('appointment_id','=',$value->appointment_id )
+                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Deleted')->first()->status_id]);
+                }
+            }
+    
+            $this->unassigned_appointment_datetime = null;
+            self::update_data();
+
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            $this->dispatchBrowserEvent('openModal','deleteAppointment');
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function delete_appointment_assgned(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            // validate datetime
+
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                    DB::table('appointments')
+                        ->where('appointment_id','=',$value->appointment_id )
+                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Deleted')->first()->status_id]);
+                }
+            }
+    
+            $this->assigned_appointment_datetime = null;
+            self::update_data();
+
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            $this->dispatchBrowserEvent('openModal','DeleteScheduleAppointmentModal');
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function accept_appointment(){
+        $valid = false;
+        foreach ($this->unassigned_appointment_data  as $key => $value) {
+            if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        $current_time = (strtotime(DB::select(DB::raw('SELECT NOW() as current_datetime'))[0]->current_datetime));
+        $datetime = (strtotime($this->unassigned_appointment_datetime));
+        if( $datetime  <  $current_time){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Appointment time must be later than current time!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
+        if($valid &&  $this->access_role['U'] ){
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                    DB::table('appointments')
+                        ->where('appointment_id','=',$value->appointment_id )
+                        ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id)
+                        ->update([
+                            'appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id,
+                            'appointment_datetime'=> $this->unassigned_appointment_datetime
+                        ]);
+                }
+            }
+    
+            $this->unassigned_appointment_datetime = null;
+            self::update_data();
+
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully accepted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            $this->dispatchBrowserEvent('openModal','acceptAppointment');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function reschedule_appointment_modal(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            $this->assigned_appointment_datetime = null;
+            $this->dispatchBrowserEvent('openModal','ReassigneAppointmentModal');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function reschedule_appointment(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        $current_time = (strtotime(DB::select(DB::raw('SELECT NOW() as current_datetime'))[0]->current_datetime));
+        $datetime = (strtotime($this->assigned_appointment_datetime));
+        if( $datetime  <  $current_time){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Appointment time must be later than current time!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
+        if($valid &&  $this->access_role['U'] ){
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                    DB::table('appointments')
+                        ->where('appointment_id','=',$value->appointment_id )
+                        ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
+                        ->update([
+                            'appointment_datetime'=> $this->assigned_appointment_datetime
+                    ]);
+                }
+            }
+    
+            $this->assigned_appointment_datetime = null;
+            self::update_data();
+
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully rescheduled!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            $this->dispatchBrowserEvent('openModal','ReassigneAppointmentModal');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function remove_reschedule_appointment_modal(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            $this->assigned_appointment_datetime = null;
+            $this->dispatchBrowserEvent('openModal','RemoveScheduleAppointmentModal');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function remove_schedule_appointment(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        
+        if($valid &&  $this->access_role['U'] ){
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                    DB::table('appointments')
+                        ->where('appointment_id','=',$value->appointment_id )
+                        ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
+                        ->update([
+                            'appointment_datetime'=> NULL,
+                            'appointment_status_id'=> DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id
+                    ]);
+                }
+            }
+    
+            $this->assigned_appointment_datetime = null;
+            self::update_data();
+
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully removed schedule!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            $this->dispatchBrowserEvent('openModal','RemoveScheduleAppointmentModal');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function delete_reschedule_appointment_modal(){
+        $valid = false;
+        foreach ($this->assigned_appointment_data  as $key => $value) {
+            if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                $valid = true;
+            }
+        }
+
+        // accessrole read
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($valid &&  $this->access_role['U'] ){
+            // open modal
+            $this->assigned_appointment_datetime = null;
+            $this->dispatchBrowserEvent('openModal','DeleteScheduleAppointmentModal');
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select appointment!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+    }
+    public function complete_appointment($appointment_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['U'] ){
+            DB::table('appointments')
+            ->where('appointment_id','=',$appointment_id )
+            ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
+            ->update([
+                'appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Complete')->first()->status_id
+            ]);
+
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Accepted appointment is now complete!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+
+            self::update_data();
+
+
+            $this->unassigned_appointment_selected = [];
+            foreach ($this->unassigned_appointment_data  as $key => $value) {
+                array_push($this->unassigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+
+            $this->assigned_appointment_selected = [];
+            foreach ($this->assigned_appointment_data  as $key => $value) {
+                array_push($this->assigned_appointment_selected,[$value->appointment_id=>false]);
+            }
+        }
+
+    }
+    
 }
