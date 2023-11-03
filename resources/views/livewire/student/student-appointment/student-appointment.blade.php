@@ -173,7 +173,7 @@
                                 <label for="appointment-message">Message (optional):</label>
                                 <input type="text" class="form-control" wire:model.defer="appointment.appointment_message">
                             </div>
-                            <button type="submit" class="btn btn-warning">Schedule</button>
+                            <button type="submit" class="btn btn-primary">Schedule Appointment</button>
                         </form>
                     </div>
                 </div>

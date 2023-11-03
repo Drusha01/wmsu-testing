@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="ml-10">
-                            <button class="btn btn-warning mx-1" wire:click="reschedule_appointment_modal()" >Re-schedule </button>
+                            <button class="btn btn-primary mx-1" wire:click="reschedule_appointment_modal()" >ReSchedule </button>
                             <button class="btn btn-danger mx-1" wire:click="remove_reschedule_appointment_modal()" >Remove-schedule </button>
                             <button class="btn btn-danger mx-1"  wire:click="delete_reschedule_appointment_modal()" >Decline </button>
                         </div>

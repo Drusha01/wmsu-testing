@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                             <div class="ml-10">
-                                <button class="btn btn-warning mx-1"  wire:click="reassigning_room_check()" >Reassign room </button>
+                                <button class="btn btn-primary mx-1"  wire:click="reassigning_room_check()" >Reassign room </button>
                                 <button class="btn btn-danger mx-1"  wire:click="remove_room_check()" >Remove room </button>
                             </div>
                         </div>
@@ -571,7 +571,7 @@
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                         @endif
                                         @if($access_role['D']==1)
-                                        <button class="btn btn-danger" id="confirmDeleteRoom" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
+                                        <button class="btn btn-danger mt-2" id="confirmDeleteRoom" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
                                         @endif
                                     </td>
                                 @endif

@@ -530,7 +530,7 @@
                     </div>
                     <div class="ml-10">
                         <!-- <button class="btn btn-warning mx-1" wire:click="accepted_return_check()" data-toggle="modal" data-target="#returnAcceptedapplicantModal">Return </button> -->
-                        <button class="btn btn-warning mx-1"  data-bs-toggle="modal" data-bs-target="#returnAcceptedapplicantModal">Return </button>
+                        <button class="btn btn-secondary mx-1"  data-bs-toggle="modal" data-bs-target="#returnAcceptedapplicantModal">Return </button>
                         <!-- <button class="btn btn-danger mx-1" wire:click="declined_check_accepted()" data-toggle="modal" data-target="#declineAcceptedapplicantModal" >Decline </button> -->
                         <button class="btn btn-danger mx-1"  data-bs-toggle="modal" data-bs-target="#declineAcceptedapplicantModal" >Decline </button>
                     </div> 
