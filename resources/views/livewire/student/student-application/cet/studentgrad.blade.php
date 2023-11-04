@@ -12,10 +12,9 @@
                 <section class="test-application-section ml-5">
                     <div class="container">
                         <div class="row">
-                            @livewire('components.navigation.student-test-nav')
-                            <div class="col-lg-6">
-                                <div class="guide-section">
-                                  
+                            <div class="col-lg-10 offset-lg-1 col-xl-10">
+                                <div class="guide-section  col-10 offset-xl-1">
+                                <button type="button" class="btn-close" aria-label="Close"></button>
                                     <div class="container4">
                                         <div class="header-eat">
                                             <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo">
