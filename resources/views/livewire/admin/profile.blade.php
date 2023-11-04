@@ -36,8 +36,8 @@
                     </div>
                     
             <!-- Modify Section Modal -->
-            <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabel" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modifyModalLabel">Account Settings</h5>
@@ -49,51 +49,65 @@
                             <!-- Tab navigation for different settings -->
                             <ul class="nav nav-tabs" id="accountSettingsTabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="modify-tab" data-bs-toggle="tab" href="#modify" role="tab" aria-controls="modify" aria-selected="true">Modify Info</a>
+                                    <a class="nav-link @if($modal_active == 'photo') active @endif" wire:click="modal_active('photo')" role="tab" aria-controls="modify" aria-selected="true">Modify Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="changePassword-tab" data-bs-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                                    <a class="nav-link @if($modal_active == 'password') active @endif" wire:click="modal_active('password')" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
                                 </li>
                             </ul>
 
                             <!-- Tab content -->
                             <div class="tab-content" id="accountSettingsTabContent">
                                 <!-- Modify Info Tab -->
-                                <div class="tab-pane fade show active" id="modify" role="tabpanel" aria-labelledby="modify-tab">
+                                <div class="tab-pane fade @if($modal_active == 'photo') show active @endif" role="tabpanel" aria-labelledby="modify-tab" >
                                     <!-- Form to modify username and profile image -->
-                                    <form>
-                                    <div class="form-group">
-                                        <label class="fas" for="newProfileImage">Change profile picture:</label>
-                                        <input type="file" class="form-control" id="newProfileImage">
-                                    </div>
-                                    <!-- Add more fields to modify user details as needed -->
-                                </form>
+                                    <form wire:submit.prevent="save_photo()">
+                                        <div class="form-group">
+                                            <label class="fas" for="newProfileImage">Change profile picture:</label>
+                                            <input type="file" class="form-control" wire:model.defer="photo" required  accept="image/png, image/jpeg" id="photo-{{$photo_id}}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                        <!-- Add more fields to modify user details as needed -->
+                                    </form>
                                 </div>
 
                                 <!-- Change Password Tab -->
-                                <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
+                                <div class="tab-pane fade @if($modal_active == 'password') show active @endif" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
                                     <!-- Form to change password -->
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="currentPassword">Current Password:</label>
-                                            <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
+                                    <form wire:submit.prevent="change_password()">
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                                <input type="password"  wire:model.defer="current_password"  class="form-control" placeholder="Current Password" required>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="newPassword">New Password:</label>
-                                            <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                                <input type="password"  wire:model.defer="new_password"  class="form-control" placeholder="New Password" required>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="confirmPassword">Confirm Password:</label>
-                                            <input type="password" class="form-control" id="newPassword" placeholder="Confirm new password">
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                                <input type="password"  wire:model.defer="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                            </div>
                                         </div>
-                                        <!-- ... -->
+                                        <div>
+                                        @if(isset($password_error)) <span class="error" style="color:red;">{{ $password_error }}</span> @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save Changes</button>
                         </div>
                     </div>
                 </div>
@@ -117,88 +131,82 @@
                     </ul>
                     <button id="modifyButtonDetails" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModalDetails">Modify</button>
                 </div>
-            </div>
-        </div>
 
-        <!-- Modify Applicant Details Modal -->
-        <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modifyModalLabelDetails">Modify Applicant Details</h5>
-                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <fieldset>
+                                    <!-- Full Name -->
+                                    <form wire:submit.prevent="save_profile_info()">
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="firstname" class="form-control" placeholder="Enter firstname" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="middlename" class="form-control" placeholder="Enter middlename" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="lastname" class="form-control" placeholder="Enter lastname" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="suffix" class="form-control" placeholder="Enter suffix" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="gender" class="form-control" placeholder="Enter gender" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="address" class="form-control" placeholder="Enter address" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model.defer="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <fieldset>
-                                <legend>Applicant Information</legend>
-                                <!-- Full Name -->
-                                <div class="form-group row">
-                                    <label for="newFullName" class="col-sm-3 col-form-label">Full Name*:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="newFullName" placeholder="Enter new full name" required>
-                                    </div>
-                                </div>
-
-                                <!-- Gender -->
-                                <div class="form-group row">
-                                    <label for="newGender" class="col-sm-3 col-form-label">Gender*:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="newGender" placeholder="Enter new gender" required>
-                                    </div>
-                                </div>
-
-                                <!-- Age -->
-                                <div class="form-group row">
-                                    <label for="newAge" class="col-sm-3 col-form-label">Age*:</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="newAge" placeholder="Enter new age" required>
-                                    </div>
-                                </div>
-
-                                <!-- Phone Number -->
-                                <div class="form-group row">
-                                    <label for="newPhoneNumber" class="col-sm-3 col-form-label">Phone Number:</label>
-                                    <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="newPhoneNumber" placeholder="Enter phone number" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);">
-                                    </div>
-                                </div>
-
-                                <!-- Home Address -->
-                                <div class="form-group row">
-                                    <label for="newHomeAddress" class="col-sm-3 col-form-label">Home Address:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="newHomeAddress" placeholder="Enter new home address">
-                                    </div>
-                                </div>
-
-                                <!-- Email -->
-                                <div class="form-group row">
-                                    <label for="newEmail" class="col-sm-3 col-form-label">Email:</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="newEmail" placeholder="Enter new email">
-                                    </div>
-                                </div>
-
-                                <!-- Birthdate -->
-                                <div class="form-group row">
-                                    <label for="newBirthdate" class="col-sm-3 col-form-label">Birthdate*:</label>
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control" id="newBirthdate" placeholder="Enter new birthdate" required>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        
 
         <!-- End Inserted Section -->
 

@@ -95,6 +95,8 @@ class StudentProfile extends Component
         $this->phone = $this->user_details['user_phone'];
         $this->address = $this->user_details['user_address'];
         $this->birthdate = $this->user_details['user_birthdate'];
+        
+
 
         $this->diploma_id = rand(0,1000000);
         $this->ueb_shs_form_137_id = rand(0,1000000);
