@@ -30,6 +30,84 @@
                     <br>
                     <button id="modifyButtonpassword" class="btn btn-danger" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
                 </div>
+                <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Change Profile and ID</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form wire:submit.prevent="update_profile_and_id()">
+                                    <!-- Full Name -->
+                                    <div class="form-group row">
+                                        <label for="newFullName" class="col-sm-4 col-form-label mb-5">Profile photo<span style="color:red;"></span> :</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" accept="image/png, image/jpeg" wire:model="photo" class="form-control" id="newFullName" placeholder="Current Password">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        @if(isset($profile_photo_error))
+                                            <span class="error" style="color:red;">{{ $profile_photo_error }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modify Password Modal -->
+                <div class="modal fade" id="modifyModalpassword" tabindex="-1" role="dialog" aria-labelledby="modifyModalpassword" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Change password</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <fieldset>
+                                    <!-- Full Name -->
+                                    <form wire:submit.prevent="change_password()">
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="password"  wire:model="current_password"  class="form-control" placeholder="Current Password" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="password"  wire:model="new_password" wire:keyup.debounce.500ms="new_password()" class="form-control" placeholder="New Password" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="newFullName" class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="password"  wire:model="confirm_password" wire:keyup.debounce.500ms="confirm_password"class="form-control" placeholder="Confirm Password" required>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        @if(isset($password_error)) <span class="error" style="color:red;">{{ $password_error }}</span> @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -364,84 +442,7 @@
             <!-- Modify Applicant Details Modal -->
             
                     <!-- Modify Profile and ID Modal -->
-            <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelDetails">Change Profile and ID</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form wire:submit.prevent="update_profile_and_id()">
-                                <!-- Full Name -->
-                                <div class="form-group row">
-                                    <label for="newFullName" class="col-sm-4 col-form-label mb-5">Profile photo<span style="color:red;"></span> :</label>
-                                    <div class="col-sm-8">
-                                        <input type="file" accept="image/png, image/jpeg" wire:model="photo" class="form-control" id="newFullName" placeholder="Current Password">
-                                    </div>
-                                </div>
-                                <div>
-                                    @if(isset($profile_photo_error))
-                                        <span class="error" style="color:red;">{{ $profile_photo_error }}</span>
-                                    @endif
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-             <!-- Modify Password Modal -->
-             <div class="modal fade" id="modifyModalpassword" tabindex="-1" role="dialog" aria-labelledby="modifyModalpassword" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelDetails">Change password</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <fieldset>
-                                <!-- Full Name -->
-                                <form wire:submit.prevent="change_password()">
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="password"  wire:model="current_password"  class="form-control" placeholder="Current Password" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="password"  wire:model="new_password" wire:keyup.debounce.500ms="new_password()" class="form-control" placeholder="New Password" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="password"  wire:model="confirm_password" wire:keyup.debounce.500ms="confirm_password"class="form-control" placeholder="Confirm Password" required>
-                                        </div>
-                                    </div>
-                                    <div>
-                                    @if(isset($password_error)) <span class="error" style="color:red;">{{ $password_error }}</span> @endif
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
             <!-- Modify Family Background Modal -->
             
              <!-- Modify Educational Details Modal -->
