@@ -6,7 +6,7 @@
             <div class="container">
                 <h2 class="section-title mt-2 font-weight-bold">Application Status</h2>
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                         <tr>
                             <th>#</th>
                             <th>Test code</th>
@@ -65,7 +65,7 @@
 
                 <h2 class="section-title font-weight-bold">Exam History</h2>
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                         <tr>
                         <th>#</th>
                             <th class="text-center align-middle">Exam Type</th>

@@ -6,7 +6,7 @@
             <div class="container">
                 <h2 class="section-title">Exam Results</h2>
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                         <tr>
                             <th>Exam</th>
                             <th>Action</th>
