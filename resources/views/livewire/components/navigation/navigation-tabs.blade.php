@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="container-fluid">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{request()->is('student/profile*') ? 'active' : 'presentation'}}">
