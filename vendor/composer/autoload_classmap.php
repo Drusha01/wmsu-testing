@@ -222,6 +222,8 @@ return array(
     'Database\\Seeders\\attachmentTypes' => $baseDir . '/database/seeders/attachmentTypes.php',
     'Database\\Seeders\\carousel_seeders' => $baseDir . '/database/seeders/carousel_seeders.php',
     'Database\\Seeders\\cet_type_lists' => $baseDir . '/database/seeders/cet_type_lists.php',
+    'Database\\Seeders\\collegeSeeders' => $baseDir . '/database/seeders/collegeSeeders.php',
+    'Database\\Seeders\\examSeeders' => $baseDir . '/database/seeders/examSeeders.php',
     'Database\\Seeders\\fb_defaults' => $baseDir . '/database/seeders/fb_defaults.php',
     'Database\\Seeders\\moduleList' => $baseDir . '/database/seeders/moduleList.php',
     'Database\\Seeders\\schoolTypes' => $baseDir . '/database/seeders/schoolTypes.php',

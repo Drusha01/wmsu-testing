@@ -750,6 +750,8 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'Database\\Seeders\\attachmentTypes' => __DIR__ . '/../..' . '/database/seeders/attachmentTypes.php',
         'Database\\Seeders\\carousel_seeders' => __DIR__ . '/../..' . '/database/seeders/carousel_seeders.php',
         'Database\\Seeders\\cet_type_lists' => __DIR__ . '/../..' . '/database/seeders/cet_type_lists.php',
+        'Database\\Seeders\\collegeSeeders' => __DIR__ . '/../..' . '/database/seeders/collegeSeeders.php',
+        'Database\\Seeders\\examSeeders' => __DIR__ . '/../..' . '/database/seeders/examSeeders.php',
         'Database\\Seeders\\fb_defaults' => __DIR__ . '/../..' . '/database/seeders/fb_defaults.php',
         'Database\\Seeders\\moduleList' => __DIR__ . '/../..' . '/database/seeders/moduleList.php',
         'Database\\Seeders\\schoolTypes' => __DIR__ . '/../..' . '/database/seeders/schoolTypes.php',

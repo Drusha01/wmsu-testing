@@ -60,7 +60,7 @@
                                 <hr>
                                 <div class="modal-footer">
                                     <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
-                                    <button wire:click="carouselfilterView()" data-bs-dismiss="modal" 
+                                    <button wire:click="filterView()" data-bs-dismiss="modal" 
                                         class="btn btn-primary">
                                         Save
                                     </button>
@@ -84,46 +84,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($services_data  as $item => $value)
+                        @forelse ($college_data  as $item => $value)
                             <tr>
                                 @if($college_filter['#'])
                                     <td>{{ $loop->index+1 }}</td>
                                 @endif
                                 @if($college_filter['Logo'])
                                     <td>
-                                        <img src="{{asset('storage/content/services/'.$value->service_logo)}}" alt="" style="height: 200px; ">
+                                        <img src="{{asset('storage/content/programs/colleges/'.$value->college_logo)}}" alt="" style="height: 200px; ">
                                     </td>
                                 @endif
                                 @if($college_filter['Header'])
                                     <td>
                                         <div>
-                                            {{$value->service_header}}
+                                            {{$value->college_header}}
                                         </div>
                                     </td>
                                 @endif
                                 @if($college_filter['Content'])
                                     <td class="align-middle">
-                                        <p>{{$value->service_content}}</p>
+                                        <p>{{$value->college_content}}</p>
                                     </td>
                                 @endif
                                 @if($college_filter['Order'])
                                     <td class="align-middle"> 
                                         <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-outline-dark" wire:click="move_up_service({{$value->service_order}})"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
-                                            <button type="button" class="btn btn-outline-dark" wire:click="move_down_service({{$value->service_order}})"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_up_college({{$value->college_order}})"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_down_college({{$value->college_order}})"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
                                         </div>
                                     </td>
                                 @endif
                                 @if($college_filter['Action'])
                                     <td class="align-middle"> 
                                         @if($access_role['R']==0)
-                                        <button class="btn btn-primary" wire:click="view_service({{$value->service_id}})" >View</button>
+                                        <button class="btn btn-primary" wire:click="view_college({{$value->college_id}})" >View</button>
                                         @endif
                                         @if($access_role['U']==1)
-                                        <button class="btn btn-success" wire:click="edit_service({{$value->service_id}})" >Edit</button>
+                                        <button class="btn btn-success" wire:click="edit_college({{$value->college_id}})" >Edit</button>
                                         @endif
                                         @if($access_role['D']==1)
-                                        <button class="btn btn-danger" wire:click="delete_service({{$value->service_id}})">Delete</button>
+                                        <button class="btn btn-danger" wire:click="delete_college({{$value->college_id}})">Delete</button>
                                         @endif
                                     </td>
                                 @endif 
@@ -135,11 +135,328 @@
                             @endforelse
                     </tbody>
                 </table>
-                
+                <div class="modal fade" id="addCollegeModal" tabindex="-1" role="dialog" aria-labelledby="addCollegeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addCollegeModalLabel">Add College</h5>
+                            </div>
+                            <hr>
+                            <form wire:submit.prevent="save_add_college()">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Logo</label>
+                                        <input  type="file" class="form-control" wire:model.defer="college.college_logo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Header:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="college.college_header" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Contents:</label>
+                                        <textarea  type="text" class="form-control" wire:model.defer="college.college_content" required></textarea>
+                                    </div>
+                                  
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditCollegeModal" tabindex="-1" role="dialog" aria-labelledby="EditCollegeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditCollegeModalLabel">Edit College</h5>
+                            </div>
+                            <hr>
+                            @if($college['college_id'])
+                                <form wire:submit.prevent="save_edit_college({{$college['college_id']}})">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Logo</label>
+                                            <input  type="file" class="form-control" wire:model.defer="college.college_logo" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Header:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="college.college_header" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Contents:</label>
+                                            <textarea  type="text" class="form-control" wire:model.defer="college.college_content" required></textarea>
+                                        </div>
+                                    
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="DeleteCollegeModal" tabindex="-1" role="dialog" aria-labelledby="DeleteCollegeModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteCollegeModalLabel">Edit College</h5>
+                            </div>
+                            <hr>
+                            @if($college['college_id'])
+                                <form wire:submit.prevent="save_delete_college({{$college['college_id']}})">
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this college?</p>
+                                        <p><h6>Note:</h6>departments will also get deleted along with it!</p>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 
             </div>
             
             <div class="tab-pane fade @if($active == 'Departments') show active @endif ">
+            <div class="d-flex mt-2">
+                    <label class="filter-label align-self-center " for="exam-filter">Select College:</label>
+                    <select class="filter-select " id="exam-filter" wire:model="college_id" wire:change="college_filter()">
+                        @foreach ($college_data as $item => $value)
+                            <option value="{{$value->college_id}}" >{{$value->college_header}}</option>
+                                                      
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
+                    <!-- <label class="filter-label align-self-center" for="exam-filter">Show:</label>
+                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="pending_application_exam_type_filter()">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                    </select> -->
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn" type="button" data-bs-toggle="modal" data-bs-target="#application-management-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                    
+
+                    <div class="modal fade" id="application-management-filter" tabindex="-1" role="dialog" aria-labelledby="application-management-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($department_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="filtering-{{$loop->iteration}}"
+                                            wire:model.defer="department_filter.{{$item}}">
+                                        <label class="form-check-label" for="filtering-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button wire:click="filterView()" data-bs-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-10">
+                
+                        <button class="btn btn-success mx-1" wire:click="add_department()" >Add Department to {{$college_data[$college_id-1]->college_header}} </button>
+                    </div>
+                </div>
+
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                            @foreach ($department_filter as $item => $value)
+                                @if($value)
+                                    <th >{{$item}}</th>
+                                @endif
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($department_data  as $item => $value)
+                            <tr>
+                                @if($department_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                                @if($department_filter['Logo'])
+                                    <td>
+                                        <img src="{{asset('storage/content/programs/departments/'.$value->department_logo)}}" alt="" style="height: 200px; ">
+                                    </td>
+                                @endif
+                                @if($department_filter['College'])
+                                    <td>
+                                        {{$college_data[$college_id-1]->college_header}}
+                                    </td>
+                                @endif
+                                @if($department_filter['Header'])
+                                    <td>
+                                        {{$value->department_name}}
+                                    </td>
+                                @endif
+                                @if($department_filter['Content'])
+                                    <td class="align-middle">
+                                        <p>{{$value->department_details}}</p>
+                                    </td>
+                                @endif
+                                @if($department_filter['Order'])
+                                    <td class="align-middle"> 
+                                        <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_up_department({{$value->department_order}})"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                            <button type="button" class="btn btn-outline-dark" wire:click="move_down_department({{$value->department_order}})"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                        </div>
+                                    </td>
+                                @endif
+                                @if($department_filter['Action'])
+                                    <td class="align-middle"> 
+                                        @if($access_role['R']==0)
+                                        <button class="btn btn-primary" wire:click="view_department({{$value->department_id}})" >View</button>
+                                        @endif
+                                        @if($access_role['U']==1)
+                                        <button class="btn btn-success" wire:click="edit_department({{$value->department_id}})" >Edit</button>
+                                        @endif
+                                        @if($access_role['D']==1)
+                                        <button class="btn btn-danger" wire:click="delete_department({{$value->department_id}})">Delete</button>
+                                        @endif
+                                    </td>
+                                @endif 
+                                </tr>
+                            @empty
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endforelse
+                    </tbody>
+                </table>
+
+
+
+                <div class="modal fade" id="AddDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="AddDepartmentModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="AddDepartmentModalLabel">Add Department to {{$college_data[$college_id-1]->college_header}}</h5>
+                            </div>
+                            <hr>
+                            @if($college_id)
+                                <form wire:submit.prevent="save_add_department({{$college_id}})">
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                            <label for="addRoomCapacity">College:</label>
+                                            <input  type="text" class="form-control" value="{{$college_data[$college_id-1]->college_header}}" required disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Logo</label>
+                                            <input  type="file" class="form-control" wire:model.defer="department.department_logo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Name:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="department.department_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department abreviation:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="department.department_abr" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Details:</label>
+                                            <textarea  type="text" class="form-control" wire:model.defer="department.department_details" required></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Add
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="EditDepartmentModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditDepartmentModalLabel">Edit Department of {{$college_data[$college_id-1]->college_header}}</h5>
+                            </div>
+                            <hr>
+                            @if($department['department_id'])
+                                <form wire:submit.prevent="save_edit_department({{$department['department_id']}})">
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                            <label for="addRoomCapacity">College:</label>
+                                            <input  type="text" class="form-control" value="{{$college_data[$college_id-1]->college_header}}" required disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Logo</label>
+                                            <input  type="file" class="form-control" wire:model.defer="department.department_logo" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Name:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="department.department_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department abreviation:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="department.department_abr" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Department Details:</label>
+                                            <textarea  type="text" class="form-control" wire:model.defer="department.department_details" required></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <!-- End Tab Content -->

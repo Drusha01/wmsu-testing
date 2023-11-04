@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             servicesSeeder::class,
             aboutusSeeder::class,
             examSeeders::class,
+            collegeSeeders::class,
         ]);
         
     }

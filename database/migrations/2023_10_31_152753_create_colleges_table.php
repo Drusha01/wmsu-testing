@@ -19,6 +19,7 @@ class CreateCollegesTable extends Migration
             college_header VARCHAR(1024) NOT NULL,
             college_content VARCHAR(1024) NOT NULL,
             college_order INT NOT NULL,
+            college_isactive BOOL NOT NULL DEFAULT 1,
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
