@@ -17,13 +17,13 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link  @if($active == 'pending') show active @endif " data-bs-toggle="tab"  wire:click="active_page('pending')">Pending Applicant</a>
+                <a class="nav-link  @if($active == 'pending') show active @endif " data-bs-toggle="tab"  wire:click="active_page('pending')" href="#pending-tab">Pending Applicant</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'accepted') show active @endif" data-bs-toggle="tab"   wire:click="active_page('accepted')">Accepted Applicant</a>
+                <a class="nav-link @if($active == 'accepted') show active @endif" data-bs-toggle="tab"   wire:click="active_page('accepted')" href="#accepted-tab">Accepted Applicant</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'declined') show active  @endif" data-bs-toggle="tab"  wire:click="active_page('declined')">Declined Applicant</a>
+                <a class="nav-link @if($active == 'declined') show active  @endif" data-bs-toggle="tab"  wire:click="active_page('declined')" href="#declined-tab">Declined Applicant</a>
             </li>
         </ul>
 

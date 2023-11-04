@@ -13,13 +13,13 @@
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                    <a class="nav-link @if($active == 'Unassign Appointments') show active @endif " data-bs-toggle="tab"  wire:click="active_page('Unassign Appointments')">Unassign Appointments</a>
+                    <a class="nav-link  @if($active == 'Unassign Appointments') show active @endif " wire:click="active_page('Unassign Appointments')" data-bs-toggle="tab" href="#UnassignedAppointment-tab">Unassign Appointments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if($active == 'Assigned Appointments') show active @endif " data-bs-toggle="tab"  wire:click="active_page('Assigned Appointments')">Assigned Appointments</a>
+                    <a class="nav-link  @if($active == 'Assigned Appointments') show active @endif " data-bs-toggle="tab"  wire:click="active_page('Assigned Appointments')" href="#AssignedAppointment-tab">Assigned Appointments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if($active == 'Completed Appointments') show active @endif " data-bs-toggle="tab"  wire:click="active_page('Completed Appointments')">Completed Appointments</a>
+                    <a class="nav-link  @if($active == 'Completed Appointments') show active @endif " data-bs-toggle="tab"  wire:click="active_page('Completed Appointments')" href="#CompletedAppointment-tab">Completed Appointments</a>
                 </li>
             </ul>
 

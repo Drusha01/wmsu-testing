@@ -15,13 +15,13 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link @if($active == 'unassigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('unassigned_proctors')">Unassigned Proctors</a>
+                <a class="nav-link @if($active == 'unassigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('unassigned_proctors')" href="#UnassignedProctors-tab">Unassigned Proctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'assigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('assigned_proctors')">Assigned Proctors</a>
+                <a class="nav-link @if($active == 'assigned_proctors') show active @endif " data-bs-toggle="tab"  wire:click="active_page('assigned_proctors')" href="#AssignedProctors-tab">Assigned Proctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'proctor_list') show active @endif " data-bs-toggle="tab"  wire:click="active_page('proctor_list')">Proctors list</a>
+                <a class="nav-link @if($active == 'proctor_list') show active @endif " data-bs-toggle="tab"  wire:click="active_page('proctor_list')" href="#ProctorList-tab">Proctors list</a>
             </li>
         </ul>
 
