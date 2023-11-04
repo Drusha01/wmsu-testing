@@ -86,7 +86,7 @@
                 </div>
             </div>   
             <table class="table table-striped">
-                <thead>
+                <thead style="background-color: #990000; color: white; position: sticky; top: 0;"> 
                     <tr>
                         @foreach ($appointment_filter as $item => $value)
                             @if($value)

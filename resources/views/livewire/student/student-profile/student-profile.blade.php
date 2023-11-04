@@ -7,9 +7,9 @@
         <!-- Profile Section -->
         <div class="Applicant-info">
             <div class="profile-box">
-                <h4 style="margin-right:200px;">
+                <h4>
                     Profile
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#profileCollapse" aria-expanded="true" aria-controls="profileCollapse">
+                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#profileCollapse" aria-expanded="true" aria-controls="profileCollapse">
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </h4>
@@ -36,13 +36,11 @@
         <!-- Profile Details Section -->
         <div class="applicant-details">
             <div class="details-box">
-
                 <h4>Profile Details
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#detailsCollapse" aria-expanded="true" aria-controls="detailsCollapse">
+                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#detailsCollapse" aria-expanded="true" aria-controls="detailsCollapse">
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </h4>
-
                 <div id="detailsCollapse" class="collapse show">
                     <ul class="list-group" id="applicantDetailsList">
                         <li class="list-group-item"><strong>First name: </strong>{{$user_details['user_firstname']}}</li>
@@ -66,10 +64,11 @@
 
     <!-- Family Background Section -->
     <div class="details-box mt-3">
-        <div class="family-background">
-            <h4>Family Background
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#familyBackgroundCollapse" aria-expanded="true" aria-controls="familyBackgroundCollapse">
-                    <i class="fas fa-chevron-down"></i>
+            <div class="family-background">
+                <h4>Family Background
+                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#familyBackgroundCollapse" aria-expanded="true" aria-controls="familyBackgroundCollapse">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </h4>
                 <div id="familyBackgroundCollapse" class="collapse show">
                     <div class="row justify-content-center">

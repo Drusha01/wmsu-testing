@@ -22,7 +22,7 @@
         <!-- Tab 1: All Notifications -->
         <div class="tab-pane fade show active" id="allNotifications">
             <table class="table table-striped">
-                <thead>
+                <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
@@ -53,7 +53,7 @@
             <h2>Unread Notifications</h2>
             <p>Welcome to the Unread Notifications tab. Here, you can view all your unread notifications.</p>
             <table class="table table-striped">
-                <thead>
+                <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
