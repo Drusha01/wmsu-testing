@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             carousel_seeders::class,
             servicesSeeder::class,
             aboutusSeeder::class,
+            examSeeders::class,
         ]);
         
     }

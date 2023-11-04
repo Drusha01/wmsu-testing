@@ -32,6 +32,7 @@ class CreateTestApplications extends Migration
             t_a_original_senior_high_school_card VARCHAR(50),
             t_a_transcript_of_records VARCHAR(50),
             t_a_endorsement_letter_from_wmsu_dean VARCHAR(50),
+            t_a_receipt_photo VARCHAR(50),  -- note that if the applicant is taking second time
 
             -- nat
 

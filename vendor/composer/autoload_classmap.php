@@ -58,6 +58,7 @@ return array(
     'App\\Http\\Livewire\\Page\\Programs\\Agri' => $baseDir . '/app/Http/Livewire/Page/Programs/Agri.php',
     'App\\Http\\Livewire\\Page\\Programs\\Programs' => $baseDir . '/app/Http/Livewire/Page/Programs/Programs.php',
     'App\\Http\\Livewire\\Page\\Services\\Services' => $baseDir . '/app/Http/Livewire/Page/Services/Services.php',
+    'App\\Http\\Livewire\\Student\\StudentAnnouncement\\StudentAnnouncement' => $baseDir . '/app/Http/Livewire/Student/StudentAnnouncement/StudentAnnouncement.php',
     'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentcet' => $baseDir . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentcet.php',
     'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\StudentcetGrad' => $baseDir . '/app/Http/Livewire/Student/StudentApplication/Cet/StudentcetGrad.php',
     'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studenteat' => $baseDir . '/app/Http/Livewire/Student/StudentApplication/Cet/Studenteat.php',

@@ -586,6 +586,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Page\\Programs\\Agri' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Programs/Agri.php',
         'App\\Http\\Livewire\\Page\\Programs\\Programs' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Programs/Programs.php',
         'App\\Http\\Livewire\\Page\\Services\\Services' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Services/Services.php',
+        'App\\Http\\Livewire\\Student\\StudentAnnouncement\\StudentAnnouncement' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentAnnouncement/StudentAnnouncement.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentcet' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentcet.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\StudentcetGrad' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/StudentcetGrad.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studenteat' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studenteat.php',
