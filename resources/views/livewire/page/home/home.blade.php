@@ -1,6 +1,6 @@
 <div>
     <div>
-            <!-- Carousel Section -->
+        <!-- Carousel Section -->
         <section class="hero" id="hero">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
