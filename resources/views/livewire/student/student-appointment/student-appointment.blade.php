@@ -39,16 +39,18 @@
 
         <!-- Tab 2: View Appointments -->
         <div class="tab-pane fade show active" id="view-appointments">
-            <div class="d-flex my-3">
-                <div class="col-md-3 sort-container">
-                    <div class="d-flex">
-                        @if(1)
-                        <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#user-data-filter">
-                            <i class="bi bi-funnel-fill me-1"></i>
-                            <div><span class='btn-text'>Columns</span></div>
-                        </button>
-                        @endif
-                       
+                <div class="d-flex my-3">
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            <button class="btn btn-success" wire:click="add_appointment_modal()">
+                                Add Appointment 
+                            </button>
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn ml-1" type="button" data-bs-toggle="modal" data-bs-target="#user-data-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
                         <!-- wire:model.debounce.500ms="search" -->
                     </div>
                 </div> 
@@ -81,9 +83,6 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary" wire:click="add_appointment_modal()">
-                        Add Appointment 
-                    </button>
                 </div>
             </div>   
             <table class="table table-striped">

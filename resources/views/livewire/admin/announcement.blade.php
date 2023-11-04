@@ -1,5 +1,6 @@
 <div>
     <!-- Main Content -->
+  <!-- Main Content -->
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Manage Announcement</h1>
@@ -26,8 +27,11 @@
                 <div class="d-flex mt-2">
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#addAnnouncementModal">ADD</button>
+                            </div>
                             @if(1)
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#announcement-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn" type="button" data-bs-toggle="modal" data-bs-target="#announcement-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -35,42 +39,38 @@
                             
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
-                    </div> 
-                    <div class="modal fade" id="announcement-filter" tabindex="-1" role="dialog" aria-labelledby="announcement-filterLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="carousel-filterLabel">Sort&nbsp;Columns for Carousel</h5>
+                    </div>
+                </div>
+                <div class="modal fade" id="announcement-filter" tabindex="-1" role="dialog" aria-labelledby="announcement-filterLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="carousel-filterLabel">Sort&nbsp;Columns for Carousel</h5>
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                @foreach($announcement_filter as $item => $value)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="announcement-filter-{{$loop->iteration}}"
+                                        wire:model.defer="announcement_filter.{{$item}}">
+                                    <label class="form-check-label" for="announcement-filter-{{$loop->iteration}}">
+                                        {{$item}}
+                                    </label>
                                 </div>
-                                <hr>
-                                <div class="modal-body">
-                                    @foreach($announcement_filter as $item => $value)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="announcement-filter-{{$loop->iteration}}"
-                                            wire:model.defer="announcement_filter.{{$item}}">
-                                        <label class="form-check-label" for="announcement-filter-{{$loop->iteration}}">
-                                            {{$item}}
-                                        </label>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                <hr>
-                                <div class="modal-footer">
-                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
-                                    <button wire:click="announcementfilterView()" data-bs-dismiss="modal" 
-                                        class="btn btn-primary">
-                                        Save
-                                    </button>
-                                </div>
+                                @endforeach
+                            </div>
+                            <hr>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                <button wire:click="announcementfilterView()" data-bs-dismiss="modal" 
+                                    class="btn btn-primary">
+                                    Save
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#addAnnouncementModal">Add Announcement</button>
-                
-                    </div>
                 </div>
+                <br>
                 <table class="appointment-table">
                     <thead>
                         <tr>
