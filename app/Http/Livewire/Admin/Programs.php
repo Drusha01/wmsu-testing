@@ -28,6 +28,7 @@ class Programs extends Component
     public $department_filter=[];
     public $college_id;
     public $department_data;
+    public $department_college_name;
     public $department = [
         'department_id' => NULL,
         'department_college_id' => NULL,
@@ -120,7 +121,10 @@ class Programs extends Component
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
             self::update_data();
             if( $this->college_data){
-                $this->college_id = $this->college_data[0]->college_id;
+                foreach ($this->college_data as $key => $value) {
+                    $this->college_id =  $this->college_data[0]->college_id;
+                    $this->department_college_name =  $this->college_data[0]->college_header;
+                }
             }
         }
     }
@@ -441,6 +445,12 @@ class Programs extends Component
                 'college_isactive'=>FALSE
             ]);
             self::update_data();
+            if( $this->college_data){
+                foreach ($this->college_data as $key => $value) {
+                    $this->department_college_name =  $this->college_data[0]->college_header;
+                }
+            }
+           
             $this->dispatchBrowserEvent('openModal','DeleteCollegeModal');
         }
         
@@ -785,6 +795,52 @@ class Programs extends Component
 
                 self::update_data();
                 $this->dispatchBrowserEvent('openModal','EditDepartmentModal');
+            }
+        }
+    }
+    public function delete_department($department_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['D']  ){
+            $department = DB::table('departments')
+                ->where('department_id','=',$department_id)
+                ->first();
+            $this->department = [
+                'department_id' =>  $department->department_id,
+                'department_college_id' => $department->department_college_id,
+                'department_name' => $department->department_name,
+                'department_logo' =>NULL,
+                'department_details' => $department->department_details,
+                'department_abr' => $department->department_abr,
+                'department_order' => $department->department_order
+            ];
+            $this->dispatchBrowserEvent('openModal','DeleteDepartmentModal');
+        }
+    }
+    public function save_delete_department($department_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['D']  ){
+            $department = DB::table('departments')
+                ->where('department_id','=',$department_id)
+                ->first();
+            if(DB::table('departments')
+                ->where('department_id','=',$department_id)
+                ->delete()){
+                $image_path = storage_path().'/app/public/content/programs/departments/'.$department->department_logo;
+                if(file_exists($image_path)){
+                    unlink($image_path);
+                }
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','DeleteDepartmentModal');
             }
         }
     }

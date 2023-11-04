@@ -221,8 +221,8 @@
                                     <hr>
                                     <div class="modal-footer">
                                         <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
-                                        <button type="submit" class="btn btn-success">
-                                            Save
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
                                         </button>
                                     </div>
                                 </form>
@@ -298,7 +298,7 @@
                     </div>
                     <div class="ml-10">
                 
-                        <button class="btn btn-success mx-1" wire:click="add_department()" >Add Department to {{$college_data[$college_id-1]->college_header}} </button>
+                        <button class="btn btn-success mx-1" wire:click="add_department()" >Add Department to {{$department_college_name}} </button>
                     </div>
                 </div>
 
@@ -325,7 +325,7 @@
                                 @endif
                                 @if($department_filter['College'])
                                     <td>
-                                        {{$college_data[$college_id-1]->college_header}}
+                                        {{$department_college_name}}
                                     </td>
                                 @endif
                                 @if($department_filter['Header'])
@@ -374,7 +374,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="AddDepartmentModalLabel">Add Department to {{$college_data[$college_id-1]->college_header}}</h5>
+                                <h5 class="modal-title" id="AddDepartmentModalLabel">Add Department to {{$department_college_name}}</h5>
                             </div>
                             <hr>
                             @if($college_id)
@@ -382,7 +382,7 @@
                                     <div class="modal-body">
                                     <div class="form-group">
                                             <label for="addRoomCapacity">College:</label>
-                                            <input  type="text" class="form-control" value="{{$college_data[$college_id-1]->college_header}}" required disabled>
+                                            <input  type="text" class="form-control" value="{{$department_college_name}}" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Logo</label>
@@ -417,7 +417,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="EditDepartmentModalLabel">Edit Department of {{$college_data[$college_id-1]->college_header}}</h5>
+                                <h5 class="modal-title" id="EditDepartmentModalLabel">Edit Department of {{$department_college_name}}</h5>
                             </div>
                             <hr>
                             @if($department['department_id'])
@@ -425,7 +425,7 @@
                                     <div class="modal-body">
                                     <div class="form-group">
                                             <label for="addRoomCapacity">College:</label>
-                                            <input  type="text" class="form-control" value="{{$college_data[$college_id-1]->college_header}}" required disabled>
+                                            <input  type="text" class="form-control" value="{{$department_college_name}}" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Logo</label>
@@ -449,6 +449,30 @@
                                         <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
                                         <button type="submit" class="btn btn-success">
                                             Save
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="DeleteDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="DeleteDepartmentModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteDepartmentModalLabel">Edit College</h5>
+                            </div>
+                            <hr>
+                            @if($department['department_id'])
+                                <form wire:submit.prevent="save_delete_department({{$department['department_id']}})">
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this department?</p>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
                                         </button>
                                     </div>
                                 </form>
