@@ -6,7 +6,7 @@
         <h2>Tech Support</h2>
     </div>
 
-    <!-- Chat messages will be displayed here -->
+    <!-- Chat messages will be displayed here-->
     <div id="chat-messages"></div>
     
     <!-- Input field for typing messages -->
