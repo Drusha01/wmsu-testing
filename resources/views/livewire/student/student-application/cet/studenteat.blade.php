@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{{ asset('css/application.css') }}">
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div>
+<link rel="stylesheet" href="{{ asset('css/application.css') }}">
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <div role="tabpanel" class="tab-pane" id="application">
         <section class="test-application-section ml-5">
             <div class="container">
@@ -16,16 +11,16 @@
               
                 <div class="col-lg-10 offset-lg-1 col-xl-10">
                         <div class="guide-section guide-section col-10 offset-xl-1">
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="modalCloseButton" aria-label="Close"></button>
                         
                         <div class="container3">
-    <div class="eat-header">
-        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="eat-logo">
-        <div class="header-eat-text">
-            <h2>Western Mindanao State University</h2>
-            <span class="mb-2 custom-class">Engineering Aptitude Test</span>
-        </div>
-    </div>
+                <div class="eat-header">
+                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="eat-logo">
+                    <div class="header-eat-text">
+                        <h2>Western Mindanao State University</h2>
+                        <span class="mb-2 custom-class">Engineering Aptitude Test</span>
+                    </div>
+                </div>
     <form method="POST" action="{{ url('submit.application') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-row mt-2">
@@ -164,6 +159,9 @@
             
     </form>
     </div>
-</div>
-</body>
-</html>
+
+<script>
+    document.getElementById("modalCloseButton").addEventListener("click", function() {
+        window.location.href = "{{ route('student.application') }}"; 
+    });
+</script>
