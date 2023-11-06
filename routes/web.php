@@ -73,6 +73,7 @@ use App\Http\Livewire\Page\Appointment\Appointment;
 use App\Http\Livewire\Page\Faq\Faq;
 use App\Http\Livewire\Page\Contact\Contact;
 use App\Http\Livewire\Page\Programs\Programs;
+use App\Http\Livewire\Page\Programs\College;
 
 
 /*
@@ -195,7 +196,8 @@ Route::prefix('/')->group(function () {
     Route::get('/contact', Contact::class)->name('contact');
 
     Route::get('/programs', Programs::class)->name('programs');
-    Route::get('/programs/agri',Agri::class)->name('programs.agri');
+    Route::get('/programs/{college_id}', College::class)->name('college');
+    Route::get('/programsagri',Agri::class)->name('programs.agri');
 });
 
 
