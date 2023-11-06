@@ -368,7 +368,7 @@
                     </div>
                 </div>
                 <div class="ml-10">
-                <button class="btn btn-warning mx-1"  type="button"  wire:click="reassigning_room_check()">Reassign Proctor </button>
+                <button class="btn btn-primary mx-1"  type="button"  wire:click="reassigning_room_check()">Reassign Proctor </button>
                     <button class="btn btn-danger mx-1"  type="button" wire:click="remove_room_check()" >Remove Proctor </button>
                 </div>
             </div>
