@@ -27,7 +27,7 @@
             <div class="tab-pane fade show active" id="result-management-tab">
                 <div class="container-fluid">
                     <!-- Button to upload results -->
-                    <button type="button" class="btn btn-success mt-4" data-bs-toggle="modal" data-bs-target="#uploadResultModal">
+                    <button type="button" class="btn btn-success mt-4" data-bs-toggle="modal" data-bs-target="#uploadResultModal" >
                         Upload Result
                     </button>
                     <!-- Modal for Upload Result -->
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="submitResult">Upload</button>
+                                    <button type="button" class="btn btn-success" >Upload</button>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
             <div class="tab-pane fade" id="examinees-management-tab">
                 <div class="container-fluid">
                     <!-- Button to download examinee list -->
-                    <a href="#" class="btn btn-success mt-4" id="downloadExamineeList">Download Examinee List</a>
+                    <a href="#" class="btn btn-success mt-4" wire:click="download_file()">Download Examinee List</a>
                     <div class="table-responsive">
                         <table class="application-table">
                             <thead>
