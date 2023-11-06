@@ -491,7 +491,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="viewNamesModalLabel">Assigned Applicants</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -503,7 +503,7 @@
                                 </ul>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -742,7 +742,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="EditRoomModalLabel">View Room Details</h5>
-                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" ></button>
+                                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Form for editing room details -->
@@ -793,7 +793,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-success" >Save</button>
                                 </div>
                                 @empty 
