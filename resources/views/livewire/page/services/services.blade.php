@@ -3,7 +3,7 @@
     @if($services_data)
         <section class="services">
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     @foreach($services_data as $item => $value)
                     <div class="col-lg-4">
                         <div class="single-service">

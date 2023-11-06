@@ -13,13 +13,28 @@ class Home extends Component
     public $user_detais;
     public $title;
     public $feature_data;
+    public $aboutus_data;
 
     public function update_data(){
+        $this->carousel_data = DB::table('carousel as c')
+            ->select('*')
+            ->orderBy('carousel_order')
+            ->get()
+            ->toArray();
+
         $this->feature_data = DB::table('features')
-        ->select('*')
-        ->orderBy('feature_order')
-        ->get()
-        ->toArray();
+            ->select('*')
+            ->orderBy('feature_order')
+            ->get()
+            ->toArray();
+        $this->aboutus_data = DB::table('aboutus')
+            ->get()
+            ->toArray();
+        $this->wcu_data = DB::table('wcu')
+            ->select('*')
+            ->orderBy('wcu_order')
+            ->get()
+            ->toArray();
     }
 
     public function mount(Request $request){

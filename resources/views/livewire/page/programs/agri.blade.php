@@ -1,7 +1,7 @@
 
 <div>
     <!-- About Us Section -->
-    <section class="about" style="padding:25px;">
+    <section class="about mt-2" >
         <div class="container">
             <div class="row">
                 <div class="col-md-6 d-none d-lg-flex">
