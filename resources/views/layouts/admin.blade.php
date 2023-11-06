@@ -20,11 +20,14 @@
     <!-- JavaScript Files -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="{{ asset('bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
     <script src="{{ asset('js/appointment.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.7/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.7/datatables.min.js"></script>
+    
     @livewireStyles
 </head>
     @livewire('components.header.header-admin')
