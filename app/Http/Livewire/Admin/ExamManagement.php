@@ -102,7 +102,7 @@ class ExamManagement extends Component
                     ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                     ->whereNull('school_room_proctor_user_id')
-                    ->groupBy('t_a_school_room_id')
+                    ->groupBy('school_room_id')
                     ->get()
                     ->toArray();
                 }else{
@@ -131,7 +131,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                     ->whereNull('school_room_proctor_user_id')
                     ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-                    ->groupBy('t_a_school_room_id')
+                    ->groupBy('school_room_id')
                     ->get()
                     ->toArray();
                 }
@@ -169,7 +169,7 @@ class ExamManagement extends Component
                     ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
-                    ->groupBy('t_a_school_room_id')
+                    ->groupBy('school_room_id')
                     ->get()
                     ->toArray();
                 }else{
@@ -205,7 +205,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
                     ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-                    ->groupBy('t_a_school_room_id')
+                    ->groupBy('school_room_id')
                     ->get()
                     ->toArray();
                 }
@@ -291,7 +291,7 @@ class ExamManagement extends Component
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }else{
@@ -320,7 +320,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }
@@ -357,7 +357,7 @@ class ExamManagement extends Component
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }else{
@@ -393,7 +393,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }
@@ -516,7 +516,7 @@ class ExamManagement extends Component
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }else{
@@ -545,7 +545,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                 ->whereNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }
@@ -588,7 +588,7 @@ class ExamManagement extends Component
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }else{
@@ -624,7 +624,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
                 ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-                ->groupBy('t_a_school_room_id')
+                ->groupBy('school_room_id')
                 ->get()
                 ->toArray();
             }
@@ -692,7 +692,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -721,7 +721,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
@@ -758,7 +758,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -794,7 +794,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
@@ -898,7 +898,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -927,7 +927,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
@@ -957,7 +957,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -986,7 +986,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
@@ -1033,7 +1033,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -1062,7 +1062,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
@@ -1092,7 +1092,7 @@ class ExamManagement extends Component
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }else{
@@ -1121,7 +1121,7 @@ class ExamManagement extends Component
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
             ->where('school_room_id','=',$this->assigned_proctor_school_room_id)
-            ->groupBy('t_a_school_room_id')
+            ->groupBy('school_room_id')
             ->get()
             ->toArray();
         }
