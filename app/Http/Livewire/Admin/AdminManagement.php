@@ -49,8 +49,7 @@ class AdminManagement extends Component
     public $view_admin_user_id;
     public $delete_admin_user_id;
 
-    public function openModal(){$this->modal_open =true; $this->admin_role_name_id =false;}
-    public function closeModal(){$this->modal_open =false; $this->admin_role_name_id =false;}
+
 
 
     public function booted(Request $request){
@@ -717,6 +716,9 @@ class AdminManagement extends Component
         }
     }
     
+    public function add_admin_modal(){
+        $this->dispatchBrowserEvent('openModal','adminAddModal');
+    }
 
     public function add_admin(){
         // validate user cred
@@ -954,7 +956,7 @@ class AdminManagement extends Component
             'timer'             									=> '1000',
             'link'              									=> '#'
         ]);
-        $this->modal_open =false; 
+        $this->dispatchBrowserEvent('openModal','adminAddModal');
         $this->admin_role_name_id =false;
 
         $this->admin_data = DB::table('users as u')

@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#adminAddModal" wire:click="openModal()" >Add Admin</button>
+                        <button class="btn btn-success   mx-1"  wire:click="add_admin_modal()" >Add Admin</button>
                     </div>
                 </div>
                 
@@ -154,12 +154,12 @@
         </div>
         
         <!-- Add Admin Modal -->
-        <div class="modal fade @if($modal_open) show @endif" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="adminAddModalLabel" @if($modal_open) aria-modal="true" style="display: block;" @endif>
+        <div class="modal fade show" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="ViewAdminModalLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-xl modal-dialog-centered " >
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="adminAdminModalLabel">Add Admin</h5>
-                        <div type="button" class="close"  wire:click="closeModal()" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal"aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                             <!-- End Add Admin  -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"  wire:click="closeModal()">Close</button>
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" >Add Admin</button>
                         </div>
                     </form>
@@ -537,97 +537,7 @@
             </div>
         </div>
         <!-- Add User Modal -->
-        <div class="modal fade" id="AddUserModal" tabindex="-1" role="dialog" aria-labelledby="AddUserModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="AddUserModalLabel">Add User</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add User form -->
-                        <form>
-                            <div class="form-group">
-                                <label for="AddUserFirstName">First Name</label>
-                                <input type="text" class="form-control" id="AddUserFirstName" placeholder="Enter First Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddUserMiddleName">Midlle Name</label>
-                                <input type="text" class="form-control" id="AddUserMiddleName" placeholder="Enter Middle Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddUserLastName">Last Name</label>
-                                <input type="text" class="form-control" id="AddUserLastName" placeholder="Enter Last Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddUserEmail">Email</label>
-                                <input type="email" class="form-control" id="AddUserEmail" placeholder="Enter Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="AddUserRole">Role</label>
-                                <select class="form-control" id="AddUserRole">
-                                    <option value="user">User</option>
-                                    <option value="TBD">TBD</option>
-                                </select>
-                            </div>
-                        </form>
-                        <!-- End Add User  -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add User</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Edit User Modal -->
-        <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- User Edit Form -->
-                        <form>
-                            <div class="form-group">
-                                <label for="editUserFirstName">First Name</label>
-                                <input type="text" class="form-control" id="editUserFirstName" placeholder="Edit First name">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserMiddleName">Middle Name</label>
-                                <input type="text" class="form-control" id="editUserMiddleName" placeholder="Edit Middle Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserLastName">Last Name</label>
-                                <input type="text" class="form-control" id="editUserLastName" placeholder="Edit Last Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserEmail">Email</label>
-                                <input type="email" class="form-control" id="editUserEmail" placeholder="Enter new Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserRole">Role</label>
-                                <select class="form-control" id="editUserRole">
-                                    <option value="user">Applicant</option>
-                                    <option value="moderator">TBD</option>
-                                </select>
-                            </div>
-                        </form>
-                        <!-- End User Edit Form -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
         <!-- End Edit User Modal -->
         <!-- Role Management tab -->
         <div class="tab-pane @if($active == 'role_management') show active @endif " id="role-management-tab">
