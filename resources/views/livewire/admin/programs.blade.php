@@ -1,5 +1,6 @@
 <div>
     <!-- Main Content -->
+    <x-loading-indicator/>
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Manage Program</h1>
