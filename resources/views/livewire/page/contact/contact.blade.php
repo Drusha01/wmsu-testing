@@ -1,4 +1,23 @@
-<div class="container mt-5">
+<div class="container mt-5" style="min-height:550px;">
+    @if($contactus_data)
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center mb-4">
+            <legend class="font-weight-bold  ">Contact Us</legend>
+        </div>
+        @forelse ($contactus_data as $item =>$value)
+        <div class="col-md-4 mb-4">
+            <div class="choose-item border text-center p-4">
+                <img src="{{asset('storage/content/contact_us/'.$value->cu_icon)}}"  alt="WMSU Testing Center" width="60px">
+                <div class="choose-content">
+                    <h3>{{$value->cu_header}}</h3>
+                    <p>{{$value->cu_content}}</p>
+                </div>
+            </div>
+        </div>
+        @empty
+        @endforelse
+    </div>
+    @else
     <div class="row justify-content-center">
         <div class="col-md-12 text-center mb-4">
             <legend class="font-weight-bold  ">Contact Us</legend>
@@ -31,4 +50,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
