@@ -145,7 +145,7 @@
                                     @if($unassigned_applicant_filter['Actions'] )
                                         <td class="text-center">
                                             @if($access_role['R']==1)
-                                            <button class="btn btn-primary">View</button>
+                                                <button class="btn btn-primary" wire:click="view_application({{$value->t_a_id}})">View</button>
                                             @endif
                                         </td>
                                     @endif
@@ -164,7 +164,7 @@
                 </div>
 
                 <!-- Assign Modal -->
-                <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true">
+                <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -208,7 +208,9 @@
                                     <select class="form-control"  wire:model.defer="unassigned_school_room_id">
                                     
                                         @forelse ($school_rooms as $item => $value)
-                                        <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
+                                            @if($value->school_room_isactive)
+                                            <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
+                                            @endif
                                         @empty
                                             <option value="">NO RECORDS</option>
                                         @endforelse
@@ -224,6 +226,8 @@
                         </div>
                     </div>
                 </div>
+
+                
 
                 <!-- Assigned Tab -->
                 <div class="tab-pane  @if($active == 'assigned_room') show active @endif " id="room-assignment1-tab">
@@ -352,7 +356,7 @@
                                     @if($assigned_applicant_filter['Actions'] )
                                         <td class="text-center">
                                             @if($access_role['R']==1)
-                                            <button class="btn btn-primary">View</button>
+                                                <button class="btn btn-primary" wire:click="view_application({{$value->t_a_id}})">View</button>
                                             @endif
                                         </td>
                                     @endif
@@ -371,7 +375,7 @@
                 </div>
 
                 <!-- Re-assign Modal -->
-                <div class="modal fade" id="reassignModal" tabindex="-1" role="dialog" aria-labelledby="reassignModalLabel" aria-hidden="true">
+                <div class="modal fade" id="reassignModal" tabindex="-1" role="dialog" aria-labelledby="reassignModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -415,7 +419,9 @@
                                     <select class="form-control"  wire:model.defer="assigned_school_room_id">
                                     
                                         @forelse ($school_rooms as $item => $value)
-                                        <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
+                                            @if($value->school_room_isactive)
+                                            <option wire:key="unassigned-room-{{$value->school_room_id}}" value="{{$value->school_room_id}}">{{$value->school_room_test_center.' '.$value->school_room_name.' ( '.$value->school_room_test_time_start.' - '.$value->school_room_test_time_end.' )'}}</option>
+                                            @endif
                                         @empty
                                             <option value="">NO RECORDS</option>
                                         @endforelse
@@ -508,7 +514,277 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="modal fade" id="view_application_modal" tabindex="-1" role="dialog" aria-labelledby="view_application_modalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-lg modal-md" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Application Details</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Full Name -->
+                                <form wire:submit.prevent="confirm_cancel({{1}})">
+                                    @if($application_view_details)
+                                        <!--  check what type and display that -->
+                                        <div class="col-lg-12">
+                                            <div class="border border-dark pt-3" >
+                                                <div class="container">
+                                                    <div class="header-eat " style="background:#990000;">
+                                                        <div class="text-center py-3" style="color:#fff;">
+                                                            <img src="{{ asset('images/logo/logo.png') }}" width="120" alt="Logo" class="mx-auto" >
+                                                            <br>
+                                                            <span>Western Mindanao State University</span>
+                                                            <h2 class="mb-2">College Entrance Exam Application Form</h2>
+                                                            
+                                                            @if($application_view_details[0]->cet_type_name == 'shs_under_grad')
+                                                                <span class="mb-2 custom-class">Senior Highschool Graduating Student Form</span>
+                                                            @elseif($application_view_details[0]->cet_type_name == 'shs_grad')
+                                                                <span class="mb-2 custom-class">Senior Highschool Graduate Form</span>
+                                                            @elseif($application_view_details[0]->cet_type_name == 'shiftee/tranferee')
+                                                                <span class="mb-2 custom-class">College Shiftee/Transferee Form</span>
+                                                            @endif
+                                                        </div>
+                                                                                                            
+                                                    </div>
+                                                    <div class="container4">
+                                                        <div class="form-container">
+                                                            <fieldset class="my-3">
+                                                                <legend class="form-legend">Applicant information</legend>
+                                                                <div class="border border-secondary mb-3">
+                                                                    <div class=" row px-4 py-2 col-lg-12">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 mb-2">
+                                                                                <label for="first-name" class="form-label">First name <span style="color:red;">*</span></label>
+                                                                                <input disabled type="text" class="form-control" id="first-name" wire:model="application_view_details.0.user_firstname" name="first_name" placeholder="First name" >
+                                                                            </div>
+                                                                            <div class="col-lg-6 mb-2">
+                                                                                <label for="last-name" class="form-label">Middle name</label>
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="application_view_details.0.user_middlename" name="last_name" placeholder="Middle name" >
+                                                                            </div>
+                                                                            <div class="col-lg-6 mb-2">
+                                                                                <label for="last-name" class="form-label">Last name <span style="color:red;">*</span></label>
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="application_view_details.0.user_lastname" name="last_name" placeholder="Last name" required>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mb-2">
+                                                                                <label for="last-name" class="form-label">Suffix</label>
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="application_view_details.0.user_suffix" name="last_name" placeholder="Suffix" >
+                                                                            </div>
+                                                                        
+                                                                            <div class="col-lg-6 col-md-12 mb-2">
+                                                                                <label for="email" class="form-label">Email <span style="color:red;">*</span></label>
+                                                                                <input disabled type="email" class="form-control" id="email"  wire:model="application_view_details.0.user_email" name="email" placeholder="Email" required disabled>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-12 mb-2">
+                                                                                <label for="contact-number" class="form-label">Contact Number <span style="color:red;">*</span></label>
+                                                                                <input disabled type="text"  wire:model="application_view_details.0.user_phone" class="form-control" required placeholder="Contact Number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                            <fieldset class="my-3">
+                                                                <legend class="form-legend">Senior School information</legend>
+                                                                <div class="border border-secondary mb-3">
+                                                                    <div class=" row px-3 py-2 col-lg-12">
+                                                                        <div class="col-lg-6 col-md-12 mb-2">
+                                                                            <label for="high-school-name" class="form-label">Senior School Name <span style="color:red;">*</span></label>
+                                                                            
+                                                                            <input disabled type="text" class="form-control"  wire:model="application_view_details.0.t_a_school_school_name" name="high_school_name" placeholder="High School Name" required>
+                                                                        </div>
+                                                                        <div class="col-lg-6 col-md-12 mb-2">
+                                                                            <label for="high-school-address" class="form-label">Senior School Address <span style="color:red;">*</span></label>
+                                                                            <input disabled type="text" class="form-control" wire:model="application_view_details.0.t_a_school_address" name="high_school_address" placeholder="High School Address" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                            @if($application_view_details[0]->cet_type_name == 'shs_under_grad')
+                                                            <fieldset class="mb-2">
+                                                                <legend class="form-legend">Required Documents</legend>
+                                                                <div class="border border-secondary">
+                                                                    <label for="graduation-certification" class="form-label">Formal Photo with name tag <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <label for="enrollment-certification" class="form-label">School Principal Certification <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_school_principal_certification/'.$application_view_details[0]->t_a_school_principal_certification)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_school_principal_certification/'.$application_view_details[0]->t_a_school_principal_certification)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    @if((strlen($application_view_details[0]->t_a_receipt_photo)>0))
+                                                                    <label for="barangay-clearance">CET Payment Receipt  <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    @endif
+                                                                </div>
+                                                            </fieldset>
+                                                            @elseif($application_view_details[0]->cet_type_name == 'shs_grad')
+                                                            <fieldset class="mb-2">
+                                                                <legend class="form-legend">Required Documents</legend>
+                                                                <div class="border border-secondary">
+                                                                    <label for="graduation-certification" class="form-label">Formal Photo with name tag <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <label for="senior-card-original">Original Senior High School Card</label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_original_senior_high_school_card/'.$application_view_details[0]->t_a_original_senior_high_school_card)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_original_senior_high_school_card/'.$application_view_details[0]->t_a_original_senior_high_school_card)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    @if((strlen($application_view_details[0]->t_a_receipt_photo)>0))
+                                                                    <label for="barangay-clearance">CET Payment Receipt  <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    @endif
+                                                                </div>
+                                                            </fieldset>
+                                                            @elseif($application_view_details[0]->cet_type_name == 'shiftee/tranferee')
+                                                            <fieldset class="mb-2">
+                                                                <legend class="form-legend">Required Documents</legend>
+                                                                <div class="border border-secondary">
+                                                                    <label for="graduation-certification" class="form-label">Formal Photo with name tag <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$application_view_details[0]->t_a_formal_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <label for="senior-card-original">Transcript of Records ( TOR ) <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_transcript_of_records/'.$application_view_details[0]->t_a_transcript_of_records)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_transcript_of_records/'.$application_view_details[0]->t_a_transcript_of_records)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <label for="barangay-clearance">WMSU Dean endorsement letter <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_endorsement_letter_from_wmsu_dean/'.$application_view_details[0]->t_a_endorsement_letter_from_wmsu_dean)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_endorsement_letter_from_wmsu_dean/'.$application_view_details[0]->t_a_endorsement_letter_from_wmsu_dean)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    <br>
+                                                                    @if((strlen($application_view_details[0]->t_a_receipt_photo)>0))
+                                                                    <label for="barangay-clearance">CET Payment Receipt  <span style="color:red;">*</span></label>
+                                                                    <div>
+                                                                        <a target="blank"href="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" >
+                                                                            <img src="{{asset('storage/application-requirements/t_a_receipt_photo/'.$application_view_details[0]->t_a_receipt_photo)}}" height="300" alt="Logo"  >
+                                                                        </a>
+                                                                    </div>
+                                                                    @endif
+                                                                </div> 
+                                                            </fieldset>
+                                                            @endif
+                                                            <div class="row">
+                                                                <div class="col-lg-6">            
+                                                                    <legend class="father form-legend">Father's Information</legend>
+                                                                    <div class="border border-secondary">
+                                                                        <div class="row px-3">
+                                                                            <div class="mother col-lg-12 mb-3 mt-2">
+                                                                                <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_f_firstname" name="high_school_address" placeholder="First Name" required >
+                                                                            </div>
+                                                                            <div class="mother col-lg-12 mb-3">
+                                                                                <label for="mother-middle-name" class="form-label">Middle Name </label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_f_firstname" name="high_school_address"placeholder="Middle Name" >
+                                                                            </div>
+                                                                            <div class="father col-lg-12 mb-3">
+                                                                                <label for="father-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_f_firstname" name="high_school_address" required>
+                                                                            </div>
+                                                                            <div class="father col-lg-12 mb-3">
+                                                                                <label for="father-last-name" class="form-label">Suffix</label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_f_firstname" name="high_school_address" placeholder="Suffix" >
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <legend class="mother form-legend">Mother's Information</legend>
+                                                                    <div class="border border-secondary">
+                                                                        <div class="mother col-lg-12 mb-3 mt-2">
+                                                                            <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
+                                                                            <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_m_firstname" placeholder="First Name" required>
+                                                                        </div>
+                                                                        <div class="mother col-lg-12 mb-3">
+                                                                            <label for="mother-middle-name" class="form-label">Middle Name </label>
+                                                                            <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_m_firstname" placeholder="Middle Name" >
+                                                                        </div>
+                                                                        <div class="mother col-lg-12 mb-3">
+                                                                            <label for="mother-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
+                                                                            <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_m_firstname" placeholder="Last Name" required>
+                                                                        </div>
+                                                                        <div class="father col-lg-12 mb-3">
+                                                                            <label for="father-last-name" class="form-label">Suffix</label>
+                                                                            <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_m_firstname" id="father-last-name" placeholder="Suffix" >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <div class="col-md-12">
+                                                                    <legend class="form-legend">Guardian's Information <i class="fa fa-info-circle info-icon" title='If applicable'style="padding: 11px 0 0 5px;"></i></legend>
+                                                                    <div class="border border-secondary mb-3">
+                                                                        <div class="row px-3">
+                                                                            <div class="col-lg-6 col-md-12  mb-3">
+                                                                                <label for="first-name" class="form-label">First Name <span style="color:red;"></span></label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_g_firstname" placeholder="First Name" >
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
+                                                                                <label for="middle-name" class="form-label">Middle Name</label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_g_firstname" placeholder="Middle Name" >
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row md-12 px-3">
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
+                                                                                <label for="last-name" class="form-label">Last Name <span style="color:red;"></span></label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_g_firstname" placeholder="Last Name" >
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-12 mb-3">
+                                                                                <label for="father-suffix" class="form-label">Suffix</label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_g_firstname" aria-label="Father's Suffix" placeholder="Enter Suffix">
+                                                                            </div>
+                                                                            <div class="col-lg-12 col-md-12 mb-3 ">
+                                                                                <label for="middle-name" class="form-label">Relationship <span style="color:red;"></span></label>
+                                                                                <input disabled type="text" class="form-control" wire:model="application_view_details.0.family_background_g_relationship" id="middle-name" placeholder="Relationship" >
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Room Management Tab -->
                 <div class="tab-pane  @if($active == 'room_management') show active @endif " id="room-management-tab">
@@ -560,7 +836,7 @@
                                     <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
                                 @endif
                                 @if($school_room_filter['Status'])
-                                    <td>@if ($value->school_room_isactive)Active @else Deleted @endif</td>
+                                    <td>@if ($value->school_room_isactive) Active @else Deleted <br><button class="btn btn-warning" wire:click="activateRoom({{ $value->school_room_id }})">Activate</button> @endif</td>
                                 @endif
                                 @if($school_room_filter['Actions'] )
                                     <td class="text-center">
@@ -571,7 +847,7 @@
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditRoomModal" wire:click="edit_room_details({{$value->school_room_id }})">Edit</button>
                                         @endif
                                         @if($access_role['D']==1)
-                                        <button class="btn btn-danger mt-2" id="confirmDeleteRoom" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
+                                        <button class="btn btn-danger" id="confirmDeleteRoom" wire:click="deleteRoom({{ $value->school_room_id }})">Delete</button>
                                         @endif
                                     </td>
                                 @endif

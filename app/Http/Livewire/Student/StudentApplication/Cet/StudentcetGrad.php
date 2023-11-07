@@ -53,6 +53,59 @@ class StudentcetGrad extends Component
     public $t_a_original_senior_high_school_card_id;
     public $t_a_original_senior_high_school_card;
     public $t_a_original_senior_high_school_card_name;
+    public $t_a_receipt_photo;
+
+    public $required_receipt_photo = null;
+
+    public $application =[
+        't_a_id' => NULL,
+        't_a_test_type_id' => NULL,
+        't_a_applicant_user_id' => NULL,
+        't_a_test_status_id' => NULL,
+        't_a_user_details' => NULL,
+        't_a_isactive' => NULL,
+
+        't_a_school_school_name' => NULL,
+        't_a_school_address' => NULL,
+
+        't_a_formal_photo' => NULL,
+        't_a_school_principal_certification' => NULL,
+        't_a_original_senior_high_school_card' => NULL,
+        't_a_transcript_of_records' => NULL,
+        't_a_endorsement_letter_from_wmsu_dean' => NULL,
+        't_a_receipt_photo' => NULL,
+
+        // -- nat
+
+        // -- eat 
+
+        // -- etc
+
+        // --
+        't_a_declined_reason' => NULL,
+        't_a_declined_by' => NULL, 
+        't_a_accepted_by' => NULL,  
+        't_a_assigned_by' => NULL,
+        't_a_proctor_assigned_by' => NULL,
+        't_a_returned_by' => NULL,
+        't_a_returned_reason' => NULL,
+        't_a_proctor_user_id' => NULL,
+        't_a_school_room_id' => NULL,
+
+        't_a_school_year_id' => NULL,
+
+        't_a_hash' => NULL,
+
+        't_a_cet_type_id' => NULL,
+
+        't_a_cet_english_procficiency' => NULL,
+        't_a_cet_reading_comprehension'  => NULL,
+        't_a_cet_science_process_skills' => NULL,
+        't_a_cet_quantitative_skills' => NULL,
+        't_a_cet_abstract_thinking_skills' => NULL,
+        't_a_cet_oapr' => NULL
+
+    ];
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -75,11 +128,10 @@ class StudentcetGrad extends Component
         }
     }
 
-
-    public function mount(Request $request){
-        $this->user_details = $request->session()->all();
-        $this->title = 'application-cet-graduate';
-
+    public function hydrate(){
+        self::update_data();
+    }
+    public function update_data(){
         if(DB::table('test_applications')
             ->where('t_a_test_type_id', '=', 
                 ((array) DB::table('test_types')
@@ -93,9 +145,24 @@ class StudentcetGrad extends Component
             ){
             return redirect('/student/status');
         }
+        if(DB::table('test_applications')
+            ->where('t_a_test_type_id', '=', 
+                ((array) DB::table('test_types')
+                    ->where('test_type_details', '=', 'College Entrance Test')
+                    ->select('test_type_id as t_a_test_type_id')
+                    ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_test_status_id','=',
+                DB::table('test_status')
+                ->where('test_status_details', '=', 'Complete')
+                ->select('test_status_id as t_a_test_status_id')
+                ->first()->t_a_test_status_id)
+            ->first()){
+            $this->required_receipt_photo = true;
+        }
 
-        $this->t_a_formal_photo_id = rand(0,1000000);
-        $this->t_a_original_senior_high_school_card_id = rand(0,1000000);
+     
 
         $this->title = 'application-cet-shiftee';
         $this->firstname = $this->user_details['user_firstname'];
@@ -111,8 +178,8 @@ class StudentcetGrad extends Component
         $this->email = $this->user_details['user_email'];
 
         if($family_details = DB::table('user_family_background as fb')
-        ->where('family_background_user_id', $this->user_details['user_id'])
-        ->first()){
+            ->where('family_background_user_id', $this->user_details['user_id'])
+            ->first()){
             $this->m_firstname = $family_details->family_background_m_firstname;
             $this->m_middlename = $family_details->family_background_m_middlename ;
             $this->m_lastname = $family_details->family_background_m_lastname;
@@ -138,6 +205,17 @@ class StudentcetGrad extends Component
             $this->ueb_shs_school_name = $educational_details->ueb_shs_school_name;
             $this->ueb_shs_address = $educational_details->ueb_shs_address ;
         }
+    }
+
+    public function mount(Request $request){
+        $this->user_details = $request->session()->all();
+        $this->title = 'application-cet-graduate';
+
+        self::update_data();
+
+        $this->t_a_formal_photo_id = rand(0,1000000);
+        $this->t_a_original_senior_high_school_card_id = rand(0,1000000);
+        
     } 
     public function render()
     {
@@ -372,6 +450,65 @@ class StudentcetGrad extends Component
             $this->t_a_original_senior_high_school_card_id = rand(0,1000000);         
         }
 
+        if($this->t_a_receipt_photo && file_exists(storage_path().'/app/livewire-tmp/'.$this->t_a_receipt_photo->getfilename())){
+            $file_extension =$this->t_a_receipt_photo->getClientOriginalExtension();
+            $tmp_name = 'livewire-tmp/'.$this->t_a_receipt_photo->getfilename();
+            $size = Storage::size($tmp_name);
+            $mime = Storage::mimeType($tmp_name);
+            $max_image_size = 20 * 1024*1024; // 5 mb
+            $file_extensions = array('image/jpeg','image/png','image/jpg');
+            
+            if($size<= $max_image_size){
+                $valid_extension = false;
+                foreach ($file_extensions as $value) {
+                    if($value == $mime){
+                        $valid_extension = true;
+                        break;
+                    }
+                }
+                if($valid_extension){
+                    $storage_file_path = storage_path().'/app/public/application-requirements/t_a_receipt_photo/';
+                    
+                    // move
+                    $new_file_name = md5($tmp_name).'.'.$file_extension;
+                    while(DB::table('test_applications')
+                    ->where(['t_a_receipt_photo'=> $new_file_name])
+                    ->first()){
+                        $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                    }
+                    if(Storage::move($tmp_name, 'public/application-requirements/t_a_receipt_photo/'.$new_file_name)){
+    
+                        $this->t_a_receipt_photo_name = $new_file_name;
+                        // resize thumb nail
+                        // resize 500x500 px
+                        $this->t_a_receipt_photo = null;
+
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Invalid image type!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                    return 0;
+                }
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Image is too large!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return 0;
+            }  
+            $this->required_receipt_photo_id = rand(0,1000000);         
+        }
+
         $t_a_hash = md5(random_bytes(32));
         if(DB::table('test_applications')->insert([
             't_a_test_type_id'=>((array) DB::table('test_types')
@@ -398,7 +535,9 @@ class StudentcetGrad extends Component
             't_a_school_address' => $this->ueb_shs_address,
 
             't_a_formal_photo' => $this->t_a_formal_photo_name,
-            't_a_original_senior_high_school_card' => $this->t_a_original_senior_high_school_card_name,]
+            't_a_original_senior_high_school_card' => $this->t_a_original_senior_high_school_card_name,
+            't_a_receipt_photo' => $this->t_a_receipt_photo_name,
+            ]
         )){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',

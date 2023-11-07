@@ -99,7 +99,7 @@ class ApplicationManagement extends Component
         }
     }
     public function hydrate(){
-
+        $this->application_view_details = null;
         $this->access_role = [
             'C' => true,
             'R' => true,

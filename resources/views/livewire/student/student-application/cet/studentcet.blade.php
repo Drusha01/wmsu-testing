@@ -84,6 +84,14 @@
                                                             </label>
                                                             <input type="file" class="form-control"  wire:model="t_a_school_principal_certification" id="{{$t_a_school_principal_certification_id}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                                         </div>
+                                                        @if($required_receipt_photo)
+                                                        <div class="col-md-12 mb-2 ">
+                                                            <label for="enrollment-certification" class="form-label">CET Payment Receipt  <span style="color:red;">*</span>
+                                                                <i class="fa fa-info-circle info-icon" title='You have taken a cet previously hence you need to pay and upload the receipt photo here Thank you'style="padding: 11px 0 0 5px;"></i>
+                                                            </label>
+                                                            <input type="file" class="form-control"  wire:model="t_a_receipt_photo" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </fieldset>

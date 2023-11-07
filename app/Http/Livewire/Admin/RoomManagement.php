@@ -16,6 +16,7 @@ class RoomManagement extends Component
     public $active;
 
     public $school_rooms;
+    public $application_view_details ;
 
     // unassigned room applicant
     public $unassigned_applicant_data;
@@ -84,6 +85,7 @@ class RoomManagement extends Component
     }
 
     public function hydrate(){
+        $this->application_view_details = null;
         $this->access_role = [
             'C' => true,
             'R' => true,
@@ -102,7 +104,6 @@ class RoomManagement extends Component
                 ->select(
                     '*'
                 )
-               ->where('school_room_isactive','=',1)
                 ->get()
                 ->toArray();
                 
@@ -280,7 +281,6 @@ class RoomManagement extends Component
                 ->select(
                     '*'
                 )
-               ->where('school_room_isactive','=',1)
                 ->get()
                 ->toArray();
 
@@ -725,6 +725,7 @@ class RoomManagement extends Component
     }
 
     public function assigning_room_check(){
+        
         $this->unassigned_valid = false;
         foreach ($this->unassigned_applicant_data  as $key => $value) {
             if($this->unassigned_selected[$key][$value->t_a_id]){
@@ -732,6 +733,7 @@ class RoomManagement extends Component
             }
         }
 
+       
         if(!$this->unassigned_valid){
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
@@ -748,9 +750,11 @@ class RoomManagement extends Component
 
     public function assigning_room(){
         $this->unassigned_valid = false;
+        $examinees_count = 0;
         foreach ($this->unassigned_applicant_data  as $key => $value) {
             if($this->unassigned_selected[$key][$value->t_a_id]){
                 $this->unassigned_valid = true;
+                $examinees_count++;
             }
         }
         // accessrole read
@@ -760,7 +764,29 @@ class RoomManagement extends Component
             'U' => true,
             'D' => true
         ];
-
+        $current_examinees_count = DB::table('test_applications as ta')
+            ->select(DB::raw('count(*) as current_examinees_count'))
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->where('t_a_school_room_id','=', $this->unassigned_school_room_id)
+            ->where('t_a_isactive','=',1)
+            ->where('ts.test_status_details','=','Processing')             
+            ->first()->current_examinees_count;
+        $room_capacity = DB::table('school_rooms')
+            ->select('school_room_capacity')
+            ->where('school_room_id','=',$this->unassigned_school_room_id)
+            ->where('school_room_isactive','=',1)
+            ->first()->school_room_capacity;
+        if($current_examinees_count+$examinees_count > $room_capacity){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'The selected examinees exceeds the room capacity! <br> capacity left ('.($room_capacity-$current_examinees_count).')',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+             return;
+        }
         if($this->unassigned_valid &&  $this->access_role['U'] ){
             foreach ($this->unassigned_applicant_data  as $key => $value) {
                 if($this->unassigned_selected[$key][$value->t_a_id]){
@@ -851,6 +877,7 @@ class RoomManagement extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
             ]);
+            $this->dispatchBrowserEvent('openModal','assignModal');
             $this->unassigned_valid = false;
         }
         
@@ -1027,9 +1054,11 @@ class RoomManagement extends Component
 
     public function reassigning_room(){
         $this->assigned_valid = false;
+        $examinees_count = 0;
         foreach ($this->assigned_applicant_data  as $key => $value) {
             if($this->assigned_selected[$key][$value->t_a_id]){
                 $this->assigned_valid = true;
+                $examinees_count++;
             }
         }
 
@@ -1040,6 +1069,29 @@ class RoomManagement extends Component
             'U' => true,
             'D' => true
         ];
+        $current_examinees_count = DB::table('test_applications as ta')
+        ->select(DB::raw('count(*) as current_examinees_count'))
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->where('t_a_school_room_id','=', $this->assigned_school_room_id)
+        ->where('t_a_isactive','=',1)
+        ->where('ts.test_status_details','=','Processing')             
+        ->first()->current_examinees_count;
+        $room_capacity = DB::table('school_rooms')
+            ->select('school_room_capacity')
+            ->where('school_room_id','=',$this->assigned_school_room_id)
+            ->where('school_room_isactive','=',1)
+            ->first()->school_room_capacity;
+        if($current_examinees_count+$examinees_count > $room_capacity){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'The selected examinees exceeds the room capacity! <br> capacity left ('.($room_capacity-$current_examinees_count).')',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
 
         if($this->assigned_valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_applicant_data  as $key => $value) {
@@ -1146,7 +1198,37 @@ class RoomManagement extends Component
                 'link'              									=> '#'
             ]);
             $this->assigned_valid = false;
+            $this->dispatchBrowserEvent('openModal','reassignModal');
         }
+    }
+    public function view_application($t_a_id){
+
+
+        $this->application_view_details = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_isactive','=',1)
+            ->where('t_a_id','=',$t_a_id )
+            ->limit(1)
+            ->get()
+            ->toArray();
+            // dd($this->application_view_details);
+
+
+        
+            $this->dispatchBrowserEvent('openModal','view_application_modal');
     }
 
 
@@ -1284,11 +1366,38 @@ class RoomManagement extends Component
             'link' => '#'
         ]);
         $this->school_rooms = DB::table('school_rooms as sr')
-        ->select(
-            '*'
-        )
-        ->get()
-        ->toArray();
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
+        $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
+    }
+
+    public function activateRoom($room_id) {
+    
+        // Perform the room deletion logic
+        DB::table('school_rooms')
+            ->where('school_room_id', $room_id)
+            ->update(['school_room_isactive'=>1]);
+
+        
+
+        $this->dispatchBrowserEvent('swal:remove_backdrop', [
+            'position' => 'center',
+            'icon' => 'success',
+            'title' => 'Room deleted successfully!',
+            'showConfirmButton' => true,
+            'timer' => 1000,
+            'link' => '#'
+        ]);
+        $this->school_rooms = DB::table('school_rooms as sr')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
         $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
         $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
     }
@@ -1338,13 +1447,7 @@ class RoomManagement extends Component
             $this->school_room_capacity = $this->edit_room[0]->school_room_capacity ;
             $this->school_room_description = $this->edit_room[0]->school_room_description;
 
-        $this->school_rooms = DB::table('school_rooms as sr')
-            ->select(
-                '*'
-            )
-            ->get()
-            ->toArray();
-        
+
         $this->unassigned_school_room_id = $this->school_rooms[0]->school_room_id;
         $this->assigned_school_room_id = $this->school_rooms[0]->school_room_id;
 
