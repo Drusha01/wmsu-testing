@@ -14,10 +14,10 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link show @if($active == 'Colleges') show active @endif " wire:key="Colleges" wire:click="active_page('Colleges')">Colleges</a>
+                <a class="nav-link show @if($active == 'Colleges') show active @endif " wire:key="Colleges" wire:click="active_page('Colleges')" href="#college-tab">Colleges</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'Departments') show active @endif " wire:key="Departments" wire:click="active_page('Departments')">Departments</a>
+                <a class="nav-link @if($active == 'Departments') show active @endif " wire:key="Departments" wire:click="active_page('Departments')"href="#departments-tab">Departments</a>
             </li>
         </ul>
 
@@ -30,6 +30,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_college()" >Add College</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#College-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -39,6 +42,7 @@
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
+
                     <div class="modal fade" id="College-filter" tabindex="-1" role="dialog" aria-labelledby="College-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -68,9 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_college()" >Add College</button>
-                    </div>
+
                 </div>
 
                 <table class="application-table">

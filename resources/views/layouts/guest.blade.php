@@ -16,7 +16,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.4/umd/popper.min.js"></script>
     @livewireStyles
 </head>
-<body>
+<body style="background: linear-gradient(to top, #990000, #ccc); background-size: 100% 200%; animation: gradientAnimation 5s infinite;">
+  <style>
+    @keyframes gradientAnimation {
+      0%, 100% {
+        background-position: 0 0;
+      }
+      50% {
+        background-position: 0 100%;
+      }
+    }
+  </style>
+    
     {{ $slot }}
 
 

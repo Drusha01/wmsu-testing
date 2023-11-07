@@ -252,9 +252,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ViewAdminModalLabel">View Admin Details</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form >
                         <div class="modal-body">
@@ -303,9 +303,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="EditAdminModal">Edit Admin Details</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form wire:submit.prevent="save_edit_admin({{$view_admin_user_id}})">
                         <div class="modal-body">
@@ -355,9 +355,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="DeleteAdminModal">Delete user</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form wire:submit.prevent="delete_admin_now({{$delete_admin_user_id}})">
                         <div class="modal-body">
@@ -378,9 +378,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editAdminModalLabel">Edit Admin</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <!-- Admin Edit Form -->
@@ -732,9 +732,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form wire:submit.prevent="add_new_role()">
                         <div class="modal-body">
@@ -789,9 +789,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ViewRoleModalLabel">View Role</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form >
                         <div class="modal-body">
@@ -845,9 +845,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="EditRoleModalLabel">Edit Role</h5>
-                        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <form wire:submit.prevent="edit_selected_role()">
                         <div class="modal-body">
