@@ -602,6 +602,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Admin\\Dashboard' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Dashboard.php',
         'App\\Http\\Livewire\\Admin\\ExamAdministrator' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ExamAdministrator.php',
         'App\\Http\\Livewire\\Admin\\ExamManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ExamManagement.php',
+        'App\\Http\\Livewire\\Admin\\Exports\\ExamineesExport' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Exports/ExamineesExport.php',
         'App\\Http\\Livewire\\Admin\\Notification' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Notification.php',
         'App\\Http\\Livewire\\Admin\\Profile' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Profile.php',
         'App\\Http\\Livewire\\Admin\\Programs' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Programs.php',

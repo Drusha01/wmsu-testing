@@ -25,6 +25,7 @@ return array(
     'App\\Http\\Livewire\\Admin\\Dashboard' => $baseDir . '/app/Http/Livewire/Admin/Dashboard.php',
     'App\\Http\\Livewire\\Admin\\ExamAdministrator' => $baseDir . '/app/Http/Livewire/Admin/ExamAdministrator.php',
     'App\\Http\\Livewire\\Admin\\ExamManagement' => $baseDir . '/app/Http/Livewire/Admin/ExamManagement.php',
+    'App\\Http\\Livewire\\Admin\\Exports\\ExamineesExport' => $baseDir . '/app/Http/Livewire/Admin/Exports/ExamineesExport.php',
     'App\\Http\\Livewire\\Admin\\Notification' => $baseDir . '/app/Http/Livewire/Admin/Notification.php',
     'App\\Http\\Livewire\\Admin\\Profile' => $baseDir . '/app/Http/Livewire/Admin/Profile.php',
     'App\\Http\\Livewire\\Admin\\Programs' => $baseDir . '/app/Http/Livewire/Admin/Programs.php',

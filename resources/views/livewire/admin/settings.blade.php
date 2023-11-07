@@ -41,6 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link @if($active == 'Footer') show active @endif " wire:key="Footer" wire:click="active_page('Footer')" data-bs-toggle="tab" href="#footer-tab">Footer</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link @if($active == 'Contact') show active @endif " wire:key="Contact" wire:click="active_page('Contact')" data-bs-toggle="tab" href="#footer-tab">Contact Us</a>
+                </li>
             </ul>
 
    
@@ -1465,6 +1468,217 @@
                     </div>
                 </div>   
             </div>
+
+            <div class="tab-pane fade @if($active == 'Contact') show active @endif " >
+                <br>
+                <div class="d-flex mt-2">
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#contact-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                    <div class="modal fade" id="contact-filter" tabindex="-1" role="dialog" aria-labelledby="contact-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contact-filterLabel">Sort&nbsp;Columns for Contact us</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($contactus_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="contact-filter-{{$loop->iteration}}"
+                                            wire:model.defer="contactus_filter.{{$item}}">
+                                        <label class="form-check-label" for="contact-filter-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button wire:click="carouselfilterView()" data-bs-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success   mx-1" wire:click="add_contact()">Add Contact Us</button>
+                    </div>
+                </div>
+                <!--  Carousel content goes here -->
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                        @foreach ($contactus_filter as $item => $value)
+                            @if($value)
+                                <th >{{$item}}</th>
+                            @endif
+                        @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($contactus_data as $item => $value)
+                            <tr>
+                            @if($contactus_filter['#'])
+                                <td>{{ $loop->index+1 }}</td>
+                            @endif
+                            @if($contactus_filter['Icon'])
+                                <td>
+                                    <div>
+                                    <img src="{{asset('storage/content/contact_us/'.$value->cu_icon)}}" alt="" style="height: 200px; ">
+                                    </div>
+                                </td>
+                            @endif
+                            @if($contactus_filter['Header'])
+                                <td>
+                                    <div>
+                                        {{$value->cu_header}}
+                                    </div>
+                                </td>
+                            @endif
+                            @if($contactus_filter['Content'])
+                                <td class="align-middle">
+                                    <p>{{$value->cu_content}}</p>
+                                </td>
+                            @endif
+                        
+                            @if($contactus_filter['Order'])
+                                <td class="align-middle"> 
+                                    <div class="btn-group-vertical btn-group-sm " role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark" wire:click="move_up_contact({{$value->cu_order}})"><i class="bx bx-up-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                        <button type="button" class="btn btn-outline-dark" wire:click="move_down_contact({{$value->cu_order}})"><i class="bx bx-down-arrow-alt" style="font-size:20px; vertical-align: middle;" ></i></button>
+                                    </div>
+                                </td>
+                            @endif
+                            @if($contactus_filter['Action'])
+                                <td class="align-middle"> 
+                                    @if($access_role['R']==0)
+                                    <button class="btn btn-primary" wire:click="view_contact({{$value->cu_id}})" >View</button>
+                                    @endif
+                                    @if($access_role['U']==1)
+                                    <button class="btn btn-success" wire:click="edit_contact({{$value->cu_id}})" >Edit</button>
+                                    @endif
+                                    @if($access_role['D']==1)
+                                    <button class="btn btn-danger" wire:click="delete_contact({{$value->cu_id}})">Delete</button>
+                                    @endif
+                                </td>
+                            @endif 
+                            </tr>
+                        @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                        @endforelse
+                        
+                    </tbody>
+                </table>    
+
+                <div class="modal fade" id="AddContactModal" tabindex="-1" role="dialog" aria-labelledby="AddContactModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="AddContactModalLabel">Add Contact Us</h5>
+                            </div>
+                            <hr>
+                            <form wire:submit.prevent="save_add_contact()">
+                                <div class="modal-body">
+                                <div class="form-group">
+                                        <label for="addRoomCapacity">Icon:</label>
+                                        <input  type="file" class="form-control" wire:model.defer="contactus.cu_icon" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Header:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="contactus.cu_header" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Content:</label>
+                                        <textarea  type="text" class="form-control" wire:model.defer="contactus.cu_content" required></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>          
+
+                <div class="modal fade" id="EditContactModal" tabindex="-1" role="dialog" aria-labelledby="EditContactModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditContactModalLabel">Edit Contact Us</h5>
+                            </div>
+                            <hr>
+                            @if($contactus['cu_id'])
+                            <form wire:submit.prevent="save_edit_contact({{$contactus['cu_id']}})">
+                                <div class="modal-body">
+                                <div class="form-group">
+                                        <label for="addRoomCapacity">Icon:</label>
+                                        <input  type="file" class="form-control" wire:model.defer="contactus.cu_icon" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Header:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="contactus.cu_header" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Content:</label>
+                                        <textarea  type="text" class="form-control" wire:model.defer="contactus.cu_content" required></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-success">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>         
+                <div class="modal fade" id="DeleteContactModal" tabindex="-1" role="dialog" aria-labelledby="DeleteContactModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteContactModalLabel">Delete Contact Us</h5>
+                            </div>
+                            <hr>
+                            @if($contactus['cu_id'])
+                            <form wire:submit.prevent="save_delete_contact({{$contactus['cu_id']}})">
+                                <div class="modal-body">
+                               <p>Are you sure you want to delet the contact?</p>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>        
+            </div>
+ 
  
         </div>                        
     </main><!-- End #main -->

@@ -93,6 +93,15 @@ class Settings extends Component
         'au_content'=>NULL,
     ];
     
+    public $contactus_filter;
+    public $contactus_data;
+    public $contactus = [
+        'cu_id' =>  NULL,
+        'cu_icon' =>NULL,
+        'cu_header' =>NULL,
+        'cu_content' =>NULL,
+        'cu_order' =>NULL
+    ];
     // cta
 
 
@@ -159,20 +168,26 @@ class Settings extends Component
                 ->toArray();
 
             $this->feature_data = DB::table('features')
-            ->select('*')
-            ->orderBy('feature_order')
-            ->get()
-            ->toArray();
+                ->select('*')
+                ->orderBy('feature_order')
+                ->get()
+                ->toArray();
 
             $this->aboutus_data = DB::table('aboutus')
                 ->get()
                 ->toArray();
 
             $this->footer_data = DB::table('footer_types')
+                ->select('*')
+                ->orderBy('footer_type_order')
+                ->get()
+                ->toArray();
+            $this->contactus_data = DB::table('contact_us')
             ->select('*')
-            ->orderBy('footer_type_order')
+            ->orderBy('cu_order')
             ->get()
             ->toArray();
+            
 
             
     }
@@ -242,6 +257,15 @@ class Settings extends Component
             'Image'=> true,
             'Header'=> true,
             'Content'=> true,
+            'Action'=> true,
+        ]; 
+
+        $this->contactus_filter = [
+            '#'=> true,
+            'Icon'=> true,
+            'Header'=> true,
+            'Content'=> true,
+            'Order'=> true,
             'Action'=> true,
         ]; 
 
@@ -2173,4 +2197,361 @@ class Settings extends Component
         
     // cta
 
+    public function add_contact(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            $this->contactus = [
+                'cu_id' =>  NULL,
+                'cu_icon' =>NULL,
+                'cu_header' =>NULL,
+                'cu_content' =>NULL,
+                'cu_order' =>NULL
+            ];
+            $this->dispatchBrowserEvent('openModal','AddContactModal');
+        }
+    }
+    public function save_add_contact(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['C'] ){
+            if(strlen($this->contactus['cu_header'])<=0){
+                return;
+            }
+            if(strlen($this->contactus['cu_content'])<=0){
+                return;
+            }
+
+            if($this->contactus['cu_icon'] && file_exists(storage_path().'/app/livewire-tmp/'.$this->contactus['cu_icon']->getfilename())){
+                $file_extension =$this->contactus['cu_icon']->getClientOriginalExtension();
+                $tmp_name = 'livewire-tmp/'.$this->contactus['cu_icon']->getfilename();
+                $size = Storage::size($tmp_name);
+                $mime = Storage::mimeType($tmp_name);
+                $max_image_size = 20 * 1024*1024; // 5 mb
+                $file_extensions = array('image/jpeg','image/png','image/jpg');
+                
+                if($size<= $max_image_size){
+                    $valid_extension = false;
+                    foreach ($file_extensions as $value) {
+                        if($value == $mime){
+                            $valid_extension = true;
+                            break;
+                        }
+                    }
+                    if($valid_extension){
+                        
+                        // move
+                        $new_file_name = md5($tmp_name).'.'.$file_extension;
+                        while(DB::table('contact_us')
+                        ->where(['cu_icon'=> $new_file_name])
+                        ->first()){
+                            $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                        }
+                        if(Storage::move($tmp_name, 'public/content/contact_us/'.$new_file_name)){
+
+                            // delete old img
+                            $this->contactus['cu_icon'] = $new_file_name;
+                            // resize thumb nail
+                            // resize 500x500 px
+    
+                        }
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Invalid image type!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return 0;
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Image is too large!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                    return 0;
+                }  
+                $this->carousel_image_id = rand(0,1000000);         
+            }else{
+               
+            }
+
+            $current_order = DB::table('contact_us')
+            ->select(DB::raw('count(*) as current_order'))
+            ->first();
+
+            if(DB::table('contact_us')
+                ->insert([
+                    'cu_id' =>  NULL,
+                    'cu_icon' =>$this->contactus['cu_icon'],
+                    'cu_header' =>$this->contactus['cu_header'],
+                    'cu_content' =>$this->contactus['cu_content'],
+                    'cu_order' =>($current_order->current_order+1)
+                    ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully added!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','AddContactModal');
+            }
+        }
+    }
+    public function edit_contact($cu_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['U'] ){
+            if($contactus = DB::table('contact_us')
+                ->where('cu_id','=',$cu_id)
+                ->first()){
+                $this->contactus = [
+                    'cu_id' =>  $contactus->cu_id,
+                    'cu_icon' =>NULL,
+                    'cu_header' =>$contactus->cu_header,
+                    'cu_content' =>$contactus->cu_content,
+                    'cu_order' =>NULL
+                ];
+                $this->dispatchBrowserEvent('openModal','EditContactModal');
+            }
+        }
+    }
+    public function save_edit_contact($cu_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['U'] ){
+            if(strlen($this->contactus['cu_header'])<=0){
+                return;
+            }
+            if(strlen($this->contactus['cu_content'])<=0){
+                return;
+            }
+
+            $contactus = DB::table('contact_us')
+                ->where('cu_id','=',$cu_id)
+                ->first();
+
+            if($this->contactus['cu_icon'] && file_exists(storage_path().'/app/livewire-tmp/'.$this->contactus['cu_icon']->getfilename())){
+                $file_extension =$this->contactus['cu_icon']->getClientOriginalExtension();
+                $tmp_name = 'livewire-tmp/'.$this->contactus['cu_icon']->getfilename();
+                $size = Storage::size($tmp_name);
+                $mime = Storage::mimeType($tmp_name);
+                $max_image_size = 20 * 1024*1024; // 5 mb
+                $file_extensions = array('image/jpeg','image/png','image/jpg');
+                
+                if($size<= $max_image_size){
+                    $valid_extension = false;
+                    foreach ($file_extensions as $value) {
+                        if($value == $mime){
+                            $valid_extension = true;
+                            break;
+                        }
+                    }
+                    if($valid_extension){
+                        
+                        // move
+                        $new_file_name = md5($tmp_name).'.'.$file_extension;
+                        while(DB::table('contact_us')
+                        ->where(['cu_icon'=> $new_file_name])
+                        ->first()){
+                            $new_file_name = md5($tmp_name.rand(1,10000000)).'.'.$file_extension;
+                        }
+                        if(Storage::move($tmp_name, 'public/content/contact_us/'.$new_file_name)){
+
+                            // delete old img
+                            $this->contactus['cu_icon'] = $new_file_name;
+                          
+                            $image_path = storage_path().'/app/public/content/contact_us/'.$contactus->cu_icon; 
+                            if(file_exists($image_path)){
+                                unlink($image_path);
+                            }
+                            // resize thumb nail
+                            // resize 500x500 px
+    
+                        }
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Invalid image type!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return 0;
+                    }
+                }else{
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'warning',
+                        'title'             									=> 'Image is too large!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                    return 0;
+                }  
+                $this->carousel_image_id = rand(0,1000000);         
+            }else{
+                $this->contactus['cu_icon']  = $contactus->cu_icon; 
+            }
+
+            if(DB::table('contact_us')
+                ->where('cu_id','=',$cu_id)
+                ->update([
+                    'cu_icon' =>$this->contactus['cu_icon'],
+                    'cu_header' =>$this->contactus['cu_header'],
+                    'cu_content' =>$this->contactus['cu_content'],
+                    ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','EditContactModal');
+            }
+        }
+    }
+    public function delete_contact($cu_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            if($contactus = DB::table('contact_us')
+                ->where('cu_id','=',$cu_id)
+                ->first()){
+                $this->contactus = [
+                    'cu_id' =>  $contactus->cu_id,
+                    'cu_icon' =>NULL,
+                    'cu_header' =>$contactus->cu_header,
+                    'cu_content' =>$contactus->cu_content,
+                    'cu_order' =>NULL
+                ];
+                $this->dispatchBrowserEvent('openModal','DeleteContactModal');
+            }
+        }
+    }
+    public function save_delete_contact($cu_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+
+        if($this->access_role['D'] ){
+            $contactus = DB::table('contact_us')
+            ->where('cu_id','=',$cu_id)
+            ->first();
+            if(DB::table('contact_us')
+                ->where('cu_id','=',$cu_id)
+                ->delete()){
+
+                $image_path = storage_path().'/app/public/content/contact_us/'.$contactus->cu_icon; 
+                if(file_exists($image_path)){
+                    unlink($image_path);
+                }
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully deleted!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+
+               
+
+                foreach ($this->contactus_data as $key => $value) {
+                    DB::table('contact_us')
+                    ->where('cu_id','=',$value->cu_id)
+                    ->update(['cu_order'=>$key+1]);    
+                }
+                $this->dispatchBrowserEvent('openModal','DeleteContactModal');
+                self::update_data();
+            }
+        }
+    }
+
+    public function move_up_contact($cu_order){
+        // get up
+        $current = DB::table('contact_us')
+        ->where('cu_order','=',$cu_order)
+        ->first();
+     
+        if($up_data = DB::table('contact_us')
+            ->where('cu_order','<',$current->cu_order)
+            ->orderBy('cu_order','desc')
+            ->first()){
+            DB::table('contact_us')
+                ->where('cu_id','=',$current->cu_id)
+                ->update(['cu_order'=>$up_data->cu_order]);
+
+            DB::table('contact_us')
+                ->where('cu_id','=',$up_data->cu_id)
+                ->update(['cu_order'=>$current->cu_order]);
+
+            self::update_data();
+        }
+    }
+    public function move_down_contact($cu_order){
+        // get up
+        $current = DB::table('contact_us')
+        ->where('cu_order','=',$cu_order)
+        ->first();
+        
+        if($down_data = DB::table('contact_us')
+        ->where('cu_order','>',$current->cu_order)
+        ->orderBy('cu_order')
+        ->first()){
+            DB::table('contact_us')
+                ->where('cu_id','=',$current->cu_id)
+                ->update(['cu_order'=>$down_data->cu_order]);
+
+            DB::table('contact_us')
+                ->where('cu_id','=',$down_data->cu_id)
+                ->update(['cu_order'=>$current->cu_order]);
+
+            self::update_data();
+        }
+    }
 }
