@@ -832,6 +832,10 @@
                                 @if($school_room_filter['Capacity'])
                                     <td>{{ $value->school_room_capacity }}</td>
                                 @endif
+                                @if($school_room_filter['Test date'])
+                                    <td>{{ $value->school_room_test_date }}</td>
+                                @endif
+                                
                                 @if($school_room_filter['Start - End'])
                                     <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
                                 @endif

@@ -244,7 +244,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="assignProctorModal" tabindex="-1" role="dialog" aria-labelledby="assignProctorModalLabel" aria-hidden="true" >
+            <div class="modal fade" id="assignProctorModal" tabindex="-1" role="dialog" aria-labelledby="assignProctorModalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -282,7 +282,8 @@
                                 </tbody>
                             </table> 
                             <!-- Display the list of assigned applicant names here -->
-                            <select class="form-control" wire:model.defer="unassigned_proctor_user_id">
+                            <select class="form-control" wire:model.defer="unassigned_proctor_user_id" wire:change="">
+                                <option value="0">Select Proctor</option>
                             @forelse ($proctors_list as $item => $value)
                                 <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename.' : '.$value->user_address}}</option>
                             @empty
@@ -569,7 +570,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="reassignProctorModal" tabindex="-1" role="dialog" aria-labelledby="reassignProctorModalLabel" aria-hidden="true" >
+            <div class="modal fade" id="reassignProctorModal" tabindex="-1" role="dialog" aria-labelledby="reassignProctorModalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -608,6 +609,7 @@
                             </table> 
                             <!-- Display the list of assigned applicant names here -->
                             <select class="form-control" wire:model.defer="assigned_proctor_user_id">
+                                <option value="0">Select Proctor</option>
                             @forelse ($proctors_list as $item => $value)
                                 <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname.' '.$value->user_middlename.' : '.$value->user_address}}</option>
                             @empty

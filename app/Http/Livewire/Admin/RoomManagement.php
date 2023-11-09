@@ -127,7 +127,7 @@ class RoomManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->whereNull('t_a_school_room_id')
-                ->where('ts.test_status_details','=','Accepted')
+                ->where('ts.test_status_details','=','Processing')
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -148,7 +148,7 @@ class RoomManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->whereNull('t_a_school_room_id')
-                ->where('test_status_details','=','Accepted')
+                ->where('test_status_details','=','Processing')
                 ->where('t_a_test_type_id','=',$this->unassigned_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
@@ -266,6 +266,7 @@ class RoomManagement extends Component
                 'Room code' => true,
                 'Room name'=> true,
                 'Capacity'=> true,
+                'Test date'=> true,
                 'Start - End'=> true,
                 'Capacity'=> true,		
                 'Status'=> true,							
@@ -306,7 +307,7 @@ class RoomManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->whereNull('t_a_school_room_id')
-                ->where('ts.test_status_details','=','Accepted')
+                ->where('ts.test_status_details','=','Processing')
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -327,7 +328,7 @@ class RoomManagement extends Component
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
                 ->whereNull('t_a_school_room_id')
-                ->where('test_status_details','=','Accepted')
+                ->where('test_status_details','=','Processing')
                 ->where('t_a_test_type_id','=',$this->unassigned_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
@@ -465,7 +466,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('ts.test_status_details','=','Accepted')
+            ->where('ts.test_status_details','=','Processing')
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -486,7 +487,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('test_status_details','=','Accepted')
+            ->where('test_status_details','=','Processing')
             ->where('t_a_test_type_id','=',$this->unassigned_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
@@ -600,7 +601,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('ts.test_status_details','=','Accepted')
+            ->where('ts.test_status_details','=','Processing')
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -621,7 +622,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('test_status_details','=','Accepted')
+            ->where('test_status_details','=','Processing')
             ->where('t_a_test_type_id','=',$this->unassigned_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
@@ -796,7 +797,7 @@ class RoomManagement extends Component
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where(['t_a_id'=> $value->t_a_id,
                             't_a_isactive'=>1,
-                            'ts.test_status_details'=>'Accepted'])
+                            'ts.test_status_details'=>'Processing'])
                     ->update([
                             't_a_assigned_by'=> $this->user_details['user_id'],
                             't_a_school_room_id' => $this->unassigned_school_room_id,
@@ -836,7 +837,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('ts.test_status_details','=','Accepted')
+            ->where('ts.test_status_details','=','Processing')
             ->orderBy($this->column_order, 'asc')
             ->get()
             ->toArray();
@@ -857,7 +858,7 @@ class RoomManagement extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->where('t_a_isactive','=',1)
             ->whereNull('t_a_school_room_id')
-            ->where('test_status_details','=','Accepted')
+            ->where('test_status_details','=','Processing')
             ->where('t_a_test_type_id','=',$this->unassigned_test_type_id)
             ->orderBy($this->column_order, 'asc')
             ->get()
@@ -956,7 +957,7 @@ class RoomManagement extends Component
                             't_a_assigned_by'=> NULL,
                             't_a_school_room_id' => NULL,
                             't_a_test_status_id' =>((array) DB::table('test_status')
-                                ->where('test_status_details', '=', 'Accepted')
+                                ->where('test_status_details', '=', 'Processing')
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
                     ]);

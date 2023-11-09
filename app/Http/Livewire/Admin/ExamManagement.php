@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ExamManagement extends Component
 {
@@ -128,7 +129,7 @@ class ExamManagement extends Component
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
                     ->whereNotNull('t_a_school_room_id')
-                ->where('school_room_isactive','=',1)
+                    ->where('school_room_isactive','=',1)
                     ->whereNull('school_room_proctor_user_id')
                     ->where('school_room_id','=',$this->unassigned_proctor_school_room_id)
                     ->groupBy('t_a_school_room_id')
@@ -165,7 +166,7 @@ class ExamManagement extends Component
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                     ->where('t_a_isactive','=',1)
-                    ->where('test_status_details','=','Processing')
+                    ->where('test_status_details','=','Accepted')
                     ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
@@ -200,7 +201,7 @@ class ExamManagement extends Component
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                     ->where('t_a_isactive','=',1)
-                    ->where('test_status_details','=','Processing')
+                    ->where('test_status_details','=','Accepted')
                     ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                     ->whereNotNull('school_room_proctor_user_id')
@@ -245,8 +246,8 @@ class ExamManagement extends Component
                     ->where('us.user_status_details','=','active')
                     ->get()
                     ->toArray();
-                $this->unassigned_proctor_user_id = $this->proctors_list[0]->user_id;
-                $this->assigned_proctor_user_id = $this->proctors_list[0]->user_id;
+                $this->unassigned_proctor_user_id = 0;
+                $this->unassigned_proctor_user_id = 0;
         }
     }
     public function hydrate(){
@@ -353,7 +354,7 @@ class ExamManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
@@ -388,7 +389,7 @@ class ExamManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
@@ -423,9 +424,9 @@ class ExamManagement extends Component
             ->get()
             ->toArray();
 
-            $this->unassigned_proctor_user_id = $this->proctors_list[0]->user_id;
+            $this->unassigned_proctor_user_id = 0 ; 
 
-            $this->assigned_proctor_user_id = $this->proctors_list[0]->user_id;
+            $this->assigned_proctor_user_id = 0 ; 
 
             $this->room_details =[];
             $this->examinees = [];
@@ -584,7 +585,7 @@ class ExamManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
@@ -619,7 +620,7 @@ class ExamManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
                 ->whereNotNull('school_room_proctor_user_id')
@@ -754,7 +755,7 @@ class ExamManagement extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -789,7 +790,7 @@ class ExamManagement extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -953,7 +954,7 @@ class ExamManagement extends Component
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -981,7 +982,7 @@ class ExamManagement extends Component
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -1088,7 +1089,7 @@ class ExamManagement extends Component
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -1116,7 +1117,7 @@ class ExamManagement extends Component
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
             ->whereNotNull('school_room_proctor_user_id')
@@ -1230,6 +1231,70 @@ class ExamManagement extends Component
             'D' => true
         ];
 
+        if($this->assigned_proctor_user_id  == 0){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select a proctor!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
+        // check if proctor is conflicted with time
+        $assigned_rooms = DB::table('school_rooms')
+            ->where('school_room_proctor_user_id','=',$this->assigned_proctor_user_id)
+            ->get()
+            ->toArray();
+            
+        foreach ($assigned_rooms as $assigned_room_key => $assigned_room_value) {
+            foreach ($this->assigned_proctor  as $key => $value) {
+                if($this->assigned_proctor_selected[$key][$value->school_room_id]){
+                   
+                    // dd($value);
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $value->school_room_test_date.' '.$value->school_room_test_time_start);
+                    $time_start_1 = $datetime->timestamp;
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $value->school_room_test_date.' '.$value->school_room_test_time_end);
+                    $time_end_1 = $datetime->timestamp;
+
+
+         
+                    // asigned room 
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $assigned_room_value->school_room_test_date.' '.$assigned_room_value->school_room_test_time_start);
+                    $time_start_2 = $datetime->timestamp;
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $assigned_room_value->school_room_test_date.' '.$assigned_room_value->school_room_test_time_end);
+                    $time_end_2 = $datetime->timestamp;
+                    // dd( $assigned_room_value);
+
+                    // dd($time_start.'-'.$time_end.' '.$assigned_time_start.'-'.$assigned_time_end);
+                    
+                   if($time_start_1 <=$time_start_2 && $time_start_2 < $time_end_1 ){
+                        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Schedule conflict with ('.$assigned_room_value->school_room_id.' - '.$assigned_room_value->school_room_name.') and ('.$assigned_room_value->school_room_id.' - '.$value->school_room_name.')',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return;
+                   }elseif($time_start_2 <= $time_start_1 && $time_start_1 < $time_end_2  ){
+                        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Schedule conflict with ('.$assigned_room_value->school_room_id.' - '.$assigned_room_value->school_room_name.') and ('.$assigned_room_value->school_room_id.' - '.$value->school_room_name.')',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return;
+                   }
+                }
+            }
+          
+        }
+
         if($this->assigned_valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_proctor  as $key => $value) {
                 if($this->assigned_proctor_selected[$key][$value->school_room_id]){
@@ -1258,6 +1323,7 @@ class ExamManagement extends Component
         }
         $this->assigned_valid = false;
         self::page_refresh();
+        $this->dispatchBrowserEvent('openModal','reassignProctorModal');
     }
 
     public function remove_room_check(){
@@ -1305,8 +1371,37 @@ class ExamManagement extends Component
                 if($this->assigned_proctor_selected[$key][$value->school_room_id]){
                     DB::table('school_rooms as sr')
                         ->where('school_room_id','=',$value->school_room_id)
-                        ->update(['school_room_proctor_user_id'=>NULL]);
+                        ->update(['school_room_proctor_user_id'=>NULL
+                    ]);
                 }
+            }
+
+            $application_list = DB::table('test_applications as ta')
+                    ->select(
+                        '*',
+                       
+                        )
+                    ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where('t_a_isactive','=',1)
+                    ->where('test_status_details','=','Accepted')
+                    ->where('school_room_id','=',$value->school_room_id)
+                    ->where('school_room_isactive','=',1)
+                    ->get()
+                    ->toArray();
+
+            foreach ($application_list as $key => $value) {
+                DB::table('test_applications as ta')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->where(['t_a_id'=> $value->t_a_id,
+                        't_a_isactive'=>1,
+                        'ts.test_status_details'=>'Accepted'])
+                ->update([
+                        't_a_test_status_id' =>((array) DB::table('test_status')
+                            ->where('test_status_details', '=', 'Processing')
+                        ->select('test_status_id as t_a_test_status_id')
+                        ->first())['t_a_test_status_id']
+                ]);
             }
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
@@ -1350,6 +1445,73 @@ class ExamManagement extends Component
             'D' => true
         ];
 
+        
+        if($this->unassigned_proctor_user_id  == 0){
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select a proctor!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
+        // check if proctor is conflicted with time
+        $assigned_rooms = DB::table('school_rooms')
+            ->where('school_room_proctor_user_id','=',$this->unassigned_proctor_user_id)
+            ->get()
+            ->toArray();
+            
+        foreach ($assigned_rooms as $assigned_room_key => $assigned_room_value) {
+            foreach ($this->unassigned_proctor  as $key => $value) {
+                if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
+                   
+                    // dd($value);
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $value->school_room_test_date.' '.$value->school_room_test_time_start);
+                    $time_start_1 = $datetime->timestamp;
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $value->school_room_test_date.' '.$value->school_room_test_time_end);
+                    $time_end_1 = $datetime->timestamp;
+
+
+         
+                    // asigned room 
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $assigned_room_value->school_room_test_date.' '.$assigned_room_value->school_room_test_time_start);
+                    $time_start_2 = $datetime->timestamp;
+                    $datetime = Carbon::createFromFormat('Y-m-d H:i', $assigned_room_value->school_room_test_date.' '.$assigned_room_value->school_room_test_time_end);
+                    $time_end_2 = $datetime->timestamp;
+                    // dd( $assigned_room_value);
+
+                    // dd($time_start.'-'.$time_end.' '.$assigned_time_start.'-'.$assigned_time_end);
+                    
+                   if($time_start_1 <=$time_start_2 && $time_start_2 < $time_end_1 ){
+                        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Schedule conflict with ('.$assigned_room_value->school_room_id.' - '.$assigned_room_value->school_room_name.') and ('.$assigned_room_value->school_room_id.' - '.$value->school_room_name.')',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return;
+                   }elseif($time_start_2 <= $time_start_1 && $time_start_1 < $time_end_2  ){
+                        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Schedule conflict with ('.$assigned_room_value->school_room_id.' - '.$assigned_room_value->school_room_name.') and ('.$assigned_room_value->school_room_id.' - '.$value->school_room_name.')',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return;
+                   }
+                }
+            }
+        }
+
+        
+
+
         if($this->unassigned_valid &&  $this->access_role['U'] ){
             foreach ($this->unassigned_proctor  as $key => $value) {
                 if($this->unassigned_proctor_selected[$key][$value->school_room_id]){
@@ -1358,6 +1520,34 @@ class ExamManagement extends Component
                         ->update(['school_room_proctor_user_id'=>$this->unassigned_proctor_user_id]);
                 }
             }
+            $application_list = DB::table('test_applications as ta')
+                    ->select(
+                        '*',
+                       
+                        )
+                    ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where('t_a_isactive','=',1)
+                    ->where('test_status_details','=','Processing')
+                    ->whereNotNull('t_a_school_room_id')
+                    ->where('school_room_isactive','=',1)
+                    ->where('school_room_proctor_user_id','=',$this->unassigned_proctor_user_id)
+                    ->get()
+                    ->toArray();
+            foreach ($application_list as $key => $value) {
+                DB::table('test_applications as ta')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->where(['t_a_id'=> $value->t_a_id,
+                        't_a_isactive'=>1,
+                        'ts.test_status_details'=>'Processing'])
+                ->update([
+                        't_a_test_status_id' =>((array) DB::table('test_status')
+                            ->where('test_status_details', '=', 'Accepted')
+                        ->select('test_status_id as t_a_test_status_id')
+                        ->first())['t_a_test_status_id']
+                ]);
+            }
+            // dd($application_list );
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
@@ -1379,6 +1569,7 @@ class ExamManagement extends Component
 
         $this->unassigned_valid = false;
         self::page_refresh();
+        $this->dispatchBrowserEvent('openModal','assignProctorModal');
     }
 
     public function view_list_of_examinees($school_room_id){
