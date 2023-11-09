@@ -13,9 +13,9 @@ body {
     color: red;
     font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
-
     margin-left: 10px;
     padding-left: 90px;
+    height: 80vh; 
 }
 
 .name{
@@ -107,4 +107,29 @@ body {
     align-items: center;
     margin-top: 0px;
     margin-left: 15px;
+}
+
+
+.bottom-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px; 
+
+}
+
+.image-container-right {
+    
+    margin-right:-0px; 
+}
+.image-container-left {
+    margin-left: -30px;
+}
+
+.signature {
+    margin-left: -5px;
+    font-weight: bold;
+  
+    border-top: 1px solid #ff0000;
+    margin-bottom: 0;
 }
