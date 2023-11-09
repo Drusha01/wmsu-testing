@@ -1,7 +1,7 @@
 <div class="col-lg-6">
     <div class="test-section">
-        <h2>Choose Your Test</h2>
-        <p>Select the test you would like to take from the options below:</p>
+        <h2>Application Form</h2>
+        <p>Select the examination you would like to take from the options below:</p>
 
         <!-- CET Tests Dropdown with a Clear Label -->
         <div class="card mb-3">
