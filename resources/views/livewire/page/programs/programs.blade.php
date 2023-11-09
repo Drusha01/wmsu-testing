@@ -5,7 +5,7 @@
 
         @if($college_data)
         <div class="col-md-12 text-center">
-            <h2 class="mb-4 text-danger">Western Mindanao State University Colleges</h2>
+            <h2 class="mb-4" style="color:#990000">Western Mindanao State University Colleges</h2>
         </div>
         <div class="row justify-content-center">
             @foreach($college_data as $item => $value)
