@@ -1,14 +1,14 @@
-<div class="container" style="margin-top: 50px;">
+<div class="container" style="margin-top: 20px;">
 
 <!-- About Us Section -->
 <!-- About Us Section -->
-<section class="about mt-5 mb-5">
+<section class="about mt-5 mb-1">
     <div class="container">
         <div class="row justify-content-center align-items-center">
             @if($aboutus_data)
                 @foreach ($aboutus_data as $item => $value)
-                    <div class="col-lg-6 col-md-12 mb-4">
-                        <img src="{{asset('storage/content/about_us/'.$value->au_image)}}" alt="WMSU Testing Center" class="img-fluid">
+                    <div class="col-lg-6 col-md-12 text-center">
+                        <img src="{{asset('storage/content/about_us/'.$value->au_image)}}" alt="WMSU Testing Center" style="width: 600px; height: 350px; object-fit: cover;" class="img-thumbnail mt-4">
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="about-content text-center mb-5">
@@ -20,7 +20,7 @@
                 @endforeach
             @else
                 <div class="col-md-12 text-center">
-                    <img src="./images/about/about.jpg" class="img-fluid mb-4" alt="WMSU Testing Center">
+                    <img src="./images/about/about.jpg" class="custom-img-size mb-4" alt="WMSU Testing Center">
                     <div class="about-content">
                         <span class="text-primary font-weight-bold">About</span>
                         <h2>WMSU Testing and Evaluation Center</h2>
@@ -42,6 +42,7 @@
     </div>
 </section>
 <!-- About Us Section -->
+
 
 
 
