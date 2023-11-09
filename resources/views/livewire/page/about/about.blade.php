@@ -8,7 +8,7 @@
                 @if($aboutus_data)
                     @foreach ($aboutus_data as $item => $value)
                         <div class="col-md-10 d-none d-lg-flex">
-                            <img src="{{asset('storage/content/about_us/'.$value->au_image)}}"  alt="WMSU Testing Center" height="500px">
+                            <img src="{{asset('storage/content/about_us/'.$value->au_image)}}"  alt="WMSU Testing Center" width="500px">
                             <!-- Column 3 -->
                             <div class="col-md-6">
                                 <div class="about-content">

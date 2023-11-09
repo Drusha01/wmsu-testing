@@ -457,6 +457,16 @@ class Programs extends Component
     }
     public function college_filter(){
         self::update_data();
+        
+        // dd('sdafasd');
+      
+        if( $this->college_data){
+            foreach ($this->college_data as $key => $value) {
+                if($this->college_id == $value->college_id){
+                    $this->department_college_name =  $value->college_header;
+                }
+            }
+        }
     }
     public function move_up_college($college_order){
         // get up
