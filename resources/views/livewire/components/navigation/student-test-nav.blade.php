@@ -50,12 +50,12 @@
                     <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">GSAT Application</a>
-                    <button type="button" class="btn btn-primary rounded">Unavailable</button>
+                    <a href="{{ Route('student.cet.gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">GSAT Application</a>
+                    <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ url('test-application.Lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">LSAT Application</a>
-                    <button type="button" class="btn btn-primary rounded">Unavailable</button>
+                    <a href="{{ route('student.cet.lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">LSAT Application</a>
+                    <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
             </ul>
         </div>
