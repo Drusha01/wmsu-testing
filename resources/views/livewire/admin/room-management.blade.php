@@ -497,9 +497,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="viewNamesModalLabel">Assigned Applicants</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 <!-- Display the list of assigned applicant names here -->
@@ -519,9 +519,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modifyModalLabelDetails">Application Details</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 <!-- Full Name -->
@@ -872,9 +872,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="confirmDeleteRoom">Confirm Deletion</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 Are you sure you want to delete this room?

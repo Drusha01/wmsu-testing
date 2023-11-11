@@ -171,9 +171,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modifyModalLabelDetails">Application Details</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 <!-- Full Name -->
@@ -444,9 +444,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Form Content</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 <!-- Add your form content here -->
@@ -628,9 +628,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="view_accepted_application_modal">Application Details</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </div>
                             </div>
                             <div class="modal-body">
                                 <!-- Full Name -->

@@ -140,9 +140,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="requestRescheduleModalLabel">Appointment Schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="accept_appointment()">
                                     <div class="modal-body">
@@ -163,9 +163,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="deleteAppointment">Delete Appointment</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment()">
                                     <div class="modal-body">
@@ -305,9 +305,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="ReassigneAppointmentModalLabel">Appointment Re-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="reschedule_appointment()">
                                     <div class="modal-body">
@@ -327,9 +327,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="RemoveScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="remove_schedule_appointment()">
                                     <div class="modal-body">
@@ -349,9 +349,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment_assgned()">
                                     <div class="modal-body">
@@ -470,9 +470,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="ReassigneAppointmentModalLabel">Appointment Re-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="reschedule_appointment()">
                                     <div class="modal-body">
@@ -492,9 +492,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="RemoveScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="remove_schedule_appointment()">
                                     <div class="modal-body">
@@ -514,9 +514,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment_assgned()">
                                     <div class="modal-body">

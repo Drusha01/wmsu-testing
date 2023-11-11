@@ -147,9 +147,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewExamineesWithProctorModalLabel">Examinees details</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         
                         <div class="modal-body">
@@ -329,9 +329,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addProctorModalLabel">Add Proctor</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <!-- Add form fields for adding a new proctor here -->
