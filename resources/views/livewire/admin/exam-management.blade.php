@@ -183,9 +183,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewExamineesModalLabel">Examinees details</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             @if($room_details)
@@ -249,9 +249,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="assignProctorModalLabel">Assign room proctor</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <table class="table">
@@ -457,9 +457,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewExamineesWithProctorModalLabel">Examinees details</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         
                         <div class="modal-body">
@@ -527,9 +527,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="removeProctorModal">Remove room proctor</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <table class="table">
@@ -575,9 +575,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="reassignProctorModal">Assign room proctor</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <table class="table">
