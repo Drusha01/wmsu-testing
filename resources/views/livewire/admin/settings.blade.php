@@ -53,12 +53,14 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#AddCarouselModal"  >Add Carousel</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#carousel-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
                             @endif
-                            
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
@@ -91,9 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" data-bs-toggle="modal" data-bs-target="#AddCarouselModal"  >Add Carousel</button>
-                    </div>
+
                 </div>
                 <table class="application-table">
                     <thead>
@@ -230,6 +230,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_wcu()">Add WCU</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#wcu-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -268,9 +271,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_wcu()">Add WCU</button>
-                    </div>
+              
                 </div>
                 <!--  Carousel content goes here -->
                 <table class="application-table">
@@ -524,6 +525,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_service()" >Add Services</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#services-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -562,9 +566,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_service()" >Add Services</button>
-                    </div>
+
                 </div>
                 <table class="application-table">
                     <thead>
@@ -801,6 +803,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_footer()" >Add Footer</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faq-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -839,9 +844,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_footer()" >Add Footer</button>
-                    </div>
+                 
                 </div>
                 <table class="application-table">
                     <thead>
@@ -1109,6 +1112,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_faq()" >Add FAQ</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faq-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -1147,9 +1153,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_faq()" >Add FAQ</button>
-                    </div>
+                
                 </div>
                 <table class="application-table">
                     <thead>
@@ -1278,6 +1282,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_feature()">Add Feature</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#feature-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -1316,9 +1323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_feature()">Add Feature</button>
-                    </div>
+               
                 </div>
                 <!--  Carousel content goes here -->
                 <table class="application-table">
@@ -1475,6 +1480,9 @@
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-success   mx-1" wire:click="add_contact()">Add Contact</button>
+                            </div>
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#contact-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
@@ -1513,9 +1521,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success   mx-1" wire:click="add_contact()">Add Contact Us</button>
-                    </div>
+                
                 </div>
                 <!--  Carousel content goes here -->
                 <table class="application-table">
