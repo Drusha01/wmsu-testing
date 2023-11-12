@@ -40,10 +40,10 @@
         <!-- Tab 2: View Appointments -->
         <div class="tab-pane fade show active" id="view-appointments">
                 <div class="d-flex my-3">
-                    <div class="col-md-3 sort-container">
+                    <div class="col-md-4 sort-container">
                         <div class="d-flex">
                             <button class="btn btn-success" wire:click="add_appointment_modal()">
-                                Add Appointment 
+                                Schedule Appointment 
                             </button>
                             @if(1)
                             <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn ml-1" type="button" data-bs-toggle="modal" data-bs-target="#user-data-filter">

@@ -1,14 +1,13 @@
 <div>
     <div role="tabpanel" class="tab-pane" id="application">
         <section class="exam-reminders-section">
-            <div class="container">
+            <div class="container mt-4 mb-4 p-3" style="border-radius: 15px; border: 1px solid #ccc;">
                 <div class="row">
                     @livewire('components.navigation.student-test-nav')
 
-                    <div class="col-lg-6 guide mt-5">
-                        <div class="guide-section mt-5">
+                    <div class="col-lg-6 guide">
+                        <div class="guide-section">
                             <h3>Reminders for WMSU Applicant</h3>
-                            <p>Here are important reminders:</p>
                             <ul class="reminder-list">
                                 <li>You can only apply CET once.</li>
                                 <li style="color:red; font-weight:bold;">Please settle your payment on the Registrar cashier as it will be a part of requirements to be uploaded in your form if you already took CET once.</li>
