@@ -16,6 +16,7 @@ class HeaderNavigation2 extends Component
             $this->user_status = DB::table('users as u')
             ->select('u.user_status_id','us.user_status_details')
             ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
             ->where('user_id','=', $this->user_details['user_id'])
             ->get()
             ->toArray();
