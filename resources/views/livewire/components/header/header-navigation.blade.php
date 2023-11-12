@@ -87,14 +87,21 @@
                                 <img style="border-radius:50%;"src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" width="50" alt="">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                                @if(isset($user_status[0]->user_status_details) && $user_status[0]->user_status_details == 'active' )
-                                <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
-                                <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
-                                <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
-                                <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
-                                <a class="dropdown-item" href="{{ route('student.appointment') }}">Apppointments</a>
-                                <a class="dropdown-item" href="{{ route('student.notifications') }}">Notifications</a>
-                                <div class="dropdown-divider"></div>
+                                @if(isset($user_status[0]->user_role_details ) && $user_status[0]->user_role_details  == 'student')
+                                    @if(isset($user_status[0]->user_status_details) && $user_status[0]->user_status_details == 'active' )
+                                    <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
+                                    <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
+                                    <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
+                                    <a class="dropdown-item" href="{{ route('student.appointment') }}">Apppointments</a>
+                                    <a class="dropdown-item" href="{{ route('student.notifications') }}">Notifications</a>
+                                    <div class="dropdown-divider"></div>
+                                    @endif
+                                @else
+                                    <a class="dropdown-item" href="{{ Route('profile')}}">Profile</a>
+                                    <a class="dropdown-item" href="{{ Route('notification') }}">Notifications</a>
+                                    <a class="dropdown-item" href="{{ Route('setting') }}">Settings</a>
+                                    <div class="dropdown-divider"></div>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
                             </div>
