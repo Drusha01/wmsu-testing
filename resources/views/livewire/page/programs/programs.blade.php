@@ -12,9 +12,9 @@
             <div class="col-lg-3 col-md-6 col-sm-6" >
                 <div class="main-feature-box  " style="height:400px;" >
                 <img src="{{asset('storage/content/programs/colleges/'.$value->college_logo)}}" height="50px" alt="wmsu logo">
-                    <h4 class="my-2">{{$value->college_header}}</h4>
-                    <div class="overflow-hidden">                    
-                        <p class="card-text text-wrap "style="height:190px;">{{$value->college_content}}</p>
+                    <div class="overflow-hidden" style="height:260px;"> 
+                        <h4 class="my-2">{{$value->college_header}}</h4>                   
+                        <p class="card-text text-wrap">{{$value->college_content}}</p>
                     </div>
                     <a href="programs/{{$value->college_id}}" class="feature-link mt-4">Learn More <i class="bi bi-arrow-right-circle-fill"></i></a>
                 </div>

@@ -489,7 +489,7 @@ class ExamManagement extends Component
                 'Proctor username' =>true,
                 'Proctor fullname' =>true,
                 'Address' =>true,
-                'Action' => true
+             
             ];
             
             if($this->unassigned_proctor_school_room_id == 0){

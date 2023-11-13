@@ -2,7 +2,7 @@
     <div role="tabpanel" class="tab-pane" id="schedule">
         <section class="schedule-section">
             <div class="container">
-                <h2 class="section-title">Schedule Announcement</h2>
+                <h2 class="section-title"> Announcement</h2>
                 <ul class="exam-list">
                     <li class="exam-item">
                         <h3 class="exam-title">College Entrance Test (CET)</h3>

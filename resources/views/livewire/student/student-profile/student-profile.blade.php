@@ -43,9 +43,9 @@
                                 <form wire:submit.prevent="update_profile_and_id()">
                                     <!-- Full Name -->
                                     <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label mb-5">Profile photo<span style="color:red;"></span> :</label>
+                                        <label class="col-sm-4 col-form-label mb-5">Profile photo<span style="color:red;"></span> :</label>
                                         <div class="col-sm-8">
-                                            <input type="file" accept="image/png, image/jpeg" wire:model="photo" class="form-control" id="newFullName" placeholder="Current Password">
+                                            <input type="file" accept="image/png, image/jpeg" wire:model="photo" class="form-control" id="newFullName" placeholder="Current Password"></input>
                                         </div>
                                     </div>
                                     <div>
@@ -78,19 +78,19 @@
                                     <!-- Full Name -->
                                     <form wire:submit.prevent="change_password()">
                                         <div class="form-group row">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
+                                            <label class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="password"  wire:model="current_password"  class="form-control" placeholder="Current Password" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
+                                            <label class="col-sm-4 col-form-label">New Password<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="password"  wire:model="new_password" wire:keyup.debounce.500ms="new_password()" class="form-control" placeholder="New Password" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
+                                            <label class="col-sm-4 col-form-label">Confirm Password<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="password"  wire:model="confirm_password" wire:keyup.debounce.500ms="confirm_password"class="form-control" placeholder="Confirm Password" required>
                                             </div>
@@ -137,76 +137,76 @@
                     <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
                 </div>
                 <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <fieldset>
-                                <!-- Full Name -->
-                                <form wire:submit.prevent="save_profile_info()">
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="firstname" class="form-control" placeholder="Enter firstname" required>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Modify Profile Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <fieldset>
+                                    <!-- Full Name -->
+                                    <form wire:submit.prevent="save_profile_info()">
+                                        <div class="form-group row">
+                                            <label  class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="firstname" class="form-control" placeholder="Enter firstname" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="middlename" class="form-control" placeholder="Enter middlename" >
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="middlename" class="form-control" placeholder="Enter middlename" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="lastname" class="form-control" placeholder="Enter lastname" required>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="lastname" class="form-control" placeholder="Enter lastname" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="suffix" class="form-control" placeholder="Enter suffix" >
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="suffix" class="form-control" placeholder="Enter suffix" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="gender" class="form-control" placeholder="Enter gender" >
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="gender" class="form-control" placeholder="Enter gender" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="address" class="form-control" placeholder="Enter address" >
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="address" class="form-control" placeholder="Enter address" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="text"  wire:model="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  wire:model="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
-                                        <div class="col-sm-8">
-                                        <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </fieldset>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -289,25 +289,25 @@
                                             <div class="details-box col-lg-6 mb-4">
                                                 <h5>Father's Information</h5>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="f_firstname" class="form-control" placeholder="Enter firstname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
+                                                    <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="f_middlename" class="form-control" placeholder="Enter middlename" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="f_lastname" class="form-control" placeholder="Enter Lastname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
                                                     </div>
@@ -317,25 +317,25 @@
                                             <div class="details-box col-lg-6 mb-4">
                                                 <h5>Mother's Information</h5>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="m_firstname" class="form-control" placeholder="Enter firstname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
+                                                    <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span>:</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="m_middlename" class="form-control" placeholder="Enter middlename" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="m_lastname" class="form-control" placeholder="Enter Lastname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="m_suffix" class="form-control" placeholder="Enter Suffix" >
                                                     </div>
@@ -346,31 +346,31 @@
                                             <div class="details-box col-lg-12 mb-4">
                                                 <h5>Guardian's Information (if applicable)</h5>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">First name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="g_firstname" class="form-control" placeholder="Enter firstname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="g_middlename" class="form-control" placeholder="Enter middlename" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Last name<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="g_lastname" class="form-control" placeholder="Enter Lastname" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="g_suffix" class="form-control" placeholder="Enter Suffix" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Relation<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Relation<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="g_relationship" class="form-control" placeholder="Enter Relationship" >
                                                     </div>
@@ -382,7 +382,7 @@
                                             <div class="details-box col-lg-12 mb-4">
                                                 <h5>Siblings</h5>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">No. of siblings<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">No. of siblings<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="number" min="0" wire:model="number_of_siblings" class="form-control" placeholder="Number of siblings" >
                                                     </div>
@@ -393,7 +393,7 @@
                                             <div class="details-box col-lg-12 mb-4">
                                                 <h5>Home Address</h5>
                                                 <div class="form-group row">
-                                                    <label for="newFullName" class="col-sm-4 col-form-label">Family Home Address<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Family Home Address<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
                                                         <input type="text"  wire:model="fb_address" class="form-control" placeholder="Enter Home Address" >
                                                     </div>
@@ -463,13 +463,13 @@
                                         <div class="details-box col-lg-12 mb-4">
                                             <h5>SHS Information</h5>
                                             <div class="form-group row">
-                                                <label for="newFullName" class="col-sm-3 col-form-label">Senior High School Name<span style="color:red;"></span> :</label>
+                                                <label class="col-sm-3 col-form-label">Senior High School Name<span style="color:red;"></span> :</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"  wire:model="ueb_shs_school_name" class="form-control" placeholder="Enter Name" >
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="newFullName" class="col-sm-3 col-form-label">Senior High School Address<span style="color:red;"></span>:</label>
+                                                <label class="col-sm-3 col-form-label">Senior High School Address<span style="color:red;"></span>:</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"  wire:model="ueb_shs_address" class="form-control" placeholder="Enter Address" >
                                                 </div>

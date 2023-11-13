@@ -54,7 +54,7 @@ class StudentAppointment extends Component
             ->orderBy('a.date_created','desc')
             ->get()
             ->toArray();
-    //   dd($this->appointment_data);
+    //    dd($this->appointment_data);
     }
     public function hydrate(){
         

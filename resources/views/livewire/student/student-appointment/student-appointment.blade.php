@@ -105,10 +105,10 @@
                             <td>{{ $value->appointment_preferred_date }}</td>
                         @endif
                         @if($appointment_filter['Time'])
-                            <td>{{ $value->appointment_preferred_time }}</td>
+                            <td>@if($value->appointment_preferred_time) {{ $value->appointment_preferred_time }} @else @endif</td>
                         @endif
                         @if($appointment_filter['Schedule'])
-                            <td class="text-align center">{{date_format(date_create($value->appointment_datetime),"F d, Y h:i A")}}</td>
+                            <td class="text-align center"> @if($value->appointment_datetime){{date_format(date_create($value->appointment_datetime),"F d, Y h:i A")}} @else @endif</td>
                         @endif
                         
                         @if($appointment_filter['Purpose'])

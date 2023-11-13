@@ -120,6 +120,9 @@
                                 @if($unassigned_appointment_data_filter['Purpose'])
                                     <td>{{$value->appointment_purpose}}</td>
                                 @endif
+                                @if($unassigned_appointment_data_filter['Message'])
+                                    <td>{{$value->appointment_message}}</td>
+                                @endif
                                 @if($unassigned_appointment_data_filter['Status'])
                                     <td>Pending</td>
                                 @endif
@@ -162,19 +165,19 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteAppointment">Delete Appointment</h5>
+                                    <h5 class="modal-title" id="deleteAppointment">Decline Appointment</h5>
                                     <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment()">
                                     <div class="modal-body">
-                                        <p>Are you sure you want to delete the selected appointments?</p>
+                                        <p>Are you sure you want to decline the selected appointments?</p>
                                         
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger" >Delete</button>
+                                        <button type="submit" class="btn btn-danger" >Decline</button>
                                     </div>
                                 </form>
                             </div>
@@ -282,6 +285,9 @@
                                 @if($assigned_appointment_data_filter['Purpose'])
                                     <td>{{$value->appointment_purpose}}</td>
                                 @endif
+                                    @if($assigned_appointment_data_filter['Message'])
+                                    <td>{{$value->appointment_message}}</td>
+                                @endif
                                 @if($assigned_appointment_data_filter['Status'])
                                     <td>Accepted</td>
                                 @endif
@@ -348,19 +354,19 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
+                                    <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Decline Appointments</h5>
                                     <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment_assgned()">
                                     <div class="modal-body">
-                                        <p>Are you sure you want to delete?:</p>
+                                        <p>Are you sure you want to decline?</p>
                                       
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger" >Delete</button>
+                                        <button type="submit" class="btn btn-danger" >Decline</button>
                                     </div>
                                 </form>
                             </div>
@@ -513,19 +519,19 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Appointment Remove-schedule</h5>
+                                    <h5 class="modal-title" id="DeleteScheduleAppointmentModalLabel">Decline Appointments</h5>
                                     <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </div>
                                 </div>
                                 <form wire:submit.prevent="delete_appointment_assgned()">
                                     <div class="modal-body">
-                                        <p>Are you sure you want to delete?:</p>
+                                        <p>Are you sure you want to decline?</p>
                                       
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-danger" >Delete</button>
+                                        <button type="submit" class="btn btn-danger" >Decline</button>
                                     </div>
                                 </form>
                             </div>

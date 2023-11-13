@@ -149,7 +149,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Logo</label>
-                                        <input  type="file" class="form-control" wire:model.defer="college.college_logo" required>
+                                        <input  type="file" accept="image/jpg" accept="image/jpg" class="form-control" wire:model.defer="college.college_logo" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -184,7 +184,7 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Logo</label>
-                                            <input  type="file" class="form-control" wire:model.defer="college.college_logo" >
+                                            <input  type="file" accept="image/jpg" class="form-control" wire:model.defer="college.college_logo" >
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Header:</label>
@@ -389,7 +389,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Logo</label>
-                                            <input  type="file" class="form-control" wire:model.defer="department.department_logo" required>
+                                            <input  type="file" accept="image/jpg" class="form-control" wire:model.defer="department.department_logo" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Name:</label>
@@ -432,7 +432,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Logo</label>
-                                            <input  type="file" class="form-control" wire:model.defer="department.department_logo" >
+                                            <input  type="file" accept="image/jpg" class="form-control" wire:model.defer="department.department_logo" >
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Department Name:</label>

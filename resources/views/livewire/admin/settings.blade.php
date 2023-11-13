@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Carousel Background Image:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="carousel_content_image" accept="image/jpeg, image/jpg" required>
+                                        <input  type="file" class="form-control" wire:model.defer="carousel_content_image" accept="image/jpg"required>
                                     </div>
                                 </div>
                                 <hr>
@@ -348,8 +348,8 @@
                             <form wire:submit.prevent="save_add_wcu()">
                                 <div class="modal-body">
                                    <div class="form-group">
-                                        <label for="addRoomCapacity">Logo:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="wcu.wcu_logo" accept="image/jpeg, image/jpg" required>
+                                        <label for="addRoomCapacity">Logo:</label><br> 
+                                        <input  type="file" class="form-control" wire:model.defer="wcu.wcu_logo" accept="image/jpg"required>
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -384,7 +384,7 @@
                                 <div class="modal-body">
                                    <div class="form-group">
                                         <label for="addRoomCapacity">Logo:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="wcu.wcu_logo" accept="image/jpeg, image/jpg" >
+                                        <input  type="file" class="form-control" wire:model.defer="wcu.wcu_logo" accept="image/jpg">
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -472,7 +472,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Image:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="aboutus.au_image"  >
+                                        <input  type="file" class="form-control" wire:model.defer="aboutus.au_image"  accept="image/jpg" >
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -642,7 +642,7 @@
                                 <div class="modal-body">
                                    <div class="form-group">
                                         <label for="addRoomCapacity">Logo:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="service.service_logo" accept="image/jpeg, image/jpg" required>
+                                        <input  type="file" class="form-control" wire:model.defer="service.service_logo" accept="image/jpg"required>
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -677,7 +677,7 @@
                                 <div class="modal-body">
                                    <div class="form-group">
                                         <label for="addRoomCapacity">Logo:</label><br>
-                                        <input  type="file" class="form-control" wire:model.defer="service.service_logo" accept="image/jpeg, image/jpg" >
+                                        <input  type="file" class="form-control" wire:model.defer="service.service_logo" accept="image/jpg">
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>
@@ -749,7 +749,7 @@
                                                                                 <div>
                                                                                     <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width:250px; height: 200px; ">
                                                                                 </div>
-                                                                            <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".pdf,.jpg,.png,.jpeg" required>
+                                                                            <input type="file" class="form-control mt-2" id="photo" name="photo" accept=".jpg,.png,.jpeg" required>
                                                                                 <div class="mt-2">
                                                                                         <h5>Change Header</h5>
                                                                                         <input type="text" class="form-control" id="validationCustom05" placeholder="Header" required>
@@ -1210,7 +1210,31 @@
                         @endforelse
                     </tbody>
                 </table>
-
+               
+                <div class="modal fade" id="DeleteFAQModal" tabindex="-1" role="dialog" aria-labelledby="DeleteFAQModal" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteFAQModal">Delete FAQ</h5>
+                            </div>
+                            <hr>
+                            @if($faq['faq_id'])
+                            <form wire:submit.prevent="confirm_delete_faq({{$faq['faq_id']}})">
+                                <div class="modal-body">
+                                <p>Are you sure you want to delete this faq?</p>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <div class="modal fade" id="AddFAQModal" tabindex="-1" role="dialog" aria-labelledby="AddFAQModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -1602,7 +1626,7 @@
                                 <div class="modal-body">
                                 <div class="form-group">
                                         <label for="addRoomCapacity">Icon:</label>
-                                        <input  type="file" class="form-control" wire:model.defer="contactus.cu_icon" >
+                                        <input  type="file" class="form-control" wire:model.defer="contactus.cu_icon"  accept="image/jpg">
                                     </div>
                                     <div class="form-group">
                                         <label for="addRoomCapacity">Header:</label>

@@ -127,6 +127,7 @@ class AppointmentManagement extends Component
         $this->active = 'Unassign Appointments';
 
 
+
         $this->unassigned_appointment_data_filter = [
             'Select all'=> true,
             '#'=> true,
@@ -135,6 +136,7 @@ class AppointmentManagement extends Component
             'Phone #'=> true,
             'Preferred Date'=> true,
             'Purpose'=> true,
+            'Message'=> false,
             'Status'=> true,
             'Action' => false
         ];
@@ -147,6 +149,7 @@ class AppointmentManagement extends Component
             'Phone #'=> true,
             'Appointment Datetime'=> true,
             'Purpose'=> true,
+            'Message'=> false,
             'Status'=> true,
             'Action' => true
         ];
@@ -332,7 +335,7 @@ class AppointmentManagement extends Component
                 if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
-                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Deleted')->first()->status_id]);
+                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
                 }
             }
     
@@ -347,7 +350,7 @@ class AppointmentManagement extends Component
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
-                'title'             									=> 'Successfully deleted!',
+                'title'             									=> 'Successfully declined!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
                 'link'              									=> '#'
@@ -387,7 +390,7 @@ class AppointmentManagement extends Component
                 if($this->assigned_appointment_selected[$key][$value->appointment_id]){
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
-                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Deleted')->first()->status_id]);
+                        ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
                 }
             }
     
@@ -402,7 +405,7 @@ class AppointmentManagement extends Component
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
-                'title'             									=> 'Successfully deleted!',
+                'title'             									=> 'Successfully declined!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
                 'link'              									=> '#'

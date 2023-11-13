@@ -706,13 +706,6 @@
                                 {{$value->user_address}}
                             </td>
                             @endif
-                            @if($proctor_list_filter['Action'] )
-                                <td class="text-center">
-                                    @if($access_role['R']==1)
-                                    <button class="btn btn-primary">View</button>
-                                    @endif
-                                </td>
-                            @endif
                         </tr>
                     @empty
                         <tr>

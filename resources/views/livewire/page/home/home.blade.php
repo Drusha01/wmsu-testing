@@ -178,9 +178,9 @@
                             <h2 class="mb-4">Why Choose Us</h2>
                         </div>
                         @foreach ($wcu_data as $item => $value)
-                            <div class="col-md-4">
+                            <div class="col-md-4 my-3">
                                 <div class="choose-item border">
-                                <img src="{{asset('storage/content/whychooseus/'.$value->wcu_logo)}}" width="60px" alt="#">
+                                <img src="{{asset('storage/content/whychooseus/'.$value->wcu_logo)}}" style="width: 60px; height: 60px; object-fit: cover;" class="img-thumbnail mt-4">
                                     <div class="choose-content">
                                         <h3>{{$value->wcu_header}}</h3>
                                         <p>{{$value->wcu_content}}</p>

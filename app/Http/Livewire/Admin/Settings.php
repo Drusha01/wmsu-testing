@@ -600,20 +600,24 @@ class Settings extends Component
             }
         }
     }
-    public function delete_carousel($carousel_id){
-        $current_carousel = DB::table('carousel')
-        ->where('carousel_id','=',$carousel_id)
-        ->first();
-        $image_path = storage_path().'/app/public/content/carousel/'.$current_carousel->carousel_content_image;
-        if(file_exists($image_path)){
-            unlink($image_path);
-        }
 
-        if(
-            DB::table('carousel as c')
+    public function delete_carousel($carousel_id){ 
+       
+
+        if(                
+            $current_carousel = DB::table('carousel')
             ->where('carousel_id','=',$carousel_id)
-            ->delete()
-            ){
+            ->first()
+
+            ){ 
+        
+            DB::table('carousel')
+            ->where('carousel_id','=',$carousel_id)
+            ->delete();
+            $image_path = storage_path().'/app/public/content/carousel/'.$current_carousel->carousel_content_image;
+            if(file_exists($image_path)){
+            unlink($image_path);
+            }
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
@@ -1459,18 +1463,23 @@ class Settings extends Component
     }
     public function delete_faq($faq_id){
         if(
-            DB::table('faq')
-            ->where('faq_id','=',$faq_id)
-            ->delete()
-            ){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'success',
-                'title'             									=> 'Successfully deleted!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1000',
-                'link'              									=> '#'
-            ]);
+            
+            $this->faq = DB::table('faq as f')
+            ->select('*')
+            ->where('f.faq_id','=',$faq_id)
+            ->first()
+            ){   
+                
+         
+
+            $this->faq = [
+                'faq_id'=> $this->faq->faq_id,
+                'faq_question'=>$this->faq->faq_question,
+                'faq_answer'=>$this->faq->faq_answer,
+                'faq_order'=> NULL
+            ];
+            $this->dispatchBrowserEvent('openModal','DeleteFAQModal');
+ 
             $faq_data = DB::table('faq as f')
             ->select('*')
             ->orderBy('faq_order')
@@ -1484,6 +1493,36 @@ class Settings extends Component
             self::update_data(); 
         }
     }
+    public function confirm_delete_faq($faq_id)
+    {
+        if(
+            DB::table('faq')
+            ->where('faq_id','=',$faq_id)
+            ->delete()
+            ){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Successfully deleted!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            $this->dispatchBrowserEvent('openModal','DeleteFAQModal');
+            $faq_data = DB::table('faq as f')
+            ->select('*')
+            ->orderBy('faq_order')
+            ->get()
+            ->toArray();
+            foreach ($faq_data as $key => $value) {
+                DB::table('faq')
+                    ->where('faq_id','=', $value->faq_id)
+                    ->update(['faq_order'=>($key+1)]);
+            }
+            self::update_data(); 
+        }
+    }
+
     public function move_up_faq($faq_order){
         // get up
         $current = DB::table('faq')
