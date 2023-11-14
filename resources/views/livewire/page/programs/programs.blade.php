@@ -5,22 +5,28 @@
 
         @if($college_data)
         <div class="col-md-12 text-center">
-            <h2 class="mb-4" style="color:#990000">Western Mindanao State University Colleges</h2>
+            <h2 class="mb-4 " style="color:#990000">Western Mindanao State University Colleges</h2>
         </div>
         <div class="row justify-content-center">
             @foreach($college_data as $item => $value)
-            <div class="col-lg-3 col-md-6 col-sm-6" >
-                <div class="main-feature-box  " style="height:400px;" >
-                <img src="{{asset('storage/content/programs/colleges/'.$value->college_logo)}}" height="50px" alt="wmsu logo">
-                    <div class="overflow-hidden" style="height:260px;"> 
-                        <h4 class="my-2">{{$value->college_header}}</h4>                   
-                        <p class="card-text text-wrap">{{$value->college_content}}</p>
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="main-feature-box h-100">
+                <img src="{{asset('storage/content/programs/colleges/'.$value->college_logo)}}" class="img-thumbnail mt-3 rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="College logo">
+
+                    <div class="content-container overflow-hidden" style="max-height: 220px;">
+                        <h4 class="my-3">{{$value->college_header}}</h4>
+                        <p class="card-text text-wrap text-truncate">{{$value->college_content}}</p>
                     </div>
-                    <a href="programs/{{$value->college_id}}" class="feature-link mt-4">Learn More <i class="bi bi-arrow-right-circle-fill"></i></a>
+                    <div class="feature-link-wrapper mt-auto">
+                        <a href="programs/{{$value->college_id}}" class="feature-link">Learn More <i class="bi bi-arrow-right-circle-fill"></i></a>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
+
+
+
 
         @else
         <div class="col-md-12 text-center">

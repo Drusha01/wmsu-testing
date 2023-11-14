@@ -167,8 +167,6 @@
 
 
 
-
-
         <!-- Why Choose Us Section -->
         @if($wcu_data)
             <section class="why-choose-us mt-5 mb-5">
@@ -180,7 +178,7 @@
                         @foreach ($wcu_data as $item => $value)
                             <div class="col-md-4 my-3">
                                 <div class="choose-item border">
-                                <img src="{{asset('storage/content/whychooseus/'.$value->wcu_logo)}}" style="width: 60px; height: 60px; object-fit: cover;" class="img-thumbnail mt-4">
+                                <img src="{{asset('storage/content/whychooseus/'.$value->wcu_logo)}}" class="img-thumbnail mt-1 rounded-circle" style="width: 80px; height: 80px; object-fit: cover;" alt="Why Choose Us Logo">
                                     <div class="choose-content">
                                         <h3>{{$value->wcu_header}}</h3>
                                         <p>{{$value->wcu_content}}</p>
