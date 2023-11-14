@@ -1701,9 +1701,13 @@ class Settings extends Component
     }
     public function delete_feature($feature_id){
         if(
-            DB::table('features as f')
-            ->where('f.feature_id','=',$feature_id)
+            // DB::table('features as f')
+            // ->where('f.feature_id','=',$feature_id)
+            // ->delete() bug fixed
+            DB::table('features')
+            ->where('feature_id', '=', $feature_id)
             ->delete()
+
             ){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
