@@ -1189,7 +1189,7 @@ class ExamManagement extends Component
                 'link'              									=> '#'
              ]);
         }else{
-            $this->dispatchBrowserEvent('openModal','assignProctorModal');
+            $this->dispatchBrowserEvent('openModal','examinees_filter');
         }
     }
 
@@ -1203,7 +1203,7 @@ class ExamManagement extends Component
         }
 
         if(!$this->assigned_valid){
-            $this->dispatchBrowserEvent('swal:remove_backdrop',[
+            $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select room!',
