@@ -3,3 +3,4 @@
 *.note.sql
 *.env
 public/storage
+public/pdf
