@@ -42,38 +42,39 @@
                                 </div>
                             
                                 <!-- Upload Result Form -->
-                                <form wire:submit.prevent="upload_file()" enctype="multipart/form-data">
+                                <!-- <form wire:submit.prevent="upload_file()" enctype="multipart/form-data"> -->
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="resultFile">Upload Result File:</label>
-                                            <input type="file" class="form-control-file"  wire:model="examinees_results" />
+                                            <input type="file" class="form-control-file"  id="importCSV" wire:change="importresults()"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success" >Upload</button>
+                                        <button type="button" class="btn btn-success" id="click">Save</button>
                                     </div>
-                                </form>
+                                <!-- </form> -->
                                 <!-- End Upload Result Form -->
                             </div>
                         </div>
                         <script>
-                        //  $('#importCSV').on("change", function(){ 
-                        //     alert('nice');
-                        //     $.ajax({
-                        //         url: 'php/upload.php',
-                        //         data:  $("#fileInput")[0].files[0],
-                        //         cache: false,
-                        //         contentType: 'multipart/form-data',
-                        //         processData: false,
-                        //         type: 'POST',
-                        //         success: function(data){
-                        //             alert(data);
-                        //         }
-                        //     });
+                         $('#importCSV').on("change", function(){ 
+                            var formData = new FormData();
+                            formData.append("file", document.getElementById("importCSV").files[0]);
+                            console.log( formData)
+                            $.ajax({
+                                url: 'upload',
+                                type: 'POST',
+                                data: formData ,
+                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                contentType: false, 
+                                processData: false,
+                                success: function(data){
+                                }
+                            });
                            
                               
-                        //     });
+                        });
 
 
                             // $("form#data").submit(function() {

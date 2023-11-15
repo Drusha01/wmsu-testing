@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Admin\Exports\ExamineesExport;
+use App\Http\Livewire\Admin\Imports\ImportResults;
 
 class ResultManagement extends Component
 {
@@ -347,25 +348,17 @@ class ResultManagement extends Component
         ]);
         // return Excel::download(new ExamineesExport, 'users.xlsx');
         if($export_type == 'EXCEL'){
-            return Excel::download($export, 'examinees_list.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+            return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV);
         }elseif($export_type == 'CSV'){
-            return Excel::download($export, 'examinees_list.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+            return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV);
         }elseif($export_type == 'ACSV'){
-            return Excel::download($export, 'examinees_list.xlsx', \Maatwebsite\Excel\Excel::XLSX, [
+            return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV, [
                 'Content-Type' => 'text/csv',
         ]);
         }else{
-            return Excel::download($export, 'examinees_list.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+            return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV);
         }
     }
-
-    // public function updatedUpload_file()
-    // {
-    //     dd('moce');
-    //     dd($this->upload_file);
-    //     // here you can store immediately on any change of the property
-    // }
-    
 
     public function upload_file(){
         // $file = $request->file('examinees_results');
@@ -378,6 +371,23 @@ class ResultManagement extends Component
     }
 
     public function importresults() {
-        Excel::import(new UsersImport, 'users.xlsx');
+        $rows = array_map('str_getcsv', file(storage_path('app/results/result.csv')));
+        $header =[];
+        $content =[];
+        $item = [];
+        foreach ($rows as $key => $value) {
+            // validate
+            if($key == 0){
+                foreach ($value as $key => $item_value) {
+                    array_push( $header,$item_value);
+                }
+            }else{
+                foreach ($value as $key => $item_value) {
+                    array_push( $item,$item_value);
+                }
+                array_push( $content,$item);
+            }
+        }
+        dd($content);
     }
 }

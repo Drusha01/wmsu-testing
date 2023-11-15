@@ -43,7 +43,7 @@ use App\Http\Livewire\Student\StudentAppointment\StudentAppointment;
 use App\Http\Livewire\Student\StudentNotification\StudentNotifications;
 use App\Http\Livewire\ApplicationForm;
 use App\Http\Livewire\ApplicationBack;
-use  App\Http\Livewire\Page\Programs\Agri;
+use App\Http\Livewire\Page\Programs\Agri;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentgsat;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentlsat;
 use App\Http\Livewire\Student\ApplicationPermit;
@@ -68,6 +68,7 @@ use App\Http\Livewire\Student\StudentChat\StudentChat;
 use App\Http\Livewire\Admin\Notification;
 use App\Http\Livewire\Admin\ScheduleManagement;
 use App\Http\Livewire\Admin\Programs as AdminProgram;
+use App\Http\Controllers\FileUpload;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -163,6 +164,7 @@ Route::middleware([Authenticated::class])->group(function () {
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', function(){return redirect('/admin/admin-dashboard');})->name('admin-home');
+        Route::post('upload', [FileUpload::class,'upload_file'])->name('result-upload');
         Route::get('admin-dashboard', Dashboard::class)->name('admin-dashboard');
         Route::get('exam-management', ExamManagement::class)->name('exam-management');
         Route::get('admin-management', AdminManagement::class)->name('admin-management');
