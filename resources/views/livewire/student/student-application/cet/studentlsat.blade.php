@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <link rel="stylesheet" href="{{ asset('css/application.css') }}">
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>studentgrad</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <div>
     
     <div role="tabpanel" class="tab-pane" id="application">
@@ -16,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1 col-xl-10">
                         <div class="guide-section guide-section col-10 offset-xl-1">
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        <button type="button" class="btn-close" aria-label="Close" id="modalCloseButton"></button>
                         <div class="nat-container">
         <div class="nat-header">
             <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="nat-logo">
@@ -179,5 +174,10 @@
                    </div>
         </form>
     </div>
-</body>
-</html>
+    
+    <script>
+        document.getElementById("modalCloseButton").addEventListener("click", function() {
+            // Replace this line with the appropriate action or URL redirection
+            window.location.href = "{{ route('student.application') }}"; 
+        });
+    </script>

@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-        <head>
-        <link rel="stylesheet" href="{{ asset('css/application.css') }}">
-            <meta charset="UTF-8">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>studentgrad</title>
-        </head>
-    <body>
+<link rel="stylesheet" href="{{ asset('css/application.css') }}">
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <div>
-    
-                                    <div role="tabpanel" class="tab-pane" id="application">
-                                        <section class="test-application-section ml-5">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-lg-10 offset-lg-1 col-xl-10">
-                                                        <div class="guide-section guide-section col-10 offset-xl-1">
-                                                        <button type="button" class="btn-close" aria-label="Close"></button>
-                                                        <div class="nat-container">
-                                        <div class="nat-header">
-                                            <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="nat-logo">
-                                            <div class="header-eat-text">
-                                                <span>Western Mindanao State University</span>
-                                                <h3>Nursing Admission Test (NAT)</h3>
-                                            </div>
-                                        </div>
+            <div role="tabpanel" class="tab-pane" id="application">
+                <section class="test-application-section ml-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-xl-10">
+                                <div class="guide-section guide-section col-10 offset-xl-1">
+                                <button type="button" class="btn-close" aria-label="Close" id="modalCloseButton"></button>
+
+                                <div class="nat-container">
+                <div class="nat-header">
+                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="nat-logo">
+                    <div class="header-eat-text">
+                        <span>Western Mindanao State University</span>
+                        <h3>Nursing Admission Test (NAT)</h3>
+                    </div>
+                </div>
                                 <form>
                                     <div class="row mt-4">
                                         <div class="col-md-4 mb-3">
@@ -166,5 +161,10 @@
                                         </div>
                                 </form>
             </div>
-    </body>
-</html>
+
+            <script>
+                document.getElementById("modalCloseButton").addEventListener("click", function() {
+                  
+                    window.location.href = "{{ route('student.application') }}"; 
+                });
+            </script>
