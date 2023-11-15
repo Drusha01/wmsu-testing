@@ -177,28 +177,28 @@
                                                                         <div class="row">
                                                                             <div class="col-lg-6 mb-2">
                                                                                 <label for="first-name" class="form-label">First name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control" id="first-name" wire:model="view_details.0.user_firstname" name="first_name" placeholder="First name" >
+                                                                                <input disabled type="text" class="form-control" id="first-name" wire:model="view_details.0.user_firstname" name="first_name" placeholder="First name" >
                                                                             </div>
                                                                             <div class="col-lg-6 mb-2">
                                                                                 <label for="last-name" class="form-label">Middle name</label>
-                                                                                <input type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_middlename" name="last_name" placeholder="Middle name" >
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_middlename" name="last_name" placeholder="Middle name" >
                                                                             </div>
                                                                             <div class="col-lg-6 mb-2">
                                                                                 <label for="last-name" class="form-label">Last name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_lastname" name="last_name" placeholder="Last name" required>
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_lastname" name="last_name" placeholder="Last name" required>
                                                                             </div>
                                                                             <div class="col-lg-6 mb-2">
                                                                                 <label for="last-name" class="form-label">Suffix</label>
-                                                                                <input type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_suffix" name="last_name" placeholder="Suffix" >
+                                                                                <input disabled type="text" class="form-control" id="last-name"  wire:model="view_details.0.user_suffix" name="last_name" placeholder="Suffix" >
                                                                             </div>
                                                                         
                                                                             <div class="col-lg-6 col-md-12 mb-2">
                                                                                 <label for="email" class="form-label">Email <span style="color:red;">*</span></label>
-                                                                                <input type="email" class="form-control" id="email"  wire:model="view_details.0.user_email" name="email" placeholder="Email" required disabled>
+                                                                                <input disabled type="email" class="form-control" id="email"  wire:model="view_details.0.user_email" name="email" placeholder="Email" required disabled>
                                                                             </div>
                                                                             <div class="col-lg-6 col-md-12 mb-2">
                                                                                 <label for="contact-number" class="form-label">Contact Number <span style="color:red;">*</span></label>
-                                                                                <input type="text"  wire:model="view_details.0.user_phone" class="form-control" required placeholder="Contact Number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                                                                <input disabled type="text"  wire:model="view_details.0.user_phone" class="form-control" required placeholder="Contact Number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                                                                 
                                                                             </div>
                                                                         
@@ -212,11 +212,11 @@
                                                                         <div class="col-lg-6 col-md-12 mb-2">
                                                                             <label for="high-school-name" class="form-label">Senior School Name <span style="color:red;">*</span></label>
                                                                             
-                                                                            <input type="text" class="form-control"  wire:model="view_details.0.t_a_school_school_name" name="high_school_name" placeholder="High School Name" required>
+                                                                            <input disabled type="text" class="form-control"  wire:model="view_details.0.t_a_school_school_name" name="high_school_name" placeholder="High School Name" required>
                                                                         </div>
                                                                         <div class="col-lg-6 col-md-12 mb-2">
                                                                             <label for="high-school-address" class="form-label">Senior School Address <span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.t_a_school_address" name="high_school_address" placeholder="High School Address" required>
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.t_a_school_address" name="high_school_address" placeholder="High School Address" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -320,19 +320,19 @@
                                                                         <div class="row px-3">
                                                                             <div class="mother col-lg-12 mb-3 mt-2">
                                                                                 <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" placeholder="First Name" required >
+                                                                                <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" placeholder="First Name" required >
                                                                             </div>
                                                                             <div class="mother col-lg-12 mb-3">
                                                                                 <label for="mother-middle-name" class="form-label">Middle Name </label>
-                                                                                <input type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address"placeholder="Middle Name" >
+                                                                                <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address"placeholder="Middle Name" >
                                                                             </div>
                                                                             <div class="father col-lg-12 mb-3">
                                                                                 <label for="father-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" required>
+                                                                                <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" required>
                                                                             </div>
                                                                             <div class="father col-lg-12 mb-3">
                                                                                 <label for="father-last-name" class="form-label">Suffix</label>
-                                                                                <input type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" placeholder="Suffix" >
+                                                                                <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_f_firstname" name="high_school_address" placeholder="Suffix" >
                                                                             </div>
                                                                         </div>
                                                                         
@@ -343,19 +343,19 @@
                                                                 <div class="border border-secondary">
                                                                     <div class="mother col-lg-12 mb-3 mt-2">
                                                                         <label for="mother-first-name" class="form-label">First Name <span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="First Name" required>
+                                                                        <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="First Name" required>
                                                                     </div>
                                                                     <div class="mother col-lg-12 mb-3">
                                                                         <label for="mother-middle-name" class="form-label">Middle Name </label>
-                                                                        <input type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="Middle Name" >
+                                                                        <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="Middle Name" >
                                                                     </div>
                                                                     <div class="mother col-lg-12 mb-3">
                                                                         <label for="mother-last-name" class="form-label">Last Name <span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="Last Name" required>
+                                                                        <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" placeholder="Last Name" required>
                                                                     </div>
                                                                     <div class="father col-lg-12 mb-3">
                                                                         <label for="father-last-name" class="form-label">Suffix</label>
-                                                                        <input type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" id="father-last-name" placeholder="Suffix" >
+                                                                        <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_m_firstname" id="father-last-name" placeholder="Suffix" >
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -366,25 +366,25 @@
                                                                     <div class="row px-3">
                                                                         <div class="col-lg-6 col-md-12  mb-3">
                                                                             <label for="first-name" class="form-label">First Name <span style="color:red;"></span></label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="First Name" >
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="First Name" >
                                                                         </div>
                                                                         <div class="col-lg-6 col-md-12 mb-3">
                                                                             <label for="middle-name" class="form-label">Middle Name</label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="Middle Name" >
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="Middle Name" >
                                                                         </div>
                                                                     </div>
                                                                     <div class="row md-12 px-3">
                                                                         <div class="col-lg-6 col-md-12 mb-3">
                                                                             <label for="last-name" class="form-label">Last Name <span style="color:red;"></span></label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="Last Name" >
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" placeholder="Last Name" >
                                                                         </div>
                                                                         <div class="col-lg-6 col-md-12 mb-3">
                                                                             <label for="father-suffix" class="form-label">Suffix</label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" aria-label="Father's Suffix" placeholder="Enter Suffix">
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_g_firstname" aria-label="Father's Suffix" placeholder="Enter Suffix">
                                                                         </div>
                                                                         <div class="col-lg-12 col-md-12 mb-3 ">
                                                                             <label for="middle-name" class="form-label">Relationship <span style="color:red;"></span></label>
-                                                                            <input type="text" class="form-control" wire:model="view_details.0.family_background_g_relationship" id="middle-name" placeholder="Relationship" >
+                                                                            <input disabled type="text" class="form-control" wire:model="view_details.0.family_background_g_relationship" id="middle-name" placeholder="Relationship" >
                                                                         </div>
                                                                     </div>
                                                                 </div>

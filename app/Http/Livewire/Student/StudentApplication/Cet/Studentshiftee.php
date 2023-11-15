@@ -58,6 +58,7 @@ class Studentshiftee extends Component
     public $t_a_receipt_photo;
 
     public $required_receipt_photo;
+    public $t_a_receipt_photo_name = null;
 
     public $application =[
         't_a_id' => NULL,

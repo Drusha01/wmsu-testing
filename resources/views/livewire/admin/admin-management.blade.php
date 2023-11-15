@@ -13,7 +13,7 @@
         <!-- Insert Section -->
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
-                <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link @if($active == 'admin_management') show active @endif " wire:key="admin_management"  wire:click="active_page('admin_management')" data-bs-toggle="tab" href="#admin-management-tab">Admin Management</a>
             </li>
             <li class="nav-item">
