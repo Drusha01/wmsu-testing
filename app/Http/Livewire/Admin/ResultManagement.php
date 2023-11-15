@@ -382,6 +382,7 @@ class ResultManagement extends Component
                     array_push( $header,$item_value);
                 }
             }else{
+                $item = [];
                 foreach ($value as $key => $item_value) {
                     array_push( $item,$item_value);
                 }
