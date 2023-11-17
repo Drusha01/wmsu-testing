@@ -9,7 +9,7 @@
                     <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                         <tr>
                             <th>#</th>
-                            <th>Test code</th>
+                            <th>Application Code</th>
                             <th>Exam Type</th>
                             <th class=" text-center align-middle">Description</th>
                             <th class="text-center align-middle">Date</th>
