@@ -216,11 +216,17 @@ Route::get('/admin-login', function () {
 })->name('admin-login');
 
 Route::get('verification-email', function () {
-    return view('account.verification-email');
+    return view('mail.verification-email');
 })->name('verification-email');
 
+Route::get('application-status-email', function () {
+    return view('mail.application-status-email');
+})->name('application-status-email');
 
 
+Route::get('appointment-status-email', function () {
+    return view('mail.appointment-status-email');
+})->name('appointment-status-email');
 
 Route::get('php_info', function () {
     return phpinfo();

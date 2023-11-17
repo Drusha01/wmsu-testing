@@ -190,7 +190,7 @@
             {
                 label: "Total Test Takers",
                 data: [4000, 2321, 700, 202, 53], // Replace with actual data
-                backgroundColor: ["#007bff", "#6610f2", "#6f42c1", "#e83e8c", "#fd7e14"],
+                backgroundColor: ["#990000", "#6610f2", "#6f42c1", "#e83e8c", "#fd7e14"],
             },
         ],
     };
@@ -206,7 +206,7 @@
         datasets: [
             {
                 data: [212, 21], // Replace with actual data
-                backgroundColor: ["#007bff", "#28a745"],
+                backgroundColor: ["#990000", "#2845"],
             },
         ],
     };
@@ -224,7 +224,7 @@
       datasets: [
           {
               data: [70, 30], // Replace with actual data
-              backgroundColor: ["#007bff", "#6c757d"],
+              backgroundColor: ["#990000", "#6c757d"],
           },
       ],
   };
@@ -241,7 +241,7 @@
           {
               label: "Total Appointments",
               data: [32, 42, 38, 49, 55, 46, 31], // Replace with actual data
-              backgroundColor: "#007bff",
+              backgroundColor: "#990000",
           },
       ],
   };
