@@ -272,6 +272,7 @@ p {
     text-transform: capitalize;
     display: inline-block;
     padding: 10px 30px;
+    position: bottom;
     line-height: 1;
     margin: 10px 10px;
     color: white;
@@ -290,6 +291,9 @@ p {
 
 /**************
 Feature Section
+**************/
+/**************
+program Section
 **************/
 
 

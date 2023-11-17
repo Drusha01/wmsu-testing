@@ -97,24 +97,28 @@
         @include('components.chatbox');
 
         <!-- Feature Info Section -->
-       @if($feature_data)
-            <section class="features mt-5 mb-5">
+        @if($feature_data)
+            <section class="features mt-1 mb-1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2 class="mb-4">Our Feature</h2>
                         </div>
                         <div class="row justify-content-center">
-                            @foreach($feature_data as $item => $value)
+                            @foreach($feature_data as $value)
                             <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="main-feature-box" style="height:300px;">
-                                    <div class="icon">
-                                        <i class="bi bi-house-door-fill"></i>
+                                <div class="main-feature-box d-flex flex-column" style="height:300px;">
+                                    <div>
+                                        <div class="icon">
+                                            <i class="bi bi-house-door-fill"></i>
+                                        </div>
+                                        <h3>{{$value->feature_header}}</h3>
+                                        <p>{{$value->feature_content}}</p>
                                     </div>
-                                    <h3>{{$value->feature_header}}</h3>
-                                    <p>{{$value->feature_content}}</p>
-                                    <a href="{{$value->feature_link}}" target="blank" class="feature-link">{{$value->feature_button_name}} <i
-                                            class="bi bi-arrow-right-circle-fill"></i></a>
+                                    <div class="mt-auto">
+                                        <a href="{{$value->feature_link}}" target="blank" class="feature-link">{{$value->feature_button_name}} <i
+                                                class="bi bi-arrow-right-circle-fill"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
@@ -123,6 +127,7 @@
                 </div>
             </section>
         @endif
+
         
         <!-- Feature Info Section -->
 
@@ -130,7 +135,7 @@
         <hr class="separation-line">
 
 <!-- About Us Section -->
-<section class="about mt-5 mb-5">
+<section class="about mt-1 mb-1">
     <div class="container">
         <div class="row justify-content-center align-items-center">
             @if($aboutus_data)
@@ -169,7 +174,7 @@
 
         <!-- Why Choose Us Section -->
         @if($wcu_data)
-            <section class="why-choose-us mt-5 mb-5">
+            <section class="why-choose-us mt-1 mb-1">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-12 text-center">
