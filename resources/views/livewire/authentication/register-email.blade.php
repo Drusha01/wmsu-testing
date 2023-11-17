@@ -38,32 +38,33 @@
                 @else
                 <div class="alert alert-danger" role="alert">
                     <form wire:submit.prevent="sign_up()">
-                        <div class="row mb-1">
-                            <div class="col-md-12 mb-1">
+                        <div class="row ">
+                            <div class="col-md-12 ">
                                 <label for="firstName" class="form-label">Username</label>
-                                <input type="text" style="color:{{$style}}"class="form-control"  wire:model="username" wire:keyup="verify_username()" required>
+                                <input type="text" style="{{$style}}"class="form-control"  wire:model="username" wire:keyup="verify_username()" required>
                             </div>
-                            <div class="col-md-12 mb-1">
+                            <div class="col-md-12 ">
                                 <label for="firstName" class="form-label">First Name</label>
                                 <input type="text" class="form-control" wire:model="firstname" required>
                             </div>
-                            <div class="col-md-12 mb-1">
+                            <div class="col-md-12 ">
                                 <label for="middleName" class="form-label">Middle Name</label>
                                 <input type="text" class="form-control" wire:model="middlename">
                             </div>
-                            <div class="col-md-12 mb-1">
+                            <div class="col-md-12 ">
                                 <label for="lastName" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" wire:model="lastname" required>
                             </div>
                         </div>
                     
-                            <div class="row mb-1">
-                                <div class="col-md-6 mb-1">
-                                    <label for="suffix" class="form-label">Suffix</label>
-                                    <input type="text" class="form-control" wire:model="suffix">
-                                </div>
+                            <div class="row ">
+                                    <div class="col-md-7">
+                                        <label for="suffix" class="form-label">Suffix (if applicable)</label>
+                                        <input type="text" class="form-control" id="suffix" name="suffix" placeholder="E.g., Jr., Sr., III">
+                                        <small class="form-text text-muted">Include any suffix associated with your name.</small>
+                                    </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row ">
                                 <div class="col-md-12">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" min="8" wire:model="password"  wire:keyup="verify_password()"required>
@@ -73,11 +74,11 @@
                                     <input type="password" class="form-control" min="8" wire:model="confirm_password"  wire:keyup="verify_confirm_password()"required>
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row ">
                                 <div class="col-md-12 ">
                                     <label class="form-label"></label>
                                 </div>
-                                <div class="col-md-8 mb-8">
+                                <div class="col-md-8 mb-4">
                                     <label for="birthDate" class="form-label">Birthday</label>
                                     <input type="date" class="form-control" wire:model="birthdate"  wire:change="verify_birthdate()"required>
                                 </div>

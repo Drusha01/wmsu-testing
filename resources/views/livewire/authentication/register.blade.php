@@ -1,9 +1,19 @@
-<div>
-    <div class="container mt-4">
+<div style="background: linear-gradient(to top, #990000, #ccc); background-size: 100% 200%; animation: gradientAnimation 5s infinite;">
+    <style>
+        @keyframes gradientAnimation {
+          0%, 100% {
+            background-position: 0 0;
+          }
+          50% {
+            background-position: 0 100%;
+          }
+        }
+    </style>
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
-                    <span class="text-signup">SignUp Form</span>
+                    <span class="text-signup mt-1">Sign Up Form</span>
                     <div class="card-body">
                         <div class="alert alert-danger" role="alert">
                             <h4 class="alert-heading">Reminders</h4>
@@ -33,9 +43,10 @@
                                 </div>
                 
                                 <div class="row mb-3">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="suffix" class="form-label">Suffix</label>
-                                        <input type="text" class="form-control" id="suffix" name="suffix">
+                                    <div class="col-md-5">
+                                        <label for="suffix" class="form-label">Suffix (if applicable)</label>
+                                        <input type="text" class="form-control" id="suffix" name="suffix" placeholder="E.g., Jr., Sr., III">
+                                        <small class="form-text text-muted">Include any suffix associated with your name.</small>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -62,12 +73,11 @@
                                     </div>
                                     <button type="submit" class="btn-block button-color ">Sign Up</button>
                                 </div>
-                                
-                            </form>
+                                </form>
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </div>
