@@ -224,7 +224,7 @@
       datasets: [
           {
               data: [70, 30], // Replace with actual data
-              backgroundColor: ["#007bff", "#6c757d"],
+              backgroundColor: ["#990000", "#6c757d"],
           },
       ],
   };
