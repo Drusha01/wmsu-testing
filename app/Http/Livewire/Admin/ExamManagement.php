@@ -1366,12 +1366,15 @@ class ExamManagement extends Component
             'D' => true
         ];
 
+     
+
         if($this->assigned_valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_proctor  as $key => $value) {
                 if($this->assigned_proctor_selected[$key][$value->school_room_id]){
+                    // dd($value);
                     DB::table('school_rooms as sr')
                         ->where('school_room_id','=',$value->school_room_id)
-                        ->update(['school_room_proctor_user_id'=>NULL
+                        ->update(['school_room_proctor_user_id'=> NULL
                     ]);
                 }
             }
