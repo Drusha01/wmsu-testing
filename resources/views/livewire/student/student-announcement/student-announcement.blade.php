@@ -1,74 +1,30 @@
-<div role="tabpanel" class="tab-pane" id="schedule">
-    <section class="schedule-section">
-        <div class="container">
-            <h2 class="section-title text-center mb-4">Announcements</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card announcement-card">
-                    <img src="{{ asset('images/about/about.jpg') }}" alt="CET Announcement Image" class="card-img-top announcement-img">
-                        <div class="card-body">
-                            <h3 class="card-title">College Entrance Test (CET)</h3>
-                            <p class="card-text">Date: October 10, 2023</p>
-                            <p class="card-text">The College Entrance Test (CET) will be held on the specified date. Make sure to prepare!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card announcement-card">
-                    <img src="{{ asset('images/slider/wm.jpg') }}" alt="NAT Announcement Image" class="card-img-top announcement-img">
-                        <div class="card-body">
-                            <h3 class="card-title">Nursing Aptitude Test (NAT)</h3>
-                            <p class="card-text">Date: November 15, 2023</p>
-                            <p class="card-text">Get ready for the Nursing Aptitude Test (NAT) coming up on the given date.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card announcement-card">
-                    <img src="{{ asset('images/slider/campus.jpg') }}"  alt="GSAT Announcement Image" class="card-img-top announcement-img">
-                        <div class="card-body">
-                            <h3 class="card-title">Graduate School Admission Test (GSAT)</h3>
-                            <p class="card-text">Date: December 5, 2023</p>
-                            <p class="card-text">The Graduate School Admission Test (GSAT) is scheduled for the specified date. Don't miss it!</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more announcement cards as needed -->
+<div>
+    <div role="tabpanel" class="tab-pane" id="schedule">
+        <section class="schedule-section">
+            <div class="container">
+                <h2 class="section-title text-center">Announcement</h2>
+                <ul class="exam-list">
+                    <li class="exam-item text-center">
+                        <h3 class="exam-title">College Entrance Test (CET)</h3>
+                        <p class="exam-date">Date: October 10, 2023</p>
+                        <img src="{{ asset('images/about/about.jpg') }}" alt="CET Announcement Image" style="width: 600px; height: 350px; object-fit: cover;"  class="img-thumbnail">
+                        <p class="exam-description">The College Entrance Test (CET) will be held on the specified date. Make sure to prepare!</p>
+                    </li>
+                    <li class="exam-item text-center">
+                        <h3 class="exam-title">Nursing Aptitude Test (NAT)</h3>
+                        <p class="exam-date">Date: November 15, 2023</p>
+                        <img src="announcement_image2.jpg" alt="NAT Announcement Image" class="img-thumbnail">
+                        <p class="exam-description">Get ready for the Nursing Aptitude Test (NAT) coming up on the given date.</p>
+                    </li>
+                    <li class="exam-item text-center">
+                        <h3 class="exam-title">Graduate School Admission Test (GSAT)</h3>
+                        <p class="exam-date">Date: December 5, 2023</p>
+                        <img src="announcement_image3.jpg" alt="GSAT Announcement Image" class="img-thumbnail">
+                        <p class="exam-description">The Graduate School Admission Test (GSAT) is scheduled for the specified date. Don't miss it!</p>
+                    </li>
+                    <!-- Add more exam items as needed -->
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </div>
-
-
-
-
-<style>
-/* inline css */
-.announcement-img {
-    height: 200px;
-    object-fit: cover;
-}
-
-.announcement-card {
-    border: 1px solid #ccc;
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%; /* Ensures same  height for all cards */
-}
-
-.announcement-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.card-text {
-    color: #555;
-}
-
-</style>
