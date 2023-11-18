@@ -40,8 +40,8 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell"></i>
-                                <span class="badge badge-danger">3</span> <!-- You can dynamically update this number -->
+                                <i class="fas fa-bell " style="font-size: 15px;"></i>
+                                <span class="badge badge-warning">1</span> 
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
                                 <h6 class="dropdown-header">Notifications</h6>
