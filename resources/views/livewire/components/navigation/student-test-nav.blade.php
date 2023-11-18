@@ -6,7 +6,7 @@
         <!-- CET Tests Dropdown with a Clear Label -->
         <div class="card mb-3">
             <div class="card-header" style="background-color: #990000; color: white; font-weight: bold;">
-                CET Form Applications
+                College Entrance Test Form Applications
             </div>
             <div class="dropdown px-2 py-2">
                 <button class="btn btn-secondary dropdown-toggle mt-2" type="button" id="cetDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,19 +42,19 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center ">
-                    <a href="{{ Route('student.cet.nat') }}" class="text-decoration-none text-body font-weight-bold">NAT Application</a>
+                    <a href="{{ Route('student.cet.nat') }}" class="text-decoration-none text-body font-weight-bold">Nursing Aptitude Test Form</a>
                     <button type="button" class="btn btn-primary ">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.eat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">EAT Application</a>
+                    <a href="{{ Route('student.cet.eat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">Engineering Aptitude Test Form</a>
                     <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ Route('student.cet.gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">GSAT Application</a>
+                    <a href="{{ Route('student.cet.gsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">Graduate school Aptitude Test Form</a>
                     <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ route('student.cet.lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">LSAT Application</a>
+                    <a href="{{ route('student.cet.lsat') }}" class="text-decoration-none text-secondary text-body font-weight-bold">Law school Aptitude Test Form</a>
                     <button type="button" class="btn btn-primary rounded">Available</button>
                 </li>
             </ul>
