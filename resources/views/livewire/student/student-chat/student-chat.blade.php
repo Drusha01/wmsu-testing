@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <h2 class="text-center">Chat Support</h2>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body overflow-auto" style="max-height:400px">
                         <!-- Student's message -->
                         <div class="alert alert-primary">
                             <strong>Student:</strong> Hi, I have a question about the upcoming exam.
@@ -27,13 +27,35 @@
                         <div class="alert alert-light text-right">
                             <strong>Admin:</strong> The exam is scheduled for October 25th.
                         </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+                        <div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div><div class="alert alert-primary">
+                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        </div>
+
 
                         <!-- Message Input -->
-                        <div class="input-group mt-3">
-                            <input type="text" class="form-control" placeholder="Type your message...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary"> Send </button>
-                            </div>
+                       
+                    </div>
+                    <div class="input-group mt-3 p-2">
+                        <input type="text" class="form-control" placeholder="Type your message...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary"> Send </button>
                         </div>
                     </div>
                 </div>
