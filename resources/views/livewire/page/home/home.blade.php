@@ -96,7 +96,35 @@
         <!-- Carousel Section -->
 
         @include('components.chatbox');
+  
 
+<!-- Announcement Section -->
+<!-- <section class="announcement-section my-5">
+    <h2 class="section-title text-center mb-4">Latest Announcements</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card announcement-card h-100">
+                <img src="{{ asset('images/about/about.jpg') }}" alt="CET Announcement Image" class="card-img-top announcement-img">
+                <div class="card-body">
+                    <h3 class="card-title">College Entrance Test (CET)</h3>
+                    <p class="card-text">Date: October 10, 2023</p>
+                    <p class="card-text">The College Entrance Test (CET) will be held on the specified date. Make sure to prepare!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card announcement-card h-100">
+                <img src="{{ asset('images/slider/wm.jpg') }}" alt="NAT Announcement Image" class="card-img-top announcement-img">
+                <div class="card-body">
+                    <h3 class="card-title">Nursing Aptitude Test (NAT)</h3>
+                    <p class="card-text">Date: November 15, 2023</p>
+                    <p class="card-text">Get ready for the Nursing Aptitude Test (NAT) coming up on the given date.</p>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</section> -->
 
 <!-- About Us Section -->
 <section class="about mt-1 mb-1">
@@ -133,8 +161,10 @@
     </div>
 </section>
 <!-- About Us Section -->
+
      <!-- Separation Line -->
      <hr class="separation-line">
+
         <!-- Feature Info Section -->
         @if($feature_data)
             <section class="features mt-1 mb-1">
