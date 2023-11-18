@@ -1,18 +1,21 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div>
     <header id="header" class="dashboard-header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ route('admin-dashboard') }}" class="dasboard-logo d-flex align-items-center">
                 <img src="{{ asset('images/logo/logo.png') }}" alt="wmsu logo">
-                <span class="d-none d-lg-block ">Testing and Evaluation Center</span>
+                <span class="d-none d-lg-block" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; margin-left: 10px; color: #333;">Testing Center</span>
             </a>
+
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-        <div class="search-bar">
+        <!-- <div class="search-bar">
             <form class="search-form d-flex align-items-center" method="POST" action="#">
                 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
-        </div><!-- End Search Bar -->
+        </div> -->
+        <!-- End Search Bar -->
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
@@ -64,19 +67,22 @@
                     </ul><!-- End Notification Dropdown Items -->
 
                 </li><!-- End Notification Nav -->
-                <li class="nav-item dropdown pe-3">
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img style="border-radius:50%;" src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" alt="">
-                        <span class="d-none d-md-block">{{$user_details['user_firstname'].' '.$user_details['user_lastname']}}</span>
-                    </a>
-                    <!-- Add the dropdown menu here -->
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ Route('profile')}}">Profile</a></li>
-                        <li><a class="dropdown-item" href="{{ Route('notification') }}">Notifications</a></li>
-                        <li><a class="dropdown-item" href="{{ Route('setting') }}">Settings</a></li>
-                        <li><a class="dropdown-item" href="{{ Route('logout') }}">Logout</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown pe-3">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img style="border-radius:50%;" src="@if($user_details['user_profile_picture'] == 'default.png'){{ asset('images/contents/profile_picture/thumbnail/default.png') }}@else{{ asset('storage/images/thumbnail/'.$user_details['user_profile_picture']) }}@endif" alt="">
+                            <span class="d-none d-md-block" style="margin-left: 10px; color: black;">{{$user_details['user_firstname'].' '.$user_details['user_lastname']}}</span>
+                            <i class="fas fa-caret-down ms-1"></i> 
+                        </a>
+
+
+                        <!-- Dropdown Menu -->
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ Route('profile')}}"><i class="fas fa-user" style="color: #990000;"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ Route('notification') }}"><i class="fas fa-bell" style="color: #990000;"></i> Notifications</a></li>
+                            <li><a class="dropdown-item" href="{{ Route('setting') }}"><i class="fas fa-cog" style="color: #990000;"></i> Settings</a></li>
+                            <li><a class="dropdown-item" href="{{ Route('logout') }}"><i class="fas fa-sign-out-alt" style="color: #990000;"></i> Logout</a></li>
+                        </ul>
+                    </li>
             </ul>
         </nav><!-- End Icons Navigation -->
 

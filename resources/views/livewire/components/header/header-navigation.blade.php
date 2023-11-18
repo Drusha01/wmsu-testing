@@ -84,26 +84,26 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img style="border-radius:50%;"src="@if($user_details['user_profile_picture']== 'default.png'){{asset('images/contents/profile_picture/thumbnail/default.png')}} @else {{asset('storage/images/thumbnail/'.$user_details['user_profile_picture'])}} @endif" width="50" alt="">
+                                <img style="border-radius: 50%;" src="@if($user_details['user_profile_picture']== 'default.png'){{ asset('images/contents/profile_picture/thumbnail/default.png') }}@else{{ asset('storage/images/thumbnail/'.$user_details['user_profile_picture']) }}@endif" width="50" alt="">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                                @if(isset($user_status[0]->user_role_details ) && $user_status[0]->user_role_details  == 'student')
-                                    @if(isset($user_status[0]->user_status_details) && $user_status[0]->user_status_details == 'active' )
-                                    <a class="dropdown-item" href="{{ route('student.profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('student.application') }}">Application</a>
-                                    <a class="dropdown-item" href="{{ route('student.status') }}">Status</a>
-                                    <a class="dropdown-item" href="{{ route('student.results') }}">Results</a>
-                                    <a class="dropdown-item" href="{{ route('student.appointment') }}">Apppointments</a>
-                                    <a class="dropdown-item" href="{{ route('student.notifications') }}">Notifications</a>
-                                    <div class="dropdown-divider"></div>
+                                @if(isset($user_status[0]->user_role_details) && $user_status[0]->user_role_details == 'student')
+                                    @if(isset($user_status[0]->user_status_details) && $user_status[0]->user_status_details == 'active')
+                                        <a class="dropdown-item" href="{{ route('student.profile') }}"><i class="fas fa-user" style="color: #990000;"></i> Profile</a>
+                                        <a class="dropdown-item" href="{{ route('student.application') }}"><i class="fas fa-file" style="color: #990000;"></i> Application</a>
+                                        <a class="dropdown-item" href="{{ route('student.status') }}"><i class="fas fa-info-circle" style="color: #990000;"></i> Status</a>
+                                        <a class="dropdown-item" href="{{ route('student.results') }}"><i class="fas fa-poll" style="color: #990000;"></i> Results</a>
+                                        <a class="dropdown-item" href="{{ route('student.appointment') }}"><i class="fas fa-calendar-alt" style="color: #990000;"></i> Appointments</a>
+                                        <a class="dropdown-item" href="{{ route('student.notifications') }}"><i class="fas fa-bell" style="color: #990000;"></i> Notifications</a>
+                                        <div class="dropdown-divider"></div>
                                     @endif
                                 @else
-                                    <a class="dropdown-item" href="{{ Route('profile')}}">Profile</a>
-                                    <a class="dropdown-item" href="{{ Route('notification') }}">Notifications</a>
-                                    <a class="dropdown-item" href="{{ Route('setting') }}">Settings</a>
+                                    <a class="dropdown-item" href="{{ Route('profile') }}"><i class="fas fa-user" style="color: #990000;"></i> Profile</a>
+                                    <a class="dropdown-item" href="{{ Route('notification') }}"><i class="fas fa-bell" style="color: #990000;"></i> Notifications</a>
+                                    <a class="dropdown-item" href="{{ Route('setting') }}"><i class="fas fa-cog" style="color: #990000;"></i> Settings</a>
                                     <div class="dropdown-divider"></div>
                                 @endif
-                                <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt" style="color: #990000;"></i> Log out</a>
                             </div>
                         </li>
                     </ul>
