@@ -792,6 +792,7 @@
                     <!-- Button to trigger the Add Room modal -->
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <button type="button" class="btn" style="background-color: #990000; color: white;" data-bs-toggle="modal" data-bs-target="#addRoomModal">Add Room</button>
+                        <button type="button" class="btn btn-warning"  wire:click="reset_room_proctor()">Reset Room Proctors</button>
                     </div>
 
                     <table class="application-table">
