@@ -2530,7 +2530,7 @@ class Settings extends Component
                 ->delete()){
 
                 $image_path = storage_path().'/app/public/content/contact_us/'.$contactus->cu_icon; 
-                if(file_exists($image_path)){
+                if(file_exists($image_path) && !is_dir($image_path)){
                     unlink($image_path);
                 }
                 $this->dispatchBrowserEvent('swal:redirect',[
