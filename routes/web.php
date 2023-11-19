@@ -70,6 +70,7 @@ use App\Http\Livewire\Admin\Notification;
 use App\Http\Livewire\Admin\ScheduleManagement;
 use App\Http\Livewire\Admin\Programs as AdminProgram;
 use App\Http\Controllers\FileUpload;
+use App\Http\Livewire\Admin\ApplicationPermit as AdminApplicationPermit;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -164,6 +165,8 @@ Route::middleware([Authenticated::class])->group(function () {
 
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
+    
+    Route::get('/application-permit/{hash}', AdminApplicationPermit::class)->name('admin-application-permit');
     Route::prefix('admin')->group(function () {
         Route::get('/', function(){return redirect('/admin/admin-dashboard');})->name('admin-home');
         Route::post('upload', [FileUpload::class,'upload_file'])->name('result-upload');
@@ -184,6 +187,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('profile', profile::class)->name('profile');
         Route::get('notification', Notification::class)->name('notification');
         Route::get('schedule-management', ScheduleManagement::class)->name('schedule-management');
+
     });
 });
 

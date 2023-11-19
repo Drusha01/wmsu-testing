@@ -328,6 +328,7 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->where('test_type_details', '=', 'College Entrance Test')
                     
             // ->where('t_a_test_status_id', '=', 
@@ -357,6 +358,7 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->where('test_type_details', '=', 'College Entrance Test')
                     
             // ->where('t_a_test_status_id', '=', 
@@ -387,7 +389,9 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->where('test_type_details', '=', 'College Entrance Test')
+            
                     
             // ->where('t_a_test_status_id', '=', 
             //     ((array) DB::table('test_types')
@@ -418,6 +422,7 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->where('test_type_details', '=', 'College Entrance Test')
                     
             // ->where('t_a_test_status_id', '=', 
@@ -444,7 +449,7 @@ class StudentStatus extends Component
         $this->qrcode = (new QRCode($options))->render($this->qr_code_link);
 
         self::update_data();
-        $this->dispatchBrowserEvent('openModal','view_exam_permit');
+        $this->dispatchBrowserEvent('openModal','ExamPermitModal');
         
     }
 }

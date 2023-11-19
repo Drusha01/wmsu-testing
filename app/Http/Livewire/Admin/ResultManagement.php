@@ -96,7 +96,7 @@ class ResultManagement extends Component
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
-        ->where('t_a_isactive','=',1)
+        ->where('t_a_isactive','=',0)
         ->where('test_status_details','=','Complete')
         ->get()
         ->toArray();
@@ -741,6 +741,7 @@ class ResultManagement extends Component
             DB::table('test_applications as ta')
                 ->where('t_a_id','=',intval($value[$id_index]))
                 ->update([
+                    't_a_isactive' => 0,
                     't_a_cet_oapr' => floatval($value[$oapr_index]), 
                     't_a_cet_english_procficiency' => floatval($value[$ep_index]), 
                     't_a_cet_reading_comprehension' => floatval($value[$rc_index]), 

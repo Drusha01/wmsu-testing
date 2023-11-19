@@ -1,6 +1,9 @@
-
 <div>
     <!-- Status Tab Content -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@1.5.3/dist/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
     <div role="tabpanel" class="tab-pane" id="status">
         <section class="application-status-section">
             <div class="container">
@@ -140,31 +143,75 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="view_exam_permit" tabindex="-1" role="dialog" aria-labelledby="view_exam_permitLabel" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-md" role="document">
+                <!-- EXAM permit Modal -->
+            <div class="modal fade" id="ExamPermitModal" tabindex="-1" role="dialog" aria-labelledby="ExamPermitModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifyModalLabelDetails">Exam Permit QR CODE</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="modal-body" id="to_print">
+                            <div>
+                                <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
+                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
+                                        <div style="text-align: center;">
+                                            <h4>Western Mindanao State University</h4>
+                                            <h5>Testing And Evaluation Center</h5>
+                                            <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
+                                        </div> 
+                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
+                                </section>
+                                @if(isset($view_details))
+                                    <div style="text-align: center;" >
+                                        <div >
+                                            <legend>EXAM PERMIT</legend>
+                                            <h3>{{$view_details[0]->user_lastname.', '.$view_details[0]->user_firstname.' '.$view_details[0]->user_middlename}}</h3>
+                                            <p>School from: {{$view_details[0]->t_a_school_school_name}}</p>
+                                        </div> 
+                                        <table class="table mt-2">
+                                            <thead>
+                                                <tr>
+                                                <th >Test Date</th>
+                                                <th class="table-text" >Test Center</th>
+                                                <th class="table-text" >Room No.</th>
+                                                <th class="table-text">Test Time</th>
+                                                <th class="table-text" >Test Code</th>
+                                                <!-- <th class="table-text" >High School Code</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">{{date_format(date_create($view_details[0]->school_room_test_date), "F d, Y ")}}</th>
+                                                    <td>{{$view_details[0]->school_room_test_center}}</td>
+                                                    <td>{{ $view_details[0]->school_room_id.' - '.$view_details[0]->school_room_name }}</td>
+                                                    <td>{{ $view_details[0]->school_room_test_time_start.' - '.$view_details[0]->school_room_test_time_end }}</td>
+                                                    <td>{{$view_details[0]->t_a_id.'-'.$view_details[0]->applied_date }}</td>
+                                                    <!-- <td>{{$view_details[0]->school_room_test_center}}</td> -->
+                                                </tr>
+                                                <tr>  
+                                            </tbody>
+                                        </table>
+                                        <div class="bottom-content mt-2">
+                                            <div class="image-container-left  border border-danger rounded float-left">
+                                                <img src=" {{$qrcode}}" alt="" width="250" height="250">
+                                                <!-- <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo"> -->
+                                            </div>
+                                            <div class="image-container-right border border-danger float-right">
+                                                <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$view_details[0]->t_a_formal_photo)}}" alt="" style="object-fit: cover;"width="250" height="250">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <div class="d-flex justify-content-center" >
-                                <div align='center' wire:loading.attr="disabled">
-                                    <span wire:loading wire:target="exam_permit" > <span class="spinner-border spinner-border-sm mt-4" style='height:100px; width:100px; color: blue' role="status" aria-hidden="true"></span> </span>
-                                </div>
-                                <img src=" {{$qrcode}}" alt="" width="300" height="300">
-                            </div>
-                            <div class="text-center mt-5">
-                                <a href="{{$qrcode}}" download="qr-code.png" class="btn btn-success text-white me-2">
-                                    <span class="bi bi-download">&nbsp;&nbsp;Download QR</span>
-                                </a>
-                            </div>
+                        <div class="modal-footer">
+                            <a href="{{$qrcode}}" download="qr-code.png" class="btn btn-success text-white me-2">
+                                <span class="bi bi-download">&nbsp;&nbsp;Download QR</span>
+                            </a>
+                            <button class="btn btn-success" onclick="print_this('to_print')" >Print</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             
             <div class="modal fade" id="view_application_modal" tabindex="-1" role="dialog" aria-labelledby="view_application_modalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg modal-md" role="document">
@@ -441,69 +488,32 @@
                 </div>
             </div>
 
-                <!-- EXAM permit Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="width: 950px;  margin-left:-200px;">
-                        <div class="modal-body"  >
-                            <div>
-                        <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
-                        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
-                            <div style="text-align: center;">
-                                <h4>Western Mindanao State University</h4>
-                                <h5>Testing And Evaluation Center</h5>
-                                <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
-                            </div> 
-                        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
-                        </section>
-                        <div style="text-align: center;" >
-                            <div >
-                                <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
-                                <p>December 25 2023</p>
-                                <legend>SALI, ALKHAYZEL ABDILLA</legend>
-                                <legend>School from: Southern City Colleges</legend>
-                            </div> 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th >Test Date</th>
-                                    <th class="table-text" >Test Center</th>
-                                    <th class="table-text" >Room No.</th>
-                                    <th class="table-text">Test Time</th>
-                                    <th class="table-text" >Test Code</th>
-                                    <th class="table-text" >High School Code</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>  
-                                </tbody>
-                            </table>
-                            <div class="bottom-content ">
-                                <div class="image-container-left  border border-danger rounded float-left">
-                                    <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo">
-                                </div>
-                                <div class="image-container-right border border-danger">
-                                    <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo ">
-                                </div>
-                            </div>
-                        </div>
-                            </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              
             
         </section>
+        <script>
+            window.print_this = function(id) {
+                var prtContent = document.getElementById(id);
+                var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+                
+                WinPrint.document.write('<link rel="stylesheet" type="text/css"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+                // To keep styling
+                /*var file = WinPrint.document.createElement("link");
+                file.setAttribute("rel", "stylesheet");
+                file.setAttribute("type", "text/css");
+                file.setAttribute("href", 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+                WinPrint.document.head.appendChild(file);*/
+
+                
+                WinPrint.document.write(prtContent.innerHTML);
+                WinPrint.document.close();
+                WinPrint.setTimeout(function(){
+                WinPrint.focus();
+                WinPrint.print();
+                WinPrint.close();
+                }, 1000);
+            }
+        </script>
     </div>
 </div>
 

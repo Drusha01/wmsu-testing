@@ -176,7 +176,7 @@
                                                 <td class="text-align center">{{$value->t_a_cet_science_process_skills}} </td>
                                             @endif
                                             @if($results_filter['Quantitative Skills'])
-                                                <td class="text-align center">{{$value->t_a_cet_science_process_skills}} </td>
+                                                <td class="text-align center">{{$value->t_a_cet_quantitative_skills}} </td>
                                             @endif
                                             @if($results_filter['Abstract Thinking'])
                                                 <td class="text-align center">{{$value->t_a_cet_abstract_thinking_skills}} </td>

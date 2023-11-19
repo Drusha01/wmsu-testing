@@ -1,5 +1,8 @@
 <div>
     <!-- Results Tab Content -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@1.5.3/dist/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <div role="tabpanel" class="tab-pane" id="results">
         <section class="results-section">
             <div class="container">
@@ -12,161 +15,115 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>CET Result</td>
-                            <td>
-                               <!-- Button trigger CET Result Modal -->
-                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uniqueCetResultModal">
-                                    View
-                                </button>
-                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>NAT Result</td>
-                            <td>
-                                <!-- Button trigger EXAM Permit Modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uniqueExamPermitModal">
-                                    View
-                                </button>
-                                <a href="path-to-nat-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Eat Result</td>
-                            <td>
+                        @forelse($complete_results as $key=> $value)
+                            <tr>
+                                <td>{{ $value->test_type_details}}</td>
+                                <td>
                                 <!-- Button trigger another Modal (assuming it's a different modal) -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class="btn btn-primary" wire:click="view_result({{$value->t_a_id}})">
                                     View
                                 </button>
-                                <a href="path-to-eat-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
-                        </tr>
+                            </tr>
+                        @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                                <br>
+                                <a  href="{{ route('student.application') }} "> 
+                                <button type="button" class="btn btn-success " style="width: 70px;">Apply</button>
+                                </a>
+                            </td>
+                        @endforelse
+                        
                         <!-- Add more exam result rows as needed -->
                     </tbody>
                 </table>
+                        
+                <!-- CET result Modal -->
+                <div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" style="width: 950px;  margin-left:-200px;">
+                            <div class="modal-body" id="to_print" >
+                                <div>
+                                <section class="layout d-flex justify-content-center">
+                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px; ">
+                                    <div style="text-align: center;">
+                                        <h4>Western Mindanao State University</h4>
+                                        <h5>Testing And Evaluation Center</h5>
+                                        <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
+                                    </div> 
+                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
+                                </section>
+                                @if($result)
+                                    <div style="text-align: center;" >
+                                        <div >
+                                            <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
+                                            <h3>{{$result['user_fullname']}}</h3>
+                                        </div> 
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col" colspan="2">CET PARTS</th>
+                                                <th scope="col">OAPR</th>
+                                                <th scope="col">English Proficiency</th>
+                                                <th scope="col">Reading Comprehension</th>
+                                                <th scope="col">Science Processing Skills</th>
+                                                <th scope="col">Quantitative Skills</th>
+                                                <th scope="col">Abstract Thinking</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2"></td>
+                                                    <td >{{$result['t_a_cet_oapr']}}%</td>
+                                                    <td>{{$result['t_a_cet_english_procficiency']}}%</td>
+                                                    <td>{{$result['t_a_cet_reading_comprehension']}}%</td>
+                                                    <td>{{$result['t_a_cet_science_process_skills']}}%</td>
+                                                    <td>{{$result['t_a_cet_quantitative_skills']}}%</td>
+                                                    <td>{{$result['t_a_cet_abstract_thinking_skills']}}%</td>
+                                                </tr>
+                                                <tr>  
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button class="btn btn-success" onclick="print_this('to_print')" >Print</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                    </div>
+                </div>
+
+                <script>
+                    window.print_this = function(id) {
+                        var prtContent = document.getElementById(id);
+                        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+                        
+                        WinPrint.document.write('<link rel="stylesheet" type="text/css"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+                        // To keep styling
+                        /*var file = WinPrint.document.createElement("link");
+                        file.setAttribute("rel", "stylesheet");
+                        file.setAttribute("type", "text/css");
+                        file.setAttribute("href", 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+                        WinPrint.document.head.appendChild(file);*/
+
+                        
+                        WinPrint.document.write(prtContent.innerHTML);
+                        WinPrint.document.close();
+                        WinPrint.setTimeout(function(){
+                        WinPrint.focus();
+                        WinPrint.print();
+                        WinPrint.close();
+                        }, 1000);
+                    }
+                </script>
             </div>
         </section>
     </div>
 </div>
 
 
-    <!-- EXAM permit Modal -->
-    <div class="modal fade" id="uniqueExamPermitModal" tabindex="-1" role="dialog" aria-labelledby="uniqueExamModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div>
-                    <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
-                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
-                        <div style="text-align: center;">
-                            <h4>Western Mindanao State University</h4>
-                            <h5>Testing And Evaluation Center</h5>
-                            <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
-                        </div> 
-                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
-                    </section>
-                    <div style="text-align: center;" >
-                        <div >
-                            <legend>EXAM PERMIT</legend>
-                            <h3>SALI, ALKHAYZEL ABDILLA</h3>
-                            <p>School from: Southern City Colleges</p>
-                        </div> 
-                        <table class="table mt-2">
-                            <thead>
-                                <tr>
-                                <th >Test Date</th>
-                                <th class="table-text" >Test Center</th>
-                                <th class="table-text" >Room No.</th>
-                                <th class="table-text">Test Time</th>
-                                <th class="table-text" >Test Code</th>
-                                <th class="table-text" >High School Code</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>  
-                            </tbody>
-                        </table>
-                        <div class="bottom-content mt-2">
-                            <div class="image-container-left  border border-danger rounded float-left">
-                                <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo">
-                            </div>
-                            <div class="image-container-right border border-danger float-right">
-                                <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo ">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
 
-        
-<!-- CET result Modal -->
-<div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="width: 950px;  margin-left:-200px;">
-            <div class="modal-body"  >
-            <div>
-            <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
-            <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
-                <div style="text-align: center;">
-                    <h4>Western Mindanao State University</h4>
-                    <h5>Testing And Evaluation Center</h5>
-                    <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
-                </div> 
-            <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
-            </section>
-            <div style="text-align: center;" >
-                <div >
-                    <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
-                    <h3>SALI, ALKHAYZEL ABDILLA</h3>
-                </div> 
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col" colspan="2">CET PARTS</th>
-                        <th scope="col">Communication Skills</th>
-                        <th scope="col">Reading Comprehension</th>
-                        <th scope="col">General Information</th>
-                        <th scope="col">Quantitative Skills</th>
-                        <th scope="col">Decesion Making & Reportorial Skills</th>
-                        <th scope="col">OVRP</th>
-                        <th scope="col">Percentile Rank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td>20%</td>
-                            <td>90%</td>
-                            <td>82%</td>
-                            <td>75%</td>
-                            <td>50%</td>
-                            <td>80%</td>
-                            <td>79%</td>
-                        </tr>
-                        <tr>  
-                    </tbody>
-                </table>
-                <!-- <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo" style="height: 100px; "> -->
-            </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
