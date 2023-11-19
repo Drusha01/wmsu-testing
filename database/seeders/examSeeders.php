@@ -43,5 +43,23 @@ class examSeeders extends Seeder
             1,
             NOW(),
             NOW());');
+        DB::statement('INSERT INTO exam_schedules VALUES(
+            NULL,
+            "Law School Admission Test",
+            "LSAT",
+            DATE(NOW()),
+            DATE_ADD(DATE(NOW()),INTERVAL 90 DAY),
+            1,
+            NOW(),
+            NOW());');
+        DB::statement('INSERT INTO exam_schedules VALUES(
+            NULL,
+            "Graduate Sschool admission Test",
+            "GSAT",
+            DATE(NOW()),
+            DATE_ADD(DATE(NOW()),INTERVAL 90 DAY),
+            1,
+            NOW(),
+            NOW());');
     }
 }

@@ -38,6 +38,13 @@
                                     Cancel
                                 </button>
                             @endif
+                            @if( $value->test_status_details == 'Accepted')
+                                <button id="modifyButtonDetails" wire:click="exam_permit({{$value->t_a_id}})" class="btn btn-primary " >
+                                    <i class="fas fa-eye"></i>
+                                    View Permit
+                                </button>
+                                <br>
+                            @endif
                             
                             </td>
                             
@@ -133,6 +140,32 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="view_exam_permit" tabindex="-1" role="dialog" aria-labelledby="view_exam_permitLabel" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifyModalLabelDetails">Exam Permit QR CODE</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-center" >
+                                <div align='center' wire:loading.attr="disabled">
+                                    <span wire:loading wire:target="exam_permit" > <span class="spinner-border spinner-border-sm mt-4" style='height:100px; width:100px; color: blue' role="status" aria-hidden="true"></span> </span>
+                                </div>
+                                <img src=" {{$qrcode}}" alt="" width="300" height="300">
+                            </div>
+                            <div class="text-center mt-5">
+                                <a href="{{$qrcode}}" download="qr-code.png" class="btn btn-success text-white me-2">
+                                    <span class="bi bi-download">&nbsp;&nbsp;Download QR</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="modal fade" id="view_application_modal" tabindex="-1" role="dialog" aria-labelledby="view_application_modalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg modal-md" role="document">
                     <div class="modal-content">
