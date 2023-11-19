@@ -83,6 +83,7 @@ return array(
     'App\\Http\\Livewire\\Student\\StudentResult\\StudentResult' => $baseDir . '/app/Http/Livewire/Student/StudentResult/StudentResult.php',
     'App\\Http\\Livewire\\Student\\StudentSchedule\\StudentSchedule' => $baseDir . '/app/Http/Livewire/Student/StudentSchedule/StudentSchedule.php',
     'App\\Http\\Livewire\\Student\\StudentStatus\\StudentStatus' => $baseDir . '/app/Http/Livewire/Student/StudentStatus/StudentStatus.php',
+    'App\\Http\\Livewire\\Student\\Studentpermit\\Studentpermit' => $baseDir . '/app/Http/Livewire/Student/Studentpermit/Studentpermit.php',
     'App\\Http\\Middleware\\AccountisAdmin' => $baseDir . '/app/Http/Middleware/AccountisAdmin.php',
     'App\\Http\\Middleware\\AccountisStudent' => $baseDir . '/app/Http/Middleware/AccountisStudent.php',
     'App\\Http\\Middleware\\AccountisValid' => $baseDir . '/app/Http/Middleware/AccountisValid.php',

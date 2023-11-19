@@ -703,6 +703,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Student\\StudentResult\\StudentResult' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentResult/StudentResult.php',
         'App\\Http\\Livewire\\Student\\StudentSchedule\\StudentSchedule' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentSchedule/StudentSchedule.php',
         'App\\Http\\Livewire\\Student\\StudentStatus\\StudentStatus' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentStatus/StudentStatus.php',
+        'App\\Http\\Livewire\\Student\\Studentpermit\\Studentpermit' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/Studentpermit/Studentpermit.php',
         'App\\Http\\Middleware\\AccountisAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisAdmin.php',
         'App\\Http\\Middleware\\AccountisStudent' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisStudent.php',
         'App\\Http\\Middleware\\AccountisValid' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisValid.php',
