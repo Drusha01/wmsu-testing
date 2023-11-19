@@ -16,7 +16,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.4/umd/popper.min.js"></script>
     @livewireStyles
 </head>
-<body style="background: linear-gradient(to top, #990000, #ccc); background-size: 100% 200%; animation: gradientAnimation 5s infinite;">
+<body > <!-- style="background: linear-gradient(to top, #990000, #ccc); background-size: 100% 200%; animation: gradientAnimation 5s infinite;" -->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="bg1"></div>
+    <div class="bg1 bg2"></div>
+    <div class="bg1 bg3"></div>
   <style>
     @keyframes gradientAnimation {
       0%, 100% {
