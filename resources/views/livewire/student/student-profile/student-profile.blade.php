@@ -1,5 +1,4 @@
 <div>
-   
     <!-- content-->
     <section class="profile-section">
     <div class="container">
@@ -488,14 +487,6 @@
                 </div>
             </div>
 
-           
-
-            
     <!-- content-->
     </section>
-
-
-   
-
-    <script></script>
 </div>

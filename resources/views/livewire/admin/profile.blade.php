@@ -49,21 +49,22 @@
                             <!-- Tab navigation for different settings -->
                             <ul class="nav nav-tabs" id="accountSettingsTabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link @if($modal_active == 'photo') active @endif" wire:click="modal_active('photo')" role="tab" aria-controls="modify" aria-selected="true">Modify Info</a>
+                                    <a class="nav-link @if($modal_active == 'photo') active @endif" href="#modify" role="tab" aria-controls="modify" aria-selected="true" wire:click="modal_active('photo')">Modify Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link @if($modal_active == 'password') active @endif" wire:click="modal_active('password')" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                                    <a class="nav-link @if($modal_active == 'password') active @endif" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false" wire:click="modal_active('password')">Change Password</a>
                                 </li>
                             </ul>
+
 
                             <!-- Tab content -->
                             <div class="tab-content" id="accountSettingsTabContent">
                                 <!-- Modify Info Tab -->
-                                <div class="tab-pane fade @if($modal_active == 'photo') show active @endif" role="tabpanel" aria-labelledby="modify-tab" >
+                                <div class="tab-pane fade @if($modal_active == 'photo')  show active @endif"  id="modify" role="tabpanel" aria-labelledby="modify" >
                                     <!-- Form to modify username and profile image -->
                                     <form wire:submit.prevent="save_photo()">
-                                        <div class="form-group">
-                                            <label class="fas" for="newProfileImage">Change profile picture:</label>
+                                        <div class="form-group mt-4">
+                                            <label class="fas" for="newProfileImage ">Change profile picture:</label>
                                             <input type="file" class="form-control" wire:model.defer="photo" required  accept="image/png, image/jpeg" id="photo-{{$photo_id}}">
                                         </div>
                                         <div class="modal-footer">
@@ -78,7 +79,7 @@
                                 <div class="tab-pane fade @if($modal_active == 'password') show active @endif" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
                                     <!-- Form to change password -->
                                     <form wire:submit.prevent="change_password()">
-                                        <div class="form-group row">
+                                        <div class="form-group row mt-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Current Password<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                                 <input type="password"  wire:model.defer="current_password"  class="form-control" placeholder="Current Password" required>
@@ -145,49 +146,49 @@
                                 <fieldset>
                                     <!-- Full Name -->
                                     <form wire:submit.prevent="save_profile_info()">
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="firstname" class="form-control" placeholder="Enter firstname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="middlename" class="form-control" placeholder="Enter middlename" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="lastname" class="form-control" placeholder="Enter lastname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="suffix" class="form-control" placeholder="Enter suffix" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="gender" class="form-control" placeholder="Enter gender" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="address" class="form-control" placeholder="Enter address" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model.defer="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
