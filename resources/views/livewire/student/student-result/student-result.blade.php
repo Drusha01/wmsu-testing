@@ -15,35 +15,31 @@
                         <tr>
                             <td>CET Result</td>
                             <td>
-                               <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                View
+                               <!-- Button trigger CET Result Modal -->
+                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uniqueCetResultModal">
+                                    View
                                 </button>
                                 <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
-                            
                         </tr>
                         <tr>
                             <td>NAT Result</td>
                             <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                View
+                                <!-- Button trigger EXAM Permit Modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uniqueExamPermitModal">
+                                    View
                                 </button>
-
-                                </div>
-                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
+                                <a href="path-to-nat-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
                         </tr>
                         <tr>
                             <td>Eat Result</td>
                             <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                View
+                                <!-- Button trigger another Modal (assuming it's a different modal) -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                    View
                                 </button>
-
-
-                                </div>
-                                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
+                                <a href="path-to-eat-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
                             </td>
                         </tr>
                         <!-- Add more exam result rows as needed -->
@@ -55,15 +51,77 @@
 </div>
 
 
+    <!-- EXAM permit Modal -->
+    <div class="modal fade" id="uniqueExamPermitModal" tabindex="-1" role="dialog" aria-labelledby="uniqueExamModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div>
+                    <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
+                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
+                        <div style="text-align: center;">
+                            <h4>Western Mindanao State University</h4>
+                            <h5>Testing And Evaluation Center</h5>
+                            <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
+                        </div> 
+                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
+                    </section>
+                    <div style="text-align: center;" >
+                        <div >
+                            <legend>EXAM PERMIT</legend>
+                            <h3>SALI, ALKHAYZEL ABDILLA</h3>
+                            <p>School from: Southern City Colleges</p>
+                        </div> 
+                        <table class="table mt-2">
+                            <thead>
+                                <tr>
+                                <th >Test Date</th>
+                                <th class="table-text" >Test Center</th>
+                                <th class="table-text" >Room No.</th>
+                                <th class="table-text">Test Time</th>
+                                <th class="table-text" >Test Code</th>
+                                <th class="table-text" >High School Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>  
+                            </tbody>
+                        </table>
+                        <div class="bottom-content mt-2">
+                            <div class="image-container-left  border border-danger rounded float-left">
+                                <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo">
+                            </div>
+                            <div class="image-container-right border border-danger float-right">
+                                <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="path-to-cet-result-pdf.pdf" download class="btn btn-success"><i class="fa fa-download"></i> Download </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        
 <!-- CET result Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="width: 950px;  margin-left:-200px;">
             <div class="modal-body"  >
             <div>
             <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
             <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
-                <div>
+                <div style="text-align: center;">
                     <h4>Western Mindanao State University</h4>
                     <h5>Testing And Evaluation Center</h5>
                     <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
@@ -73,8 +131,7 @@
             <div style="text-align: center;" >
                 <div >
                     <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
-                    <p>December 25 2023</p>
-                    <legend>SALI, ALKHAYZEL ABDILLA</legend>
+                    <h3>SALI, ALKHAYZEL ABDILLA</h3>
                 </div> 
                 <table class="table">
                     <thead>
@@ -103,7 +160,7 @@
                         <tr>  
                     </tbody>
                 </table>
-                <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo" style="height: 100px; ">
+                <!-- <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo" style="height: 100px; "> -->
             </div>
             </div>
             <div class="modal-footer">

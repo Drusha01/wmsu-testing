@@ -440,6 +440,72 @@
                     </div>
                 </div>
             </div>
+
+                <!-- EXAM permit Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style="width: 950px;  margin-left:-200px;">
+                        <div class="modal-body"  >
+                            <div>
+                        <section class="layout d-flex"   style="justify-content: center; margin: right -100px;">
+                        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-left: -100px;">
+                            <div style="text-align: center;">
+                                <h4>Western Mindanao State University</h4>
+                                <h5>Testing And Evaluation Center</h5>
+                                <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
+                            </div> 
+                        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
+                        </section>
+                        <div style="text-align: center;" >
+                            <div >
+                                <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
+                                <p>December 25 2023</p>
+                                <legend>SALI, ALKHAYZEL ABDILLA</legend>
+                                <legend>School from: Southern City Colleges</legend>
+                            </div> 
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th >Test Date</th>
+                                    <th class="table-text" >Test Center</th>
+                                    <th class="table-text" >Room No.</th>
+                                    <th class="table-text">Test Time</th>
+                                    <th class="table-text" >Test Code</th>
+                                    <th class="table-text" >High School Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>  
+                                </tbody>
+                            </table>
+                            <div class="bottom-content ">
+                                <div class="image-container-left  border border-danger rounded float-left">
+                                    <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo">
+                                </div>
+                                <div class="image-container-right border border-danger">
+                                    <img src="http://wmsutec/images/logo/qr.png" alt="Logo" class="form-logo ">
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </section>
     </div>
 </div>
+
+
+
