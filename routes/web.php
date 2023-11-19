@@ -47,6 +47,7 @@ use App\Http\Livewire\Page\Programs\Agri;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentgsat;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentlsat;
 use App\Http\Livewire\Student\ApplicationPermit;
+use App\Http\Livewire\Student\Studentpermit\Studentpermit;
 
 
 // admin
@@ -125,6 +126,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/application-form',ApplicationForm::class)->name('application-form');
         Route::get('/application-back',ApplicationBack::class)->name('application-back');
         Route::get('/application-permit',ApplicationPermit::class)->name('application-permit');
+        Route::get('/application-permit/{id}',Studentpermit::class)->name('view-application-permit');
        
        
         // test routes application

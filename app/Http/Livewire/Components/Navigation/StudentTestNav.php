@@ -31,9 +31,22 @@ class StudentTestNav extends Component
             return redirect('/inactive');
         }
     }
+    public function hydrate(){
+        self::update_data();
+    }
+    public function update_data(){
+
+        $this->exam_schedules = DB::table('exam_schedules')
+            ->select('*')
+            ->get()
+            ->toArray();
+        // dd( $this->exam_schedules);
+
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'amin-management';
+        self::update_data();
     }
     public function render()
     {
