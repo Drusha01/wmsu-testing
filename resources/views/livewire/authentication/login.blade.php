@@ -21,10 +21,10 @@
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password"  wire:model="password" class="form-control" placeholder="Enter Password" required>
                             </div>
-                            <button type="submit" class="btn btn-block login-btn mb-4">Login</button>
+                            <button type="submit" class="btn btn-block login-btn mb-4">Continue</button>
                         </form>
-                            <a href="forgot-password" class="forgot-password-link">Forgot password?</a>
-                            <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register-email') }}" class="text-reset">Register using Email</a></p>
+                            <a href="forgot-password" class="text-reset">Forgot password?</a>
+                            <p class="text-reset mt-2">Don't have an account? <a href="{{ route('register-email') }}" class="register" style="color:#990000;">Register using Email</a></p>
                             <nav class="login-card-footer-nav">
                             <a href="#!">Terms of use.</a>
                             <a href="#!">Privacy policy</a>
