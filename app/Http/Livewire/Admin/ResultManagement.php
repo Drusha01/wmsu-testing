@@ -192,7 +192,7 @@ class ResultManagement extends Component
             'Science Processing Skills' => true,
             'Quantitative Skills' => true,
             'Abstract Thinking' => true,							
-            'Actions'	=> true					
+            'Actions'	=> false					
         ];
 
         $this->examinees_filter = [
@@ -202,7 +202,7 @@ class ResultManagement extends Component
             'Exam type'=> true,
             'Date applied'	=> true,
             'Status'=> true ,
-            'Actions'	=> true		
+            'Actions'	=> false		
         ];
 
         $this->active = 'results';
