@@ -31,6 +31,8 @@ class AppointmentManagement extends Component
     public $complete_appointment_data;
     public $complete_appointment_data_filter;
 
+    public $mail = true;
+
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -65,6 +67,8 @@ class AppointmentManagement extends Component
             'appointment_id',
             DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
             'user_email',
+            'user_id',
+            'user_email_verified',
             'user_phone',
             'appointment_purpose',
             'appointment_message',
@@ -85,6 +89,8 @@ class AppointmentManagement extends Component
             'appointment_id',
             DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
             'user_email',
+            'user_id',
+            'user_email_verified',
             'user_phone',
             'appointment_purpose',
             'appointment_message',
@@ -105,6 +111,8 @@ class AppointmentManagement extends Component
             'appointment_id',
             DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
             'user_email',
+            'user_id',
+            'user_email_verified',
             'user_phone',
             'appointment_purpose',
             'appointment_message',
@@ -337,6 +345,26 @@ class AppointmentManagement extends Component
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
+                
+                    
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Declined';
+                            $this->reason = NULL;
+                            $this->schedule = NULL;
+                            $this->email = $value->user_email;
+                            Mail::send('mail.appointment-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'schedule'=>$this->schedule,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                            ('Appointment Delined');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                        });
+                        }
+                    }
                 }
             }
     
@@ -392,6 +420,25 @@ class AppointmentManagement extends Component
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
+                
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Declined';
+                            $this->reason = NULL;
+                            $this->schedule = NULL;
+                            $this->email = $value->user_email;
+                            Mail::send('mail.appointment-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'schedule'=>$this->schedule,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                            ('Appointment Delined');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                        });
+                        }
+                    }
                 }
             }
     
@@ -461,6 +508,25 @@ class AppointmentManagement extends Component
                             'appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id,
                             'appointment_datetime'=> $this->unassigned_appointment_datetime
                         ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Scheduled';
+                            $this->reason = NULL;
+                            $this->schedule = $this->unassigned_appointment_datetime;
+                            $this->email = $value->user_email;
+                            Mail::send('mail.appointment-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'schedule'=>$this->schedule,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Appointment Accepted');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
                 }
             }
     
@@ -560,6 +626,26 @@ class AppointmentManagement extends Component
                         ->update([
                             'appointment_datetime'=> $this->assigned_appointment_datetime
                     ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Re-Scheduled';
+                            $this->reason = NULL;
+                            $this->schedule = $this->assigned_appointment_datetime;
+                            $this->email = $value->user_email;
+                            Mail::send('mail.appointment-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'schedule'=>$this->schedule,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Appointment is Re-Scheduled');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
+
                 }
             }
     
@@ -648,6 +734,25 @@ class AppointmentManagement extends Component
                             'appointment_datetime'=> NULL,
                             'appointment_status_id'=> DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id
                     ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Schedule Removed';
+                            $this->reason = NULL;
+                            $this->schedule = NULL;
+                            $this->email = $value->user_email;
+                            Mail::send('mail.appointment-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'schedule'=>$this->schedule,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Appointment Schedule Removed');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
                 }
             }
     
@@ -724,6 +829,46 @@ class AppointmentManagement extends Component
             ->update([
                 'appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Complete')->first()->status_id
             ]);
+
+            $appointment_data = DB::table('appointments as a')
+            ->select(
+            'appointment_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'user_email',
+            'user_id',
+            'user_email_verified',
+            'user_phone',
+            'appointment_purpose',
+            'appointment_message',
+            'appointment_preferred_date',
+            'appointment_preferred_time',
+            'appointment_datetime',
+            'status_details',
+            )
+            ->join('users as u','u.user_id','a.appointment_user_id')
+            ->join('status as s','s.status_id','a.appointment_status_id')
+            ->where('appointment_id','=',$appointment_id )
+            ->orderBy('a.date_created','desc')
+            ->first();
+
+            if($this->mail){
+                if(strlen($appointment_data->user_email)>0 && $appointment_data->user_email_verified ==1){
+                    $this->status = 'Complete';
+                    $this->reason = NULL;
+                    $this->schedule = NULL;
+                    $this->email = $appointment_data->user_email;
+                    Mail::send('mail.appointment-status-email', [
+                        'status'=>$this->status,
+                        'reason'=>$this->reason,
+                        'schedule'=>$this->schedule,
+                        'email'=>$this->email], 
+                        function($message) {
+                    $message->to($this->email, $this->email)->subject
+                       ('Appointment Complete');
+                    $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                 });
+                }
+            }
 
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
