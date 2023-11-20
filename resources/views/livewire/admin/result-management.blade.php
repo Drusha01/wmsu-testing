@@ -15,10 +15,10 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link @if($active == 'results') show active @endif " wire:key="results" wire:click="active_page('results')" >Result Management</a>
+                <a class="nav-link @if($active == 'results') show active @endif " href="#" wire:key="results" wire:click="active_page('results')" >Result Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'examinees') show active @endif " wire:key="examinees" wire:click="active_page('examinees')" >Examinees Report</a>
+                <a class="nav-link @if($active == 'examinees') show active @endif " href="#"  wire:key="examinees" wire:click="active_page('examinees')" >Examinees Report</a>
             </li>
         </ul>
         <!-- Tab Content -->
