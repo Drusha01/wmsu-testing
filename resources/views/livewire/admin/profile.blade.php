@@ -29,8 +29,8 @@
                                     </a>
                                 </label>
                             </div>
-                            <h3 class="mt-3">Profile username</h3>
-                            <p class="text-muted">Status: Registered</p>
+                            <h3 class="mt-3">{{$user_details['user_name']}}</h3>
+                            <!-- <p class="text-muted">Status: Registered</p> -->
                             <button id="modifyButtonProfile" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
                         </div>
                     </div>
