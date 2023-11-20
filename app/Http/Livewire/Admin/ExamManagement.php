@@ -12,7 +12,7 @@ use Mail;
 
 class ExamManagement extends Component
 {
-    
+
     public $mail = true;
 
     public $user_detais;
@@ -1533,6 +1533,7 @@ class ExamManagement extends Component
                        
                         )
                     ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                    ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
@@ -1553,6 +1554,25 @@ class ExamManagement extends Component
                         ->select('test_status_id as t_a_test_status_id')
                         ->first())['t_a_test_status_id']
                 ]);
+
+                if($this->mail){
+                    if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                        $this->status = 'Accepted';
+                        $this->reason = NULL;
+                        $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                        $this->email = $value->user_email;
+                        Mail::send('mail.application-status-email', [
+                            'status'=>$this->status,
+                            'reason'=>$this->reason,
+                            'link'=>$this->link,
+                            'email'=>$this->email], 
+                            function($message) {
+                        $message->to($this->email, $this->email)->subject
+                           ('Test Application '.$this->status);
+                        $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                     });
+                    }
+                }
             }
             // dd($application_list );
             $this->dispatchBrowserEvent('swal:remove_backdrop',[

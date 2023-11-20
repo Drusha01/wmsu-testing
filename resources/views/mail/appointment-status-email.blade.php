@@ -38,7 +38,7 @@
 <body>
   <div class="container email-content">
     <div class="center-logo">
-        <img src="{{ asset('images/logo/logo.png') }}" class="img-fluid">
+      <img src="<?php echo $message->embed(asset('images/logo/logo.png') ); ?>">
       <h2>Western Mindanao State University Testing and Evaluation Center</h2>
     </div>
   
