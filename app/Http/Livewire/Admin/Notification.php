@@ -12,6 +12,8 @@ use Mail;
 
 class Notification extends Component
 {
+    public $mail = true;
+    
     public $user_detais;
     public $title;
     public function booted(Request $request){

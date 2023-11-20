@@ -11,6 +11,9 @@ use Mail;
 
 class AppointmentManagement extends Component
 {
+
+    public $mail = true;
+
     public $user_detais;
     public $title;
 
@@ -31,7 +34,6 @@ class AppointmentManagement extends Component
     public $complete_appointment_data;
     public $complete_appointment_data_filter;
 
-    public $mail = true;
 
 
     public function booted(Request $request){

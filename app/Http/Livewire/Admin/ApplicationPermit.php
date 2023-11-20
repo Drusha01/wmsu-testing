@@ -11,6 +11,8 @@ use Mail;
 
 class ApplicationPermit extends Component
 {
+    public $mail = true;
+    
     public $hash;
     public $examinee;
 

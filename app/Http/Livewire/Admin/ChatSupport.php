@@ -11,6 +11,10 @@ use Mail;
 
 class ChatSupport extends Component
 {
+    
+    public $mail = true;
+    
+
     public $user_detais;
     public $title;
 

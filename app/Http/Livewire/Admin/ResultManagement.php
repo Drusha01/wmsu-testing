@@ -14,6 +14,10 @@ use Mail;
 
 class ResultManagement extends Component
 {
+
+    public $mail = true;
+
+    
     use WithFileUploads;
     public $user_detais;
     public $title;

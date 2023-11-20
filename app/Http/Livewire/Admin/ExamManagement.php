@@ -12,6 +12,9 @@ use Mail;
 
 class ExamManagement extends Component
 {
+    
+    public $mail = true;
+
     public $user_detais;
     public $title;
 

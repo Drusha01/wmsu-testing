@@ -13,6 +13,8 @@ class Announcement extends Component
 {
     use WithFileUploads;
 
+    public $mail = true;
+    
     public $user_detais;
     public $title;
 

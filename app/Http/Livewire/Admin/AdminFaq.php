@@ -14,6 +14,8 @@ class AdminFaq extends Component
     public $user_detais;
     public $title;
 
+    public $mail = true;
+
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
         if(!isset($this->user_details['user_id'])){

@@ -14,6 +14,9 @@ use Mail;
 class ApplicationManagement extends Component
 {
     // use WithPagination;
+
+    public $mail = true;
+    
     public $user_detais;
     public $title;
 
