@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
     <title>{{ config('app.name', 'Laravel').' - '.$title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="utf-8">

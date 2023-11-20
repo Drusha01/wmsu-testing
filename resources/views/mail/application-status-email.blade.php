@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- not nice - ace dev - https://github.com/Drusha01 -->
   <meta charset="UTF-8">
   <title>WMSU Testing and Evaluation Center</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

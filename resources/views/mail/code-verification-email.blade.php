@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
     <meta charset="utf-8">
     <title>Email Verification</title>
     <style>

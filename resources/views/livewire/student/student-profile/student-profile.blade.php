@@ -494,4 +494,5 @@
 
     <!-- content-->
     </section>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
 </div>

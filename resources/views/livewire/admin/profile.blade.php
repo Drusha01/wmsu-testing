@@ -214,4 +214,5 @@
     </main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
 </div>
