@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mail;
 
 class ExamAdministrator extends Component
 {

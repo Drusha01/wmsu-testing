@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Mail;
 
 class ExamManagement extends Component
 {

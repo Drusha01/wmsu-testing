@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Admin\Exports\ExamineesExport;
 use App\Http\Livewire\Admin\Imports\ImportResults;
+use Mail;
 
 class ResultManagement extends Component
 {

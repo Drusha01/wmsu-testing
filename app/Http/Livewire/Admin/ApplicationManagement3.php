@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class ApplicationManagement3 extends Component
 {

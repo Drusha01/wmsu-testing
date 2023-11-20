@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 // use Livewire\WithPagination;
+use Mail;
 
 class ApplicationManagement extends Component
 {
