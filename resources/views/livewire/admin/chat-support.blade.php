@@ -174,7 +174,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                    <div class="box-body mt-3 justify-content-center" wire:poll.2000ms="update_content_data()">
+                                    <div class="box-body mt-3 justify-content-center" wire:poll.5000ms="update_content_data()">
                                         <div class="overflow-auto ml-2" style="max-height:500px">
                                             @foreach ($chat_content as $key =>$value)
                                                 @if($value->cbc_user_id != $chat_box['chat_box_user_sender'])

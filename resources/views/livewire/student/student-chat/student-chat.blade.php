@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <h2 class="text-center">Chat Support</h2>
                     </div>
-                    <div class="card-body overflow-auto" style="max-height:400px" id="chat_content"  wire:poll.2000ms="update_data()">
+                    <div class="card-body overflow-auto" style="max-height:400px" id="chat_content"  wire:poll.5000ms="update_data()">
                         <!-- Student's message -->
                         @if($chat_box)
                             @forelse ($chat_content as $key =>$value)
