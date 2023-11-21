@@ -21,6 +21,7 @@ return array(
     'App\\Http\\Livewire\\Admin\\Announcement' => $baseDir . '/app/Http/Livewire/Admin/Announcement.php',
     'App\\Http\\Livewire\\Admin\\ApplicationManagement' => $baseDir . '/app/Http/Livewire/Admin/ApplicationManagement.php',
     'App\\Http\\Livewire\\Admin\\ApplicationManagement3' => $baseDir . '/app/Http/Livewire/Admin/ApplicationManagement3.php',
+    'App\\Http\\Livewire\\Admin\\ApplicationPermit' => $baseDir . '/app/Http/Livewire/Admin/ApplicationPermit.php',
     'App\\Http\\Livewire\\Admin\\AppointmentManagement' => $baseDir . '/app/Http/Livewire/Admin/AppointmentManagement.php',
     'App\\Http\\Livewire\\Admin\\ChatSupport' => $baseDir . '/app/Http/Livewire/Admin/ChatSupport.php',
     'App\\Http\\Livewire\\Admin\\Dashboard' => $baseDir . '/app/Http/Livewire/Admin/Dashboard.php',
