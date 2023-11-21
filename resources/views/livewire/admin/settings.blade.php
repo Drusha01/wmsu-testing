@@ -541,7 +541,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="services-filterLabel">Sort&nbsp;Columns for FAQ</h5>
+                                    <h5 class="modal-title" id="services-filterLabel">Sort&nbsp;Columns for Services</h5>
                                 </div>
                                 <hr>
                                 <div class="modal-body">
@@ -806,7 +806,7 @@
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success   mx-1" wire:click="add_footer()" >Add Footer</button>
                             </div>
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faq-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#footer-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -815,7 +815,7 @@
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
-                    <div class="modal fade" id="faq-filter" tabindex="-1" role="dialog" aria-labelledby="faq-filterLabel" aria-hidden="true">
+                    <div class="modal fade" id="footer-filter" tabindex="-1" role="dialog" aria-labelledby="faq-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -1115,7 +1115,7 @@
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success   mx-1" wire:click="add_faq()" >Add FAQ</button>
                             </div>
-                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faq-filter">
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#faqs-filter">
                                 <i class="bi bi-funnel-fill me-1"></i>
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
@@ -1124,7 +1124,7 @@
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
-                    <div class="modal fade" id="faq-filter" tabindex="-1" role="dialog" aria-labelledby="faq-filterLabel" aria-hidden="true">
+                    <div class="modal fade" id="faqs-filter" tabindex="-1" role="dialog" aria-labelledby="faq-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">

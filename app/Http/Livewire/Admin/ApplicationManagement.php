@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 // use Livewire\WithPagination;
+use Mail;
 
 class ApplicationManagement extends Component
 {
     // use WithPagination;
+
+    public $mail = true;
+
     public $user_detais;
     public $title;
 
@@ -119,6 +123,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -138,6 +145,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -160,6 +170,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -179,6 +192,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -201,6 +217,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -221,6 +240,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -325,6 +347,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -344,6 +369,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -366,6 +394,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -385,6 +416,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -407,6 +441,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -427,6 +464,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -496,6 +536,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -515,6 +558,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -537,6 +583,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -556,6 +605,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')
@@ -578,6 +630,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -598,6 +653,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied'),
@@ -731,6 +789,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -750,6 +811,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -787,6 +851,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -806,6 +873,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -837,6 +907,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -857,6 +930,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -915,6 +991,26 @@ class ApplicationManagement extends Component
                             ->first())['t_a_test_status_id'],
                             't_a_accepted_by'=> $this->user_details['user_id']
                     ]);
+
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Processing';
+                            $this->reason = NULL;
+                            $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                            $this->email = $value->user_email;
+                            Mail::send('mail.application-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'link'=>$this->link,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Test Application Processing');
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
                 }
             }
             $this->dispatchBrowserEvent('swal:redirect',[
@@ -941,6 +1037,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -960,6 +1059,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1052,7 +1154,26 @@ class ApplicationManagement extends Component
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
                             
-                ]);
+                    ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Declined';
+                            $this->reason = $this->declined_accepted_reason;
+                            $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                            $this->email = $value->user_email;
+                            Mail::send('mail.application-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'link'=>$this->link,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Test Application '.$this->status);
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
                 }
             }
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
@@ -1078,6 +1199,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1097,6 +1221,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1148,7 +1275,27 @@ class ApplicationManagement extends Component
                                 ->where('test_status_details', '=', 'Declined')
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
-                ]);
+                    ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Declined';
+                            $this->reason = $this->declined_pending_reason;
+                            $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                            $this->email = $value->user_email;
+                            Mail::send('mail.application-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'link'=>$this->link,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Test Application '.$this->status);
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
+
                 }
             }
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
@@ -1174,6 +1321,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1193,6 +1343,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1272,7 +1425,28 @@ class ApplicationManagement extends Component
                                 ->where('test_status_details', '=', 'Pending')
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
-                ]);
+                    ]);
+
+                    if($this->mail){
+                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                            $this->status = 'Pending';
+                            $this->reason = $this->return_reason;
+                            $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                            $this->email = $value->user_email;
+                            Mail::send('mail.application-status-email', [
+                                'status'=>$this->status,
+                                'reason'=>$this->reason,
+                                'link'=>$this->link,
+                                'email'=>$this->email], 
+                                function($message) {
+                            $message->to($this->email, $this->email)->subject
+                               ('Test Application '.$this->status);
+                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                         });
+                        }
+                    }
+
+
                 }
             }
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
@@ -1299,6 +1473,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1318,6 +1495,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1340,6 +1520,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1359,6 +1542,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1381,6 +1567,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -1401,6 +1590,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -1519,6 +1711,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1538,6 +1733,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1560,6 +1758,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1579,6 +1780,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied')
@@ -1601,6 +1805,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -1621,6 +1828,9 @@ class ApplicationManagement extends Component
             ->select(
                 // '*',
                 't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
                 DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                 'test_type_name',
                 DB::raw('DATE(ta.date_created) as date_applied'),
@@ -1765,6 +1975,9 @@ class ApplicationManagement extends Component
                 ->select(
                     // '*',
                     't_a_id',
+                    'user_email',
+                    'user_id',
+                    'user_email_verified',
                     DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
                     'test_type_name',
                     DB::raw('DATE(ta.date_created) as date_applied')

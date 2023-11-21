@@ -448,7 +448,6 @@ class Studentcet extends Component
         }
 
         if($this->t_a_receipt_photo && file_exists(storage_path().'/app/livewire-tmp/'.$this->t_a_receipt_photo->getfilename())){
-            dd('here');
             $file_extension =$this->t_a_receipt_photo->getClientOriginalExtension();
             $tmp_name = 'livewire-tmp/'.$this->t_a_receipt_photo->getfilename();
             $size = Storage::size($tmp_name);

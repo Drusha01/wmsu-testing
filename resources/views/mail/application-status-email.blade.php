@@ -38,14 +38,14 @@
 <body>
   <div class="container email-content">
     <div class="center-logo">
-        <img src="{{ asset('images/logo/logo.png') }}" class="img-fluid">
+      <img src="<?php echo $message->embed(asset('images/logo/logo.png') ); ?>">
       <h2>Western Mindanao State University Testing and Evaluation Center</h2>
     </div>
    
-    <p>Good day, Applicant Name,</p>
-    <p>Testing and Evaluation Center would like to notify that your application is now <strong>status</strong>.</p>
-    <p><strong>Declined - Reason</strong></p>
-    <p>You can now view your application at <a href="(WMSUstatus_link)">WMSU Status Link</a>.</p>
+    <p>Good day, {{$email}},</p>
+    <p>Testing and Evaluation Center would like to notify that your application is now <strong>{{$status}}</strong>.</p>
+    @if(isset($reason))<p><strong>Reason :{{$reason}}</strong></p>@endif
+    <p>You can now view your application at <a href="{{$link}}">{{$link}}</a>.</p>
     <p>This is an automated email.</p>
     <div class="signature">
         <p>Best Regards,<br>Testing and Evaluation Center<br>09066131868</p>

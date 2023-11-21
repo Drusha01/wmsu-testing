@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class ApplicationManagement3 extends Component
 {
     // use WithPagination;
+    
+    public $mail = true;
+
     public $user_detais;
     public $title;
 

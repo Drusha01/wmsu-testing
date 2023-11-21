@@ -38,13 +38,13 @@
 <body>
   <div class="container email-content">
     <div class="center-logo">
-        <img src="{{ asset('images/logo/logo.png') }}" class="img-fluid">
+      <img src="<?php echo $message->embed(asset('images/logo/logo.png') ); ?>">
       <h2>Western Mindanao State University Testing and Evaluation Center</h2>
     </div>
   
-    <p>Good day, Application Name,</p>
-    <p>Testing and Evaluation Center would like to notify that your appointment is <strong>scheduled/declined/Rescheduled</strong> on <strong>DATE/TIME</strong>.</p>
-    <p><strong>Decline - Reason</strong></p>
+    <p>Good day, {{$email}},</p>
+    <p>Testing and Evaluation Center would like to notify that your appointment is <strong>{{ $status}}</strong> <strong>@if($schedule){{'on '.date_format(date_create($schedule),"F d, Y h:i A")}}@endif</strong>.</p>
+    @if(isset($reason))<p><strong>{{$reason}}</strong></p>@endif
     <p>Please be on time and stay safe.</p>
     <div class="signature">
       <p>Best Regards,<br>Testing and Evaluation Center<br>09066131868</p>

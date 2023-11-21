@@ -328,15 +328,9 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
-            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
-            ->where('test_type_details', '=', 'College Entrance Test')
-                    
-            // ->where('t_a_test_status_id', '=', 
-            //     ((array) DB::table('test_types')
-            //         ->where('test_type_details', '=', 'College Entrance Test')
-            //         ->select('test_type_id as t_a_test_type_id')
-            //         ->first())['t_a_test_type_id'])
+            // ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             
+            ->where('test_type_details', '=', 'College Entrance Test')
             ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
             ->where('t_a_isactive','=',1)
             ->where('t_a_id','=',$this->t_a_id )
@@ -414,7 +408,8 @@ class StudentStatus extends Component
     public function exam_permit($t_a_id){ 
         $this->edit = false;
         $this->t_a_id = $t_a_id;
-        $this->view_details = DB::table('test_applications as ta')
+        $this->view_details =null;
+        $this->view_permit = DB::table('test_applications as ta')
             ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
             ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
@@ -440,7 +435,7 @@ class StudentStatus extends Component
             // dd($this->view_details);
       
         
-        $path = 'application-permit/'.$this->view_details[0]->t_a_hash;
+        $path = 'application-permit/'.$this->view_permit[0]->t_a_hash;
         $this->qr_code_link = ( $_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.$path;
         $options = new QROptions;
         $options->version     = 7;

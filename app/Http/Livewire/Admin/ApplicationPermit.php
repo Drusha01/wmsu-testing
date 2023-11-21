@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class ApplicationPermit extends Component
 {
+    public $mail = true;
+    
     public $hash;
     public $examinee;
 
