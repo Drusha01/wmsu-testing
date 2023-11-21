@@ -194,26 +194,13 @@
                                 </div>
                             </div>
                             <div class="box-footer px-2">
-                                <div class="d-md-flex d-sm-block justify-content-between align-items-center">
-                                    <textarea class="form-control form-control-sm border-0 py-10 mb-3 mt-3 mr-3" wire:model.defer="chat_content_details" rows="2" id="newmessage" name="newmessage"  placeholder="Type something here..."></textarea>
-                                    <div class="d-flex justify-content-evenly align-items-center mt-md-0">
-                                        <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary d-grid align-content-sm-center">
-                                            <i class='bx bx-link-alt' ></i>
-                                        </button>
-                                        <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary d-grid align-content-sm-center">
-                                            <i class='bx bxs-image-alt' ></i>
-                                        </button>
-                                        <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary d-grid align-content-sm-center">
-                                            <i class='bx bxs-microphone' ></i>
-                                        </button>
-                                        <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary d-grid align-content-sm-center">
-                                            <i class='bx bxs-camera' ></i>
-                                        </button>
-                                        <button type="button" class="waves-effect waves-circle btn btn-circle btn-primary d-grid align-content-sm-center" wire:click="send_message()">
-                                            <i class='bx bx-send'></i>
-                                        </button>
+                                <div class="input-group mt-3 p-2">
+                                    <input type="text" class="form-control" wire:model="chat_content_details" placeholder="Type your message...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" wire:click="send_message()"> Send </button>
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
