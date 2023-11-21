@@ -60,14 +60,15 @@
                                         </div>
                                 </div> 
                                 <div class="scrollbar-y chat-box-six2 cqh-22 overflow-x-hidden" >
-                                    <ul class="nav nav-tabs nav-tabs-vertical nav-justified" role="tablist">
+                                    <ul class="nav flex-column" >
                                         @forelse ($chat_box_list as $key => $value)
-                                            <li class="nav-item" > 
-                                                <a class="nav-link fade show p-0" wire:click="chat_box_selected({{$value->cbc_chat_box_id}})" @if($value->cbc_user_id == $chat_box['chat_box_user_sender']) style="background-color:white;" @endif >
+                      
+                                            <li class="nav-item border border-dark rounded-4 mt-2 ml-3" > 
+                                                <a class="nav-link fade show p-0 my-3" wire:click="chat_box_selected({{$value->cbc_chat_box_id}})" @if($value->cbc_user_id == $chat_box['chat_box_user_sender']) style="background-color:white;" @endif >
                                                     <div class="p-20 bb-1 d-flex align-items-center justify-content-between pull-up">
                                                         <div class="col-12 pr-10">
-                                                            <div class="row">
-                                                                <div class="col-1 mx-3">
+                                                            <div class="row mx-2">
+                                                                <div class="col-1 mt-3 ">
                                                                     <span class="me-15 status-success avatar avatar-lg">
                                                                         @if( $value->user_profile_picture == 'default.png')
                                                                             <img src="{{ asset('images/logo/logo.png') }}" width="50px" style="border-radius: 50%;"class="bg-primary-light avr-round" alt="User Profile" >
@@ -98,6 +99,7 @@
                                                     </div>
                                                 </a> 
                                             </li>
+                                        
                                         @empty
                                             <li class="nav-item"> 
                                                 <a class="nav-link fade show p-0" data-toggle="tab" href="#second" role="tab">
