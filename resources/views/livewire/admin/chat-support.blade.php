@@ -15,7 +15,7 @@
             <div class="chat-container">
                 <div class="chat-table">
                     <div class="chat-column recent-message">
-                        <div class="tab-content">
+                        <div class="tab-content ">
                             <div class="tab-pane fade show active" id="messages" role="tabpanel">
                                 <div class="row mb-2">
                                     <div class="col-9 pr-0">
@@ -59,7 +59,7 @@
                                         </div>
                                         </div>
                                 </div> 
-                                <div class="scrollbar-y chat-box-six2 cqh-22 overflow-x-hidden">
+                                <div class="scrollbar-y chat-box-six2 cqh-22 overflow-x-hidden" >
                                     <ul class="nav nav-tabs nav-tabs-vertical nav-justified" role="tablist">
                                         @forelse ($chat_box_list as $key => $value)
                                             <li class="nav-item" > 
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="vertical-line"></div>
-                    <div class="chat-column active-conversation">
+                    <div class="chat-column active-conversation" >
                     <div class="col-md-12 col-12">
                         <div class="tab-content p-0">
                             <div class="tab-pane fade @if($chat_content) @else show active @endif" id="" role="tabpanel">
@@ -174,8 +174,8 @@
                                         </div>
                                         @endif
                                     </div>
-                                    <div class="box-body mt-3" wire:poll.2000ms="update_content_data()">
-                                        <div class="scrollbar-y chat-box-six cqh-22">
+                                    <div class="box-body mt-3 justify-content-center" wire:poll.2000ms="update_content_data()">
+                                        <div class="overflow-auto ml-2" style="max-height:500px">
                                             @foreach ($chat_content as $key =>$value)
                                                 @if($value->cbc_user_id != $chat_box['chat_box_user_sender'])
                                                 <div class="alert alert text-primary text-end border-primary text-wrap" style="max-width:600px;word-wrap: break-word;">
@@ -184,7 +184,7 @@
                                                 
                                                 @else
                                                 
-                                                <div class="alert alert text-dark text-start  text-wrap border-dark" style="max-length:600px;word-wrap: break-word;">
+                                                <div class="alert alert text-dark text-start  text-wrap border-dark" style="max-width:600px;word-wrap: break-word;">
                                                     {{$value->cbc_chat_content}}
                                                 </div>
                                                 @endif
