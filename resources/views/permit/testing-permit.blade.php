@@ -15,7 +15,6 @@
     <div class="upper-content"> 
     <div> WMSU-TEC-FR-002.03 <br>Effective Date: 14-Sept-2023 </div> 
 
-    <div class="upper-left-text">TEST PERMIT-WMSU CET SY 2024-2025 </div>
 
 </div>
 
