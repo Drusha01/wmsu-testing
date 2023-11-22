@@ -641,6 +641,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Admin\\Announcement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Announcement.php',
         'App\\Http\\Livewire\\Admin\\ApplicationManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationManagement.php',
         'App\\Http\\Livewire\\Admin\\ApplicationManagement3' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationManagement3.php',
+        'App\\Http\\Livewire\\Admin\\ApplicationPermit' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationPermit.php',
         'App\\Http\\Livewire\\Admin\\AppointmentManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AppointmentManagement.php',
         'App\\Http\\Livewire\\Admin\\ChatSupport' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ChatSupport.php',
         'App\\Http\\Livewire\\Admin\\Dashboard' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Dashboard.php',

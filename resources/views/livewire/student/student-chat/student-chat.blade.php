@@ -6,56 +6,32 @@
                     <div class="card-header">
                         <h2 class="text-center">Chat Support</h2>
                     </div>
-                    <div class="card-body overflow-auto" style="max-height:400px">
+                    <div class="card-body overflow-auto" style="max-height:400px" id="chat_content"  wire:poll.5000ms="update_data()">
                         <!-- Student's message -->
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
+                        @if($chat_box)
+                            @forelse ($chat_content as $key =>$value)
+                            @if($value->cbc_user_id == $user_details['user_id'])
+                                <div class="alert alert-primary text-right">
+                                    <strong>Me:</strong> {{$value->cbc_chat_content}}
+                                </div>
+                            @else
+                                <div class="alert alert text-dark text-left border-dark">
+                                    <strong>Admin:</strong> {{$value->cbc_chat_content}}
+                                </div>
+                            @endif
+                            @empty
+                            @endforelse
+                        @else
+                        <div class="alert alert-light text-dark border-dark ">
+                            <strong>Admin:</strong> Hi, Start your conversation with admin
                         </div>
-
-                        <!-- Admin's message -->
-                        <div class="alert alert-light text-right">
-                            <strong>Admin:</strong> Sure, what's your question?
-                        </div>
-
-                        <!-- Add more messages as needed -->
-                        <!-- Example student message -->
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> When is the exam date?
-                        </div>
-
-                        <!-- Example admin response -->
-                        <div class="alert alert-light text-right">
-                            <strong>Admin:</strong> The exam is scheduled for October 25th.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-                        <div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div><div class="alert alert-primary">
-                            <strong>Student:</strong> Hi, I have a question about the upcoming exam.
-                        </div>
-
-
-                        <!-- Message Input -->
+                        @endif
                        
                     </div>
                     <div class="input-group mt-3 p-2">
-                        <input type="text" class="form-control" placeholder="Type your message...">
+                        <input type="text" class="form-control" wire:model="chat_content_details" placeholder="Type your message...">
                         <div class="input-group-append">
-                            <button class="btn btn-primary"> Send </button>
+                            <button class="btn btn-primary" wire:click="send_message()"> Send </button>
                         </div>
                     </div>
                 </div>

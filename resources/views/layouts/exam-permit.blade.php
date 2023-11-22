@@ -1,5 +1,6 @@
 <html lang="en">
   <head>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
       <meta charset="UTF-8">
       <link rel="stylesheet" href="{{ asset('css/permit.css') }}">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
