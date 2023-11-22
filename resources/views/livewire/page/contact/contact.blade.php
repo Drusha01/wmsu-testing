@@ -1,12 +1,12 @@
-<div class="container mt-5" style="min-height:550px;">
+<div class="container mt-5" style="min-height:300px;">
     @if($contactus_data)
     <div class="row justify-content-center">
-        <div class="col-md-12 text-center mb-4">
+        <div class="col-md-12 text-center mb-4 ">
             <legend class="font-weight-bold  ">Contact Us</legend>
         </div>
         @forelse ($contactus_data as $item =>$value)
-        <div class="col-md-4 mb-4">
-            <div class="choose-item border text-center p-4">
+        <div class="col-md-4">
+            <div class="choose-item border text-center">
                 <img src="{{asset('storage/content/contact_us/'.$value->cu_icon)}}"  alt="WMSU Testing Center" width="60px">
                 <div class="choose-content">
                     <h3>{{$value->cu_header}}</h3>
@@ -26,7 +26,7 @@
             <div class="choose-item border text-center p-4">
                 <i class="fas fa-map-marker-alt fa-3x mb-3" style="color:#57f75c"></i>
                 <div class="choose-content">
-                    <h3>Western Mindanao State University</h3>
+                    <h3>Testing Center MAIN</h3>
                     <p>If you have any further questions, feel free to visit us at Normal Rd, Zamboanga City</p>
                 </div>
             </div>

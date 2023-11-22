@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Mail;
 
 class ExamManagement extends Component
 {
+
+    public $mail = true;
+
     public $user_detais;
     public $title;
 
@@ -1189,7 +1193,7 @@ class ExamManagement extends Component
                 'link'              									=> '#'
              ]);
         }else{
-            $this->dispatchBrowserEvent('openModal','examinees_filter');
+            $this->dispatchBrowserEvent('openModal','assignProctorModal');
         }
     }
 
@@ -1203,7 +1207,7 @@ class ExamManagement extends Component
         }
 
         if(!$this->assigned_valid){
-            $this->dispatchBrowserEvent('swal:redirect',[
+            $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'              									=> 'warning',
                 'title'             									=> 'Please select room!',
@@ -1366,12 +1370,15 @@ class ExamManagement extends Component
             'D' => true
         ];
 
+     
+
         if($this->assigned_valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_proctor  as $key => $value) {
                 if($this->assigned_proctor_selected[$key][$value->school_room_id]){
+                    // dd($value);
                     DB::table('school_rooms as sr')
                         ->where('school_room_id','=',$value->school_room_id)
-                        ->update(['school_room_proctor_user_id'=>NULL
+                        ->update(['school_room_proctor_user_id'=> NULL
                     ]);
                 }
             }
@@ -1526,6 +1533,7 @@ class ExamManagement extends Component
                        
                         )
                     ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                    ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where('t_a_isactive','=',1)
                     ->where('test_status_details','=','Processing')
@@ -1546,6 +1554,25 @@ class ExamManagement extends Component
                         ->select('test_status_id as t_a_test_status_id')
                         ->first())['t_a_test_status_id']
                 ]);
+
+                if($this->mail){
+                    if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                        $this->status = 'Accepted';
+                        $this->reason = NULL;
+                        $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                        $this->email = $value->user_email;
+                        Mail::send('mail.application-status-email', [
+                            'status'=>$this->status,
+                            'reason'=>$this->reason,
+                            'link'=>$this->link,
+                            'email'=>$this->email], 
+                            function($message) {
+                        $message->to($this->email, $this->email)->subject
+                           ('Test Application '.$this->status);
+                        $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                     });
+                    }
+                }
             }
             // dd($application_list );
             $this->dispatchBrowserEvent('swal:remove_backdrop',[

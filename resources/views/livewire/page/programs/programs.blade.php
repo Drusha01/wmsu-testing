@@ -34,7 +34,36 @@
         </div>
         @endif
            
+<style>
+.main-feature-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    text-align: center; 
+    height: 100%;
+    border: 1px solid #ccc; 
+    padding: 15px;
+}
 
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.content-container {
+    flex-grow: 1;
+}
+
+.content-container p {
+    text-align: justify;
+}
+
+.feature-link-wrapper {
+    margin-top: auto;
+    text-align: center;
+}
+</style>
             <!-- <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="main-feature-box "style="height:400px;">
                 <img src="{{ asset('images/logo/arch.png') }}" width="50px" alt="wmsu logo">

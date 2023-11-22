@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mail;
 
 class ExamAdministrator extends Component
 {
+    
+    public $mail = true;
+
     public $user_detais;
     public $title;
     public $assigned_rooms;

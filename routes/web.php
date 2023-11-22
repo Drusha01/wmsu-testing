@@ -47,6 +47,7 @@ use App\Http\Livewire\Page\Programs\Agri;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentgsat;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentlsat;
 use App\Http\Livewire\Student\ApplicationPermit;
+use App\Http\Livewire\Student\Studentpermit\Studentpermit;
 
 
 // admin
@@ -69,6 +70,7 @@ use App\Http\Livewire\Admin\Notification;
 use App\Http\Livewire\Admin\ScheduleManagement;
 use App\Http\Livewire\Admin\Programs as AdminProgram;
 use App\Http\Controllers\FileUpload;
+use App\Http\Livewire\Admin\ApplicationPermit as AdminApplicationPermit;
 
 // page
 use App\Http\Livewire\Page\About\About;
@@ -125,6 +127,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
         Route::get('/application-form',ApplicationForm::class)->name('application-form');
         Route::get('/application-back',ApplicationBack::class)->name('application-back');
         Route::get('/application-permit',ApplicationPermit::class)->name('application-permit');
+        Route::get('/application-permit/{id}',Studentpermit::class)->name('view-application-permit');
        
        
         // test routes application
@@ -162,6 +165,8 @@ Route::middleware([Authenticated::class])->group(function () {
 
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
+    
+    Route::get('/application-permit/{hash}', AdminApplicationPermit::class)->name('admin-application-permit');
     Route::prefix('admin')->group(function () {
         Route::get('/', function(){return redirect('/admin/admin-dashboard');})->name('admin-home');
         Route::post('upload', [FileUpload::class,'upload_file'])->name('result-upload');
@@ -182,6 +187,7 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::
         Route::get('profile', profile::class)->name('profile');
         Route::get('notification', Notification::class)->name('notification');
         Route::get('schedule-management', ScheduleManagement::class)->name('schedule-management');
+
     });
 });
 
@@ -216,11 +222,17 @@ Route::get('/admin-login', function () {
 })->name('admin-login');
 
 Route::get('verification-email', function () {
-    return view('account.verification-email');
+    return view('mail.verification-email');
 })->name('verification-email');
 
+Route::get('application-status-email', function () {
+    return view('mail.application-status-email');
+})->name('application-status-email');
 
 
+Route::get('appointment-status-email', function () {
+    return view('mail.appointment-status-email');
+})->name('appointment-status-email');
 
 Route::get('php_info', function () {
     return phpinfo();

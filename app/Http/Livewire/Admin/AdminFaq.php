@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class AdminFaq extends Component
 {
     public $user_detais;
     public $title;
+
+    public $mail = true;
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();

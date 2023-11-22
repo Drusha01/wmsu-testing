@@ -98,7 +98,7 @@
                             @if($announcement_filter['Type'])
                                 <td>@if($value->announcement_type) Image @else Text @endif</td>
                             @endif
-                            @if($announcement_filter['Title'])
+                            @if($announcement_filter['Content'])
                                 <td>{{$value->announcement_content }}</td>
                             @endif
                             @if($announcement_filter['Start'])

@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Admin\Exports\ExamineesExport;
 use App\Http\Livewire\Admin\Imports\ImportResults;
+use Mail;
 
 class ResultManagement extends Component
 {
+
+    public $mail = true;
+
+    
     use WithFileUploads;
     public $user_detais;
     public $title;
@@ -24,6 +29,9 @@ class ResultManagement extends Component
     public $exam_type_name;
 
     public $examinees_results;
+    public $upload_id;
+
+    public $complete_results;
 
     public $active;
     public function booted(Request $request){
@@ -72,6 +80,56 @@ class ResultManagement extends Component
             ->groupBy('test_type_id')
             ->get()
             ->toArray();
+
+        $this->complete_results = DB::table('test_applications as ta')
+        ->select(
+            // '*',
+            't_a_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'test_type_name',
+            DB::raw('DATE(ta.date_created) as date_applied'),
+            't_a_cet_oapr' ,
+            't_a_cet_english_procficiency',
+            't_a_cet_reading_comprehension',
+            't_a_cet_science_process_skills' ,
+            't_a_cet_quantitative_skills',
+            't_a_cet_abstract_thinking_skills' ,
+            'test_status_details',
+            )
+        ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+        ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+        ->where('t_a_isactive','=',0)
+        ->where('test_status_details','=','Complete')
+        ->get()
+        ->toArray();
+
+        $this->examinees = DB::table('test_applications as ta')
+        ->select(
+            // '*',
+            't_a_id',
+            DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+            'test_type_name',
+            DB::raw('DATE(ta.date_created) as date_applied'),
+            )
+        ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+        ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+        ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        ->where('t_a_isactive','=',1)
+        ->where('test_status_details','=','Accepted')
+        ->whereNotNull('t_a_school_room_id')
+        ->where('school_room_isactive','=',1)
+        ->whereNotNull('school_room_proctor_user_id')
+        ->get()
+        ->toArray();
+
+        
+        // dd($this->examinees);
     }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
@@ -126,12 +184,39 @@ class ResultManagement extends Component
             'Abstract Thinking' => true,
         ];
 
+        $this->results_filter = [
+            '#' => true,
+            'Code' => true,
+            'Applicant name'=> true,
+            'Exam type'=> false,
+            'Date applied'	=> false,
+            'Status'=> true,	
+            'CET OAPR' => true,
+            'English Proficiency' => true,	
+            'Reading Comprehension' => true,							
+            'Science Processing Skills' => true,
+            'Quantitative Skills' => true,
+            'Abstract Thinking' => true,							
+            'Actions'	=> false					
+        ];
+
+        $this->examinees_filter = [
+            '#' => true,
+            'Code' => true,
+            'Applicant name'=> true,
+            'Exam type'=> true,
+            'Date applied'	=> true,
+            'Status'=> true ,
+            'Actions'	=> false		
+        ];
+
         $this->active = 'results';
 
        
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
             
             self::update_data();
+            $this->exam_type_name = 0;
         }
     }
 
@@ -152,8 +237,19 @@ class ResultManagement extends Component
                 'title'=>$this->title]);
     }
 
+    public function filterView(){
+        $this->dispatchBrowserEvent('swal:redirect',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Successfully changed filter!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
+    }
     public function active_page($active){
         $this->active = $active;
+        $this->exam_type_name = 0;
     }
     public function download_option(){
         // display modal
@@ -346,7 +442,9 @@ class ResultManagement extends Component
             $header,
             $content
         ]);
-        // return Excel::download(new ExamineesExport, 'users.xlsx');
+        self::update_data();
+
+
         if($export_type == 'EXCEL'){
             return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV);
         }elseif($export_type == 'CSV'){
@@ -358,37 +456,395 @@ class ResultManagement extends Component
         }else{
             return Excel::download($export, 'examinees_list.csv', \Maatwebsite\Excel\Excel::CSV);
         }
+        
     }
 
     public function upload_file(){
-        // $file = $request->file('examinees_results');
-        dd($this->examinees_results);
+        
         $tmp_name = 'livewire-tmp/'.$this->examinees_results->getfilename();
         $new_file_name = 'result.csv';
-        // if(Storage::move($tmp_name, 'public/results/'.$new_file_name)){
-        //     // dd('dsfs');
-        // }
+        self::update_data();
+       
+    }
+
+    public function validate_upload_header($header){
+        $valid = false;
+        foreach ($header as $key => $value) {
+            if($value == 'id'){
+                $valid = true;
+                break;
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'CET OAPR'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'English Proficiency'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'Reading Comprehension'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'Science Processing Skills'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'Quantitative Skills'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if($valid){
+            $valid = false;
+            foreach ($header as $key => $value) {
+                if($value == 'Abstract Thinking'){
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+
+       
+        if(!$valid){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Incorrect header data!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+            return -1;
+        }
+        return 1;
+    }
+
+    public function validate_data($header,$content){
+        $header_count = count($header);
+
+        foreach ($content as $key => $value) {
+            if($header_count != count($value)){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Missing data!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'id'){
+                $id_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'CET OAPR'){
+                $oapr_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'English Proficiency'){
+                $ep_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Reading Comprehension'){
+                $rc_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Science Processing Skills'){
+                $sps_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Quantitative Skills'){
+                $qs_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Abstract Thinking'){
+                $at_index = $key;
+                break;
+            }
+        }
+
+        foreach ($content as $key => $value) {
+            $id_value = floatval($value[$id_index]);
+            if(!DB::table('test_applications as ta')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->where('t_a_id','=',$id_value)
+                ->where('t_a_isactive','=',1)
+                ->where('test_status_details','=','Accepted')
+                ->first()
+                ){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid data on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$oapr_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid OAPR on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$ep_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid English Proficiency on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$rc_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid Reading Comprehension on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$sps_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid Science Processing Skills on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$qs_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid Quantitative Skills on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+            $result_value = floatval($value[$at_index]);
+            if($result_value <= 0 || $result_value >100){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Invalid Abstract Thinking on #'.$value[0],
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+                return -1;
+            }
+        }
+        return 1;
+    }
+
+    public function import_insert_data($header,$content){
+        foreach ($header as $key => $value) {
+            if($value == 'id'){
+                $id_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'CET OAPR'){
+                $oapr_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'English Proficiency'){
+                $ep_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Reading Comprehension'){
+                $rc_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Science Processing Skills'){
+                $sps_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Quantitative Skills'){
+                $qs_index = $key;
+                break;
+            }
+        }
+        foreach ($header as $key => $value) {
+            if($value == 'Abstract Thinking'){
+                $at_index = $key;
+                break;
+            }
+        }
+        foreach ($content as $key => $value) {
+            DB::table('test_applications as ta')
+                ->where('t_a_id','=',intval($value[$id_index]))
+                ->update([
+                    't_a_isactive' => 0,
+                    't_a_cet_oapr' => floatval($value[$oapr_index]), 
+                    't_a_cet_english_procficiency' => floatval($value[$ep_index]), 
+                    't_a_cet_reading_comprehension' => floatval($value[$rc_index]), 
+                    't_a_cet_science_process_skills' => floatval($value[$sps_index]), 
+                    't_a_cet_quantitative_skills' => floatval($value[$qs_index]), 
+                    't_a_cet_abstract_thinking_skills' => floatval($value[$at_index]) , 
+                    't_a_test_status_id' =>((array) DB::table('test_status')
+                                ->where('test_status_details', '=', 'Complete')
+                            ->select('test_status_id as t_a_test_status_id')
+                            ->first())['t_a_test_status_id'],
+            ]);
+        }
+        return 1;
     }
 
     public function importresults() {
-        $rows = array_map('str_getcsv', file(storage_path('app/results/result.csv')));
-        $header =[];
-        $content =[];
-        $item = [];
-        foreach ($rows as $key => $value) {
-            // validate
-            if($key == 0){
-                foreach ($value as $key => $item_value) {
-                    array_push( $header,$item_value);
+        // first validation pass
+        if($this->exam_type_name == '0' || !isset($this->exam_type_name)){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select a exam type!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+             $this->upload_id = rand(0,100000);
+             return;
+        }else if($this->exam_type_name == 'CET'){
+            $rows = array_map('str_getcsv', file(storage_path('app/results/result.csv')));
+            $header =[];
+            $content =[];
+            $item = [];
+            foreach ($rows as $key => $value) {
+                // validate
+                if($key == 0){
+                    foreach ($value as $key => $item_value) {
+                        array_push( $header,$item_value);
+                    }
+                }else{
+                    $item = [];
+                    foreach ($value as $key => $item_value) {
+                        array_push( $item,$item_value);
+                    }
+                    array_push( $content,$item);
                 }
-            }else{
-                $item = [];
-                foreach ($value as $key => $item_value) {
-                    array_push( $item,$item_value);
+            }
+            // first validation pass
+            self::validate_upload_header($header);
+            self::validate_data($header,$content);
+        }
+    }
+    public function save_import_results(){
+      
+        if($this->exam_type_name == '0' || !isset($this->exam_type_name)){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select a exam type!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+             ]);
+             $this->upload_id = rand(0,100000);
+             return;
+        }else if($this->exam_type_name == 'CET'){
+            $rows = array_map('str_getcsv', file(storage_path('app/results/result.csv')));
+            $header =[];
+            $content =[];
+            $item = [];
+            foreach ($rows as $key => $value) {
+                // validate
+                if($key == 0){
+                    foreach ($value as $key => $item_value) {
+                        array_push( $header,$item_value);
+                    }
+                }else{
+                    $item = [];
+                    foreach ($value as $key => $item_value) {
+                        array_push( $item,$item_value);
+                    }
+                    array_push( $content,$item);
                 }
-                array_push( $content,$item);
+            }
+            // first validation pass
+            if(self::validate_upload_header($header) && self::validate_data($header,$content)){
+                if(self::import_insert_data($header,$content)){
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'success',
+                        'title'             									=> 'Result are now updated!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                     ]);
+                }
+
             }
         }
-        dd($content);
     }
 }

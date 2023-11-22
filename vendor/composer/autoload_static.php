@@ -46,6 +46,11 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         array (
             'voku\\' => 5,
         ),
+        'c' => 
+        array (
+            'chillerlan\\Settings\\' => 20,
+            'chillerlan\\QRCode\\' => 18,
+        ),
         'Z' => 
         array (
             'ZipStream\\' => 10,
@@ -204,6 +209,14 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'chillerlan\\Settings\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chillerlan/php-settings-container/src',
+        ),
+        'chillerlan\\QRCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chillerlan/php-qrcode/src',
         ),
         'ZipStream\\' => 
         array (
@@ -617,6 +630,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FileUpload' => __DIR__ . '/../..' . '/app/Http/Controllers/FileUpload.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\StudentController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentController.php',
@@ -627,12 +641,14 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Admin\\Announcement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Announcement.php',
         'App\\Http\\Livewire\\Admin\\ApplicationManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationManagement.php',
         'App\\Http\\Livewire\\Admin\\ApplicationManagement3' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationManagement3.php',
+        'App\\Http\\Livewire\\Admin\\ApplicationPermit' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ApplicationPermit.php',
         'App\\Http\\Livewire\\Admin\\AppointmentManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AppointmentManagement.php',
         'App\\Http\\Livewire\\Admin\\ChatSupport' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ChatSupport.php',
         'App\\Http\\Livewire\\Admin\\Dashboard' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Dashboard.php',
         'App\\Http\\Livewire\\Admin\\ExamAdministrator' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ExamAdministrator.php',
         'App\\Http\\Livewire\\Admin\\ExamManagement' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/ExamManagement.php',
         'App\\Http\\Livewire\\Admin\\Exports\\ExamineesExport' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Exports/ExamineesExport.php',
+        'App\\Http\\Livewire\\Admin\\Imports\\ImportResults' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Imports/ImportResults.php',
         'App\\Http\\Livewire\\Admin\\Notification' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Notification.php',
         'App\\Http\\Livewire\\Admin\\Profile' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Profile.php',
         'App\\Http\\Livewire\\Admin\\Programs' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Programs.php',
@@ -667,10 +683,13 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Page\\Programs\\College' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Programs/College.php',
         'App\\Http\\Livewire\\Page\\Programs\\Programs' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Programs/Programs.php',
         'App\\Http\\Livewire\\Page\\Services\\Services' => __DIR__ . '/../..' . '/app/Http/Livewire/Page/Services/Services.php',
+        'App\\Http\\Livewire\\Student\\ApplicationPermit' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/ApplicationPermit.php',
         'App\\Http\\Livewire\\Student\\StudentAnnouncement\\StudentAnnouncement' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentAnnouncement/StudentAnnouncement.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentcet' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentcet.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\StudentcetGrad' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/StudentcetGrad.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studenteat' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studenteat.php',
+        'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentgsat' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentgsat.php',
+        'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentlsat' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentlsat.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentnat' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentnat.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\Cet\\Studentshiftee' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/Cet/Studentshiftee.php',
         'App\\Http\\Livewire\\Student\\StudentApplication\\StudentApplication' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentApplication/StudentApplication.php',
@@ -685,6 +704,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\Student\\StudentResult\\StudentResult' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentResult/StudentResult.php',
         'App\\Http\\Livewire\\Student\\StudentSchedule\\StudentSchedule' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentSchedule/StudentSchedule.php',
         'App\\Http\\Livewire\\Student\\StudentStatus\\StudentStatus' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/StudentStatus/StudentStatus.php',
+        'App\\Http\\Livewire\\Student\\Studentpermit\\Studentpermit' => __DIR__ . '/../..' . '/app/Http/Livewire/Student/Studentpermit/Studentpermit.php',
         'App\\Http\\Middleware\\AccountisAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisAdmin.php',
         'App\\Http\\Middleware\\AccountisStudent' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisStudent.php',
         'App\\Http\\Middleware\\AccountisValid' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountisValid.php',
@@ -6991,6 +7011,31 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'ZipStream\\Option\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Version.php',
         'ZipStream\\Stream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Stream.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
+        'chillerlan\\QRCode\\Data\\AlphaNum' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/AlphaNum.php',
+        'chillerlan\\QRCode\\Data\\Byte' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/Byte.php',
+        'chillerlan\\QRCode\\Data\\Kanji' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/Kanji.php',
+        'chillerlan\\QRCode\\Data\\MaskPatternTester' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/MaskPatternTester.php',
+        'chillerlan\\QRCode\\Data\\Number' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/Number.php',
+        'chillerlan\\QRCode\\Data\\QRCodeDataException' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/QRCodeDataException.php',
+        'chillerlan\\QRCode\\Data\\QRDataAbstract' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/QRDataAbstract.php',
+        'chillerlan\\QRCode\\Data\\QRDataInterface' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/QRDataInterface.php',
+        'chillerlan\\QRCode\\Data\\QRMatrix' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Data/QRMatrix.php',
+        'chillerlan\\QRCode\\Helpers\\BitBuffer' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Helpers/BitBuffer.php',
+        'chillerlan\\QRCode\\Helpers\\Polynomial' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Helpers/Polynomial.php',
+        'chillerlan\\QRCode\\Output\\QRCodeOutputException' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRCodeOutputException.php',
+        'chillerlan\\QRCode\\Output\\QRFpdf' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRFpdf.php',
+        'chillerlan\\QRCode\\Output\\QRImage' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRImage.php',
+        'chillerlan\\QRCode\\Output\\QRImagick' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRImagick.php',
+        'chillerlan\\QRCode\\Output\\QRMarkup' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRMarkup.php',
+        'chillerlan\\QRCode\\Output\\QROutputAbstract' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QROutputAbstract.php',
+        'chillerlan\\QRCode\\Output\\QROutputInterface' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QROutputInterface.php',
+        'chillerlan\\QRCode\\Output\\QRString' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/Output/QRString.php',
+        'chillerlan\\QRCode\\QRCode' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/QRCode.php',
+        'chillerlan\\QRCode\\QRCodeException' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/QRCodeException.php',
+        'chillerlan\\QRCode\\QROptions' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/QROptions.php',
+        'chillerlan\\QRCode\\QROptionsTrait' => __DIR__ . '/..' . '/chillerlan/php-qrcode/src/QROptionsTrait.php',
+        'chillerlan\\Settings\\SettingsContainerAbstract' => __DIR__ . '/..' . '/chillerlan/php-settings-container/src/SettingsContainerAbstract.php',
+        'chillerlan\\Settings\\SettingsContainerInterface' => __DIR__ . '/..' . '/chillerlan/php-settings-container/src/SettingsContainerInterface.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

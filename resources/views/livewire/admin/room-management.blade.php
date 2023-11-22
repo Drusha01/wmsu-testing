@@ -792,6 +792,7 @@
                     <!-- Button to trigger the Add Room modal -->
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <button type="button" class="btn" style="background-color: #990000; color: white;" data-bs-toggle="modal" data-bs-target="#addRoomModal">Add Room</button>
+                        <button type="button" class="btn btn-warning"  wire:click="reset_room_proctor()">Reset Room Proctors</button>
                     </div>
 
                     <table class="application-table">
@@ -889,7 +890,7 @@
                 @endif
 
                 <!-- Add Room Modal -->
-                <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -951,7 +952,7 @@
 
                 <!-- View Room Modal -->
                 @if($view_room)
-                <div class="modal fade" id="ViewRoomModal" tabindex="-1" role="dialog" aria-labelledby="ViewRoomModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ViewRoomModal" tabindex="-1" role="dialog" aria-labelledby="ViewRoomModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1017,11 +1018,11 @@
                 @endif
 
                 @if($edit_room)
-                <div class="modal fade" id="EditRoomModal" tabindex="-1" role="dialog" aria-labelledby="EditRoomModalLabel" aria-hidden="true">
+                <div class="modal fade" id="EditRoomModal" tabindex="-1" role="dialog" aria-labelledby="EditRoomModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="EditRoomModalLabel">View Room Details</h5>
+                                <h5 class="modal-title" id="EditRoomModalLabel">Edit Room Details</h5>
                                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
                             </div>
                             <div class="modal-body">

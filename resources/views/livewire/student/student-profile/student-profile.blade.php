@@ -1,5 +1,4 @@
 <div>
-   
     <!-- content-->
     <section class="profile-section">
     <div class="container">
@@ -174,9 +173,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
+                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="gender" class="form-control" placeholder="Enter gender" >
+                                                <select wire:model="gender" class="form-control">
+                                                    <option value="">Select gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -488,14 +492,7 @@
                 </div>
             </div>
 
-           
-
-            
     <!-- content-->
     </section>
-
-
-   
-
-    <script></script>
+    <!-- not nice - ace dev - https://github.com/Drusha01 -->
 </div>

@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class RoomManagement extends Component
 {
+
+    public $mail = true;
+
+    
     public $user_detais;
     public $title;
 
@@ -1531,6 +1536,31 @@ class RoomManagement extends Component
 
         $this->edit_room = null;
         
+    }
+
+    public function reset_room_proctor(){
+        $school_rooms = DB::table('school_rooms as sr')
+            ->select(
+                'school_room_proctor_user_id',
+                'school_room_id'
+                )
+            ->get()
+            ->toArray();
+        foreach ($school_rooms as $key => $value) {
+            DB::table('school_rooms')
+                ->where('school_room_id','=',$value->school_room_id)
+                ->update([
+                    'school_room_proctor_user_id' => NULL
+                ]);
+        }
+        $this->dispatchBrowserEvent('swal:remove_backdrop',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'Room proctors is cleared!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1000',
+            'link'              									=> '#'
+        ]);
     }
 
 }

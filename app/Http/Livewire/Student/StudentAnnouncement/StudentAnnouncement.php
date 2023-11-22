@@ -12,6 +12,7 @@ class StudentAnnouncement extends Component
 {
     public $user_detais;
     public $title;
+    public $announcement_data;
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -33,9 +34,19 @@ class StudentAnnouncement extends Component
             return redirect('/inactive');
         }
     }
+    public function hydrate(){
+        self::update_data();
+    }
+    public function update_data(){
+        $this->announcement_data = DB::table('announcements as a')
+            ->whereRaw(DB::raw('DATE(NOW()) BETWEEN announcement_start_date AND announcement_end_date'))
+            ->get()
+            ->toArray();
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'announcement';
+        self::update_data();
     }
     public function render()
     {

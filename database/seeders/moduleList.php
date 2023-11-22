@@ -165,7 +165,7 @@ class moduleList extends Seeder
             "settings",
             "Settings",
             "setting",
-            "bi bi-file-earmark",
+            "bi bi-gear",
             13,
             1,
             1,

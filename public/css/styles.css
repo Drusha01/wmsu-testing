@@ -21,12 +21,10 @@ a {
     text-decoration: none !important;
 }
 .separation-line {
-    border: none; /* Remove the default border */
-    border-top: 2px solid #000000; /* Customize the color as needed */
-    margin: 40px 0;
+    border-top: 1px solid #000000; /* Customize the color as needed */
     width: 100%;
     max-width: 100%; /* Adjust the width of the line as needed */
-    margin: 40px auto; /* Center the line horizontally */
+  
 }
 /*************
 header css
@@ -133,11 +131,8 @@ hero section
 }
 
 .hero .carousel-item img {
-    height: 668px;
+    height: 560px;
     width: 100%;
-    background-size: cover !important;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .hero .carousel-item::before {
@@ -177,7 +172,7 @@ hero section
 .hero .carousel-content-container p {
     width: 70%;
     text-transform: capitalize;
-    font-size: 14px;
+    font-size: 18px;
     margin: 0 auto 30px auto;
 }
 
@@ -236,7 +231,7 @@ Feature Section
 .main-feature-box {
     text-align: center;
     padding: 10px;
-    background-color: floralwhite;
+   
     border: 1px solid #ddd;
     border-radius: 10px;
     margin: 5px;
@@ -272,6 +267,7 @@ p {
     text-transform: capitalize;
     display: inline-block;
     padding: 10px 30px;
+    position: bottom;
     line-height: 1;
     margin: 10px 10px;
     color: white;
@@ -290,6 +286,9 @@ p {
 
 /**************
 Feature Section
+**************/
+/**************
+program Section
 **************/
 
 
@@ -375,7 +374,7 @@ why choose us section
 }
 .choose-item {
     text-align: center;
-    background-color: floralwhite;
+    background-color: white;
     padding: 30px;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -753,51 +752,7 @@ textarea.form-control {
 /* CTA section */
 
 /* Footer Styling */
-.footer {
-    padding: 30px 0;
-    font-size: 14px;
-}
 
-.social-media {
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 10px 0;
-}
-
-.social-icons {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.social-icons a {
-    margin-right: 10px;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #990000;
-}
-
-.footer-links {
-    padding: 20px 0;
-}
-
-.footer-links h6 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.footer-links p {
-    margin-bottom: 10px;
-}
-
-.footer-bottom {
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 10px 0;
-    font-size: 14px;
-}
 
 /* service.css */
 
@@ -809,7 +764,7 @@ textarea.form-control {
 
 /* Style for individual service cards */
 .single-service {
-    background-color: floralwhite;
+  
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
