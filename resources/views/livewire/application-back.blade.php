@@ -143,12 +143,11 @@
                     </div>
 
                         <div class="container border border-danger mt-5 rounded">
-                            <div>
-                                <p class="text-danger mt-2">I herby affirm that i have read and understood all the instructions in connection with my application for the WMSU-CET. I further affirm that all information supplied herein and the supporting documents attached are true and correct if found otherwise, my exam shall be considered null and void. I also allow WMSU-TECT to process and store the data i have provided in this form in accordance with the provision of the Data Privacy Act of 2012</p>
+                            <div class="form-check form-check-inline">
+                                <p class="text-danger mt-2"> <input class="form-check-input" type="checkbox" id="checkbox11">I herby accept that i have read and understood all the instructions in connection with my application for the WMSU-CET. I further accept that all information supplied herein and the supporting documents attached are true and correct if found otherwise, my exam shall be considered null and void. I also allow WMSU-TECT to process and store the data i have provided in this form in accordance with the provision of the Data Privacy Act of 2012</p>
                             </div>
-                            <div class="row">
-                                    <div class="col-md-4 text-danger mx-5 mt-5">Student Signature</div>
-                                    <div class="col-md-4 offset-md-4 text-danger text-right mx-5 m-5">Date</div>
+                            <div class="row px-5 py-3">
+                                <button type="button" class="btn btn-danger">Accept</button>
                              </div>
                         </div>
 

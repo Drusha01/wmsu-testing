@@ -13,7 +13,7 @@
                 <h6>Normal Road, Baliwasan, Zamboanga City </h6>
                 </div>
                 <div class="col text-center">
-                <img src="{{ asset('images/logo/logo.png') }}" alt="" style="width: 150px;" >
+                <img src="{{ asset('images/logo/tec.png') }}" alt="" style="width: 150px;" >
                 </div>
             </div>
             <div class="text-center">
