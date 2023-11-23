@@ -29,42 +29,29 @@
                     <thead>
                         <tr>
                         <th scope="col">CET Parts</th>
-                        <th scope="col" class="border border-dark">Communication Skills</th>
+                        <th scope="col" class="border border-dark">English Proficiency</th>
                         <th scope="col" class="border border-dark">Reading Comprehension</th>
-                        <th scope="col" class="border border-dark">General Information</th>
-                        <th scope="col" class="border border-dark">Quantitative Skills</th>
-                        <th scope="col" class="border border-dark">Decesion Making & Reportorial Skills</th>
-                        <th scope="col" class="border border-dark">Total</th>
+                        <th scope="col" class="border border-dark">Science Process Skills</th>
+                        <th scope="col" class="border border-dark">Mathematical Skills</th>
+                        <th scope="col" class="border border-dark">Abstract and Logical Skills</th>
+                      
                         <th scope="col" class="border border-dark">Percentile Rank</th>
                         </tr>
                     </thead>
                     <tbody class="border border-dark">
                         <tr  class="text-center border border-dark">
-                            <th scope="row">1</th>
+                            <th scope="row"></th>
                             <td class="border border-dark">Mark</td>
                             <td class="border border-dark">Otto</td>
                             <td class="border border-dark">@mdo</td>
                             <td class="border border-dark">Mark</td>
                             <td class="border border-dark">Otto</td>
                             <td class="border border-dark">@mdo</td>
-                            <td class="border border-dark">@mdo</td>
+                          
                         </tr>
                     </tbody>
             </table>
-            <table align="center ">
-                <thead>
-                    <tr>
-                        <th scope="col" class="border border-dark">CET PR (40%)</th>
-                        <th scope="col" class="border border-dark">COMPOSITEPR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border border-dark">2</td>
-                        <td class="border border-dark">2</td>
-                    </tr>
-                </tbody>
-            </table>
+          
             
         </div>
 </div>
