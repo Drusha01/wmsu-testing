@@ -5,6 +5,7 @@
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="WMSU Logo">
                 <span class="company-name">Testing and Evaluation Center</span>
+                <img src="{{ asset('images/logo/tec.png') }}" width="50px" alt="WMSU Logo">
             </a>
         </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

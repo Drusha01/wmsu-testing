@@ -2,10 +2,13 @@
 <div>
     <header id="header" class="dashboard-header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ route('admin-dashboard') }}" class="dasboard-logo d-flex align-items-center">
-                <img src="{{ asset('images/logo/logo.png') }}" alt="wmsu logo">
-                <span class="d-none d-lg-block" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; margin-left: 10px; color: #333;">Testing Center</span>
-            </a>
+        <a href="{{ route('admin-dashboard') }}" class="dasboard-logo d-flex align-items-center">
+    <img src="{{ asset('images/logo/logo.png') }}" alt="wmsu logo">
+    <span class="d-none d-lg-block nowrap" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;  color: #333; white-space: nowrap; margin-right: 10px;">Testing Center</span>
+    <img src="{{ asset('images/logo/tec.png') }}" alt="wmsu logo"  >
+</a>
+
+
 
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->

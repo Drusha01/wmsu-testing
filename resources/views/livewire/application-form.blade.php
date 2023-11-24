@@ -33,7 +33,16 @@
                                                             </div>
                                                             <div class="col-md-6 mb-2">
                                                                 <label for="last-name" class="form-label">Suffix</label>
-                                                                <input type="text" class="form-control" id="last-name"  wire:model="suffix" name="last_name" placeholder="Suffix" >
+                                                                <div class="col-lg-8">
+                                                                    <select wire:model="suffix" class="form-control">
+                                                                        <option value="">Select suffix</option>
+                                                                        <option value="Jr.">Jr.</option>
+                                                                        <option value="Sr.">Sr.</option>
+                                                                        <option value="II">II</option>
+                                                                        <option value="III">III</option>
+                                                                        
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -47,7 +56,7 @@
                                                             </div>
                                                             <div class="col-md-4 mb-2">
                                                                 <label for="contact-number" class="form-label">Age</label>
-                                                                <input type="text"  wire:model="phone" class="form-control" required placeholder="Age" >
+                                                                <input type="number"  wire:model="phone" class="form-control" required placeholder="Age" >
                                                             </div>
                                                         </div>
                                                         <div class="row">
