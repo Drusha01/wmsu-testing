@@ -169,9 +169,17 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="suffix" class="form-control" placeholder="Enter suffix" >
+                                                <select wire:model="suffix" class="form-control">
+                                                    <option value="">Select suffix</option>
+                                                    <option value="Jr.">Jr.</option>
+                                                    <option value="Sr.">Sr.</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <!-- Add more suffix options as needed -->
+                                                </select>
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
@@ -184,11 +192,36 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
+                                            <label class="col-sm-4 col-form-label">Address Street:</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="address" class="form-control" placeholder="Enter address" >
+                                                <input type="text" wire:model="street" class="form-control" placeholder="Enter street">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Barangay:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="barangay" class="form-control" placeholder="Enter barangay">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">City<span style="color:red;">*</span>:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="city" class="form-control" placeholder="Enter city" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Province:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="province" class="form-control" placeholder="Enter province">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">ZIP Code:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="zip_code" class="form-control" placeholder="Enter ZIP code">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
@@ -313,9 +346,17 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  wire:model="f_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                        <select wire:model="suffix" class="form-control">
+                                                            <option value="">Select suffix</option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <!-- Add more suffix options as needed -->
+                                                        </select>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         
                                             <div class="details-box col-lg-6 mb-4">
@@ -341,9 +382,17 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  wire:model="m_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                        <select wire:model="suffix" class="form-control">
+                                                            <option value="">Select suffix</option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <!-- Add more suffix options as needed -->
+                                                        </select>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="row">
@@ -370,9 +419,17 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  wire:model="g_suffix" class="form-control" placeholder="Enter Suffix" >
+                                                        <select wire:model="suffix" class="form-control">
+                                                            <option value="">Select suffix</option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <!-- Add more suffix options as needed -->
+                                                        </select>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Relation<span style="color:red;"></span> :</label>
                                                     <div class="col-sm-8">
@@ -397,11 +454,36 @@
                                             <div class="details-box col-lg-12 mb-4">
                                                 <h5>Home Address</h5>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label">Family Home Address<span style="color:red;"></span> :</label>
+                                                    <label class="col-sm-4 col-form-label">Street:</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  wire:model="fb_address" class="form-control" placeholder="Enter Home Address" >
+                                                        <input type="text" wire:model="fb_street" class="form-control" placeholder="Enter street">
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">Barangay:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" wire:model="fb_barangay" class="form-control" placeholder="Enter barangay">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">City<span style="color:red;">*</span>:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" wire:model="fb_city" class="form-control" placeholder="Enter city" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">Province:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" wire:model="fb_province" class="form-control" placeholder="Enter province">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">ZIP Code:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" wire:model="fb_zip_code" class="form-control" placeholder="Enter ZIP code">
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="modal-footer">
