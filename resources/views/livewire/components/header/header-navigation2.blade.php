@@ -8,6 +8,7 @@
                     <img src="{{ asset('images/logo/logo.png') }}" width="50px" alt="#">
                 </a>
                 <a class="navbar-brand nav-linklogo" href="{{ route('home') }}">Testing and Evaluation Center</a>
+                <img src="{{ asset('images/logo/tec.png') }}" width="50px" alt="#">
             </div>
                 <!-- Navigation toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

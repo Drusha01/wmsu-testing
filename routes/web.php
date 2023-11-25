@@ -238,7 +238,9 @@ Route::get('php_info', function () {
     return phpinfo();
 })->name('php_info');
 
-
+Route::get('cet-permit', function () {
+    return view('cet-permit');
+})->name('cet-permit');
 
 // test section
 Route::get('process-cet-registration', function () {

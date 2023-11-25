@@ -1,6 +1,6 @@
 body {
   font-family: "Karla", sans-serif;
-  background-color: #121212;
+ /* background-color: #121212; */
   min-height: 100vh; }
 .container{
   max-width: 850px; /* Adjust the width as needed */

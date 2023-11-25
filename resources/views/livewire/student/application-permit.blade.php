@@ -1,63 +1,125 @@
-<html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <link rel="stylesheet" href="{{ asset('css/permit.css') }}">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-      <title>Document</title>
-  </head>
-  <body>
-      
-    <div class="permit" >
-      <div class="side-bar">DO NOT LOSE THIS PERMIT.PRESENT THIS WHEN YOU<BR>TAKE THE WMSU CET AND IN CLAIMING YOUR RESULT </div>
-      <div class="upper-content"> 
-        <div> WMSU-TEC-FR-002.03 <br>Effective Date: 14-Sept-2023 </div> 
-
-        <div class="upper-left-text">TEST PERMIT-WMSU CET SY 2024-2025 </div>
-      </div>
-      <div class="name mt-5">
-      <div>Family name </div>
-      <div>First Name </div>
-      <div>Middle Name </div>
-    </div>
-    <div class="school mb-3 mt-3">School From:</div>
-    <span class="upper-text mb-2">to be filled out by the person authorized to recieve and/or process application</span>
-
-    <table class="table mb-3 ">
-      <thead>
-        <tr>
-          <th >Test Date</th>
-          <th class="table-text" >Test Center</th>
-          <th class="table-text" >Room No.</th>
-          <th class="table-text">Test Time</th>
-          <th class="table-text" >Test Code</th>
-          <th class="table-text" >High School Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div class="bottom-content ">
-                <div class="image-container-left  border border-danger rounded float-left">
-                    <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo">
+<div class="d-flex align-items-center justify-content-center" style="height: 210vh; ">
+              <div class="border border-dark px-3 py-2" style="width: 900px; height: 1500px; ">
+                <div class="row justify-content-between ">
+                    <div class="col-4 text-danger">
+                      <p class="font-weight-bold">WMSU-TEC-FR-002 03</p>Effective Date: 14-Sept-2023
+                    </div>
+                    <div class="col-4 text-danger font-weight-bold my-2">
+                      <p>TEST PERMIT-WMSU CET<br> SY 2024-2025</p>
+                    </div>
                 </div>
-                <div class="signature">
-                    Signature of Applicant
+                <div class="d-flex justify-content-center align-itemns-center">
+                    <p class="font-weight-bold text-danger mt-4">NAME:</p>
+                    <div class="col align-self-center mt-5 text-center">
+                      <span class="px-5">Family Name</span>
+                      <span class="px-5">First Name</span>
+                      <span class="px-5">Middle Name</span>
+                    </div>
                 </div>
-                <div class="image-container-right border border-danger">
-                    <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo ">
+                <div>
+                  <p class="text-danger">School From:</p>
                 </div>
-            </div>
-    </div>
-  </body>
-</html>
+                <div>
+                  <p class="text-danger">To be filled out by person authorized to receive and/or process application</p>
+                </div>
+                    <table class="table border border-danger ml-5" style="width: 800px;">
+                  <thead>
+                    <tr >
+                      <th scope="col"  class="text-danger border border-danger">Test Date</th>
+                      <th scope="col" class="text-danger border border-danger" >Test Center</th>
+                      <th scope="col" class="text-danger border border-danger">Room No.</th>
+                      <th scope="col" class="text-danger border border-danger">Test Time</th>
+                      <th scope="col" class="text-danger border border-danger">Test Center Code</th>
+                      <th scope="col" class="text-danger border border-danger">High School Code </th>
 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" class="">1</th>
+                      <td class="border border-danger">Mark</td>
+                      <td class="border border-danger">Otto</td>
+                      <td class="border border-danger">@mdo</td>
+                      <td class="border border-danger">29</td>
+                      <td class="border border-danger">@mdo</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo">
+                    </div>
+                    <div class="col-sm" align="">
+                      <p class="text-danger font-weight-bold">STUDENT TYPE  (check one)</p>
+                      <div class="row">
+                           <div class="form-check"> 
+                              <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                                <span class="text-danger ">Senior High School graduating student</span>
+                              </label>
+                           </div>
+                           <div class="form-check"> 
+                              <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                                <span class="text-danger ">Senior High School graduate (has not enrolled in College)</span>
+                              </label>
+                           </div>
+                           <div class="form-check"> 
+                              <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                                <span class="text-danger ">College, WMSU Main Campus (curently enrolled)</span>
+                              </label>
+                           </div>
+                           <div class="form-check"> 
+                              <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                                <span class="text-danger ">College, WMSU External Studies Unit</span>
+                              </label>
+                           </div>
+                           <div class="form-check"> 
+                              <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                                <span class="text-danger ">College, Non-WMSU (Transferee)</span>
+                              </label>
+                           </div>
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <img src="{{ asset('images/logo/qr.png') }}" alt="Logo" class="form-logo">
+                    </div>
+                  </div>
+                </div>
+                <div class="container border border-danger mt-5 rounded">
+                            <div class="form-check form-check-inline">
+                                <p class="text-danger mt-2"> <input class="form-check-input" type="checkbox" id="checkbox11"> <label class="form-check-label mr-3" for="checkbox11">Accept</label>I herby accept that i have read and understood all the instructions in connection with my application for the WMSU-CET. I further accept that all information supplied herein and the supporting documents attached are true and correct if found otherwise, my exam shall be considered null and void. I also allow WMSU-TECT to process and store the data i have provided in this form in accordance with the provision of the Data Privacy Act of 2012</p>
+                            </div>
+                           
+                        </div>
+
+                        <div>
+                            <p class="text-danger mt-5">Only prospective freshmen will be allowed to take the WMSU CET schedule for November 2023. Transferess Should join in the Febraruary 2024 exam.</p>
+                        </div>
+                        <div>
+                            <Span class="text-danger font-weight-bold">IMPORTANT</Span>
+                            <p class="text-danger">1. An Applicant can take  the WMSU-CET for S.Y 2024-2025, <span class="text-danger font-weight-bold text-decoration-underline" >ONLY ONCE,</span>wheter in the Main Campus or any other test Venue</p>
+                            <p class="text-danger">For further inquries, Call WMSU-Testing and Evaluation Center at 09066131868 or email at tec@wmsu.edu.ph</p>
+                        </div>
+                            <div class="text-center" >
+                                <legend class="text-danger font-weight-bold">REMINDERS</legend>
+                            </div>
+                            <div class="row">
+                                 <div class="col-sm-5 col-md-6 text-danger">a. You must be at the test venue <span class="text-danger font-weight-bold">30 minutes before the test time </span><br>b. Bring your Test Permit and one (1) short-sized transparent plastic envelope with the following materials inside: <ul>
+                                    <li>At least 2 Mongol No.2 pencils </li>
+                                    <li>Sharpener </li>
+                                    <li>Eraser of good quality </li>
+                                    </ul> c. For your Snacks, you are only allowed to bring water, biscuits and candies.
+                                 </div>
+                                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0 text-danger mb-5 px-2">d. Mobile Phones, calculators, smart watches, cameras and other eletronic gadgets are not ALLOWED during the test. <br> e. Observer proper dress code when you are in the test venue. Slippers, shorts, sleeveless shirts and blouses, jackets/sweatshirts and hats/caps are NOT allowed. <br> <span class="text-danger font-weight-bold">f. Present this Test Permit when claiming results.</span>
+                                    </div>
+                            </div>
+                </div>
+                
+
+  </div>
