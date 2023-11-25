@@ -17,6 +17,9 @@
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#exam-administrator">Assigned Rooms</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link " data-bs-toggle="tab" href="#attendance-list">Assigned Rooms</a>
+            </li>
           
         </ul>
 
@@ -212,39 +215,56 @@
                 </div>
             </div>
 
-        <!-- Attendance List -->
-        <div class="tab-pane" id="attendance-list">
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-6">
-                        <button class="btn btn-primary btn-block" id="scanQRCodeButton">Scan QR Code</button>
-                        <div id="preview"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-3">
-                <table class="table table-bordered" id="attendanceListTable">
-                    <thead>
-                        <tr>
-                            <th>Applicant Name</th>
-                            <th>Attendance Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Attendance data will be displayed here -->
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Present</td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Present</td>
-                        </tr>
-                        <!-- Add more rows as needed with JavaScript -->
-                    </tbody>
-                </table>
+<!-- Attendance List -->
+<div class="tab-pane" id="attendance-list">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- QR Code Scanning Section -->
+                <button class="btn btn-primary btn-block" id="scanQRCodeButton">Scan QR Code</button>
+                <div id="preview"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Manual Attendance Marking -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Manual Attendance Marking</h4>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Enter student's name" id="manualAttendanceInput">
+                    <button class="btn btn-success" id="markAttendanceButton">Mark Attendance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="container mt-3">
+        <table class="table table-bordered" id="attendanceListTable">
+            <thead>
+                <tr>
+                    <th>Applicant Name</th>
+                    <th>Attendance Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Attendance data will be displayed here -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>Present</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Present</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
         <!-- Instructions Modal -->
