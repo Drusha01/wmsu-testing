@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-center" style="height: 210vh; ">
+<div class="d-flex align-items-center justify-content-center" style="height: 240vh; background-color:white; ">
               <div class="border border-dark px-3 py-2" style="width: 900px; height: 1500px; ">
                 <div class="row justify-content-between ">
                     <div class="col-4 text-danger">
