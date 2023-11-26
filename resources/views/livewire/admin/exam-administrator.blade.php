@@ -18,7 +18,7 @@
                 <a class="nav-link active" data-bs-toggle="tab" href="#exam-administrator">Assigned Rooms</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-bs-toggle="tab" href="#attendance-list">Assigned Rooms</a>
+                <a class="nav-link " data-bs-toggle="tab" href="#attendance-list">Attendance Rooms</a>
             </li>
           
         </ul>
@@ -247,6 +247,7 @@
                 <tr>
                     <th>Applicant Name</th>
                     <th>Attendance Status</th>
+                    <th>Attendance Check</th>
                 </tr>
             </thead>
             <tbody>
@@ -254,10 +255,30 @@
                 <tr>
                     <td>John Doe</td>
                     <td>Present</td>
+                    <td>
+                        <!-- Checkbox for attendance done -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="attendanceDone1">
+                            <label class="form-check-label" for="attendanceDone1">Present</label>
+                            <br>
+                            <input type="checkbox" class="form-check-input" id="attendanceDone2">
+                            <label class="form-check-label" for="attendanceDone2">Absent</label>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Jane Smith</td>
                     <td>Present</td>
+                    <td>
+                        <!-- Checkbox for attendance not done -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="attendanceDone1">
+                            <label class="form-check-label" for="attendanceDone1">Present</label>
+                            <br>
+                            <input type="checkbox" class="form-check-input" id="attendanceDone2">
+                            <label class="form-check-label" for="attendanceDone2">Absent</label>
+                        </div>
+                    </td>
                 </tr>
                 <!-- Add more rows as needed -->
             </tbody>
