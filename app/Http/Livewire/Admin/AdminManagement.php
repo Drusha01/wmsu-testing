@@ -88,64 +88,76 @@ class AdminManagement extends Component
         ];
         
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
+            self::update_data();
+        }
+    }
 
-            $this->admin_data = DB::table('users as u')
+    public function update_data(){
+        $this->admin_data = DB::table('users as u')
             ->select(
-                    "user_id",
-                    "user_sex_id",
-                    "user_gender_id",
-                    "ur.user_role_id",
-                    "user_name",
-                    "user_email",
-                    "user_phone",
-                    "user_name_verified",
-                    "user_email_verified",
-                    "user_phone_verified",
-                    "user_firstname",
-                    "user_middlename",
-                    "user_lastname",
-                    "user_suffix",
-                    "user_address",
-                    "user_birthdate",
-                    "user_profile_picture",
-                    "user_formal_id",
-                    "u.date_created",
-                    "u.date_updated",
-                    "user_status_details",
-                    "user_role_details"
-                )
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details",
+
+                'user_addr_street' ,
+                'user_addr_brgy' ,
+                'user_addr_city_mun',
+                'user_addr_province',
+                'user_addr_zip_code' ,
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address')
+
+            )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
             // ->where('user_id','!=', $this->user_details['user_id'])
             ->where('user_role_details','=', 'admin')
             ->get()
             ->toArray();
+        // dd( $this->admin_data);
 
-            $this->user_data = DB::table('users as u')
+        $this->user_data = DB::table('users as u')
             ->select(
-                    "user_id",
-                    "user_sex_id",
-                    "user_gender_id",
-                    "ur.user_role_id",
-                    "user_name",
-                    "user_email",
-                    "user_phone",
-                    "user_name_verified",
-                    "user_email_verified",
-                    "user_phone_verified",
-                    "user_firstname",
-                    "user_middlename",
-                    "user_lastname",
-                    "user_suffix",
-                    "user_address",
-                    "user_birthdate",
-                    "user_profile_picture",
-                    "user_formal_id",
-                    "u.date_created",
-                    "u.date_updated",
-                    "user_status_details",
-                    "user_role_details"
-                )
+                "user_id",
+                "user_sex_id",
+                "user_gender_id",
+                "ur.user_role_id",
+                "user_name",
+                "user_email",
+                "user_phone",
+                "user_name_verified",
+                "user_email_verified",
+                "user_phone_verified",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
+                "user_birthdate",
+                "user_profile_picture",
+                "user_formal_id",
+                "u.date_created",
+                "u.date_updated",
+                "user_status_details",
+                "user_role_details",
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address')
+            )
             ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
             ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
             // ->where('user_id','!=', $this->user_details['user_id'])
@@ -153,16 +165,15 @@ class AdminManagement extends Component
             ->get()
             ->toArray();
 
-            $this->modules = DB::table('modules as m')
+        $this->modules = DB::table('modules as m')
             ->select('*')
             ->orderBy('module_number')
             ->get()
             ->toArray();
-           
-            $this->roles_data = DB::table('admin_role_names as arn')
-                ->get()
-                ->toArray();
-        }
+       
+        $this->roles_data = DB::table('admin_role_names as arn')
+            ->get()
+            ->toArray();
     }
 
     public function mount(Request $request){
@@ -210,86 +221,7 @@ class AdminManagement extends Component
         ];
 
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
-
-            $this->admin_data = DB::table('users as u')
-            ->select(
-                "user_id",
-                "user_sex_id",
-                "user_gender_id",
-                "ur.user_role_id",
-                "user_name",
-                "user_email",
-                "user_phone",
-                "user_name_verified",
-                "user_email_verified",
-                "user_phone_verified",
-                "user_firstname",
-                "user_middlename",
-                "user_lastname",
-                "user_suffix",
-                "user_address",
-                "user_birthdate",
-                "user_profile_picture",
-                "user_formal_id",
-                "u.date_created",
-                "u.date_updated",
-                "user_status_details",
-                "user_role_details"
-                )
-            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
-            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-            // ->where('user_id','!=', $this->user_details['user_id'])
-            ->where('user_role_details','=', 'admin')
-            ->get()
-            ->toArray();
-
-            $this->user_data = DB::table('users as u')
-            ->select(
-                "user_id",
-                "user_sex_id",
-                "user_gender_id",
-                "ur.user_role_id",
-                "user_name",
-                "user_email",
-                "user_phone",
-                "user_name_verified",
-                "user_email_verified",
-                "user_phone_verified",
-                "user_firstname",
-                "user_middlename",
-                "user_lastname",
-                "user_suffix",
-                "user_address",
-                "user_birthdate",
-                "user_profile_picture",
-                "user_formal_id",
-                "u.date_created",
-                "u.date_updated",
-                "user_status_details",
-                "user_role_details"
-                )
-            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
-            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-            // ->where('user_id','!=', $this->user_details['user_id'])
-            ->where('user_role_details','=', 'student')
-            ->get()
-            ->toArray();
-
-            $this->modules = DB::table('modules as m')
-            ->select('*')
-            ->orderBy('module_number')
-            ->get()
-            ->toArray();
-
-            $this->roles_data = DB::table('admin_role_names as arn')
-                ->get()
-                ->toArray();
-                // dd($this->roles_data);
-
-                // dd($this->modules);
-            
-
-
+            self::update_data();
         }
 
     }
@@ -347,7 +279,7 @@ class AdminManagement extends Component
             "user_middlename",
             "user_lastname",
             "user_suffix",
-            "user_address",
+            DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
             "user_birthdate",
             "user_profile_picture",
             "user_formal_id",
@@ -408,7 +340,7 @@ class AdminManagement extends Component
                 "user_middlename",
                 "user_lastname",
                 "user_suffix",
-                "user_address",
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
                 "user_birthdate",
                 "user_profile_picture",
                 "user_formal_id",
@@ -508,69 +440,7 @@ class AdminManagement extends Component
                     ->toArray()[0]->user_status_id
             ]);
 
-            $this->admin_data = DB::table('users as u')
-            ->select(
-                "user_id",
-                "user_sex_id",
-                "user_gender_id",
-                "ur.user_role_id",
-                "user_name",
-                "user_email",
-                "user_phone",
-                "user_name_verified",
-                "user_email_verified",
-                "user_phone_verified",
-                "user_firstname",
-                "user_middlename",
-                "user_lastname",
-                "user_suffix",
-                "user_address",
-                "user_birthdate",
-                "user_profile_picture",
-                "user_formal_id",
-                "u.date_created",
-                "u.date_updated",
-                "user_status_details",
-                "user_role_details"
-                )
-            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
-            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-            // ->where('user_id','!=', $this->user_details['user_id'])
-            ->where('user_role_details','=', 'admin')
-            ->get()
-            ->toArray();
-
-            $this->user_data = DB::table('users as u')
-            ->select(
-                "user_id",
-                "user_sex_id",
-                "user_gender_id",
-                "ur.user_role_id",
-                "user_name",
-                "user_email",
-                "user_phone",
-                "user_name_verified",
-                "user_email_verified",
-                "user_phone_verified",
-                "user_firstname",
-                "user_middlename",
-                "user_lastname",
-                "user_suffix",
-                "user_address",
-                "user_birthdate",
-                "user_profile_picture",
-                "user_formal_id",
-                "u.date_created",
-                "u.date_updated",
-                "user_status_details",
-                "user_role_details"
-                )
-            ->join('user_status as us', 'us.user_status_id', '=', 'u.user_status_id')
-            ->join('user_roles as ur', 'ur.user_role_id', '=', 'u.user_role_id')
-            // ->where('user_id','!=', $this->user_details['user_id'])
-            ->where('user_role_details','=', 'student')
-            ->get()
-            ->toArray();
+            self::update_data();
 
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
@@ -619,7 +489,7 @@ class AdminManagement extends Component
                 "user_middlename",
                 "user_lastname",
                 "user_suffix",
-                "user_address",
+               DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
                 "user_birthdate",
                 "user_profile_picture",
                 "user_formal_id",
@@ -651,7 +521,7 @@ class AdminManagement extends Component
                 "user_middlename",
                 "user_lastname",
                 "user_suffix",
-                "user_address",
+               DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
                 "user_birthdate",
                 "user_profile_picture",
                 "user_formal_id",
@@ -981,7 +851,7 @@ class AdminManagement extends Component
             "user_middlename",
             "user_lastname",
             "user_suffix",
-            "user_address",
+           DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
             "user_birthdate",
             "user_profile_picture",
             "user_formal_id",
