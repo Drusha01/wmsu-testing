@@ -34,6 +34,29 @@ class CreateTestApplications extends Migration
             t_a_endorsement_letter_from_wmsu_dean VARCHAR(50),
             t_a_receipt_photo VARCHAR(50),  -- note that if the applicant is taking second time
 
+            t_a_1st_choice
+            t_a_2nd_choice
+            t_a_3rd_choice
+
+            -- parent 
+            t_a_f_citizenship
+            t_a_f_hef
+            t_a_f_occupation
+            t_a_f_place_of_work
+            t_a_f_monthly_salary
+
+            t_a_m_citizenship
+            t_a_m_hef
+            t_a_m_occupation
+            t_a_m_place_of_work
+            t_a_m_monthly_salary
+
+            t_a_computer_literate
+            t_a_ethnic_group_id -- index
+            t_a_religious_affiliation
+            t_a_accept
+
+
             -- nat
 
             -- eat 
