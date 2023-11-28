@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             aboutusSeeder::class,
             examSeeders::class,
             collegeSeeders::class,
+            campus_seeder::class,
         ]);
         
     }

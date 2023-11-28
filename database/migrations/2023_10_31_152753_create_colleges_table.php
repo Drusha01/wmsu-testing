@@ -18,11 +18,14 @@ class CreateCollegesTable extends Migration
             college_logo VARCHAR(50) NOT NULL,
             college_header VARCHAR(1024) NOT NULL,
             college_content VARCHAR(1024) NOT NULL,
+            college_campus_id INT NOT NULL,
             college_order INT NOT NULL,
             college_isactive BOOL NOT NULL DEFAULT 1,
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
+        
+        DB::statement('CREATE INDEX idx_college_campus_id ON colleges(college_campus_id);');
     }
 
     /**

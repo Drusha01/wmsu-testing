@@ -20,11 +20,13 @@
             <li class="nav-item">
                 <a class="nav-link @if($active == 'Departments') show active @endif " wire:key="Departments" wire:click="active_page('Departments')"href="#departments-tab">Departments</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if($active == 'Campuses') show active @endif " wire:key="Campuses" wire:click="active_page('Campuses')"href="#Campuses-tab">Campuses</a>
+            </li>
         </ul>
 
         <!-- Tab Content -->
         <div class="tab-content">
-            <!-- Announcement Tab -->
             <div class="tab-pane fade fade @if($active == 'Colleges') show active @endif ">
                 <br>
                 <div class="d-flex mt-2">
@@ -97,6 +99,13 @@
                                         <img src="{{asset('storage/content/programs/colleges/'.$value->college_logo)}}" alt="" style="height: 200px; ">
                                     </td>
                                 @endif
+                                @if($college_filter['Campus'])
+                                    <td>
+                                        <div>
+                                            {{$value->campus_name}}
+                                        </div>
+                                    </td>
+                                @endif
                                 @if($college_filter['Header'])
                                     <td>
                                         <div>
@@ -148,6 +157,15 @@
                             <form wire:submit.prevent="save_add_college()">
                                 <div class="modal-body">
                                     <div class="form-group">
+                                        <select wire:model.defer="college.college_campus_id" class="form-select" aria-label="Default select example">
+                                            <option value="0">Select Campus</option>
+                                            @foreach ($campus_data  as $item => $value)
+                                                <option value="{{$value->campus_id}}">{{$value->campus_abr.' '.$value->campus_name.' '.$value->campus_location}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
                                         <label for="addRoomCapacity">Logo</label>
                                         <input  type="file" accept="image/jpg" accept="image/jpg" class="form-control" wire:model.defer="college.college_logo" required>
                                     </div>
@@ -182,6 +200,13 @@
                             @if($college['college_id'])
                                 <form wire:submit.prevent="save_edit_college({{$college['college_id']}})">
                                     <div class="modal-body">
+                                        <select wire:model.defer="college.college_campus_id" class="form-select" aria-label="Default select example">
+                                            <option value="0">Select Campus</option>
+                                            @foreach ($campus_data  as $item => $value)
+                                                <option value="{{$value->campus_id}}">{{$value->campus_abr.' '.$value->campus_name.' '.$value->campus_location}}</option>
+                                            @endforeach
+                                        </select>
+                                        <br>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Logo</label>
                                             <input  type="file" accept="image/jpg" class="form-control" wire:model.defer="college.college_logo" >
@@ -237,25 +262,16 @@
             </div>
             
             <div class="tab-pane fade @if($active == 'Departments') show active @endif ">
-            <div class="d-flex mt-2">
+                <div class="d-flex mt-2">
                     <label class="filter-label align-self-center " for="exam-filter">Select College:</label>
                     <select class="filter-select " id="exam-filter" wire:model="college_id" wire:change="college_filter()">
                         @foreach ($college_data as $item => $value)
                             <option value="{{$value->college_id}}" >{{$value->college_header}}</option>
-                                                      
+                                                    
                         @endforeach
                         
                         <!-- Add more options as needed -->
                     </select>
-                    <!-- <label class="filter-label align-self-center" for="exam-filter">Show:</label>
-                    <select class="filter-select" id="exam-filter" wire:model="per_page" wire:change="pending_application_exam_type_filter()">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="2">2</option>
-                        <option value="5">5</option>
-                    </select> -->
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
                             @if(1)
@@ -268,8 +284,6 @@
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
-                    
-
                     <div class="modal fade" id="application-management-filter" tabindex="-1" role="dialog" aria-labelledby="application-management-filterLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -483,10 +497,209 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
-        </div>
-        <!-- End Tab Content -->
+            <div class="tab-pane fade @if($active == 'Campuses') show active @endif ">
+                <div class="d-flex mt-2">
+                    <div class="col-md-3 sort-container">
+                        <div class="d-flex">
+                            @if(1)
+                            <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn" type="button" data-bs-toggle="modal" data-bs-target="#campus-filter">
+                                <i class="bi bi-funnel-fill me-1"></i>
+                                <div><span class='btn-text'>Columns</span></div>
+                            </button>
+                            @endif
+                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <!-- wire:model.debounce.500ms="search" -->
+                        </div>
+                    </div> 
+                    <div class="modal fade" id="campus-filter" tabindex="-1" role="dialog" aria-labelledby="campus-filterLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sortingModalLabel">Sort&nbsp;Columns</h5>
+                                </div>
+                                <hr>
+                                <div class="modal-body">
+                                    @foreach($campus_filter as $item => $value)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="filtering-{{$loop->iteration}}"
+                                            wire:model.defer="campus_filter.{{$item}}">
+                                        <label class="form-check-label" for="filtering-{{$loop->iteration}}">
+                                            {{$item}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button wire:click="filterView()" data-bs-dismiss="modal" 
+                                        class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-10">
+                        <button class="btn btn-success mx-1" wire:click="add_campus()" >Add Campus </button>
+                    </div>
+                </div>
+
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                            @foreach ($campus_filter as $item => $value)
+                                @if($value)
+                                    <th >{{$item}}</th>
+                                @endif
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($campus_data  as $item => $value)
+                            <tr>
+                                @if($campus_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                               
+                                @if($campus_filter['Campus Name'])
+                                    <td>
+                                        {{$value->campus_name}}
+                                    </td>
+                                @endif
+                                @if($campus_filter['Campus Location'])
+                                    <td>
+                                        {{$value->campus_location}}
+                                    </td>
+                                @endif
+                                @if($campus_filter['Campus Abr'])
+                                    <td>
+                                        {{$value->campus_abr}}
+                                    </td>
+                                @endif
+                                @if($campus_filter['Action'])
+                                    <td class="align-middle"> 
+                                        @if($access_role['R']==0)
+                                        <button class="btn btn-primary" wire:click="view_campus({{$value->campus_id}})" >View</button>
+                                        @endif
+                                        @if($access_role['U']==1)
+                                        <button class="btn btn-success" wire:click="edit_campus({{$value->campus_id}})" >Edit</button>
+                                        @endif
+                                        @if($access_role['D']==1)
+                                        <button class="btn btn-danger" wire:click="delete_campus({{$value->campus_id}})">Delete</button>
+                                        @endif
+                                    </td>
+                                @endif 
+                                </tr>
+                            @empty
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endforelse
+                    </tbody>
+                </table>
+
+                <div class="modal fade" id="AddCampusModal" tabindex="-1" role="dialog" aria-labelledby="AddCampusModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="AddCampusModalLabel">Add Campus</h5>
+                            </div>
+                            <hr>
+                            <form wire:submit.prevent="save_add_campus()">
+                                <div class="modal-body">
+                                <div class="form-group">
+                                        <label for="addRoomCapacity">Campus Name:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="campus.campus_name" required >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Campus Location</label>
+                                        <input  type="text" class="form-control" wire:model.defer="campus.campus_location" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Campus ABR:</label>
+                                        <input  type="text" class="form-control" wire:model.defer="campus.campus_abr" >
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-footer">
+                                    <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditCampusModal" tabindex="-1" role="dialog" aria-labelledby="EditCampusModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditCampusModalLabel">Edit Campus</h5>
+                            </div>
+                            <hr>
+                            @if(isset($campus['campus_id']))
+                                <form wire:submit.prevent="save_edit_campus({{$campus['campus_id']}})">
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                            <label for="addRoomCapacity">Campus Name:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="campus.campus_name" required >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Campus Location</label>
+                                            <input  type="text" class="form-control" wire:model.defer="campus.campus_location" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Campus ABR:</label>
+                                            <input  type="text" class="form-control" wire:model.defer="campus.campus_abr" >
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="DeleteCampusModal" tabindex="-1" role="dialog" aria-labelledby="EditCampusModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditCampusModalLabel">Delete Campus</h5>
+                            </div>
+                            <hr>
+                            @if(isset($campus['campus_id']))
+                                <form wire:submit.prevent="save_delete_campus({{$campus['campus_id']}})">
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                        Are you sure you want to delete the campus ?
+                                        <br>
+
+                                        Note that colleges under that campus might also get deleted along with it...
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btn-block"data-bs-dismiss="modal" id='btn_close1'>Close</button>
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
 
         <!-- Add Announcement Modal -->
        

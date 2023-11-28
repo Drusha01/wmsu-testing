@@ -27,6 +27,7 @@ class Programs extends Component
         'college_logo'=>NULL,
         'college_header' =>NULL,
         'college_content' =>NULL,
+        'college_campus_id' =>NULL,
         'college_order' =>NULL
     ];
 
@@ -43,6 +44,17 @@ class Programs extends Component
         'department_abr' => NULL,
         'department_order' => NULL
     ];
+
+    public $campus_filter = [];
+    public $campus_id;
+    public $campus_data;
+    public $campus = [
+        'campus_id' => NULL,
+        'campus_name' => NULL,
+        'campus_location' => NULL,
+        'campus_abr' => NULL
+    ];
+
 
 
     public function booted(Request $request){
@@ -80,8 +92,9 @@ class Programs extends Component
     }
 
     public function update_data(){
-        $this->college_data = DB::table('colleges')
+        $this->college_data = DB::table('colleges as c')
             ->select('*')
+            ->join('campuses as cp','c.college_campus_id','cp.campus_id')
             ->where('college_isactive','=',1)
             ->orderBy('college_order')
             ->get()
@@ -90,6 +103,11 @@ class Programs extends Component
         $this->department_data = DB::table('departments')
             ->where('department_college_id','=',$this->college_id)
             ->orderBy('department_order')
+            ->get()
+            ->toArray();
+
+        $this->campus_data = DB::table('campuses')
+            ->where('campus_isactive','=',1)
             ->get()
             ->toArray();
         // dd($this->college_data );
@@ -109,6 +127,7 @@ class Programs extends Component
             '#'=> true,
             'Logo'=> true,
             'Header'=> true,
+            'Campus' =>false,
             'Content'=> true,
             'Order'=> true,
             'Action'=> true,
@@ -121,6 +140,14 @@ class Programs extends Component
             'Content'=> true,
             'Order'=> true,
             'Action'=> true,
+        ];  
+
+        $this->campus_filter = [
+            '#'=> true,
+            'Campus Name'=> true,
+            'Campus Location'=> true,
+            'Campus Abr'=> true,
+            'Action'=> true
         ];  
 
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
@@ -156,7 +183,8 @@ class Programs extends Component
                 'college_id' =>NULL,
                 'college_logo'=>NULL,
                 'college_header' =>NULL,
-                'college_content' =>NULL
+                'college_content' =>NULL,
+                'college_campus_id' =>NULL
             ];
             $this->dispatchBrowserEvent('openModal','addCollegeModal');
         }
@@ -174,6 +202,18 @@ class Programs extends Component
                 return;
             }
             if(strlen($this->college['college_content'])<=0){
+                return;
+            }
+
+            if(intval($this->college['college_campus_id']) == 0){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Please select a valid campus!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
                 return;
             }
          
@@ -253,6 +293,7 @@ class Programs extends Component
                 ->insert([
                     'college_logo'=>$this->college['college_logo'],
                     'college_header' => $this->college['college_header'],
+                    'college_campus_id' => $this->college['college_campus_id'],
                     'college_content' => $this->college['college_content'],
                     'college_order' => ($current_order->current_order+1)
             ])){
@@ -284,12 +325,14 @@ class Programs extends Component
             'D' => true
         ];
         if($this->access_role['U'] ){
-            $college = DB::table('colleges')
+            $college = DB::table('colleges as c')
                 ->where('college_id','=',$college_id)
+                ->join('campuses as cp','c.college_campus_id','cp.campus_id')
                 ->first();
             $this->college = [
                 'college_id' => $college->college_id,
                 'college_logo'=>NULL,
+                'college_campus_id' => $college->campus_id,
                 'college_header' =>$college->college_header,
                 'college_content' =>$college->college_content
             ];
@@ -899,6 +942,180 @@ class Programs extends Component
                 ->update(['department_order'=>$current->department_order]);
 
             self::update_data();
+        }
+    }
+
+    
+    public function add_campus(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['C']  ){
+            $this->campus = [
+                'campus_id' => NULL,
+                'campus_name' => NULL,
+                'campus_location' => NULL,
+                'campus_abr' => NULL
+            ];
+            $this->dispatchBrowserEvent('openModal','AddCampusModal');
+        }
+    }
+    public function save_add_campus(){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['C']  ){
+            if(strlen($this->campus['campus_name'])<=0){
+                return;
+            }
+           
+            if(DB::table('campuses')
+                ->insert([
+                    'campus_id' => NULL,
+                    'campus_name' => $this->campus['campus_name'],
+                    'campus_location' => $this->campus['campus_location'],
+                    'campus_abr' => $this->campus['campus_abr']
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully added!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                $this->campus = [
+                    'campus_id' => NULL,
+                    'campus_name' => NULL,
+                    'campus_location' => NULL,
+                    'campus_abr' => NULL
+                ];
+
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','AddCampusModal');
+            }
+        }
+    }
+    public function edit_campus($campus_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['U']  ){
+            $campus = DB::table('campuses')
+                ->where('campus_id','=',$campus_id)
+                ->first();
+            $this->campus = [
+                'campus_id' => $campus->campus_id,
+                'campus_name' => $campus->campus_name,
+                'campus_location' => $campus->campus_location,
+                'campus_abr' => $campus->campus_abr
+            ];
+        }
+        self::update_data();
+        $this->dispatchBrowserEvent('openModal','EditCampusModal');
+    }
+    public function save_edit_campus($campus_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['C']  ){
+            if(strlen($this->campus['campus_name'])<=0){
+                return;
+            }
+           
+            if(DB::table('campuses')
+                ->where('campus_id','=',$campus_id)
+                ->update([
+                    'campus_name' => $this->campus['campus_name'],
+                    'campus_location' => $this->campus['campus_location'],
+                    'campus_abr' => $this->campus['campus_abr']
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                $this->campus = [
+                    'campus_id' => NULL,
+                    'campus_name' => NULL,
+                    'campus_location' => NULL,
+                    'campus_abr' => NULL
+                ];
+
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','EditCampusModal');
+            }
+        }
+    }
+    public function delete_campus($campus_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['D']  ){
+            $campus = DB::table('campuses')
+                ->where('campus_id','=',$campus_id)
+                ->first();
+            $this->campus = [
+                'campus_id' => $campus->campus_id,
+                'campus_name' => $campus->campus_name,
+                'campus_location' => $campus->campus_location,
+                'campus_abr' => $campus->campus_abr
+            ];
+        }
+        self::update_data();
+        $this->dispatchBrowserEvent('openModal','DeleteCampusModal');
+    }
+
+    public function save_delete_campus($campus_id){
+        $this->access_role = [
+            'C' => true,
+            'R' => true,
+            'U' => true,
+            'D' => true
+        ];
+        if($this->access_role['C']  ){
+
+            if(DB::table('campuses')
+                ->where('campus_id','=',$campus_id)
+                ->update([
+                    'campus_isactive' => 0
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully deleted!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                $this->campus = [
+                    'campus_id' => NULL,
+                    'campus_name' => NULL,
+                    'campus_location' => NULL,
+                    'campus_abr' => NULL
+                ];
+
+                self::update_data();
+                $this->dispatchBrowserEvent('openModal','DeleteCampusModal');
+            }
         }
     }
 

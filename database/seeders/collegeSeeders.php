@@ -21,6 +21,7 @@ class collegeSeeders extends Seeder
             "teaches modern farming, crop cultivation, animal husbandry, and sustainable practices. Students gain agribusiness skills for diverse careers in agriculture, emphasizing innovation and sustainability...",
             1,
             1,
+            1,
             NOW(),
             NOW()
         );');
@@ -29,6 +30,7 @@ class collegeSeeders extends Seeder
             "arch.png",
             "College Of Architecture",
             "Imparts design, construction, and urban planning education. Students learn architectural theory, building technology, and sustainability, honing skills in functional space creation...",
+            1,
             2,
             1,
             NOW(),

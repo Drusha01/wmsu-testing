@@ -1,7 +1,7 @@
 <!DOCTYPE html>
     <html>
     <head>
-        <!-- not nice - ace dev - https://github.com/Drusha01 -->
+        <!-- not nice - ace dev - Al-KHAYZEL A. SALI, HANRICKSON E. DUMAPIT, MATT ALBER S. LUNA -->
         <meta charset="utf-8">
         <title>{{ config('app.name', 'Laravel').' - '.$title }}</title>
         <style>
