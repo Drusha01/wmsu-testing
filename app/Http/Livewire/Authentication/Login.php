@@ -48,34 +48,6 @@ class Login extends Component
                 $request->session()->regenerate();
 
                 $request->session()->put('user_id', $user_details->user_id);
-                $request->session()->put('user_status_id', $user_details->user_status_id);
-                $request->session()->put('user_status_details', $user_details->user_status_details); 
-                $request->session()->put('user_sex_id', $user_details->user_sex_id);
-                $request->session()->put('user_sex_details', $user_details->user_sex_details);
-                $request->session()->put('user_gender_id', $user_details->user_gender_id);
-                $request->session()->put('user_gender_details', $user_details->user_gender_details);
-                $request->session()->put('user_role_id', $user_details->user_role_id);
-                $request->session()->put('user_role_details', $user_details->user_role_details);
-                
-                $request->session()->put('user_name', $user_details->user_name);
-                $request->session()->put('user_email', $user_details->user_email);
-                $request->session()->put('user_phone', $user_details->user_phone);
-                $request->session()->put('user_name_verified', $user_details->user_name_verified);
-                $request->session()->put('user_email_verified', $user_details->user_email_verified);
-                $request->session()->put('user_phone_verified', $user_details->user_phone_verified);
-
-                $request->session()->put('user_firstname',$user_details->user_firstname);
-                $request->session()->put('user_middlename', $user_details->user_middlename);
-                $request->session()->put('user_lastname', $user_details->user_lastname);
-                $request->session()->put('user_fullname', $user_details->user_lastname.', '. $user_details->user_firstname.' '.$user_details->user_middlename);
-                $request->session()->put('user_suffix', $user_details->user_suffix);
-                $request->session()->put('user_address', $user_details->user_address);
-
-                $request->session()->put('user_birthdate', $user_details->user_birthdate);
-                $request->session()->put('user_profile_picture', $user_details->user_profile_picture);
-                $request->session()->put('user_formal_id', $user_details->user_formal_id);
-                $request->session()->put('date_created', $user_details->date_created);
-                $request->session()->put('date_updated', $user_details->date_updated);
                 
                 //append it to session
                 $this->dispatchBrowserEvent('swal:redirect',[

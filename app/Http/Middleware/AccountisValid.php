@@ -18,7 +18,6 @@ class AccountisValid
     public function handle(Request $request, Closure $next)
     {
         $user_details = $request->session()->all();
-        
         $user_status = DB::table('users as u')
         ->select('u.user_status_id','us.user_status_details')
         ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')

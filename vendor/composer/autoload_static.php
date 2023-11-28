@@ -868,6 +868,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'Database\\Seeders\\admin_role' => __DIR__ . '/../..' . '/database/seeders/admin_role.php',
         'Database\\Seeders\\admin_role_names' => __DIR__ . '/../..' . '/database/seeders/admin_role_names.php',
         'Database\\Seeders\\attachmentTypes' => __DIR__ . '/../..' . '/database/seeders/attachmentTypes.php',
+        'Database\\Seeders\\campus_seeder' => __DIR__ . '/../..' . '/database/seeders/campus_seeder.php',
         'Database\\Seeders\\carousel_seeders' => __DIR__ . '/../..' . '/database/seeders/carousel_seeders.php',
         'Database\\Seeders\\cet_type_lists' => __DIR__ . '/../..' . '/database/seeders/cet_type_lists.php',
         'Database\\Seeders\\collegeSeeders' => __DIR__ . '/../..' . '/database/seeders/collegeSeeders.php',

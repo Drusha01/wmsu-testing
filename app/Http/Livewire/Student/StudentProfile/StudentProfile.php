@@ -12,7 +12,6 @@ class StudentProfile extends Component
 {
     use WithFileUploads;
     public $title;
-    public $user_details;
 
     // photo 
     public $photo;
@@ -37,6 +36,38 @@ class StudentProfile extends Component
     public $address;
     public $birthdate;
 
+    public $user_details = [
+        'user_status_id' =>NULL,
+        'user_sex_id' =>NULL,
+        'user_gender_id' =>NULL,
+        'user_role_id' =>NULL,
+        'user_name' =>NULL,
+        'user_email' =>NULL,
+        'user_phone' =>NULL,
+        'user_password' =>NULL,
+        'user_name_verified' =>NULL,
+        'user_email_verified' =>NULL,
+        'user_phone_verified' =>NULL,
+        'user_firstname' =>NULL,
+        'user_middlename' =>NULL,
+        'user_lastname' =>NULL,
+        'user_suffix' =>NULL,
+
+        'user_addr_street' =>NULL,
+        'user_addr_brgy' =>NULL,
+        'user_addr_city_mun' =>NULL,
+        'user_addr_province' =>NULL,
+        'user_addr_zip_code' =>NULL,
+        
+
+        'user_birthdate' =>NULL,
+        'user_profile_picture' =>NULL,
+        'user_formal_id' =>NULL,
+
+        'date_created' =>NULL,
+        'date_updated' =>NULL
+    ];
+
     public $f_firstname;
     public $f_middlename;
     public $f_lastname;
@@ -57,15 +88,23 @@ class StudentProfile extends Component
     public $ueb_shs_school_name;
     public $ueb_shs_address;
 
+    public $street;
+
+    public $brgy_data;
+    public $mun_city_data;
+    public $province_data;
+
+    public $zip_code;
+
     public function booted(Request $request){
-        $this->user_details = $request->session()->all();
-        if(!isset($this->user_details['user_id'])){
+        $user_details = $request->session()->all();
+        if(!isset($user_details['user_id'])){
             return redirect('/login');
         }else{
             $user_status = DB::table('users as u')
             ->select('u.user_status_id','us.user_status_details')
             ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
-            ->where('user_id','=', $this->user_details['user_id'])
+            ->where('user_id','=', $user_details['user_id'])
             ->first();
         }
 
@@ -78,25 +117,108 @@ class StudentProfile extends Component
         }
     }
 
+    public function hydrate(){
+        self::update_data();
+    }
+
+    public function update(){
+        // dd($this->brgy_search_input);
+    }
+
+    public function update_province(){
+        // dd('sdfasd');
+    }
+
+    public function update_data(){
+        $this->brgy_data = DB::table('refbrgy')
+            ->select('*')
+            ->where('brgyDesc','LIKE',($this->user_details['user_addr_brgy'].'%'))
+            ->limit(50)
+            ->get()
+            ->toArray();
+
+        $this->mun_city_data = DB::table('refcitymun as cm')
+            ->select('*')
+            ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
+            ->limit(25)
+            ->get()
+            ->toArray();
+        
+        if(count($this->mun_city_data) == 1){
+            $mun_city_data = DB::table('refcitymun as cm')
+            ->select('*')
+            ->join('refprovince as p','cm.provCode','p.provCode')
+            ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
+            ->first();
+            $this->user_details['user_addr_province'] = $mun_city_data->provDesc;
+        }
+        
+        $this->province_data =  DB::table('refprovince')
+        ->select('*')
+        ->where('provDesc','LIKE',($this->user_details['user_addr_province'].'%'))
+        ->limit(25)
+        ->get()
+        ->toArray();;
+            // dd($this->province_data);
+    }
+
+
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
-        $this->user_details['date_created'] = substr($this->user_details['date_created'],0,10); 
+
+
         $this->title = 'profile';
 
         $this->photo_id = rand(0,1000000);
         // $this->formal_id_id = rand(0,1000000);
+    
+        $user_details = DB::table('users as u')
+        ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+        ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
+        ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
+        ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
+        ->where('user_id','=', $this->user_details['user_id'])
+        ->first();
 
-        $this->firstname = $this->user_details['user_firstname'];
-        $this->middlename = $this->user_details['user_middlename'];
-        $this->lastname = $this->user_details['user_lastname'];
-        $this->suffix = $this->user_details['user_suffix'];
-        $this->gender = $this->user_details['user_gender_details'];
-        $this->sex = $this->user_details['user_sex_details'];
-        $this->phone = $this->user_details['user_phone'];
-        $this->address = $this->user_details['user_address'];
-        $this->birthdate = $this->user_details['user_birthdate'];
+        $this->user_details = [
+            'user_id' =>$this->user_details['user_id'],
+            'user_status_id' => $user_details->user_status_id,
+            'user_sex_id' =>$user_details->user_sex_id,
+            'user_gender_id' =>$user_details->user_gender_id,
+            'user_role_id' =>$user_details->user_role_id,
+            'user_name' =>$user_details->user_name,
+            'user_email' =>$user_details->user_email,
+            'user_phone' =>$user_details->user_phone,
+            'user_name_verified' =>$user_details->user_name_verified,
+            'user_email_verified' =>$user_details->user_email_verified,
+            'user_phone_verified' =>$user_details->user_phone_verified,
+            'user_firstname' =>$user_details->user_firstname,
+            'user_middlename' =>$user_details->user_middlename,
+            'user_lastname' =>$user_details->user_lastname,
+            'user_suffix' =>$user_details->user_suffix,
+    
+            'user_addr_street' =>$user_details->user_addr_street,
+            'user_addr_brgy' =>$user_details->user_addr_brgy,
+            'user_addr_city_mun' =>$user_details->user_addr_city_mun,
+            'user_addr_province' =>$user_details->user_addr_province,
+            'user_addr_zip_code' =>$user_details->user_addr_zip_code,
+            
+    
+            'user_birthdate' =>$user_details->user_birthdate,
+            'user_profile_picture' =>$user_details->user_profile_picture,
+            'user_formal_id' =>$user_details->user_formal_id,
+    
+            'date_created' =>$user_details->date_created,
+            'date_updated' =>$user_details->date_updated,
+
+            'user_gender_details' =>$user_details->user_gender_details,
+            'user_address' => $user_details->user_addr_street.', '.$user_details->user_addr_brgy.', '.$user_details->user_addr_city_mun.', '.$user_details->user_addr_province.', '.$user_details->user_addr_zip_code
+        ];
         
 
+
+        
+//-----------------------------//-----------------------------//-----------------------------//-----------------------------//-----------------------------//-----------------------------
 
         $this->diploma_id = rand(0,1000000);
         $this->ueb_shs_form_137_id = rand(0,1000000);
@@ -130,11 +252,11 @@ class StudentProfile extends Component
             $this->ueb_shs_school_name = $educational_details->ueb_shs_school_name;
             $this->ueb_shs_address = $educational_details->ueb_shs_address ;
         }
+        self::update_data();
     }
     public function render()
     {
         return view('livewire.student.student-profile.student-profile',[
-                'user_details' => $this->user_details
             ])
             ->layout('layouts.student',[
                 'title'=>$this->title]);
@@ -172,92 +294,77 @@ class StudentProfile extends Component
             ]);
         }
        
-        if(strlen($this->firstname) < 1 && strlen($this->firstname) > 255){
+        if(strlen($this->user_details['user_firstname']) < 1 && strlen($this->user_details['user_firstname']) > 255){
             return false;
         }
         
-        if(strlen($this->lastname) < 1 && strlen($this->lastname) > 255){
+        if(strlen($this->user_details['user_lastname']) < 1 && strlen($this->user_details['user_lastname']) > 255){
             return false;
         }
-        if(strlen($this->middlename) < 0 && strlen($this->middlename) > 255){
+        if(strlen($this->user_details['user_middlename']) < 0 && strlen($this->user_details['user_middlename']) > 255){
             return false;
         }
-        if(strlen($this->suffix) < 0 && strlen($this->suffix) > 255){
+        if(strlen($this->user_details['user_suffix']) < 0 && strlen($this->user_details['user_suffix']) > 255){
             return false;
         }
-        if(strlen($this->address) < 0 && strlen($this->address) > 255){
+
+
+        if(strlen($this->user_details['user_addr_street']) < 0 && strlen($this->user_details['user_addr_street']) > 255){
             return false;
         }
+        if(strlen($this->user_details['user_addr_brgy']) < 1 && strlen($this->user_details['user_addr_brgy']) > 255){
+            return false;
+        }
+        if(strlen($this->user_details['user_addr_city_mun']) < 1 && strlen($this->user_details['user_addr_city_mun']) > 255){
+            return false;
+        }
+        if(strlen($this->user_details['user_addr_province']) < 1 && strlen($this->user_details['user_addr_province']) > 255){
+            return false;
+        }
+        if(intval($this->user_details['user_addr_zip_code']) < 0 ){
+            return false;
+        }
+        
+
         // validate phone
         if(1){
             
         }
-
+        
         if($gender_details = DB::table('user_genders')
-        ->where('user_gender_details', $this->gender)
+        ->where('user_gender_details', $this->user_details['user_gender_details'])
         ->first()){
             $gender_id = $gender_details->user_gender_id;
         }else{
             DB::table('user_genders')->insert([
-                'user_gender_details'=>$this->gender
+                'user_gender_details'=>$this->user_details['user_gender_details']
             ]);
             $gender_details = DB::table('user_genders')
-                ->where('user_gender_details', $this->gender)
+                ->where('user_gender_details', $this->user_details['user_gender_details'])
                 ->first();
             $gender_id = $gender_details->user_gender_id;
         }
         // update
+        
         DB::table('users as u')
-        ->where(['u.user_id'=> $user_details['user_id']])
+        ->where(['u.user_id'=> $this->user_details['user_id']])
         ->update([
-            'u.user_firstname' => $this->firstname,
-            'u.user_middlename'=>$this->middlename, 
-            'u.user_lastname'=>$this->lastname, 
-            'u.user_suffix'=>$this->suffix, 
+            'u.user_firstname' => $this->user_details['user_firstname'],
+            'u.user_middlename'=>$this->user_details['user_middlename'],
+            'u.user_lastname'=>$this->user_details['user_lastname'],
+            'u.user_suffix'=>$this->user_details['user_suffix'],
             'u.user_gender_id'=>$gender_id,
-            'u.user_address'=>$this->address,  
-            'u.user_phone'=>$this->phone,  
-            'u.user_birthdate'=>$this->birthdate,   
+            'u.user_phone'=>$this->user_details['user_phone'],
+            'u.user_birthdate'=>$this->user_details['user_birthdate'],  
+
+            'u.user_addr_street' =>$this->user_details['user_addr_street'],
+            'u.user_addr_brgy'=>$this->user_details['user_addr_brgy'],
+            'u.user_addr_city_mun' =>$this->user_details['user_addr_city_mun'],
+            'u.user_addr_province' =>$this->user_details['user_addr_province'],
+            'u.user_addr_zip_code' =>$this->user_details['user_addr_zip_code'],
         ]);
 
-        $user_details =DB::table('users as u')
-        ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
-        ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
-        ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
-        ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
-        ->where(['u.user_id'=> $user_details['user_id']])
-        ->first();
-
-
-        $request->session()->put('user_id', $user_details->user_id);
-        $request->session()->put('user_status_id', $user_details->user_status_id);
-        $request->session()->put('user_status_details', $user_details->user_status_details); 
-        $request->session()->put('user_sex_id', $user_details->user_sex_id);
-        $request->session()->put('user_sex_details', $user_details->user_sex_details);
-        $request->session()->put('user_gender_id', $user_details->user_gender_id);
-        $request->session()->put('user_gender_details', $user_details->user_gender_details);
-        $request->session()->put('user_role_id', $user_details->user_role_id);
-        $request->session()->put('user_role_details', $user_details->user_role_details);
-        
-        $request->session()->put('user_name', $user_details->user_name);
-        $request->session()->put('user_email', $user_details->user_email);
-        $request->session()->put('user_phone', $user_details->user_phone);
-        $request->session()->put('user_name_verified', $user_details->user_name_verified);
-        $request->session()->put('user_email_verified', $user_details->user_email_verified);
-        $request->session()->put('user_phone_verified', $user_details->user_phone_verified);
-
-        $request->session()->put('user_firstname',$user_details->user_firstname);
-        $request->session()->put('user_middlename', $user_details->user_middlename);
-        $request->session()->put('user_lastname', $user_details->user_lastname);
-        $request->session()->put('user_fullname', $user_details->user_lastname.', '. $user_details->user_firstname.' '.$user_details->user_middlename);
-        $request->session()->put('user_suffix', $user_details->user_suffix);
-        $request->session()->put('user_address', $user_details->user_address);
-
-        $request->session()->put('user_birthdate', $user_details->user_birthdate);
-        $request->session()->put('user_profile_picture', $user_details->user_profile_picture);
-        $request->session()->put('date_created', $user_details->date_created);
-        $request->session()->put('date_updated', $user_details->date_updated);
-        $this->user_details = $request->session()->all();
+       
 
         $this->dispatchBrowserEvent('swal:redirect',[
             'position'          									=> 'center',
@@ -271,38 +378,6 @@ class StudentProfile extends Component
     }
 
     public function update_profile_and_id(Request $request){
-        $user_details = $request->session()->all();
-        if(!isset($user_details['user_id'])){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Unauthenticated!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/login'
-            ]);
-        }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Account deleted!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/deleted'
-            ]);
-        }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Account inactive!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/inactive'
-            ]);
-        }
-
         if($this->photo&& file_exists(storage_path().'/app/livewire-tmp/'.$this->photo->getfilename())){
             $file_extension =$this->photo->getClientOriginalExtension();
             $tmp_name = 'livewire-tmp/'.$this->photo->getfilename();
@@ -432,25 +507,24 @@ class StudentProfile extends Component
                   
 
                        
-                    if($user_details['user_profile_picture'] != 'default.png'){
-                        if(file_exists($profilepic_dir.$user_details['user_profile_picture'])){
-                            unlink($profilepic_dir.$user_details['user_profile_picture']);
+                    if($this->user_details['user_profile_picture'] != 'default.png'){
+                        if(file_exists($profilepic_dir.$this->user_details['user_profile_picture'])){
+                            unlink($profilepic_dir.$this->user_details['user_profile_picture']);
                         }
-                        if(file_exists($profile_resize_dir.$user_details['user_profile_picture'])){
-                            unlink($profile_resize_dir.$user_details['user_profile_picture']);
+                        if(file_exists($profile_resize_dir.$this->user_details['user_profile_picture'])){
+                            unlink($profile_resize_dir.$this->user_details['user_profile_picture']);
                         }
-                        if(file_exists($profile_thumbnail_dir.$user_details['user_profile_picture'])){
-                            unlink($profile_thumbnail_dir.$user_details['user_profile_picture']);
+                        if(file_exists($profile_thumbnail_dir.$this->user_details['user_profile_picture'])){
+                            unlink($profile_thumbnail_dir.$this->user_details['user_profile_picture']);
                         }
                     }
                         
                         // delete old photo
                         DB::table('users as u')
-                        ->where(['u.user_id'=> $user_details['user_id']])
+                        ->where(['u.user_id'=> $this->user_details['user_id']])
                         ->update(['u.user_profile_picture'=> $new_file_name.'.jpg']);
+                        self::update_data();
 
-                        $request->session()->put('user_profile_picture', $new_file_name.'.jpg');
-                        $this->user_details = $request->session()->all();
                         $this->photo = null;
 
                         $this->dispatchBrowserEvent('swal:redirect',[
@@ -684,7 +758,6 @@ class StudentProfile extends Component
             $this->password_error = 'Password doesn\'t match';
         }   
     }
-
     public function new_password(Request $request){
         $user_details = $request->session()->all();
         if(!isset($user_details['user_id'])){
@@ -735,7 +808,6 @@ class StudentProfile extends Component
         }
         $this->password_error=null;
     }
-
     public function confirm_password(Request $request){
         $user_details = $request->session()->all();
         if(!isset($user_details['user_id'])){
@@ -792,6 +864,8 @@ class StudentProfile extends Component
             $this->password_error = 'Password doesn\'t match';
         }
     }
+
+
 
     public function save_family_background(Request $request){
         $user_details = $request->session()->all();
@@ -906,7 +980,6 @@ class StudentProfile extends Component
             }
         }
     }
-
     public function save_educational_details(Request $request){
         $user_details = $request->session()->all();
         

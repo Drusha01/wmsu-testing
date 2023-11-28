@@ -17,7 +17,7 @@ class StudentTestNav2 extends Component
             return redirect('/login');
         }else{
             $user_status = DB::table('users as u')
-            ->select('u.user_status_id','us.user_status_details')
+            ->select('u.user_status_id','us.user_status_details','user_profile_picture')
             ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
             ->where('user_id','=', $this->user_details['user_id'])
             ->first();

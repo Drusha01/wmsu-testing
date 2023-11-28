@@ -248,6 +248,7 @@ return array(
     'Database\\Seeders\\admin_role' => $baseDir . '/database/seeders/admin_role.php',
     'Database\\Seeders\\admin_role_names' => $baseDir . '/database/seeders/admin_role_names.php',
     'Database\\Seeders\\attachmentTypes' => $baseDir . '/database/seeders/attachmentTypes.php',
+    'Database\\Seeders\\campus_seeder' => $baseDir . '/database/seeders/campus_seeder.php',
     'Database\\Seeders\\carousel_seeders' => $baseDir . '/database/seeders/carousel_seeders.php',
     'Database\\Seeders\\cet_type_lists' => $baseDir . '/database/seeders/cet_type_lists.php',
     'Database\\Seeders\\collegeSeeders' => $baseDir . '/database/seeders/collegeSeeders.php',

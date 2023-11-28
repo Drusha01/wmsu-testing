@@ -31,7 +31,14 @@ class CreateUsersTable extends Migration
             user_middlename VARCHAR(255),
             user_lastname  VARCHAR(255) NOT NULL,
             user_suffix VARCHAR(100),
-            user_address VARCHAR(255),
+
+            user_addr_street VARCHAR(255) DEFAULT NULL,
+            user_addr_brgy VARCHAR(255) DEFAULT NULL,
+            user_addr_city_mun VARCHAR(255) DEFAULT NULL,
+            user_addr_province VARCHAR(255)DEFAULT NULL,
+            user_addr_zip_code INT DEFAULT NULL,
+         
+
             user_birthdate DATE,
             user_profile_picture VARCHAR(100) DEFAULT "default.png",
             user_formal_id VARCHAR(100) DEFAULT "default.png",

@@ -146,56 +146,133 @@
                                 <fieldset>
                                     <!-- Full Name -->
                                     <form wire:submit.prevent="save_profile_info()">
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="firstname" class="form-control" placeholder="Enter firstname" required>
+                                            <input type="text"  wire:model="user_details.user_firstname" class="form-control" placeholder="Enter firstname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="middlename" class="form-control" placeholder="Enter middlename" >
+                                            <input type="text"  wire:model="user_details.user_middlename" class="form-control" placeholder="Enter middlename" >
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="lastname" class="form-control" placeholder="Enter lastname" required>
+                                            <input type="text"  wire:model="user_details.user_lastname" class="form-control" placeholder="Enter lastname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="suffix" class="form-control" placeholder="Enter suffix" >
+                                                <select wire:model="user_details.user_suffix" class="form-control">
+                                                @if(isset($user_details['user_suffix']) && strlen($user_details['user_suffix']>0))
+                                                        <option value="$user_details['user_suffix']">
+                                                    @else
+                                                    <option value="">Select suffix</option>
+                                                    @endif
+                                                   
+                                                    <option value="Jr.">Jr.</option>
+                                                    <option value="Sr.">Sr.</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <!-- Add more suffix options as needed -->
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Gender<span style="color:red;"></span> :</label>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="gender" class="form-control" placeholder="Enter gender" >
+                                                <select wire:model="user_details.user_gender_details" class="form-control">
+                                                    @if(isset($user_details['user_gender_details']) && strlen($user_details['user_gender_details']>0))
+                                                        <option value="$user_details['user_gender_details']">
+                                                    @else
+                                                        <option value="">Select gender</option>
+                                                    @endif
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Complete address<span style="color:red;"></span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Address Street:</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="address" class="form-control" placeholder="Enter address" >
+                                                <input type="text" wire:model="user_details.user_addr_street" class="form-control" placeholder="Enter street">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Barangay:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" required list="brgy" wire:change="update_data()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
+                                                <datalist id="brgy" >
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_brgy']">
+                                                    @endif
+                                                    @foreach($brgy_data as $key =>$value)
+                                                    <option value="{{$value->brgyDesc}}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">City / Municipality<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model.defer="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                                <input class="form-control" required list="muncity" wire:change="update_data()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
+                                                <datalist id="muncity">
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_city_mun']">
+                                                    @endif
+                                                    @if($mun_city_data)
+                                                        @foreach($mun_city_data as $key =>$value)
+                                                        <option value="{{$value->citymunDesc}}" >
+                                                        @endforeach
+                                                    @endif
+                                                </datalist>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-2">
-                                            <label for="newFullName" class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Province<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                            <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                                <input class="form-control" required list="province" wire:change="update_data()" wire:model="user_details.user_addr_province" placeholder="Type to search...">
+                                                <datalist id="province" >
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_city_mun']">
+                                                    @endif
+                                                    @if($province_data)
+                                                        @foreach($province_data as $key =>$value)
+                                                        <option value="{{$value->provDesc}}" >
+                                                        @endforeach
+                                                    @endif
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">ZIP Code:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="user_details.user_addr_zip_code" required class="form-control" placeholder="Enter ZIP code">
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="text"  required wire:model="user_details.user_phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
+                                            <div class="col-sm-8">
+                                            <input type="date"  wire:model="user_details.user_birthdate" class="form-control" placeholder="Enter birthdate" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
                                     </form>

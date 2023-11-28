@@ -33,7 +33,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modifyModalLabelDetails">Change Profile and ID</h5>
+                                <h5 class="modal-title" id="modifyModalLabelDetails">Change Profile photo</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -135,6 +135,7 @@
                     <br>
                     <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
                 </div>
+
                 <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -151,26 +152,31 @@
                                         <div class="form-group row">
                                             <label  class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="firstname" class="form-control" placeholder="Enter firstname" required>
+                                            <input type="text"  wire:model="user_details.user_firstname" class="form-control" placeholder="Enter firstname" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="middlename" class="form-control" placeholder="Enter middlename" >
+                                            <input type="text"  wire:model="user_details.user_middlename" class="form-control" placeholder="Enter middlename" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="lastname" class="form-control" placeholder="Enter lastname" required>
+                                            <input type="text"  wire:model="user_details.user_lastname" class="form-control" placeholder="Enter lastname" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                                <select wire:model="suffix" class="form-control">
+                                                <select wire:model="user_details.user_suffix" class="form-control">
+                                                @if(isset($user_details['user_suffix']) && strlen($user_details['user_suffix']>0))
+                                                        <option value="$user_details['user_suffix']">
+                                                    @else
                                                     <option value="">Select suffix</option>
+                                                    @endif
+                                                   
                                                     <option value="Jr.">Jr.</option>
                                                     <option value="Sr.">Sr.</option>
                                                     <option value="II">II</option>
@@ -183,55 +189,89 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                                <select wire:model="gender" class="form-control">
-                                                    <option value="">Select gender</option>
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                    <option value="other">Other</option>
+                                                <select wire:model="user_details.user_gender_details" class="form-control">
+                                                    @if(isset($user_details['user_gender_details']) && strlen($user_details['user_gender_details']>0))
+                                                        <option value="$user_details['user_gender_details']">
+                                                    @else
+                                                        <option value="">Select gender</option>
+                                                    @endif
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Address Street:</label>
                                             <div class="col-sm-8">
-                                                <input type="text" wire:model="street" class="form-control" placeholder="Enter street">
+                                                <input type="text" wire:model="user_details.user_addr_street" class="form-control" placeholder="Enter street">
                                             </div>
+                                            
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Barangay:</label>
                                             <div class="col-sm-8">
-                                                <input type="text" wire:model="barangay" class="form-control" placeholder="Enter barangay">
+                                                <input class="form-control" required list="brgy" wire:change="update_data()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
+                                                <datalist id="brgy" >
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_brgy']">
+                                                    @endif
+                                                    @foreach($brgy_data as $key =>$value)
+                                                    <option value="{{$value->brgyDesc}}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">City<span style="color:red;">*</span>:</label>
+                                            <label class="col-sm-4 col-form-label">City / Municipality<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                                <input type="text" wire:model="city" class="form-control" placeholder="Enter city" required>
+                                                <input class="form-control" required list="muncity" wire:change="update_data()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
+                                                <datalist id="muncity">
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_city_mun']">
+                                                    @endif
+                                                    @if($mun_city_data)
+                                                        @foreach($mun_city_data as $key =>$value)
+                                                        <option value="{{$value->citymunDesc}}" >
+                                                        @endforeach
+                                                    @endif
+                                                </datalist>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Province:</label>
+                                            <label class="col-sm-4 col-form-label">Province<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
-                                                <input type="text" wire:model="province" class="form-control" placeholder="Enter province">
+                                                <input class="form-control" required list="province" wire:change="update_data()" wire:model="user_details.user_addr_province" placeholder="Type to search...">
+                                                <datalist id="province" >
+                                                    @if(isset($user_details['user_addr_brgy']))
+                                                        <option value="$user_details['user_addr_city_mun']">
+                                                    @endif
+                                                    @if($province_data)
+                                                        @foreach($province_data as $key =>$value)
+                                                        <option value="{{$value->provDesc}}" >
+                                                        @endforeach
+                                                    @endif
+                                                </datalist>
                                             </div>
                                         </div>
+                                       
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">ZIP Code:</label>
                                             <div class="col-sm-8">
-                                                <input type="text" wire:model="zip_code" class="form-control" placeholder="Enter ZIP code">
+                                                <input type="text" wire:model="user_details.user_addr_zip_code" required class="form-control" placeholder="Enter ZIP code">
                                             </div>
                                         </div>
-
+    
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="text"  wire:model="phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
+                                            <input type="text"  required wire:model="user_details.user_phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
-                                            <input type="date"  wire:model="birthdate" class="form-control" placeholder="Enter birthdate" required>
+                                            <input type="date"  wire:model="user_details.user_birthdate" class="form-control" placeholder="Enter birthdate" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -457,6 +497,17 @@
                                                     <label class="col-sm-4 col-form-label">Street:</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" wire:model="fb_street" class="form-control" placeholder="Enter street">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label">Barangay:</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-select" aria-label="Default select example">
+                                                            <option selected>Open this select menu</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
