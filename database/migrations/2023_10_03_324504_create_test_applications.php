@@ -34,27 +34,35 @@ class CreateTestApplications extends Migration
             t_a_endorsement_letter_from_wmsu_dean VARCHAR(50),
             t_a_receipt_photo VARCHAR(50),  -- note that if the applicant is taking second time
 
-            t_a_1st_choice
-            t_a_2nd_choice
-            t_a_3rd_choice
+            t_a_1st_choice INT,
+            t_a_2nd_choice INT , 
+            t_a_3rd_choice INT , 
 
             -- parent 
-            t_a_f_citizenship
-            t_a_f_hef
-            t_a_f_occupation
-            t_a_f_place_of_work
-            t_a_f_monthly_salary
+            t_a_f_citizenship VARCHAR(100),
+            t_a_f_hef VARCHAR(255),
+            t_a_f_occupation  VARCHAR(255),
+            t_a_f_place_of_work VARCHAR(255),
+            t_a_f_monthly_salary VARCHAR(100),
 
-            t_a_m_citizenship
-            t_a_m_hef
-            t_a_m_occupation
-            t_a_m_place_of_work
-            t_a_m_monthly_salary
+            t_a_m_citizenship VARCHAR(100),
+            t_a_m_hef VARCHAR(255),
+            t_a_m_occupation VARCHAR(255),
+            t_a_m_place_of_work VARCHAR(255),
+            t_a_m_monthly_salary VARCHAR(100),
 
-            t_a_computer_literate
-            t_a_ethnic_group_id -- index
-            t_a_religious_affiliation
-            t_a_accept
+            t_a_computer_literate BOOLEAN DEFAULT 0,
+            t_a_ethnic_group VARCHAR(100),
+            t_a_religious_affiliation VARCHAR(100),
+            t_a_accept BOOLEAN DEFAULT 1,
+
+            t_a_cet_type_id INT,
+            t_a_cet_english_procficiency FLOAT DEFAULT NULL,
+            t_a_cet_reading_comprehension  FLOAT DEFAULT NULL,
+            t_a_cet_science_process_skills FLOAT DEFAULT NULL,
+            t_a_cet_quantitative_skills FLOAT DEFAULT NULL,
+            t_a_cet_abstract_thinking_skills FLOAT DEFAULT NULL,
+            t_a_cet_oapr FLOAT DEFAULT NULL,
 
 
             -- nat
@@ -79,14 +87,7 @@ class CreateTestApplications extends Migration
             t_a_hash VARCHAR(50) NOT NULL,
 
             -- cet type
-            t_a_cet_type_id INT,
-            -- cet results
-            t_a_cet_english_procficiency FLOAT DEFAULT NULL,
-            t_a_cet_reading_comprehension  FLOAT DEFAULT NULL,
-            t_a_cet_science_process_skills FLOAT DEFAULT NULL,
-            t_a_cet_quantitative_skills FLOAT DEFAULT NULL,
-            t_a_cet_abstract_thinking_skills FLOAT DEFAULT NULL,
-            t_a_cet_oapr FLOAT DEFAULT NULL,
+           
 
             
 
@@ -106,6 +107,11 @@ class CreateTestApplications extends Migration
         DB::statement('CREATE INDEX idx_t_a_returned_by ON test_applications(t_a_returned_by);');
         DB::statement('CREATE INDEX idx_t_a_proctor_user_id ON test_applications(t_a_proctor_user_id);');
         DB::statement('CREATE INDEX idx_t_a_school_room_id ON test_applications(t_a_school_room_id);');
+
+        DB::statement('CREATE INDEX idx_t_a_1st_choice ON test_applications(t_a_1st_choice);');
+        DB::statement('CREATE INDEX idx_t_a_2nd_choice ON test_applications(t_a_2nd_choice);');
+        DB::statement('CREATE INDEX idx_t_a_3rd_choice ON test_applications(t_a_3rd_choice);');
+
 
         // for file indexes
         DB::statement('CREATE INDEX idx_t_a_formal_photo ON test_applications(t_a_formal_photo(10));');

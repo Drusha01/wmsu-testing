@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             examSeeders::class,
             collegeSeeders::class,
             campus_seeder::class,
+            high_school_seeders::class,
         ]);
         
     }
