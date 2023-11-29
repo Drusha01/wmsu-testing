@@ -196,6 +196,7 @@ class StudentProfile extends Component
             'user_middlename' =>$user_details->user_middlename,
             'user_lastname' =>$user_details->user_lastname,
             'user_suffix' =>$user_details->user_suffix,
+            'user_citizenship' => $user_details->user_citizenship,
     
             'user_addr_street' =>$user_details->user_addr_street,
             'user_addr_brgy' =>$user_details->user_addr_brgy,
@@ -263,36 +264,7 @@ class StudentProfile extends Component
     }
     public function save_profile_info(Request $request){
         $user_details = $request->session()->all();
-        if(!isset($user_details['user_id'])){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Unauthenticated!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/login'
-            ]);
-        }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'deleted' ){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Account deleted!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/deleted'
-            ]);
-        }
-        if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'inactive' ){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Account inactive!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '/inactive'
-            ]);
-        }
+        
        
         if(strlen($this->user_details['user_firstname']) < 1 && strlen($this->user_details['user_firstname']) > 255){
             return false;
@@ -305,6 +277,9 @@ class StudentProfile extends Component
             return false;
         }
         if(strlen($this->user_details['user_suffix']) < 0 && strlen($this->user_details['user_suffix']) > 255){
+            return false;
+        }
+        if(strlen($this->user_details['user_citizenship']) < 0 && strlen($this->user_details['user_citizenship']) > 255){
             return false;
         }
 
@@ -353,6 +328,8 @@ class StudentProfile extends Component
             'u.user_middlename'=>$this->user_details['user_middlename'],
             'u.user_lastname'=>$this->user_details['user_lastname'],
             'u.user_suffix'=>$this->user_details['user_suffix'],
+            'u.user_citizenship'=>$this->user_details['user_citizenship'],
+            
             'u.user_gender_id'=>$gender_id,
             'u.user_phone'=>$this->user_details['user_phone'],
             'u.user_birthdate'=>$this->user_details['user_birthdate'],  

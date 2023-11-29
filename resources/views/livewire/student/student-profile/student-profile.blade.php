@@ -124,6 +124,7 @@
                         <li class="list-group-item"><strong>Middle name: </strong> {{$user_details['user_middlename']}}</li>
                         <li class="list-group-item"><strong>Last name: </strong> {{$user_details['user_lastname']}}</li>
                         <li class="list-group-item"><strong>Suffix: </strong> {{$user_details['user_suffix']}}</li>
+                        <li class="list-group-item"><strong>Citizenship: </strong> {{$user_details['user_citizenship']}}</li>
                         <li class="list-group-item"><strong>Gender: </strong> {{$user_details['user_gender_details']}}</li>
                         <li class="list-group-item"><strong>Age: </strong> {{floor((time() - strtotime($user_details['user_birthdate'])) / 31556926);}}</li>
                         <li class="list-group-item"><strong>Home Address: </strong> {{$user_details['user_address']}}</li>
@@ -202,6 +203,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Citizenship<span style="color:red;">*</span>:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" wire:model="user_details.user_citizenship" required class="form-control" placeholder="Enter citizenship">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Address Street:</label>
                                             <div class="col-sm-8">
                                                 <input type="text" wire:model="user_details.user_addr_street" class="form-control" placeholder="Enter street">
@@ -209,7 +216,7 @@
                                             
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Barangay:</label>
+                                            <label class="col-sm-4 col-form-label">Barangay<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" required list="brgy" wire:change="update_data()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
                                                 <datalist id="brgy" >
@@ -256,14 +263,14 @@
                                         </div>
                                        
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">ZIP Code:</label>
+                                            <label class="col-sm-4 col-form-label">ZIP Code<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
                                                 <input type="text" wire:model="user_details.user_addr_zip_code" required class="form-control" placeholder="Enter ZIP code">
                                             </div>
                                         </div>
     
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
+                                            <label class="col-sm-4 col-form-label">Phone number<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  required wire:model="user_details.user_phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                             </div>
@@ -289,7 +296,7 @@
     </div>
 
         <!-- Family Background Section -->
-        <div class="details-box mt-3">
+        <div class="details-box mt-3 d-none">
             <div class="family-background">
                 <h4>Family Background
                     <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#familyBackgroundCollapse" aria-expanded="true" aria-controls="familyBackgroundCollapse">

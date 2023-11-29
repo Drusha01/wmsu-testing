@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CetApplicationForm extends Component
 {
+    use WithFileUploads;
     public $user_detais;
     public $title;
 
@@ -132,6 +133,7 @@ class CetApplicationForm extends Component
                 "u.user_middlename",
                 "u.user_lastname",
                 "u.user_suffix",
+                "user_citizenship",
                 "u.user_addr_street",
                 "u.user_addr_brgy",
                 "u.user_addr_city_mun",
@@ -169,6 +171,7 @@ class CetApplicationForm extends Component
             "user_middlename"=> $user_details->user_middlename,
             "user_lastname"=> $user_details->user_lastname,
             "user_suffix"=> $user_details->user_suffix,
+            'user_citizenship' => $user_details->user_citizenship,
             "user_addr_street"=> $user_details->user_addr_street,
             "user_addr_brgy"=> $user_details->user_addr_brgy,
             "user_addr_city_mun"=> $user_details->user_addr_city_mun,
@@ -191,6 +194,7 @@ class CetApplicationForm extends Component
             't_a_test_type_id' => NULL,
             't_a_applicant_user_id' => $this->user_details['user_id'],
             't_a_test_status_id' => NULL,
+            't_a_test_center_id' =>NULL,
             't_a_user_details' => NULL,
             't_a_isactive' => 1,
     
@@ -199,12 +203,20 @@ class CetApplicationForm extends Component
             't_a_course' => NULL,
             't_a_school_school_name'=> NULL,
             't_a_school_address' => NULL,
+
             't_a_formal_photo' => NULL,
             't_a_school_principal_certification' => NULL,
             't_a_original_senior_high_school_card' => NULL,
             't_a_transcript_of_records' => NULL,
             't_a_endorsement_letter_from_wmsu_dean' => NULL,
             't_a_receipt_photo' => NULL,  // note that if the applicant is taking second time
+
+            't_a_formal_photo_id' => rand(1,1000000),
+            't_a_school_principal_certification_id' =>  rand(1,1000000),
+            't_a_original_senior_high_school_card_id' =>  rand(1,1000000),
+            't_a_transcript_of_records_id' =>  rand(1,1000000),
+            't_a_endorsement_letter_from_wmsu_dean_id' =>  rand(1,1000000),
+            't_a_receipt_photo_id' =>  rand(1,1000000),
     
             't_a_1st_choice' => NULL,
             't_a_2nd_choice' => NULL,
@@ -278,7 +290,26 @@ class CetApplicationForm extends Component
     }
 
     public function cet_application(){
-        dd($this->cet_form);
+        if($this->page == 1){
+            $this->page = 2;
+            $this->dispatchBrowserEvent('moveUp');
+        }elseif($this->page == 2){
+            //validate all
+
+            
+            // check course choice
+            if( !$this->cet_form['t_a_1st_choice'] && !intval($this->cet_form['t_a_1st_choice'])>0){
+                dd($this->cet_form);
+            }
+            if( !$this->cet_form['t_a_2nd_choice'] && !intval($this->cet_form['t_a_2nd_choice'])>0){
+                dd($this->cet_form);
+            }
+            if( !$this->cet_form['t_a_3rd_choice'] && !intval($this->cet_form['t_a_3rd_choice'])>0){
+                dd($this->cet_form);
+            }
+            
+        }
+       
         
     }
 }

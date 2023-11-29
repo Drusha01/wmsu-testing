@@ -18,6 +18,7 @@ class CreateTestApplications extends Migration
             t_a_test_type_id INT NOT NULL,
             t_a_applicant_user_id INT NOT NULL,
             t_a_test_status_id INT NOT NULL,
+            t_a_test_center_id INT ,
             t_a_user_details VARCHAR(1024) ,
             t_a_isactive BOOL DEFAULT 1,
 

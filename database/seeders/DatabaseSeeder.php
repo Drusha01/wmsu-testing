@@ -41,6 +41,11 @@ class DatabaseSeeder extends Seeder
             collegeSeeders::class,
             campus_seeder::class,
             high_school_seeders::class,
+            test_centers_seeders::class,
+            regions_seeders::class,
+            province_seeders::class,
+            city_mun_seeders::class,
+            brgy_seeders::class,
         ]);
         
     }

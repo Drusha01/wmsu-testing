@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             user_middlename VARCHAR(255),
             user_lastname  VARCHAR(255) NOT NULL,
             user_suffix VARCHAR(100),
+            user_citizenship VARCHAR(100),
 
             user_addr_street VARCHAR(255) DEFAULT NULL,
             user_addr_brgy VARCHAR(255) DEFAULT NULL,
