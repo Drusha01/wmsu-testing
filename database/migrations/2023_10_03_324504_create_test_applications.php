@@ -21,6 +21,9 @@ class CreateTestApplications extends Migration
             t_a_user_details VARCHAR(1024) ,
             t_a_isactive BOOL DEFAULT 1,
 
+            t_a_citizenship VARCHAR(100),
+            t_a_date_of_graduation DATE,
+            t_a_course VARCHAR(100),
             -- Select all: educational background // retension
             t_a_school_school_name VARCHAR(100) ,
             t_a_school_address VARCHAR(100) ,
@@ -86,7 +89,6 @@ class CreateTestApplications extends Migration
 
             t_a_hash VARCHAR(50) NOT NULL,
 
-            -- cet type
            
 
             

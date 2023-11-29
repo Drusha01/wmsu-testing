@@ -17,21 +17,21 @@ class cet_type_lists extends Seeder
         DB::statement('INSERT INTO cet_types VALUES(
             NULL,
             "shs_under_grad",
-            "shs_under_grad",
+            "SENIOR HIGH SCHOOL GRADUATING STUDENT",
             NOW(),
             NOW()
         );');
         DB::statement('INSERT INTO cet_types VALUES(
             NULL,
             "shs_grad",
-            "shs_grad",
+            "SENIOR HIGH SCHOOL GRADUATE",
             NOW(),
             NOW()
         );');
         DB::statement('INSERT INTO cet_types VALUES(
             NULL,
             "shiftee/tranferee",
-            "shiftee/tranferee",
+            "COLLEGE STUDENT",
             NOW(),
             NOW()
         );');

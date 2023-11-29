@@ -162,6 +162,16 @@
             // alert(modal_id.detail)
             $('#'+modal_id.detail).modal('toggle');
         }); 
+
+        window.addEventListener('moveUp', function(){
+            // alert(modal_id.detail)
+  
+            $('body, html, #cet-form').scrollTop(0);
+
+
+        });
+
+        
     </script>
 </body>
 </html>

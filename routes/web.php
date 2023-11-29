@@ -48,6 +48,7 @@ use App\Http\Livewire\Student\StudentApplication\Cet\Studentgsat;
 use App\Http\Livewire\Student\StudentApplication\Cet\Studentlsat;
 use App\Http\Livewire\Student\ApplicationPermit;
 use App\Http\Livewire\Student\Studentpermit\Studentpermit;
+use App\Http\Livewire\Student\StudentApplication\CetApplicationForm;
 
 
 // admin
@@ -132,6 +133,11 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
        
         // test routes application
         Route::prefix('application')->group(function () {
+            // real deal
+            Route::get('/cet-application-form', CetApplicationForm::class)->name('student.cet.form');
+
+
+
             Route::get('/cet/undergrad', Studentcet::class)->name('student.cet.undergrad');
             Route::get('/cet/studentgrad', StudentcetGrad::class)->name('student.cet.Grad');
             Route::get('/cet/studentshiftee', Studentshiftee::class)->name('student.cet.shiftee');
@@ -139,6 +145,9 @@ Route::middleware([Authenticated::class,AccountisValid::class,AccountisAdmin::cl
             Route::get('/cet/studentnat', Studentnat::class)->name('student.cet.nat');
             Route::get('/cet/studentgsat', Studentgsat::class)->name('student.cet.gsat');
             Route::get('/cet/studentlsat', Studentlsat::class)->name('student.cet.lsat');
+
+            
+
 
             Route::get('/cet', [TestApplicationController::class, 'cet'])->name('application.cet');
             Route::get('/cetgraduate', [TestApplicationController::class, 'Cetgraduate'])->name('application.cetgraduate');
