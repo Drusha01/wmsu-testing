@@ -481,6 +481,14 @@ class CetApplicationForm extends Component
             //     dd($this->cet_form);
             // }
 
+            foreach($this->cet_type_data as $key =>$value){
+                if($value->cet_type_details == $this->cet_form['t_a_cet_type_details']){
+                    $this->cet_form['t_a_cet_type_id'] = $value->cet_type_id;
+                    $this->cet_form['t_a_cet_type_details'] = $value->cet_type_details;
+                    break;
+                }
+            }
+
             $valid = true;
             if($valid){
                 $valid = self::validate_string($this->cet_form['t_a_f_citizenship'],'father citizenship');
@@ -636,10 +644,7 @@ class CetApplicationForm extends Component
                         ->where('test_status_details', '=', 'Pending')
                         ->select('test_status_id as t_a_test_status_id')
                         ->first())['t_a_test_status_id'],
-                    't_a_cet_type_id'=>((array) DB::table('cet_types')
-                        ->where('cet_type_name', '=', 'shs_under_grad')
-                        ->select('cet_type_id as t_a_cet_type_id')
-                        ->first())['t_a_cet_type_id'],
+                    't_a_cet_type_id'=> $this->cet_form['t_a_cet_type_id'],
                         
                     't_a_citizenship' => $this->user_details['user_citizenship'],
                     
