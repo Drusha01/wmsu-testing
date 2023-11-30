@@ -159,22 +159,24 @@
                                         
                                         <input type="file" class="forms-control" wire:model="cet_form.t_a_original_senior_high_school_card"  id="t_a_original_senior_high_school_card-{{$cet_form['t_a_original_senior_high_school_card_id']}}"  name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                     </div>
+                                    @if( $cet_form['t_a_times_taken']== 1)
                                     <div class="col-md-12 mb-2 ">
                                         <label for="enrollment-certification" class="form-label">CET Payment Receipt  <span style="color:red;">*</span>
                                             <i class="fa fa-info-circle info-icon" title='You have taken a cet previously hence you need to pay and upload the receipt photo here Thank you'style="padding: 11px 0 0 5px;"></i>
                                         </label>
                                         <input type="file" class="form-controls" wire:model="cet_form.t_a_receipt_photo"  id="t_a_receipt_photo-{{$cet_form['t_a_receipt_photo_id']}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </fieldset>
                     </div>
                 </div>
-            @elseif($cet_form['t_a_cet_type_details'] == 'COLLEGE STUDENT')
+            @elseif($cet_form['t_a_cet_type_details'] == 'SHIFTEE / TRANSFEREE STUDENT')
                 <div>
                     <div class="form-check"> 
                         <label class="form-check-label">
-                            <span class="text-danger font-weight-bold">COLLEGE STUDENT</span>
+                            <span class="text-danger font-weight-bold">SHIFTEE / TRANSFEREE STUDENT</span>
                         </label>
                     </div>
                     <div class="container border border-4 w-80">
@@ -213,7 +215,6 @@
                                         </label>
                                         <input type="file" class="form-controls" wire:model="cet_form.t_a_receipt_photo"  id="t_a_receipt_photo-{{$cet_form['t_a_receipt_photo_id']}}" name="enrollment_certification" accept=".pdf,.jpg,.png,.jpeg" required>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </fieldset>
@@ -263,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-danger font-weight-bold">Socio Econic Data: Furnish all required information. Under Column "Highest Education Finished" indicate the educational level actually completed (eg. Grade III, Third Year high school, High School Gradute, Second Year, College Graduate,etc) </div>
+                <div class="text-danger font-weight-bold">Socio Economic Data: Furnish all required information. Under Column "Highest Education Finished" indicate the educational level actually completed (eg. Grade III, Third Year high school, High School Gradute, Second Year, College Graduate,etc) </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -292,7 +293,7 @@
                                 </td>
                                 <td>
                                     <select class="form-control" aria-label="Default select example" style="width: 180px; height: 50px;" wire:model="cet_form.t_a_f_monthly_salary">
-                                        <option selected>Select</option>
+                                        <option value="N/A" selected>Select</option>
                                         <option value="Below ₱5,000">Below ₱5,000</option>
                                         <option value="₱5,000 - ₱15,000">₱5,000 - ₱15,000</option>
                                         <option value="₱15,000 - ₱20,000">₱15,000 - ₱20,000 </option>
@@ -316,7 +317,7 @@
                                 </td>
                                 <td>
                                     <select class="form-control" aria-label="Default select example" style="width: 180px; height: 50px;" wire:model="cet_form.t_a_m_monthly_salary">
-                                        <option selected>Select</option>
+                                        <option value="N/A" selected>Select</option>
                                         <option value="Below ₱5,000">Below ₱5,000</option>
                                         <option value="₱5,000 - ₱15,000">₱5,000 - ₱15,000</option>
                                         <option value="₱15,000 - ₱20,000">₱15,000 - ₱20,000 </option>
@@ -398,7 +399,7 @@
                     <div class="container border border-danger mt-5 rounded">
                         <div class="form-check form-check-inline">
                             <p class="text-danger mt-2"> 
-                                <input class="form-check-input" wire:model="cet_form.t_a_accept"  type="checkbox" id="checkbox11"> 
+                                <input class="form-check-input" wire:model="cet_form.t_a_accept" value="1" type="checkbox" id="checkbox11"> 
                                 <label class="form-check-label mr-3" for="checkbox11">Accept</label>
                                 I herby accept that i have read and understood all the instructions in connection with my application for the WMSU-CET. I further accept that all information supplied herein and the supporting documents attached are true and correct if found otherwise, my exam shall be considered null and void. I also allow WMSU-TECT to process and store the data i have provided in this form in accordance with the provision of the Data Privacy Act of 2012</p>
                         </div>

@@ -48,6 +48,29 @@ class StudentApplication extends Component
         $this->user_details = $request->session()->all();
         $this->title = 'application';
         self::update_data();
+
+        if(DB::table('test_applications')
+            ->where('t_a_test_type_id', '=', 
+                ((array) DB::table('test_types')
+                    ->where('test_type_details', '=', 'College Entrance Test')
+                    ->select('test_type_id as t_a_test_type_id')
+                    ->first())['t_a_test_type_id'])
+            
+            ->where('t_a_applicant_user_id','=',$this->user_details['user_id'])
+            ->where('t_a_isactive','=',1)
+            ->first()
+            ){
+                // $this->dispatchBrowserEvent('swal:redirect',[
+                //     'position'          									=> 'center',
+                //     'icon'              									=> 'success',
+                //     'title'             									=> 'Successfully signed up!',
+                //     'showConfirmButton' 									=> 'true',
+                //     'timer'             									=> '1500',
+                //     'link'              									=> 'student/status'
+                // ]);
+
+            return redirect('/student/status');
+        }
     }
     public function render()
     {
