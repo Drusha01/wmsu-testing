@@ -69,9 +69,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ml-10">
-                            <button class="btn btn-success mx-1" wire:click="accept_appointment_modal()" >Accept </button>
-                            <button class="btn btn-danger mx-1"  wire:click="delete_appointment_modal()" >Decline </button>
+                        <div class="ml-10 d-flex">
+                            <button class="btn btn-success mx-1 mb-2" wire:click="accept_appointment_modal()" >Accept </button>
+                            <button class="btn btn-danger mx-1 mb-2"  wire:click="delete_appointment_modal()" >Decline </button>
                         </div>
                     </div>
                     <table class="appointment-table">
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ml-10">
+                        <div class="ml-10 d-flex">
                             <button class="btn btn-primary mx-1" wire:click="reschedule_appointment_modal()" >ReSchedule </button>
                             <button class="btn btn-danger mx-1" wire:click="remove_reschedule_appointment_modal()" >Remove-schedule </button>
                             <button class="btn btn-danger mx-1"  wire:click="delete_reschedule_appointment_modal()" >Decline </button>
