@@ -201,6 +201,7 @@ class StudentStatus extends Component
         't_a_school_year_id' => NULL,
         't_a_hash'  => NULL,
     ];
+    public $cet_type_data ;
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();

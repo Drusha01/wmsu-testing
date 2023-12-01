@@ -137,6 +137,9 @@
                                     @if($unassigned_applicant_filter['Room venue'])
                                         <td class="text-align center">Not assigned</td>
                                     @endif
+                                    @if($unassigned_applicant_filter['School Year'])
+                                        <td class="text-align center">{{ $value->school_year_details }}</td>
+                                    @endif
                                 
                                     @if($unassigned_applicant_filter['Date applied'])
                                         <td class="text-align center">{{date_format(date_create($value->date_applied),"F d, Y ")}}</td>
@@ -347,6 +350,9 @@
                                     @endif
                                     @if($assigned_applicant_filter['Start - End'])
                                         <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
+                                    @endif
+                                    @if($assigned_applicant_filter['School Year'])
+                                        <td class="text-align center">{{ $value->school_year_details }}</td>
                                     @endif
                                 
                                     @if($assigned_applicant_filter['Date applied'])
