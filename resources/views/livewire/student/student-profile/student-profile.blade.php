@@ -25,9 +25,9 @@
                         </a>
                     </label>
                     <h3 class="mt-3">{{$user_details['user_name']}}</h3>
-                    <button id="modifyButtonProfile" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile</button>
+                    <button id="modifyButtonProfile" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#modifyModalPhoto">Change Profile</button>
                     <br>
-                    <button id="modifyButtonpassword" class="btn btn-danger" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
+                    <button id="modifyButtonpassword" class="btn btn-danger btn-sm mt-1" data-toggle="modal" data-target="#modifyModalpassword">Change Password</button>
                 </div>
                 <div class="modal fade" id="modifyModalPhoto" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
@@ -134,7 +134,7 @@
                         <li class="list-group-item"><strong>Account Created: </strong> {{date_format(date_create( $user_details['date_created']), "F d, Y ")}}</li>
                     </ul>
                     <br>
-                    <button id="modifyButtonDetails" class="btn btn-primary " data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
+                    <button id="modifyButtonDetails" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyModalDetails">Modify</button>
                 </div>
 
                 <div class="modal fade" id="modifyModalDetails" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabelDetails" aria-hidden="true" wire:ignore.self>
