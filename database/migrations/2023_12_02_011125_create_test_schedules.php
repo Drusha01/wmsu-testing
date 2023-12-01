@@ -15,7 +15,7 @@ class CreateTestSchedules extends Migration
     {
         DB::statement('CREATE TABLE test_schedules(
             id INT PRIMARY KEY AUTO_INCREMENT,
-            test_date
+            test_date DATE,
             test_center_id INT NOT NULL,
             test_cet_type_id INT NOT NULL,
             

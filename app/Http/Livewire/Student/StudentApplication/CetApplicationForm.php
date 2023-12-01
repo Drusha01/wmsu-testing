@@ -32,6 +32,8 @@ class CetApplicationForm extends Component
         't_a_course' => NULL,
         't_a_school_school_name'=> NULL,
         't_a_school_address' => NULL,
+        't_a_school_id' => NULL,
+        
         't_a_formal_photo' => NULL,
         't_a_school_principal_certification' => NULL,
         't_a_original_senior_high_school_card' => NULL,
@@ -113,6 +115,14 @@ class CetApplicationForm extends Component
             ->join('campuses as cp','c.college_campus_id','cp.campus_id')
             ->get()
             ->toArray();
+
+        $this->high_schools =  DB::table('high_schools')
+            ->select('*')
+            ->where('high_school_name','LIKE',($this->cet_form['t_a_school_school_name'].'%'))
+            ->limit(25)
+            ->get()
+            ->toArray();
+            // dd( $this->high_schools);
     }
     public function mount(Request $request){
         $user_details = $request->session()->all();
@@ -456,6 +466,20 @@ class CetApplicationForm extends Component
                 $this->page = 1;
                 return 0;
             }
+
+            if(strlen($this->cet_form['t_a_school_school_name'])<=0){
+                self::display_error('Please input valid phone number');
+                $this->page = 1;
+                return 0;
+            }else{
+                if($high_schools =  DB::table('high_schools')
+                ->select('*')
+                ->where('high_school_name','=',$this->cet_form['t_a_school_school_name'])
+                ->first()){
+                    $this->cet_form['t_a_school_id'] = $high_schools->id;
+                }
+            }
+            
             
             // update 
             DB::table('users as u')
@@ -652,6 +676,7 @@ class CetApplicationForm extends Component
                     't_a_course' => $this->cet_form['t_a_course'],
                     't_a_school_school_name'=> $this->cet_form['t_a_school_school_name'],
                     't_a_school_address' => $this->cet_form['t_a_school_address'],
+                    't_a_school_id' => $this->cet_form['t_a_school_id'],
                     't_a_formal_photo' => $this->cet_form['formal_photo'],
                     't_a_school_principal_certification' => $this->cet_form['t_a_school_principal_certification'],
                     't_a_original_senior_high_school_card' => $this->cet_form['t_a_original_senior_high_school_card'],
