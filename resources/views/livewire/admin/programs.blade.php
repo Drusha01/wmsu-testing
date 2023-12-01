@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link @if($active == 'Campuses') show active @endif " wire:key="Campuses" wire:click="active_page('Campuses')"href="#Campuses-tab">Campuses</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if($active == 'Test-Center') show active @endif " wire:key="Test-Center" wire:click="active_page('Test-Center')"href="#Test-Center-tab">Test Centers</a>
+            </li>
         </ul>
 
         <!-- Tab Content -->
@@ -700,6 +703,9 @@
 
 
             </div>
+            <div class="tab-pane fade @if($active == 'Test Center') show active @endif ">
+            </div>
+            
 
         <!-- Add Announcement Modal -->
        

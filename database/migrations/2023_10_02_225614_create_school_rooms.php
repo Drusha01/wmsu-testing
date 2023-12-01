@@ -19,7 +19,7 @@ class CreateSchoolRooms extends Migration
             school_room_bldg_name VARCHAR(100) ,
             school_room_bldg_abr VARCHAR(100) ,
             school_room_name VARCHAR(100) ,
-            school_room_id VARCHAR(100) ,
+            school_room_number VARCHAR(100) ,
 
             school_room_max_capacity INT NOT NULL,
 
