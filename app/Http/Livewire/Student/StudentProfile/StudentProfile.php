@@ -279,7 +279,7 @@ class StudentProfile extends Component
         if(strlen($this->user_details['user_suffix']) < 0 && strlen($this->user_details['user_suffix']) > 255){
             return false;
         }
-        if(strlen($this->user_details['user_citizenship']) < 0 && strlen($this->user_details['user_citizenship']) > 255){
+        if(strlen($this->user_details['user_citizenship']) < 1 && strlen($this->user_details['user_citizenship']) > 255){
             return false;
         }
 
@@ -296,7 +296,7 @@ class StudentProfile extends Component
         if(strlen($this->user_details['user_addr_province']) < 1 && strlen($this->user_details['user_addr_province']) > 255){
             return false;
         }
-        if(intval($this->user_details['user_addr_zip_code']) < 0 ){
+        if(intval($this->user_details['user_addr_zip_code']) < 1 ){
             return false;
         }
         
