@@ -15,7 +15,7 @@ class ApplicationManagement extends Component
 {
     // use WithPagination;
 
-    public $mail = true;
+    public $mail = false;
 
     public $user_detais;
     public $title;
@@ -946,7 +946,68 @@ class ApplicationManagement extends Component
         ];
 
         if($valid &&  $this->access_role['U'] ){
+            
             foreach ($this->pending_applicant_data  as $key => $value) {
+                $school_room_id = null;
+                $rooms = DB::table('test_applications as ta')
+                ->select(
+                    // '*',
+                    DB::raw('count(*) as school_room_number_of_examinees' ),
+                    'school_room_id',
+                    DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
+                    'school_room_capacity',	
+            
+                    )
+                ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->where('t_a_isactive','=',1)
+                ->where('test_status_details','=','Processing')
+                ->whereNotNull('t_a_school_room_id')
+                ->where('school_room_isactive','=',1)
+                ->groupBy('t_a_school_room_id')
+                ->orderBy('school_room_slot','desc')
+                ->get()
+                ->toArray();
+                foreach ($rooms as $room_key => $room_value) {
+                    if($room_value->school_room_number_of_examinees<$room_value->school_room_capacity){
+                        $school_room_id = $room_value->school_room_id;
+                        break;
+                    }
+                }
+                if(!isset($school_room_id)){
+
+                    $list_of_rooms = DB::table('school_rooms')
+                        ->get()
+                        ->toArray();
+                    if($list_of_rooms){
+                        foreach ($list_of_rooms as $list_of_room_key => $list_of_room_value) {
+                            $listed = true;
+                            foreach ($rooms as $room_key => $room_value) {
+                                if($room_value->school_room_id == $list_of_room_value->school_room_id){
+                                    $listed = false;
+                                    break;
+                                }
+                            }
+                            if($listed){
+                                $school_room_id = $list_of_room_value->school_room_id;
+                                break;
+                            }
+                        }
+                    }else{
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'No rooms available!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                        return 0 ;
+                    }
+                   
+                    // dd( $school_room_id);
+                    // dd($rooms);
+                }
                 if($this->pending_selected[$key][$value->t_a_id]){
                     // update here
                     DB::table('test_applications as ta')
@@ -959,7 +1020,8 @@ class ApplicationManagement extends Component
                                 ->where('test_status_details', '=', 'Processing')
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id'],
-                            't_a_accepted_by'=> $this->user_details['user_id']
+                            't_a_accepted_by'=> $this->user_details['user_id'],
+                            't_a_school_room_id' =>$school_room_id
                     ]);
 
 

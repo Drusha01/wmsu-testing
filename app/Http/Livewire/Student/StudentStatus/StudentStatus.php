@@ -201,7 +201,6 @@ class StudentStatus extends Component
         't_a_school_year_id' => NULL,
         't_a_hash'  => NULL,
     ];
-    public $cet_type_data ;
 
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
@@ -225,6 +224,7 @@ class StudentStatus extends Component
     }
 
     public function hydrate(){
+        $this->view_permit = null;
         self::update_data();
     }
 
@@ -742,6 +742,8 @@ class StudentStatus extends Component
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('high_schools as sc', 'sc.id', '=', 'ta.t_a_school_id')
+            
             ->where('test_type_details', '=', 'College Entrance Test')
                     
             // ->where('t_a_test_status_id', '=', 
@@ -756,7 +758,7 @@ class StudentStatus extends Component
             ->limit(1)
             ->get()
             ->toArray();
-            // dd($this->view_details);
+            // dd($this->view_permit);
       
         
         $path = 'application-permit/'.$this->view_permit[0]->t_a_hash;

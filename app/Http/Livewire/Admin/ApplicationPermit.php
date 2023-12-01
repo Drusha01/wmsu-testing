@@ -8,13 +8,23 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Mail;
+use chillerlan\QRCode\{QRCode, QROptions};
 
 class ApplicationPermit extends Component
 {
     public $mail = true;
     
     public $hash;
+    public $title = 'Permit';
     public $examinee;
+    public $page =1;
+
+    
+    public $qrcode;
+    public $qr_code_link;
+    public $scale_size = 20; 
+
+    
 
     public function booted(Request $request){
         $user_details = $request->session()->all();
@@ -38,6 +48,18 @@ class ApplicationPermit extends Component
             header("Location: /deleted");
             die();
         }
+        $access_role = DB::table('access_roles as ar')
+            ->join('modules as m','ar.access_role_module_id','m.module_id')
+            ->where('access_role_user_id','=',$user_details['user_id'])
+            ->where('module_nav_name','Exam Administrator')
+            ->first();
+
+        $this->access_role = [
+            'C' => $access_role->access_role_create,
+            'R' => $access_role->access_role_read,
+            'U' => $access_role->access_role_update,
+            'D' => $access_role->access_role_delete
+        ];
     }
     public function hydrate(){
         if($this->access_role['C'] || $this->access_role['R'] || $this->access_role['U'] || $this->access_role['D']){
@@ -45,42 +67,39 @@ class ApplicationPermit extends Component
         }
     }
     public function update_data(){
-        $this->examinee = DB::table('test_applications as ta')
-            ->select(
-                // '*',
-                // DB::raw('count(*) as school_room_sschool_room_number_of_examinees' ),
-                't_a_id',
-                'user_id',
-                'user_name',
-                'user_address',
-                'user_firstname',
-                'user_middlename',
-                'user_lastname',
-                't_a_hash',
-                'school_room_id',
-                'school_room_capacity',	
-                'school_room_college_name',	
-                'school_room_college_abr',
-                'school_room_venue',
-                'school_room_name',	
-                'school_room_test_center',
-                'school_room_test_date',
-                'school_room_test_time_start',
-                'school_room_test_time_end',
-                'school_room_description',
-                )
-            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        $this->view_permit = DB::table('test_applications as ta')
+            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
-            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
-            ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Accepted')
-            ->whereNotNull('t_a_school_room_id')
-            ->where('school_room_isactive','=',1)
-            ->whereNotNull('school_room_proctor_user_id')
-            ->where('t_a_hash','=',$this->hash)
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('high_schools as sc', 'sc.id', '=', 'ta.t_a_school_id')
+            
+            ->where('test_type_details', '=', 'College Entrance Test')
+                    
+            // ->where('t_a_test_status_id', '=', 
+            //     ((array) DB::table('test_types')
+            //         ->where('test_type_details', '=', 'College Entrance Test')
+            //         ->select('test_type_id as t_a_test_type_id')
+            //         ->first())['t_a_test_type_id'])
+            ->where('t_a_hash','=',$this->hash )
+            ->limit(1)
             ->get()
             ->toArray();
-        dd($this->examinee );
+            // dd($this->view_permit);
+      
+        
+        $path = 'application-permit/'.$this->view_permit[0]->t_a_hash;
+        $this->qr_code_link = ( $_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.$path;
+        $options = new QROptions;
+        $options->version     = 7;
+        $options->imageBase64 = true;
+        $options->scale =  $this->scale_size;
+        $this->qrcode = (new QRCode($options))->render($this->qr_code_link);
+            // dd($this->cet_form );
     }
     public function mount(Request $request,$hash){
         $this->hash = $hash;
@@ -89,6 +108,24 @@ class ApplicationPermit extends Component
     }
     public function render()
     {
-        return view('livewire.admin.application-permit');
+        return view('livewire.admin.application-permit',[
+            ])
+            ->layout('layouts.admin',[
+                'title'=>$this->title]);
+    }
+    public function cet_application(){
+        if($this->page == 1){
+            $this->page = 2;
+            $this->dispatchBrowserEvent('moveUp');
+        }elseif($this->page == 2){
+        }
+    }
+    public function page($page){
+        $this->page = $page;
+        $this->dispatchBrowserEvent('moveUp');
+
+        if($this->page == 1){
+            // check data
+        }
     }
 }

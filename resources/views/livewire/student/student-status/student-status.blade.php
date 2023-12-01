@@ -173,6 +173,7 @@
                                                 <th class="table-text" >Room No.</th>
                                                 <th class="table-text">Test Time</th>
                                                 <th class="table-text" >Test Code</th>
+                                                <th class="table-text" >High School Code</th>
                                                 <!-- <th class="table-text" >High School Code</th> -->
                                                 </tr>
                                             </thead>
@@ -183,6 +184,8 @@
                                                     <td>{{ $view_permit[0]->school_room_id.' - '.$view_permit[0]->school_room_name }}</td>
                                                     <td>{{ $view_permit[0]->school_room_test_time_start.' - '.$view_permit[0]->school_room_test_time_end }}</td>
                                                     <td>{{$view_permit[0]->t_a_id.'-'.$view_permit[0]->applied_date }}</td>
+                                                    <td>{{$view_permit[0]->high_school_code }}</td> 
+                                                    
                                                     <!-- <td>{{$view_permit[0]->school_room_test_center}}</td> -->
                                                 </tr>
                                                 <tr>  

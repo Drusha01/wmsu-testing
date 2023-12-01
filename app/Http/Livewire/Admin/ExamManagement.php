@@ -13,7 +13,7 @@ use Mail;
 class ExamManagement extends Component
 {
 
-    public $mail = true;
+    public $mail = false;
 
     public $user_detais;
     public $title;
