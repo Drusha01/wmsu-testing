@@ -509,7 +509,7 @@
                                             </div>
                                             <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
                                                 <p class="text-danger font-weight-bold">Western Mindanao State University <br> TESTING AND EVALUATION CENTER  <br> Zamboanga City</p>
-                                                <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
+                                                <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year 2024-2025</p>
                                             </div>
                                             <div class="col-sm text-center border border-danger  d-flex align-items-end justify-content-center mr-5 mt-3" style="height:252px;width:252px;">
                                                 <div class="">
