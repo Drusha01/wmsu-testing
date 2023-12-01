@@ -173,6 +173,7 @@
                                                 <th class="table-text" >Room No.</th>
                                                 <th class="table-text">Test Time</th>
                                                 <th class="table-text" >Test Code</th>
+                                                <th class="table-text" >High School Code</th>
                                                 <!-- <th class="table-text" >High School Code</th> -->
                                                 </tr>
                                             </thead>
@@ -183,6 +184,8 @@
                                                     <td>{{ $view_permit[0]->school_room_id.' - '.$view_permit[0]->school_room_name }}</td>
                                                     <td>{{ $view_permit[0]->school_room_test_time_start.' - '.$view_permit[0]->school_room_test_time_end }}</td>
                                                     <td>{{$view_permit[0]->t_a_id.'-'.$view_permit[0]->applied_date }}</td>
+                                                    <td>{{$view_permit[0]->high_school_code }}</td> 
+                                                    
                                                     <!-- <td>{{$view_permit[0]->school_room_test_center}}</td> -->
                                                 </tr>
                                                 <tr>  
@@ -509,7 +512,7 @@
                                             </div>
                                             <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
                                                 <p class="text-danger font-weight-bold">Western Mindanao State University <br> TESTING AND EVALUATION CENTER  <br> Zamboanga City</p>
-                                                <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year 2024-2025</p>
+                                                <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                                             </div>
                                             <div class="col-sm text-center border border-danger  d-flex align-items-end justify-content-center mr-5 mt-3" style="height:252px;width:252px;">
                                                 <div class="">
@@ -803,7 +806,7 @@
                                                         <label class="form-check-label mr-3" for="checkbox4">Kalibugan</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        input disabled class="form-check-input" wire:model="cet_form.t_a_ethnic_group" value="Maranaw" type="radio">
+                                                        <input disabled class="form-check-input" wire:model="cet_form.t_a_ethnic_group" value="Maranaw" type="radio">
                                                         <label class="form-check-label mr-3" for="checkbox5">Maranaw</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">

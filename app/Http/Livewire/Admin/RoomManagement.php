@@ -246,6 +246,7 @@ class RoomManagement extends Component
                 'Applicant name'=> true,
                 'Exam type'=> true,
                 'Room venue'=> true,
+                'School Year'=> true,
                 // 'A.Y.'=> true,
                 'Date applied'	=> true,								
                 'Actions'	=> true					
@@ -260,6 +261,7 @@ class RoomManagement extends Component
                 'Room venue'=> true,
                 'Test center'=>true,
                 'Start - End'=>true,
+                'School Year'=> true,
                 // 'A.Y.'=> true,
                 'Date applied'	=> true,								
                 'Actions'	=> true					

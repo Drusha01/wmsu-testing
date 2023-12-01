@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
                     <p class="text-danger font-weight-bold">Western Mindanao State University <br> TESTING AND EVALUATION CENTER  <br> Zamboanga City</p>
-                    <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year 2024-2025</p>
+                    <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br> For School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                 </div>
                 <div class="col-sm text-center border border-danger  d-flex align-items-end justify-content-center mr-5 mt-3" style="height:310px;">
                     <div class="">
@@ -99,7 +99,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="first-name" class="form-label">Name Of School </label>
-                                <input type="text" class="form-control" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                <input type="text" class="form-control" list="school" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                    <datalist id="school">
+                                    @if($high_schools)
+                                        @foreach($high_schools as $key =>$value)
+                                        <option value="{{$value->high_school_name}}" >
+                                        @endforeach
+                                    @endif
+                                </datalist>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="last-name" class="form-label">Expected Date of Graduation</label>
@@ -137,7 +144,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="first-name" class="form-label">From what School </label>
-                                <input type="text" class="form-control" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                <input type="text" class="form-control" list="school" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                    <datalist id="school">
+                                    @if($high_schools)
+                                        @foreach($high_schools as $key =>$value)
+                                        <option value="{{$value->high_school_name}}" >
+                                        @endforeach
+                                    @endif
+                                </datalist>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="last-name" class="form-label"> Date/Year Graduated</label>
@@ -183,7 +197,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="first-name" class="form-label">School enrolled in/last attended</label>
-                                <input type="text" class="form-control" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                <input type="text" class="form-control" list="school" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
+                                    <datalist id="school">
+                                    @if($high_schools)
+                                        @foreach($high_schools as $key =>$value)
+                                        <option value="{{$value->high_school_name}}" >
+                                        @endforeach
+                                    @endif
+                                </datalist>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="last-name" class="form-label">Course</label>

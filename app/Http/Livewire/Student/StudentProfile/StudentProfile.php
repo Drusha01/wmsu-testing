@@ -160,6 +160,7 @@ class StudentProfile extends Component
         ->get()
         ->toArray();;
             // dd($this->province_data);
+            
     }
 
 
@@ -351,6 +352,50 @@ class StudentProfile extends Component
             'timer'             									=> '1500',
             'link'              									=> '#'
         ]);
+        $user_details = DB::table('users as u')
+            ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
+            ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
+            ->join('user_genders as ug', 'u.user_gender_id', '=', 'ug.user_gender_id')
+            ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
+            ->where('user_id','=', $this->user_details['user_id'])
+            ->first();
+
+        $this->user_details = [
+            'user_id' =>$this->user_details['user_id'],
+            'user_status_id' => $user_details->user_status_id,
+            'user_sex_id' =>$user_details->user_sex_id,
+            'user_gender_id' =>$user_details->user_gender_id,
+            'user_role_id' =>$user_details->user_role_id,
+            'user_name' =>$user_details->user_name,
+            'user_email' =>$user_details->user_email,
+            'user_phone' =>$user_details->user_phone,
+            'user_name_verified' =>$user_details->user_name_verified,
+            'user_email_verified' =>$user_details->user_email_verified,
+            'user_phone_verified' =>$user_details->user_phone_verified,
+            'user_firstname' =>$user_details->user_firstname,
+            'user_middlename' =>$user_details->user_middlename,
+            'user_lastname' =>$user_details->user_lastname,
+            'user_suffix' =>$user_details->user_suffix,
+            'user_citizenship' => $user_details->user_citizenship,
+    
+            'user_addr_street' =>$user_details->user_addr_street,
+            'user_addr_brgy' =>$user_details->user_addr_brgy,
+            'user_addr_city_mun' =>$user_details->user_addr_city_mun,
+            'user_addr_province' =>$user_details->user_addr_province,
+            'user_addr_zip_code' =>$user_details->user_addr_zip_code,
+            
+    
+            'user_birthdate' =>$user_details->user_birthdate,
+            'user_profile_picture' =>$user_details->user_profile_picture,
+            'user_formal_id' =>$user_details->user_formal_id,
+    
+            'date_created' =>$user_details->date_created,
+            'date_updated' =>$user_details->date_updated,
+
+            'user_gender_details' =>$user_details->user_gender_details,
+            'user_address' => $user_details->user_addr_street.', '.$user_details->user_addr_brgy.', '.$user_details->user_addr_city_mun.', '.$user_details->user_addr_province.', '.$user_details->user_addr_zip_code
+        ];
+        
         
     }
 

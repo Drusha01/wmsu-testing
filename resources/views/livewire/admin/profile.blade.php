@@ -225,7 +225,7 @@
                                                 <input class="form-control" required list="muncity" wire:change="update_data()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
                                                 <datalist id="muncity">
                                                     @if(isset($user_details['user_addr_brgy']))
-                                                        <option value="$user_details['user_addr_city_mun']">
+                                                        <option value="{{$user_details['user_addr_city_mun']}}">
                                                     @endif
                                                     @if($mun_city_data)
                                                         @foreach($mun_city_data as $key =>$value)

@@ -28,6 +28,7 @@ class CreateTestApplications extends Migration
             -- Select all: educational background // retension
             t_a_school_school_name VARCHAR(100) ,
             t_a_school_address VARCHAR(100) ,
+            t_a_school_id INT,
 
             -- Select all: requirements // retension
             -- cet

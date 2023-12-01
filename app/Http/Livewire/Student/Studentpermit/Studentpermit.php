@@ -7,7 +7,7 @@ use Livewire\Component;
 class Studentpermit extends Component
 {
     public function mount(){
-        $this->title = 'deleted';
+        $this->title = 'student-permit';
     }
     public function render()
     {

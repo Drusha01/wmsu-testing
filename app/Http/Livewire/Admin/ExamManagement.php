@@ -13,7 +13,7 @@ use Mail;
 class ExamManagement extends Component
 {
 
-    public $mail = true;
+    public $mail = false;
 
     public $user_detais;
     public $title;
@@ -164,7 +164,7 @@ class ExamManagement extends Component
                         'school_room_description',
                         'user_id',
                         'user_name',
-                        'user_address',
+                        DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                         'user_firstname',
                         'user_middlename',
                         'user_lastname',
@@ -199,7 +199,7 @@ class ExamManagement extends Component
                         'school_room_description',
                         'user_id',
                         'user_name',
-                        'user_address',
+                        DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                         'user_firstname',
                         'user_middlename',
                         'user_lastname'
@@ -236,7 +236,7 @@ class ExamManagement extends Component
                         // '*',
                         'user_id',
                         'user_name',
-                        'user_address',
+                        DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                         'user_firstname',
                         'user_middlename',
                         'user_lastname',
@@ -352,7 +352,7 @@ class ExamManagement extends Component
                     'school_room_description',
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname',
@@ -387,7 +387,7 @@ class ExamManagement extends Component
                     'school_room_description',
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname'
@@ -413,7 +413,7 @@ class ExamManagement extends Component
                 // '*',
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname',
@@ -583,7 +583,7 @@ class ExamManagement extends Component
                     'school_room_description',
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname',
@@ -618,7 +618,7 @@ class ExamManagement extends Component
                     'school_room_description',
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname'
@@ -648,7 +648,7 @@ class ExamManagement extends Component
                     // '*',
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname',
@@ -753,7 +753,7 @@ class ExamManagement extends Component
                 'school_room_description',
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname',
@@ -788,7 +788,7 @@ class ExamManagement extends Component
                 'school_room_description',
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname'
@@ -827,7 +827,7 @@ class ExamManagement extends Component
                 // '*',
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname',
@@ -1607,7 +1607,7 @@ class ExamManagement extends Component
             ->select(
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname' 
@@ -1620,7 +1620,7 @@ class ExamManagement extends Component
             ->select(
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname',
@@ -1645,7 +1645,7 @@ class ExamManagement extends Component
             ->select(
                 'user_id',
                 'user_name',
-                'user_address',
+                DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                 'user_firstname',
                 'user_middlename',
                 'user_lastname' 
@@ -1658,7 +1658,7 @@ class ExamManagement extends Component
                 ->select(
                     'user_id',
                     'user_name',
-                    'user_address',
+                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province) as user_address'),
                     'user_firstname',
                     'user_middlename',
                     'user_lastname',
