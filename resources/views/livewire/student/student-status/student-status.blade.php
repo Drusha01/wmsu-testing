@@ -803,7 +803,7 @@
                                                         <label class="form-check-label mr-3" for="checkbox4">Kalibugan</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        input disabled class="form-check-input" wire:model="cet_form.t_a_ethnic_group" value="Maranaw" type="radio">
+                                                        <input disabled class="form-check-input" wire:model="cet_form.t_a_ethnic_group" value="Maranaw" type="radio">
                                                         <label class="form-check-label mr-3" for="checkbox5">Maranaw</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
