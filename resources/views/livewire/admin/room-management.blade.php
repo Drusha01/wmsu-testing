@@ -32,7 +32,7 @@
                     <!-- Room Assignment Form -->
                     <!-- List of Room Assignments -->
                     <div class="room-assignments">
-                        <div class="d-flex mt-2">
+                        <div class="d-flex mt-2 flex-wrap">
                             <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
                             <select class="filter-select " wire:model.defer="unassigned_test_type_id" wire:change="unassigned_applicant_exam_type_filter()">
                                 <option value="0"  >All</option>
@@ -51,7 +51,7 @@
                                 <option value="2">2</option>
                                 <option value="5">5</option>
                             </select> -->
-                            <div class="col-md-3 sort-container">
+                            <div class="col-md-6 mt-1 sort-container">
                                 <div class="d-flex">
                                     @if(1)
                                     <button class="btn btn-secondary me-2 d-flex justify-content-between sort-btn " type="button" data-bs-toggle="modal" data-bs-target="#unassigned-room-filter">
@@ -93,8 +93,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-10">
-                                <button class="btn btn-success mx-1"  type="button" wire:click="assigning_room_check()">Assign room </button>
+                            <div class="mx-md-3">
+                                <button class="btn btn-success mt-1"  type="button" wire:click="assigning_room_check()">Assign room </button>
                             </div>
                         </div>
                         <!-- Displays a table of room assignment and list of applicants -->
