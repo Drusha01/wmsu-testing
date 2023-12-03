@@ -18,6 +18,7 @@ class CreateTestCenters extends Migration
             test_center_code VARCHAR(10) ,
             test_center_name VARCHAR(255) NOT NULL,
             test_center_code_name VARCHAR(10) ,
+            test_center_isactive BOOL DEFAULT 1,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');

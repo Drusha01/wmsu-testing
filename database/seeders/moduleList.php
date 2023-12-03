@@ -102,7 +102,7 @@ class moduleList extends Seeder
         DB::statement('INSERT INTO modules VALUES(
             NULL,
             "schedule",
-            "Schedule Management",
+            "Registration Management",
             "schedule-management",
             "bi bi-calendar",
             8,
