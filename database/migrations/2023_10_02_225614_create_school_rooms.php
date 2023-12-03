@@ -25,11 +25,14 @@ class CreateSchoolRooms extends Migration
 
             school_room_proctor_user_id INT DEFAULT NULL,
 
+            school_room_test_center_id INT DEFAULT 29,
+
             school_room_description VARCHAR(255),
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
         DB::statement('CREATE INDEX idx_school_room_proctor_user_id ON school_rooms(school_room_proctor_user_id);');
+        DB::statement('CREATE INDEX idx_school_room_test_center_id ON school_rooms(school_room_test_center_id);');
     }
 
     /**
