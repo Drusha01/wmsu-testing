@@ -140,8 +140,9 @@
             <div class="tab-pane fade" id="test-schedule" role="tabpanel" aria-labelledby="test-schedule-tab">
                 <!-- Content for CET Test Schedule tab -->
                 <div>
-                    <!-- Add Schedule Button -->
-                    <button class="btn btn-primary mt-2">Add Schedule</button>
+         
+            <!-- Trigger for Add Schedule Modal -->
+            <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal">Add Schedule</button>
 
                     <!-- CET Test Schedule Table -->
                     <div class="mt-4">
@@ -186,8 +187,48 @@
                 </div>
             </div>
 
+           <!-- Add Schedule Modal -->
+            <div class="modal" id="addScheduleModal" tabindex="-1" aria-labelledby="addScheduleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addScheduleModalLabel">Add Schedule</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form for adding schedule -->
+                            <form id="addScheduleForm">
+                                <!-- Form fields (e.g., Test Date, Test Center, School Year) -->
+                                <div class="mb-3">
+                                    <label for="testDate" class="form-label">Test Date</label>
+                                    <input type="text" class="form-control" id="testDate" placeholder="Enter test date">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="testCenter" class="form-label">Test Center</label>
+                                    <input type="text" class="form-control" id="testCenter" placeholder="Enter test center">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="schoolYear" class="form-label">School Year</label>
+                                    <input type="text" class="form-control" id="schoolYear" placeholder="Enter school year">
+                                </div>
+                                <!-- Other fields as needed -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveScheduleBtn">Save Schedule</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
     </main>
 </div>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap 5 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
