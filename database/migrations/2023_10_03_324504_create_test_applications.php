@@ -85,6 +85,9 @@ class CreateTestApplications extends Migration
             t_a_returned_by INT,
             t_a_returned_reason VARCHAR(255) ,
             t_a_proctor_user_id INT,
+
+            t_a_ampm VARCHAR(10) ,
+            t_a_test_schedule_id INT,
             t_a_school_room_id INT,
 
             t_a_school_year_id INT NOT NULL,

@@ -22,8 +22,10 @@ class AdminSidebarNavigation extends Component
                 'access_role_update',
                 'access_role_delete',
                 )
-            ->where('access_role_user_id','=',$this->user_details['user_id'])
             ->join('modules as m','m.module_id','ar.access_role_module_id' )
+            ->where('access_role_user_id','=',$this->user_details['user_id'])
+            ->where('module_isactive','=',1)
+            
             ->get()
             ->toArray();
         // dd($this->current_roles);

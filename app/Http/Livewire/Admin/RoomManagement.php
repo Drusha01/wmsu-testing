@@ -43,6 +43,17 @@ class RoomManagement extends Component
         'test_center_isactive' =>NULL,
     ];
 
+    public $test_schedule_data;
+    public $test_schedules = [
+        'id' => NULL,
+        'test_date' => NULL,
+        'test_center_id' => NULL,
+        'cet_type_id' => NULL
+    ];
+
+    public $proctor_data;
+    
+
 
 
     
@@ -101,16 +112,44 @@ class RoomManagement extends Component
 
         $this->school_rooms = DB::table('school_rooms as sr')
             ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->leftjoin('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
             ->select(
                 '*'
             )
             ->get()
             ->toArray();
+        
+        $this->proctor_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_addr_street",
+                "user_addr_brgy",
+                "user_addr_city_mun",
+                "user_addr_province"
+            )
+            // ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
+            ->rightJoin('access_roles as ar', 'u.user_id', '=', 'ar.access_role_user_id')
+            ->join('modules as m', 'ar.access_role_module_id', '=', 'm.module_id')
+            // access_role_user_id 
+            ->where('m.module_nav_name','=','Exam Administrator')
+            ->get()
+            ->toArray();
+        
 
         $this->test_center_data = DB::table('test_centers')
             // ->where('test_center_isactive','=','1')
             ->get()
             ->toArray();
+        $this->test_schedule_data = DB::table('test_schedules as ts')
+            ->join('test_centers as tc','tc.id','ts.test_center_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ts.cet_type_id')
+            ->get()
+            ->toArray();
+        
+        // dd($this->test_schedule_data );
     }
 
     public function mount(Request $request){
@@ -158,6 +197,7 @@ class RoomManagement extends Component
             $this->school_room_filter = [
                 // 'Select all' => true,
                 '#' => true,
+                'Proctor'=>true,
                 'Test Center Name'=>true,
                 'Test Center Code'=>true,
                 'Building name'=>true,
@@ -177,6 +217,17 @@ class RoomManagement extends Component
                 'Test Center Name' =>true,
                 'Test Center Code Name' =>true,
                 'isactive?' =>true,
+                'Actions'=>true
+            ];
+
+            $this->test_schedule_filter = [
+                '#' => true,
+                'Test Date' =>true,
+                'Test Center Code' =>true,
+                'Test Center Name' =>true,
+                'Student Type' =>false,
+                'AM' =>true,
+                'PM' =>true,
                 'Actions'=>true
             ];
 
@@ -285,6 +336,25 @@ class RoomManagement extends Component
             return ;
         }
         if(intval($this->school_room['school_room_test_center_id'])<=0){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select test center!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+            return;
+        }
+        if(intval($this->school_room['school_room_proctor_user_id'])<=0){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select room proctor!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
             return;
         }
         if(intval($this->school_room['school_room_max_capacity'])<=0){
@@ -300,7 +370,7 @@ class RoomManagement extends Component
                 'school_room_number' =>$this->school_room['school_room_number'],
                 'school_room_max_capacity' =>$this->school_room['school_room_max_capacity'],
                 'school_room_description' =>$this->school_room['school_room_description'],
-                'school_room_proctor_user_id' =>NULL,
+                'school_room_proctor_user_id' =>$this->school_room['school_room_proctor_user_id'],
                 'school_room_test_center_id' =>$this->school_room['school_room_test_center_id'],
         ])){
             $this->dispatchBrowserEvent('swal:redirect',[
@@ -321,6 +391,7 @@ class RoomManagement extends Component
                 'link'              									=> '#'
             ]);
         }
+ 
 
         $this->dispatchBrowserEvent('openModal','addRoomModal');
         self::update_data();
@@ -372,6 +443,7 @@ class RoomManagement extends Component
                 'school_room_max_capacity' =>$this->school_room['school_room_max_capacity'],
                 'school_room_description' =>$this->school_room['school_room_description'],
                 'school_room_test_center_id' =>$this->school_room['school_room_test_center_id'],
+                'school_room_proctor_user_id' =>$this->school_room['school_room_proctor_user_id'],
         ])){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',

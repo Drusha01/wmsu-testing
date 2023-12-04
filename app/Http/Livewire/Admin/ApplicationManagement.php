@@ -158,6 +158,8 @@ class ApplicationManagement extends Component
         't_a_hash'  => NULL,
     ];
 
+    
+
 
 
 
@@ -369,6 +371,57 @@ class ApplicationManagement extends Component
         $this->cet_type_data = DB::table('cet_types')
             ->get()
             ->toArray();
+
+            $this->school_rooms = DB::table('school_rooms as sr')
+            ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->leftjoin('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
+        $this->proctor_data = DB::table('users as u')
+            ->select(
+                "user_id",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_addr_street",
+                "user_addr_brgy",
+                "user_addr_city_mun",
+                "user_addr_province"
+            )
+            // ->join('user_roles as ur', 'u.user_role_id', '=', 'ur.user_role_id')
+            ->rightJoin('access_roles as ar', 'u.user_id', '=', 'ar.access_role_user_id')
+            ->join('modules as m', 'ar.access_role_module_id', '=', 'm.module_id')
+            // access_role_user_id 
+            ->where('m.module_nav_name','=','Exam Administrator')
+            ->get()
+            ->toArray();
+        
+
+        $this->test_center_data = DB::table('test_centers')
+            // ->where('test_center_isactive','=','1')
+            ->get()
+            ->toArray();
+
+            
+        $this->school_rooms = DB::table('school_rooms as sr')
+            ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->select(
+                '*'
+            )
+            ->get()
+            ->toArray();
+        
+        $this->test_schedule_data = DB::table('test_schedules as ts')
+            ->join('test_centers as tc','tc.id','ts.test_center_id')
+            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ts.cet_type_id')
+            ->get()
+            ->toArray();
+
+           
     }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
@@ -948,102 +1001,104 @@ class ApplicationManagement extends Component
         if($valid &&  $this->access_role['U'] ){
             
             foreach ($this->pending_applicant_data  as $key => $value) {
-                $school_room_id = null;
-                $rooms = DB::table('test_applications as ta')
-                ->select(
-                    // '*',
-                    DB::raw('count(*) as school_room_number_of_examinees' ),
-                    'school_room_id',
-                    DB::raw('(school_room_capacity - count(*)) as school_room_slot'),
-                    'school_room_capacity',	
-            
-                    )
-                ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
-                ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
-                ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
-                ->whereNotNull('t_a_school_room_id')
-                ->where('school_room_isactive','=',1)
-                ->groupBy('t_a_school_room_id')
-                ->orderBy('school_room_slot','desc')
+                 // note that they can only accept students if the previous exam is done/ closed
+        
+                $date_now = (date('Y/m/d'));
+                $date_now_time_stamp = strtotime($date_now);
+                // dd($date_now);
+                $this->test_schedule_data = DB::table('test_schedules as ts')
+                ->join('test_centers as tc','tc.id','ts.test_center_id')
+                ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ts.cet_type_id')
                 ->get()
                 ->toArray();
-                foreach ($rooms as $room_key => $room_value) {
-                    if($room_value->school_room_number_of_examinees<$room_value->school_room_capacity){
-                        $school_room_id = $room_value->school_room_id;
+                
+                $this->school_rooms = DB::table('school_rooms as sr')
+                ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+                ->select(
+                    '*'
+                )
+                ->get()
+                ->toArray();
+                $test_center_id = 29;
+                foreach (  $this->test_schedule_data as $test_schedule_key => $test_schedule_value) {
+                    $test_date_time_stamp = strtotime(date($test_schedule_value->test_date));
+                  
+                    if($test_schedule_value->test_center_id == $test_center_id && $test_date_time_stamp > $date_now_time_stamp ){
+                        // dd($test_schedule_value);
+                        // get list of test_schedule and rooms
+                        $populated_rooms = DB::table('test_applications as ta')
+                            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                            ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+                            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                            // ->right('')
+                            
+                            ->where('t_a_isactive','=',1)
+                            ->where('test_status_details','=','Processing')
+                            // ->where('test_date','=',$test_schedule_value->test_date)
+                            ->get()
+                            ->toArray();
+
+                        // dd($test_schedule_value);
+                        dd($populated_rooms);
+                        // dd($test_schedule_value->test_date);
+                        if(count($populated_rooms)>0){
+                            dd('sdfa');
+                        }else{
+                            foreach ($this->school_rooms as $school_room_key => $school_room_value) {
+                                if($school_room_value->school_room_test_center_id == $test_center_id){
+                                    $ampm = "AM";
+                                    $test_schedule_id = $test_schedule_value->id;
+                                    $school_room_id = $school_room_value->school_room_id;
+                                    // dd($test_schedule_value,' '.$school_room_id);
+                                    if($this->pending_selected[$key][$value->t_a_id] && ($ampm || $test_schedule_id || $school_room_id) ){
+                                        // update here
+                                        DB::table('test_applications as ta')
+                                        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                                        ->where(['t_a_id'=> $value->t_a_id,
+                                                't_a_isactive'=>1,
+                                                'ts.test_status_details'=>'Pending'])
+                                        ->update([
+                                                't_a_test_status_id' =>((array) DB::table('test_status')
+                                                    ->where('test_status_details', '=', 'Processing')
+                                                ->select('test_status_id as t_a_test_status_id')
+                                                ->first())['t_a_test_status_id'],
+                                                't_a_accepted_by'=> $this->user_details['user_id'],
+                                                
+                                                't_a_ampm' =>$ampm,
+                                                't_a_test_schedule_id'  =>$test_schedule_id,
+                                                't_a_school_room_id'  => $school_room_id,
+                                        ]);
+                    
+                    
+                                        if($this->mail){
+                                            if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
+                                                $this->status = 'Processing';
+                                                $this->reason = NULL;
+                                                $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
+                                                $this->email = $value->user_email;
+                                                Mail::send('mail.application-status-email', [
+                                                    'status'=>$this->status,
+                                                    'reason'=>$this->reason,
+                                                    'link'=>$this->link,
+                                                    'email'=>$this->email], 
+                                                    function($message) {
+                                                $message->to($this->email, $this->email)->subject
+                                                   ('Test Application Processing');
+                                                $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                                             });
+                                            }
+                                        }
+                                    }
+                                    break;
+                                }
+                                
+                            }
+                        }
                         break;
                     }
                 }
-                if(!isset($school_room_id)){
-
-                    $list_of_rooms = DB::table('school_rooms')
-                        ->get()
-                        ->toArray();
-                    if($list_of_rooms){
-                        foreach ($list_of_rooms as $list_of_room_key => $list_of_room_value) {
-                            $listed = true;
-                            foreach ($rooms as $room_key => $room_value) {
-                                if($room_value->school_room_id == $list_of_room_value->school_room_id){
-                                    $listed = false;
-                                    break;
-                                }
-                            }
-                            if($listed){
-                                $school_room_id = $list_of_room_value->school_room_id;
-                                break;
-                            }
-                        }
-                    }else{
-                        $this->dispatchBrowserEvent('swal:redirect',[
-                            'position'          									=> 'center',
-                            'icon'              									=> 'warning',
-                            'title'             									=> 'No rooms available!',
-                            'showConfirmButton' 									=> 'true',
-                            'timer'             									=> '1500',
-                            'link'              									=> '#'
-                        ]);
-                        return 0 ;
-                    }
-                   
-                    // dd( $school_room_id);
-                    // dd($rooms);
-                }
-                if($this->pending_selected[$key][$value->t_a_id]){
-                    // update here
-                    DB::table('test_applications as ta')
-                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
-                    ->where(['t_a_id'=> $value->t_a_id,
-                            't_a_isactive'=>1,
-                            'ts.test_status_details'=>'Pending'])
-                    ->update([
-                            't_a_test_status_id' =>((array) DB::table('test_status')
-                                ->where('test_status_details', '=', 'Processing')
-                            ->select('test_status_id as t_a_test_status_id')
-                            ->first())['t_a_test_status_id'],
-                            't_a_accepted_by'=> $this->user_details['user_id'],
-                            't_a_school_room_id' =>$school_room_id
-                    ]);
-
-
-                    if($this->mail){
-                        if(strlen($value->user_email)>0 && $value->user_email_verified ==1){
-                            $this->status = 'Processing';
-                            $this->reason = NULL;
-                            $this->link = ($_SERVER['SERVER_PORT'] == 80?'http://':'https://'). $_SERVER['SERVER_NAME'] .'/'.'student/status';
-                            $this->email = $value->user_email;
-                            Mail::send('mail.application-status-email', [
-                                'status'=>$this->status,
-                                'reason'=>$this->reason,
-                                'link'=>$this->link,
-                                'email'=>$this->email], 
-                                function($message) {
-                            $message->to($this->email, $this->email)->subject
-                               ('Test Application Processing');
-                            $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
-                         });
-                        }
-                    }
-                }
+            // dd($this->test_schedule_data);
+               
             }
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',

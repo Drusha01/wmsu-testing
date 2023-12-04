@@ -213,6 +213,80 @@
                 </div>
 
                 <div class="tab-pane  @if($active == 'test_date') show active @endif " id="test-date-schedules-management-tab">
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <button type="button" class="btn btn-success" wire:click="add_test_schedules()" >Add Test Schedules</button>
+                    </div>
+                    <table class="application-table">
+                        <thead>
+                            <tr>
+                            @foreach ($test_schedule_filter as $item => $value)
+                                @if($loop->last && $value )
+                                    <th class="text-center">
+                                        Action
+                                    </th>
+                                @elseif( $item == 'AM' || $item == 'PM')
+                                    <th colspan="1" class="text-center">{{$item}}</th>
+                                @elseif($value)
+                                    <th>{{$item}}</th>
+                                @endif
+                            @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @forelse ($test_schedule_data as $item => $value)
+                            <tr wire:key="item-{{ $value->id }}">
+                                @if($test_schedule_filter['#'])
+                                    <td>{{ $loop->index+1 }}</td>
+                                @endif
+                                @if($test_schedule_filter['Test Date'])
+                              
+                                    <td>  {{date_format(date_create(  $value->test_date), "F d ")}}</td>
+                                @endif
+                                @if($test_schedule_filter['Test Center Code'])
+                                    <td>{{ $value->test_center_code}}</td>
+                                @endif
+                                @if($test_schedule_filter['Test Center Name'])
+                                    <td>{{ $value->test_center_name}}</td>
+                                @endif
+                                @if($test_schedule_filter['Student Type'])
+                                    <td>{{ $value->cet_type_details}}</td>
+                                @endif
+                                @if($test_schedule_filter['AM'])
+                                    <td class="text-center">{{date_format(date_create(   $value->am_start), "h:i A ")}} - {{date_format(date_create(   $value->am_end), "h:i A ")}}</td>
+                                @endif
+                                @if($test_schedule_filter['PM'])
+                                    <td class="text-center"> {{date_format(date_create(   $value->pm_start), "h:i A ")}} - {{date_format(date_create(   $value->pm_end), "h:i A ")}} </td>
+                                @endif
+                                
+                                
+                                @if($test_schedule_filter['Actions'] )
+                                    <td class="text-center">
+                                        @if($access_role['R']==0)
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
+                                        @endif
+                                        @if($access_role['U']==1)
+                                        <button class="btn btn-success" wire:click="edit_room({{$value->id }})">Edit</button>
+                                        @endif
+                                        @if($access_role['D']==1)
+                                            @if($value->isactive)
+                                                <button class="btn btn-danger" wire:key="delete" id="confirmDeleteRoom" wire:click="delete_room({{ $value->id }})">Delete</button>
+                                            @else
+                                                <button class="btn btn-warning" wire:key="delete" wire:click="activate_room({{ $value->id}})">Activate</button>
+                                            @endif
+                                       
+                                        @endif
+                                    </td>
+                                @endif
+                            </tr>
+                        @empty
+                            <td class="text-center font-weight-bold" colspan="42">
+                                NO RECORDS 
+                            </td>
+                        @endforelse
+                            <!-- Add more room entries as needed -->
+                        </tbody>
+                    </table>
+                
                 </div>
 
                 <div class="tab-pane  @if($active == 'room_management') show active @endif " id="room-management-tab">
@@ -243,6 +317,10 @@
                                 @if($school_room_filter['#'])
                                     <td>{{ $loop->index+1 }}</td>
                                 @endif
+                                @if($school_room_filter['Proctor'])
+                                    <td>@if(isset($value->user_id) ){{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}@endif</td>
+                                @endif
+                                
                                 @if($school_room_filter['Test Center Name'])
                                     <td>{{ $value->test_center_name }}</td>
                                 @endif
@@ -485,11 +563,21 @@
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Test Center:</label>
                                             <select wire:model.defer="school_room.school_room_test_center_id" class="form-select">
+                                                <option value="0">Select Test Center</option>
                                                 @foreach ($test_center_data as $item => $value)
                                                 <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
                                                 @endforeach
                                             </select>
                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Room Proctor:</label>
+                                            <select wire:model.defer="school_room.school_room_proctor_user_id" class="form-select">
+                                                <option value="0">Select Proctor</option>
+                                                @foreach ($proctor_data as $item => $value)
+                                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Building name:</label>
@@ -542,7 +630,15 @@
                                                 <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
                                                 @endforeach
                                             </select>
-                                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Room Proctor:</label>
+                                            <select wire:model.defer="school_room.school_room_proctor_user_id" class="form-select">
+                                                <option value="0">Select Proctor</option>
+                                                @foreach ($proctor_data as $item => $value)
+                                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="addRoomCapacity">Building name:</label>

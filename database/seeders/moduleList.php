@@ -69,7 +69,7 @@ class moduleList extends Seeder
             "exam-management",
             "bi bi-file-earmark-text",
             5,
-            1,
+            0,
             1,
             NOW(),
             NOW()

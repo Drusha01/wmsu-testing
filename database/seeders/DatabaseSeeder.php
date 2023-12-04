@@ -45,7 +45,9 @@ class DatabaseSeeder extends Seeder
             regions_seeders::class,
             province_seeders::class,
             city_mun_seeders::class,
+            test_schedules_seeders::class,
             brgy_seeders::class,
+      
         ]);
         
     }

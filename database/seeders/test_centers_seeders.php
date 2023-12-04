@@ -48,5 +48,7 @@ class test_centers_seeders extends Seeder
         DB::statement('INSERT INTO test_centers VALUES(NULL,"033","PITOGO","PIT",1,NOW(),NOW());');
         DB::statement('INSERT INTO test_centers VALUES(NULL,"035","TAMPILISAN ","TAM",1,NOW(),NOW());');
         DB::statement('INSERT INTO test_centers VALUES(NULL,"036","KUMALARANG ","KUM",1,NOW(),NOW());');
+        DB::statement('INSERT INTO test_centers VALUES(NULL,"036","NAGA ","NAG",1,NOW(),NOW());');
+        
     }
 }
