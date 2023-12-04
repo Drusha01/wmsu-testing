@@ -802,7 +802,6 @@ class AdminManagement extends Component
             'user_middlename' => $this->admin_middlename,
             'user_lastname' => $this->admin_lastname,
             'user_suffix' => NULL,
-            'user_address' => NULL,
             'user_birthdate' => $this->admin_birthdate,
            
         ]);
