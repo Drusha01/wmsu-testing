@@ -275,7 +275,8 @@ class ResultManagement extends Component
                 ->select(
                     // '*',
                     // DB::raw('count(*) as school_room_sschool_room_number_of_examinees' ),
-                   '*'
+                   '*',
+                   'ta.t_a_id as ta_id'
                     )
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
@@ -290,7 +291,7 @@ class ResultManagement extends Component
                 ->whereNotNull('school_room_proctor_user_id')
                 ->get()
                 ->toArray();
-            // dd($this->examinees);
+            // dd($this->examinees); $val
             $header = [];
             foreach ($this->cet_filter as $item => $value) {
                 if($value){
@@ -303,7 +304,7 @@ class ResultManagement extends Component
             foreach ($this->examinees as $key => $value) {
                 $item = [];
                 array_push( $item,$counter);
-                array_push( $item,$value->t_a_id);
+                array_push( $item,$value->ta_id);
                 array_push( $item,$value->user_firstname);
                 array_push( $item,$value->user_middlename);
                 array_push( $item,$value->user_lastname);
