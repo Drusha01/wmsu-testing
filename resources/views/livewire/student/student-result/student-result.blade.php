@@ -78,14 +78,14 @@
                                                 <tr>
                                                     <td colspan="2">Percentile Rank</td>
                                            
-                                                    <!-- <td >{{$result['t_a_cet_oapr']}}%</td> -->
-                                                    <td>{{$result['t_a_cet_english_procficiency']}}%</td>
-                                                    <td>{{$result['t_a_cet_reading_comprehension']}}%</td>
-                                                    <td>{{$result['t_a_cet_science_process_skills']}}%</td>
-                                                    <td>{{$result['t_a_cet_quantitative_skills']}}%</td>
-                                                    <td>{{$result['t_a_cet_abstract_thinking_skills']}}%</td>
+                                                
+                                                    <td>{{$result['t_a_cet_english_procficiency']}}</td>
+                                                    <td>{{$result['t_a_cet_reading_comprehension']}}</td>
+                                                    <td>{{$result['t_a_cet_science_process_skills']}}</td>
+                                                    <td>{{$result['t_a_cet_quantitative_skills']}}</td>
+                                                    <td>{{$result['t_a_cet_abstract_thinking_skills']}}</td>
                                                     <br>
-                                                    <td>90.21</td>
+                                                    <td >{{$result['t_a_cet_oapr']}}</td>
                                                 </tr>
                                                 <tr>  
                                             </tbody>

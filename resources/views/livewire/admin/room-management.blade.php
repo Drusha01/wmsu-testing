@@ -14,19 +14,19 @@
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="adminTabs">
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'unassigned_room') show active @endif " wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
+                    <a class="nav-link  @if($active == 'unassigned_room') show active @endif "href="#" wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
+                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " href="" wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_date') show active @endif "wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
+                    <a class="nav-link  @if($active == 'test_date') show active @endif " href="#" wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'room_management') show active @endif "wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
+                    <a class="nav-link  @if($active == 'room_management') show active @endif " href="#" wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_centers') show active @endif "wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
+                    <a class="nav-link  @if($active == 'test_centers') show active @endif " href="#" wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
                 </li>
             </ul>
 
