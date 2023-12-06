@@ -1180,7 +1180,9 @@ class ApplicationManagement extends Component
                  // note that they can only accept students if the previous exam is done/ closed
                 if($this->pending_selected[$key][$value->t_a_id]){
                     $insert = true;
+                    $schedule = self::get_schedule($this->test_schedule_data,$date_now,$test_center_id);
                     while($insert){
+                        
                         $schedule = self::get_schedule($this->test_schedule_data,$date_now,$test_center_id);
                         $test_schedule_id = $schedule->ts_id;
                         // count rooms per schedule;
@@ -1334,7 +1336,10 @@ class ApplicationManagement extends Component
                                 }
                             }
                         }   
-                        $date_now = ($schedule->test_date);              
+                        if($insert){
+                            $date_now = ($schedule->test_date);        
+                        }
+                        
                     }
                 }
                
