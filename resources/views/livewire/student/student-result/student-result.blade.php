@@ -71,17 +71,21 @@
                                                 <th scope="col">Science Processing Skills</th>
                                                 <th scope="col">Quantitative Skills</th>
                                                 <th scope="col">Abstract Thinking</th>
+                                                <th scope="col">OAPR</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td colspan="2"></td>
+                                                    <td colspan="2">Percentile Rank</td>
+                                           
                                                     <!-- <td >{{$result['t_a_cet_oapr']}}%</td> -->
                                                     <td>{{$result['t_a_cet_english_procficiency']}}%</td>
                                                     <td>{{$result['t_a_cet_reading_comprehension']}}%</td>
                                                     <td>{{$result['t_a_cet_science_process_skills']}}%</td>
                                                     <td>{{$result['t_a_cet_quantitative_skills']}}%</td>
                                                     <td>{{$result['t_a_cet_abstract_thinking_skills']}}%</td>
+                                                    <br>
+                                                    <td>90.21</td>
                                                 </tr>
                                                 <tr>  
                                             </tbody>
