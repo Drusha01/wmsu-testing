@@ -22,8 +22,8 @@
                             ?>
                             @if(($current_date >= $es_date_start) && ($es_date_end <= $es_date_end)) 
                             <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                <a href="{{ Route('student.cet.form') }}" class="text-decoration-none text-body font-weight-bold">{{$value->es_exam_details  }} Form</a>
-                                <button type="button" class="btn btn-primary "><a href="{{ Route('student.cet.form') }}" class="text-decoration-none text-light">Available</a></button>
+                                <a href="#" wire:click="check_profile('/student/application/cet-application-form')" class="text-decoration-none text-body font-weight-bold">{{$value->es_exam_details  }} Form</a>
+                                <button type="button" wire:click="check_profile('/student/application/cet-application-form')" class="btn btn-primary "><a href="#" class="text-decoration-none text-light">Available</a></button>
                             </li>
                             @else
                             <li class="list-group-item d-flex justify-content-between align-items-center ">

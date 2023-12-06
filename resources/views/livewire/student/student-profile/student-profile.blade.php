@@ -188,7 +188,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
+                                            <label class="col-sm-4 col-form-label">Gender<span style="color:red;"></span>:</label>
                                             <div class="col-sm-8">
                                                 <select wire:model="user_details.user_gender_details" class="form-control">
                                                     @if(isset($user_details['user_gender_details']) && strlen($user_details['user_gender_details']>0))

@@ -123,11 +123,10 @@
                     <!-- List of Room Assignments -->
                     <div class="room-assignments">
                         <div class="d-flex mt-2">
-                            <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
-                            <select class="filter-select " wire:model.defer="assigned_test_type_id" wire:change="assigned_applicant_exam_type_filter()">
-                                <option value="0"  >All</option>
-                                @foreach ($exam_types as $item => $value)
-                                    <option wire:key="assigned-{{$value->test_type_id}}"value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
+                            <label class="filter-label align-self-center " for="exam-filter">Filter by Test Date:</label>
+                            <select class="filter-select " wire:model.defer="test_date" wire:change="update_data()">
+                                @foreach ($assigned_test_date as $item => $value)
+                                    <option wire:key="assigned-{{$value->test_schedule_id}}"value="{{$value->test_schedule_id}}" >{{$value->test_date}}</option>
                                 @endforeach
                                 
                                 <!-- Add more options as needed -->

@@ -124,6 +124,39 @@ class CetApplicationForm extends Component
             ->toArray();
             // dd( $this->high_schools);
     }
+
+    public function check_profile(){
+        $valid = false;
+        if(strlen($this->user_details['user_citizenship']) < 1 ){
+            $valid = true;
+        }
+        if(strlen($this->user_details['user_addr_brgy']) < 1 ){
+            $valid = true;
+        }
+        if(strlen($this->user_details['user_addr_city_mun']) < 1 ){
+            $valid = true;
+        }
+        if(strlen($this->user_details['user_addr_province']) < 1 ){
+            $valid = true;
+        }
+        if(intval($this->user_details['user_addr_zip_code']) < 1 ){
+            $valid = true;
+        }
+        if(intval($this->user_details['user_phone']) < 1 ){
+            $valid = true;
+       }
+       if($valid){
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'Incomplete Profile data, please modile and fill the missing data!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '/student/profile'
+            ]);
+            return;
+       }
+    }
     public function mount(Request $request){
         $user_details = $request->session()->all();
         $this->title = 'CET Application Form';
@@ -275,8 +308,10 @@ class CetApplicationForm extends Component
             't_a_school_year_id' => NULL,
             't_a_hash'  => NULL,
         ];
+        
         self::update_data();
 
+        self::check_profile();
         foreach($this->cet_type_data as $key =>$value){
             if($value){
                 $this->cet_form['t_a_cet_type_id'] = $value->cet_type_id;

@@ -53,12 +53,11 @@ class RoomManagement extends Component
 
     public $proctor_data;
     
-
+    public $assigned_examinees_data;
 
 
     
-
-
+    public $test_date;
 
     public $column_order = 't_a_id';
     public $order_by = 'asc';
@@ -149,7 +148,20 @@ class RoomManagement extends Component
             ->get()
             ->toArray();
         
-        // dd($this->test_schedule_data );
+        $this->assigned_test_date = DB::table('test_applications as ta')
+            ->select(
+                'tsc.id as test_schedule_id',
+                'test_date'
+            )
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Processing')
+            ->groupBy('tsc.id')
+            ->get()
+            ->toArray();
+        // dd($this->assigned_test_date );
     }
 
     public function mount(Request $request){
