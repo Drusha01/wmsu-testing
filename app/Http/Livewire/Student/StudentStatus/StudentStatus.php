@@ -741,8 +741,10 @@ class StudentStatus extends Component
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+            ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
-            ->join('high_schools as sc', 'sc.id', '=', 'ta.t_a_school_id')
+            ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->leftjoin('high_schools as hs','hs.id','ta.t_a_school_id')
             
             ->where('test_type_details', '=', 'College Entrance Test')
                     

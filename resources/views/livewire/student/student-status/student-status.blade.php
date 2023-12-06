@@ -179,14 +179,14 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">{{date_format(date_create($view_permit[0]->school_room_test_date), "F d, Y ")}}</th>
-                                                    <td>{{$view_permit[0]->school_room_test_center}}</td>
+                                                    <th scope="row">{{date_format(date_create($view_permit[0]->test_date), "F d, Y ")}}</th>
+                                                    <td>{{$view_permit[0]->test_center_name}}</td>
                                                     <td>{{ $view_permit[0]->school_room_id.' - '.$view_permit[0]->school_room_name }}</td>
-                                                    <td>{{ $view_permit[0]->school_room_test_time_start.' - '.$view_permit[0]->school_room_test_time_end }}</td>
-                                                    <td>{{29 }}</td>
-                                                    <td>{{$view_permit[0]->high_school_code }}</td> 
+                                                    <td>@if($view_permit[0]->t_a_ampm == 'AM'){{ $view_permit[0]->am_start.' - '.$view_permit[0]->am_end }}@else {{$view_permit[0]->pm_start.' - '.$view_permit[0]->pm_end }} @endif</td>
+                                                    <td>{{$view_permit[0]->test_center_code }}</td>
+                                                    <td>{{$view_permit[0]->high_school_code.' - '.$view_permit[0]->high_school_name }}</td> 
                                                     
-                                                    <!-- <td>{{$view_permit[0]->school_room_test_center}}</td> -->
+                                                    <!-- <td>{{$view_permit[0]->test_center_code}}</td> -->
                                                 </tr>
                                                 <tr>  
                                             </tbody>

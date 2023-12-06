@@ -1016,7 +1016,7 @@ class ApplicationManagement extends Component
             // ->right('')
             
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->where('t_a_test_schedule_id','=',$test_schedule_id)
             ->where('test_center_id','=',$test_center_id)
             ->get()
@@ -1212,7 +1212,7 @@ class ApplicationManagement extends Component
                                             'ts.test_status_details'=>'Pending'])
                                     ->update([
                                             't_a_test_status_id' =>((array) DB::table('test_status')
-                                                ->where('test_status_details', '=', 'Processing')
+                                                ->where('test_status_details', '=', 'Accepted')
                                             ->select('test_status_id as t_a_test_status_id')
                                             ->first())['t_a_test_status_id'],
                                             't_a_accepted_by'=> $this->user_details['user_id'],
@@ -1257,7 +1257,7 @@ class ApplicationManagement extends Component
                                                 'ts.test_status_details'=>'Pending'])
                                         ->update([
                                                 't_a_test_status_id' =>((array) DB::table('test_status')
-                                                    ->where('test_status_details', '=', 'Processing')
+                                                    ->where('test_status_details', '=', 'Accepted')
                                                 ->select('test_status_id as t_a_test_status_id')
                                                 ->first())['t_a_test_status_id'],
                                                 't_a_accepted_by'=> $this->user_details['user_id'],
@@ -1305,7 +1305,7 @@ class ApplicationManagement extends Component
                                         'ts.test_status_details'=>'Pending'])
                                 ->update([
                                         't_a_test_status_id' =>((array) DB::table('test_status')
-                                            ->where('test_status_details', '=', 'Processing')
+                                            ->where('test_status_details', '=', 'Accepted')
                                         ->select('test_status_id as t_a_test_status_id')
                                         ->first())['t_a_test_status_id'],
                                         't_a_accepted_by'=> $this->user_details['user_id'],
@@ -1347,7 +1347,7 @@ class ApplicationManagement extends Component
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
-                'title'             									=> 'Applicants seleted is now Processing!',
+                'title'             									=> 'Applicants seleted is now Accepted!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
                 'link'              									=> '#'

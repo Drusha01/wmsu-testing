@@ -162,10 +162,10 @@
                                         </div>
                                         <hr>
                                         <div class="modal-body">
-                                            @foreach($assigned_applicant_filter as $item => $value)
+                                            @foreach($assigned_room_filter as $item => $value)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="assigned-filtering-{{$loop->iteration}}"
-                                                    wire:model.defer="assigned_applicant_filter.{{$item}}">
+                                                    wire:model.defer="assigned_room_filter.{{$item}}">
                                                 <label class="form-check-label" for="assigned-filtering-{{$loop->iteration}}">
                                                     {{$item}}
                                                 </label>
@@ -192,10 +192,8 @@
                         <table class="application-table ">
                             <thead>
                                 <tr>
-                                    @foreach ($assigned_applicant_filter as $item => $value)
-                                        @if ($loop->first && $value)
-                                            <th><input wire:model="assigned_selected_all" wire:change="assigned_applicant_select_all()" type="checkbox" ></th> 
-                                        @elseif($loop->last && $value )
+                                    @foreach ($assigned_room_filter as $item => $value)
+                                        @if($loop->last && $value )
                                         <th class="text-center">Action</th>
                                         @elseif($value && $item != 'Action')
                                             <th >{{$item}}</th>
@@ -204,7 +202,61 @@
                                 </tr>
                             </thead>
                             <tbody>
-                          
+                            @forelse ($assigned_room_data as $item => $value)
+                                <tr wire:key="item-{{ $value->school_room_id }}">
+                                    @if($assigned_room_filter['#'])
+                                        <td>{{ $loop->index+1 }}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Test Center Name'])
+                                        <td>{{ $value->test_center_name }}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Test Center Code'])
+                                        <td>{{ $value->test_center_code}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Building name'])
+                                        <td>{{ $value->school_room_bldg_name}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Room name'])
+                                        <td>{{ $value->school_room_name}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Room no.'])
+                                        <td>{{ $value->school_room_number}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Room Description'])
+                                        <td>{{ $value->school_room_description}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Capacity'])
+                                        <td>{{ $value->school_room_max_capacity}}</td>
+                                    @endif
+                                    @if($assigned_room_filter['Status'])
+                                        <td>@if($value->school_room_isactive ) Active @else Inactive @endif</td>
+                                    @endif
+
+                                    
+                                    @if($assigned_room_filter['Actions'] )
+                                        <td class="text-center">
+                                            @if($access_role['R']==1)
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_examinees_list({{$value->school_room_id }})">View</button>
+                                            @endif
+                                            @if($access_role['U']==0)
+                                            <button class="btn btn-success" wire:click="edit_room({{$value->school_room_id }})">Edit</button>
+                                            @endif
+                                            @if($access_role['D']==0)
+                                                @if($value->school_room_isactive)
+                                                    <button class="btn btn-danger" wire:key="delete" id="confirmDeleteRoom" wire:click="delete_room({{ $value->school_room_id }})">Delete</button>
+                                                @else
+                                                    <button class="btn btn-warning" wire:key="delete" wire:click="activate_room({{ $value->school_room_id}})">Activate</button>
+                                                @endif
+                                        
+                                            @endif
+                                        </td>
+                                    @endif
+                                </tr>
+                            @empty
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endforelse
                                 <!-- Add more accepted applicant rows here -->
                             </tbody>
                         </table>

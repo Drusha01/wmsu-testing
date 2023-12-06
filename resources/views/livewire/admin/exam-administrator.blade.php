@@ -15,10 +15,10 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#exam-administrator">Assigned Rooms</a>
+                <a class="nav-link   @if($active == 'exam_admin') show active @endif "wire:key="exam_admin"  wire:click="active_page('exam_admin')">Assigned Rooms</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-bs-toggle="tab" href="#attendance-list">Attendance Rooms</a>
+                <a class="nav-link @if($active == 'attendance_list') show active @endif "wire:key="attendance_list"  wire:click="active_page('attendance_list')">Attendance Rooms</a>
             </li>
           
         </ul>
@@ -26,10 +26,16 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- Proctor Table -->
-            <div class="tab-pane active" id="exam-administrator">
+            <div class="tab-pane @if($active == 'exam_admin') show active @endif " id="exam-administrator">
                 <div class="d-flex mt-2">
-                    <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
-                    
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Test Date:</label>
+                    <select class="filter-select " wire:model.defer="test_date" wire:change="update_data()">
+                        @foreach ($assigned_test_date as $item => $value)
+                            <option wire:key="assigned-{{$value->test_schedule_id}}"value="{{$value->test_schedule_id}}" >{{$value->test_date}}</option>
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
                 
                     <div class="col-md-3 sort-container">
                         <div class="d-flex">
@@ -75,7 +81,7 @@
                         </div>
                     </div>
                     <div class="ml-10">
-                        <button class="btn btn-success mx-1" type="button" wire:click="download_examinees_list()">Download Examinees list</button>
+                        <button class="btn btn-success mx-1" type="button" wire:click="download_examinees_list()">Download All Examinees</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -91,53 +97,73 @@
                         </thead>
                         <tbody>
                             @forelse ($assigned_room_data as $item => $value)
-                                <tr >
+                                <tr wire:key="item-{{ $value->school_room_id }}">
                                     @if($assigned_proctor_filter['#'])
                                         <td>{{ $loop->index+1 }}</td>
                                     @endif
-                                    @if($assigned_proctor_filter['# of Examinees'])
-                                        <td>{{ $value->school_room_capacity -  $value->school_room_slot  }}</td>
+                                    @if($assigned_proctor_filter['Proctor'])
+                                        <td>@if(isset($value->user_id) ){{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}@endif</td>
                                     @endif
-                                    @if($assigned_proctor_filter['Capacity'])
-                                        <td>{{ $value->school_room_capacity }}</td>
+                                    @if($assigned_proctor_filter['Test Date'])
+                                        <td>{{ $value->test_date }}</td>
                                     @endif
-                                    @if($assigned_proctor_filter['Slots'])
-                                        <td>{{ $value->school_room_slot }}</td>
+                                    
+                                    @if($assigned_proctor_filter['Test Center Name'])
+                                        <td>{{ $value->test_center_name }}</td>
                                     @endif
-                                    @if($assigned_proctor_filter['Venue'])
-                                        <td>{{ $value->school_room_venue }}</td>
+                                    @if($assigned_proctor_filter['Test Center Code'])
+                                        <td>{{ $value->test_center_code}}</td>
                                     @endif
-                                    @if($assigned_proctor_filter['Test center'])
-                                        <td>{{ $value->school_room_test_center }}</td>
-                                    @endif
-                                    @if($assigned_proctor_filter['College'])
-                                        <td>{{ $value->school_room_college_abr }}</td>
-                                    @endif
-                                    @if($assigned_proctor_filter['Room code'])
-                                    <td>{{ $value->school_room_id.' - '.$value->school_room_name }}</td>
+                                    @if($assigned_proctor_filter['Building name'])
+                                        <td>{{ $value->school_room_bldg_name}}</td>
                                     @endif
                                     @if($assigned_proctor_filter['Room name'])
-                                        <td>{{ $value->school_room_name }}</td>
+                                        <td>{{ $value->school_room_name}}</td>
                                     @endif
-                                    @if($assigned_proctor_filter['Start - End'])
-                                    <td>{{ $value->school_room_test_time_start.' - '.$value->school_room_test_time_end }}</td>
+                                    @if($assigned_proctor_filter['Room no.'])
+                                        <td>{{ $value->school_room_number}}</td>
                                     @endif
-                                  
-                                    
+                                    @if($assigned_proctor_filter['Room Description'])
+                                        <td>{{ $value->school_room_description}}</td>
+                                    @endif
+                                    @if($assigned_proctor_filter['Capacity'])
+                                        <td>{{ $value->school_room_max_capacity}}</td>
+                                    @endif
+                                    @if($assigned_proctor_filter['Capacity'])
+                                        <td>{{ $value->total_examinees_count}}</td>
+                                    @endif
+                                    @if($assigned_proctor_filter['Status'])
+                                        <td>@if($value->school_room_isactive ) Active @else Inactive @endif</td>
+                                    @endif
                                     @if($assigned_proctor_filter['Actions'] )
                                         <td class="text-center">
+                                            @if($access_role['R']==0)
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
+                                            @endif
                                             @if($access_role['R']==1)
-                                            <button class="btn btn-primary" wire:click="view_list_of_examinees_with_proctor({{$value->school_room_id}})">View</button>
+                                                <button class="btn btn-success" wire:click="download_examinees_list({{$value->school_room_id }})">Download</button>
+                                            @endif
+                                            @if($access_role['R']==1)
+                                                <button class="btn btn-primary" wire:click="view_examinees_list({{$value->school_room_id }})">View</button>
+                                            @endif
+                                            @if($access_role['R']==1)
+                                                <button class="btn btn-warning" wire:click="attendance_list({{$value->school_room_id }})">Attendance</button>
+                                            @endif
+                                            @if($access_role['D']==0)
+                                                @if($value->school_room_isactive)
+                                                    <button class="btn btn-danger" wire:key="delete" id="confirmDeleteRoom" wire:click="delete_room({{ $value->school_room_id }})">Delete</button>
+                                                @else
+                                                    <button class="btn btn-warning" wire:key="delete" wire:click="activate_room({{ $value->school_room_id}})">Activate</button>
+                                                @endif
+                                        
                                             @endif
                                         </td>
                                     @endif
                                 </tr>
                             @empty
-                                <tr>
-                                    <td class="text-center font-weight-bold" colspan="42">
-                                        NO RECORDS 
-                                    </td>
-                                </tr>
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
                             @endforelse
                             <!-- Add more proctor entries as needed -->
                         </tbody>
@@ -215,133 +241,118 @@
                 </div>
             </div>
 
-<!-- Attendance List -->
-<div class="tab-pane" id="attendance-list">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- QR Code Scanning Section -->
-                <button class="btn btn-primary btn-block" id="scanQRCodeButton">Scan QR Code</button>
-                <div id="preview"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Manual Attendance Marking -->
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Manual Attendance Marking</h4>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Enter student's name" id="manualAttendanceInput">
-                    <button class="btn btn-success" id="markAttendanceButton">Mark Attendance</button>
+            <!-- Attendance List -->
+            <div class="tab-pane @if($active == 'attendance_list') show active @endif " id="attendance-list">
+                <div class="d-flex mt-2">
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Test Date:</label>
+                    <select class="filter-select " wire:model.defer="test_date" wire:change="update_data()">
+                        @foreach ($a_test_schedule as $item => $value)
+                            <option wire:key="assigned-{{$value->test_schedule_id}}"value="{{$value->test_schedule_id}}" >{{$value->test_date}}</option>
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
+                    <select class="filter-select " wire:model.defer="a_school_room_id" wire:change="update_data()">
+                        @foreach ($a_room_details as $item => $value)
+                            <option wire:key="assigned-{{$value->school_room_id}}"value="{{$value->school_room_id}}" >{{$value->school_room_name}}</option>
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+               
+                <!-- Attendance Table -->
+                <div class="container mt-3">
+                    <table class="table table-bordered" id="attendanceListTable">
+                        <thead>
+                            <tr>
+                                <th>Applicant Name</th>
+                                <th>Attendance Status</th>
+                                <th>Attendance Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Attendance data will be displayed here -->
+                            @forelse($a_examinees as $key =>$value)
+                            <tr wire:key="examinees-{{$key}}">
+                                <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
+                                <td>@if($value->ispresent) Present @else  @endif</td>
+                                <td>
+                                    <!-- Checkbox for attendance done -->
+                                    <div class="form-check">
+                                        <input type="checkbox" @if($value->ispresent) checked @else  @endif class="form-check-input" wire:click="check_attendance({{$value->t_a_id}} @if($value->ispresent) ,{{0}} @else, {{1}}@endif)" id="attendanceDone1">
+                                        <label class="form-check-label" for="attendanceDone1">Present</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endforelse
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Attendance Table -->
-    <div class="container mt-3">
-        <table class="table table-bordered" id="attendanceListTable">
-            <thead>
-                <tr>
-                    <th>Applicant Name</th>
-                    <th>Attendance Status</th>
-                    <th>Attendance Check</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Attendance data will be displayed here -->
-                <tr>
-                    <td>John Doe</td>
-                    <td>Present</td>
-                    <td>
-                        <!-- Checkbox for attendance done -->
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="attendanceDone1">
-                            <label class="form-check-label" for="attendanceDone1">Present</label>
-                            <br>
-                            <input type="checkbox" class="form-check-input" id="attendanceDone2">
-                            <label class="form-check-label" for="attendanceDone2">Absent</label>
+
+
+            <!-- Instructions Modal -->
+            <div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jane Smith</td>
-                    <td>Present</td>
-                    <td>
-                        <!-- Checkbox for attendance not done -->
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="attendanceDone1">
-                            <label class="form-check-label" for="attendanceDone1">Present</label>
-                            <br>
-                            <input type="checkbox" class="form-check-input" id="attendanceDone2">
-                            <label class="form-check-label" for="attendanceDone2">Absent</label>
+                        <div class="modal-body">
+                            <!-- Add your proctor instructions here -->
+                            <p>Welcome, Proctor (NAME). Here are your instructions:</p>
+                                <!-- Download Button for Applicant List -->
+                                <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
+                            <ol>
+                                <li>Scan the QR code to check the applicants' information.</li>
+                                <li>Ensure that all registered applicants are present.</li>
+                                <li>Report any issues or discrepancies to the exam administrators.</li>
+                            </ol>
+
+                            <!-- Applicant List and Download Button -->
+                            <h1></h1>
+                            <p>Applicant List:</p>
+                            <table class="application-table">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Applicant Name</th>
+                                        <th>CET</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Code 1</td>
+                                        <td>hanz dumapit</td>
+                                        <td>CET</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Code 2</td>
+                                        <td>dap dap</td>
+                                        <td>CET</td>
+                                    </tr>
+                                    <!-- Add more rows for additional applicants -->
+                                </tbody>
+                            </table>
                         </div>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-
-        <!-- Instructions Modal -->
-        <div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
-                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add your proctor instructions here -->
-                        <p>Welcome, Proctor (NAME). Here are your instructions:</p>
-                            <!-- Download Button for Applicant List -->
-                            <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
-                        <ol>
-                            <li>Scan the QR code to check the applicants' information.</li>
-                            <li>Ensure that all registered applicants are present.</li>
-                            <li>Report any issues or discrepancies to the exam administrators.</li>
-                        </ol>
-
-                        <!-- Applicant List and Download Button -->
-                        <h1></h1>
-                        <p>Applicant List:</p>
-                        <table class="application-table">
-                            <thead>
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Applicant Name</th>
-                                    <th>CET</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Code 1</td>
-                                    <td>hanz dumapit</td>
-                                    <td>CET</td>
-                                </tr>
-                                <tr>
-                                    <td>Code 2</td>
-                                    <td>dap dap</td>
-                                    <td>CET</td>
-                                </tr>
-                                <!-- Add more rows for additional applicants -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -364,32 +375,32 @@
                     </table>
                 </div>
             </div>
-        <!-- Add Proctor Modal -->
-        <div class="modal fade" id="addProctorModal" tabindex="-1" role="dialog" aria-labelledby="addProctorModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addProctorModalLabel">Add Proctor</h5>
-                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add form fields for adding a new proctor here -->
-                        <form>
-                            <div class="form-group">
-                                <label for="proctorName">Proctor Name</label>
-                                <input type="text" class="form-control" id="proctorName" placeholder="Enter Proctor Name">
+            <!-- Add Proctor Modal -->
+            <div class="modal fade" id="addProctorModal" tabindex="-1" role="dialog" aria-labelledby="addProctorModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addProctorModalLabel">Add Proctor</h5>
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="addProctorButton">Add Proctor</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Add form fields for adding a new proctor here -->
+                            <form>
+                                <div class="form-group">
+                                    <label for="proctorName">Proctor Name</label>
+                                    <input type="text" class="form-control" id="proctorName" placeholder="Enter Proctor Name">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="addProctorButton">Add Proctor</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
     </div>
         <!-- Back to Top Button -->

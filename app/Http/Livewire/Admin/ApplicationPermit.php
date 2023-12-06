@@ -67,29 +67,50 @@ class ApplicationPermit extends Component
         }
     }
     public function update_data(){
+       
+
         $this->view_permit = DB::table('test_applications as ta')
-            ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
-            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
-            ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
-            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
-            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
-            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
-            ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
-            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
-            ->join('high_schools as sc', 'sc.id', '=', 'ta.t_a_school_id')
-            
-            ->where('test_type_details', '=', 'College Entrance Test')
-                    
-            // ->where('t_a_test_status_id', '=', 
-            //     ((array) DB::table('test_types')
-            //         ->where('test_type_details', '=', 'College Entrance Test')
-            //         ->select('test_type_id as t_a_test_type_id')
-            //         ->first())['t_a_test_type_id'])
-            ->where('t_a_hash','=',$this->hash )
-            ->limit(1)
-            ->get()
-            ->toArray();
+        ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
+        ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+        ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
+        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+        ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')
+        ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+        ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+        ->leftjoin('high_schools as hs','hs.id','ta.t_a_school_id')
+        
+        ->where('test_type_details', '=', 'College Entrance Test')
+                
+        // ->where('t_a_test_status_id', '=', 
+        //     ((array) DB::table('test_types')
+        //         ->where('test_type_details', '=', 'College Entrance Test')
+        //         ->select('test_type_id as t_a_test_type_id')
+        //         ->first())['t_a_test_type_id'])
+        
+        ->where('t_a_hash','=',$this->hash )
+        ->limit(1)
+        ->get()
+        ->toArray();
             // dd($this->view_permit);
+
+        if(DB::table('attendance')
+        ->where('t_a_id','=',$this->view_permit[0]->t_a_id)
+        ->first() ){
+            DB::table('attendance')
+            ->where('t_a_id','=',$this->view_permit[0]->t_a_id)
+            ->update([
+                    'ispresent' =>1
+                ]);
+        }else{
+            DB::table('attendance')
+            ->insert([
+                    'id' => NULL,
+                    't_a_id' =>$this->view_permit[0]->t_a_id
+                ]);
+        }
       
         
         $path = 'application-permit/'.$this->view_permit[0]->t_a_hash;

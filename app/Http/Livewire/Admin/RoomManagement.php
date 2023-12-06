@@ -55,6 +55,10 @@ class RoomManagement extends Component
     
     public $assigned_examinees_data;
 
+    public $assigned_room_data;
+
+    public $examinees_data;
+
 
     
     public $test_date;
@@ -157,17 +161,48 @@ class RoomManagement extends Component
             ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->where('t_a_isactive','=',1)
-            ->where('test_status_details','=','Processing')
+            ->where('test_status_details','=','Accepted')
             ->groupBy('tsc.id')
             ->get()
             ->toArray();
-        // dd($this->assigned_test_date );
+            
+             
+
+            $this->assigned_room_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                "school_room_id",
+                "school_room_isactive",
+                "school_room_bldg_name",
+                "school_room_bldg_abr",
+                "school_room_name",
+                "school_room_number",
+                "school_room_max_capacity",
+                "school_room_proctor_user_id",
+                "school_room_test_center_id",
+                "test_center_code",
+                "test_center_name",
+                "test_center_code_name",
+                "test_center_isactive",
+            )
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+            ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+            ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Accepted')
+            ->where('t_a_test_schedule_id','=', $this->test_date)
+            ->groupBy('t_a_school_room_id')
+            ->orderBy('t_a_school_room_id')
+            ->get()
+            ->toArray();
+        // dd($this->assigned_room_data );
     }
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'room-management';
-        $this->active = 'unassigned_room';
+        $this->active = 'assigned_room';
 
         $this->access_role = [
             'C' => true,
@@ -191,18 +226,16 @@ class RoomManagement extends Component
                 'Actions'	=> true					
             ];
 
-            $this->assigned_applicant_filter = [
-                'Select all' => true,
+            $this->assigned_room_filter = [
                 '#' => true,
-                'Code' => true,
-                'Applicant name'=> true,
-                'Exam type'=> true,
-                'Room venue'=> true,
-                'Test center'=>true,
-                'Start - End'=>true,
-                'School Year'=> true,
-                // 'A.Y.'=> true,
-                'Date applied'	=> true,								
+                'Test Center Name'=>true,
+                'Test Center Code'=>true,
+                'Building name'=>true,
+                'Room name'=> true,
+                'Room no.'=> true,
+                'Room Description' => false,
+                'Capacity' => true,	
+                'Status'=> true,							
                 'Actions'	=> true					
             ];
 
@@ -253,6 +286,10 @@ class RoomManagement extends Component
             // 'school_room_proctor_user_id' =>NULL,
 
            self::update_data();
+           if($this->assigned_test_date){
+                $this->test_date = $this->assigned_test_date[0]->test_schedule_id;
+            }
+            self::update_data();
         }
     }
     public function render(){
@@ -318,6 +355,37 @@ class RoomManagement extends Component
         $this->active = $active;
 
       self::update_data();
+    }
+
+
+    public function view_examinees_list($school_room_id){
+        $this->examinees_data = DB::table('test_applications as ta')
+        ->select(
+            '*',
+            "school_room_id",
+            "school_room_isactive",
+            "school_room_bldg_name",
+            "school_room_bldg_abr",
+            "school_room_name",
+            "school_room_number",
+            "school_room_max_capacity",
+            "school_room_proctor_user_id",
+            "school_room_test_center_id",
+            "test_center_code",
+            "test_center_name",
+            "test_center_code_name",
+            "test_center_isactive",
+        )
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+        ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+        ->where('t_a_isactive','=',1)
+        ->where('test_status_details','=','Accepted')
+        ->where('t_a_school_room_id','=', $school_room_id)
+        ->get()
+        ->toArray();
+        dd( $this->examinees_data );
     }
 
     public function add_room(){
