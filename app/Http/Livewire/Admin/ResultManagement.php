@@ -275,29 +275,14 @@ class ResultManagement extends Component
                 ->select(
                     // '*',
                     // DB::raw('count(*) as school_room_sschool_room_number_of_examinees' ),
-                    't_a_id',
-                    'user_id',
-                    'user_name',
-                    DB::raw('CONCAT(user_addr_street,", ",user_addr_brgy,", ",user_addr_city_mun,", ",user_addr_province,", ",user_addr_zip_code) as user_address'),
-                    'user_firstname',
-                    'user_middlename',
-                    'user_lastname',
-                    't_a_hash',
-                    'school_room_id',
-                    'school_room_capacity',	
-                    'school_room_college_name',	
-                    'school_room_college_abr',
-                    'school_room_venue',
-                    'school_room_name',	
-                    'school_room_test_center',
-                    'school_room_test_date',
-                    'school_room_test_time_start',
-                    'school_room_test_time_end',
-                    'school_room_description',
+                   '*'
                     )
-                ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+                ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+                ->leftjoin('attendance as a','ta.t_a_id','a.t_a_id')
                 ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+                ->join('test_centers as tc','tc.id','tsc.test_center_id')
                 ->where('t_a_isactive','=',1)
                 ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
@@ -305,7 +290,7 @@ class ResultManagement extends Component
                 ->whereNotNull('school_room_proctor_user_id')
                 ->get()
                 ->toArray();
-            
+            // dd($this->examinees);
             $header = [];
             foreach ($this->cet_filter as $item => $value) {
                 if($value){
@@ -324,13 +309,13 @@ class ResultManagement extends Component
                 array_push( $item,$value->user_lastname);
 
                 if($this->cet_filter['Venue']){
-                    array_push( $item,$value->school_room_venue);
+                    array_push( $item,$value->school_room_bldg_name);
                 }
                 if($this->cet_filter['Test center']){
-                    array_push( $item,$value->school_room_test_center);
+                    array_push( $item,$value->test_center_code);
                 }
                 if($this->cet_filter['College']){
-                    array_push( $item,$value->school_room_college_abr);
+                    array_push( $item,$value->school_room_bldg_abr);
                 }
                 if($this->cet_filter['Room code']){
                     array_push( $item,$value->school_room_id.' - '.$value->school_room_name);
@@ -339,7 +324,13 @@ class ResultManagement extends Component
                     array_push( $item,$value->school_room_name);
                 }
                 if($this->cet_filter['Start - End']){
-                    array_push( $item,$value->school_room_test_time_start.' - '.$value->school_room_test_time_end);
+                    if($value->t_a_ampm == 'AM'){
+                        $val = $value->am_start.' - '.$value->am_end;
+                    }else{
+                        $val = $value->pm_start.' - '.$value->pm_end;
+                    }
+
+                    array_push( $item, $val);
                 }
                 if($this->cet_filter['hash']){
                     array_push( $item,$value->t_a_hash);
