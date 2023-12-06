@@ -6,7 +6,7 @@
         <!-- CET Tests Dropdown with a Clear Label -->
         <div class="card mb-3">
             <div class="card-header" style="background-color: #990000; color: white; font-weight: bold;">
-                College Entrance Test Form Applications
+                Test Form Applications
             </div>
             <div class="dropdown px-2 py-2">
                 

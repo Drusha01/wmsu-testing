@@ -42,7 +42,7 @@
                 <!-- CET result Modal -->
                 <div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content" style="width: 950px;  margin-left:-200px;">
+                        <div class="modal-content" style="width: 950px;  margin-left:-100px;">
                             <div class="modal-body" id="to_print" >
                                 <div>
                                 <section class="layout d-flex justify-content-center">
@@ -57,14 +57,15 @@
                                 @if($result)
                                     <div style="text-align: center;" >
                                         <div >
-                                            <legend>COLLEGE ENTRANCE EXAM RESULT</legend>
+                                            <!-- <legend>COLLEGE ENTRANCE EXAM RESULT</legend> -->
+                                            <p class="text-danger font-weight-bold">WMSU-CET APPLICATION RESULTS  <br>  School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                                             <h3>{{$result['user_fullname']}}</h3>
                                         </div> 
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                 <th scope="col" colspan="2">CET PARTS</th>
-                                                <th scope="col">OAPR</th>
+                                                <!-- <th scope="col">OAPR</th> -->
                                                 <th scope="col">English Proficiency</th>
                                                 <th scope="col">Reading Comprehension</th>
                                                 <th scope="col">Science Processing Skills</th>
@@ -75,7 +76,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td colspan="2"></td>
-                                                    <td >{{$result['t_a_cet_oapr']}}%</td>
+                                                    <!-- <td >{{$result['t_a_cet_oapr']}}%</td> -->
                                                     <td>{{$result['t_a_cet_english_procficiency']}}%</td>
                                                     <td>{{$result['t_a_cet_reading_comprehension']}}%</td>
                                                     <td>{{$result['t_a_cet_science_process_skills']}}%</td>
