@@ -13,9 +13,9 @@
 
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs" id="adminTabs">
-                <li class="nav-item">
-                    <a class="nav-link  @if($active == 'unassigned_room') show active @endif " wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link  @if($active == 'unassigned_room')  @endif " wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link  @if($active == 'assigned_room') show active @endif " wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
                 </li>
@@ -42,9 +42,7 @@
                             <label class="filter-label align-self-center " for="exam-filter">Filter by Type of Exam:</label>
                             <select class="filter-select " wire:model.defer="unassigned_test_type_id" wire:change="unassigned_applicant_exam_type_filter()">
                                 <option value="0"  >All</option>
-                                @foreach ($exam_types as $item => $value)
-                                    <option wire:key="unassigned-{{$value->test_type_id}}" value="{{$value->test_type_id}}" >{{$value->test_type_name}}</option>
-                                @endforeach
+                              
                                 
                                 <!-- Add more options as needed -->
                             </select>
@@ -207,6 +205,12 @@
                                     @if($assigned_room_filter['#'])
                                         <td>{{ $loop->index+1 }}</td>
                                     @endif
+                                    @if($assigned_room_filter['Proctor'])
+                                        <td> @if(isset($value->user_id)) {{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}   proctor @else  @endif</td>
+                                    @endif
+                                    @if($assigned_room_filter['Test Center Code - Name'])
+                                        <td>{{ $value->test_center_code.' - '.$value->test_center_name }}</td>
+                                    @endif
                                     @if($assigned_room_filter['Test Center Name'])
                                         <td>{{ $value->test_center_name }}</td>
                                     @endif
@@ -225,30 +229,23 @@
                                     @if($assigned_room_filter['Room Description'])
                                         <td>{{ $value->school_room_description}}</td>
                                     @endif
+                                    @if($assigned_room_filter['# of Examinees'])
+                                        <td>{{ $value->total_examinees_count}}</td>
+                                    @endif
                                     @if($assigned_room_filter['Capacity'])
                                         <td>{{ $value->school_room_max_capacity}}</td>
-                                    @endif
-                                    @if($assigned_room_filter['Status'])
-                                        <td>@if($value->school_room_isactive ) Active @else Inactive @endif</td>
                                     @endif
 
                                     
                                     @if($assigned_room_filter['Actions'] )
                                         <td class="text-center">
                                             @if($access_role['R']==1)
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_examinees_list({{$value->school_room_id }})">View</button>
+                                            <button class="btn btn-primary" wire:click="view_examinees_list({{$value->test_schedule_id.','.$value->school_room_id }})">View</button>
                                             @endif
-                                            @if($access_role['U']==0)
-                                            <button class="btn btn-success" wire:click="edit_room({{$value->school_room_id }})">Edit</button>
+                                            @if($access_role['U']==1)
+                                            <button class="btn btn-success" wire:click="edit_schedule_room({{$value->test_schedule_id.','.$value->school_room_id }})">Edit</button>
                                             @endif
-                                            @if($access_role['D']==0)
-                                                @if($value->school_room_isactive)
-                                                    <button class="btn btn-danger" wire:key="delete" id="confirmDeleteRoom" wire:click="delete_room({{ $value->school_room_id }})">Delete</button>
-                                                @else
-                                                    <button class="btn btn-warning" wire:key="delete" wire:click="activate_room({{ $value->school_room_id}})">Activate</button>
-                                                @endif
-                                        
-                                            @endif
+                                           
                                         </td>
                                     @endif
                                 </tr>
@@ -369,7 +366,7 @@
                                     <td>{{ $loop->index+1 }}</td>
                                 @endif
                                 @if($school_room_filter['Proctor'])
-                                    <td>@if(isset($value->user_id) ){{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}@endif</td>
+                                    <td wire:key="user-{{$value->user_id}}">@if(isset($value->user_id) ){{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}} @endif</td>
                                 @endif
                                 
                                 @if($school_room_filter['Test Center Name'])
@@ -495,7 +492,44 @@
                 </div>
 
                 <!-- Add Room Modal -->
-                
+                <div class="modal fade" id="editTestScheduleRoomProctorModal" tabindex="-1" role="dialog" aria-labelledby="addTestCenterModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addTestCenterModalLabel">Edit Proctor</h5>
+                                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" ></button>
+                            </div>
+                            @if(isset($room_schedule['school_room_id']))
+                                <form wire:submit.prevent="save_edit_schedule_room()">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Test Center code - name: ( {{$room_schedule['test_center_code'].' - '.$room_schedule['test_center_name']}} )</label>
+                                            <br>
+                                            <label for="addRoomCapacity">Test Date: ( {{$room_schedule['test_date']}} )</label>
+                                            <br>
+                                            <label for="addRoomCapacity">Room No.: ( {{$room_schedule['school_room_number']}} )</label>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addRoomCapacity">Room Proctor:</label>
+                                            <select wire:model.defer="proctor.user_id" class="form-select">
+                                                <option value="0">Select Proctor</option>
+                                                @foreach ($proctor_data as $item => $value)
+                                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            @endif
+                        </div> 
+                    </div>
+                </div>
                 <div class="modal fade" id="addTestCenterModal" tabindex="-1" role="dialog" aria-labelledby="addTestCenterModalLabel" aria-hidden="true" wire:ignore.self>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

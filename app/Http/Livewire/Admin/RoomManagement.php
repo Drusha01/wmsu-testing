@@ -59,7 +59,15 @@ class RoomManagement extends Component
 
     public $examinees_data;
 
-
+    public $room_schedule;
+    public $proctor = [ 
+        'id' => NULL,
+        'schedule_room_id' => NULL,
+        'schedule_id' => NULL,
+        'room_id' => NULL,
+        'user_id' => NULL
+    ];
+       
     
     public $test_date;
 
@@ -172,6 +180,9 @@ class RoomManagement extends Component
             ->select(
                 // '*',
                 "school_room_id",
+                'tsc.id as test_schedule_id',
+                DB::raw('count(t_a_id) as total_examinees_count'),
+                DB::raw('CONCAT(t_a_test_schedule_id," - ",t_a_school_room_id) as schedule_room_id'),
                 "school_room_isactive",
                 "school_room_bldg_name",
                 "school_room_bldg_abr",
@@ -184,11 +195,18 @@ class RoomManagement extends Component
                 "test_center_name",
                 "test_center_code_name",
                 "test_center_isactive",
+                "p.user_id as user_id",
+                "user_firstname",
+                "user_middlename",
+                "user_lastname",
+                "user_suffix",
             )
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+            ->leftjoin('proctors as p','p.schedule_room_id',DB::raw('CONCAT(t_a_test_schedule_id," - ",t_a_school_room_id)'))
+            ->leftjoin('users as u', 'u.user_id', '=', 'p.user_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Accepted')
             ->where('t_a_test_schedule_id','=', $this->test_date)
@@ -196,7 +214,8 @@ class RoomManagement extends Component
             ->orderBy('t_a_school_room_id')
             ->get()
             ->toArray();
-        // dd($this->assigned_room_data );
+            //   dd($this->assigned_room_data );
+
     }
 
     public function mount(Request $request){
@@ -228,14 +247,16 @@ class RoomManagement extends Component
 
             $this->assigned_room_filter = [
                 '#' => true,
-                'Test Center Name'=>true,
-                'Test Center Code'=>true,
+                'Proctor'=>true,
+                'Test Center Code - Name'=>true,
+                'Test Center Name'=>false,
+                'Test Center Code'=>false,
                 'Building name'=>true,
                 'Room name'=> true,
-                'Room no.'=> true,
+                'Room no.'=> false,
                 'Room Description' => false,
-                'Capacity' => true,	
-                'Status'=> true,							
+                '# of Examinees' => true,	
+                'Capacity' => true,							
                 'Actions'	=> true					
             ];
 
@@ -290,6 +311,7 @@ class RoomManagement extends Component
                 $this->test_date = $this->assigned_test_date[0]->test_schedule_id;
             }
             self::update_data();
+            // dd($this->assigned_room_data );
         }
     }
     public function render(){
@@ -358,7 +380,7 @@ class RoomManagement extends Component
     }
 
 
-    public function view_examinees_list($school_room_id){
+    public function view_examinees_list($test_schedule_id,$school_room_id){
         $this->examinees_data = DB::table('test_applications as ta')
         ->select(
             '*',
@@ -377,15 +399,124 @@ class RoomManagement extends Component
             "test_center_isactive",
         )
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
         ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
         ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
         ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
         ->where('t_a_isactive','=',1)
         ->where('test_status_details','=','Accepted')
         ->where('t_a_school_room_id','=', $school_room_id)
+        ->where('t_a_test_schedule_id','=', $test_schedule_id)
         ->get()
         ->toArray();
         dd( $this->examinees_data );
+    }
+    public function edit_schedule_room($test_schedule_id,$school_room_id){
+        if($proctor = DB::table('proctors as p')
+            ->where('schedule_room_id','=', $test_schedule_id.' - '.$school_room_id)
+            ->first()){
+            $this->proctor = [ 
+                'id' => $proctor->id,
+                'schedule_room_id' =>  $proctor->schedule_room_id,
+                'schedule_id' =>  $proctor->schedule_id,
+                'room_id' =>  $proctor->room_id,
+                'user_id' =>  $proctor->user_id
+            ];
+        }else{
+            $this->proctor = [ 
+                'id' => NULL,
+                'schedule_room_id' => $test_schedule_id.' - '.$school_room_id,
+                'schedule_id' => $test_schedule_id,
+                'room_id' => $school_room_id,
+                'user_id' => NULL
+            ];
+        }
+
+        $schedule_data = DB::table('test_applications as ta')
+        ->select(
+            "school_room_id",
+            "school_room_bldg_name",
+            "school_room_bldg_abr",
+            "school_room_name",
+            "school_room_number",
+            "school_room_test_center_id",
+            "test_center_code",
+            "test_center_name",
+            'tsc.id as test_schedule_id',
+            'tsc.test_date as test_date',
+        )
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+        ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+        ->where('t_a_isactive','=',1)
+        ->where('test_status_details','=','Accepted')
+        ->where('t_a_school_room_id','=', $school_room_id)
+        ->where('t_a_test_schedule_id','=', $test_schedule_id)
+        ->first();
+
+        $this->room_schedule = [
+            "school_room_id" => $schedule_data->school_room_id,
+            "school_room_bldg_name" => $schedule_data->school_room_bldg_name,
+            "school_room_bldg_abr" => $schedule_data->school_room_bldg_abr,
+            "school_room_name" => $schedule_data->school_room_name,
+            "school_room_number" => $schedule_data->school_room_number, 
+            "school_room_test_center_id" => $schedule_data->school_room_test_center_id,
+            "test_center_code" => $schedule_data->test_center_code,
+            "test_center_name" => $schedule_data->test_center_name,
+            "test_schedule_id"=> $schedule_data->test_schedule_id,
+            "test_date"=> $schedule_data->test_date,
+        ];
+
+
+        $this->dispatchBrowserEvent('openModal','editTestScheduleRoomProctorModal');
+        self::update_data();
+    }
+    public function save_edit_schedule_room(){
+       
+        // check conflict
+        if($proctor = DB::table('proctors as p')
+            ->where('schedule_room_id','=', $this->proctor['schedule_id'].' - '.$this->proctor['room_id'])
+            ->first()){
+            if( isset($this->proctor['user_id']) && intval($this->proctor['user_id'])>0){
+               DB::table('proctors')
+                ->update([
+                    'user_id' => $this->proctor['user_id']
+                ]);
+            }else{
+                DB::table('proctors')
+                ->where('id','=',$this->proctor['id'])
+                ->delete();
+            }
+        }else{
+            // insert
+            if( isset($this->proctor['user_id'])){
+                DB::table('proctors')
+                ->insert([
+                    'id' => NULL,
+                    'schedule_id' =>  $this->proctor['schedule_id'],
+                    'room_id' =>  $this->proctor['room_id'],
+                    'user_id' => $this->proctor['user_id']
+                ]);
+            }else{
+                
+            }
+            
+        }
+
+        $this->dispatchBrowserEvent('swal:redirect',[
+            'position'          									=> 'center',
+            'icon'              									=> 'success',
+            'title'             									=> 'successfully updated!',
+            'showConfirmButton' 									=> 'true',
+            'timer'             									=> '1500',
+            'link'              									=> '#'
+        ]);
+
+        $this->dispatchBrowserEvent('openModal','editTestScheduleRoomProctorModal');
+        self::update_data();
+
+
     }
 
     public function add_room(){
