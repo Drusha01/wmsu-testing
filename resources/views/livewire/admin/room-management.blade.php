@@ -17,16 +17,16 @@
                     <a class="nav-link  @if($active == 'unassigned_room')  @endif " wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
+                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " href="#" wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_date') show active @endif "wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
+                    <a class="nav-link  @if($active == 'test_date') show active @endif "n href="#" wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'room_management') show active @endif "wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
+                    <a class="nav-link  @if($active == 'room_management') show active @endif "  href="#" wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_centers') show active @endif "wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
+                    <a class="nav-link  @if($active == 'test_centers') show active @endif "  href="#" wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
                 </li>
             </ul>
 
@@ -245,7 +245,9 @@
                                             @if($access_role['U']==1)
                                             <button class="btn btn-success" wire:click="edit_schedule_room({{$value->test_schedule_id.','.$value->school_room_id }})">Edit</button>
                                             @endif
-                                           
+                                            <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#studentListModal">
+                                            Student List
+                                            </button>
                                         </td>
                                     @endif
                                 </tr>
@@ -802,7 +804,64 @@
                     </div>
                 </div>
                 
-             
+             <!-- Student List Modal -->
+        <div class="modal fade" id="studentListModal" tabindex="-1" aria-labelledby="studentListModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentListModalLabel">Test Schedule</h5>
+                <br>
+                <h5 class="modal-title" id="studentListModalLabel">Room No.</h5>
+                <br>
+                <h5 class="modal-title" id="studentListModalLabel">Student List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><img src="{{ asset('images/courses/IT.png') }}" alt="Student Picture" width="50" height="50"></td>
+
+                    <td>John Doe</td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#studentDetailsModal">View</button></td>
+                    </tr>
+                    <!-- Add more rows for other students -->
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Student Details Modal -->
+        <div class="modal fade" id="studentDetailsModal" tabindex="-1" aria-labelledby="studentDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentDetailsModalLabel">Student Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                <img src="{{ asset('images/courses/IT.png') }}" alt="Student Picture" width="150" height="150">
+                <h5>John Doe</h5>
+                </div>
+                <!-- Additional student details can be displayed here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- Add additional action buttons or functionality if needed -->
+            </div>
+            </div>
+        </div>
+        </div>
 
             
         </div>
