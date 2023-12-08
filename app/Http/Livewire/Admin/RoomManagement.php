@@ -514,36 +514,50 @@ class RoomManagement extends Component
             return;
         }
         if(DB::table('school_rooms')
-            ->where('school_room_id','=',$school_room_id)
-            ->update([
-                'school_room_bldg_name' =>$this->school_room['school_room_bldg_name'],
-                'school_room_bldg_abr' =>$this->school_room['school_room_bldg_abr'],
-                'school_room_name' =>$this->school_room['school_room_name'],
-                'school_room_number' =>$this->school_room['school_room_number'],
-                'school_room_max_capacity' =>$this->school_room['school_room_max_capacity'],
-                'school_room_description' =>$this->school_room['school_room_description'],
-                'school_room_test_center_id' =>$this->school_room['school_room_test_center_id'],
-                'school_room_proctor_user_id' =>$this->school_room['school_room_proctor_user_id'],
-        ])){
+            // ->where('school_room_id','=',$school_room_id)
+            ->where('school_room_proctor_user_id','=',$this->school_room['school_room_proctor_user_id'])
+            ->first()){
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
-                'icon'              									=> 'success',
-                'title'             									=> 'Successfully updated!',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Proctor Conflict!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
                 'link'              									=> '#'
             ]);
         }else{
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Unsuccessfully updated!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '#'
-            ]);
+            if(DB::table('school_rooms')
+                ->where('school_room_id','=',$school_room_id)
+                ->update([
+                    'school_room_bldg_name' =>$this->school_room['school_room_bldg_name'],
+                    'school_room_bldg_abr' =>$this->school_room['school_room_bldg_abr'],
+                    'school_room_name' =>$this->school_room['school_room_name'],
+                    'school_room_number' =>$this->school_room['school_room_number'],
+                    'school_room_max_capacity' =>$this->school_room['school_room_max_capacity'],
+                    'school_room_description' =>$this->school_room['school_room_description'],
+                    'school_room_test_center_id' =>$this->school_room['school_room_test_center_id'],
+                    'school_room_proctor_user_id' =>$this->school_room['school_room_proctor_user_id'],
+            ])){
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'success',
+                    'title'             									=> 'Successfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }else{
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'icon'              									=> 'warning',
+                    'title'             									=> 'Unsuccessfully updated!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1500',
+                    'link'              									=> '#'
+                ]);
+            }
+            $this->dispatchBrowserEvent('openModal','editRoomModal');
         }
-        $this->dispatchBrowserEvent('openModal','editRoomModal');
         self::update_data();
     }
     public function delete_room($school_room_id){
