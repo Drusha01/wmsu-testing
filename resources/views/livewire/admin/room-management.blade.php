@@ -832,6 +832,13 @@
                     <td>John Doe</td>
                     <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#studentDetailsModal">View</button></td>
                     </tr>
+
+                    <tr>
+                    <td><img src="{{ asset('images/courses/IT.png') }}" alt="Student Picture" width="50" height="50"></td>
+
+                    <td>Sha Aminulla</td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#studentDetailsModal">View</button></td>
+                    </tr>
                     <!-- Add more rows for other students -->
                 </tbody>
                 </table>
@@ -853,7 +860,6 @@
                 <img src="{{ asset('images/courses/IT.png') }}" alt="Student Picture" width="150" height="150">
                 <h5>John Doe</h5>
                 </div>
-                <!-- Additional student details can be displayed here -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
