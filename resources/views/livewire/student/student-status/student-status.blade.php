@@ -143,9 +143,9 @@
                     </div>
                 </div>
             </div>
-                <!-- EXAM permit Modal -->
+            <!-- EXAM permit Modal -->
             <div class="modal fade" id="ExamPermitModal" tabindex="-1" role="dialog" aria-labelledby="ExamPermitModalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog modal-lg" role="document" style="max-width: 70%; margin: 1.60rem auto;">
                     <div class="modal-content">
                         <div class="modal-body" id="to_print">
                             <div>
