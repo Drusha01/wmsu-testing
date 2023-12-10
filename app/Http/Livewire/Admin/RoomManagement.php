@@ -231,11 +231,29 @@ class RoomManagement extends Component
             ->get()
             ->toArray();
         $this->test_schedule_data = DB::table('test_schedules as ts')
+            ->select(
+                "ts.id as id",
+                "test_date",
+                "test_center_id",
+                "ct.cet_type_id",
+                "am_start",
+                "am_end",
+                "pm_start",
+                "pm_end",
+                "isactive",
+                "ts.created_at",
+                "ts.updated_at",
+                "test_center_code",
+                "test_center_name",
+                "test_center_code_name",
+                "test_center_isactive",
+                "cet_type_name",
+                "cet_type_details",
+            )
             ->join('test_centers as tc','tc.id','ts.test_center_id')
             ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ts.cet_type_id')
             ->get()
             ->toArray();
-        
         $this->assigned_test_date = DB::table('test_applications as ta')
             ->select(
                 'tsc.id as test_schedule_id',
@@ -339,7 +357,6 @@ class RoomManagement extends Component
             $this->school_room_filter = [
                 // 'Select all' => true,
                 '#' => true,
-                'Proctor'=>true,
                 'Test Center Name'=>true,
                 'Test Center Code'=>true,
                 'Building name'=>true,
@@ -458,7 +475,9 @@ class RoomManagement extends Component
 
     public function view_examinees_list($test_schedule_id,$school_room_id){
         self::schedule_room_data($test_schedule_id,$school_room_id);
-        // dd($this->examinees_data);
+
+        // $this->user_details 
+
         $this->dispatchBrowserEvent('openModal','studentListModal');
         self::update_data();
     }
@@ -712,17 +731,6 @@ class RoomManagement extends Component
             ]);
             return;
         }
-        if(intval($this->school_room['school_room_proctor_user_id'])<=0){
-            $this->dispatchBrowserEvent('swal:redirect',[
-                'position'          									=> 'center',
-                'icon'              									=> 'warning',
-                'title'             									=> 'Please select room proctor!',
-                'showConfirmButton' 									=> 'true',
-                'timer'             									=> '1500',
-                'link'              									=> '#'
-            ]);
-            return;
-        }
         if(intval($this->school_room['school_room_max_capacity'])<=0){
             return;
         }
@@ -736,7 +744,7 @@ class RoomManagement extends Component
                 'school_room_number' =>$this->school_room['school_room_number'],
                 'school_room_max_capacity' =>$this->school_room['school_room_max_capacity'],
                 'school_room_description' =>$this->school_room['school_room_description'],
-                'school_room_proctor_user_id' =>$this->school_room['school_room_proctor_user_id'],
+                'school_room_proctor_user_id' =>NULL,
                 'school_room_test_center_id' =>$this->school_room['school_room_test_center_id'],
         ])){
             $this->dispatchBrowserEvent('swal:redirect',[
@@ -758,7 +766,6 @@ class RoomManagement extends Component
             ]);
         }
  
-
         $this->dispatchBrowserEvent('openModal','addRoomModal');
         self::update_data();
     }
@@ -1326,6 +1333,89 @@ class RoomManagement extends Component
         }
         self::update_data();
         self::schedule_room_data($this->room_schedule['test_schedule_id'],$this->room_schedule['school_room_id']);
+    }
+
+    public function add_test_schedule(){
+        $this->test_schedules = [
+            'id' => NULL,
+            'test_date' => NULL,
+            'test_center_id' => NULL,
+            'cet_type_id' => NULL,
+            'am_start' => '07:00',
+            'am_end' => '12:00',
+            'pm_start' => '12:00',
+            'pm_end' => '17:00',
+        ];
+        $this->dispatchBrowserEvent('openModal','addTestSchedule');
+        self::update_data();
+    }
+    public function save_add_test_schedule(){
+        if(intval($this->test_schedules['test_center_id'])>0 &&
+            DB::table('test_centers')
+                ->where('id','=',$this->test_schedules['test_center_id'])
+                ->get()
+                ->first()){
+            if(DB::table('test_schedules')
+                ->insert([
+                    'id' => NULL,
+                    'test_date' => $this->test_schedules['test_date'],
+                    'test_center_id' => $this->test_schedules['test_center_id'],
+                    'cet_type_id' => 1,
+                    'am_start' => $this->test_schedules['am_start'],
+                    'am_end' => $this->test_schedules['am_end'],
+                    'pm_start' => $this->test_schedules['pm_start'],
+                    'pm_end' => $this->test_schedules['pm_end'],
+                ])){
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'              									=> 'success',
+                        'title'             									=> 'Successfuly added!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1500',
+                        'link'              									=> '#'
+                    ]);
+                    $this->test_schedules = [
+                        'id' => NULL,
+                        'test_date' => NULL,
+                        'test_center_id' => NULL,
+                        'cet_type_id' => NULL,
+                        'am_start' => '07:00',
+                        'am_end' => '12:00',
+                        'pm_start' => '12:00',
+                        'pm_end' => '17:00',
+                    ];
+                    $this->dispatchBrowserEvent('openModal','addTestSchedule');
+                }
+        }else{
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'warning',
+                'title'             									=> 'Please select valid test center!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
+        }
+        self::update_data();
+    }
+
+    public function edit_test_schedule($id){
+        $test_schedule = DB::table('test_schedules')
+            ->where('id','=',$id)
+            ->get()
+            ->first();
+        $this->test_schedules = [
+            'id' => $test_schedule->id,
+            'test_date' => $test_schedule->test_date,
+            'test_center_id' => $test_schedule->test_center_id,
+            'cet_type_id' => $test_schedule->cet_type_id,
+            'am_start' => $test_schedule->am_start,
+            'am_end' => $test_schedule->am_end,
+            'pm_start' => $test_schedule->pm_start,
+            'pm_end' => $test_schedule->pm_end,
+        ];
+        $this->dispatchBrowserEvent('openModal','EditTestSchedule');
+        self::update_data();
     }
 
 }

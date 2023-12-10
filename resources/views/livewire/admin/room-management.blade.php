@@ -265,7 +265,7 @@
 
                 <div class="tab-pane  @if($active == 'test_date') show active @endif " id="test-date-schedules-management-tab">
                     <div class="d-flex justify-content-between align-items-center mt-2">
-                        <button type="button" class="btn btn-success" wire:click="add_test_schedules()" >Add Test Schedules</button>
+                        <button type="button" class="btn btn-success" wire:click="add_test_schedule()" >Add Test Schedules</button>
                     </div>
                     <table class="application-table">
                         <thead>
@@ -316,7 +316,7 @@
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                         @endif
                                         @if($access_role['U']==1)
-                                        <button class="btn btn-success" wire:click="edit_room({{$value->id }})">Edit</button>
+                                        <button class="btn btn-success" wire:click="edit_test_schedule({{$value->id }})">Edit</button>
                                         @endif
                                         @if($access_role['D']==1)
                                             @if($value->isactive)
@@ -368,9 +368,7 @@
                                 @if($school_room_filter['#'])
                                     <td>{{ $loop->index+1 }}</td>
                                 @endif
-                                @if($school_room_filter['Proctor'])
-                                    <td wire:key="user-{{$value->user_id}}">@if(isset($value->user_id) ){{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}} @endif</td>
-                                @endif
+                              
                                 
                                 @if($school_room_filter['Test Center Name'])
                                     <td>{{ $value->test_center_name }}</td>
@@ -1287,6 +1285,107 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addTestSchedule" tabindex="-1" aria-labelledby="studentDetailsModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="studentDetailsModalLabel">Add Test Schedule</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form wire:submit.prevent="save_add_test_schedule()">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Test Center:</label>
+                                    <select wire:model.defer="test_schedules.test_center_id" class="form-select">
+                                        <option value="0">Select Test Center</option>
+                                        @foreach ($test_center_data as $item => $value)
+                                        <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Test Date:</label>
+                                    <input type="date" class="form-control" wire:model.defer="test_schedules.test_date" required>
+                                </div>
+                                <br>
+                                <label for="addRoomCapacity">AM schedule:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" wire:model.defer="test_schedules.am_start" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" wire:model.defer="test_schedules.am_end" required>
+                                </div>
+                                <br>
+                                <label for="addRoomCapacity">PM schedule:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" wire:model.defer="test_schedules.pm_start" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" wire:model.defer="test_schedules.pm_end" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" >Add</button>
+                                <!-- Add additional action buttons or functionality if needed -->
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditTestSchedule" tabindex="-1" aria-labelledby="studentDetailsModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="studentDetailsModalLabel">Edit Test Schedule</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        @if(isset($test_schedules['id']))
+                            <form wire:submit.prevent="save_edit_test_schedule({{$test_schedules['id']}})">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Test Center:</label>
+                                        <select wire:model.defer="test_schedules.test_center_id" class="form-select">
+                                            <option value="0">Select Test Center</option>
+                                            @foreach ($test_center_data as $item => $value)
+                                            <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Test Date:</label>
+                                        <input type="date" class="form-control" wire:model.defer="test_schedules.test_date" required>
+                                    </div>
+                                    <br>
+                                    <label for="addRoomCapacity">AM schedule:</label>
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" wire:model.defer="test_schedules.am_start" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" wire:model.defer="test_schedules.am_end" required>
+                                    </div>
+                                    <br>
+                                    <label for="addRoomCapacity">PM schedule:</label>
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" wire:model.defer="test_schedules.pm_start" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" wire:model.defer="test_schedules.pm_end" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" >Save</button>
+                                    <!-- Add additional action buttons or functionality if needed -->
+                                </div>
+                            </form>
+                        @endif
                         </div>
                     </div>
                 </div>

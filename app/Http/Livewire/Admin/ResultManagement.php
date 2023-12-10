@@ -74,12 +74,10 @@ class ResultManagement extends Component
             ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
             ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
             ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
-            ->join('users as u', 'u.user_id', '=', 'sr.school_room_proctor_user_id')
             ->where('t_a_isactive','=',1)
             ->where('test_status_details','=','Accepted')
             ->whereNotNull('t_a_school_room_id')
             ->where('school_room_isactive','=',1)
-            ->whereNotNull('school_room_proctor_user_id')
             ->groupBy('test_type_id')
             ->get()
             ->toArray();
@@ -100,7 +98,6 @@ class ResultManagement extends Component
             'test_status_details',
             )
         ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
-        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
@@ -118,7 +115,6 @@ class ResultManagement extends Component
             DB::raw('DATE(ta.date_created) as date_applied'),
             )
         ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
-        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
@@ -127,7 +123,6 @@ class ResultManagement extends Component
         ->where('test_status_details','=','Accepted')
         ->whereNotNull('t_a_school_room_id')
         ->where('school_room_isactive','=',1)
-        ->whereNotNull('school_room_proctor_user_id')
         ->get()
         ->toArray();
 
@@ -288,7 +283,6 @@ class ResultManagement extends Component
                 ->where('test_status_details','=','Accepted')
                 ->whereNotNull('t_a_school_room_id')
                 ->where('school_room_isactive','=',1)
-                ->whereNotNull('school_room_proctor_user_id')
                 ->get()
                 ->toArray();
             // dd($this->examinees); $val

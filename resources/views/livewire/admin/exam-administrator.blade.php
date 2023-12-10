@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ml-10">
+                    <div class="ml-10 d-none">
                         <button class="btn btn-success mx-1" type="button" wire:click="download_examinees_list()">Download All Examinees</button>
                     </div>
                 </div>
@@ -379,68 +379,74 @@
             <div class="modal fade" id="studentListModal" tabindex="-1" aria-labelledby="studentListModalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    @if(isset($room_schedule['school_room_id']) && isset($room_schedule['ampm']))
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="addRoomCapacity">Test Center code - name: ( {{$room_schedule['test_center_code'].' - '.$room_schedule['test_center_name']}} )</label>
-                            <br>
-                            <label for="addRoomCapacity">Test Date: ( {{date_format(date_create(  $room_schedule['test_date']), "F d ")}} )</label>
-                            <br>
-                            <label for="addRoomCapacity">Room No.: ( {{$room_schedule['school_room_number']}} )</label>
-                            <br>
-                            <br>
-                            <div class="container text-center">
-                                @if($room_schedule['ampm'] == 'AM')
-                                <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('AM')">AM</button>
-                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('PM')">PM</button>
-                                @else
-                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('AM')">AM</button>
-                                    <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('PM')">PM</button>
-                                @endif
-                            </div>
-                            
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                <th>#</th>
-                                <th>Picture</th>
-                                <th>Name</th>
-                                <th>Application Code</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $count = 0 ?>
-                                @forelse($examinees_data as $key => $value)
-                                    @if($room_schedule['ampm'] == $value->t_a_ampm)
-                                        <?php $count ++ ?>
-                                        <tr class="align-middle">
-                                            <td>{{ $count }}</td>
-                                            <td><img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$value->t_a_formal_photo)}}" alt="Student Picture" width="70" height="70" style="object-fit: cover;"></td>
-                                            <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
-                                            <td>{{$value->applied_date.'-'.$value->t_a_id }}</td>
-                                            <td><button class="btn btn-primary" wire:click="view_application({{$value->t_a_id}})">View</button></td>
+                        @if(isset($room_schedule['school_room_id']) && isset($room_schedule['ampm']))
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="addRoomCapacity">Proctor: ( @if(isset($user_details['user_id']) ){{$user_details['user_lastname'].', '.$user_details['user_firstname']." ".$user_details['user_middlename']}}@endif )</label>
+                                    <br>
+                                    <label for="addRoomCapacity">Test Center code - name: ( {{$room_schedule['test_center_code'].' - '.$room_schedule['test_center_name']}} )</label>
+                                    <br>
+                                    <label for="addRoomCapacity">Test Date: ( {{date_format(date_create(  $room_schedule['test_date']), "F d ")}} )</label>
+                                    <br>
+                                    <label for="addRoomCapacity">Room No.: ( {{$room_schedule['school_room_number']}} )</label>
+                                    <br>
+                                    <br>
+                                    <div class="container text-center">
+                                        @if($room_schedule['ampm'] == 'AM')
+                                        <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('AM')">AM</button>
+                                            <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('PM')">PM</button>
+                                        @else
+                                            <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('AM')">AM</button>
+                                            <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('PM')">PM</button>
+                                        @endif
+                                    </div>
+                                    
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Picture</th>
+                                        <th>Name</th>
+                                        <th>Application Code</th>
+                                        <th>Action</th>
                                         </tr>
-                                    @endif
-                                @empty
-                                    <td class="text-center font-weight-bold" colspan="42">
-                                        NO RECORDS 
-                                    </td>
-                                @endforelse
-                                @if($count == 0 )
-                                    <td class="text-center font-weight-bold" colspan="42">
-                                        NO RECORDS 
-                                    </td>
-                                @endif
-                                <!-- Add more rows for other students -->
-                            </tbody>
-                        </table>
-                    </div>
-                    @endif
+                                    </thead>
+                                    <tbody>
+                                        <?php $count = 0 ?>
+                                        @forelse($examinees_data as $key => $value)
+                                            @if($room_schedule['ampm'] == $value->t_a_ampm)
+                                                <?php $count ++ ?>
+                                                <tr class="align-middle">
+                                                    <td>{{ $count }}</td>
+                                                    <td><img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$value->t_a_formal_photo)}}" alt="Student Picture" width="70" height="70" style="object-fit: cover;"></td>
+                                                    <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
+                                                    <td>{{$value->applied_date.'-'.$value->t_a_id }}</td>
+                                                    <td><button class="btn btn-primary" wire:click="view_application({{$value->t_a_id}})">View</button></td>
+                                                </tr>
+                                            @endif
+                                        @empty
+                                            <td class="text-center font-weight-bold" colspan="42">
+                                                NO RECORDS 
+                                            </td>
+                                        @endforelse
+                                        @if($count == 0 )
+                                            <td class="text-center font-weight-bold" colspan="42">
+                                                NO RECORDS 
+                                            </td>
+                                        @endif
+                                        <!-- Add more rows for other students -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-success" onclick="print_this('studentListModal')" >Print</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -908,4 +914,27 @@
         <!-- Back to Top Button -->
     </main>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script>
+        window.print_this = function(id) {
+            var prtContent = document.getElementById(id);
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            
+            WinPrint.document.write('<link rel="stylesheet" type="text/css"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+            // To keep styling
+            /*var file = WinPrint.document.createElement("link");
+            file.setAttribute("rel", "stylesheet");
+            file.setAttribute("type", "text/css");
+            file.setAttribute("href", 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+            WinPrint.document.head.appendChild(file);*/
+
+            
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.setTimeout(function(){
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+            }, 1000);
+        }
+    </script>
 </div>
