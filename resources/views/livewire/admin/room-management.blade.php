@@ -17,16 +17,16 @@
                     <a class="nav-link  @if($active == 'unassigned_room')  @endif " wire:key="unassigned_room" wire:click="active_page('unassigned_room')" >Unassigned Room</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
+                    <a class="nav-link  @if($active == 'assigned_room') show active @endif " href="#" wire:key="assigned_room" wire:click="active_page('assigned_room')">Assigned Room</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_date') show active @endif "wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
+                    <a class="nav-link  @if($active == 'test_date') show active @endif "n href="#" wire:key="test_date"  wire:click="active_page('test_date')">Test Date Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'room_management') show active @endif "wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
+                    <a class="nav-link  @if($active == 'room_management') show active @endif "  href="#" wire:key="room_management"  wire:click="active_page('room_management')" >Room Management</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @if($active == 'test_centers') show active @endif "wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
+                    <a class="nav-link  @if($active == 'test_centers') show active @endif "  href="#" wire:key="test_centers"  wire:click="active_page('test_centers')" >Test Centers</a>
                 </li>
             </ul>
 
@@ -181,10 +181,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-10">
+                            <!-- <div class="ml-10">
                                 <button class="btn btn-primary mx-1"  wire:click="reassigning_room_check()" >Reassign room </button>
                                 <button class="btn btn-danger mx-1"  wire:click="remove_room_check()" >Remove room </button>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Displays a table of room assignment and list of applicants -->
                         <table class="application-table ">
@@ -206,7 +206,7 @@
                                         <td>{{ $loop->index+1 }}</td>
                                     @endif
                                     @if($assigned_room_filter['Proctor'])
-                                        <td> @if(isset($value->user_id)) {{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}   proctor @else  @endif</td>
+                                        <td> @if(isset($value->user_id)) {{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}} @else  @endif</td>
                                     @endif
                                     @if($assigned_room_filter['Test Center Code - Name'])
                                         <td>{{ $value->test_center_code.' - '.$value->test_center_name }}</td>
@@ -240,12 +240,15 @@
                                     @if($assigned_room_filter['Actions'] )
                                         <td class="text-center">
                                             @if($access_role['R']==1)
-                                            <button class="btn btn-primary" wire:click="view_examinees_list({{$value->test_schedule_id.','.$value->school_room_id }})">View</button>
+                                            <button class="btn btn-primary" wire:click="view_examinees_list({{$value->test_schedule_id.','.$value->school_room_id }})">
+                                                Student List
+                                            </button>
                                             @endif
                                             @if($access_role['U']==1)
-                                            <button class="btn btn-success" wire:click="edit_schedule_room({{$value->test_schedule_id.','.$value->school_room_id }})">Edit</button>
+                                            <button class="btn btn-success" wire:click="edit_schedule_room({{$value->test_schedule_id.','.$value->school_room_id }})">
+                                                Edit Proctor
+                                            </button>
                                             @endif
-                                           
                                         </td>
                                     @endif
                                 </tr>
@@ -656,15 +659,6 @@
                                            
                                         </div>
                                         <div class="form-group">
-                                            <label for="addRoomCapacity">Room Proctor:</label>
-                                            <select wire:model.defer="school_room.school_room_proctor_user_id" class="form-select">
-                                                <option value="0">Select Proctor</option>
-                                                @foreach ($proctor_data as $item => $value)
-                                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="addRoomCapacity">Building name:</label>
                                             <input type="text"  class="form-control" wire:model.defer="school_room.school_room_bldg_name" required>
                                         </div>
@@ -713,15 +707,6 @@
                                             <select wire:model.defer="school_room.school_room_test_center_id" class="form-select">
                                                 @foreach ($test_center_data as $item => $value)
                                                 <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="addRoomCapacity">Room Proctor:</label>
-                                            <select wire:model.defer="school_room.school_room_proctor_user_id" class="form-select">
-                                                <option value="0">Select Proctor</option>
-                                                @foreach ($proctor_data as $item => $value)
-                                                <option value="{{$value->user_id}}">{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -802,7 +787,94 @@
                     </div>
                 </div>
                 
-             
+                 <!-- Student List Modal -->
+                <div class="modal fade" id="studentListModal" tabindex="-1" aria-labelledby="studentListModalLabel" aria-hidden="true" wire:ignore.self>
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        @if(isset($room_schedule['school_room_id']) && isset($room_schedule['ampm']))
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="addRoomCapacity">Test Center code - name: ( {{$room_schedule['test_center_code'].' - '.$room_schedule['test_center_name']}} )</label>
+                                <br>
+                                <label for="addRoomCapacity">Test Date: ( {{date_format(date_create(  $room_schedule['test_date']), "F d ")}} )</label>
+                                <br>
+                                <label for="addRoomCapacity">Room No.: ( {{$room_schedule['school_room_number']}} )</label>
+                                <br>
+                                <br>
+                                <div class="container text-center">
+                                @if($room_schedule['ampm'] == 'AM')
+                                <button type="button" class="btn btn-primary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'AM')">AM</button>
+                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'PM')">PM</button>
+                                @else
+                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'AM')">AM</button>
+                                    <button type="button" class="btn btn-primary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'PM')">PM</button>
+                                @endif
+                                </div>
+                                
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Picture</th>
+                                    <th>Name</th>
+                                    <th>Application Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $count = 0 ?>
+                                    @forelse($examinees_data as $key => $value)
+                                        @if($room_schedule['ampm'] == $value->t_a_ampm)
+                                            <?php $count ++ ?>
+                                            <tr class="align-middle">
+                                                <td>{{ $count }}</td>
+                                                <td><img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$value->t_a_formal_photo)}}" alt="Student Picture" width="70" height="70" style="object-fit: cover;"></td>
+                                                <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
+                                                <td>{{$value->applied_date.'-'.$value->t_a_id }}</td>
+                                            </tr>
+                                        @endif
+                                    @empty
+                                        <td class="text-center font-weight-bold" colspan="42">
+                                            NO RECORDS 
+                                        </td>
+                                    @endforelse
+                                    @if($count == 0 )
+                                        <td class="text-center font-weight-bold" colspan="42">
+                                            NO RECORDS 
+                                        </td>
+                                    @endif
+                                    <!-- Add more rows for other students -->
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+                        </div>
+                    </div>
+                </div>
+                <!-- Student Details Modal -->
+                <div class="modal fade" id="studentDetailsModal" tabindex="-1" aria-labelledby="studentDetailsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="studentDetailsModalLabel">Student Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                            <img src="{{ asset('images/courses/IT.png') }}" alt="Student Picture" width="150" height="150">
+                            <h5>John Doe</h5>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- Add additional action buttons or functionality if needed -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
 
             
         </div>

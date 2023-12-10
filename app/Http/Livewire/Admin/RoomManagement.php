@@ -381,6 +381,51 @@ class RoomManagement extends Component
 
 
     public function view_examinees_list($test_schedule_id,$school_room_id){
+        self::schedule_room_data($test_schedule_id,$school_room_id);
+        // dd($this->examinees_data);
+        $this->dispatchBrowserEvent('openModal','studentListModal');
+        self::update_data();
+    }
+
+    public function schedule_room_data($test_schedule_id,$school_room_id){
+        $schedule_data = DB::table('test_applications as ta')
+        ->select(
+            "school_room_id",
+            "school_room_bldg_name",
+            "school_room_bldg_abr",
+            "school_room_name",
+            "school_room_number",
+            "school_room_test_center_id",
+            "test_center_code",
+            "test_center_name",
+            'tsc.id as test_schedule_id',
+            'tsc.test_date as test_date',
+        )
+        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+        ->join('test_schedules as tsc', 'tsc.id', '=', 'ta.t_a_test_schedule_id')
+        ->join('school_rooms as sr', 'sr.school_room_id', '=', 'ta.t_a_school_room_id')
+        ->join('test_centers as tc','tc.id','sr.school_room_test_center_id')
+        ->where('t_a_isactive','=',1)
+        ->where('test_status_details','=','Accepted')
+        ->where('t_a_school_room_id','=', $school_room_id)
+        ->where('t_a_test_schedule_id','=', $test_schedule_id)
+        ->first();
+
+
+        $this->room_schedule = [
+            "school_room_id" => $schedule_data->school_room_id,
+            "school_room_bldg_name" => $schedule_data->school_room_bldg_name,
+            "school_room_bldg_abr" => $schedule_data->school_room_bldg_abr,
+            "school_room_name" => $schedule_data->school_room_name,
+            "school_room_number" => $schedule_data->school_room_number, 
+            "school_room_test_center_id" => $schedule_data->school_room_test_center_id,
+            "test_center_code" => $schedule_data->test_center_code,
+            "test_center_name" => $schedule_data->test_center_name,
+            "test_schedule_id"=> $schedule_data->test_schedule_id,
+            "test_date"=> $schedule_data->test_date,
+            "ampm"=> "AM",
+        ];
+
         $this->examinees_data = DB::table('test_applications as ta')
         ->select(
             '*',
@@ -397,6 +442,7 @@ class RoomManagement extends Component
             "test_center_name",
             "test_center_code_name",
             "test_center_isactive",
+            DB::raw('DATE(ta.date_created) as applied_date')
         )
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
@@ -409,7 +455,13 @@ class RoomManagement extends Component
         ->where('t_a_test_schedule_id','=', $test_schedule_id)
         ->get()
         ->toArray();
-        dd( $this->examinees_data );
+    }
+
+    public function view_schedule_change($test_schedule_id,$school_room_id,$ampm){
+        self::schedule_room_data($test_schedule_id,$school_room_id);
+        $this->room_schedule['ampm'] = $ampm;
+
+        self::update_data();
     }
     public function edit_schedule_room($test_schedule_id,$school_room_id){
         if($proctor = DB::table('proctors as p')
@@ -488,30 +540,57 @@ class RoomManagement extends Component
                 ->where('id','=',$this->proctor['id'])
                 ->delete();
             }
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'icon'              									=> 'success',
+                'title'             									=> 'successfully updated!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1500',
+                'link'              									=> '#'
+            ]);
         }else{
             // insert
             if( isset($this->proctor['user_id'])){
-                DB::table('proctors')
-                ->insert([
-                    'id' => NULL,
-                    'schedule_id' =>  $this->proctor['schedule_id'],
-                    'room_id' =>  $this->proctor['room_id'],
-                    'user_id' => $this->proctor['user_id']
-                ]);
+                if(DB::table('proctors')
+                    ->where('schedule_id','=', $this->proctor['schedule_id'])
+                    ->where('user_id','=', $this->proctor['user_id'])
+                    ->get()
+                    ->first()
+                    ){
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'warning',
+                            'title'             									=> 'Proctor Conflict with other room schedule!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                    }else{
+                        DB::table('proctors')
+                        ->insert([
+                            'id' => NULL,
+                            'schedule_id' =>  $this->proctor['schedule_id'],
+                            'room_id' =>  $this->proctor['room_id'],
+                            'user_id' => $this->proctor['user_id']
+                        ]);
+
+                        $this->dispatchBrowserEvent('swal:redirect',[
+                            'position'          									=> 'center',
+                            'icon'              									=> 'success',
+                            'title'             									=> 'successfully updated!',
+                            'showConfirmButton' 									=> 'true',
+                            'timer'             									=> '1500',
+                            'link'              									=> '#'
+                        ]);
+                    }
+                
             }else{
                 
             }
             
         }
 
-        $this->dispatchBrowserEvent('swal:redirect',[
-            'position'          									=> 'center',
-            'icon'              									=> 'success',
-            'title'             									=> 'successfully updated!',
-            'showConfirmButton' 									=> 'true',
-            'timer'             									=> '1500',
-            'link'              									=> '#'
-        ]);
+       
 
         $this->dispatchBrowserEvent('openModal','editTestScheduleRoomProctorModal');
         self::update_data();
@@ -644,6 +723,7 @@ class RoomManagement extends Component
         if(intval($this->school_room['school_room_max_capacity'])<=0){
             return;
         }
+    
         if(DB::table('school_rooms')
             ->where('school_room_id','=',$school_room_id)
             ->update([

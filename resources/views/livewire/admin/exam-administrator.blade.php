@@ -141,12 +141,9 @@
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewRoomModal" wire:click="view_room_details({{$value->school_room_id }})">View</button>
                                             @endif
                                             @if($access_role['R']==1)
-                                                <button class="btn btn-success" wire:click="download_examinees_list({{$value->school_room_id }})">Download</button>
+                                            <button class="btn btn-primary" wire:click="view_examinees_list({{$value->test_schedule_id.','.$value->school_room_id }})">Student List</button>
                                             @endif
-                                            @if($access_role['R']==1)
-                                                <button class="btn btn-primary" wire:click="view_examinees_list({{$value->school_room_id }})">View</button>
-                                            @endif
-                                            @if($access_role['R']==1)
+                                            @if($access_role['R']==0)
                                                 <button class="btn btn-warning" wire:click="attendance_list({{$value->school_room_id }})">Attendance</button>
                                             @endif
                                             @if($access_role['D']==0)
@@ -168,6 +165,143 @@
                             <!-- Add more proctor entries as needed -->
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+
+            <!-- Attendance List -->
+            <div class="tab-pane @if($active == 'attendance_list') show active @endif " id="attendance-list">
+                <div class="d-flex mt-2">
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Test Date:</label>
+                    <select class="filter-select " wire:model.defer="a_test_schedule_id" wire:change="view_schedule_change()">
+                        @foreach ($a_test_schedule as $item => $value)
+                            <option wire:key="assigned-{{$value->test_schedule_id}}"value="{{$value->test_schedule_id}}" >{{$value->test_date}}</option>
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
+                    <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
+                    <select class="filter-select " wire:model.defer="a_school_room_id" wire:change="update_attendance_data()">
+                        @foreach ($a_room_details as $item => $value)
+                            <option wire:key="assigned-{{$value->school_room_id}}"value="{{$value->school_room_id}}" >{{$value->school_room_name}}</option>
+                        @endforeach
+                        
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="container text-center">
+                    @if($room_schedule['ampm'] == 'AM')
+                    <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('AM')">AM</button>
+                        <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('PM')">PM</button>
+                    @else
+                        <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('AM')">AM</button>
+                        <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('PM')">PM</button>
+                    @endif
+                </div>
+               
+                <!-- Attendance Table -->
+                <div class="container mt-3">
+                    <table class="table table-bordered" id="attendanceListTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Applicant Photo</th>
+                                <th>Applicant Name</th>
+                                <th>Attendance Status</th>
+                                <th>Attendance Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Attendance data will be displayed here -->
+                            <?php $count = 0 ?>
+                            @forelse($a_examinees as $key =>$value)
+                                @if($room_schedule['ampm'] == $value->t_a_ampm)
+                                    <?php $count++?>
+                                    <tr wire:key="examinees-{{$key}}" class="align-middle">
+                                        <td>{{ $count }}</td>
+                                        <td><img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$value->t_a_formal_photo)}}" alt="Student Picture" width="70" height="70" style="object-fit: cover;"></td>
+                                        <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
+                                        <td>@if($value->ispresent) Present @else  @endif</td>
+                                        <td>
+                                            <!-- Checkbox for attendance done -->
+                                            <div class="form-check">
+                                                <input type="checkbox" @if($value->ispresent) checked @else  @endif class="form-check-input" wire:click="check_attendance({{$value->t_a_id}} @if($value->ispresent) ,{{0}} @else, {{1}}@endif)" id="attendanceDone1">
+                                                <label class="form-check-label" for="attendanceDone1">Present</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @empty
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endforelse
+                            @if($count == 0 )
+                                <td class="text-center font-weight-bold" colspan="42">
+                                    NO RECORDS 
+                                </td>
+                            @endif
+
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <!-- Instructions Modal -->
+            <div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
+                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Add your proctor instructions here -->
+                            <p>Welcome, Proctor (NAME). Here are your instructions:</p>
+                                <!-- Download Button for Applicant List -->
+                                <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
+                            <ol>
+                                <li>Scan the QR code to check the applicants' information.</li>
+                                <li>Ensure that all registered applicants are present.</li>
+                                <li>Report any issues or discrepancies to the exam administrators.</li>
+                            </ol>
+
+                            <!-- Applicant List and Download Button -->
+                            <h1></h1>
+                            <p>Applicant List:</p>
+                            <table class="application-table">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Applicant Name</th>
+                                        <th>CET</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Code 1</td>
+                                        <td>hanz dumapit</td>
+                                        <td>CET</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Code 2</td>
+                                        <td>dap dap</td>
+                                        <td>CET</td>
+                                    </tr>
+                                    <!-- Add more rows for additional applicants -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -241,120 +375,73 @@
                 </div>
             </div>
 
-            <!-- Attendance List -->
-            <div class="tab-pane @if($active == 'attendance_list') show active @endif " id="attendance-list">
-                <div class="d-flex mt-2">
-                    <label class="filter-label align-self-center " for="exam-filter">Filter by Test Date:</label>
-                    <select class="filter-select " wire:model.defer="test_date" wire:change="update_data()">
-                        @foreach ($a_test_schedule as $item => $value)
-                            <option wire:key="assigned-{{$value->test_schedule_id}}"value="{{$value->test_schedule_id}}" >{{$value->test_date}}</option>
-                        @endforeach
-                        
-                        <!-- Add more options as needed -->
-                    </select>
-                    <label class="filter-label align-self-center " for="exam-filter">Filter by Room:</label>
-                    <select class="filter-select " wire:model.defer="a_school_room_id" wire:change="update_data()">
-                        @foreach ($a_room_details as $item => $value)
-                            <option wire:key="assigned-{{$value->school_room_id}}"value="{{$value->school_room_id}}" >{{$value->school_room_name}}</option>
-                        @endforeach
-                        
-                        <!-- Add more options as needed -->
-                    </select>
-                </div>
-               
-                <!-- Attendance Table -->
-                <div class="container mt-3">
-                    <table class="table table-bordered" id="attendanceListTable">
-                        <thead>
-                            <tr>
-                                <th>Applicant Name</th>
-                                <th>Attendance Status</th>
-                                <th>Attendance Check</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Attendance data will be displayed here -->
-                            @forelse($a_examinees as $key =>$value)
-                            <tr wire:key="examinees-{{$key}}">
-                                <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
-                                <td>@if($value->ispresent) Present @else  @endif</td>
-                                <td>
-                                    <!-- Checkbox for attendance done -->
-                                    <div class="form-check">
-                                        <input type="checkbox" @if($value->ispresent) checked @else  @endif class="form-check-input" wire:click="check_attendance({{$value->t_a_id}} @if($value->ispresent) ,{{0}} @else, {{1}}@endif)" id="attendanceDone1">
-                                        <label class="form-check-label" for="attendanceDone1">Present</label>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
-                                <td class="text-center font-weight-bold" colspan="42">
-                                    NO RECORDS 
-                                </td>
-                            @endforelse
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-
-            <!-- Instructions Modal -->
-            <div class="modal fade" id="proctorInstructionsModal" tabindex="-1" role="dialog" aria-labelledby="proctorInstructionsModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+            <!-- Student List Modal -->
+            <div class="modal fade" id="studentListModal" tabindex="-1" aria-labelledby="studentListModalLabel" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="proctorInstructionsModalLabel">Proctor Instructions</h5>
-                            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    @if(isset($room_schedule['school_room_id']) && isset($room_schedule['ampm']))
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="addRoomCapacity">Test Center code - name: ( {{$room_schedule['test_center_code'].' - '.$room_schedule['test_center_name']}} )</label>
+                            <br>
+                            <label for="addRoomCapacity">Test Date: ( {{date_format(date_create(  $room_schedule['test_date']), "F d ")}} )</label>
+                            <br>
+                            <label for="addRoomCapacity">Room No.: ( {{$room_schedule['school_room_number']}} )</label>
+                            <br>
+                            <br>
+                            <div class="container text-center">
+                                @if($room_schedule['ampm'] == 'AM')
+                                <button type="button" class="btn btn-primary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'AM')">AM</button>
+                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'PM')">PM</button>
+                                @else
+                                    <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'AM')">AM</button>
+                                    <button type="button" class="btn btn-primary"  wire:click="view_schedule_change({{$room_schedule['test_schedule_id'].','.$room_schedule['school_room_id']}},'PM')">PM</button>
+                                @endif
                             </div>
+                            
                         </div>
-                        <div class="modal-body">
-                            <!-- Add your proctor instructions here -->
-                            <p>Welcome, Proctor (NAME). Here are your instructions:</p>
-                                <!-- Download Button for Applicant List -->
-                                <a href="#" class="btn btn-primary mt-2 align-center mb-2">Download Applicant List</a>
-                            <ol>
-                                <li>Scan the QR code to check the applicants' information.</li>
-                                <li>Ensure that all registered applicants are present.</li>
-                                <li>Report any issues or discrepancies to the exam administrators.</li>
-                            </ol>
-
-                            <!-- Applicant List and Download Button -->
-                            <h1></h1>
-                            <p>Applicant List:</p>
-                            <table class="application-table">
-                                <thead>
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>Applicant Name</th>
-                                        <th>CET</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Code 1</td>
-                                        <td>hanz dumapit</td>
-                                        <td>CET</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Code 2</td>
-                                        <td>dap dap</td>
-                                        <td>CET</td>
-                                    </tr>
-                                    <!-- Add more rows for additional applicants -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Picture</th>
+                                <th>Name</th>
+                                <th>Application Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $count = 0 ?>
+                                @forelse($examinees_data as $key => $value)
+                                    @if($room_schedule['ampm'] == $value->t_a_ampm)
+                                        <?php $count ++ ?>
+                                        <tr class="align-middle">
+                                            <td>{{ $count }}</td>
+                                            <td><img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$value->t_a_formal_photo)}}" alt="Student Picture" width="70" height="70" style="object-fit: cover;"></td>
+                                            <td>{{$value->user_lastname.', '.$value->user_firstname." ".$value->user_middlename}}</td>
+                                            <td>{{$value->applied_date.'-'.$value->t_a_id }}</td>
+                                        </tr>
+                                    @endif
+                                @empty
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                @endforelse
+                                @if($count == 0 )
+                                    <td class="text-center font-weight-bold" colspan="42">
+                                        NO RECORDS 
+                                    </td>
+                                @endif
+                                <!-- Add more rows for other students -->
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
                     </div>
                 </div>
             </div>
-
-
 
             <div class="tab-pane" id="proctor-list">
                 <div class="table-responsive">
