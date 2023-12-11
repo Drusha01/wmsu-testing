@@ -416,6 +416,36 @@ class ExamAdministrator extends Component
     public function active_page($active){
         $this->active = $active;
         self::schedule_room_data($this->a_test_schedule_id,$this->a_school_room_id);
+        $user_details = DB::table('users')
+        ->where('user_id','=',$this->user_details['user_id'] )
+        ->get()
+        ->first();
+
+    $this->user_details = [
+        "user_id"=> $user_details->user_id,
+        "user_status_id"=> $user_details->user_status_id,
+        "user_sex_id"=> $user_details->user_sex_id,
+        "user_gender_id"=> $user_details->user_gender_id,
+        "user_role_id"=> $user_details->user_role_id,
+        "user_name"=> $user_details->user_name,
+        "user_email"=> $user_details->user_email,
+        "user_phone"=> $user_details->user_phone,
+        "user_name_verified"=> $user_details->user_name_verified,
+        "user_email_verified"=> $user_details->user_email_verified,
+        "user_phone_verified"=> $user_details->user_phone_verified,
+        "user_firstname"=> $user_details->user_firstname,
+        "user_middlename"=> $user_details->user_middlename,
+        "user_lastname"=> $user_details->user_lastname,
+        "user_suffix"=> $user_details->user_suffix,
+        "user_citizenship"=> $user_details->user_citizenship,
+        "user_addr_street"=> $user_details->user_addr_street,
+        "user_addr_brgy"=> $user_details->user_addr_brgy,
+        "user_addr_city_mun"=> $user_details->user_addr_city_mun,
+        "user_addr_province"=> $user_details->user_addr_province,
+        "user_addr_zip_code"=> $user_details->user_addr_zip_code,
+        "user_birthdate"=> $user_details->user_birthdate,
+        "user_profile_picture"=> $user_details->user_profile_picture,
+    ];
         self::update_data();
 
     }
@@ -530,8 +560,8 @@ class ExamAdministrator extends Component
             ->where('t_a_school_room_id','=', $school_room_id)
             ->where('t_a_test_schedule_id','=', $test_schedule_id)
             ->first();
-
-
+                
+          
         $this->room_schedule = [
             "school_room_id" => $schedule_data->school_room_id,
             "school_room_bldg_name" => $schedule_data->school_room_bldg_name,
@@ -675,7 +705,7 @@ class ExamAdministrator extends Component
             ->toArray();
         dd($this->a_test_schedule,$this->a_room_details ,$this->a_examinees );
     }
-    public function check_attendance($t_a_id,$checked){
+    public function check_attendance($t_a_id,$checked,$ampm){
         // dd($checked);
         if($checked){
             if(DB::table('attendance')
@@ -702,8 +732,9 @@ class ExamAdministrator extends Component
                 ]);
         }
         
-
+        self::schedule_room_data($this->a_test_schedule_id,$this->a_school_room_id);
         self::update_data();
+        $this->room_schedule['ampm'] = $ampm;
         // dd($t_a_id);
     }
 
