@@ -560,22 +560,25 @@ class ExamAdministrator extends Component
             ->where('t_a_school_room_id','=', $school_room_id)
             ->where('t_a_test_schedule_id','=', $test_schedule_id)
             ->first();
-                
-          
-        $this->room_schedule = [
-            "school_room_id" => $schedule_data->school_room_id,
-            "school_room_bldg_name" => $schedule_data->school_room_bldg_name,
-            "school_room_bldg_abr" => $schedule_data->school_room_bldg_abr,
-            "school_room_name" => $schedule_data->school_room_name,
-            "school_room_number" => $schedule_data->school_room_number, 
-            "school_room_test_center_id" => $schedule_data->school_room_test_center_id,
-            "test_center_code" => $schedule_data->test_center_code,
-            "test_center_name" => $schedule_data->test_center_name,
-            "test_schedule_id"=> $schedule_data->test_schedule_id,
-            "test_date"=> $schedule_data->test_date,
-            "ampm"=> "AM",
-        ];
-
+        
+        if( $schedule_data){
+  
+            $this->room_schedule = [
+                "school_room_id" => $schedule_data->school_room_id,
+                "school_room_bldg_name" => $schedule_data->school_room_bldg_name,
+                "school_room_bldg_abr" => $schedule_data->school_room_bldg_abr,
+                "school_room_name" => $schedule_data->school_room_name,
+                "school_room_number" => $schedule_data->school_room_number, 
+                "school_room_test_center_id" => $schedule_data->school_room_test_center_id,
+                "test_center_code" => $schedule_data->test_center_code,
+                "test_center_name" => $schedule_data->test_center_name,
+                "test_schedule_id"=> $schedule_data->test_schedule_id,
+                "test_date"=> $schedule_data->test_date,
+                "ampm"=> "AM",
+            ];
+    
+        }
+        
         $this->examinees_data = DB::table('test_applications as ta')
             ->select(
                 '*',
