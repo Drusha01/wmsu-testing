@@ -225,7 +225,7 @@
                                         <td>
                                             <!-- Checkbox for attendance done -->
                                             <div class="form-check">
-                                                <input type="checkbox" @if($value->ispresent) checked @else  @endif class="form-check-input" wire:click="check_attendance({{$value->t_a_id}} @if($value->ispresent) ,{{0}} @else, {{1}}@endif)" id="attendanceDone1">
+                                                <input type="checkbox" @if($value->ispresent) checked @endif class="form-check-input" wire:click="check_attendance({{$value->t_a_id}} @if($value->ispresent) ,{{0}} @else, {{1}}@endif , '{{$room_schedule['ampm']}}')" id="attendanceDone1">
                                                 <label class="form-check-label" for="attendanceDone1">Present</label>
                                             </div>
                                         </td>
