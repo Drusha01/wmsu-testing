@@ -660,6 +660,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'App\\Http\\Livewire\\ApplicationBack' => __DIR__ . '/../..' . '/app/Http/Livewire/ApplicationBack.php',
         'App\\Http\\Livewire\\ApplicationForm' => __DIR__ . '/../..' . '/app/Http/Livewire/ApplicationForm.php',
         'App\\Http\\Livewire\\Authentication\\AccountRecovery' => __DIR__ . '/../..' . '/app/Http/Livewire/Authentication/AccountRecovery.php',
+        'App\\Http\\Livewire\\Authentication\\ChangeEmail' => __DIR__ . '/../..' . '/app/Http/Livewire/Authentication/ChangeEmail.php',
         'App\\Http\\Livewire\\Authentication\\ForgotPassword' => __DIR__ . '/../..' . '/app/Http/Livewire/Authentication/ForgotPassword.php',
         'App\\Http\\Livewire\\Authentication\\Login' => __DIR__ . '/../..' . '/app/Http/Livewire/Authentication/Login.php',
         'App\\Http\\Livewire\\Authentication\\Register' => __DIR__ . '/../..' . '/app/Http/Livewire/Authentication/Register.php',

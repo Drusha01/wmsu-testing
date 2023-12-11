@@ -23,6 +23,7 @@ use App\Http\Livewire\Authentication\Register;
 use App\Http\Livewire\Authentication\RegisterEmail;
 use App\Http\Livewire\Authentication\ForgotPassword;
 use App\Http\Livewire\Authentication\AccountRecovery;
+use App\Http\Livewire\Authentication\ChangeEmail;
 
 // student
 use App\Http\Livewire\Student\StudentProfile\StudentProfile;
@@ -171,6 +172,9 @@ Route::middleware([Authenticated::class])->group(function () {
     Route::get('/inactive', StudentInactive::class)->name('student.inactive');
 });
 
+Route::middleware([Authenticated::class,AccountisValid::class])->group(function () {
+    Route::get('/change-email', ChangeEmail::class)->name('change.email');
+});
 
 // admin section
 Route::middleware([Authenticated::class,AccountisValid::class,AccountisStudent::class])->group(function () {
