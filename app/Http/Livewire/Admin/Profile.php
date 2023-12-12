@@ -153,6 +153,10 @@ class Profile extends Component
             'user_address' => $user_details->user_addr_street.', '.$user_details->user_addr_brgy.', '.$user_details->user_addr_city_mun.', '.$user_details->user_addr_province.', '.$user_details->user_addr_zip_code
         ];
 
+        if(strlen($this->user_details['user_address'])<=8){
+            $this->user_details['user_address'] = "";
+        }
+
         self::update_data();
     }
     public function render(){

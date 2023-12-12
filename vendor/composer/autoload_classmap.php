@@ -40,6 +40,7 @@ return array(
     'App\\Http\\Livewire\\ApplicationBack' => $baseDir . '/app/Http/Livewire/ApplicationBack.php',
     'App\\Http\\Livewire\\ApplicationForm' => $baseDir . '/app/Http/Livewire/ApplicationForm.php',
     'App\\Http\\Livewire\\Authentication\\AccountRecovery' => $baseDir . '/app/Http/Livewire/Authentication/AccountRecovery.php',
+    'App\\Http\\Livewire\\Authentication\\ChangeEmail' => $baseDir . '/app/Http/Livewire/Authentication/ChangeEmail.php',
     'App\\Http\\Livewire\\Authentication\\ForgotPassword' => $baseDir . '/app/Http/Livewire/Authentication/ForgotPassword.php',
     'App\\Http\\Livewire\\Authentication\\Login' => $baseDir . '/app/Http/Livewire/Authentication/Login.php',
     'App\\Http\\Livewire\\Authentication\\Register' => $baseDir . '/app/Http/Livewire/Authentication/Register.php',
