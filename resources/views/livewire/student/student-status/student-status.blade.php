@@ -186,7 +186,6 @@
                                                     <td>@if($view_permit[0]->t_a_ampm == 'AM'){{ $view_permit[0]->am_start.' - '.$view_permit[0]->am_end }}@else {{$view_permit[0]->pm_start.' - '.$view_permit[0]->pm_end }} @endif</td>
                                                     <td>{{$view_permit[0]->test_center_code }}</td>
                                                     <td>{{$view_permit[0]->high_school_code.' - '.$view_permit[0]->high_school_name }}</td> 
-                                                    
                                                     <!-- <td>{{$view_permit[0]->test_center_code}}</td> -->
                                                 </tr>
                                                 <tr>  
@@ -216,7 +215,6 @@
                 </div>
             </div>
 
-            
             <div class="modal fade" id="view_application_modal_2" tabindex="-1" role="dialog" aria-labelledby="view_application_modalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg modal-md" role="document">
                     <div class="modal-content">

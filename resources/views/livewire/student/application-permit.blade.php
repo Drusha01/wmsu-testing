@@ -1,3 +1,5 @@
+<!-- to be transfered for cet permit of application on student -->
+<!-- to be transfered for cet permit of application on student -->
 <div class="d-flex align-items-center justify-content-center" style="height: 240vh; background-color:white; ">
               <div class="border border-dark px-3 py-2" style="width: 900px; height: 1500px; ">
                 <div class="row justify-content-between ">
@@ -120,6 +122,4 @@
                                     </div>
                             </div>
                 </div>
-                
-
   </div>
