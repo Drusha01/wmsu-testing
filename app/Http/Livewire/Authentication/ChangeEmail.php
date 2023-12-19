@@ -113,7 +113,7 @@ class ChangeEmail extends Component
                         function($message) {
                     $message->to($this->user_details['user_email'], $this->user_details['user_email'])->subject
                         ('Account Verification');
-                    $message->from('xyz@gmail.com','WMSU TESTING AND EVALUATION CENTER');
+                    $message->from('wmsutec@wmsutec.online','WMSU TESTING AND EVALUATION CENTER');
                     });
                 $deleted = DB::table('user_activations')
                     ->where('user_activation_email', '=', $this->user_details['user_email'])
