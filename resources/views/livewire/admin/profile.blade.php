@@ -146,25 +146,25 @@
                                 <fieldset>
                                     <!-- Full Name -->
                                     <form wire:submit.prevent="save_profile_info()">
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label  class="col-sm-4 col-form-label">First name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model="user_details.user_firstname" class="form-control" placeholder="Enter firstname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Middle name<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model="user_details.user_middlename" class="form-control" placeholder="Enter middlename" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Last name<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  wire:model="user_details.user_lastname" class="form-control" placeholder="Enter lastname" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Suffix<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                                 <select wire:model="user_details.user_suffix" class="form-control">
@@ -183,7 +183,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Gender<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
                                                 <select wire:model="user_details.user_gender_details" class="form-control">
@@ -198,14 +198,14 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Address Street:</label>
                                             <div class="col-sm-8">
                                                 <input type="text" wire:model="user_details.user_addr_street" class="form-control" placeholder="Enter street">
                                             </div>
                                             
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Barangay:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" required list="brgy" wire:change="update_data()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
@@ -219,7 +219,7 @@
                                                 </datalist>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">City / Municipality<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" required list="muncity" wire:change="update_data()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
@@ -235,7 +235,7 @@
                                                 </datalist>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Province<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" required list="province" wire:change="update_data()" wire:model="user_details.user_addr_province" placeholder="Type to search...">
@@ -252,20 +252,20 @@
                                             </div>
                                         </div>
                                        
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">ZIP Code:</label>
                                             <div class="col-sm-8">
                                                 <input type="text" wire:model="user_details.user_addr_zip_code" required class="form-control" placeholder="Enter ZIP code">
                                             </div>
                                         </div>
     
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Phone number<span style="color:red;"></span> :</label>
                                             <div class="col-sm-8">
                                             <input type="text"  required wire:model="user_details.user_phone" class="form-control" placeholder="Enter phone number"  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-2">
                                             <label class="col-sm-4 col-form-label">Birthdate<span style="color:red;">*</span> :</label>
                                             <div class="col-sm-8">
                                             <input type="date"  wire:model="user_details.user_birthdate" class="form-control" placeholder="Enter birthdate" required>
