@@ -153,6 +153,27 @@
             </div>
         </div>
         
+        <div class="modal fade show" id="DeleteAdminModal" tabindex="-1" role="dialog" aria-labelledby="DeleteAdminModalLabel" aria-hidden="true" wire:ignore.self>
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteAdminModalLabel">Delete User</h5>
+                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </div>
+                    </div>
+                    <form wire:submit.prevent="delete_admin_now({{$delete_admin_user_id}})">
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this user?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Add Admin Modal -->
         <div class="modal fade show" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="ViewAdminModalLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-xl modal-dialog-centered">

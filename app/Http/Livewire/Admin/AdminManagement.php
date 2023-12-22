@@ -513,6 +513,7 @@ class AdminManagement extends Component
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
+            $this->dispatchBrowserEvent('openModal','DeleteAdminModal');
         }
     }
 
@@ -603,7 +604,7 @@ class AdminManagement extends Component
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',
-                'title'             									=> 'user is set to active!',
+                'title'             									=> 'User is set to active!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
