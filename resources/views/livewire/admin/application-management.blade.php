@@ -59,7 +59,8 @@
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
                             @endif
-                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <input class="form-control" type="text" id="search" placeholder="Search lastname ..."  wire:model="pending_search" wire:keyup="search_pending_applicant()"/> 
+                            <!-- <input class="form-control" type="text" id="search" placeholder="Search lastname ..."  wire:model="pending_search" wire:keyup="search_applicant()"/>  -->
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 
@@ -252,7 +253,7 @@
                                 <div><span class='btn-text'>Columns</span></div>
                             </button>
                             @endif
-                            <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
+                            <input class="form-control" type="text" id="search" placeholder="Search lastname ..."  wire:model="accepted_search" wire:keyup="search_accepted_applicant()"/> 
                             <!-- wire:model.debounce.500ms="search" -->
                         </div>
                     </div> 

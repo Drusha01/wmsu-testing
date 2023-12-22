@@ -51,8 +51,9 @@ class ApplicationManagement extends Component
     public $pending_selected = [];
     public $declined_pending_valid = false;
     public $declined_pending_reason;
+    public $pending_search;
    
-    // Processing applicant data
+    // Accepted applicant data
     public $accepted_applicant_data;
     public $accepted_test_type_id= 0;
     public $accepted_applicant_filter;
@@ -61,6 +62,7 @@ class ApplicationManagement extends Component
     public $declined_accepted_valid = false;
     public $declined_accepted_reason;
     public $return_reason;
+    public $accepted_search;
 
     // declined applicant data
     public $declined_applicant_data;
@@ -270,7 +272,7 @@ class ApplicationManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
-                ->where('ts.test_status_details','=','Processing')
+                ->where('ts.test_status_details','=','Accepted')
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -293,7 +295,7 @@ class ApplicationManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
@@ -610,7 +612,7 @@ class ApplicationManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
-                ->where('ts.test_status_details','=','Processing')
+                ->where('ts.test_status_details','=','Accepted')
                 ->orderBy($this->column_order, 'asc')
                 ->get()
                 ->toArray();
@@ -633,7 +635,7 @@ class ApplicationManagement extends Component
                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                 ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
                 ->where('t_a_isactive','=',1)
-                ->where('test_status_details','=','Processing')
+                ->where('test_status_details','=','Accepted')
                 ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
                 ->orderBy($this->column_order, 'asc')
                 ->get()
@@ -1970,10 +1972,116 @@ class ApplicationManagement extends Component
             array_push($this->declined_selected,[$value->t_a_id=>false]);
         }
     }
-
-    public function search_applicant(){
+    
+    public function search_accepted_applicant(){
         // last
-        dd('nice');
+
+        if($this->accepted_test_type_id == 0){
+            $this->accepted_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                'school_year_details',
+                't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->where('ts.test_status_details','=','Accepted')
+            ->where('u.user_lastname','LIKE',($this->accepted_search.'%'))
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }else{
+            $this->accepted_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                'school_year_details',
+                't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Accepted')
+            ->where('t_a_test_type_id','=',$this->accepted_test_type_id)
+            ->where('u.user_lastname','LIKE',($this->accepted_search.'%'))
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }
+    }
+    public function search_pending_applicant(){
+        // last
+
+        if($this->pending_test_type_id == 0){
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                'school_year_details',
+                't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->where('ts.test_status_details','=','Pending')
+            ->where('u.user_lastname','LIKE',($this->pending_search.'%'))
+            // ->where('u.user_firstname','LIKE',($this->pending_search.'%'))
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }else{
+            $this->pending_applicant_data = DB::table('test_applications as ta')
+            ->select(
+                // '*',
+                'school_year_details',
+                't_a_id',
+                'user_email',
+                'user_id',
+                'user_email_verified',
+                DB::raw('CONCAT(u.user_lastname,", ",u.user_firstname," ",LEFT(u.user_middlename,1)) as user_fullname'),
+                'test_type_name',
+                DB::raw('DATE(ta.date_created) as date_applied')
+                )
+            ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
+            ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+            ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
+            ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+            ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
+            ->where('t_a_isactive','=',1)
+            ->where('test_status_details','=','Pending')
+            ->where('t_a_test_type_id','=',$this->pending_test_type_id)
+            ->where('u.user_lastname','LIKE',($this->pending_search.'%'))
+            // ->where('u.user_firstname','LIKE',($this->pending_search.'%'))
+            ->orderBy($this->column_order, 'asc')
+            ->get()
+            ->toArray();
+        }
     }
 
     public function delete_check(){

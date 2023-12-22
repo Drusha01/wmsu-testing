@@ -22,7 +22,6 @@ body {
     position: absolute;
     width: 115%;
     height: 100%;
-    -o-object-fit: cover;
        object-fit: cover; 
       }
   .login-card .card-body {
