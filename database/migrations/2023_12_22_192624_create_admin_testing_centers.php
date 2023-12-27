@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChangeEmails extends Migration
+class CreateAdminTestingCenters extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateChangeEmails extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE TABLE change_emails(
+        DB::statement('CREATE TABLE admin_testing_centers(
             id INT PRIMARY KEY AUTO_INCREMENT,
-            user_forgot_password_email VARCHAR(100) NOT NULL,
-            user_forgot_password_hash VARCHAR(100) NOT NULL,
+            user_id VARCHAR(100) NOT NULL,
+            testing_center_id VARCHAR(100) NOT NULL,
             date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
             date_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         );');
-
-        DB::statement('CREATE INDEX idx_change_emails_user_forgot_password_email ON user_forgot_passwords(user_forgot_password_email(10));');
-        DB::statement('CREATE INDEX idx_change_emails_user_forgot_password_hash ON user_forgot_passwords(user_forgot_password_hash(10));');
     }
 
     /**
@@ -32,6 +29,6 @@ class CreateChangeEmails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('change_emails');
+        Schema::dropIfExists('admin_testing_centers');
     }
 }

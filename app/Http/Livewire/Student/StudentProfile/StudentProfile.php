@@ -125,15 +125,15 @@ class StudentProfile extends Component
         // dd($this->brgy_search_input);
     }
 
-    public function update_province(){
-        // dd('sdfasd');
-    }
+
 
     public function update_data(){
+        
+            // dd($this->province_data);
         $this->brgy_data = DB::table('refbrgy')
             ->select('*')
             ->where('brgyDesc','LIKE',($this->user_details['user_addr_brgy'].'%'))
-            ->limit(50)
+            ->limit(5)
             ->get()
             ->toArray();
 
@@ -143,26 +143,62 @@ class StudentProfile extends Component
             ->limit(25)
             ->get()
             ->toArray();
-        
-        if(count($this->mun_city_data) == 1){
-            $mun_city_data = DB::table('refcitymun as cm')
-            ->select('*')
-            ->join('refprovince as p','cm.provCode','p.provCode')
-            ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
-            ->first();
-            $this->user_details['user_addr_province'] = $mun_city_data->provDesc;
-        }
-        
+         
         $this->province_data =  DB::table('refprovince')
         ->select('*')
         ->where('provDesc','LIKE',($this->user_details['user_addr_province'].'%'))
         ->limit(25)
         ->get()
         ->toArray();;
-            // dd($this->province_data);
             
     }
+    public function update_location(){
+        $this->brgy_data = DB::table('refbrgy')
+            ->select('*')
+            ->where('brgyDesc','LIKE',($this->user_details['user_addr_brgy'].'%'))
+            ->limit(5)
+            ->get()
+            ->toArray();
 
+        $this->mun_city_data = DB::table('refcitymun as cm')
+            ->select('*')
+            ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
+            ->limit(5)
+            ->get()
+            ->toArray();
+
+        $this->province_data =  DB::table('refprovince')
+        ->select('*')
+        ->where('provDesc','LIKE',($this->user_details['user_addr_province'].'%'))
+        ->limit(5)
+        ->get()
+        ->toArray();;
+    }
+    public function update_brgy($desc){
+        $this->user_details['user_addr_brgy']  = $desc;
+    }
+    public function update_muncity($desc){
+        $this->user_details['user_addr_city_mun']  = $desc;
+        
+        $this->mun_city_data = DB::table('refcitymun as cm')
+        ->select('*')
+        ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
+        ->limit(5)
+        ->get()
+        ->toArray();
+    
+    if(count($this->mun_city_data) == 1){
+        $mun_city_data = DB::table('refcitymun as cm')
+        ->select('*')
+        ->join('refprovince as p','cm.provCode','p.provCode')
+        ->where('citymunDesc','LIKE',($this->user_details['user_addr_city_mun'].'%'))
+        ->first();
+        $this->user_details['user_addr_province'] = $mun_city_data->provDesc;
+    }
+    }
+    public function update_province($desc){
+        $this->user_details['user_addr_province']  = $desc;
+    }
 
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
@@ -255,6 +291,7 @@ class StudentProfile extends Component
             $this->ueb_shs_address = $educational_details->ueb_shs_address ;
         }
         self::update_data();
+        self::update_location();
     }
     public function render()
     {

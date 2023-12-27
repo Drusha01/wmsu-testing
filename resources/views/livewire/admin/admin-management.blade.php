@@ -153,6 +153,27 @@
             </div>
         </div>
         
+        <div class="modal fade show" id="DeleteAdminModal" tabindex="-1" role="dialog" aria-labelledby="DeleteAdminModalLabel" aria-hidden="true" wire:ignore.self>
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteAdminModalLabel">Delete User</h5>
+                        <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </div>
+                    </div>
+                    <form wire:submit.prevent="delete_admin_now({{$delete_admin_user_id}})">
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this user?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Add Admin Modal -->
         <div class="modal fade show" id="adminAddModal" tabindex="-1" role="dialog" aria-labelledby="ViewAdminModalLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -213,6 +234,45 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mt-2 ">
+                                    <div class="form-group">
+                                        <label for="addRoomCapacity">Test Center:</label>
+                                        @foreach ($admin_testing_centers as $key =>$value)
+                                            @if($loop->last)
+                                                <div class=" d-flex">
+                                                    <div class="col-8 ">
+                                                        <select wire:key="testing-center-{{$key}}" required wire:change="check_admin_testing_centers({{$key}})" wire:model.defer="admin_testing_centers.{{$key}}.testing_center_id" class="form-select">
+                                                            <option value="">Select Test Center</option>
+                                                            @foreach ($test_center_data as $item => $value)
+                                                                <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        @if($key !=0)
+                                                        <button type="button" class="btn btn-danger" wire:click="delete_testing_center({{$key}})">Delete</button>
+                                                        @endif
+                                                        <button type="button" class="btn btn-success" wire:click="add_testing_center()">Add</button>
+                                                    </div>
+                                                </div>
+                                            @else
+                                            <div class=" d-flex">
+                                                    <div class="col-8 ">
+                                                        <select wire:key="testing-center-{{$key}}" required wire:change="check_admin_testing_centers({{$key}})" wire:model.defer="admin_testing_centers.{{$key}}.testing_center_id" class="form-select">
+                                                            <option value="">Select Test Center</option>
+                                                            @foreach ($test_center_data as $item => $value)
+                                                                <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <button type="button" class="btn btn-danger" wire:click="delete_testing_center({{$key}})">Delete</button>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>  
                             </div>
                             <br>
                             @if($sign_up_button)<div style="color:red;">{{$sign_up_button}}</div> @endif
@@ -308,7 +368,7 @@
         </div>
 
        <!-- Edit Admin Modal -->
-<div class="modal fade show" id="EditAdminModal" tabindex="-1" role="dialog" aria-labelledby="EditAdminModalLabel" aria-hidden="true">
+<div class="modal fade show" id="EditAdminModal" tabindex="-1" role="dialog" aria-labelledby="EditAdminModalLabel" aria-hidden="true" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -323,6 +383,43 @@
                     <div class="form-group">
                         <label for="editRoleName">Full Name</label>
                         <input type="text" disabled class="form-control" placeholder="Role name" wire:model.defer="admin_fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addRoomCapacity">Test Center:</label>
+                        @foreach ($admin_testing_centers as $key =>$value)
+                            @if($loop->last)
+                                <div class=" d-flex">
+                                    <div class="col-8 ">
+                                        <select wire:key="testing-center-{{$key}}" required wire:change="check_admin_testing_centers({{$key}})" wire:model.defer="admin_testing_centers.{{$key}}.testing_center_id" class="form-select">
+                                            <option value="">Select Test Center</option>
+                                            @foreach ($test_center_data as $item => $value)
+                                                <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        @if($key !=0)
+                                        <button type="button" class="btn btn-danger" wire:click="delete_testing_center({{$key}})">Delete</button>
+                                        @endif
+                                        <button type="button" class="btn btn-success" wire:click="add_testing_center()">Add</button>
+                                    </div>
+                                </div>
+                            @else
+                            <div class=" d-flex">
+                                    <div class="col-8 ">
+                                        <select wire:key="testing-center-{{$key}}" required wire:change="check_admin_testing_centers({{$key}})" wire:model.defer="admin_testing_centers.{{$key}}.testing_center_id" class="form-select">
+                                            <option value="">Select Test Center</option>
+                                            @foreach ($test_center_data as $item => $value)
+                                                <option value="{{$value->id}}">{{$value->test_center_code.' - '.$value->test_center_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class="btn btn-danger" wire:click="delete_testing_center({{$key}})">Delete</button>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                     <br>
                     <div>

@@ -215,53 +215,41 @@
                                             </div>
                                             
                                         </div>
+
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Barangay<span style="color:red;">*</span>:</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" required list="brgy" wire:change="update_data()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
-                                                <datalist id="brgy" >
-                                                    @if(isset($user_details['user_addr_brgy']))
-                                                        <option value="$user_details['user_addr_brgy']">
-                                                    @endif
-                                                    @foreach($brgy_data as $key =>$value)
-                                                    <option value="{{$value->brgyDesc}}">
-                                                    @endforeach
-                                                </datalist>
+                                            <div class="col-sm-8"  data-bs-toggle="dropdown" wire:ignore.self>
+                                                <input class="form-control" required  wire:keyup="update_location()" wire:click="update_location()" wire:model="user_details.user_addr_brgy" placeholder="Type to search...">
+                                            </div>
+                                            <div class="dropdown-menu dropdown col-sm-7 mx-2" wire:ignore.self>
+                                                @foreach($brgy_data as $key =>$value)
+                                                <li class="list-group-item"   wire:key="brgy-{{$value->id}}" wire:click="update_brgy('{{$value->brgyDesc}}')"> <a href="#" data-bs-toggle="dropdown">{{$value->brgyDesc}}</a></li>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">City / Municipality<span style="color:red;">*</span>:</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" required list="muncity" wire:change="update_data()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
-                                                <datalist id="muncity">
-                                                    @if(isset($user_details['user_addr_brgy']))
-                                                        <option value="$user_details['user_addr_city_mun']">
-                                                    @endif
-                                                    @if($mun_city_data)
-                                                        @foreach($mun_city_data as $key =>$value)
-                                                        <option value="{{$value->citymunDesc}}" >
-                                                        @endforeach
-                                                    @endif
-                                                </datalist>
+                                            <label class="col-sm-4 col-form-label">Municipality<span style="color:red;">*</span>:</label>
+                                            <div class="col-sm-8"  data-bs-toggle="dropdown" wire:ignore.self>
+                                                <input class="form-control" required  wire:keyup="update_location()" wire:click="update_location()" wire:model="user_details.user_addr_city_mun" placeholder="Type to search...">
+                                            </div>
+                                            <div class="dropdown-menu dropdown col-sm-7 mx-2" wire:ignore.self>
+                                                @foreach($mun_city_data as $key =>$value)
+                                                <li class="list-group-item"   wire:key="muncity-{{$value->id}}" wire:click="update_muncity('{{$value->citymunDesc}}')"> <a href="#" data-bs-toggle="dropdown">{{$value->citymunDesc}}</a></li>
+                                                @endforeach
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Province<span style="color:red;">*</span>:</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" required list="province" wire:change="update_data()" wire:model="user_details.user_addr_province" placeholder="Type to search...">
-                                                <datalist id="province" >
-                                                    @if(isset($user_details['user_addr_brgy']))
-                                                        <option value="$user_details['user_addr_city_mun']">
-                                                    @endif
-                                                    @if($province_data)
-                                                        @foreach($province_data as $key =>$value)
-                                                        <option value="{{$value->provDesc}}" >
-                                                        @endforeach
-                                                    @endif
-                                                </datalist>
+                                            <div class="col-sm-8"  data-bs-toggle="dropdown" wire:ignore.self>
+                                                <input class="form-control" required  wire:keyup.="update_location()" wire:click="update_location()" wire:model="user_details.user_addr_province" placeholder="Type to search...">
+                                            </div>
+                                            <div class="dropdown-menu dropdown col-sm-7 mx-2" wire:ignore.self>
+                                                @foreach($province_data as $key =>$value)
+                                                <li class="list-group-item"   wire:key="province-{{$value->id}}" wire:click="update_province('{{$value->provDesc}}')"> <a href="#" data-bs-toggle="dropdown">{{$value->provDesc}}</a></li>
+                                                @endforeach
                                             </div>
                                         </div>
-                                       
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">ZIP Code<span style="color:red;">*</span>:</label>
                                             <div class="col-sm-8">

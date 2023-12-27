@@ -46,11 +46,14 @@ class AdminManagement extends Component
     public $admin_birthdate;
     public $admin_password;
     public $admin_confirm_password;
+    public $admin_testing_centers =[];
 
     public $admin_fullname;
     public $view_admin_roles;
     public $view_admin_user_id;
     public $delete_admin_user_id;
+
+    public $test_center_data;
 
 
 
@@ -174,6 +177,12 @@ class AdminManagement extends Component
         $this->roles_data = DB::table('admin_role_names as arn')
             ->get()
             ->toArray();
+
+        $this->test_center_data = DB::table('test_centers')
+            ->where('test_center_isactive','=','1')
+            ->get()
+            ->toArray();
+        
     }
 
     public function mount(Request $request){
@@ -373,6 +382,16 @@ class AdminManagement extends Component
                             'D'=>$value->access_role_delete
                         ]);
                     }
+            
+            $admin_testing_centers = DB::table('admin_testing_centers')
+                ->where('user_id','=',$this->view_admin_user_id)
+                ->get()
+                ->toArray()
+                ;
+            $this->admin_testing_centers = [];
+            foreach ($admin_testing_centers as $key => $value) {
+                array_push($this->admin_testing_centers,['testing_center_id'=>$value->testing_center_id]);
+            }            
 
             $this->dispatchBrowserEvent('openModal','EditAdminModal');
         }
@@ -397,6 +416,50 @@ class AdminManagement extends Component
                         'access_role_update' => $value['U'],
                         'access_role_delete' => $value['D'],
                 ]);
+            }
+
+            if(count($this->admin_testing_centers) <= 0){
+                $this->sign_up_button = 'Testing center Invalid';
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'title'             									=> 'Password doesn\'t match!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                return false;
+            }
+            $valid = false;
+            foreach ($this->admin_testing_centers as $key => $value) {
+                if(intval($value['testing_center_id'])>0 ){
+                    $valid = true;
+                    break;
+                }
+            }
+            if(!$valid){
+                $this->sign_up_button = 'Testing center Invalid';
+                $this->dispatchBrowserEvent('swal:redirect',[
+                    'position'          									=> 'center',
+                    'title'             									=> 'Password doesn\'t match!',
+                    'showConfirmButton' 									=> 'true',
+                    'timer'             									=> '1000',
+                    'link'              									=> '#'
+                ]);
+                return false;
+            }
+
+            DB::table('admin_testing_centers')
+                ->where('user_id','=',$user_id)
+                ->delete();
+
+            foreach ($this->admin_testing_centers as $key => $value) {
+                if(intval($value['testing_center_id'])>0 ){
+                    DB::table('admin_testing_centers')->insert([
+                        'id' => NULL,
+                        'user_id' =>$user_id,
+                        'testing_center_id' =>$value['testing_center_id'],
+                    ]);
+                }
             }
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
@@ -450,6 +513,7 @@ class AdminManagement extends Component
                 'timer'             									=> '1000',
                 'link'              									=> '#'
             ]);
+            $this->dispatchBrowserEvent('openModal','DeleteAdminModal');
         }
     }
 
@@ -540,7 +604,7 @@ class AdminManagement extends Component
             $this->dispatchBrowserEvent('swal:remove_backdrop',[
                 'position'          									=> 'center',
                 'icon'                                                  => 'success',
-                'title'             									=> 'user is set to active!',
+                'title'             									=> 'User is set to active!',
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1000',
                 'link'              									=> '#'
@@ -593,7 +657,42 @@ class AdminManagement extends Component
     }
     
     public function add_admin_modal(){
+        $this->admin_testing_centers = [];
+        array_push($this->admin_testing_centers,['testing_center_id'=>NULL]);
         $this->dispatchBrowserEvent('openModal','adminAddModal');
+    }
+    public function check_admin_testing_centers($p_key){
+        foreach ($this->admin_testing_centers as $key => $value) {
+            if($key != $p_key ){
+                if($value['testing_center_id'] == $this->admin_testing_centers[$p_key]['testing_center_id']){
+                    $this->dispatchBrowserEvent('swal:redirect',[
+                        'position'          									=> 'center',
+                        'icon'                                                  => 'warning',
+                        'title'             									=> 'Testing center is selected!',
+                        'showConfirmButton' 									=> 'true',
+                        'timer'             									=> '1000',
+                        'link'              									=> '#'
+                    ]);
+                    $this->admin_testing_centers[$p_key]['testing_center_id'] = NULL;
+                }
+            }
+        }        
+    }
+    public function delete_testing_center($p_key){
+        if(count($this->admin_testing_centers) == 1){
+            return;
+        }
+        $admin_testing_centers = [];
+        foreach ($this->admin_testing_centers as $key => $value) {
+            if($key != $p_key ){
+                array_push($admin_testing_centers,['testing_center_id'=>$value['testing_center_id']]);
+            }
+        }  
+        $this->admin_testing_centers = $admin_testing_centers;
+    }
+
+    public function add_testing_center(){
+        array_push($this->admin_testing_centers,['testing_center_id'=>NULL]);
     }
 
     public function add_admin(){
@@ -762,6 +861,36 @@ class AdminManagement extends Component
             return false;
         }
 
+        if(count($this->admin_testing_centers) <= 0){
+            $this->sign_up_button = 'Testing center Invalid';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Password doesn\'t match!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+        $valid = false;
+        foreach ($this->admin_testing_centers as $key => $value) {
+            if(intval($value['testing_center_id'])>0 ){
+                $valid = true;
+                break;
+            }
+        }
+        if(!$valid){
+            $this->sign_up_button = 'Testing center Invalid';
+            $this->dispatchBrowserEvent('swal:redirect',[
+                'position'          									=> 'center',
+                'title'             									=> 'Password doesn\'t match!',
+                'showConfirmButton' 									=> 'true',
+                'timer'             									=> '1000',
+                'link'              									=> '#'
+            ]);
+            return false;
+        }
+
         
         $min_age = 15;
         $min_date = $min_age * 366;
@@ -823,6 +952,16 @@ class AdminManagement extends Component
             ]);
         }
 
+        foreach ($this->admin_testing_centers as $key => $value) {
+            if(intval($value['testing_center_id'])>0 ){
+                DB::table('admin_testing_centers')->insert([
+                    'id' => NULL,
+                    'user_id' =>$user_details->user_id,
+                    'testing_center_id' =>$value['testing_center_id'],
+                ]);
+            }
+        }
+
         $this->dispatchBrowserEvent('swal:remove_backdrop',[
             'position'          									=> 'center',
             'icon'                                                  => 'success',
@@ -854,7 +993,7 @@ class AdminManagement extends Component
             "user_birthdate",
             "user_profile_picture",
             "user_formal_id",
-            "u.date_created",
+            "u.date_created", 
             "u.date_updated",
             "user_status_details",
             "user_role_details"
