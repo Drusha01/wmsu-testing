@@ -15,10 +15,10 @@
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="adminTabs">
             <li class="nav-item">
-                <a class="nav-link   @if($active == 'exam_admin') show active @endif "wire:key="exam_admin"  wire:click="active_page('exam_admin')">Assigned Rooms</a>
+                <a class="nav-link   @if($active == 'exam_admin') show active @endif "wire:key="exam_admin" href="#" wire:click="active_page('exam_admin')">Assigned Rooms</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if($active == 'attendance_list') show active @endif "wire:key="attendance_list"  wire:click="active_page('attendance_list')">Attendance Rooms</a>
+                <a class="nav-link @if($active == 'attendance_list') show active @endif "wire:key="attendance_list" href="#" wire:click="active_page('attendance_list')">Attendance Rooms</a>
             </li>
           
         </ul>
@@ -189,7 +189,7 @@
                         <!-- Add more options as needed -->
                     </select>
                 </div>
-                <div class="container text-center">
+                <div class="container text-center mt-3">
                     @if($room_schedule['ampm'] == 'AM')
                     <button type="button" class="btn btn-primary"  wire:click="view_schedule_change('AM')">AM</button>
                         <button type="button" class="btn btn-secondary"  wire:click="view_schedule_change('PM')">PM</button>

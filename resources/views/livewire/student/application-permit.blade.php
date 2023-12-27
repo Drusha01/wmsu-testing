@@ -1,7 +1,7 @@
 <!-- to be transfered for cet permit of application on student -->
 <!-- to be transfered for cet permit of application on student -->
-<div class="d-flex align-items-center justify-content-center" style="height: 240vh; background-color:white; ">
-              <div class="border border-dark px-3 py-2" style="width: 900px; height: 1500px; ">
+<div class="d-flex align-items-center justify-content-center" style="height: 200vh; background-color:white; ">
+              <div class="border border-dark px-3 py-2" style="width: 900px; height: 1100px; ">
                 <div class="row justify-content-between ">
                     <div class="col-4 text-danger">
                       <p class="font-weight-bold">WMSU-TEC-FR-002 03</p>Effective Date: 14-Sept-2023
@@ -10,14 +10,15 @@
                       <p>TEST PERMIT-WMSU CET<br> SY 2024-2025</p>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center align-itemns-center">
-                    <p class="font-weight-bold text-danger mt-4">NAME:</p>
-                    <div class="col align-self-center mt-5 text-center">
-                      <span class="px-5">Family Name</span>
-                      <span class="px-5">First Name</span>
-                      <span class="px-5">Middle Name</span>
-                    </div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <p class="font-weight-bold text-danger mt-4">NAME: </p>
+                  <div class="col align-self-center mt-5 text-center">
+                    <span class="px-5 text-decoration-underline">Family Name</span>
+                    <span class="px-5 text-decoration-underline">First Name</span>
+                    <span class="px-5 text-decoration-underline">Middle Name</span>
+                  </div>
                 </div>
+
                 <div>
                   <p class="text-danger">School From:</p>
                 </div>
@@ -93,19 +94,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="container border border-danger mt-5 rounded">
-                            <div class="form-check form-check-inline">
-                                <p class="text-danger mt-2"> <input class="form-check-input" type="checkbox" id="checkbox11"> <label class="form-check-label mr-3" for="checkbox11">Accept</label>I herby accept that i have read and understood all the instructions in connection with my application for the WMSU-CET. I further accept that all information supplied herein and the supporting documents attached are true and correct if found otherwise, my exam shall be considered null and void. I also allow WMSU-TECT to process and store the data i have provided in this form in accordance with the provision of the Data Privacy Act of 2012</p>
-                            </div>
-                           
-                        </div>
 
-                        <div>
-                            <p class="text-danger mt-5">Only prospective freshmen will be allowed to take the WMSU CET schedule for November 2023. Transferess Should join in the Febraruary 2024 exam.</p>
-                        </div>
+
+                      
                         <div>
                             <Span class="text-danger font-weight-bold">IMPORTANT</Span>
-                            <p class="text-danger">1. An Applicant can take  the WMSU-CET for S.Y 2024-2025, <span class="text-danger font-weight-bold text-decoration-underline" >ONLY ONCE,</span>wheter in the Main Campus or any other test Venue</p>
+                            <p class="text-danger">1. An Applicant can take  the WMSU-CET for S.Y 2024-2025, <span class="text-danger font-weight-bold text-decoration-underline" >ONLY ONCE,</span> Whether in the Main Campus or any other test Venue</p>
                             <p class="text-danger">For further inquries, Call WMSU-Testing and Evaluation Center at 09066131868 or email at tec@wmsu.edu.ph</p>
                         </div>
                             <div class="text-center" >

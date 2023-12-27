@@ -97,6 +97,13 @@
 
         @include('components.chatbox');
 
+<!-- Bootstrap 5 Animation -->
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Animate.css Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
 
 <!-- About Us Section -->
 <section class="about mt-1 mb-1">
@@ -104,11 +111,11 @@
         <div class="row justify-content-center align-items-center">
             @if($aboutus_data)
                 @foreach ($aboutus_data as $item => $value)
-                    <div class="col-lg-6 col-md-12 text-center">
+                    <div class="col-lg-6 col-md-12 text-center animate__animated animate__slideInRight">
                         <img src="{{asset('storage/content/about_us/'.$value->au_image)}}" alt="WMSU Testing Center" style="width: 600px; height: 350px; object-fit: cover;" class="img-thumbnail">
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <div class="about-content text-center mb-5">
+                    <div class="about-content text-center mb-5 animate__animated animate__slideInLeft">
                             <span class="mb-1 mt-2">About</span>
                             <h2 class="mb-4">{{$value->au_header}}</h2>
                             <p>{{$value->au_content}}</p>
@@ -133,6 +140,7 @@
     </div>
 </section>
 <!-- About Us Section -->
+
      <!-- Separation Line -->
      <hr class="separation-line">
         <!-- Feature Info Section -->
@@ -235,3 +243,46 @@
         @endif
     </div>
 </div>
+
+<script>
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function animateElements() {
+        const aboutContent = document.querySelectorAll('.about-content');
+        const aboutImage = document.querySelectorAll('.animate__slideInRight');
+
+        aboutContent.forEach(element => {
+            if (isInViewport(element)) {
+                element.classList.add('animate__slideInLeft');
+            }
+        });
+
+        aboutImage.forEach(element => {
+            if (isInViewport(element)) {
+                element.classList.add('animate__slideInRight');
+            }
+        });
+    }
+
+    function handleScroll() {
+        animateElements();
+    }
+
+    // Bind the scroll event to trigger the animations
+    window.addEventListener('scroll', handleScroll);
+
+    // Initially trigger animations if the section is already in view on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        animateElements();
+    });
+</script>
+
