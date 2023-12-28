@@ -41,26 +41,27 @@
                         
                 <!-- CET result Modal -->
                 <div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content" style="width: 950px; margin-left: -100px;">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%; margin: 1.60rem auto;">
+                        <div class="modal-content">
                             <div class="modal-body" id="to_print">
                                 <div>
                                     <section class="layout d-flex justify-content-center">
                                         <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
                                         <div style="text-align: center;">
-                                            <h4>Western Mindanao State University</h4>
-                                            <h5>Testing And Evaluation Center</h5>
-                                            <h6>Normal Road, Baliwasa, Zamboanga City</h6>
+                                            <h4 class="text-danger">Western Mindanao State University</h4>
+                                            <h5 class="text-danger">Testing And Evaluation Center</h5>
+                                            <h6 class="text-danger">Normal Road, Baliwasa, Zamboanga City</h6>
+                                            <p class="text-danger font-weight-bold">WMSU-CET APPLICATION RESULTS <br> School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                                         </div>
                                         <img src="{{ asset('images/logo/tec.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
                                     </section>
                                     @if($result)
                                     <div style="text-align: center;">
                                         <div>
-                                            <p class="text-danger font-weight-bold">WMSU-CET APPLICATION RESULTS <br> School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                                             <h3>{{$result['user_fullname']}}</h3>
+                                            <h6 style="font-size: 15px; margin-bottom: 5px;">School from: Southern City Collges</h6>
                                         </div>
-                                        <table class="table">
+                                        <table class="table border border">
                                             <thead>
                                                 <tr>
                                                     <th colspan="2">CET PARTS</th>
@@ -73,7 +74,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td colspan="2">Percentile Rank</td>
+                                                    <td colspan="2" style="font-weight:bold;">Percentile Rank</td>
                                                     <td>{{$result['t_a_cet_english_procficiency']}}</td>
                                                     <td>{{$result['t_a_cet_reading_comprehension']}}</td>
                                                     <td>{{$result['t_a_cet_science_process_skills']}}</td>
@@ -81,11 +82,12 @@
                                                     <td>{{$result['t_a_cet_abstract_thinking_skills']}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="2">OAPR</td>
-                                                    <td colspan="5">{{$result['t_a_cet_oapr']}}</td>
+                                                    <td colspan="2" style="font-weight:bold;">OAPR</td>
+                                                    <td colspan="5" style="font-weight:bold;">{{$result['t_a_cet_oapr']}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <br>
                                         <div style="text-align: center;">
                                             <p>Your WMSU CET score herein is subject to verification against WMSU CET Masterlist</p>
                                         </div>
