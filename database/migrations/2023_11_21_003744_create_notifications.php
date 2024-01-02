@@ -17,8 +17,8 @@ class CreateNotifications extends Migration
             notification_id INT PRIMARY KEY AUTO_INCREMENT,
             notification_user_target INT NOT NULL ,
             notification_user_creator INT NOT NULL ,
-            notification_type_id INT NOT NULL ,
             notification_icon_id INT NOT NULL ,
+            notification_title VARCHAR(1024) NOT NULL ,
             notification_content VARCHAR(1024) NOT NULL ,
             notiication_isread BOOL DEFAULT 1,
             notification_link VARCHAR(1024) DEFAULT NULL,
@@ -28,7 +28,6 @@ class CreateNotifications extends Migration
 
         DB::statement('CREATE INDEX idx_notification_user_target ON notifications(notification_user_target);');
         DB::statement('CREATE INDEX idx_notification_user_creator ON notifications(notification_user_creator);');
-        DB::statement('CREATE INDEX idx_notification_type_id ON notifications(notification_type_id);');
         DB::statement('CREATE INDEX idx_notification_icon_id ON notifications(notification_icon_id);');
         
     }

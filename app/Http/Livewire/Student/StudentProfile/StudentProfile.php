@@ -584,6 +584,8 @@ class StudentProfile extends Component
                         ->update(['u.user_profile_picture'=> $new_file_name.'.jpg']);
                         self::update_data();
 
+                        $this->user_details['user_profile_picture'] = $new_file_name.'.jpg';
+
                         $this->photo = null;
 
                         $this->dispatchBrowserEvent('swal:redirect',[
@@ -594,6 +596,18 @@ class StudentProfile extends Component
                             'timer'             									=> '1500',
                             'link'              									=> '#'
                         ]);
+                    
+
+                        DB::table('notifications')
+                            ->insert([
+                                'notification_id' =>NULL ,
+                                'notification_user_target' => $this->user_details['user_id'] ,
+                                'notification_user_creator' => $this->user_details['user_id'],
+                                'notification_icon_id' => 4 ,
+                                'notification_title' => 'Profile picture updated!' ,
+                                'notification_content'  => 'You have successfully updated your profile picture!' ,
+                                'notification_link' => '/student/profile',
+                            ]);
                 }else{
                     $this->dispatchBrowserEvent('swal:redirect',[
                         'position'          									=> 'center',
@@ -781,6 +795,17 @@ class StudentProfile extends Component
                             'showConfirmButton' 									=> 'true',
                             'timer'             									=> '2000',
                             'link'              									=> '#'
+                        ]);
+
+                        DB::table('notifications')
+                        ->insert([
+                            'notification_id' =>NULL ,
+                            'notification_user_target' => $this->user_details['user_id'] ,
+                            'notification_user_creator' => $this->user_details['user_id'],
+                            'notification_icon_id' => 4 ,
+                            'notification_title' => 'Successfully Changed password!' ,
+                            'notification_content'  => 'You have successfully updated your password, if you didn\'t change this please contact WMSUTEC!' ,
+                            'notification_link' => '/student/profile,'
                         ]);
                     }else{
                         $this->dispatchBrowserEvent('swal:redirect',[
