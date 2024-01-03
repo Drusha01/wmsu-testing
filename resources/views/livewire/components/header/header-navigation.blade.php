@@ -78,11 +78,11 @@
 
                     <!-- Profile Dropdown -->
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown"  wire:ignore.self>
                             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img style="border-radius: 50%;" src="@if($user_details['user_profile_picture']== 'default.png'){{ asset('images/contents/profile_picture/thumbnail/default.png') }}@else{{ asset('storage/images/thumbnail/'.$user_details['user_profile_picture']) }}@endif" width="50" alt="">
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown"  wire:ignore.self>
                                 @if(isset($user_details['user_role_details']) && $user_details['user_role_details'] == 'student')
                                     @if(isset($user_details['user_status_details']) && $user_details['user_status_details'] == 'active')
                                         <a class="dropdown-item" href="{{ route('student.profile') }}"><i class="fas fa-user" style="color: #990000;"></i> Profile</a>

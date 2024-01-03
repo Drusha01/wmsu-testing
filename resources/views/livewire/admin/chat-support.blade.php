@@ -63,8 +63,8 @@
                                     <ul class="nav flex-column" >
                                         @forelse ($chat_box_list as $key => $value)
                       
-                                            <li class="nav-item border border-dark rounded-4 mt-2 ml-3" > 
-                                                <a class="nav-link fade show p-0 my-3" wire:click="chat_box_selected({{$value->cbc_chat_box_id}})" @if($value->cbc_user_id == $chat_box['chat_box_user_sender']) style="background-color:white;" @endif >
+                                            <li class="nav-item border border-dark rounded-4 mt-2 ml-3"  wire:click="chat_box_selected({{$value->cbc_chat_box_id}})" @if($value->cbc_user_id == $chat_box['chat_box_user_sender']) style="background-color:white;" @endif > 
+                                                <a class="nav-link fade show p-0 my-3">
                                                     <div class="p-20 bb-1 d-flex align-items-center justify-content-between pull-up">
                                                         <div class="col-12 pr-10">
                                                             <div class="row mx-2">
@@ -159,8 +159,9 @@
                                         <div class="d-flex justify-content-between align-items-center w-p100">
                                             <div class="d-flex align-items-center w-100 px-10">
                                                 <a class="me-15 status-success avatar avatar-lg" href="#modal-right">
+                                                    
                                                     @if( $chat_box['user_profile_picture'] == 'default.png')
-                                                        <img src="{{ asset('admin-assets/media/avatar/5.jpg') }}" width="50px" class="bg-primary-light avr-round" alt="User Profile" >
+                                                    <img src="{{ asset('images/logo/logo.png') }}" width="50px" style="border-radius: 50%;" class="bg-primary-light avr-round" alt="User Profile" >
                                                     @else
                                                         <img  class="bg-primary-light avr-round" style="border-radius: 50%;" width="50px" src="{{asset('storage/images/resize/'.$chat_box['user_profile_picture'])}}" alt="">
                                                     @endif
@@ -197,7 +198,7 @@
                             </div>
                             <div class="box-footer px-2">
                                 <div class="input-group mt-3 p-2">
-                                    <input type="text" class="form-control" wire:model="chat_content_details" placeholder="Type your message...">
+                                    <input type="text" class="form-control" wire:model.defer="chat_content_details" placeholder="Type your message...">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" wire:click="send_message()"> Send </button>
                                     </div>
