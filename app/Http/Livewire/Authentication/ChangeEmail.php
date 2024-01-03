@@ -77,7 +77,11 @@ class ChangeEmail extends Component
             "date_created"=> $user_details->date_created,
             "date_updated"=> $user_details->date_updated,
         ];
-        $this->user_details['user_email']= null;
+        if($this->user_details['user_email_verified']==1){
+            $this->user_details['user_email']= null;
+        }
+
+
 
     }
     public function render()

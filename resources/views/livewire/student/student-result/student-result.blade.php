@@ -41,65 +41,68 @@
                         
                 <!-- CET result Modal -->
                 <div class="modal fade" id="uniqueCetResultModal" tabindex="-1" role="dialog" aria-labelledby="uniqueCetModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content" style="width: 950px;  margin-left:-100px;">
-                            <div class="modal-body" id="to_print" >
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%; margin: 1.60rem auto;">
+                        <div class="modal-content">
+                            <div class="modal-body" id="to_print">
                                 <div>
-                                <section class="layout d-flex justify-content-center">
-                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px; ">
+                                    <section class="layout d-flex justify-content-center">
+                                        <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
+                                        <div style="text-align: center;">
+                                            <h4 class="text-danger">Western Mindanao State University</h4>
+                                            <h5 class="text-danger">Testing And Evaluation Center</h5>
+                                            <h6 class="text-danger">Normal Road, Baliwasa, Zamboanga City</h6>
+                                            <p class="text-danger font-weight-bold">WMSU-CET APPLICATION RESULTS <br> School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
+                                        </div>
+                                        <img src="{{ asset('images/logo/tec.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
+                                    </section>
+                                    @if($result)
                                     <div style="text-align: center;">
-                                        <h4>Western Mindanao State University</h4>
-                                        <h5>Testing And Evaluation Center</h5>
-                                        <h6>Normal Road, Baliwasa, Zamboanga City</h6>  
-                                    </div> 
-                                    <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo" style="height: 80px;">
-                                </section>
-                                @if($result)
-                                    <div style="text-align: center;" >
-                                        <div >
-                                            <!-- <legend>COLLEGE ENTRANCE EXAM RESULT</legend> -->
-                                            <p class="text-danger font-weight-bold">WMSU-CET APPLICATION RESULTS  <br>  School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
+                                        <div>
                                             <h3>{{$result['user_fullname']}}</h3>
-                                        </div> 
-                                        <table class="table">
+                                            <h6 style="font-size: 15px; margin-bottom: 5px;">School from: Southern City Collges</h6>
+                                        </div>
+                                        <table class="table border border">
                                             <thead>
                                                 <tr>
-                                                <th scope="col" colspan="2">CET PARTS</th>
-                                                <!-- <th scope="col">OAPR</th> -->
-                                                <th scope="col">English Proficiency</th>
-                                                <th scope="col">Reading Comprehension</th>
-                                                <th scope="col">Science Processing Skills</th>
-                                                <th scope="col">Quantitative Skills</th>
-                                                <th scope="col">Abstract Thinking</th>
-                                                <th scope="col">OAPR</th>
+                                                    <th colspan="2">CET PARTS</th>
+                                                    <th>English Proficiency</th>
+                                                    <th>Reading Comprehension</th>
+                                                    <th>Science Processing Skills</th>
+                                                    <th>Quantitative Skills</th>
+                                                    <th>Abstract Thinking</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td colspan="2">Percentile Rank</td>
-                                           
-                                                
+                                                    <td colspan="2" style="font-weight:bold;">Percentile Rank</td>
                                                     <td>{{$result['t_a_cet_english_procficiency']}}</td>
                                                     <td>{{$result['t_a_cet_reading_comprehension']}}</td>
                                                     <td>{{$result['t_a_cet_science_process_skills']}}</td>
                                                     <td>{{$result['t_a_cet_quantitative_skills']}}</td>
                                                     <td>{{$result['t_a_cet_abstract_thinking_skills']}}</td>
-                                                    <br>
-                                                    <td >{{$result['t_a_cet_oapr']}}</td>
                                                 </tr>
-                                                <tr>  
+                                                <tr>
+                                                    <td colspan="2" style="font-weight:bold;">OAPR</td>
+                                                    <td colspan="5" style="font-weight:bold;">{{$result['t_a_cet_oapr']}}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
+                                        <br>
+                                        <div style="text-align: center;">
+                                            <p>Your WMSU CET score herein is subject to verification against WMSU CET Masterlist</p>
+                                        </div>
                                     </div>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                                <button class="btn btn-success" onclick="print_this('to_print')" >Print</button>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" onclick="print_this('to_print')">Print</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
+                        </div>
                     </div>
                 </div>
+
 
                 <script>
                     window.print_this = function(id) {

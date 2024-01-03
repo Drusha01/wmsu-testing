@@ -1,4 +1,4 @@
-
+<!-- INVALID -->
     <div class="permit" >
         <div class="side-bar">DO NOT LOSE THIS PERMIT.PRESENT THIS WHEN YOU<BR>TAKE THE WMSU CET AND IN CLAIMING YOUR RESULT </div>
         <div class="upper-content"> 
