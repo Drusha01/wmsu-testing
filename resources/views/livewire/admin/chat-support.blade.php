@@ -1,5 +1,5 @@
 <div>
-    <x-loading-indicator/>
+    <!-- <x-loading-indicator/> -->
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Tech support</h1>
