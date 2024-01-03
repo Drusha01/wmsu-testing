@@ -38,16 +38,7 @@
                                 @endif
                                 <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()"/> 
                                 <!-- wire:model.debounce.500ms="search" -->
-                                <div class="nav-item dropdown ">
-                                    <input class="form-control" type="text" id="search" placeholder="Search "  wire:change="search_applicant()" data-bs-toggle="dropdown"/> 
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ Route('profile')}}"><i class="fas fa-user" style="color: #990000;"></i> Profile</a></li>
-                                        <li><a class="dropdown-item" href="{{ Route('notification') }}"><i class="fas fa-bell" style="color: #990000;"></i> Notifications</a></li>
-                                        <li><a class="dropdown-item" href="{{ Route('setting') }}"><i class="fas fa-cog" style="color: #990000;"></i> Settings</a></li>
-                                        <div class="dropdown-divider"></div>
-                                        <li><a class="dropdown-item" href="{{ Route('logout') }}"><i class="fas fa-sign-out-alt" style="color: #990000;"></i> Logout</a></li>
-                                    </ul>
-                                </div>
+                               
                             </div>
                         </div> 
                         <div class="modal fade" id="application-management-filter" tabindex="-1" role="dialog" aria-labelledby="application-management-filterLabel" aria-hidden="true">

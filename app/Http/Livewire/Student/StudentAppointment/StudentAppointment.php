@@ -146,6 +146,17 @@ class StudentAppointment extends Component
                 'appointment_message' =>$this->appointment['appointment_message'],
                 'appointment_datetime' =>NULL
                 ])){
+
+            DB::table('notifications')
+            ->insert([
+                'notification_id' =>NULL ,
+                'notification_user_target' => $this->user_details['user_id'] ,
+                'notification_user_creator' => $this->user_details['user_id'],
+                'notification_icon_id' => 12 ,
+                'notification_title' => 'New Appointment Scheduled!' ,
+                'notification_content'  => 'Your appointment has been successfully scheduled!' ,
+                'notification_link' => '/student/appointment'
+            ]);
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',
                 'icon'              									=> 'success',
@@ -216,6 +227,16 @@ class StudentAppointment extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
             ]);
+            DB::table('notifications')
+            ->insert([
+                'notification_id' =>NULL ,
+                'notification_user_target' => $this->user_details['user_id'] ,
+                'notification_user_creator' => $this->user_details['user_id'],
+                'notification_icon_id' => 15 ,
+                'notification_title' => 'Appointment has been re-scheduled!' ,
+                'notification_content'  => 'Your appointment has been successfully re-scheduled!' ,
+                'notification_link' => '/student/appointment'
+            ]);
             self::update_data();
             $this->dispatchBrowserEvent('openModal','rescheduleApppointmentModal');
         }
@@ -251,6 +272,16 @@ class StudentAppointment extends Component
                 'showConfirmButton' 									=> 'true',
                 'timer'             									=> '1500',
                 'link'              									=> '#'
+            ]);
+            DB::table('notifications')
+            ->insert([
+                'notification_id' =>NULL ,
+                'notification_user_target' => $this->user_details['user_id'] ,
+                'notification_user_creator' => $this->user_details['user_id'],
+                'notification_icon_id' => 13 ,
+                'notification_title' => 'Appointment has been cancelled!' ,
+                'notification_content'  => 'Your appointment has been successfully cancelled!' ,
+                'notification_link' => '/student/appointment'
             ]);
             self::update_data();
             $this->dispatchBrowserEvent('openModal','CancelApppointmentModal');

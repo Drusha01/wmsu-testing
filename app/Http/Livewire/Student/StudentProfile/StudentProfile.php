@@ -389,6 +389,18 @@ class StudentProfile extends Component
             'timer'             									=> '1500',
             'link'              									=> '#'
         ]);
+
+        DB::table('notifications')
+        ->insert([
+            'notification_id' =>NULL ,
+            'notification_user_target' => $this->user_details['user_id'] ,
+            'notification_user_creator' => $this->user_details['user_id'],
+            'notification_icon_id' => 17 ,
+            'notification_title' => 'Account Updated!' ,
+            'notification_content'  => 'Your student account details have been updated!' ,
+            'notification_link' => '/student/profile'
+        ]);
+
         $user_details = DB::table('users as u')
             ->join('user_status as us', 'u.user_status_id', '=', 'us.user_status_id')
             ->join('user_sex as usex', 'u.user_sex_id', '=', 'usex.user_sex_id')
@@ -603,7 +615,7 @@ class StudentProfile extends Component
                                 'notification_id' =>NULL ,
                                 'notification_user_target' => $this->user_details['user_id'] ,
                                 'notification_user_creator' => $this->user_details['user_id'],
-                                'notification_icon_id' => 4 ,
+                                'notification_icon_id' => 17 ,
                                 'notification_title' => 'Profile picture updated!' ,
                                 'notification_content'  => 'You have successfully updated your profile picture!' ,
                                 'notification_link' => '/student/profile',
@@ -802,10 +814,10 @@ class StudentProfile extends Component
                             'notification_id' =>NULL ,
                             'notification_user_target' => $this->user_details['user_id'] ,
                             'notification_user_creator' => $this->user_details['user_id'],
-                            'notification_icon_id' => 4 ,
+                            'notification_icon_id' => 17 ,
                             'notification_title' => 'Successfully Changed password!' ,
                             'notification_content'  => 'You have successfully updated your password, if you didn\'t change this please contact WMSUTEC!' ,
-                            'notification_link' => '/student/profile,'
+                            'notification_link' => '/student/profile'
                         ]);
                     }else{
                         $this->dispatchBrowserEvent('swal:redirect',[

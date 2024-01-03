@@ -1207,6 +1207,24 @@ class ApplicationManagement extends Component
                                 $test_schedule_id = $room['test_schedule_id'];
                                 if ($ampm || $test_schedule_id || $school_room_id){
                                     // update here
+                                    $test_application_details = DB::table('test_applications as ta')
+                                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                                    ->where(['t_a_id'=> $value->t_a_id,
+                                    't_a_isactive'=>1,
+                                    'ts.test_status_details'=>'Pending'])
+                                    ->get()
+                                    ->first();
+                                    DB::table('notifications')
+                                    ->insert([
+                                        'notification_id' =>NULL ,
+                                        'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                                        'notification_user_creator' => $this->user_details['user_id'],
+                                        'notification_icon_id' => 9 ,
+                                        'notification_title' => ' Application Accepted!' ,
+                                        'notification_content'  => 'Your application is accepted, please prepare for your exam and goodluck!' ,
+                                        'notification_link' => '/student/status'
+                                    ]);
+
                                     DB::table('test_applications as ta')
                                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                                     ->where(['t_a_id'=> $value->t_a_id,
@@ -1252,6 +1270,23 @@ class ApplicationManagement extends Component
                                     $school_room_id = $school_room->school_room_id;
                                     if ($ampm || $test_schedule_id || $school_room_id){
                                         // update here
+                                        $test_application_details = DB::table('test_applications as ta')
+                                        ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                                        ->where(['t_a_id'=> $value->t_a_id,
+                                        't_a_isactive'=>1,
+                                        'ts.test_status_details'=>'Pending'])
+                                        ->get()
+                                        ->first();
+                                        DB::table('notifications')
+                                        ->insert([
+                                            'notification_id' =>NULL ,
+                                            'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                                            'notification_user_creator' => $this->user_details['user_id'],
+                                            'notification_icon_id' => 9 ,
+                                            'notification_title' => ' Application Accepted!' ,
+                                            'notification_content'  => 'Your application is accepted, please prepare for your exam and goodluck!' ,
+                                            'notification_link' => '/student/status'
+                                        ]);
                                         DB::table('test_applications as ta')
                                         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                                         ->where(['t_a_id'=> $value->t_a_id,
@@ -1300,6 +1335,24 @@ class ApplicationManagement extends Component
                             $school_room_id = $school_room->school_room_id;
                             if ($ampm || $test_schedule_id || $school_room_id){
                                 // update here
+                                $test_application_details = DB::table('test_applications as ta')
+                                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                                    ->where(['t_a_id'=> $value->t_a_id,
+                                    't_a_isactive'=>1,
+                                    'ts.test_status_details'=>'Pending'])
+                                    ->get()
+                                    ->first();
+                                    DB::table('notifications')
+                                    ->insert([
+                                        'notification_id' =>NULL ,
+                                        'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                                        'notification_user_creator' => $this->user_details['user_id'],
+                                        'notification_icon_id' => 9 ,
+                                        'notification_title' => ' Application Accepted!' ,
+                                        'notification_content'  => 'Your application is accepted, please prepare for your exam and goodluck!' ,
+                                        'notification_link' => '/student/status'
+                                    ]);
+
                                 DB::table('test_applications as ta')
                                 ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                                 ->where(['t_a_id'=> $value->t_a_id,
@@ -1475,11 +1528,30 @@ class ApplicationManagement extends Component
             foreach ($this->accepted_applicant_data  as $key => $value) {
                 if($this->accepted_selected[$key][$value->t_a_id]){
                     // update here
+                    $test_application_details = DB::table('test_applications as ta')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where(['t_a_id'=> $value->t_a_id,
+                    't_a_isactive'=>1,
+                    'ts.test_status_details'=>'Accepted'])
+                    ->get()
+                    ->first();
+
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 8 ,
+                        'notification_title' => ' Application declined!' ,
+                        'notification_content'  => 'Your application is declined, because '.$this->declined_accepted_reason.' !' ,
+                        'notification_link' => '/student/status'
+                    ]);
+
                     DB::table('test_applications as ta')
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where(['t_a_id'=> $value->t_a_id,
                             't_a_isactive'=>1,
-                            'ts.test_status_details'=>'Processing'])
+                            'ts.test_status_details'=>'Accepted'])
                     ->update([
                             't_a_isactive'=>0,
                             't_a_declined_by'=> $this->user_details['user_id'],
@@ -1599,6 +1671,26 @@ class ApplicationManagement extends Component
             foreach ($this->pending_applicant_data  as $key => $value) {
                 if($this->pending_selected[$key][$value->t_a_id]){
                     // update here
+
+                    $test_application_details = DB::table('test_applications as ta')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where(['t_a_id'=> $value->t_a_id,
+                    't_a_isactive'=>1,
+                    'ts.test_status_details'=>'Pending'])
+                    ->get()
+                    ->first();
+
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 8 ,
+                        'notification_title' => ' Application declined!' ,
+                        'notification_content'  => 'Your application is declined, because '.$this->declined_pending_reason.' !' ,
+                        'notification_link' => '/student/status'
+                    ]);
+
                     DB::table('test_applications as ta')
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where(['t_a_id'=> $value->t_a_id,
@@ -1752,11 +1844,29 @@ class ApplicationManagement extends Component
             foreach ($this->accepted_applicant_data  as $key => $value) {
                 if($this->accepted_selected[$key][$value->t_a_id]){
                     // update here
+                    $test_application_details = DB::table('test_applications as ta')
+                    ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
+                    ->where(['t_a_id'=> $value->t_a_id,
+                    't_a_isactive'=>1,
+                    'ts.test_status_details'=>'Accepted'])
+                    ->get()
+                    ->first();
+
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $test_application_details->t_a_applicant_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 8 ,
+                        'notification_title' => ' Application returned!' ,
+                        'notification_content'  => 'Your application is returned, because '.$this->return_reason.' !' ,
+                        'notification_link' => '/student/status'
+                    ]);
                     DB::table('test_applications as ta')
                     ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
                     ->where(['t_a_id'=> $value->t_a_id,
                             't_a_isactive'=>1,
-                            'ts.test_status_details'=>'Processing'])
+                            'ts.test_status_details'=>'Accepted'])
                     ->update([
                             't_a_returned_by'=> $this->user_details['user_id'],
                             't_a_returned_reason' => $this->return_reason,
@@ -1765,6 +1875,8 @@ class ApplicationManagement extends Component
                             ->select('test_status_id as t_a_test_status_id')
                             ->first())['t_a_test_status_id']
                     ]);
+
+                   
 
                     if($this->mail){
                         if(strlen($value->user_email)>0 && $value->user_email_verified ==1){

@@ -2,25 +2,25 @@
 <div class="container">
     <ul class="nav nav-tabs" id="notificationTabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#allNotifications">
+            <a class="nav-link active" data-toggle="tab" href="#allNotifications"  wire:ignore.self>
                 <i class="fas fa-bell"></i> All Notifications
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#unreadNotifications">
+            <a class="nav-link" data-toggle="tab" href="#unreadNotifications"  wire:ignore.self>
                 <i class="fas fa-bell"></i> Unread
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#settings">
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#settings"  wire:ignore.self>
                 <i class="fas fa-cog"></i> Notification Settings
             </a>
-        </li>
+        </li> -->
     </ul>
 
     <div class="tab-content">
         <!-- Tab 1: All Notifications -->
-        <div class="tab-pane fade show active" id="allNotifications">
+        <div class="tab-pane fade show active" id="allNotifications"  wire:ignore.self>
             <table class="table table-striped">
                 <thead style="background-color: #990000; color: white; position: sticky; top: 0;">
                     <tr>
@@ -28,9 +28,27 @@
                         <th scope="col">Title</th>
                         <th scope="col"><i class="far fa-comment"></i></th>
                         <th scope="col"><i class="far fa-clock"></i></th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                @forelse($notifications_list as $key =>$value)
+                    <tr>
+                        <td><?php echo $value->notification_icon_icon?></i> {{$value->notification_title}}</td>
+                        <td>{{$value->notification_content}}</td>
+                        <td>{{$value->notification_timestamp}}</td>
+                        <td>
+                            @if($value->notiication_isread)
+                                <button class="btn btn-secondary" wire:click="mark_as_read({{$value->notification_id}},0)">Mark as read</button></td>
+                            @else
+                                <button class="btn btn-danger" wire:click="mark_as_read({{$value->notification_id}},1)">Mark as unread</button></td>
+                            @endif
+                    </tr>
+                @empty
+                    <tr>No notifications</tr>
+                @endforelse
+                </tbody>
+                <!-- <tbody>
                     <tr>
                         <td><i class="fas fa-file-alt text-primary"></i> Application Submitted</td>
                         <td>Your application has been successfully submitted.</td>
@@ -137,13 +155,12 @@
                         <td>Your profile information has been successfully updated.</td>
                         <td>Just now</td>
                     </tr>
-                    <!-- Add more notifications with appropriate icons and messages -->
-                </tbody>
+                </tbody> -->
             </table>
         </div>
 
         <!-- Tab 2: Unread Notifications -->
-        <div class="tab-pane fade" id="unreadNotifications">
+        <div class="tab-pane fade" id="unreadNotifications" wire:ignore.self>
             <h2>Unread Notifications</h2>
             <p>Welcome to the Unread Notifications tab. Here, you can view all your unread notifications.</p>
             <table class="table table-striped">
@@ -153,28 +170,43 @@
                         <th scope="col">Title</th>
                         <th scope="col"><i class="far fa-comment"></i></th>
                         <th scope="col"><i class="far fa-clock"></i></th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                @forelse($unread_notifications_list as $key =>$value)
                     <tr>
-                        <!-- <th scope="row">1</th> -->
+                        <td><?php echo $value->notification_icon_icon?></i> {{$value->notification_title}}</td>
+                        <td>{{$value->notification_content}}</td>
+                        <td>{{$value->notification_timestamp}}</td>
+                        <td>
+                            @if($value->notiication_isread)
+                                <button class="btn btn-secondary" wire:click="mark_as_read({{$value->notification_id}},0)">Mark as read</button></td>
+                            @else
+                                <button class="btn btn-danger" wire:click="mark_as_read({{$value->notification_id}},1)">Mark as unread</button></td>
+                            @endif
+                    </tr>
+                @empty
+                    <tr>No notifications</tr>
+                @endforelse
+                </tbody>
+                <!-- <tbody>
+                    <tr>
                         <td>Unread Notification Title 1</td>
                         <td>Unread notification message goes here. This notification has not been marked as read.</td>
                         <td>1 day ago</td>
                     </tr>
                     <tr>
-                        <!-- <th scope="row">2</th> -->
                         <td>Unread Notification Title 2</td>
                         <td>Another unread notification message for demonstration.</td>
                         <td>2 days ago</td>
                     </tr>
-                    <!-- Add more unread notification items here -->
-                </tbody>
+                </tbody> -->
             </table>
         </div>
 
         <!-- Tab 3: Notification Settings -->
-        <div class="tab-pane fade" id="settings">
+        <div class="tab-pane fade" id="settings"  wire:ignore.self>
             <h2><i class="fas fa-cog"></i> Notification Settings</h2>
             <p>Welcome to the Notification Settings tab. Here, you can customize your notification preferences.</p>
             <form>

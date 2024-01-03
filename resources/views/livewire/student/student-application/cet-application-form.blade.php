@@ -99,8 +99,8 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="first-name" class="form-label">Name Of School </label>
-                                <input type="text" class="form-control" list="school" id="first-name" wire:model="cet_form.t_a_school_school_name" name="first_name" placeholder="Name Of School" required>
-                                    <datalist id="school">
+                                <input type="text" class="form-control" list="schools"  wire:model="cet_form.t_a_school_school_name"  placeholder="Name Of School" required>
+                                    <datalist id="schools">
                                     @if($high_schools)
                                         @foreach($high_schools as $key =>$value)
                                         <option value="{{$value->high_school_name}}" >

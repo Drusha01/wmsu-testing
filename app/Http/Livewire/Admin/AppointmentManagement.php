@@ -12,7 +12,7 @@ use Mail;
 class AppointmentManagement extends Component
 {
 
-    public $mail = true;
+    public $mail = false;
 
     public $user_detais;
     public $title;
@@ -347,6 +347,21 @@ class AppointmentManagement extends Component
 
             foreach ($this->unassigned_appointment_data  as $key => $value) {
                 if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+                    $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$value->appointment_id )
+                    ->get()
+                    ->first();
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $appointment_details->appointment_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 11 ,
+                        'notification_title' => 'Appointment declined!' ,
+                        'notification_content'  => 'Your appointment has been declined!' ,
+                        'notification_link' => '/student/appointment'
+                    ]);
+
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
@@ -422,6 +437,22 @@ class AppointmentManagement extends Component
 
             foreach ($this->assigned_appointment_data  as $key => $value) {
                 if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+
+                    $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$value->appointment_id )
+                    ->get()
+                    ->first();
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $appointment_details->appointment_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 11 ,
+                        'notification_title' => 'Appointment declined!' ,
+                        'notification_content'  => 'Your appointment has been declined!' ,
+                        'notification_link' => '/student/appointment'
+                    ]);
+
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->update(['appointment_status_id'=>DB::table('status')->select('status_id')->where('status_details','=','Declined')->first()->status_id]);
@@ -506,6 +537,22 @@ class AppointmentManagement extends Component
         if($valid &&  $this->access_role['U'] ){
             foreach ($this->unassigned_appointment_data  as $key => $value) {
                 if($this->unassigned_appointment_selected[$key][$value->appointment_id]){
+
+                    $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$value->appointment_id )
+                    ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id)
+                    ->get()
+                    ->first();
+                    DB::table('notifications')
+                    ->insert([
+                        'notification_id' =>NULL ,
+                        'notification_user_target' => $appointment_details->appointment_user_id ,
+                        'notification_user_creator' => $this->user_details['user_id'],
+                        'notification_icon_id' => 9 ,
+                        'notification_title' => 'Appointment Confirmed!' ,
+                        'notification_content'  => 'Your appointment has been confirmed!' ,
+                        'notification_link' => '/student/appointment'
+                    ]);
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Pending')->first()->status_id)
@@ -625,6 +672,21 @@ class AppointmentManagement extends Component
         if($valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_appointment_data  as $key => $value) {
                 if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+                    $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$value->appointment_id )
+                    ->get()
+                    ->first();
+                    DB::table('notifications')
+                        ->insert([
+                            'notification_id' =>NULL ,
+                            'notification_user_target' => $appointment_details->appointment_user_id  ,
+                            'notification_user_creator' => $this->user_details['user_id'],
+                            'notification_icon_id' => 15 ,
+                            'notification_title' => 'Appointment has been re-scheduled!' ,
+                            'notification_content'  => 'Your appointment has been successfully re-scheduled!' ,
+                            'notification_link' => '/student/appointment'
+                        ]);
+
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
@@ -732,6 +794,22 @@ class AppointmentManagement extends Component
         if($valid &&  $this->access_role['U'] ){
             foreach ($this->assigned_appointment_data  as $key => $value) {
                 if($this->assigned_appointment_selected[$key][$value->appointment_id]){
+
+                    $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$value->appointment_id )
+                    ->get()
+                    ->first();
+                    DB::table('notifications')
+                        ->insert([
+                            'notification_id' =>NULL ,
+                            'notification_user_target' => $appointment_details->appointment_user_id  ,
+                            'notification_user_creator' => $this->user_details['user_id'],
+                            'notification_icon_id' => 13 ,
+                            'notification_title' => 'Appointment schedule removed!' ,
+                            'notification_content'  => 'Your appointment has been schedule has been removed!' ,
+                            'notification_link' => '/student/appointment'
+                        ]);
+
                     DB::table('appointments')
                         ->where('appointment_id','=',$value->appointment_id )
                         ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)
@@ -828,6 +906,21 @@ class AppointmentManagement extends Component
         ];
 
         if($this->access_role['U'] ){
+
+            $appointment_details = DB::table('appointments')
+                    ->where('appointment_id','=',$appointment_id )
+                    ->get()
+                    ->first();
+            DB::table('notifications')
+                ->insert([
+                    'notification_id' =>NULL ,
+                    'notification_user_target' => $appointment_details->appointment_user_id ,
+                    'notification_user_creator' => $this->user_details['user_id'],
+                    'notification_icon_id' => 14 ,
+                    'notification_title' => 'Appointment Complete!' ,
+                    'notification_content'  => 'Your appointment has been complete!' ,
+                    'notification_link' => '/student/appointment'
+                ]);
             DB::table('appointments')
             ->where('appointment_id','=',$appointment_id )
             ->where('appointment_status_id','=', DB::table('status')->select('status_id')->where('status_details','=','Accepted')->first()->status_id)

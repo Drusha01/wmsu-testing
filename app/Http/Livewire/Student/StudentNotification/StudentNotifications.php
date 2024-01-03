@@ -13,6 +13,8 @@ class StudentNotifications extends Component
 {
     public $user_detais;
     public $title;
+
+    public $notifications_list = [];
     public function booted(Request $request){
         $this->user_details = $request->session()->all();
         if(!isset($this->user_details['user_id'])){
@@ -33,9 +35,31 @@ class StudentNotifications extends Component
             return redirect('/inactive');
         }
     }
+    public function update_data(){
+        $this->notifications_list = DB::table('notifications as n')
+        ->select('*'
+            ,DB::raw('n.created_at as  notification_timestamp'))
+        ->join('notification_icons as ni','ni.notification_icon_id','n.notification_icon_id')
+        ->where('notification_user_target','=',$this->user_details['user_id'])
+        ->orderBy('notification_timestamp','desc')
+        ->get()
+        ->toArray();
+
+        $this->unread_notifications_list =  DB::table('notifications as n')
+        ->select('*'
+            ,DB::raw('n.created_at as  notification_timestamp'))
+        ->join('notification_icons as ni','ni.notification_icon_id','n.notification_icon_id')
+        ->where('notification_user_target','=',$this->user_details['user_id'])
+        ->where('notiication_isread','=',1)
+        ->orderBy('notification_timestamp','desc')
+        ->get()
+        ->toArray();
+    }
     public function mount(Request $request){
         $this->user_details = $request->session()->all();
         $this->title = 'notifications';
+        self::update_data();
+        // dd($this->notifications_list );
     }
     public function render()
     {
@@ -44,5 +68,13 @@ class StudentNotifications extends Component
             ])
             ->layout('layouts.student',[
                 'title'=>$this->title]);
+    }
+    public function mark_as_read($notification_id,$isread){
+        DB::table('notifications as n')
+        ->where('notification_id','=',$notification_id)
+        ->update([
+            'notiication_isread'=>$isread
+        ]);
+        self::update_data();
     }
 }

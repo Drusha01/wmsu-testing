@@ -457,6 +457,18 @@ class StudentStatus extends Component
                 'timer'             									=> '1500',
                 'link'              									=> '#'
             ]);
+
+            DB::table('notifications')
+            ->insert([
+                'notification_id' =>NULL ,
+                'notification_user_target' => $this->user_details['user_id'] ,
+                'notification_user_creator' => $this->user_details['user_id'],
+                'notification_icon_id' => 10 ,
+                'notification_title' => 'Application cancelled!' ,
+                'notification_content'  => 'You have successfully cancelled your application!' ,
+                'notification_link' => '/student/status'
+            ]);
+            
         }else{
             $this->dispatchBrowserEvent('swal:redirect',[
                 'position'          									=> 'center',

@@ -751,6 +751,17 @@ class CetApplicationForm extends Component
                     'timer'             									=> '1500',
                     'link'              									=> '/student/status'
                 ]);
+
+                DB::table('notifications')
+                ->insert([
+                    'notification_id' =>NULL ,
+                    'notification_user_target' => $this->user_details['user_id'] ,
+                    'notification_user_creator' => $this->user_details['user_id'],
+                    'notification_icon_id' => 6 ,
+                    'notification_title' => 'Application Submitted!' ,
+                    'notification_content'  => 'Your application has been successfully submitted!' ,
+                    'notification_link' => '/student/status'
+                ]);
             }
             
         }
