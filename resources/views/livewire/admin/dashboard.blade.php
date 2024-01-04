@@ -267,9 +267,9 @@
         labels: [
             @foreach($total_accounts as $key =>$value)
                 @if($loop->last)
-                    '{{$value->user_status_details}}'
+                    '{{$value->count}} - {{$value->user_status_details}}'
                 @else
-                    '{{$value->user_status_details}}',
+                    '{{$value->count}} - {{$value->user_status_details}}',
                 @endif
             @endforeach
         ],
@@ -309,9 +309,9 @@
     labels: [
         @foreach($status_of_applicants as $key =>$value)
             @if($loop->last)
-                '{{$value->test_status_details}}'
+                '{{$value->count}} - {{$value->test_status_details}}'
             @else
-                '{{$value->test_status_details}}',
+                '{{$value->count}} - {{$value->test_status_details}}',
             @endif
         @endforeach
     ],
