@@ -100,7 +100,7 @@
                       <div class="card rounded-4 border-0 shadow p-4 w-100">
                           <div class="d-flex align-items-center justify-content-between mb-4">
                               <h6 class="mb-0">Total Appointments For this Week</h6>
-                              <span><?php echo date('M d, Y', strtotime("-7 day")); echo ' - ' ;echo date("F d, Y");?></span>
+                              <span>{{date_format(date_create($this->total_appointments_this_week[0]->date),"F d, Y ")}} - {{date_format(date_create($this->total_appointments_this_week[count($this->total_appointments_this_week)-1]->date),"F d, Y ")}}</span>
                           </div>
                           <div class="chart-container">
                               <canvas id="appointments-bar-chart"></canvas>
@@ -121,29 +121,67 @@
 <script>
         // Data for Total Applicants
         const totalApplicantsData = {
-            labels: ['CET', 'NAT', 'EAT', 'GSAT', 'LSAT'],
+            labels: [ 
+        @foreach($total_applicants as $key =>$value)
+            @if($loop->last)
+                '{{$value->test_type_name}}'
+            @else
+                '{{$value->test_type_name}}',
+            @endif
+        @endforeach ],
             datasets: [{
                 label: 'Total Applicants',
-                data: [4000, 2321, 700, 202, 53],
+                data: [
+                    @foreach($total_applicants as $key =>$value)
+                        @if($loop->last)
+                           {{$value->count}}
+                        @else
+                            {{$value->count}},
+                        @endif
+                    @endforeach
+                ],
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(153, 102, 255, 0.6)'
+                    @foreach($total_applicants as $key =>$value)
+                        @if($loop->last)
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                        @else
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                        @endif
+                    @endforeach
                 ],
             }]
         };
 
         // Data for Total Appointments
         const totalAppointmentsData = {
-            labels: ['Pending', 'Completed'],
+            labels: [
+                @foreach($total_appointments as $key =>$value)
+                    @if($loop->last)
+                        '{{$value->status_details}}'
+                    @else
+                        '{{$value->status_details}}',
+                    @endif
+                @endforeach
+            ],
             datasets: [{
                 label: 'Total Appointments',
-                data: [212, 21],
+                data: [
+                    @foreach($total_appointments as $key =>$value)
+                        @if($loop->last)
+                           {{$value->count}}
+                        @else
+                            {{$value->count}},
+                        @endif
+                    @endforeach
+                ],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(75, 192, 192, 0.6)'
+                    @foreach($total_appointments as $key =>$value)
+                        @if($loop->last)
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                        @else
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                        @endif
+                    @endforeach
                 ],
             }]
         };
@@ -185,12 +223,36 @@
 
 // <!-- SCRIPT FOR CHART 2 -->
     var testTakersData = {
-        labels: ["CET", "NAT", "EAT", "GSAT", "LSAT"],
+        labels: [
+            @foreach($total_test_takers as $key =>$value)
+                @if($loop->last)
+                    '{{$value->test_type_name}}'
+                @else
+                    '{{$value->test_type_name}}',
+                @endif
+            @endforeach
+        ],
         datasets: [
             {
-                label: "Total Test Takers",
-                data: [4000, 2321, 700, 202, 53], // Replace with actual data
-                backgroundColor: ["#990000", "#6610f2", "#6f42c1", "#e83e8c", "#fd7e14"],
+                label: ["@if(count($total_test_takers)>0){{$total_test_takers[0]->test_type_name}}@endif"],
+                data: [
+                    @foreach($total_test_takers as $key =>$value)
+                        @if($loop->last)
+                           {{$value->count}}
+                        @else
+                            {{$value->count}},
+                        @endif
+                    @endforeach
+                ], // Replace with actual data
+                backgroundColor: [
+                    @foreach($total_test_takers as $key =>$value)
+                        @if($loop->last)
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                        @else
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                        @endif
+                    @endforeach
+                ],
             },
         ],
     };
@@ -202,11 +264,35 @@
 
     <!-- Accounts Pie Chart data -->
     var accountsData = {
-        labels: ["Active", "Inactive"],
+        labels: [
+            @foreach($total_accounts as $key =>$value)
+                @if($loop->last)
+                    '{{$value->user_status_details}}'
+                @else
+                    '{{$value->user_status_details}}',
+                @endif
+            @endforeach
+        ],
         datasets: [
             {
-                data: [212, 21], // Replace with actual data
-                backgroundColor: ["#990000", "#2845"],
+                data: [
+                    @foreach($total_accounts as $key =>$value)
+                        @if($loop->last)
+                           {{$value->count}}
+                        @else
+                            {{$value->count}},
+                        @endif
+                    @endforeach
+                ], // Replace with actual data
+                backgroundColor: [
+                    @foreach($total_accounts as $key =>$value)
+                        @if($loop->last)
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                        @else
+                            'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                        @endif
+                    @endforeach
+                ],
             },
         ],
     };
@@ -220,13 +306,37 @@
 <!-- SCRIPT FOR CHART 3 -->
 <script>
   var examinationsData = {
-      labels: ["Available", "Unavailable"],
-      datasets: [
-          {
-              data: [70, 30], // Replace with actual data
-              backgroundColor: ["#990000", "#6c757d"],
-          },
-      ],
+    labels: [
+        @foreach($status_of_applicants as $key =>$value)
+            @if($loop->last)
+                '{{$value->test_status_details}}'
+            @else
+                '{{$value->test_status_details}}',
+            @endif
+        @endforeach
+    ],
+    datasets: [
+        {
+            data: [
+                @foreach($status_of_applicants as $key =>$value)
+                    @if($loop->last)
+                        {{$value->count}}
+                    @else
+                        {{$value->count}},
+                    @endif
+                @endforeach
+            ], // Replace with actual data
+            backgroundColor: [
+                @foreach($status_of_applicants as $key =>$value)
+                    @if($loop->last)
+                        'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                    @else
+                        'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                    @endif
+                @endforeach
+            ],
+        },
+    ],
   };
 
   var examinationsDoughnutChart = new Chart(document.getElementById("examinations-doughnut-chart").getContext("2d"), {
@@ -236,14 +346,38 @@
 
   <!-- Bar Chart data for Total Appointments -->
   var appointmentsData = {
-      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      datasets: [
-          {
-              label: "Total Appointments",
-              data: [32, 42, 38, 49, 55, 46, 31], // Replace with actual data
-              backgroundColor: "#990000",
-          },
-      ],
+    labels: [
+        @foreach($total_appointments_this_week as $key =>$value)
+            @if($loop->last)
+                "{{date_format(date_create($value->date),"F d, Y")}}"
+            @else
+                "{{date_format(date_create($value->date),"F d, Y")}}",
+            @endif
+        @endforeach
+    ],
+    datasets: [
+        {
+            label: ["@if(count($total_appointments_this_week)>0){{date_format(date_create($total_appointments_this_week[0]->date),"F d, Y")}}@endif"],
+            data: [
+                @foreach($total_appointments_this_week as $key =>$value)
+                    @if($loop->last)
+                        {{$value->count}}
+                    @else
+                        {{$value->count}},
+                    @endif
+                @endforeach
+            ], // Replace with actual data
+            backgroundColor: [
+                @foreach($total_appointments_this_week as $key =>$value)
+                    @if($loop->last)
+                        'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)'
+                    @else
+                        'rgba({{rand(10,255)}},{{rand(10,255)}}, {{rand(10,255)}},0.7)',
+                    @endif
+                @endforeach
+            ],
+        },
+    ],
   };
 
   var appointmentsBarChart = new Chart(document.getElementById("appointments-bar-chart").getContext("2d"), {
