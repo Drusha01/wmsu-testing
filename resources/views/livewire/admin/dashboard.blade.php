@@ -100,7 +100,10 @@
                       <div class="card rounded-4 border-0 shadow p-4 w-100">
                           <div class="d-flex align-items-center justify-content-between mb-4">
                               <h6 class="mb-0">Total Appointments For this Week</h6>
-                              <span>{{date_format(date_create($this->total_appointments_this_week[0]->date),"F d, Y ")}} - {{date_format(date_create($this->total_appointments_this_week[count($this->total_appointments_this_week)-1]->date),"F d, Y ")}}</span>
+                              <?php if(isset($this->total_appointments_this_week[0])): ?>
+                                <span><?php echo e(date_format(date_create($this->total_appointments_this_week[0]->date),"F d, Y ")); ?> - <?php echo e(date_format(date_create($this->total_appointments_this_week[count($this->total_appointments_this_week) - 1]->date),"F d, Y ")); ?></span>
+                            <?php endif; ?>
+
                           </div>
                           <div class="chart-container">
                               <canvas id="appointments-bar-chart"></canvas>
