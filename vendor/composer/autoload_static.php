@@ -880,6 +880,7 @@ class ComposerStaticInit748e8876d6c830eda2b45efbd4eaa0c4
         'Database\\Seeders\\fb_defaults' => __DIR__ . '/../..' . '/database/seeders/fb_defaults.php',
         'Database\\Seeders\\high_school_seeders' => __DIR__ . '/../..' . '/database/seeders/high_school_seeders.php',
         'Database\\Seeders\\moduleList' => __DIR__ . '/../..' . '/database/seeders/moduleList.php',
+        'Database\\Seeders\\notication_icons' => __DIR__ . '/../..' . '/database/seeders/notication_icons.php',
         'Database\\Seeders\\province_seeders' => __DIR__ . '/../..' . '/database/seeders/province_seeders.php',
         'Database\\Seeders\\regions_seeders' => __DIR__ . '/../..' . '/database/seeders/regions_seeders.php',
         'Database\\Seeders\\schoolTypes' => __DIR__ . '/../..' . '/database/seeders/schoolTypes.php',

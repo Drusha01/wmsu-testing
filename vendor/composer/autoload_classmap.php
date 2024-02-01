@@ -260,6 +260,7 @@ return array(
     'Database\\Seeders\\fb_defaults' => $baseDir . '/database/seeders/fb_defaults.php',
     'Database\\Seeders\\high_school_seeders' => $baseDir . '/database/seeders/high_school_seeders.php',
     'Database\\Seeders\\moduleList' => $baseDir . '/database/seeders/moduleList.php',
+    'Database\\Seeders\\notication_icons' => $baseDir . '/database/seeders/notication_icons.php',
     'Database\\Seeders\\province_seeders' => $baseDir . '/database/seeders/province_seeders.php',
     'Database\\Seeders\\regions_seeders' => $baseDir . '/database/seeders/regions_seeders.php',
     'Database\\Seeders\\schoolTypes' => $baseDir . '/database/seeders/schoolTypes.php',
