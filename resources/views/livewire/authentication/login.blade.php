@@ -15,11 +15,11 @@
                         <form wire:submit.prevent="login()">
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
-                                <input type="name"  wire:model="username" class="form-control" placeholder="Username / Email address" required>
+                                <input type="name"  wire:model.prevent="username" class="form-control" placeholder="Username / Email address" required>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="password" class="sr-only">Password</label>
-                                <input type="password"  wire:model="password" class="form-control" placeholder="Enter Password" required>
+                                <input type="password"  wire:model.prevent="password" class="form-control" placeholder="Enter Password" required>
                             </div>
                             <button type="submit" class="btn btn-block login-btn mb-4">Continue</button>
                         </form>
