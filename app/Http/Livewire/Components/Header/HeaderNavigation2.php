@@ -10,6 +10,9 @@ class HeaderNavigation2 extends Component
 {
     public $user_details;
     public $user_status;
+    public $unread_notification_count = 0;
+    public $prev_unread_notification_count;
+    public $notifications = [];
     public function mount(Request $request){
         $user_details = $request->session()->all();
         if(isset($user_details['user_id'])){
@@ -29,8 +32,71 @@ class HeaderNavigation2 extends Component
                 'user_profile_picture' =>$this->user_details->user_profile_picture
                
             ];
-            
+            $this->unread_notification_count = DB::table('notifications')
+                ->select(DB::raw('COUNT(notification_id) as unread_notification_count'))
+                ->where('notification_user_target','=',$user_details['user_id'])
+                ->where('notiication_isread','=',1)
+                ->get()
+                ->first()->unread_notification_count;    
+
+            $this->prev_unread_notification_count = $this->unread_notification_count ;
+
+            $this->notifications =  DB::table('notifications as n')
+                ->select(
+                    'n.notification_id' ,
+                    'n.notification_user_target' ,
+                    'n.notification_user_creator' ,
+                    'n.notification_icon_id' ,
+                    'ni.notification_icon_icon' ,
+                    'n.notification_title' ,
+                    'n.notification_content' ,
+                    'n.notiication_isread' ,
+                    'n.notification_link' ,
+                    'n.created_at' ,
+                    'n.updated_at' ,
+                )
+                ->join('notification_icons as ni','ni.notification_icon_id','n.notification_icon_id')
+                ->where('notification_user_target','=',$this->user_details['user_id'])
+                ->where('notiication_isread','=',1)
+                ->orderBy('n.created_at','DESC')
+                ->limit('5')
+                ->get()
+                ->toArray();
         }
+       
+    }
+    public function update_nofitication(){
+        $this->prev_unread_notification_count = $this->unread_notification_count ;
+        $this->unread_notification_count = DB::table('notifications')
+        ->select(DB::raw('COUNT(notification_id) as unread_notification_count'))
+        ->where('notification_user_target','=',$this->user_details['user_id'])
+        ->where('notiication_isread','=',1)
+        ->get()
+        ->first()->unread_notification_count;    
+
+     
+        $this->notifications =  DB::table('notifications as n')
+            ->select(
+                'n.notification_id' ,
+                'n.notification_user_target' ,
+                'n.notification_user_creator' ,
+                'n.notification_icon_id' ,
+                'ni.notification_icon_icon' ,
+                'n.notification_title' ,
+                'n.notification_content' ,
+                'n.notiication_isread' ,
+                'n.notification_link' ,
+                'n.created_at' ,
+                'n.updated_at' ,
+            )
+            ->join('notification_icons as ni','ni.notification_icon_id','n.notification_icon_id')
+            ->where('notification_user_target','=',$this->user_details['user_id'])
+            ->where('notiication_isread','=',1)
+            ->orderBy('n.created_at','DESC')
+            ->limit('5')
+            ->get()
+            ->toArray();
+        
     }
     public function render()
     {

@@ -48,41 +48,36 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-bell  "style="font-size: 17px;"></i>
-                                        <span class="badge badge-warning">1</span> 
+                                        @if($unread_notification_count >0 )<span class="badge badge-warning">{{$unread_notification_count}}</span> @endif
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
-                                        <h6 class="dropdown-header">Notifications</h6>
-                                        <a class="dropdown-item" href="#">
-                                            <div class="notification-content">
-                                                <div class="notification-icon">
-                                                    <i class="fas fa-info-circle"></i>
+                                    @if($notifications)
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown" wire:ignore.self>
+                                            <h6 class="dropdown-header">Notifications</h6>
+                                            @foreach($notifications as $key => $value)
+                                            <a class="dropdown-item" href="{{$value->notification_link}}">
+                                                <div class="notification-content">
+                                                    <div class="notification-icon">
+                                                        <?php echo $value->notification_icon_icon ?>
+                                                    </div>
+                                                    <div class="notification-text">
+                                                        <p>{{$value->notification_title}}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="notification-text">
-                                                    <p>New notification 1</p>
+                                            </a>
+
+                                            @endforeach
+                                            <a class="dropdown-item" href="{{route ('student.notifications') }}">
+                                                <div class="notification-content">
+                                                    <div class="notification-icon">
+                                                        <i class="fas fa-bell"></i>
+                                                    </div>
+                                                    <div class="notification-text">
+                                                        <p>Show All Notifications</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <div class="notification-content">
-                                                <div class="notification-icon">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </div>
-                                                <div class="notification-text">
-                                                    <p>New notification 2</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item" href="{{route ('student.notifications') }}">
-                                            <div class="notification-content">
-                                                <div class="notification-icon">
-                                                    <i class="fas fa-bell"></i>
-                                                </div>
-                                                <div class="notification-text">
-                                                    <p>Show All Notifications</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    @endif
                                 </li>
                             </ul>
 
