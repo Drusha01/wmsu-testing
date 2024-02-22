@@ -494,8 +494,10 @@
                 </div>
             </div>
             
+
+            <!-- view application status -->
             <div class="modal fade" id="view_application_modal" tabindex="-1" role="dialog" aria-labelledby="view_application_modalLabel" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-xl modal-md" role="document">
+                <div class="modal-dialog modal-xl modal-xl" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modifyModalLabelDetails">Application Details</h5>
@@ -504,23 +506,23 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="container border border-dark  mt-5 mb-5" id="cet-form">
+                            <div class="container border border " id="cet-form">
                                 <form wire:submit.prevent="cet_application()">
                                     <div @if($page == 2) class="d-none"@endif>
                                         <div class="row ">
-                                            <div class="col-sm  border-danger my-4 mx-2 d-flex align-items-center justify-content-center mx-5" style="height:300px;">
+                                            <div class="col-sm  my-4 mx-2 d-flex align-items-center justify-content-center" style="height:300px;">
                                                 <span class="text-center text-danger"> 
                                                     <img src="{{ asset('images/logo/logo.png') }}" alt="Logo" class="form-logo">
                                                 </span>
                                             </div>
-                                            <div class="col-sm  my-4 mx-2  text-center py-5 mx-5">
+                                            <div class="col-sm  my-4 mx-2  text-center py-5">
                                                 <p class="text-danger font-weight-bold">Western Mindanao State University <br> TESTING AND EVALUATION CENTER  <br> Zamboanga City</p>
                                                 <p class="text-danger font-weight-bold">WMSU-CET APPLICATION FORM  <br>  School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
                                             </div>
-                                            <div class="col-sm text-center border border-danger  d-flex align-items-end justify-content-center mr-5 mt-3" style="height:252px;width:252px;">
+                                            <div class="col-sm text-center d-flex align-items-end justify-content-center mr-5 mt-5" style="height:252px;width:252px;">
                                                 <div class="">
                                                      <a target="blank"href="{{asset('storage/application-requirements/t_a_formal_photo/'.$cet_form['t_a_formal_photo'])}}" >
-                                                        <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$cet_form['t_a_formal_photo'])}}"width="250px" height="250px" style="object-fit: cover;">
+                                                        <img src="{{asset('storage/application-requirements/t_a_formal_photo/'.$cet_form['t_a_formal_photo'])}}"width="280px" height="250px" style="object-fit: cover;">
                                                     </a>
                                                 </div>
                                             </div>
@@ -714,7 +716,7 @@
                                         </div>
                                     </div>
                                     <div @if($page == 1) class="d-none" @endif> 
-                                        <div class="container border border-4 w-80" >
+                                        <div class="container border mt-3 border-4 w-80" >
                                             <div class="text-danger font-weight-bold"> Course to take up:(Choose from the list of WMSU Campuses and Undergraduate degree programs/courses offered by WMSU posted in your school's bulletin board.)</div>
                                                 <div class="row px-2 py-3">
                                                     <div class="col-md-4 my-2">
@@ -729,7 +731,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-danger font-weight-bold">Socio Economic Data: Furnish all ] information. Under Column "Highest Education Finished" indicate the educational level actually completed (eg. Grade III, Third Year high school, High School Gradute, Second Year, College Graduate,etc) </div>
+                                            <div class="text-danger font-weight-bold mt-2 mb-2">Socio Economic Data: Furnish all ] information. Under Column "Highest Education Finished" indicate the educational level actually completed (eg. Grade III, Third Year high school, High School Gradute, Second Year, College Graduate,etc) </div>
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
