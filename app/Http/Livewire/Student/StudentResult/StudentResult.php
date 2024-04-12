@@ -69,7 +69,7 @@ class StudentResult extends Component
             'test_status_details',
             )
         ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
-        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+        ->leftjoin('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
@@ -113,7 +113,7 @@ class StudentResult extends Component
             'test_status_details',
             )
         ->join('users as u', 'u.user_id', '=', 'ta.t_a_applicant_user_id')
-        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'u.user_id')
+        ->leftjoin('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')

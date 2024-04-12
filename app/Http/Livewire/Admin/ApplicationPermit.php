@@ -73,7 +73,7 @@ class ApplicationPermit extends Component
         ->select('*',DB::raw('DATE(ta.date_created) as applied_date'))
         ->join('test_types as tt', 'tt.test_type_id', '=', 'ta.t_a_test_type_id')
         ->join('users as us', 'us.user_id', '=', 'ta.t_a_applicant_user_id')
-        ->join('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
+        ->leftjoin('user_family_background as fb', 'fb.family_background_user_id', '=', 'ta.t_a_applicant_user_id')
         ->join('test_status as ts', 'ts.test_status_id', '=', 'ta.t_a_test_status_id')
         ->join('school_years as sy', 'sy.school_year_id', '=', 'ta.t_a_school_year_id')
         ->join('cet_types as ct', 'ct.cet_type_id', '=', 'ta.t_a_cet_type_id')

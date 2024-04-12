@@ -7,7 +7,7 @@
                     <h4 style="font-size: 14px; margin-bottom: 5px;">Western Mindanao State University</h4>
                     <h5 style="font-size: 12px; margin-bottom: 5px;">Testing And Evaluation Center</h5>
                     <h6 style="font-size: 10px; margin-bottom: 5px;">Normal Road, Baliwasa, Zamboanga City</h6>
-                    <p class="text-danger font-weight-bold">WMSU-CET APPLICATION PERMIT  <br>  School Year {{(date("Y")+1).' - '.(date("Y")+2)}}</p>
+                    <p class="text-danger font-weight-bold">WMSU-CET APPLICATION PERMIT  <br>  School Year {{(date("Y")).' - '.(date("Y")+1)}}</p>
                 </div>
                 <img src="{{ asset('images/logo/tec.png') }}" alt="Logo" class="form-logo" style="height: 100px; margin-right: -100px;">
             </section>
